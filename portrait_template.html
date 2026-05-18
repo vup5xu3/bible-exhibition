@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{人物中文名}} · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════
+     HERO · 頁首主視覺
+════════════════════════════════════════════ -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">{{人物中文名}}</h1>
+  <!-- 英文名 · 原文名（希伯來文或希臘文） -->
+  <span class="hero-name-en">{{英文名}} · {{原文名}}</span>
+  <!-- 一句話精華摘要，帶出此人物的核心張力，斜體引言風格 -->
+  <p class="hero-slogan">「{{人物核心張力引言，例：神叫他走，他就走了——連目的地也不知道}}」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">{{活躍時代，例：主前 1446–1406 年}}</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">{{MBTI類型}} · {{類型別稱}}</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">{{主要出現書卷，例：出 1–20 章}}</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">{{身份標籤1}} · {{身份標籤2}}</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     NAV · 導覽列（固定八大章節，標題依需微調）
+════════════════════════════════════════════ -->
+<nav class="nav">
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <!-- ══════════════════════════════════════════
+       I · PORTRAIT 人物素描
+  ══════════════════════════════════════════ -->
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <!-- 章節引言：一句概括此節主旨的話 -->
+    <p class="section-epigraph">{{章節引言，例：每位聖經人物都是特定歷史時刻的產物}}</p>
+
+    <!-- 資訊格子：填入 3–6 個欄位，label 為標籤名，value 為對應內容 -->
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">{{時代描述，含歷史年代}}</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">多重身份</span>
+        <div class="info-cell-value">{{身份1}} · {{身份2}}<br>{{身份3}} · {{身份4}}</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">{{出生地}} → {{主要活動地點}}</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">背景</span>
+        <div class="info-cell-value">{{族裔背景}}<br>{{家庭或文化背景}}</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">{{主要書卷章節}}<br>{{新約引用書卷（如有）}}</div>
+      </div>
+      <!-- 可視需要新增或刪除 info-cell -->
+    </div>
+
+    <!-- 兩段散文：描述人物的歷史背景與神學定位 -->
+    <p>{{第一段：歷史與文化背景。描述人物所在時代、出生地環境、文化宗教脈絡。}}</p>
+    <p>{{第二段：神學定位。此人物在救贖歷史中扮演的角色，神為何在此時揀選此人。}}</p>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       II · TIMELINE 生命軌跡
+  ══════════════════════════════════════════ -->
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">{{章節引言}}</p>
+
+    <div class="timeline">
+
+      <!-- ── 時間線條目：依序填入 4–7 個人生事件 ──
+           timeline-dot 類別：major（重大轉折）/ dark（低谷或試煉）/ final（終章）/ 無（一般）
+           badge 類別對應：badge-major / badge-dark / badge-normal -->
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">{{事件類別標籤，例：重大轉折}}</span>
+        <div class="timeline-title">{{事件標題，例：蒙召出發——從安逸到荒野}}</div>
+        <div class="timeline-body">{{事件詳細描述：發生了什麼、人物的回應、背後的神學意義（約150字）}}</div>
+        <div class="timeline-ref">{{相關經文，例：出 3:1–12 · 使徒行傳 7:30–34}}</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">{{事件類別標籤}}</span>
+        <div class="timeline-title">{{事件標題}}</div>
+        <div class="timeline-body">{{事件詳細描述}}</div>
+        <div class="timeline-ref">{{相關經文}}</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">{{事件類別標籤}}</span>
+        <div class="timeline-title">{{事件標題}}</div>
+        <div class="timeline-body">{{事件詳細描述}}</div>
+        <div class="timeline-ref">{{相關經文}}</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">{{事件類別標籤}}</span>
+        <div class="timeline-title">{{事件標題}}</div>
+        <div class="timeline-body">{{事件詳細描述}}</div>
+        <div class="timeline-ref">{{相關經文}}</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">{{事件類別標籤，例：傳承終章}}</span>
+        <div class="timeline-title">{{事件標題}}</div>
+        <div class="timeline-body">{{事件詳細描述}}</div>
+        <div class="timeline-ref">{{相關經文}}</div>
+      </div>
+
+      <!-- 可視人物事件多寡新增或刪除條目 -->
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       III · CHARACTER 性格剖析
+  ══════════════════════════════════════════ -->
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">{{章節引言}}</p>
+
+    <!-- 靈魂格子：四個固定維度，emoji 可更換 -->
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🌟</div>
+        <div>
+          <span class="soul-label">核心驅動力</span>
+          <div class="soul-title">{{一句話概括此人的核心驅動力}}</div>
+          <div class="soul-body">{{說明此驅動力的表現與聖經依據（約80字）}}</div>
+        </div>
+      </div>
+      <div class="soul-row">
+        <div class="soul-icon">💛</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">{{此人最突出的美德標題}}</div>
+          <div class="soul-body">{{說明此美德的具體事例與聖經根據（約80字）}}</div>
+        </div>
+      </div>
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">{{此人最深的性格弱點或陰影面標題}}</div>
+          <div class="soul-body">{{說明此弱點的表現事件與影響（約80字）}}</div>
+        </div>
+      </div>
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">{{此人身上超前時代或難以解釋的屬靈面向}}</div>
+          <div class="soul-body">{{說明此面向的神學詮釋與意涵（約80字）}}</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 深層洞見框：一段統整性的心理或屬靈分析 -->
+    <div class="insight-box">{{深層靈魂洞見：統整此人物最核心的內在衝突或屬靈張力（約80字）}}</div>
+
+    <!-- MBTI 分析卡 -->
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">{{MBTI四字母，例：INFJ}}</span>
+      <div class="mbti-name">{{MBTI中文名稱，例：提倡者型}} · {{別稱，例：先知型人格}}</div>
+      <div class="mbti-slogan">「{{一句話總結此MBTI在此人物身上的最大張力}}」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">{{功能代碼，例：Ni}} · {{功能全名，例：內向直覺}}</span>
+          <div class="mbti-fn-body">{{此功能如何在此人物身上表現（約60字）}}</div>
+        </div>
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">{{功能代碼}} · {{功能全名}}</span>
+          <div class="mbti-fn-body">{{此功能如何在此人物身上表現（約60字）}}</div>
+        </div>
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">{{功能代碼}} · {{功能全名}}</span>
+          <div class="mbti-fn-body">{{此功能如何在此人物身上表現（約60字）}}</div>
+        </div>
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">{{功能代碼}} · {{功能全名}}</span>
+          <div class="mbti-fn-body">{{此功能如何在此人物身上表現（約60字）}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       IV · RELATIONS 關係網絡
+  ══════════════════════════════════════════ -->
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">{{章節引言}}</p>
+
+    <!-- 關係卡片：每張代表一個重要關係人物，建議 4–6 張 -->
+    <div class="relation-list">
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <!-- 頭像：填入人物中文名第一個字 -->
+          <div class="relation-avatar">{{字}}</div>
+          <div class="relation-name">{{關係人物名稱，例：耶和華}}</div>
+          <div class="relation-type-badge">{{關係類別，例：神聖立約者}}</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">{{描述這段關係的本質、發展與對主角的影響（約100字）}}</div>
+          <div class="relation-ref">{{相關經文}}</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">{{字}}</div>
+          <div class="relation-name">{{關係人物名稱}}</div>
+          <div class="relation-type-badge">{{關係類別}}</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">{{描述這段關係（約100字）}}</div>
+          <div class="relation-ref">{{相關經文}}</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">{{字}}</div>
+          <div class="relation-name">{{關係人物名稱}}</div>
+          <div class="relation-type-badge">{{關係類別}}</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">{{描述這段關係（約100字）}}</div>
+          <div class="relation-ref">{{相關經文}}</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">{{字}}</div>
+          <div class="relation-name">{{關係人物名稱}}</div>
+          <div class="relation-type-badge">{{關係類別}}</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">{{描述這段關係（約100字）}}</div>
+          <div class="relation-ref">{{相關經文}}</div>
+        </div>
+      </div>
+
+      <!-- 可視關係多寡新增或刪除卡片 -->
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       V · THEOLOGY 神學意義
+  ══════════════════════════════════════════ -->
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">{{章節引言}}</p>
+
+    <!-- 核心經文框 -->
+    <div class="verse-block">
+      <div class="verse-text">「{{此人物最具代表性的聖經金句}}」</div>
+      <div class="verse-ref">{{書卷 章:節}}</div>
+    </div>
+
+    <!-- 原文詞彙卡（通常2張，可增減） -->
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <!-- 原文字：希伯來文或希臘文 -->
+        <span class="word-original">{{原文字}}</span>
+        <div class="word-transliteration">{{音譯}} · {{語言，例：希伯來文}}</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">{{字面意思與字根說明}}</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">{{此字在救贖神學中的意義與新約連結}}</div>
+      </div>
+      <div class="word-card">
+        <span class="word-original">{{原文字}}</span>
+        <div class="word-transliteration">{{音譯}} · {{語言}}</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">{{字面意思與字根說明}}</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">{{此字在救贖神學中的意義與新約連結}}</div>
+      </div>
+    </div>
+
+    <!-- 救贖史神學洞察：2–3 個主題 -->
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">{{神學主題一標題}}</div>
+      <div class="theology-insight-body">{{主題一詳述（約80字）}}</div>
+    </div>
+    <div class="theology-insight">
+      <div class="theology-insight-title">{{神學主題二標題}}</div>
+      <div class="theology-insight-body">{{主題二詳述（約80字）}}</div>
+    </div>
+    <div class="theology-insight">
+      <div class="theology-insight-title">{{神學主題三標題}}</div>
+      <div class="theology-insight-body">{{主題三詳述（約80字）}}</div>
+    </div>
+
+    <!-- 基督預表對照表（3–4組） -->
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">{{此人物某個行動或事件（舊約）}}</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">{{兩者的神學橋樑說明}}</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">{{基督或新約中對應的應驗事件}}</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">{{此人物某個行動或事件}}</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">{{兩者的神學橋樑說明}}</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">{{基督或新約中的對應應驗}}</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">{{此人物某個行動或事件}}</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">{{兩者的神學橋樑說明}}</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">{{基督或新約中的對應應驗}}</div>
+        </div>
+      </div>
+
+      <!-- 可新增或刪除 typology-item -->
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       VI · MIRROR 鏡照今日
+  ══════════════════════════════════════════ -->
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">{{章節引言}}</p>
+
+    <!-- 當代核心應用段落 -->
+    <div class="insight-box" style="margin-bottom:28px;">{{當代核心應用主題：此人物的處境如何映照現代人的生命難題（約100字）}}</div>
+
+    <!-- 四個靈魂反思問題 -->
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">{{第一個反思問題：針對此人物最具代表性的行為模式提問（約50字）}}</div>
+      </div>
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">{{第二個反思問題（約50字）}}</div>
+      </div>
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">{{第三個反思問題（約50字）}}</div>
+      </div>
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">{{第四個反思問題（約50字）}}</div>
+      </div>
+    </div>
+
+    <!-- 家族系統代際遺傳分析（三格：第一代 / 第二代 / 神的介入） -->
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · {{人物名}}</span>
+        <div class="gen-title">{{行為模式標題，例：應激劇本}}</div>
+        <div class="gen-body">{{說明此代在壓力下的行為模式與事件（約80字）}}</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · {{子代人物名}}</span>
+        <div class="gen-title">{{行為模式標題，例：精確複製}}</div>
+        <div class="gen-body">{{說明子代如何複製或回應同樣模式（約80字）}}</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">{{說明神如何在代際創傷中介入、打斷或重寫劇本（約80字）}}</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       VII · VOICE 現代語言轉譯
+  ══════════════════════════════════════════ -->
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">{{章節引言}}</p>
+
+    <!-- 主題標籤：3–5 個，用 # 開頭，口語化、帶觀點 -->
+    <div class="tags">
+      <span class="tag">#{{標籤1}}</span>
+      <span class="tag">#{{標籤2}}</span>
+      <span class="tag">#{{標籤3}}</span>
+      <span class="tag">#{{標籤4}}</span>
+    </div>
+
+    <!-- 現代白話散文：4–5 段，口語化、有溫度、誠實面對人物的光與暗 -->
+    <div class="voice-prose">
+      <p>{{開場白：介紹這個人物，語氣如朋友說話（約50字）}}</p>
+      <p>{{第二段：說這個人最讓人佩服的特質與事件，帶一點幽默或驚嘆（約80字）}}</p>
+      <p>{{第三段：說這個人最讓人皺眉的失敗或矛盾，誠實不護短（約80字）}}</p>
+      <p>{{第四段：整合光與暗，說明聖經的誠實之處——神選用不完美的人（約80字）}}</p>
+      <!-- 最後一句：加粗的核心金句 -->
+      <p style="font-weight:500; color:var(--ink);">{{一句話核心結論，帶普世性的信仰洞見}}</p>
+    </div>
+
+    <!-- 給現代靈魂的備忘錄：深色背景卡 -->
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>{{第一段：若你正在某個類似此人物的處境中……（約50字）}}</p>
+      <p style="margin-top:12px;">{{第二段：引用此人物等待或掙扎的時間跨度，讓人有盼望（約60字）}}</p>
+      <p style="margin-top:12px;">{{第三段：神如何在不完美中繼續同行（約50字）}}</p>
+      <!-- 最後一句：金色強調 -->
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">{{鼓勵性的行動號召語句}}</p>
+    </div>
+
+    <!-- 延伸應用框 -->
+    <div class="insight-box">{{延伸應用：此人物故事在現代領導力、心理學或社會處境的延伸詮釋（約80字）}}</div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       VIII · LEGACY 歷史遺產
+  ══════════════════════════════════════════ -->
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">{{章節引言}}</p>
+
+    <!-- 遺產條目：4–5 條，每條一個具體面向 -->
+    <div class="legacy-list">
+
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">{{遺產面向一標題}}</div>
+          <div class="legacy-body">{{說明此人物在神學、歷史或信仰群體中留下的具體遺產（約100字）}}</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">{{遺產面向二標題}}</div>
+          <div class="legacy-body">{{說明此人物留下的第二個遺產（約100字）}}</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">{{遺產面向三標題}}</div>
+          <div class="legacy-body">{{說明此人物留下的第三個遺產（約100字）}}</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">{{遺產面向四標題}}</div>
+          <div class="legacy-body">{{說明此人物留下的第四個遺產（約100字）}}</div>
+        </div>
+      </div>
+
+      <!-- 可新增或刪除 legacy-item -->
+    </div>
+
+    <!-- 終章經文框 -->
+    <div class="final-verse">
+      <div class="final-verse-text">「{{此人物最具總結性的聖經金句，建議選能呼應整體主題的}}」</div>
+      <div class="final-verse-ref">{{書卷 章:節}}</div>
+    </div>
+
+    <!-- 終章反思問句：一句話，留給讀者帶走 -->
+    <div class="final-question">{{一句發人深省的問句，以此人物的生命映照讀者當下處境（約40字）}}</div>
+  </div>
+
+</div>
+
+<!-- ════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════ -->
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · {{人物中文名}} <span>{{原文名}}</span> · {{身份標籤}}</div>
+
+</body>
+</html>
