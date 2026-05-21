@@ -452,19 +452,19 @@
     <span class="section-count" id="section-count">— 1 人物</span>
   </div>
 
+  <div class="genealogy-notice" id="genealogy-notice">
+    <h3>主耶穌家譜 · 馬太福音 1 章</h3>
+    <p>
+      從亞伯拉罕到大衛，從大衛到被擄巴比倫，從被擄到基督降生——<br>
+      家譜不只是名單，而是神在歷史中守約的見證。
+    </p>
+  </div>
   <div class="cards-grid" id="cards-grid"></div>
   <div class="empty-state" id="empty-state">
     <span class="empty-state-icon">∅</span>
     <p>此分類尚未收錄人物，敬請期待。</p>
   </div>
-  <div class="genealogy-notice" id="genealogy-notice">
-    <h3>主耶穌家譜 · 馬太福音 1 章</h3>
-    <p>
-      從亞伯拉罕到大衛，從大衛到被擄巴比倫，從被擄到基督降生——<br>
-      家譜不只是名單，而是神在歷史中守約的見證。<br><br>
-      此功能正在建置中，將以互動圖表呈現整條救贖歷史線。
-    </p>
-  </div>
+
 
 </main>
 
@@ -500,9 +500,19 @@ const CHARACTERS = [
     mbti: "INFJ",
     tags: ["信心之父", "諸民之父"],
     file: "abraham_portrait.html",
-    categories: ["ot", "mbti"]
+    categories: ["ot", "mbti","genealogy"]
   },
-
+  {
+    id: "cornelius",
+    name: "哥尼流",
+    nameEn: "Cornelius",
+    avatar: "流",
+    desc: "他一生忠誠於兩個不接受彼此的世界——帝國的劍與天國的禱告——直到有一天，神親自拆毀了那道牆。",
+    mbti: "ISTJ",
+    tags: ["羅馬百夫長", "外邦宣教先驅"],
+    file: "cornelius_portrait.html",
+    categories: ["nt", "mbti"]
+  },
   // ── 以下為示範空白條目，實際填入後刪除 ──
   // {
   //   id: "moses",
@@ -565,17 +575,15 @@ function renderCards() {
 
   labelText.textContent = LABELS[currentTab];
 
-  if (currentTab === "genealogy") {
-    grid.style.display = "none";
-    geno.classList.add("visible");
-    countEl.textContent = "";
-    return;
-  }
+	if (currentTab === "genealogy") {
+	  geno.classList.add("visible");
+	  geno.style.marginBottom = "16px";
+	}
 
-  let filtered = CHARACTERS.filter(c => c.categories.includes(currentTab));
-  if (currentTab === "mbti" && currentMbti !== "all") {
-    filtered = filtered.filter(c => c.mbti === currentMbti);
-  }
+	let filtered = CHARACTERS.filter(c => c.categories.includes(currentTab));
+	if (currentTab === "mbti" && currentMbti !== "all") {
+	  filtered = filtered.filter(c => c.mbti === currentMbti);
+	}
 
   countEl.textContent = `— ${filtered.length} 人物`;
 

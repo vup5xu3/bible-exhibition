@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>哥尼流 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════
+     HERO · 頁首主視覺
+════════════════════════════════════════════ -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">哥尼流</h1>
+  <span class="hero-name-en">Cornelius · Κορνήλιος</span>
+  <p class="hero-slogan">「他一生忠誠於兩個不接受彼此的世界——帝國的劍與天國的禱告——直到有一天，神親自拆毀了那道牆。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">主後 40 年代初期</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ISTJ · 忠誠守護者型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">使徒行傳 10–11 章</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">羅馬百夫長 · 外邦宣教先驅</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     NAV · 導覽列
+════════════════════════════════════════════ -->
+<nav class="nav">
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <!-- ══════════════════════════════════════════
+       I · PORTRAIT 人物素描
+  ══════════════════════════════════════════ -->
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">每位聖經人物都是特定歷史時刻的產物，也是神救贖計劃的棋子。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">主後 40 年代初期<br>新約早期教會擴張階段</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">多重身份</span>
+        <div class="info-cell-value">羅馬百夫長 · 虔誠敬神者<br>慈善施予者 · 代禱者</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">羅馬（背景）→ 凱撒利亞<br>（Caesarea Maritima）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">背景</span>
+        <div class="info-cell-value">羅馬公民，外邦人，非猶太血統<br>屬「敬畏神者」群體（φοβούμενος τὸν θεόν）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">使徒行傳 10–11 章<br>間接參照加拉太書 2 章</div>
+      </div>
+    </div>
+
+    <p>凱撒利亞是羅馬帝國在巴勒斯坦的行政首府，由希律大帝依命名奧古斯都而建，是一座融合羅馬神廟、競技場、深水港口的權力展示之城。哥尼流所屬的「義大利營」（Cohors Italica）是駐紮於此的精銳部隊，百夫長統領百名士兵，是帝國秩序最基層卻最具實權的執行者。他身處帝國機器的中樞，卻在精神深處懷有一種羅馬戰神體系無法填滿的飢渴——那是對獨一真神的仰望。</p>
+    <p>在一世紀的地中海世界，「敬畏神者」（God-fearers）是一個真實存在卻身份模糊的群體：他們認同猶太一神論與倫理，定期進入會堂、資助猶太社群，卻因未受割禮而被正式的猶太律法拒諸門外，永遠是「局外人」。哥尼流的處境因此雙重邊緣化——在羅馬同僚眼中，他信奉陌生的東方神明；在猶太人眼中，他是不潔的外邦人。然而神的計劃從不為人類的文化邊界所綁架。神揀選哥尼流，正是要透過這位虔誠的羅馬百夫長，強行在救贖歷史的時間軸上插入一根釘子：恩典不可收回，柵欄必須倒塌。</p>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       II · TIMELINE 生命軌跡
+  ══════════════════════════════════════════ -->
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">生命不是直線，而是一系列破碎與重建。</p>
+
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">帝國成形期</span>
+        <div class="timeline-title">帝國之子：軍旅成形期</div>
+        <div class="timeline-body">哥尼流在羅馬帝國軍事體系中接受了嚴格的紀律、效忠與指揮訓練。百夫長是羅馬軍隊的脊梁，要求絕對的執行力、對下屬的責任感與對上級的忠誠。這段經歷塑造了他外在的行動力與組織能力，卻也在內心深處留下一個帝國榮耀無法解答的空洞。他的責任感與對「更高力量」的順服性格，日後成為他回應神呼召時毫不猶豫的基礎。</div>
+        <div class="timeline-ref">使徒行傳 10:1</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">門外的尋道者：敬神生活期</div>
+        <div class="timeline-body">在凱撒利亞的某個時間點，哥尼流與整個家族（包括士兵）轉向了猶太人的神。他施捨窮人、「常常禱告神」——這是一種用行動與靈魂燃料雙重驗證的敬拜。在那個時代，外邦人接近猶太會堂需要承受社會代價，包括羅馬同袍的質疑與猶太社群的保留態度。然而他持守了這種身份曖昧、在兩個世界都不完全被接納的靈性張力。神看見了那個每天「申初禱告時辰」在凱撒利亞仰望的外邦人的心。</div>
+        <div class="timeline-ref">使徒行傳 10:2, 10:30</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">天上的回應</span>
+        <div class="timeline-title">天使降臨：異象中的精確指令</div>
+        <div class="timeline-body">在一個尋常的禱告午後，一切改變了。神沒有繞過哥尼流的理性與軍事邏輯——天使給了他精確的地址、名字與任務指令，彷彿在下一道軍事命令。哥尼流的回應完全反映了他的性格：立刻差派兩名僕人與一名虔誠的士兵前往約帕，不問緣由、不討價還價。他的軍人魂在這裡以最純粹的方式服從了一個比凱撒更高的權柄。值得注意的是，神同步在約帕賦予彼得關於「潔與不潔」的異象——救贖歷史最大的神學拓界行動，正在兩個城市同時展開。</div>
+        <div class="timeline-ref">使徒行傳 10:3-8, 10:9-16</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">救贖歷史性時刻</span>
+        <div class="timeline-title">屋內的革命：彼得到來與聖靈澆灌</div>
+        <div class="timeline-body">哥尼流召集了親屬與好友等候彼得——他的社群性與家族動員力在此展露無遺。當彼得進門，哥尼流俯伏在地，這個動作本身極具張力：一位統領百人的羅馬百夫長，跪在一位加利利漁夫面前。彼得宣講福音仍在進行時，聖靈突然降臨，眾人說方言、稱讚神。這是新約神學史上的「外邦人的五旬節」。哥尼流的家成為教會突破民族邊界的第一個實驗場，而他個人的靈命饑渴，成為點燃整個外邦宣教運動的引信。</div>
+        <div class="timeline-ref">使徒行傳 10:24-48</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">教義定型時刻</span>
+        <div class="timeline-title">耶路撒冷的波瀾：神學衝擊後的正典確立</div>
+        <div class="timeline-body">哥尼流本人未再出現在此事件中，但他的故事在耶路撒冷引爆了一場神學辯論。當彼得陳述整個過程，尤其說到「聖靈降在他們身上，正像當初降在我們身上一樣」，那些堅持割禮的信徒陷入了沉默。哥尼流的案例成為教會「外邦人不需接受猶太律法便可蒙恩得救」這一核心宣教神學的最初確證。他的名字從此不僅是一個人，更是一個神學命題的活體證明。</div>
+        <div class="timeline-ref">使徒行傳 11:1-18</div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       III · CHARACTER 性格剖析
+  ══════════════════════════════════════════ -->
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">從最深的核心信念到外在表現，層層解構一個複雜的人。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🌟</div>
+        <div>
+          <span class="soul-label">核心驅動力</span>
+          <div class="soul-title">效忠於最值得效忠的那一位</div>
+          <div class="soul-body">哥尼流生命的底層驅動力是「效忠」——他在羅馬體系中學會了效忠凱撒，卻在靈魂深處渴望一個更值得效忠的對象。當他接觸到猶太人的神，那種對主權、公義與慈愛的一神論描述，與他軍人靈魂中對最高指揮官的渴望完美共鳴。他的禱告與施捨不是道德表演，而是向未曾完整啟示自己的神所發出的持續性效忠宣示。</div>
+        </div>
+      </div>
+      <div class="soul-row">
+        <div class="soul-icon">💛</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">虔誠（εὐσεβής）+ 慷慨 + 整全的家族影響力</div>
+          <div class="soul-body">他的虔誠不是個人靈修的私事，而是具有公共性與家族性的見證——他帶著全家、乃至士兵群體一同進入敬畏神的生活。他的施捨被神描述為「在神面前蒙紀念」，暗示這是一種具有祭司性質的獻呈行為。這種「整全信仰」的影響力，讓他成為整個家族單元進入救恩的橋梁。</div>
+        </div>
+      </div>
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">對宗教權威的過度順服傾向</div>
+          <div class="soul-body">哥尼流見到彼得時俯伏敬拜，這個行為被彼得立即糾正（「起來！我也是人」）。這暗示他在靈性上仍帶著某種對「人作為神的代理者」的過度倚重——這是從帝國文化中難以脫去的「中間人崇拜」慣性。在恩典剛降臨的人身上，這種傾向往往以「尊崇與感恩」的面貌出現，但其深層是對自身在神面前直接性的低估。</div>
+        </div>
+      </div>
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">在啟示完全到來之前，已在黑暗中正確地朝向那道光</div>
+          <div class="soul-body">哥尼流在尚未聽聞基督福音的情況下，已「常常禱告」、「多多周濟」、「全家敬畏神」——這是一種在完全啟示缺席之下的「正確方向的生命傾側」。神學上這引發了關於「普遍恩典與特殊啟示」的深層討論，而哥尼流的案例正是這個討論中最難被化約的原始資料。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">哥尼流揭示了一個令人不安的真相：有些人比教會更早渴望神，卻因門未開而等待在外。他的生命提問不是「我夠好嗎」，而是「有沒有人願意進來告訴我完整的真相」。這讓哥尼流的故事同時是對教會的控訴與呼召——真正的飢渴從不因種族、階級或宗教制度而失效。神最終的回應方式是：不等哥尼流找到門，而是叫彼得打開它。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ISTJ</span>
+      <div class="mbti-name">忠誠守護者型 · 規則框架中的靈魂燃燒者</div>
+      <div class="mbti-slogan">「在規則的框架裡燃燒靈魂，直到最高的規則親自打破所有框架。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Si · 內向感覺</span>
+          <div class="mbti-fn-body">哥尼流的禱告是定時的（申初時辰），他的施捨是持續性而非衝動性的，信仰生活有高度規律性。這種「忠誠於已知良善之事」的特質，讓他在尚未完整認識神的情況下，仍能以他所知最好的方式持守信仰。</div>
+        </div>
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">聽到指令立刻差遣最合適的人選（兩位僕人＋一位虔誠士兵），組織全家等候彼得，集結親屬與好友接受教導。他的信仰從不停留在私人情緒層面，而是立即轉化為有組織的社群行動。</div>
+        </div>
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">哥尼流的 Fi 在深層個人價值承諾中悄悄運作——對神的那份難以言說的個人情感依附，讓他甘願在社會代價中持守。在他俯伏在彼得腳前的那一刻，Fi 也以稍微未經整合的方式爆發出來。</div>
+        </div>
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Ne · 外向直覺</span>
+          <div class="mbti-fn-body">他難以在沒有具體指令的情況下主動想像神學的突破性可能——他不會自己跑去找彼得，而是需要天使給出精確的座標。這種 Ne 的低敏感度意味著他傾向等待確認再行動，而非主動冒險探索。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       IV · RELATIONS 關係網絡
+  ══════════════════════════════════════════ -->
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">沒有人是孤島；他生命的形塑，正是在一段段關係的摩擦與連結中完成。</p>
+
+    <div class="relation-list">
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">神</div>
+          <div class="relation-name">神／耶和華</div>
+          <div class="relation-type-badge">神聖盟約・單向呼召</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">神透過天使啟示主動介入，哥尼流以即時順服回應；聖靈在彼得講道未完時即主動降臨，展現神在這段關係中的主動性遠超人的預期。這段關係的核心是「神先看見了哥尼流的禱告與施捨」——在任何正式神學框架建立之前，神已在回應他。這粉碎了「外邦人必須先成為猶太人才能親近神」的體制性壁壘，揭示了神揀選的標準不是文化身份，而是心的朝向。</div>
+          <div class="relation-ref">使徒行傳 10:4, 10:44-45</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">彼</div>
+          <div class="relation-name">彼得（西門・彼得）</div>
+          <div class="relation-type-badge">屬靈啟蒙者・歷史性橋梁</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">兩人皆被神分別準備，在約定地點相遇，共同成為救贖歷史一個章節的主角。彼得是持刀的外科醫生，哥尼流是在手術台上等待的病人。哥尼流的存在「強制性地」改變了彼得——彼得需要先被神用異象摔碎他對潔淨律法的固執，才能跨進哥尼流的門。兩人互為彼此生命的鑰匙。</div>
+          <div class="relation-ref">使徒行傳 10:25-29, 10:34-35</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">家</div>
+          <div class="relation-name">哥尼流的全家與士兵群體</div>
+          <div class="relation-type-badge">家族系統・屬靈共同體</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">哥尼流不是個人主義式的靈性追求者，而是一個具有整合性家族影響力的家長型領袖。他的信仰從一開始就是共同體性的。整個家庭一同受聖靈澆灌，成為「家庭得救」模式在新約中最早的典範之一。他的代際影響力不是透過教義傳遞，而是透過帶領全家活在敬畏神的生命氛圍中。</div>
+          <div class="relation-ref">使徒行傳 10:2, 10:44, 11:14</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">割</div>
+          <div class="relation-name">耶路撒冷的割禮派信徒</div>
+          <div class="relation-type-badge">宿命對立・神學張力場</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">哥尼流從未與他們正面相遇，卻成為讓他們「啞口無言」的存在（使徒行傳 11:18）。他的案例是神用來擊碎「救恩等於文化同化」這個錯誤神學的最具體數據。哥尼流的事件迫使早期教會正視一個它不願面對的問題：「恩典的邊界到底在哪裡？」這個張力最終在使徒行傳 15 章的耶路撒冷大會中得到部分解決。</div>
+          <div class="relation-ref">使徒行傳 11:2-3, 11:17-18</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">使</div>
+          <div class="relation-name">天使（神的使者）</div>
+          <div class="relation-type-badge">神聖信差・超自然門道</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">天使在哥尼流禱告時顯現，是神將哥尼流的禱告「認收」並正式回應的神聖信號。這次相遇對哥尼流的意義，不僅是得到指示，更是第一次親身確認：我的禱告，神真的聽見了。它也確立了哥尼流後來對彼得的絕對信任——因為他知道整件事從頭到尾都是神的主動設計。</div>
+          <div class="relation-ref">使徒行傳 10:3-6</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       V · THEOLOGY 神學意義
+  ══════════════════════════════════════════ -->
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">每一位聖經人物都是指向基督的箭頭。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「神不偏待人，原來各國中，那敬畏他、行義的人都為他所悅納。」</div>
+      <div class="verse-ref">使徒行傳 10:34-35</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">προσωπολήμπτης</span>
+        <div class="word-transliteration">Prosopolemptes · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「接受臉面者」——即按外貌、身份或地位來偏袒裁決之人。字根 prosopon（臉面）+ lambanein（接受、取得）。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">彼得宣告「神不是 προσωπολήμπτης」，在猶太-基督教神學史上是爆炸性宣言。神的悅納不以民族、儀式潔淨度或割禮標記為憑據，而以心的朝向為基準——這是整個外邦宣教神學的核心宣告。</div>
+      </div>
+      <div class="word-card">
+        <span class="word-original">εὐσεβής</span>
+        <div class="word-transliteration">Eusebes · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「虔誠的、敬神的」，具有對神聖事物的敬畏與尊崇之意。字根 eu（好）+ sebein（敬畏、崇敬），在希臘-羅馬哲學中具有道德尊崇的意涵。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">路加將此字嫁接在猶太一神論語境中，賦予它新的神學重量：哥尼流的 εὐσεβής 揭示了「屬靈渴慕本身，已被神視為有份於應許的預備性記號」這一深刻真理。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">立約層面：亞伯拉罕應許的新約兌現</div>
+      <div class="theology-insight-body">哥尼流事件是神與亞伯拉罕的應許（創世記 12:3：「地上萬族都要因你得福」）在新約時代最具體的一次兌現。外邦人從「隔斷的牆外」（以弗所書 2:14）進入應許群體，不是透過律法遵守，而是透過聖靈的主動澆灌——這確立了恩典的單向性與主動性。</div>
+    </div>
+    <div class="theology-insight">
+      <div class="theology-insight-title">神學發展的推進：保羅神學的救贖歷史前提</div>
+      <div class="theology-insight-body">哥尼流事件在正典中的位置（使徒行傳 10 章）是保羅外邦宣教神學（羅馬書 1-3 章、加拉太書 2-3 章）的救贖歷史先決條件。沒有哥尼流，保羅的「外邦人在基督裡與猶太人同為後嗣」（以弗所書 3:6）神學命題就缺乏最初的敘事支撐。</div>
+    </div>
+    <div class="theology-insight">
+      <div class="theology-insight-title">新約終極應驗：末世圖景的歷史起點</div>
+      <div class="theology-insight-body">啟示錄 7:9 所描繪的末世圖景——「各國、各族、各民、各方的人……站在寶座和羔羊面前」——正是哥尼流事件所打開的歷史之門最終通往的終點。哥尼流是那個「各國」中最早站進來的人物之一。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">路得（摩押外邦女子投奔以色列神，成為大衛曾祖母）</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">兩者皆為「外族人因心的轉向而得以進入神的子民」的敘事原型，且都成為後代更廣闊救恩的橋梁</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">哥尼流（羅馬外邦人受聖靈澆灌，進入外邦教會的開創敘事）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">乃縵（亞蘭大將，在以色列境外蒙神醫治，耶穌在路 4:27 親自引用）</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">神在以色列境外主動尋找、主動醫治、主動恢復。耶穌預告恩典越界，哥尼流事件是使徒時代最直接的應驗</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">哥尼流受聖靈澆灌（路加福音 4:27 的使徒時代預言應驗）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">所羅門聖殿的「外邦人院」（soreg 分隔牆，違者處死）</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">以弗所書 2:14「拆毀了中間隔斷的牆」在歷史上最具戲劇張力的實體化——神繞過所有人類建立的制度門檻</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">使徒行傳 10 章：神直接在外邦人家中降下聖靈，制度性隔牆徹底失效</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">亞伯拉罕的信心被算為義（創 15:6）——在割禮儀式建立之前</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">保羅在羅馬書 4 章論證亞伯拉罕「未受割禮時」已蒙稱義，以此論證外邦人可不經律法而得救。哥尼流事件與此精確互映</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">哥尼流在受洗之前已先領受聖靈——神的接納不以儀式為前提，而以信心為基礎</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       VI · MIRROR 鏡照今日
+  ══════════════════════════════════════════ -->
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">聖經不是博物館的展品，而是活的對話。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">在制度性宗教的邊界外尋找神的人，是否被神遺棄？我們的教會，是否成了新的「外邦人院」——把某些人擋在門外，同時以為自己在維護神的聖潔？哥尼流的處境映照出每一個時代都存在的靈性邊緣人：他們的禱告是真實的，他們的飢渴是誠懇的，但沒有人去敲他們的門。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你生命中是否有一種「已知最好的方向」，你一直在按照它生活，卻仍感覺自己是個局外人——那種渴慕，你相信神看見了嗎？</div>
+      </div>
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">你的信仰是個人靈修的私人事務，還是具有整合性的家族與社群影響力？哥尼流帶著全家一同跨越門檻——你的信仰是否有人在身邊一同走？</div>
+      </div>
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">你是否曾因某人的「身份」——種族、階級、教育程度、過去的宗教背景——而在心裡默默關上了恩典的門？那扇你關上的門後面，是否正有一個「哥尼流」在禱告？</div>
+      </div>
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">當神的旨意打破你的神學框架與文化慣習（如同彼得被命令進入外邦人的家），你的第一反應是「主啊，這是不可的」，還是「你所潔淨的，我不可當作俗物」？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 哥尼流</span>
+        <div class="gen-title">應激劇本：效忠轉移</div>
+        <div class="gen-body">在制度性壓力下，哥尼流的應激行為模式是「過度轉移效忠對象」——他的 ISTJ 性格在極端壓力下傾向於「尋找一個絕對可信賴的上級」，在宗教情境中可能發展為對宗教領袖的依附性信任，見他俯伏在彼得腳前一事。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 後代信仰群體</span>
+        <div class="gen-title">精確複製：重建新的牆</div>
+        <div class="gen-body">新約後的外邦教會在短暫的恩典高峰後，迅速重建了新的階級壁壘——反猶主義、種族性教會、宗派壁壘、階級性敬拜文化——每一代人都在重演「找一個新的外邦人院」的動作，將哥尼流所突破的門重新砌上。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">神在使徒行傳 10 章的介入方式本身就是「打斷」的範本：直接、幾乎強制性地讓聖靈越過彼得的猶豫降下。這個模式在每個時代重現——廢奴運動中的約翰·牛頓、民權運動中的馬丁·路德·金——神總在那道牆上撬開一條裂縫，讓光透進來。</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       VII · VOICE 現代語言轉譯
+  ══════════════════════════════════════════ -->
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">讓數千年前的故事，說出你此刻最需要聽見的話。</p>
+
+    <div class="tags">
+      <span class="tag">#邊界外的尋道者</span>
+      <span class="tag">#你的禱告神都存檔了</span>
+      <span class="tag">#恩典不看戶籍謄本</span>
+      <span class="tag">#家庭得救不是童話</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>好，讓我們來說說哥尼流這個人。他的處境大概是這樣：在公司，他是「那個信奇怪宗教的主管」；在教會（如果猶太會堂讓他進去的話），他是「那個不算正式會員的外邦仔」。兩邊都不完全屬於他。</p>
+      <p>他每天下午三點定時禱告——你知道，就是那種在行事曆上鎖定的「與神一對一」時段——然後把薪水的一部分定期施捨給窮人。不是為了 IG 打卡，不是為了讓猶太社群印象分數加分，而是因為他就是無法不這樣做。他的靈魂有一種無法被羅馬萬神殿填滿的洞，然後他找到了一個方向，就把所有他知道最好的事情往那個方向做。</p>
+      <p>聖經對他的評語，翻譯成白話就是：「神看了一下這個外邦人的帳戶，說：欸，這個人的記錄不錯，我去找彼得談一談。」然後整個故事的核心笑點與神學炸點同時引爆：神不是等哥尼流想辦法擠進教會體制，而是叫彼得——那個曾說「不行，這不潔淨」的漁夫——親自走進哥尼流的家。</p>
+      <p>這是聖經裡，神打破制度最有戲劇感的一幕之一。而哥尼流什麼都沒做，他只是——持續地、忠誠地、在無人喝采的情況下——把臉朝向那個他還不完全認識的神。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，而是神如何認收每一個朝向祂的心，然後親自打開門走進來的故事。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你此刻正站在某個信仰體制的邊緣，覺得自己「還不夠格」、「進不去那個圈子」、「不知道禱告有沒有用」——哥尼流的故事是為你寫的。</p>
+      <p style="margin-top:12px;">神不需要你先有正確的神學證書才開始回應你的禱告。祂在使徒行傳 10:4 說的話，是整本聖經最溫柔的一句之一：「你的禱告和你的施捨，已經上達神面前，蒙神記念了。」你以為自己在黑暗中對空氣說話。神說：我都存檔了。</p>
+      <p style="margin-top:12px;">神不需要你先通過資格審查，祂已在回應你。繼續把臉朝向那個方向。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">繼續禱告。繼續做你知道最好的事。門，會有人來打開。</p>
+    </div>
+
+    <div class="insight-box">哥尼流的「整合性社群影響力」模型，對當代企業與非營利領袖極具啟發——真正的領袖不把靈性與組織切割，而是讓個人價值觀成為整個團體文化的磁場。在全球化移民社會、跨文化教會植堂的處境中，哥尼流事件是跨越「文化優越性」最重要的聖經案例：你的「禮儀潔淨標準」是否正在成為阻擋外邦人進入的「哥尼流院牆」？</div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       VIII · LEGACY 歷史遺產
+  ══════════════════════════════════════════ -->
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">一個人死後，他留下的比他的生命更長。</p>
+
+    <div class="legacy-list">
+
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">外邦宣教的第一道裂縫</div>
+          <div class="legacy-body">哥尼流事件是整個外邦教會歷史的起點文件。沒有這道裂縫，保羅的宣教旅程缺乏神學基礎，教會將永遠困在猶太民族主義的框架內。他的名字是「普世教會」的歷史起點——每一個今日在信仰群體中的非猶太人，都是哥尼流那扇打開的門所延伸的空間中的人。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">「家庭教會」模型的聖經原型</div>
+          <div class="legacy-body">他的家是新約中最早的外邦人教會場所之一，確立了「家庭作為救恩單元與禮拜空間」的使徒傳統，深刻影響後世家庭教會運動的神學依據。「全家得救」不是魔法公式，而是哥尼流多年來以整合性家族影響力所結出的有機果實，是使徒行傳中最具生命力的家庭信仰見證。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">彼得神學轉化的催化劑</div>
+          <div class="legacy-body">哥尼流是神用來重新格式化彼得對「潔淨」概念的工具性人物。沒有哥尼流，彼得的神學視野可能永遠停留在使徒行傳 10:14 的「主啊，這是不可的」，而整個教會的外邦接納神學也將因此受阻。從這個角度，哥尼流是彼得最重要的「反向門徒」——他的存在本身就是彼得最深刻的一堂課。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">「敬神者群體」的救贖神學確認</div>
+          <div class="legacy-body">哥尼流的案例在正典中正式確認：在完整啟示到來之前，一個向真神正確傾斜的生命，其禱告與善行已被神記念並納入救恩計劃。這對普遍恩典神學、以及對「聖靈在教會正式成立前的工作」的理解，具有不可取代的神學貢獻，至今仍是跨文化宣教神學中最重要的聖經支柱之一。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">V</div>
+        <div>
+          <div class="legacy-title">「拆牆神學」的歷史先例</div>
+          <div class="legacy-body">以弗所書 2:14「拆毀了中間隔斷的牆」的神學宣告，在哥尼流事件中得到了其最初的敘事性肉身。每一個時代當教會重新築起民族、階級或文化的隔牆時，哥尼流的故事就是神手中最有力的錘子——它不是過去的歷史事件，而是永遠對準每一堵新牆的活的判詞。</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「神已經給他們恩賜，和給我們信主耶穌基督一樣，我是誰，能攔阻神呢？」</div>
+      <div class="final-verse-ref">使徒行傳 11:17 · 彼得在耶路撒冷的最終陳詞</div>
+    </div>
+
+    <div class="final-question">如果連彼得都曾試圖阻止神進入哥尼流的家——那你的教會、你的神學、你的心，此刻正在擋住誰？</div>
+  </div>
+
+</div>
+
+<!-- ════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════ -->
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 哥尼流 <span>Κορνήλιος</span> · 羅馬百夫長 · 外邦宣教先驅</div>
+
+</body>
+</html>
