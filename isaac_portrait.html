@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>以撒 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">以撒</h1>
+  <span class="hero-name-en">Isaac · יִצְחָק</span>
+  <p class="hero-slogan">「他是神用笑聲命名的孩子，卻一生背負著刀刃的陰影——活下來，是他最大的使命，也是最沉重的重量。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">主前約 2066–1886 年</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ISFJ · 守護者型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">創世記 17–35 章</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">應許之子 · 立約承繼者</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<nav class="nav">
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <!-- I · PORTRAIT -->
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">每位聖經人物都是特定歷史時刻的產物，也是神救贖計劃的棋子。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">主前約 2066–1886 年<br>中青銅時代早期</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">多重身份</span>
+        <div class="info-cell-value">應許之子 · 族長<br>立約承繼者 · 以色列屬靈先祖</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">迦南地<br>別是巴 · 基拉耳 · 希伯崙周邊</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">背景</span>
+        <div class="info-cell-value">閃族——亞伯拉罕家族直系<br>後代為雅各十二支派之祖</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">創世記 17–35 章（主要）<br>羅馬書 4、9 章；加拉太書 4 章；希伯來書 11 章</div>
+      </div>
+    </div>
+
+    <p>以撒出生的時代，是古近東從城邦文明到遊牧部族互相激盪的關鍵世紀。迦南地作為埃及與美索不達米亞兩大文明走廊的交接點，政治動盪、宗教多元、生存競爭激烈。飢荒週期性侵襲，土地的水源爭奪是部族存亡的日常賭注；非利士人剛開始在地中海沿岸沉澱定居勢力，周邊城邦如基拉耳的亞比米勒政權展現了當時典型的「強者議和、弱者讓步」政治生態。</p>
+    <p>在這樣的世界背景下，以撒的誕生本身就是一個超自然的干預宣言：一個年屆百歲的父親與九十歲的母親，透過神直接履行的盟約應許，生下了一個活生生的嬰孩。這不只是一個家庭的奇蹟，而是神向整個古代世界宣告：生死之主是我，歷史的走向由盟約決定，而非由人口統計學與生物學主導。神揀選以撒，不是因為他是最強的，而是因為他是應許的具身化——他的存在本身就是神話語的肉身化。</p>
+  </div>
+
+
+  <!-- II · TIMELINE -->
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">生命不是直線，而是一系列破碎與重建。</p>
+
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">笑聲誕生——應許成真的嬰孩</div>
+        <div class="timeline-body">亞伯拉罕與撒拉等候神的應許長達二十五年，在生理上已完全「死去」的軀體中，以撒如同復活一般誕生。撒拉聽見天使預告時發出的苦澀暗笑，在嬰孩出生後化為喜樂的公開笑聲。他被命名為「以撒」——希伯來文字根「צחק」即「笑」——這個名字本身濃縮了整個等候與信心的歷程：曾經是懷疑的笑，如今成為神信實的笑。他的誕生是神在創世記中「應許—等候—成就」核心主題的最高戲劇性呈現之一。</div>
+        <div class="timeline-ref">創世記 17:19；21:1–7</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折・靈魂定型事件</span>
+        <div class="timeline-title">摩利亞山——刀刃下的孩子</div>
+        <div class="timeline-body">亞伯拉罕在無任何預告的情況下，帶以撒踏上摩利亞山。以撒背負柴火，問了聖經中最令人心碎的問題之一：「父啊，燔祭的羊羔在哪裡呢？」當他被父親綑綁、按倒在祭壇上的那一刻，他所承受的，不只是肉身的恐懼，更是宇宙秩序在他面前徹底崩潰的體驗——最愛他的人，成了持刀者。然而神的使者在最後一刻喊住，預備了公羊代替。這個事件永久雕刻了以撒的靈魂底色：他是一個從死亡中被「歸還」的人，整個後半生都是一種「被恩賜的時間」。</div>
+        <div class="timeline-ref">創世記 22:1–19；希伯來書 11:17–19</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">情感修復節點</span>
+        <div class="timeline-title">蒙恩娶妻——愛情作為醫治的禮物</div>
+        <div class="timeline-body">撒拉過世後，以撒深陷喪母之痛。聖經對以撒此段時期有罕見的情感直述：「以撒娶了利百加，並且愛她；以撒自從他母親不在了，得了安慰。」這句話深刻揭示了以撒的內在脆弱——他是一個深深被哀傷攫住的人，情感連結是他靈魂的主要錨點。利百加不只是一位妻子，在神的安排下，她成了他情感重建的開始。然而這段婚姻也預示了以後的張力：兩個截然不同性格的個體，共同養育了兩個更加撕裂的兒子。</div>
+        <div class="timeline-ref">創世記 24:62–67</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">黑暗低谷</span>
+        <div class="timeline-title">基拉耳謊言——複製父親的應激劇本</div>
+        <div class="timeline-body">飢荒再度臨到，以撒面對非利士王亞比米勒時，走入了一個令人嘆息的輪迴——他原封不動地重複了父親亞伯拉罕曾兩度犯下的錯誤：謊稱妻子為妹妹以求自保。這不只是道德失敗，更是家族系統性謊言的精確複製。他用「她是我妹妹」這句話，選擇了自我保全而非捍衛誓約，選擇了短視的謀算而非對神應許的倚靠。然而神的恩典甚至大過他的恐懼：在盟約呼召被威脅之前，神親自介入制止了悲劇。這個軟弱事件，在醜陋中映照出神恩典的堅韌。</div>
+        <div class="timeline-ref">創世記 26:1–11</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">呼召確認</span>
+        <div class="timeline-title">掘井與立約——寬闊之地的神學</div>
+        <div class="timeline-body">在基拉耳遭遇非利士人長期填塞水井的壓迫後，以撒展現了他性格中最令人敬佩的一面：沒有以暴制暴，而是一再遷讓，繼續往前掘新的井，直到來到「利河伯」（意為寬闊之地）。隨後，神在別是巴親自向以撒顯現，確認盟約的傳承——這是以撒一生中最直接的神聖相遇，也是他呼召身份的正式確認。亞比米勒甚至主動求和立約，承認神的同在，證明那持守的信心，最終無需爭奪便得勝。</div>
+        <div class="timeline-ref">創世記 26:12–33</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">黑暗低谷・神主權的弔詭張力</span>
+        <div class="timeline-title">晚年蒙蔽——祝福錯授與神的主權</div>
+        <div class="timeline-body">年老、眼目昏花的以撒，在對子孫祝福的關鍵時刻，被自己的情感偏愛所蒙蔽。他企圖悖逆神早在兩子出生前就已頒布的揀選預言，以私下方式將祝福給以掃。然而利百加與雅各的欺詐打亂了他的計劃。整個事件在人倫層面是一場家庭悲劇：欺騙、偏心、互相利用。然而在神學層面，神的主權意志透過人的罪性衝突，依然曲折地推進——以撒所祝福的，竟與神的揀選吻合。這提出了最深刻的神學張力：神的旨意是否需要人的謊言來完成？</div>
+        <div class="timeline-ref">創世記 27:1–40；羅馬書 9:10–13</div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- III · CHARACTER -->
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">從最深的核心信念到外在表現，層層解構一個複雜的人。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🌟</div>
+        <div>
+          <span class="soul-label">核心驅動力</span>
+          <div class="soul-title">應許是真實的，活著本身就是神的答案</div>
+          <div class="soul-body">以撒的整個存在都建立在一個不可動搖的本體論基礎上：我的誕生是神說話的結果，因此我的存在本身就是信心的宣告。這讓他具有一種深沉的、靜水流深式的信仰穩定性，不需要通過奇蹟或辯論來驗證神的存在——他本人就是那個奇蹟。</div>
+        </div>
+      </div>
+      <div class="soul-row">
+        <div class="soul-icon">💛</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">遷就的堅忍、深情的忠誠、安靜中的信守</div>
+          <div class="soul-body">以撒在井邊爭奪事件中展現的一讓再讓，不是懦弱，而是一種超越當代文化「以牙還牙」邏輯的神學性忍耐。他的深情同樣是一種美德：對利百加真摯的愛、對亡母撒拉的深切哀傷，都展示了他情感生命的豐富與真誠。</div>
+        </div>
+      </div>
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">偏愛子女的盲目性；危機下的欺騙本能；對盟約應許的短視逃避</div>
+          <div class="soul-body">他複製父親謊言的事件顯示，創傷與罪性的家族模式可以在下一代完整重演。他對以掃的偏愛（或許藏著對強壯獵人型兒子的補償性渴望，與自身「被保護的孩子」身份形成對比），最終幾乎導致盟約傳承被錯配。</div>
+        </div>
+      </div>
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">靜觀靈性的先行者——沉默比語言更深</div>
+          <div class="soul-body">以撒是三位族長中聖經記載最少卻神學地位不減的一位。他在創世記 24:63 中「獨自在田間默想」的畫面，是整本聖經中最具靜觀靈性氣質的片段之一；他在摩利亞山上被放下後，沒有任何情緒反應的記載——那個沉默，深不見底。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">以撒是聖經中最典型的「創傷倖存者——蒙恩繼承者」原型。他的被動性，很可能不只是性格特質，而是一個自幼年起就學會了「神會安排一切，我只需接受」的靈魂生存策略。這個策略有時成就了他的信心，有時也成為他逃避面對衝突與真相的防衛機制。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ISFJ</span>
+      <div class="mbti-name">守護者型 · 先知型人格</div>
+      <div class="mbti-slogan">「他安靜地守護著每一個他愛的人，但也正是這份守護，讓他在危機中選擇了謊言而非真相。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Si · 內向感知</span>
+          <div class="mbti-fn-body">以撒極深地紮根於過去的傳統與家族記憶。他重掘父親亞伯拉罕的舊井並以亞伯拉罕所起的名重新命名，展現 Si 型人對傳承、連續性與過去神聖記憶的高度重視。他的信仰不是革命性的，而是忠實地守護並延續已被確認的盟約。</div>
+        </div>
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Fe · 外向情感</span>
+          <div class="mbti-fn-body">他對關係的高度敏感，對利百加的深厚情感依附，對亡母的長期哀傷，以及對以掃明顯的情感偏愛，都展示了 Fe 在人際情感連結上的主導力量。他的決策高度受到情感關係的影響，甚至損害了理性判斷（祝福事件）。</div>
+        </div>
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ti · 內向思考</span>
+          <div class="mbti-fn-body">在放鬆狀態下（如田間默想），以撒顯示出一種內省、沉思、不輕易外顯的思維深度。然而在壓力下這個功能發展不足，讓他在衝突時傾向做出表面合理卻道德有虧的邏輯自洽——如謊稱利百加為妹妹的「保護行動」。</div>
+        </div>
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Ne · 外向直覺</span>
+          <div class="mbti-fn-body">以撒在面對開放性未來、不確定性與系統性格局思考上極為薄弱。他看不見兩個兒子性格差異所預示的衝突走向；他無法預測欺騙行為的骨牌效應。在極端壓力下，他的 Ne 崩潰展現為對未來的無力感與對當下的完全失控。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- IV · RELATIONS -->
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">沒有人是孤島；他生命的形塑，正是在一段段關係的摩擦與連結中完成。</p>
+
+    <div class="relation-list">
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">神</div>
+          <div class="relation-name">耶和華神</div>
+          <div class="relation-type-badge">神聖盟約承繼者</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">以撒是聖經中神主動宣告「我是你父亞伯拉罕的神」的第一位直接繼承者，顯示立約之神是歷代相傳、不中斷的。以撒的靈命不是「開天闢地型」的創始信仰，而是「守約傳承型」的繼承信仰——神揀選以撒，強調的是神應許的連續性而非以撒個人的卓越性。</div>
+          <div class="relation-ref">創世記 26:2–5, 24；28:13</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">亞</div>
+          <div class="relation-name">亞伯拉罕</div>
+          <div class="relation-type-badge">父子・應許塑造者</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">摩利亞山事件對以撒的心理影響幾乎是不可逆的。父親是他最深的安全感來源，卻同時成了刀刃的持有者。亞伯拉罕給了他信仰的傳承，也給了他謊言的模板。以撒從父親身上同時繼承了偉大的信仰遺產與具體的人性陰影——這正是家族系統代際傳遞的典型樣本。</div>
+          <div class="relation-ref">創世記 22；25:5–11</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">利</div>
+          <div class="relation-name">利百加</div>
+          <div class="relation-type-badge">配偶・情感的錨點</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">利百加的到來是以撒情感修復的轉折點，兩人的婚姻起於深情的美麗。然而兩人對兒子的不同偏愛（以撒愛以掃，利百加愛雅各）形成了家庭系統的裂縫，最終在祝福事件中以謊言和分離收場。利百加主導性格的介入恰好填補了以撒被動性格的缺口——卻以悲劇性的方式。</div>
+          <div class="relation-ref">創世記 24:67；25:28；27:5–17</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">掃</div>
+          <div class="relation-name">以掃</div>
+          <div class="relation-type-badge">父子・偏愛的傷害</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">以撒對以掃的愛是真實的，但帶著深刻的盲目性。以掃在失去祝福後「放聲大哭」（創世記 27:34），是聖經中最令人心碎的場景之一。以撒的偏心不只傷害了以掃，也幾乎讓神的揀選計劃在人倫層面釀成不可收拾的悲劇。父母的情感偏愛，可能是家庭系統中最深的不公義根源之一。</div>
+          <div class="relation-ref">創世記 25:28；27:1–40</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">雅</div>
+          <div class="relation-name">雅各</div>
+          <div class="relation-type-badge">父子・揀選與欺騙的交叉</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">以撒對雅各的偏見，以及雅各對以撒的欺騙，構成「被低估者的反撲」的典型案例。雅各的欺騙行為雖在人倫上錯誤，卻在神學上吊詭地對齊了神的揀選。以撒最終賜給雅各的祝福，成為以色列十二支派整個存在的起源性宣告——是聖經中「人的算計與神的主權」最尖銳的交鋒場域。</div>
+          <div class="relation-ref">創世記 25:23；27:27–29；28:1–4</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- V · THEOLOGY -->
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">每一位聖經人物都是指向基督的箭頭。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「亞伯拉罕因著信，被試驗的時候，就把以撒獻上；這便是那歡喜領受應許的，將自己獨生的兒子獻上。他以為神還能叫人從死裡復活；他也彷彿從死中得回以撒來。」</div>
+      <div class="verse-ref">希伯來書 11:17–19</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">עֲקֵדָה</span>
+        <div class="word-transliteration">Aqedah · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">捆綁、綑縛。動詞字根為 עָקַד（'aqad），特指創世記 22:9 亞伯拉罕綑綁以撒的動作，名詞化後成為專有神學術語。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">'Aqedah 在拉比神學中地位等同基督教的十字架神學，是整個猶太贖罪觀的核心原型。以撒被綑綁在後來建造聖殿之地（代上 3:1），完整預表了基督在各各他山的替代受死。</div>
+      </div>
+      <div class="word-card">
+        <span class="word-original">μονογενής</span>
+        <div class="word-transliteration">monogenēs · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「在種類與地位上獨一無二的那一位」，並非單指「唯一出生的孩子」，而強調其獨特性與不可替代性。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">希伯來書 11:17 用此詞描述以撒，約翰福音 3:16 用同一詞描述耶穌——「神的獨生子」。以撒是應許的唯一載體；耶穌是救恩的唯一成全者。以撒的被獻與被「歸還」，精準預表了神在基督身上的終極獻祭與復活。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">立約維度：單方立約的神學樞紐</div>
+      <div class="theology-insight-body">以撒是神「單方立約」（בְּרִית，berît）神學的關鍵樞紐。神不是與亞伯拉罕、以撒「協商出」一個雙邊條約，而是在以撒的誕生中證明：這個約完全依靠神的主動與神的時間表，人的生理限制無法終止神的應許。救贖不依靠人的能力，而依靠神話語的效力。</div>
+    </div>
+    <div class="theology-insight">
+      <div class="theology-insight-title">揀選維度：選民觀念的具象化起點</div>
+      <div class="theology-insight-body">在以撒身上，選民觀念從「民族」開始具象化為「揀選」——神揀選以撒而非以實瑪利，不依照長幼次序，不依照文化慣例，只依照神的主權意志（羅馬書 9:7–9）。這個揀選邏輯，成為整個新約「因信稱義、非因行為」神學的歷史論據之一。</div>
+    </div>
+    <div class="theology-insight">
+      <div class="theology-insight-title">新約應驗維度：應許之子的原型確立</div>
+      <div class="theology-insight-body">保羅在加拉太書 4:21–31 將以撒與以實瑪利作為「應許之子」與「肉身之子」的寓意對照，宣告基督信徒都是「如同以撒，是應許的後裔」（加拉太書 4:28）。以撒的身份，成了新約「在基督裡的新人」身份的原型確認。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">以撒背負燔祭的柴走上摩利亞山（創世記 22:6）</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">兩者都是父神吩咐的犧牲路程，兒子在順服中背負「刑具」走向「山丘」。摩利亞山即後來的耶路撒冷聖殿山，地理重疊加深了預表的神學密度。</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">耶穌背負十字架走向各各他（約翰福音 19:17）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">以撒在祭壇上幾乎被獻，卻被神預備的公羊所代替（創世記 22:13）</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">以撒被代替，是因為有「替代者」；人類被拯救，是因為基督本身就是那終極的替代者。前者是影子，後者是實體。</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">耶穌成為神預備的「神的羔羊」，真實地死在十字架上作為代替性救贖（約翰福音 1:29）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">希伯來書 11:19 說亞伯拉罕「彷彿從死中得回以撒來」——以撒是類比性的復活</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">以撒「彷彿」的復活是類比（as good as dead），基督的復活是本質（first fruit）。兩者共同宣告神是叫死人復活之神。</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">耶穌從死人中真實地復活，成為初熟的果子（哥林多前書 15:20）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">以撒是應許之子，非憑血氣所生，乃憑應許（加拉太書 4:23）</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">以撒的超自然誕生是「應許勝過自然定律」的先行宣告；兩者都指向同一命題：神的話是比死亡更真實的現實。</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">耶穌由聖靈感孕而生，道成肉身，是神應許入侵歷史的終極應驗（路加福音 1:35）</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- VI · MIRROR -->
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">聖經不是博物館的展品，而是活的對話。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">繼承者的重量：當你的存在從一開始就被賦予極高的意義期待——優秀家庭的孩子、被神揀選的命定、被貼上「天才／使命／呼召」標籤的人——你如何在這個重量下不是「逃避活在別人的光環裡」，也不是「因恐懼失去身份而選擇謊言保護自己」？</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你生命中是否有一個「摩利亞山時刻」——曾經被最愛你的人或你最信任的世界觀傷害或出賣，而你在下山後，從未真正談論那個沉默究竟裝了什麼？</div>
+      </div>
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">你是否也有一套從父母或原生家庭「繼承」下來的謊言或防衛策略，以至於在壓力下，你驚恐地發現自己正在複製他們最讓你失望的那一面？</div>
+      </div>
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">你的情感依附（對一個人、一段關係、一個角色認同）是否已悄悄取代了你對神本身的信靠，成為你真正的安全感來源？</div>
+      </div>
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">在你選擇「遷讓」或「退讓」的時候，你是在操練神學性的忍耐，還是在迴避真正需要你站出來的那一刻？你的和平，是信心的結果，還是衝突的逃避？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 以撒</span>
+        <div class="gen-title">應激劇本</div>
+        <div class="gen-body">面對外在威脅（飢荒、強權、身份危機），以撒啟動「謊言保護」機制——謊稱利百加為妹妹。深層動力是：身份不安全感加上「關係保全優先」，在不確定性中逃跑而非紮根應許。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 雅各</span>
+        <div class="gen-title">精確複製</div>
+        <div class="gen-body">雅各在面對身份與繼承威脅時，精確複製了「以謊言取得應有之物」的應激腳本，欺騙父親（創世記 27）、欺騙舅舅拉班（創世記 30）。活在「應許是真的，但我必須用算計確保它落在我身上」的扭曲信仰裡。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">雅各在雅博渡口與神的摔跤，是神直接介入、身體性地對抗並打斷應激本能的時刻。神打折了他的大腿（身體的驕傲），卻賜下新名「以色列」。以撒的謊言基因，在雅各的瘸腿中被神的恩典重新編碼。</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- VII · VOICE -->
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">讓數千年前的故事，說出你此刻最需要聽見的話。</p>
+
+    <div class="tags">
+      <span class="tag">#繼承者症候群</span>
+      <span class="tag">#摩利亞山的孩子</span>
+      <span class="tag">#你不必先成為偉大才值得被愛</span>
+      <span class="tag">#掘井哲學</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>好，我們直說。以撒的一生，如果放在現代，大概是這樣的：他是那個「天才父親的兒子」，從小每個人介紹他都是「欸這是亞伯拉罕的孩子」，然後所有人眼睛就亮起來，因為他爸實在太有名了。他自己呢？沉默、溫柔、喜歡在田間一個人散步想事情——標準 I 人。</p>
+      <p>他的黑歷史是什麼？飢荒來了，他慌了，然後把老婆說成妹妹。對，就是他爸曾經幹過兩次的同一件事。讀到這裡，你是不是突然想起某個時刻，你開口說話，說出的卻是你最不想變成的那個人說話的方式？</p>
+      <p>他的老年更慘——被自己偏愛的兒子以掃服侍，結果小兒子雅各穿著羊皮衣服來騙他，他摸了一下，聞了一下，說「聲音是雅各的，手卻是以掃的」——他其實知道有哪裡不對，但他選擇繼續。這不是愚昧，這是一個情感驅動的人，在一個他不願意面對的真相面前，選擇了閉眼。</p>
+      <p>這樣的人，神卻說：我是亞伯拉罕的神，以撒的神，雅各的神。以撒不是因為表現優秀才進榜，他是因為他是「應許的那一位」而進榜。神不是在頒獎典禮上選他，而是在他還沒出生之前就已經把他名字刻在盟約裡了。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是偉人傳記，是原石被鑿刻的過程。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你現在感覺自己夾在巨大的「被期待」與「被懷疑」之間——被期待成為某種樣子，卻又在私下懷疑自己到底有沒有那個資格——那麼以撒的故事是為你寫的。</p>
+      <p style="margin-top:12px;">你不必是那個拿刀的人，才能在摩利亞山上算數。你可以是那個背著柴走上去、沉默地躺在祭壇上、在那個沒有任何邏輯支撐你的時刻，選擇繼續呼吸的人。那種選擇，叫做信心。</p>
+      <p style="margin-top:12px;">而當你不小心複製了父母的謊言，當你在壓力下又一次做了你最討厭的那個選擇——這不是你永遠的定義，這是神要繼續雕刻的那塊石頭。神在你的失敗裡，沒有離席，祂只是換了一把工具繼續工作。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">你被選中，不是因為你夠好，而是因為神的話是真的。繼續往前掘井，寬闊之地就在前面。</p>
+    </div>
+
+    <div class="insight-box">在現代領導力層面，以撒的「掘井哲學」是反直覺的洞見：真正的領導者不總是奪取資源，而是有能力在被趕走之後，繼續找到新的泉源。在家庭系統層面，以撒的偏愛子女模式與謊言代際遺傳，為「壓力下的代際行為重複」提供了一個三千年前的精準案例。在跨文化對話層面，'Aqedah 是猶太、基督、伊斯蘭三大亞伯拉罕宗教共同擁有的核心敘事，以撒站在人類最宏大的宗教際遇的正中心。</div>
+  </div>
+
+
+  <!-- VIII · LEGACY -->
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">一個人死後，他留下的比他的生命更長。</p>
+
+    <div class="legacy-list">
+
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">應許連續性的人間錨點</div>
+          <div class="legacy-body">以撒是神「三一立約公式」的中間環節——「亞伯拉罕的神、以撒的神、雅各的神」。若無以撒，這個盟約鏈斷裂；正因為他的一生守住了（即使跌跌撞撞地守住）那個應許的傳遞，以色列民族的歷史才有了中間那一節不可或缺的脊椎。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">'Aqedah 神學的奠基</div>
+          <div class="legacy-body">以撒被綑綁在祭壇上的事件，成為人類宗教史上討論最深、影響最廣的單一敘事之一。它奠定了「代替性救贖」神學的歷史基礎，貫穿整個利未記獻祭體系、詩篇二十二篇的哀歌、以賽亞書五十三章的受苦僕僕，一路直達各各他的十字架。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">應許子民身份的原型確立</div>
+          <div class="legacy-body">保羅在羅馬書 9 章和加拉太書 4 章徵引以撒，確立了「在基督裡的新人」不是憑血氣、而是憑應許而生的神學原型。每一個在基督裡的信徒，都被新約宣告為「以撒的後裔」——靈性系譜上的應許之子。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">掘井精神——遷讓中的韌性神學</div>
+          <div class="legacy-body">在充滿競爭與剝奪的世界裡，以撒重掘舊井、被驅逐後繼續前進的行為模式，成為了超越時代的屬靈範本：信心不是征服，而是在每一個被堵死的地方繼續往下掘，直到神應許的寬闊之地到來。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">V</div>
+        <div>
+          <div class="legacy-title">族長序列的神學中介</div>
+          <div class="legacy-body">以撒是整個三族長（亞伯拉罕—以撒—雅各）神學系統中不可或缺的中介。沒有他，以色列十二支派不存在；沒有他，摩西不存在；沒有他，大衛王朝不存在；沒有他，拿撒勒人耶穌的家譜斷裂。他看似最安靜、最「中間」的那個人，恰恰是最不能移除的那一環。</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「亞伯拉罕因著信，被試驗的時候，就把以撒獻上……他以為神還能叫人從死裡復活；他也彷彿從死中得回以撒來。」</div>
+      <div class="final-verse-ref">希伯來書 11:17–19</div>
+    </div>
+
+    <div class="final-question">以撒是神用「笑」命名的孩子，卻在摩利亞山上用沉默詮釋了信心。<br>你生命中那個最深的沉默——那個你從未說出口的摩利亞山——<br>神，究竟在那個沉默裡，對你說了什麼？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 以撒 <span>יִצְחָק</span> · 應許之子 · 立約承繼者
+</div>
+
+</body>
+</html>
