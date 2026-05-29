@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>雅各 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; line-height: 1.4; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">雅各</h1>
+  <span class="hero-name-en">Jacob · יַעֲקֹב</span>
+  <p class="hero-slogan">「他一生都在抓——抓哥哥的腳踵、抓祝福、抓神——直到那個夜晚，神反過來抓住他，把他掰斷，才讓他終於學會倚靠。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">主前約 2000–1800 年</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">INTJ · 先知型人格</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">創世記 25–50 章</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">以色列之父 · 立約先祖</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<nav class="nav">
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <!-- I · PORTRAIT -->
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">每位聖經人物都是特定歷史時刻的產物，也是神救贖計劃的棋子。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">主前約 2000–1800 年<br>中青銅時代，族長游牧時期</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">多重身份</span>
+        <div class="info-cell-value">以撒與利百加之子 · 雙胞胎次子<br>以色列民族之父 · 十二支派宗族之祖</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">迦南地（別是巴、希伯崙）→ 哈蘭（美索不達米亞北部）→ 便努伊勒 → 埃及（晚年）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">背景</span>
+        <div class="info-cell-value">閃族游牧先祖<br>亞伯拉罕應許血脈第三代承繼人</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">創世記 25–50 章（核心）<br>何西阿書 12:2–4；羅馬書 9:10–13；希伯來書 11:21</div>
+      </div>
+    </div>
+
+    <p>雅各所處的中青銅時代（約主前 2000–1800 年），是近東世界劇烈流動的時期。美索不達米亞的阿摩利人浪潮席捲肥沃月灣，城邦興衰更替，游牧族群與定居文明之間的張力持續拉鋸。在迦南地，土地資源稀薄、水源爭奪頻繁，長子繼承制（Primogeniture）是家族存亡的社會骨架——誰是長子，誰就繼承一切：土地、財富、祭司代表性與家族靈性領導權。雅各從母腹出來便抓住以掃的腳踵，這個身體動作，幾乎是整個文化秩序對他的宣判：你是第二個，你不夠。</p>
+    <p>然而，神在此揀選他，並非因為他比以掃更有資格，而恰恰相反——正因為他的渴望本身就是一種悖論的預表。神要藉著一個慣於算計、長於謀略、卻又對應許之物有著狂熱渴望的人，展示恩典不是依附於人的優越性，而是錨定在神的主權揀選之中（羅馬書 9:11–12）。創世記的族長敘事並非英雄史詩，而是一部神如何在最不完美的器皿中，燒製出最深刻救贖印記的陶窯紀錄。</p>
+  </div>
+
+
+  <!-- II · TIMELINE -->
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">生命不是直線，而是一系列破碎與重建。</p>
+
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">預設底色</span>
+        <div class="timeline-title">母腹中的宣告——腳踵之子降生</div>
+        <div class="timeline-body">尚未出生，兩個孩子便在腹中相爭。神向利百加宣告：「大的要服事小的。」雅各一出生便用手抓住哥哥以掃的腳踵，因此得名「雅各」（字義：抓腳踵者，引申為取代者、詭詐者）。這個名字是他人性底色的精確診斷——他帶著一個「永遠是第二」的創傷結構進入世界，卻從第一口氣就不願接受這個位置。文化說他是次子，但神的應許卻指向他。這種內在矛盾，將驅動他此後數十年所有的算計與爭奪。</div>
+        <div class="timeline-ref">創世記 25:19–26</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">人性極限</span>
+        <div class="timeline-title">紅豆湯換名分，偽裝騙祝福</div>
+        <div class="timeline-body">雅各的兩次欺騙展示了他人格結構的核心陰影：他渴望神的應許，卻選擇用人的詭計去抓取本應由神賜予的東西。以掃饑餓時的輕率給了他機會；母親利百加的策謀與他的默許，共同完成了對盲眼父親以撒的欺騙。他說出那句令人心碎的謊言：「我是你的長子以掃。」神的應許是真實的，但他抓取它的方式，撕裂了他與哥哥的關係、催化了他與家族的決裂，並讓他在此後二十年流亡中嚐盡自己所種下的果。罪不是沒有後果的，即使神的揀選是真實的。</div>
+        <div class="timeline-ref">創世記 25:29–34；27:1–40</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">恩典的追趕</span>
+        <div class="timeline-title">伯特利異象——神主動追上逃亡者</div>
+        <div class="timeline-body">雅各因以掃的憤怒倉皇出逃，一無所有地躺在曠野的石頭上。就在他生命最破碎、最孤單的夜晚，神沒有等他「配得上」才出現，而是直接闖進他的夢境。天梯從地到天，天使上去下來，神站在梯頂親口重申應許（創世記 28:13–15）。這是整個族長敘事中最震撼的恩典時刻：一個騙子的逃亡之夜，成了神的自我啟示之夜。雅各醒來說：「這地方何等可畏！」——他的敬畏，第一次不是來自算計，而是來自遭遇。他立誓，但仍帶著條件，顯示他的信心尚在幼稚期，神卻已開始無條件的雕刻。</div>
+        <div class="timeline-ref">創世記 28:10–22</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">考驗 / 流亡期</span>
+        <div class="timeline-title">哈蘭二十年——被詭計反噬</div>
+        <div class="timeline-body">這是神精妙的靈魂教育。雅各用詭計欺騙父親；拉班用詭計欺騙他，以利亞換拉結，讓他在洞房之夜面對自己的鏡像。二十年間，他遭受拉班十次更改工價（創世記 31:41），在勞役、算計、家族內耗中熬練。然而，神沒有離開——他的牲畜繁盛，他的家族壯大。兩妻之間的競爭（拉結與利亞）同樣是他欺騙結構的延伸代價——一個破碎的家，孕育了十二個破碎的孩子，構成以色列十二支派原初的創傷底色。</div>
+        <div class="timeline-ref">創世記 29–31 章</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">決定性時刻</span>
+        <div class="timeline-title">雅博渡口的摔跤之夜——改名以色列</div>
+        <div class="timeline-body">這是整個創世記族長敘事最深刻、最超自然的夜晚。雅各即將面對記恨他二十年的哥哥以掃，恐懼達到頂點。黑夜中，一個「人」與他摔跤，直到黎明。當對方觸碰他的大腿窩，他瘸了——但他仍然抓住不放：「你不給我祝福，我就不讓你走。」這一刻，雅各的「抓」終於轉化了：他不再是在騙取，而是在哭泣、在掙扎、在真實地渴望。神在此刻給了他新名字「以色列」（意：與神角力者）。他帶著瘸腿走過那個早晨——破碎與祝福同時降臨。傷疤不是失敗的記號，而是神指紋的壓痕。</div>
+        <div class="timeline-ref">創世記 32:22–32；何西阿書 12:3–4</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">晚年下埃及，扶杖敬拜，臨終祝福十二子</div>
+        <div class="timeline-body">他用血染的外袍欺騙約瑟被殺的假消息——與他當年欺騙父親的方式完全對稱。然而，在埃及與約瑟重遇的那一刻（創世記 46:29），他說：「我既得見你的面，知道你還在，我就可以死了。」他在法老面前的自白：「我一生的年日又少又苦」，不是抱怨，而是一個被神雕刻之人的誠實見證。他以信心祝福十二子，以希伯來書 11:21 描述的姿態——「扶著杖頭敬拜神」——帶著瘸腿，帶著信心，走完了他的一生。</div>
+        <div class="timeline-ref">創世記 37 章；46–49 章；希伯來書 11:21</div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- III · CHARACTER -->
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">從最深的核心信念到外在表現，層層解構一個複雜的人。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🌟</div>
+        <div>
+          <span class="soul-label">核心驅動力</span>
+          <div class="soul-title">應許是真實的，但我必須自己確保它發生</div>
+          <div class="soul-body">雅各從未懷疑神應許的真實性——這使他與以掃根本不同。以掃輕看長子名分（創世記 25:34），但雅各拼了命地渴望。他的核心創傷是對神主權交付的不信任：相信應許，卻不相信神有能力在不需要他「幫忙」的情況下兌現。這種「渴望應許，卻不信任過程」的結構，是他所有謀略的根源，也是神對他進行漫長靈魂教育的手術入口。</div>
+        </div>
+      </div>
+      <div class="soul-row">
+        <div class="soul-icon">💛</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">持守性的渴望——從不放棄對應許的執念</div>
+          <div class="soul-body">從買長子名分到雅博渡口「你不給我祝福我就不讓你走」，這種渴望在人的層面顯得貪婪，但在神的視角中，卻是信心的粗糙原礦。希伯來書 11 章把他列在信心英雄名單中，正因為這份頑固的渴望，在被熬煉之後，轉化成了不放神手的倚靠。他對拉結七年等候「不過幾天」（創世記 29:20），也是他深情美德的另一維度。</div>
+        </div>
+      </div>
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">偏愛與迴避正面衝突——真實的我不足以被愛</div>
+          <div class="soul-body">雅各最深的陰影有兩層：第一，他無法在關係中保持公平——對拉結的偏愛、對約瑟的偏愛，深深撕裂了家族系統。第二，他慣用迂迴手段而非正面面對——欺騙父親而非坦誠渴望，逃離以掃而非和解。這種迴避正面衝突的模式，根源於對「真實的我」被拒絕的核心恐懼：害怕如果不用技巧與偽裝，本來的樣子不足以獲得所渴望的愛與應許。</div>
+        </div>
+      </div>
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">超越時代的先知性祝福眼光</div>
+          <div class="soul-body">雅各在創世記 49 章對十二子的臨終祝福，展示了他生命晚年所擁有的超然屬靈穿透力。他對猶大的祝福（「圭必不離猶大……直等細羅來到」，創世記 49:10）是整個舊約最深刻的彌賽亞預言之一。一個曾靠欺騙換取祝福的人，在生命終點成了能以先知性眼光祝福後代的屬靈父親——這個弧度，本身就是神雕刻工程最震撼的成品。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">雅各的整個人生，是一個關於「渴望的方向」的靈魂課題。他所渴望的本身並非錯誤，但他滿足渴望的方式卻折射出對自我與神都缺乏深度信任。雅博渡口的核心神學洞見是：只有當他被打斷、被掰斷，才能從「抓取者」轉化為「被神抓住者」。人性的弔詭是：我們最深的渴望往往指向最真實的呼召，但我們滿足它的策略，恰恰成為阻礙我們進入那個呼召的最大障礙。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">INTJ</span>
+      <div class="mbti-name">建築師型 · 先知型人格</div>
+      <div class="mbti-slogan">「他能看見終點，卻總試圖自己設計路線——直到神讓他瘸腿，他才學會讓路線設計他。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">雅各對「應許終局」有強烈的內在確信與長遠視野。他在年幼時便感知到長子名分對應許承繼的關鍵性，能提前謀算，看見模式、感知命運走向的能力貫穿一生，使他不被短期利益框限，始終瞄準那個靈魂深處確信的「將來的位置」。</div>
+        </div>
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">他將內在直覺轉化為精密的外在行動計劃——羊皮偽裝、豆湯換約、育種謀略。Te 使他務實、有執行力，能在資訊有限的情況下快速分析可行路徑並果斷部署，是他在哈蘭二十年持續累積資產的關鍵能力。</div>
+        </div>
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">雅各有著強烈但高度選擇性的深情——對拉結的癡迷式愛情、對約瑟的偏愛、晚年對便雅憫的過度保護。健康狀態下 Fi 使他有深刻忠誠；在不健康狀態下，Fi 的偏愛卻造成家族系統的嚴重失衡，催生兒子們對約瑟的仇恨。</div>
+        </div>
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Se · 外向感知</span>
+          <div class="mbti-fn-body">在極大壓力下，Se 劣勢展現為對眼前立即危機的過度恐懼與失控反應——把家眷財產分成兩隊、送出大量禮物緩衝。這種「應激期的超量操控」正是 INTJ 在 Se 崩潰時的典型表現；雅博渡口的摔跤，是他 Se 的極限挑戰：一場無法用計謀逃脫的肉身對決。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- IV · RELATIONS -->
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">沒有人是孤島；他生命的形塑，正是在一段段關係的摩擦與連結中完成。</p>
+
+    <div class="relation-list">
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">神</div>
+          <div class="relation-name">耶和華神</div>
+          <div class="relation-type-badge">神聖立約者</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">神主動、持續、不以人的配得性為前提地向雅各自我啟示與揀選。伯特利的天梯異象打破了他對「只有配得之人才能蒙恩」的隱性假設；雅博渡口的摔跤將他從抓取者轉化為被神抓住者。整個生命弧線都在顯示神的揀選先於並超越人的道德表現，是整部聖經對主權恩典最赤裸的活體示範。</div>
+          <div class="relation-ref">創世記 28:13–15；32:28–29；35:9–12</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">掃</div>
+          <div class="relation-name">以掃</div>
+          <div class="relation-type-badge">宿命兄弟</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">雅各的首席罪行對象，卻也是他靈魂最終必須正面面對的鏡子。以掃的寬恕（創世記 33:4，他跑上前「抱著雅各的頸項，與他親嘴」）是整個族長敘事中最震撼的恩典時刻之一——一個被欺騙二十年的人，以擁抱回應歸來的弟弟，成為新約基督恩典的有力預表。雅各對以掃的罪，教導他詭計的終極代價；以掃的饒恕，教導他無條件恩典的真實性。</div>
+          <div class="relation-ref">創世記 25:29–34；27 章；33:1–11</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">百</div>
+          <div class="relation-name">利百加</div>
+          <div class="relation-type-badge">共謀親密 / 母子依附</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">母親是他最早的「屬靈啟蒙者」（她知道神的預言，創世記 25:23），卻也是共謀欺騙的第一推手。利百加對雅各的偏愛與過度保護，深刻形塑了他的自我認同危機與依賴謀略的行為模式。她以「好心」催生了欺騙；雅各此後二十年的流亡，部分代價正是母子的永久分離——她在他歸回前已去世。父母的偏愛如何在下一代中播種破碎，在此得到最殘酷的說明。</div>
+          <div class="relation-ref">創世記 25:28；27:5–17；27:42–46</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">班</div>
+          <div class="relation-name">拉班</div>
+          <div class="relation-type-badge">命運的反照者</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">拉班是神給雅各最辛辣的靈魂教材——一個詭計者，被一個更大的詭計者所管教。洞房夜的以利亞換拉結，讓雅各第一次從受害者的角度感受欺騙的毀滅感。二十年的剝削，將他從一個囂張的算計者，磨成了一個在呼求神幫助的依靠者（創世記 31:5–13）。若沒有拉班，或許雅各永遠不需要真正依靠神。</div>
+          <div class="relation-ref">創世記 29–31 章</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">結</div>
+          <div class="relation-name">拉結</div>
+          <div class="relation-type-badge">深情摯愛</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">雅各對拉結的愛是聖經中最具浪漫張力的愛情之一，也是他最深的偏愛、執著與喪失。七年的等候「不過幾天」（創世記 29:20），展示了雅各深情的另一面。然而，對拉結的偏執之愛，直接造成他對利亞的忽視，並間接導致十二子關係的結構性失衡。拉結在便雅憫誕生時去世，成為雅各一生最深的傷口，也造就了他晚年對約瑟與便雅憫的過度補償性偏愛。</div>
+          <div class="relation-ref">創世記 29:17–30；35:16–20</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">瑟</div>
+          <div class="relation-name">約瑟</div>
+          <div class="relation-type-badge">代際恩典傳遞</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">雅各對約瑟的偏愛（彩衣）是他對拉結之愛的延伸投射，卻在兒子們之間引爆了仇恨。「約瑟被賣」是神用來把所有人帶向埃及、帶向救贖的更大棋局。父子的重聚（創世記 46:29）是整個創世記最深情的時刻：破碎的家族，在神的主權管理下，完成了超越所有人算計的大和好。</div>
+          <div class="relation-ref">創世記 37 章；45:25–28；46:29–30</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- V · THEOLOGY -->
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">每一位聖經人物都是指向基督的箭頭。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「雅各啊，那造你的耶和華，以色列啊，那塑造你的耶和華如今說：你不要害怕，因為我救贖了你；我曾提你的名召你，你是屬我的。」</div>
+      <div class="verse-ref">以賽亞書 43:1</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">יַעֲקֹב / יִשְׂרָאֵל</span>
+        <div class="word-transliteration">Yaʿaqōb / Yiśrāʾēl · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「Yaʿaqōb」字根 ʿāqēb = 腳踵；引申為「取代者、詭詐者」。「Yiśrāʾēl」= 與神角力者（שָׂרָה + אֵל），另一詮釋：「神掌權、神得勝」。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">名字的改變是聖經中最具神學份量的標誌行動之一。從「取代者」到「與神角力者」，不是性格的完全翻轉，而是掙扎方向的根本轉化——他從此成為知道如何在禱告中與神角力的人。以色列這個名字後來成為整個選民群體的稱號，這個破碎之人的轉化，具有集體性的神學代表性。</div>
+      </div>
+      <div class="word-card">
+        <span class="word-original">גָּאַל</span>
+        <div class="word-transliteration">gāʾal · 希伯來文（以賽亞書 43:1）</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">至親救贖者（Goel）履行救贖責任的法律行為；買回被賣之人或被奪之地。以賽亞書 43:1「救贖了你」即此動詞。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">神對雅各（以色列）使用「救贖」這個立約詞彙，宣告祂是以色列的至親 Goel（救贖者）。這直接預表了基督作為人類的 Goel——以祂的血買回那些被罪惡與死亡抵押的靈魂。雅各被詭計所捆綁的一生，需要神的救贖行動才能釋放；人類被罪所捆綁的處境，同樣需要更大的救贖者進入歷史。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">主權恩典的活體示範</div>
+      <div class="theology-insight-body">神在雅各身上最根本的神學彰顯，是「揀選不依附於人的道德表現」（羅馬書 9:11–13）。神在雙胞胎尚未出生、尚未行任何善惡之前，便宣告「大的要服事小的」，這是主權恩典最赤裸的呈現。雅各的人生是一個活生生的反駁：神的救贖計劃，不因人的失敗而失效，也不因人的謀略而加速——它按照神自己的時間表推進。</div>
+    </div>
+    <div class="theology-insight">
+      <div class="theology-insight-title">管教與破碎是神精煉選民的核心路徑</div>
+      <div class="theology-insight-body">雅各/以色列的身份轉換，在舊約神學中建立了「神透過管教與破碎精煉選民」的核心救贖模式。何西阿書 12:2–4 回顧雅各的摔跤，呼喚北國以色列在流亡前回轉。整個民族的命運，被先知詮釋為與始祖生命弧度的回應與複現——個人的靈魂歷程，成為整個民族屬靈狀態的照鏡。</div>
+    </div>
+    <div class="theology-insight">
+      <div class="theology-insight-title">帶傷的信心——瘸腿的敬拜</div>
+      <div class="theology-insight-body">希伯來書 11:21 以雅各「扶著杖頭敬拜神」作為信心的終極定義——用破碎的身體，持守完整的信心。羅馬書 9–11 章以雅各的被揀選論證外邦人的加入並非神計劃的失敗，而是神主權的延伸。神的揀選是恩典的起點，而非回報人優越性的獎品。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">雅各被神賜予新名「以色列」，從「詭詐者」到「與神角力者」，存在身份根本更新</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">改名在聖經中標誌一個人存在身份的根本更新；神知道我們的名字，是立約關係中最深刻的身份確認</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督賜給西門新名「彼得」（約翰福音 1:42）；信徒在基督裡領受「新名」（啟示錄 2:17）；在基督裡成為新造的人（哥林多後書 5:17）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">雅各帶著瘸腿，越過雅博渡口，以破碎之身走向新晨</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">傷疤不是失敗的記號，而是榮耀的印章——聖經神學最深刻的悖論之一</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督帶著釘痕的手腳復活，向多馬顯現（約翰福音 20:27）；基督的釘痕是復活榮耀中永恆保留的救贖印記</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">雅各對十二子的臨終祝福，宣告猶大的彌賽亞應許：「圭必不離猶大……直等細羅來到」（創世記 49:10）</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">一個曾用欺騙換取祝福的人，在生命終點成為傳遞彌賽亞預言的渠道——神不繞過破碎的器皿，而是透過它流出最深的救贖之水</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">耶穌基督從猶大支派降生（希伯來書 7:14；啟示錄 5:5「猶大支派的獅子」）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">伯特利的天梯——天地相連，天使上去下來（創世記 28:12）；雅各在最孤單破碎的逃亡之夜看見天開</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">天梯預示天地之間唯一的連接點；人類最絕望之夜，神差遣天使（最終是聖子）降世，搭建恩典的唯一通道</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">耶穌對拿但業說：「你們將要看見天開了，神的使者上去下來在人子身上。」（約翰福音 1:51）——耶穌明確引用雅各異象，宣告自己就是那架天梯</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- VI · MIRROR -->
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">聖經不是博物館的展品，而是活的對話。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">「渴望本身是無辜的——你是用什麼方式去滿足它，決定了你的生命走向。」在一個充滿 KPI、排名、職場競爭與社會比較的時代，雅各的核心命題與我們高度重疊：我們對成功、認同、歸屬感的渴望是真實的——但我們是在操控、偽裝、算計地「抓取」它，還是在破碎中學習信任更大的主權？</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你目前正在用哪些「雅各式」的方式——迂迴策略、人設管理、關係算計——去抓取一個你其實可以誠實等待或尋求的東西？</div>
+      </div>
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">在你的生命中，哪一個「拉班」出現了——一個讓你嚐到自己慣用手段之苦的人或處境——而你從那段經歷中，看見了什麼關於自己的真相？</div>
+      </div>
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">你的「雅博渡口之夜」是什麼？有沒有一個破碎時刻，是神讓你瘸腿、卻同時給你新身份的轉捩點？你允許自己帶著那個瘸腿繼續走，還是還在試圖假裝它不存在？</div>
+      </div>
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">你對哪個人（孩子、伴侶、工作、理想）有如此深的偏愛執著，以至於這份愛正在扭曲整個系統，傷害了其他你原本也想珍愛的人？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 雅各</span>
+        <div class="gen-title">應激劇本</div>
+        <div class="gen-body">在極端壓力下，雅各的標準應激反應是：偽裝（用羊皮假裝以掃）、算計（用豆湯換名分）、迂迴（用禮物緩衝以掃的憤怒）。他的核心應激謊言是：「我真實的樣子不夠，我必須讓自己看起來像別人，才能得到我需要的。」</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 十二子</span>
+        <div class="gen-title">精確複製</div>
+        <div class="gen-body">兒子們在面對父親對約瑟的偏愛時，採取了完全相同的欺騙結構：用血染的彩衣偽造約瑟死亡的假象，讓父親自己得出錯誤的結論——幾乎與雅各當年用羊皮讓盲眼以撒自己摸出錯誤的結論完全對稱。家族系統的謊言模式在下一代精確複現。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">神透過約瑟——在家族謊言中受害最深的人——引入了恩典的突變代碼。約瑟沒有複製家族的詭計模式，反而在受盡欺騙與苦難後選擇了寬恕。「你們的意思是要害我，但神的意思原是好的」（創世記 50:20）——同樣的苦難結構，因著神的介入，產生了與前幾代完全不同的屬靈回應。</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- VII · VOICE -->
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">讓數千年前的故事，說出你此刻最需要聽見的話。</p>
+
+    <div class="tags">
+      <span class="tag">#不擇手段的追夢者</span>
+      <span class="tag">#被自己套路反殺</span>
+      <span class="tag">#渴望沒有錯方法錯了</span>
+      <span class="tag">#瘸腿也能敬拜</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>好，讓我們誠實說：雅各如果活在今天，他大概是那種會在 LinkedIn 上把自己的 title 寫得比實際職位高兩級、面試時說「我在前公司主導了整個專案」（但其實他只是做了 PPT 的那頁）、談判時永遠在算對方底牌、然後在相親局上偷換照片的那種人。</p>
+      <p>他不是壞人——他只是太清楚自己想要什麼，卻太不信任「誠實等待」這件事。他渴望應許？這是真的。但他的策略是：老爸瞎了，我穿上哥哥的衣服；哥哥餓了，我用豆湯做交換。完全是「情境式機會主義者」的教科書案例。</p>
+      <p>然後，神給了他人生最毒的安排：送他去當學徒的公司，老闆是他的升級版——拉班。洞房夜給他換人，工資改了十次，說好的合約說改就改。雅各大概有某個夜晚，坐在哈蘭的星空下，突然意識到：「我他媽的就是下一個我。」</p>
+      <p>然後，在他最怕的那個夜晚——以掃帶著四百人來了——神沒有給他一條聰明的撤退路線，而是派了一個人來跟他摔跤，打到天亮，打到他大腿脫臼，打到他終於說：我不靠計謀了，我靠哭泣，我靠死抱著不放。</p>
+      <p style="font-weight:500; color:var(--ink);">雅各的整個故事說的是：渴望沒有錯。算計才是問題。而神用了一整個人生，把一個算計者，教育成一個懂得在禱告中死纏不放的人。這才是聖經想告訴你的：不是「你要更努力」，而是「你要在對的地方死撐」。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你此刻正在某個看似「永遠都輪不到你」的處境裡——你不是長子、不是最好看的、不是最被喜愛的、資源總在別人手上——你可以聽到雅各說的話：</p>
+      <p style="margin-top:12px;">「我知道渴望一件東西，卻覺得自己必須偷偷去搶才能得到它的感覺。但我也知道，算計讓我得到了名分，卻沒讓我得到安息。我帶著到手的一切，在旅程中是個逃亡者。直到那個夜晚，我停止算計，只是抓住不放——那才是我第一次真正得著。」</p>
+      <p style="margin-top:12px;">你不需要成為別人才能被愛。你不需要用偽裝換取祝福。神知道你的名字——你破碎的、不夠格的、帶著黑歷史的名字——而且祂用那個名字叫你，說：「你是屬我的。」</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">停止算計，開始在那個真實的地方抓緊不放——那才是你的雅博渡口之夜的開始。</p>
+    </div>
+
+    <div class="insight-box">在現代領導力語境中，雅各的弧線說明了一個深刻的領導轉型命題：從「策略型掌控者」到「承受脆弱、賦能他人的成熟領袖」之間，通常需要一個「雅博渡口時刻」——一個讓你徹底撐不住的危機，迫使你從操控切換到委身。真正帶出十二個支派的雅各，不是那個算計哥哥的年輕人，而是那個瘸腿走過渡口、不再掩藏傷痕的以色列。在家族系統語境中，偏愛（favoritism）是家族系統最隱性的毒藥之一——神的介入路徑不是「修好關係」，而是透過一個願意被神重塑的人，從系統內部引入恩典突變。</div>
+  </div>
+
+
+  <!-- VIII · LEGACY -->
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">一個人死後，他留下的比他的生命更長。</p>
+
+    <div class="legacy-list">
+
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">以色列民族之父——十二支派的創始 DNA</div>
+          <div class="legacy-body">雅各十二個兒子直接形成以色列十二支派，成為整個希伯來民族結構的原始基因。神的名字「亞伯拉罕、以撒、雅各的神」成為舊約最核心的自我揭示公式（出埃及記 3:6），在整個聖經中迴響超過一百次。他不只是一個人，他是一個民族的創始 DNA，其生命的所有破碎與恩典，都成為以色列民族性格的集體底色。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">摔跤禱告學的奠基者</div>
+          <div class="legacy-body">何西阿書 12:3–4 提醒北國以色列：你們的先祖曾哭泣、曾懇求神——回去做那件事。「在禱告中與神角力，死纏不放直到得著」的禱告神學，透過雅各的生命烙印在整個猶太禱告傳統中。他是主禱文之前最有名的禱告課教材，教導後世：真實的禱告不是優雅的儀式，而是帶著真實破碎與渴望的靈魂角力。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">揀選神學的活教材</div>
+          <div class="legacy-body">羅馬書 9–11 章保羅以雅各被揀選為論據核心，建構了整個新約的主權恩典神學（Sovereign Grace Theology）。「雅各是我所愛的，以掃是我所惡的」（羅馬書 9:13）不是神的情感偏好，而是神主權揀選超越人類功德的宣告，構成外邦人得救之路的神學基礎，影響了奧古斯丁、加爾文等整個西方神學傳統。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">代際恩典傳遞的示範</div>
+          <div class="legacy-body">雅各在創世記 49 章對十二子的臨終祝福，建立了聖經「屬靈父親按手祝福」的核心儀式原型。那個曾偷取父親祝福的人，在生命終點成為傳遞應許的源頭——神的諷刺性救贖在此達到完美的弧度閉合：器皿因破碎而更透明，恩典因悖論而更深刻。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">V</div>
+        <div>
+          <div class="legacy-title">傷痕神學的人格化身</div>
+          <div class="legacy-body">雅各帶著瘸腿度過餘生，成為聖經中最有力的「帶傷走路之人」的象徵。他的瘸腿宣告：與神的相遇不會讓你完好如初，而是讓你帶著永恆的記號，以不同的步伐行走。希伯來書 11:21 用「扶著杖頭敬拜」作為他信心的終極畫面——傷痕與敬拜同框，這是整部聖經對「真實信仰」最誠實的影像詮釋。</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「雅各因著信，臨死的時候，給約瑟的兩個兒子各自祝福，扶著杖頭敬拜神。」</div>
+      <div class="final-verse-ref">希伯來書 11:21</div>
+    </div>
+
+    <div class="final-question">你生命中最深的渴望，是否正在被你以最不信任神的方式去「確保」它發生——而神或許正等著你停下算計、在最黑的夜晚獨自留下，讓祂來找你摔跤，把你打成一個瘸腿的人，再給你一個新的名字？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 雅各 <span>יַעֲקֹב</span> · 以色列十二支派之父 · 立約先祖
+</div>
+
+</body>
+</html>
