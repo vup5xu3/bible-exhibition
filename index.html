@@ -7,455 +7,99 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+
+<!-- 引入 Supabase 官方 JavaScript SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
   :root {
-    --gold: #B8962E;
-    --gold-light: #D4AF5A;
-    --gold-pale: #F5EDD5;
-    --gold-faint: #FAF6EC;
-    --ink: #1A1610;
-    --ink-mid: #3D3525;
-    --ink-soft: #6B5E42;
-    --ink-pale: #9C8E72;
-    --parchment: #F7F2E8;
-    --parchment-dark: #EDE5D0;
-    --sand: #E8DFC8;
-    --teal-deep: #1A4A3E;
-    --border: rgba(184,150,46,0.25);
-    --border-strong: rgba(184,150,46,0.5);
-    --danger: #9a2e2e;
+    --gold: #B8962E; --gold-light: #D4AF5A; --gold-pale: #F5EDD5; --gold-faint: #FAF6EC;
+    --ink: #1A1610; --ink-mid: #3D3525; --ink-soft: #6B5E42; --ink-pale: #9C8E72;
+    --parchment: #F7F2E8; --parchment-dark: #EDE5D0; --sand: #E8DFC8; --teal-deep: #1A4A3E;
+    --border: rgba(184,150,46,0.25); --border-strong: rgba(184,150,46,0.5); --danger: #9a2e2e;
   }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    background: var(--parchment);
-    color: var(--ink);
-    font-family: 'Noto Sans TC', sans-serif;
-    font-weight: 300;
-    line-height: 1.8;
-    min-height: 100vh;
-  }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; min-height: 100vh; }
 
   /* ── HERO ── */
-  .hero {
-    background: var(--ink);
-    padding: 72px 24px 56px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image:
-      repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.05) 39px, rgba(184,150,46,0.05) 40px),
-      repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.05) 39px, rgba(184,150,46,0.05) 40px);
-    pointer-events: none;
-  }
-  .hero-eyebrow {
-    font-family: 'IM Fell English', serif;
-    font-size: 12px;
-    letter-spacing: 0.35em;
-    color: var(--gold);
-    margin-bottom: 20px;
-    opacity: 0.85;
-  }
-  .hero-title {
-    font-family: 'IM Fell English', serif;
-    font-size: clamp(40px, 9vw, 80px);
-    color: #fff;
-    letter-spacing: 0.08em;
-    line-height: 1.05;
-    margin-bottom: 6px;
-  }
-  .hero-title-zh {
-    font-family: 'Noto Serif TC', serif;
-    font-size: clamp(13px, 2.5vw, 17px);
-    font-weight: 300;
-    color: var(--gold-light);
-    letter-spacing: 0.25em;
-    margin-bottom: 28px;
-  }
-  .hero-desc {
-    font-family: 'Noto Serif TC', serif;
-    font-size: clamp(13px, 2vw, 15px);
-    color: var(--sand);
-    max-width: 560px;
-    margin: 0 auto 36px;
-    line-height: 2;
-    opacity: 0.85;
-  }
-  .hero-stats {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    flex-wrap: wrap;
-  }
+  .hero { background: var(--ink); padding: 72px 24px 56px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.05) 39px, rgba(184,150,46,0.05) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.05) 39px, rgba(184,150,46,0.05) 40px); pointer-events: none; }
+  .hero-eyebrow { font-family: 'IM Fell English', serif; font-size: 12px; letter-spacing: 0.35em; color: var(--gold); margin-bottom: 20px; opacity: 0.85; }
+  .hero-title { font-family: 'IM Fell English', serif; font-size: clamp(40px, 9vw, 80px); color: #fff; letter-spacing: 0.08em; line-height: 1.05; margin-bottom: 6px; }
+  .hero-title-zh { font-family: 'Noto Serif TC', serif; font-size: clamp(13px, 2.5vw, 17px); font-weight: 300; color: var(--gold-light); letter-spacing: 0.25em; margin-bottom: 28px; }
+  .hero-desc { font-family: 'Noto Serif TC', serif; font-size: clamp(13px, 2vw, 15px); color: var(--sand); max-width: 560px; margin: 0 auto 36px; line-height: 2; opacity: 0.85; }
+  .hero-stats { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
   .hero-stat { text-align: center; }
-  .hero-stat-num {
-    font-family: 'IM Fell English', serif;
-    font-size: 28px;
-    color: var(--gold);
-    display: block;
-    line-height: 1;
-    margin-bottom: 4px;
-  }
-  .hero-stat-label {
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    color: var(--ink-pale);
-  }
-  .hero-divider {
-    width: 40px; height: 1px;
-    background: var(--gold);
-    margin: 36px auto 0;
-    opacity: 0.4;
-  }
+  .hero-stat-num { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; line-height: 1; margin-bottom: 4px; }
+  .hero-stat-label { font-size: 11px; letter-spacing: 0.15em; color: var(--ink-pale); }
+  .hero-divider { width: 40px; height: 1px; background: var(--gold); margin: 36px auto 0; opacity: 0.4; }
 
-  /* ── FILTER BAR (含右上角登入) ── */
-  .filter-wrap {
-    background: var(--ink-mid);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.15);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-right: 16px;
-  }
-
-  .filter-primary {
-    display: flex;
-    overflow-x: auto;
-    scrollbar-width: none;
-    padding: 0 16px;
-    flex: 1;
-  }
+  /* ── FILTER BAR ── */
+  .filter-wrap { background: var(--ink-mid); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 12px rgba(0,0,0,0.15); display: flex; justify-content: space-between; align-items: center; padding-right: 16px; }
+  .filter-primary { display: flex; overflow-x: auto; scrollbar-width: none; padding: 0 16px; flex: 1; }
   .filter-primary::-webkit-scrollbar { display: none; }
-
-  .tab-btn {
-    flex-shrink: 0;
-    background: none;
-    border: none;
-    color: var(--ink-pale);
-    font-family: 'Noto Sans TC', sans-serif;
-    font-size: 12px;
-    font-weight: 300;
-    letter-spacing: 0.1em;
-    padding: 14px 16px;
-    cursor: pointer;
-    border-bottom: 2px solid transparent;
-    transition: color 0.2s, border-color 0.2s;
-    white-space: nowrap;
-  }
+  .tab-btn { flex-shrink: 0; background: none; border: none; color: var(--ink-pale); font-family: 'Noto Sans TC', sans-serif; font-size: 12px; font-weight: 300; letter-spacing: 0.1em; padding: 14px 16px; cursor: pointer; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; white-space: nowrap; }
   .tab-btn:hover { color: var(--gold-light); }
-  .tab-btn.active {
-    color: var(--gold-light);
-    border-bottom-color: var(--gold);
-  }
+  .tab-btn.active { color: var(--gold-light); border-bottom-color: var(--gold); }
 
-  /* 右上角登入按鈕 */
-  .nav-login-btn {
-    background: rgba(184, 150, 46, 0.15);
-    border: 1px solid var(--gold);
-    color: var(--gold-light);
-    font-size: 11px;
-    padding: 4px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-family: 'Noto Sans TC', sans-serif;
-    transition: all 0.2s;
-    white-space: nowrap;
-  }
-  .nav-login-btn:hover {
-    background: var(--gold);
-    color: var(--ink);
-  }
-  .nav-login-btn.logged-in {
-    background: var(--teal-deep);
-    border-color: rgba(255,255,255,0.2);
-    color: #fff;
-  }
+  .nav-login-btn { background: rgba(184, 150, 46, 0.15); border: 1px solid var(--gold); color: var(--gold-light); font-size: 11px; padding: 4px 12px; border-radius: 4px; cursor: pointer; font-family: 'Noto Sans TC', sans-serif; transition: all 0.2s; white-space: nowrap; }
+  .nav-login-btn:hover { background: var(--gold); color: var(--ink); }
+  .nav-login-btn.logged-in { background: var(--danger); border-color: rgba(255,255,255,0.2); color: #fff; }
 
-  /* Secondary MBTI sub-filter */
-  .filter-secondary-wrap {
-    background: #2D271B;
-  }
-  .filter-secondary {
-    display: none;
-    overflow-x: auto;
-    scrollbar-width: none;
-    padding: 8px 16px;
-    gap: 6px;
-    flex-wrap: nowrap;
-  }
+  .filter-secondary-wrap { background: #2D271B; }
+  .filter-secondary { display: none; overflow-x: auto; scrollbar-width: none; padding: 8px 16px; gap: 6px; flex-wrap: nowrap; }
   .filter-secondary::-webkit-scrollbar { display: none; }
   .filter-secondary.visible { display: flex; }
-
-  .mbti-pill {
-    flex-shrink: 0;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(184,150,46,0.2);
-    border-radius: 20px;
-    color: var(--ink-pale);
-    font-family: 'IM Fell English', serif;
-    font-size: 12px;
-    letter-spacing: 0.05em;
-    padding: 4px 14px;
-    cursor: pointer;
-    transition: all 0.18s;
-    white-space: nowrap;
-  }
+  .mbti-pill { flex-shrink: 0; background: rgba(255,255,255,0.05); border: 1px solid rgba(184,150,46,0.2); border-radius: 20px; color: var(--ink-pale); font-family: 'IM Fell English', serif; font-size: 12px; letter-spacing: 0.05em; padding: 4px 14px; cursor: pointer; transition: all 0.18s; white-space: nowrap; }
   .mbti-pill:hover { color: var(--gold-light); border-color: var(--gold); }
-  .mbti-pill.active {
-    background: rgba(184,150,46,0.15);
-    border-color: var(--gold);
-    color: var(--gold-light);
-  }
+  .mbti-pill.active { background: rgba(184,150,46,0.15); border-color: var(--gold); color: var(--gold-light); }
 
   /* ── MAIN CONTENT ── */
-  .main {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 40px 20px 80px;
-  }
-
-  .section-label {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 28px;
-  }
-  .section-label-text {
-    font-family: 'Noto Serif TC', serif;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--ink-soft);
-    letter-spacing: 0.1em;
-  }
-  .section-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-  }
-  .section-count {
-    font-family: 'IM Fell English', serif;
-    font-size: 12px;
-    color: var(--gold);
-    letter-spacing: 0.05em;
-  }
+  .main { max-width: 1100px; margin: 0 auto; padding: 40px 20px 80px; }
+  .section-label { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
+  .section-label-text { font-family: 'Noto Serif TC', serif; font-size: 13px; font-weight: 500; color: var(--ink-soft); letter-spacing: 0.1em; }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .section-count { font-family: 'IM Fell English', serif; font-size: 12px; color: var(--gold); letter-spacing: 0.05em; }
 
   /* ── CARDS GRID ── */
-  .cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 16px;
-  }
-
-  .char-card-wrap {
-    position: relative;
-    background: #fff;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.18s, box-shadow 0.18s, border-color 0.18s;
-  }
-  .char-card-wrap:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 28px rgba(26,22,16,0.1);
-    border-color: var(--border-strong);
-  }
-
-  .char-card {
-    padding: 22px 22px 18px;
-    text-decoration: none;
-    color: inherit;
-    display: block;
-    flex: 1;
-    position: relative;
-  }
-  .char-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--gold), var(--gold-light));
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.25s;
-  }
+  .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+  .char-card-wrap { position: relative; background: #fff; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.18s, box-shadow 0.18s, border-color 0.18s; }
+  .char-card-wrap:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(26,22,16,0.1); border-color: var(--border-strong); }
+  .char-card { padding: 22px 22px 18px; text-decoration: none; color: inherit; display: block; flex: 1; position: relative; }
+  .char-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--gold), var(--gold-light)); transform: scaleX(0); transform-origin: left; transition: transform 0.25s; }
   .char-card-wrap:hover .char-card::before { transform: scaleX(1); }
 
-  .char-card-top {
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-    margin-bottom: 12px;
-  }
-  .char-avatar {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: var(--gold-pale);
-    border: 1px solid var(--border-strong);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Noto Serif TC', serif;
-    font-size: 18px;
-    color: var(--gold);
-    flex-shrink: 0;
-  }
+  .char-card-top { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 12px; }
+  .char-avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); flex-shrink: 0; }
   .char-name-block { flex: 1; min-width: 0; }
-  .char-name {
-    font-family: 'Noto Serif TC', serif;
-    font-size: 17px;
-    font-weight: 500;
-    color: var(--ink);
-    margin-bottom: 2px;
-    letter-spacing: 0.03em;
-  }
-  .char-name-en {
-    font-family: 'IM Fell English', serif;
-    font-size: 12px;
-    color: var(--ink-pale);
-    letter-spacing: 0.08em;
-  }
-  .char-desc {
-    font-size: 13px;
-    color: var(--ink-soft);
-    line-height: 1.85;
-    margin-bottom: 14px;
-  }
-  .char-tags {
-    display: flex;
-    gap: 6px;
-    flex-wrap: wrap;
-  }
-  .char-tag {
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    padding: 2px 9px;
-    border-radius: 20px;
-    border: 1px solid rgba(184,150,46,0.25);
-    color: var(--gold);
-    background: var(--gold-faint);
-  }
-  .char-tag.mbti {
-    background: rgba(26,74,62,0.07);
-    border-color: rgba(26,74,62,0.25);
-    color: var(--teal-deep);
-  }
+  .char-name { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 2px; letter-spacing: 0.03em; }
+  .char-name-en { font-family: 'IM Fell English', serif; font-size: 12px; color: var(--ink-pale); letter-spacing: 0.08em; }
+  .char-desc { font-size: 13px; color: var(--ink-soft); line-height: 1.85; margin-bottom: 14px; }
+  .char-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+  .char-tag { font-size: 10px; letter-spacing: 0.1em; padding: 2px 9px; border-radius: 20px; border: 1px solid rgba(184,150,46,0.25); color: var(--gold); background: var(--gold-faint); }
+  .char-tag.mbti { background: rgba(26,74,62,0.07); border-color: rgba(26,74,62,0.25); color: var(--teal-deep); }
 
-  /* ✨ 超醒目右下角編輯區塊 ✨ */
-  .admin-card-action {
-    background: var(--gold-faint);
-    border-top: 1px dashed var(--border);
-    padding: 10px 14px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-  }
-  .edit-badge-btn {
-    background: #fff;
-    color: var(--ink);
-    border: 1px solid var(--gold);
-    padding: 4px 12px;
-    font-size: 12px;
-    font-weight: 500;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.2s;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-  }
-  .edit-badge-btn:hover {
-    background: var(--gold);
-    color: #fff;
-    transform: scale(1.05);
-  }
+  /* 醒目卡片編輯按鈕 */
+  .admin-card-action { background: var(--gold-faint); border-top: 1px dashed var(--border); padding: 10px 14px; display: flex; justify-content: flex-end; align-items: center; }
+  .edit-badge-btn { background: #fff; color: var(--ink); border: 1px solid var(--gold); padding: 4px 12px; font-size: 12px; font-weight: 500; border-radius: 4px; cursor: pointer; transition: all 0.2s; }
+  .edit-badge-btn:hover { background: var(--gold); color: #fff; transform: scale(1.05); }
 
-  /* ── 管理列樣式 ── */
-  .admin-bar {
-    background: #fff;
-    border-bottom: 2px solid var(--gold);
-    padding: 14px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 13px;
-    gap: 10px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  }
-  .admin-btn {
-    background: var(--teal-deep);
-    color: #fff;
-    border: none;
-    padding: 6px 14px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: 400;
-  }
+  /* 後台頂部控制列 */
+  .admin-bar { background: #fff; border-bottom: 2px solid var(--gold); padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; gap: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+  .admin-btn { background: var(--teal-deep); color: #fff; border: none; padding: 6px 14px; border-radius: 4px; cursor: pointer; font-weight: 400; }
   .admin-btn.gold-btn { background: var(--gold); }
   .admin-btn:hover { opacity: 0.9; }
 
-  /* ── 排序彈出清單項目 ── */
-  .sort-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-    background: #fff;
-    border: 1px solid var(--border);
-    margin-bottom: 6px;
-    border-radius: 6px;
-  }
+  /* 排序視窗樣式 */
+  .sort-item { display: flex; align-items: center; justify-content: space-between; padding: 10px; background: #fff; border: 1px solid var(--border); margin-bottom: 6px; border-radius: 6px; }
   .sort-arrows { display: flex; gap: 5px; }
-  .arrow-btn {
-    background: var(--parchment-dark);
-    border: 1px solid var(--ink-pale);
-    padding: 2px 8px;
-    font-size: 12px;
-    cursor: pointer;
-    border-radius: 4px;
-  }
+  .arrow-btn { background: var(--parchment-dark); border: 1px solid var(--ink-pale); padding: 2px 8px; font-size: 12px; cursor: pointer; border-radius: 4px; }
 
   /* ── MODAL DIALOG ── */
-  .modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.6);
-    z-index: 1000;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-  }
+  .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 1000; align-items: center; justify-content: center; padding: 20px; }
   .modal.visible { display: flex; }
-  .modal-content {
-    background: var(--parchment);
-    border: 2px solid var(--gold);
-    border-radius: 12px;
-    width: 100%;
-    max-width: 550px;
-    max-height: 90vh;
-    overflow-y: auto;
-    padding: 28px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  }
-  .modal-title {
-    font-family: 'Noto Serif TC', serif;
-    font-size: 20px;
-    color: var(--ink);
-    margin-bottom: 20px;
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 10px;
-  }
+  .modal-content { background: var(--parchment); border: 2px solid var(--gold); border-radius: 12px; width: 100%; max-width: 550px; max-height: 90vh; overflow-y: auto; padding: 28px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+  .modal-title { font-family: 'Noto Serif TC', serif; font-size: 20px; color: var(--ink); margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
   .form-group { margin-bottom: 16px; }
   .form-group label { display: block; font-size: 13px; font-weight: 500; color: var(--ink-mid); margin-bottom: 4px; }
   .form-group label span { color: var(--danger); }
@@ -465,19 +109,6 @@
   .modal-actions { display: flex; justify-content: space-between; margin-top: 24px; border-top: 1px solid var(--border); padding-top: 16px; }
   .btn-secondary { background: #ccc; color: #333; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; }
   .btn-danger { background: var(--danger); color: #fff; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; }
-  
-  .code-output {
-    width: 100%;
-    height: 180px;
-    font-family: monospace;
-    font-size: 12px;
-    background: #1e1e1e;
-    color: #d4d4d4;
-    padding: 10px;
-    border-radius: 6px;
-    resize: none;
-    margin-top: 10px;
-  }
 
   .empty-state { text-align: center; padding: 80px 20px; color: var(--ink-pale); display: none; }
   .empty-state.visible { display: block; }
@@ -488,17 +119,19 @@
   .genealogy-notice p { font-size: 14px; color: var(--sand); opacity: 0.8; line-height: 1.9; }
   .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 11px; letter-spacing: 0.12em; }
   .footer span { color: var(--gold); }
+  .loading-mask { position: fixed; inset: 0; background: rgba(247,242,232,0.8); z-index: 2000; display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--ink-soft); }
 </style>
 </head>
 <body>
 
+<div id="loading" class="loading-mask">典籍編纂中，請稍候...</div>
+
 <!-- 管理模式控制列 -->
 <div id="admin-bar" class="admin-bar" style="display: none;">
-  <div>模式：<strong>典籍編纂後台</strong> (已解鎖：vup5xu3@gmail.com)</div>
+  <div>模式：<strong>聖經人物後台管理系統</strong> (經 Google 實名驗證：vup5xu3@gmail.com)</div>
   <div style="display: flex; gap: 10px;">
     <button class="admin-btn gold-btn" onclick="openOrderModal()">↕ 調整卡片順序</button>
     <button class="admin-btn" onclick="openModalForAdd()">＋ 新增聖經人物</button>
-    <button class="admin-btn gold-btn" style="background:#b85c2e;" onclick="openCodeModal()">💾 匯出最新前端 Code</button>
   </div>
 </div>
 
@@ -507,12 +140,9 @@
   <div class="hero-eyebrow">PORTRAIT · BIBLE CHARACTERS</div>
   <h1 class="hero-title">Portrait</h1>
   <div class="hero-title-zh">聖經人物深度研究</div>
-  <p class="hero-desc">
-    每一位聖經人物，都是神救贖計劃中的一個章節。<br>
-    透過他們的生命，看見自己；透過自己，更理解聖經的大敘事。
-  </p>
+  <p class="hero-desc">每一位聖經人物，都是神救贖計劃中的一個章節。<br>透過他們的生命，看見自己；透過自己，更理解聖經的大敘事。</p>
   <div class="hero-stats">
-    <div class="hero-stat"><span class="hero-stat-num" id="stat-total">4</span><span class="hero-stat-label">人物總數</span></div>
+    <div class="hero-stat"><span class="hero-stat-num" id="stat-total">0</span><span class="hero-stat-label">人物總數</span></div>
     <div class="hero-stat"><span class="hero-stat-num">8</span><span class="hero-stat-label">研究維度</span></div>
     <div class="hero-stat"><span class="hero-stat-num">16</span><span class="hero-stat-label">MBTI 類型</span></div>
   </div>
@@ -527,7 +157,7 @@
     <button class="tab-btn" data-tab="mbti">MBTI 16型</button>
     <button class="tab-btn" data-tab="genealogy">主耶穌家譜</button>
   </div>
-  <button id="nav-auth-btn" class="nav-login-btn" onclick="handleAuthClick()">🔒 登入管理</button>
+  <button id="nav-auth-btn" class="nav-login-btn" onclick="handleAuthClick()">🔒 Google 登入管理</button>
 </div>
 
 <!-- Secondary MBTI sub-filter -->
@@ -542,9 +172,8 @@
 <main class="main">
   <div class="section-label">
     <span class="section-label-text" id="section-label-text">舊約人物</span>
-    <span class="section-count" id="section-count">— 1 人物</span>
+    <span class="section-count" id="section-count">— 0 人物</span>
   </div>
-
   <div class="genealogy-notice" id="genealogy-notice">
     <h3>主耶穌家譜 · 馬太福音 1 章</h3>
     <p>從亞伯拉罕到大衛，從大衛到被擄巴比倫，從被擄到基督降生——<br>家譜不只是名單，而是神在歷史中守約的見證。</p>
@@ -556,14 +185,14 @@
   </div>
 </main>
 
-<!-- 彈出視窗：動態表單編輯欄位 -->
+<!-- 表單彈窗：新增/編輯人物資料 -->
 <div id="charModal" class="modal">
   <div class="modal-content">
     <h3 class="modal-title" id="modalTitle">編輯聖經人物</h3>
     <form id="charForm" onsubmit="handleFormSubmit(event)">
       <input type="hidden" id="form-mode" value="add">
       <div class="form-group">
-        <label for="char-id">唯一識別碼 (id) <span>*</span> (限小寫英數字，如 moses)</label>
+        <label for="char-id">唯一識別碼 (id) <span>*</span> (限小寫英數字，儲存後不可改)</label>
         <input type="text" id="char-id" class="form-control" required pattern="^[a-z0-9_]+$">
       </div>
       <div class="form-group">
@@ -575,7 +204,7 @@
         <input type="text" id="char-nameEn" class="form-control" required placeholder="如：Isaac">
       </div>
       <div class="form-group">
-        <label for="char-avatar">顯示頭像字元 (avatar) <span>*</span> (限 1~2 字)</label>
+        <label for="char-avatar">顯示頭像字元 (avatar) <span>*</span> (限1~2字)</label>
         <input type="text" id="char-avatar" class="form-control" required maxlength="2" placeholder="如：撒">
       </div>
       <div class="form-group">
@@ -594,7 +223,7 @@
         <input type="text" id="char-file" class="form-control" required placeholder="如：isaac_portrait.html">
       </div>
       <div class="form-group">
-        <label>所屬類別項目 (categories) <span>*</span> (可複選)</label>
+        <label>選擇所屬類別項目 (categories) <span>*</span> (可複選)</label>
         <div class="checkbox-group">
           <label class="checkbox-label"><input type="checkbox" name="category" value="ot"> 舊約人物 (ot)</label>
           <label class="checkbox-label"><input type="checkbox" name="category" value="nt"> 新約人物 (nt)</label>
@@ -603,14 +232,14 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="char-tags">額外標籤 (tags) (以英文逗號隔開)</label>
+        <label for="char-tags">額外標籤 (tags) (以英文半形逗號隔開)</label>
         <input type="text" id="char-tags" class="form-control" placeholder="如：應許之子, 立約承繼者">
       </div>
       <div class="modal-actions">
         <button type="button" id="btn-delete" class="btn-danger" style="display:none;" onclick="handleDelete()">刪除此人物</button>
         <div style="margin-left: auto; display: flex; gap: 10px;">
           <button type="button" class="btn-secondary" onclick="closeModal('charModal')">取消</button>
-          <button type="submit" class="admin-btn">暫存修改</button>
+          <button type="submit" class="admin-btn">確認儲存並同步雲端</button>
         </div>
       </div>
     </form>
@@ -628,67 +257,103 @@
   </div>
 </div>
 
-<!-- 彈出視窗：程式碼產生區 -->
-<div id="codeModal" class="modal">
-  <div class="modal-content">
-    <h3 class="modal-title">最新的 CHARACTERS 程式碼片段</h3>
-    <p style="font-size: 13px; color: var(--ink-soft);">請複製下方生成的全新陣列，覆蓋回你原始碼中的 <code>const CHARACTERS = [...]</code> 段落中，並 Push 至 GitHub 即可：</p>
-    <textarea id="code-textarea" class="code-output" readonly></textarea>
-    <div class="modal-actions" style="justify-content: flex-end; gap: 10px;">
-      <button type="button" class="btn-secondary" onclick="closeModal('codeModal')">關閉</button>
-      <button type="button" class="admin-btn" onclick="copyToClipboard()">一鍵複製 Code</button>
-    </div>
-  </div>
-</div>
-
-<!-- FOOTER -->
 <div class="footer">PORTRAIT 聖經人物深度研究 · <span>透過人物，理解聖經大敘事</span></div>
 
 <script>
 // ══════════════════════════════════════════
-// DATA · 原始人物資料庫
+// ⚠️ 請替換成妳的 Supabase 實際專案網址與 Anon Key[cite: 1]
 // ══════════════════════════════════════════
-let CHARACTERS = [
-  { id: "abraham", name: "亞伯拉罕", nameEn: "Abraham", avatar: "亞", desc: "神叫他走，他就走了——連目的地也不知道。七十五歲踏入荒野，成為信心的原型", mbti: "INFJ", tags: ["信心之父", "諸民之父"], file: "abraham_portrait.html", categories: ["ot", "mbti","genealogy"] },
-  { id: "cornelius", name: "哥尼流", nameEn: "Cornelius", avatar: "流", desc: "一生忠誠於兩個不接受彼此的世界——帝國的劍與天國的禱告——直到有一天，神親自拆毀了那道牆", mbti: "ISTJ", tags: ["羅馬百夫長", "外邦宣教先驅"], file: "cornelius_portrait.html", categories: ["nt", "mbti"] },
-  { id: "isaac", name: "以撒", nameEn: "Isaac", avatar: "撒", desc: "是神用笑聲命名的孩子，卻一生背負著刀刃的陰影——活下來，是他最大的使命，也是最沉重的重量", mbti: "ISFJ", tags: ["應許之子", "立約承繼者"], file: "isaac_portrait.html", categories: ["ot", "mbti","genealogy"] },
-  { id: "jacob", name: "雅各", nameEn: "Jacob", avatar: "各", desc: "一生都在抓——抓哥哥的腳踵、抓祝福、抓神——直到那個夜晚，神反過來抓住他，把他掰斷，才讓他終於學會倚靠", mbti: "INTJ", tags: ["以色列之父", "立約先祖"], file: "jacob_portrait.html", categories: ["ot", "mbti","genealogy"] }
-];
+const SUPABASE_URL = "YOUR_SUPABASE_URL";
+const SUPABASE_ANON_KEY = "YOUR_SUPABASE_ANON_KEY";
+const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+const ADMIN_EMAIL = "vup5xu3@gmail.com";
+let isAdminMode = false;
+let CHARACTERS = [];
 
 const LABELS = { ot: "舊約人物", nt: "新約人物", mbti: "MBTI 16型", genealogy: "主耶穌家譜" };
 let currentTab = "ot";
 let currentMbti = "all";
-let isAdminMode = false;
 
-function updateStatTotal() { document.getElementById("stat-total").textContent = CHARACTERS.length; }
+// 網頁啟動初始化
+window.addEventListener("DOMContentLoaded", async () => {
+  await checkUserSession();
+  await loadDataFromSupabase();
+});
 
-function handleAuthClick() {
+// 驗證當前使用者是否已透過 Google OAuth 登入
+async function checkUserSession() {
+  const { data: { user } } = await _supabase.auth.getUser();
+  if (user && user.email.toLowerCase() === ADMIN_EMAIL.toLowerCase()) {
+    isAdminMode = true;
+    document.getElementById("admin-bar").style.display = "flex";
+    const btn = document.getElementById("nav-auth-btn");
+    btn.textContent = "🚪 登出管理者系統";
+    btn.classList.add("logged-in");
+  } else {
+    isAdminMode = false;
+    document.getElementById("admin-bar").style.display = "none";
+    const btn = document.getElementById("nav-auth-btn");
+    btn.textContent = "🔒 Google 登入管理";
+    btn.classList.remove("logged-in");
+  }
+}
+
+// 右上角按鈕控管（登入/登出機制）
+async function handleAuthClick() {
   if (isAdminMode) {
-    if (confirm("是否確定退出管理後台編纂模式？")) {
-      isAdminMode = false;
-      document.getElementById("admin-bar").style.display = "none";
-      const btn = document.getElementById("nav-auth-btn");
-      btn.textContent = "🔒 登入管理";
-      btn.classList.remove("logged-in");
-      renderCards();
+    if (confirm("是否確定登出管理後台？")) {
+      await _supabase.auth.signOut();
+      window.location.reload();
     }
     return;
   }
-
-  const emailInput = prompt("請進行管理身分校驗，請輸入指定授權信箱：");
-  if (emailInput && emailInput.trim().toLowerCase() === "vup5xu3@gmail.com") {
-    isAdminMode = true;
-    document.getElementById("admin-bar").style.display = "flex";
-    
-    const btn = document.getElementById("nav-auth-btn");
-    btn.textContent = "🔓 已登入後台";
-    btn.classList.add("logged-in");
-    
-    renderCards(); // 登入成功，立即重新著色出編輯紐
-    alert("後台編纂模式已解鎖！卡片右下角已出現編輯按鈕。");
-  } else if (emailInput) {
-    alert("驗證失敗，無編輯存取權限。");
+  
+  document.getElementById("loading").style.display = "flex";
+  // 呼叫 Google 實名驗證機制
+  const { error } = await _supabase.auth.signInWithOAuth({
+    provider: 'google',
+    options: {
+      redirectTo: window.location.href
+    }
+  });
+  
+  if (error) {
+    alert("Google 登入重定向失敗: " + error.message);
+    document.getElementById("loading").style.display = "none";
   }
+}
+
+// 讀取雲端資料庫
+async function loadDataFromSupabase() {
+  document.getElementById("loading").style.display = "flex";
+  
+  const { data, error } = await _supabase
+    .from('bible_characters')
+    .select('*')
+    .order('sort_order', { ascending: true }); // 嚴格根據自訂順序載入
+
+  if (error) {
+    alert("讀取 Supabase 資料庫失敗: " + error.message);
+  } else {
+    // 欄位轉駝峰格式
+    CHARACTERS = data.map(d => ({
+      id: d.id,
+      name: d.name,
+      nameEn: d.name_en,
+      avatar: d.avatar,
+      desc: d.description,
+      mbti: d.mbti,
+      file: d.file_name,
+      categories: d.categories,
+      tags: d.tags || [],
+      sort_order: d.sort_order
+    }));
+    
+    document.getElementById("stat-total").textContent = CHARACTERS.length;
+    renderCards();
+  }
+  document.getElementById("loading").style.display = "none";
 }
 
 function renderCards() {
@@ -708,11 +373,9 @@ function renderCards() {
   if (filtered.length === 0) { grid.style.display = "none"; empty.classList.add("visible"); return; }
 
   filtered.forEach(c => {
-    // 建立外層卡片容器包裹
     const cardWrap = document.createElement("div"); 
     cardWrap.className = "char-card-wrap";
 
-    // 內層超連結主體
     const card = document.createElement("a"); 
     card.className = "char-card"; 
     card.href = c.file;
@@ -726,31 +389,25 @@ function renderCards() {
     `;
     cardWrap.appendChild(card);
 
-    // ✨ 核心修正：若開啟管理模式，強行在卡片最下方塞入一個實體編輯條，不跟原本文字撞色 ✨
+    // 管理員登入後專屬的編輯按鈕區塊
     if (isAdminMode) {
       const actionArea = document.createElement("div");
       actionArea.className = "admin-card-action";
-      
       const editBtn = document.createElement("button");
       editBtn.className = "edit-badge-btn";
       editBtn.innerHTML = "✍ 編輯此人物";
-      
-      // 綁定編輯點擊，並阻擋 <a> 的超連結跳轉
       editBtn.onclick = (e) => {
-        e.preventDefault();
-        e.stopPropagation();
+        e.preventDefault(); e.stopPropagation();
         openModalForEdit(c.id);
       };
-      
       actionArea.appendChild(editBtn);
       cardWrap.appendChild(actionArea);
     }
-    
     grid.appendChild(cardWrap);
   });
 }
 
-// ── 表單控制 ──
+// ── 表單處理 ──
 const modal = document.getElementById("charModal");
 const form = document.getElementById("charForm");
 
@@ -781,44 +438,56 @@ function openModalForEdit(id) {
 
 function closeModal(id) { document.getElementById(id).classList.remove("visible"); }
 
-function handleFormSubmit(e) {
+async function handleFormSubmit(e) {
   e.preventDefault();
   const checkedBoxes = document.querySelectorAll('input[name="category"]:checked');
   if (checkedBoxes.length === 0) { alert("請至少選擇一個所屬類別項目！"); return; }
   
+  document.getElementById("loading").style.display = "flex";
+  closeModal('charModal');
+
   const mode = document.getElementById("form-mode").value;
   const targetId = document.getElementById("char-id").value.trim();
+  
   const payload = {
     id: targetId,
     name: document.getElementById("char-name").value.trim(),
-    nameEn: document.getElementById("char-nameEn").value.trim(),
+    name_en: document.getElementById("char-nameEn").value.trim(),
     avatar: document.getElementById("char-avatar").value.trim(),
-    desc: document.getElementById("char-desc").value.trim(),
-    mbti: document.getElementById("char-mbti").value || "",
-    file: document.getElementById("char-file").value.trim(),
+    description: document.getElementById("char-desc").value.trim(),
+    mbti: document.getElementById("char-mbti").value || null,
+    file_name: document.getElementById("char-file").value.trim(),
     categories: Array.from(checkedBoxes).map(cb => cb.value),
     tags: document.getElementById("char-tags").value.split(",").map(t => t.trim()).filter(t => t)
   };
 
+  let resError;
   if (mode === "add") {
-    if (CHARACTERS.some(x => x.id === payload.id)) { alert("此識別碼 (id) 已存在。"); return; }
-    CHARACTERS.push(payload);
+    const { error } = await _supabase.from('bible_characters').insert([payload]);
+    resError = error;
   } else {
-    const index = CHARACTERS.findIndex(x => x.id === targetId);
-    if (index !== -1) CHARACTERS[index] = payload;
+    const { error } = await _supabase.from('bible_characters').update(payload).eq('id', targetId);
+    resError = error;
   }
-  closeModal('charModal'); updateStatTotal(); renderCards();
+
+  if (resError) {
+    alert("雲端儲存失敗，請檢查權限政策或是否 ID 重複: " + resError.message);
+  }
+  await loadDataFromSupabase();
 }
 
-function handleDelete() {
+async function handleDelete() {
   const id = document.getElementById("char-id").value;
-  if (confirm("確定要在網頁面板中移除此人物嗎？")) {
-    CHARACTERS = CHARACTERS.filter(x => x.id !== id);
-    closeModal('charModal'); updateStatTotal(); renderCards();
+  if (confirm("確定要將此人物從雲端資料庫徹底刪除嗎？")) {
+    document.getElementById("loading").style.display = "flex";
+    closeModal('charModal');
+    const { error } = await _supabase.from('bible_characters').delete().eq('id', id);
+    if (error) alert("刪除失敗: " + error.message);
+    await loadDataFromSupabase();
   }
 }
 
-// ── 排序控制 ──
+// ── 雲端排序處理 ──
 function openOrderModal() { renderSortList(); document.getElementById("orderModal").classList.add("visible"); }
 function renderSortList() {
   const container = document.getElementById("sort-list-container"); container.innerHTML = "";
@@ -827,30 +496,32 @@ function renderSortList() {
     item.innerHTML = `
       <span style="font-size:14px; font-weight:500;">${index + 1}. ${c.name} (${c.nameEn})</span>
       <div class="sort-arrows">
-        <button class="arrow-btn" onclick="moveItem(${index}, -1)">▲ 上移</button>
-        <button class="arrow-btn" onclick="moveItem(${index}, 1)">▼ 下移</button>
+        <button class="arrow-btn" onclick="swapCloudOrder(${index}, -1)">▲ 上移</button>
+        <button class="arrow-btn" onclick="swapCloudOrder(${index}, 1)">▼ 下移</button>
       </div>
     `;
     container.appendChild(item);
   });
 }
-function moveItem(index, direction) {
-  const targetIndex = index + direction; if (targetIndex < 0 || targetIndex >= CHARACTERS.length) return;
-  const temp = CHARACTERS[index]; CHARACTERS[index] = CHARACTERS[targetIndex]; CHARACTERS[targetIndex] = temp;
-  renderSortList(); renderCards();
+
+async function swapCloudOrder(index, direction) {
+  const targetIndex = index + direction;
+  if (targetIndex < 0 || targetIndex >= CHARACTERS.length) return;
+  
+  document.getElementById("loading").style.display = "flex";
+  const currentItem = CHARACTERS[index];
+  const targetItem = CHARACTERS[targetIndex];
+
+  // 交換兩者在資料庫中的 sort_order 欄位值
+  const updateA = _supabase.from('bible_characters').update({ sort_order: targetItem.sort_order }).eq('id', currentItem.id);
+  const updateB = _supabase.from('bible_characters').update({ sort_order: currentItem.sort_order }).eq('id', targetItem.id);
+  
+  await Promise.all([updateA, updateB]);
+  await loadDataFromSupabase();
+  renderSortList();
 }
 
-// ── 匯出 Code ──
-function openCodeModal() {
-  document.getElementById("code-textarea").value = `const CHARACTERS = ${JSON.stringify(CHARACTERS, null, 2)};`;
-  document.getElementById("codeModal").classList.add("visible");
-}
-function copyToClipboard() {
-  document.getElementById("code-textarea").select(); document.execCommand("copy");
-  alert("最新程式碼已成功複製！請覆蓋回 GitHub 的程式碼中。");
-}
-
-// Tab 選項事件
+// Tab 分類按鈕事件
 document.querySelectorAll(".tab-btn").forEach(btn => {
   btn.addEventListener("click", () => {
     document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
@@ -870,10 +541,6 @@ document.querySelectorAll(".mbti-pill").forEach(pill => {
     pill.classList.add("active"); currentMbti = pill.dataset.mbti; renderCards();
   });
 });
-
-// 啟動
-updateStatTotal();
-renderCards();
 </script>
 </body>
 </html>
