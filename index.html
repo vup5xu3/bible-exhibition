@@ -23,6 +23,7 @@
     --teal-deep: #1A4A3E;
     --border: rgba(184,150,46,0.25);
     --border-strong: rgba(184,150,46,0.5);
+    --danger: #9a2e2e;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -113,22 +114,25 @@
     opacity: 0.4;
   }
 
-  /* ── FILTER BAR ── */
+  /* ── FILTER BAR (含右上角登入) ── */
   .filter-wrap {
     background: var(--ink-mid);
     position: sticky;
     top: 0;
     z-index: 100;
     box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 16px;
   }
 
-  /* Primary tabs */
   .filter-primary {
     display: flex;
     overflow-x: auto;
     scrollbar-width: none;
     padding: 0 16px;
-    border-bottom: 1px solid rgba(184,150,46,0.12);
+    flex: 1;
   }
   .filter-primary::-webkit-scrollbar { display: none; }
 
@@ -153,7 +157,33 @@
     border-bottom-color: var(--gold);
   }
 
+  /* 右上角登入按鈕 */
+  .nav-login-btn {
+    background: rgba(184, 150, 46, 0.15);
+    border: 1px solid var(--gold);
+    color: var(--gold-light);
+    font-size: 11px;
+    padding: 4px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Noto Sans TC', sans-serif;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .nav-login-btn:hover {
+    background: var(--gold);
+    color: var(--ink);
+  }
+  .nav-login-btn.logged-in {
+    background: var(--teal-deep);
+    border-color: rgba(255,255,255,0.2);
+    color: #fff;
+  }
+
   /* Secondary MBTI sub-filter */
+  .filter-secondary-wrap {
+    background: #2D271B;
+  }
   .filter-secondary {
     display: none;
     overflow-x: auto;
@@ -193,7 +223,6 @@
     padding: 40px 20px 80px;
   }
 
-  /* Category label */
   .section-label {
     display: flex;
     align-items: center;
@@ -227,18 +256,29 @@
     gap: 16px;
   }
 
-  .char-card {
+  .char-card-wrap {
+    position: relative;
     background: #fff;
     border: 1px solid var(--border);
     border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.18s, box-shadow 0.18s, border-color 0.18s;
+  }
+  .char-card-wrap:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 28px rgba(26,22,16,0.1);
+    border-color: var(--border-strong);
+  }
+
+  .char-card {
     padding: 22px 22px 18px;
-    cursor: pointer;
     text-decoration: none;
     color: inherit;
     display: block;
-    transition: transform 0.18s, box-shadow 0.18s, border-color 0.18s;
+    flex: 1;
     position: relative;
-    overflow: hidden;
   }
   .char-card::before {
     content: '';
@@ -250,12 +290,7 @@
     transform-origin: left;
     transition: transform 0.25s;
   }
-  .char-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 28px rgba(26,22,16,0.1);
-    border-color: var(--border-strong);
-  }
-  .char-card:hover::before { transform: scaleX(1); }
+  .char-card-wrap:hover .char-card::before { transform: scaleX(1); }
 
   .char-card-top {
     display: flex;
@@ -318,76 +353,154 @@
     color: var(--teal-deep);
   }
 
-  /* Empty state */
-  .empty-state {
-    text-align: center;
-    padding: 80px 20px;
-    color: var(--ink-pale);
-    display: none;
+  /* ✨ 超醒目右下角編輯區塊 ✨ */
+  .admin-card-action {
+    background: var(--gold-faint);
+    border-top: 1px dashed var(--border);
+    padding: 10px 14px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
   }
-  .empty-state.visible { display: block; }
-  .empty-state-icon {
-    font-family: 'IM Fell English', serif;
-    font-size: 48px;
-    color: var(--border-strong);
-    display: block;
-    margin-bottom: 16px;
+  .edit-badge-btn {
+    background: #fff;
+    color: var(--ink);
+    border: 1px solid var(--gold);
+    padding: 4px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  }
+  .edit-badge-btn:hover {
+    background: var(--gold);
+    color: #fff;
+    transform: scale(1.05);
   }
 
-  /* ── GENEALOGY ── */
-  .genealogy-notice {
+  /* ── 管理列樣式 ── */
+  .admin-bar {
+    background: #fff;
+    border-bottom: 2px solid var(--gold);
+    padding: 14px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    gap: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+  .admin-btn {
     background: var(--teal-deep);
-    border-radius: 12px;
-    padding: 32px 28px;
-    color: var(--sand);
-    text-align: center;
-    display: none;
-  }
-  .genealogy-notice.visible { display: block; }
-  .genealogy-notice h3 {
-    font-family: 'Noto Serif TC', serif;
-    font-size: 18px;
+    color: #fff;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 4px;
+    cursor: pointer;
     font-weight: 400;
-    color: var(--gold-light);
-    margin-bottom: 10px;
-    letter-spacing: 0.05em;
   }
-  .genealogy-notice p {
-    font-size: 14px;
-    color: var(--sand);
-    opacity: 0.8;
-    line-height: 1.9;
+  .admin-btn.gold-btn { background: var(--gold); }
+  .admin-btn:hover { opacity: 0.9; }
+
+  /* ── 排序彈出清單項目 ── */
+  .sort-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background: #fff;
+    border: 1px solid var(--border);
+    margin-bottom: 6px;
+    border-radius: 6px;
+  }
+  .sort-arrows { display: flex; gap: 5px; }
+  .arrow-btn {
+    background: var(--parchment-dark);
+    border: 1px solid var(--ink-pale);
+    padding: 2px 8px;
+    font-size: 12px;
+    cursor: pointer;
+    border-radius: 4px;
   }
 
-  /* ── FOOTER ── */
-  .footer {
-    background: var(--ink);
-    color: var(--ink-pale);
-    text-align: center;
+  /* ── MODAL DIALOG ── */
+  .modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .modal.visible { display: flex; }
+  .modal-content {
+    background: var(--parchment);
+    border: 2px solid var(--gold);
+    border-radius: 12px;
+    width: 100%;
+    max-width: 550px;
+    max-height: 90vh;
+    overflow-y: auto;
     padding: 28px;
-    font-size: 11px;
-    letter-spacing: 0.12em;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
   }
-  .footer span { color: var(--gold); }
+  .modal-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 20px;
+    color: var(--ink);
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 10px;
+  }
+  .form-group { margin-bottom: 16px; }
+  .form-group label { display: block; font-size: 13px; font-weight: 500; color: var(--ink-mid); margin-bottom: 4px; }
+  .form-group label span { color: var(--danger); }
+  .form-control { width: 100%; padding: 8px 12px; border: 1px solid var(--border-strong); background: #fff; border-radius: 6px; font-family: inherit; font-size: 14px; }
+  .checkbox-group { display: flex; gap: 16px; flex-wrap: wrap; padding-top: 4px; }
+  .checkbox-label { display: flex; align-items: center; gap: 6px; font-size: 13px; cursor: pointer; }
+  .modal-actions { display: flex; justify-content: space-between; margin-top: 24px; border-top: 1px solid var(--border); padding-top: 16px; }
+  .btn-secondary { background: #ccc; color: #333; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; }
+  .btn-danger { background: var(--danger); color: #fff; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; }
+  
+  .code-output {
+    width: 100%;
+    height: 180px;
+    font-family: monospace;
+    font-size: 12px;
+    background: #1e1e1e;
+    color: #d4d4d4;
+    padding: 10px;
+    border-radius: 6px;
+    resize: none;
+    margin-top: 10px;
+  }
 
-  /* ── RESPONSIVE ── */
-  @media (max-width: 600px) {
-    .hero { padding: 52px 20px 44px; }
-    .hero-stats { gap: 24px; }
-    .main { padding: 28px 16px 60px; }
-    .cards-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
-    .char-card { padding: 16px 14px 14px; }
-    .char-avatar { width: 40px; height: 40px; font-size: 15px; }
-    .char-name { font-size: 15px; }
-    .char-desc { font-size: 12px; }
-    .tab-btn { font-size: 11px; padding: 13px 12px; }
-  }
-  @media (max-width: 380px) {
-    .cards-grid { grid-template-columns: 1fr; }
-  }
+  .empty-state { text-align: center; padding: 80px 20px; color: var(--ink-pale); display: none; }
+  .empty-state.visible { display: block; }
+  .empty-state-icon { font-family: 'IM Fell English', serif; font-size: 48px; color: var(--border-strong); display: block; margin-bottom: 16px; }
+  .genealogy-notice { background: var(--teal-deep); border-radius: 12px; padding: 32px 28px; color: var(--sand); text-align: center; display: none; }
+  .genealogy-notice.visible { display: block; }
+  .genealogy-notice h3 { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 400; color: var(--gold-light); margin-bottom: 10px; letter-spacing: 0.05em; }
+  .genealogy-notice p { font-size: 14px; color: var(--sand); opacity: 0.8; line-height: 1.9; }
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 11px; letter-spacing: 0.12em; }
+  .footer span { color: var(--gold); }
 </style>
 </head>
 <body>
+
+<!-- 管理模式控制列 -->
+<div id="admin-bar" class="admin-bar" style="display: none;">
+  <div>模式：<strong>典籍編纂後台</strong> (已解鎖：vup5xu3@gmail.com)</div>
+  <div style="display: flex; gap: 10px;">
+    <button class="admin-btn gold-btn" onclick="openOrderModal()">↕ 調整卡片順序</button>
+    <button class="admin-btn" onclick="openModalForAdd()">＋ 新增聖經人物</button>
+    <button class="admin-btn gold-btn" style="background:#b85c2e;" onclick="openCodeModal()">💾 匯出最新前端 Code</button>
+  </div>
+</div>
 
 <!-- HERO -->
 <div class="hero">
@@ -399,18 +512,9 @@
     透過他們的生命，看見自己；透過自己，更理解聖經的大敘事。
   </p>
   <div class="hero-stats">
-    <div class="hero-stat">
-      <span class="hero-stat-num" id="stat-total">1</span>
-      <span class="hero-stat-label">人物總數</span>
-    </div>
-    <div class="hero-stat">
-      <span class="hero-stat-num">8</span>
-      <span class="hero-stat-label">研究維度</span>
-    </div>
-    <div class="hero-stat">
-      <span class="hero-stat-num">16</span>
-      <span class="hero-stat-label">MBTI 類型</span>
-    </div>
+    <div class="hero-stat"><span class="hero-stat-num" id="stat-total">4</span><span class="hero-stat-label">人物總數</span></div>
+    <div class="hero-stat"><span class="hero-stat-num">8</span><span class="hero-stat-label">研究維度</span></div>
+    <div class="hero-stat"><span class="hero-stat-num">16</span><span class="hero-stat-label">MBTI 類型</span></div>
   </div>
   <div class="hero-divider"></div>
 </div>
@@ -423,30 +527,19 @@
     <button class="tab-btn" data-tab="mbti">MBTI 16型</button>
     <button class="tab-btn" data-tab="genealogy">主耶穌家譜</button>
   </div>
+  <button id="nav-auth-btn" class="nav-login-btn" onclick="handleAuthClick()">🔒 登入管理</button>
+</div>
+
+<!-- Secondary MBTI sub-filter -->
+<div class="filter-secondary-wrap">
   <div class="filter-secondary" id="mbti-sub">
     <button class="mbti-pill active" data-mbti="all">全部</button>
-    <button class="mbti-pill" data-mbti="INTJ">INTJ</button>
-    <button class="mbti-pill" data-mbti="INTP">INTP</button>
-    <button class="mbti-pill" data-mbti="ENTJ">ENTJ</button>
-    <button class="mbti-pill" data-mbti="ENTP">ENTP</button>
-    <button class="mbti-pill" data-mbti="INFJ">INFJ</button>
-    <button class="mbti-pill" data-mbti="INFP">INFP</button>
-    <button class="mbti-pill" data-mbti="ENFJ">ENFJ</button>
-    <button class="mbti-pill" data-mbti="ENFP">ENFP</button>
-    <button class="mbti-pill" data-mbti="ISTJ">ISTJ</button>
-    <button class="mbti-pill" data-mbti="ISFJ">ISFJ</button>
-    <button class="mbti-pill" data-mbti="ESTJ">ESTJ</button>
-    <button class="mbti-pill" data-mbti="ESFJ">ESFJ</button>
-    <button class="mbti-pill" data-mbti="ISTP">ISTP</button>
-    <button class="mbti-pill" data-mbti="ISFP">ISFP</button>
-    <button class="mbti-pill" data-mbti="ESTP">ESTP</button>
-    <button class="mbti-pill" data-mbti="ESFP">ESFP</button>
+    <button class="mbti-pill" data-mbti="INTJ">INTJ</button><button class="mbti-pill" data-mbti="INTP">INTP</button><button class="mbti-pill" data-mbti="ENTJ">ENTJ</button><button class="mbti-pill" data-mbti="ENTP">ENTP</button><button class="mbti-pill" data-mbti="INFJ">INFJ</button><button class="mbti-pill" data-mbti="INFP">INFP</button><button class="mbti-pill" data-mbti="ENFJ">ENFJ</button><button class="mbti-pill" data-mbti="ENFP">ENFP</button><button class="mbti-pill" data-mbti="ISTJ">ISTJ</button><button class="mbti-pill" data-mbti="ISFJ">ISFJ</button><button class="mbti-pill" data-mbti="ESTJ">ESTJ</button><button class="mbti-pill" data-mbti="ESFJ">ESFJ</button><button class="mbti-pill" data-mbti="ISTP">ISTP</button><button class="mbti-pill" data-mbti="ISFP">ISFP</button><button class="mbti-pill" data-mbti="ESTP">ESTP</button><button class="mbti-pill" data-mbti="ESFP">ESFP</button>
   </div>
 </div>
 
 <!-- MAIN -->
 <main class="main">
-
   <div class="section-label">
     <span class="section-label-text" id="section-label-text">舊約人物</span>
     <span class="section-count" id="section-count">— 1 人物</span>
@@ -454,221 +547,331 @@
 
   <div class="genealogy-notice" id="genealogy-notice">
     <h3>主耶穌家譜 · 馬太福音 1 章</h3>
-    <p>
-      從亞伯拉罕到大衛，從大衛到被擄巴比倫，從被擄到基督降生——<br>
-      家譜不只是名單，而是神在歷史中守約的見證。
-    </p>
+    <p>從亞伯拉罕到大衛，從大衛到被擄巴比倫，從被擄到基督降生——<br>家譜不只是名單，而是神在歷史中守約的見證。</p>
   </div>
   <div class="cards-grid" id="cards-grid"></div>
   <div class="empty-state" id="empty-state">
     <span class="empty-state-icon">∅</span>
     <p>此分類尚未收錄人物，敬請期待。</p>
   </div>
-
-
 </main>
 
-<!-- FOOTER -->
-<div class="footer">
-  PORTRAIT 聖經人物深度研究 · <span>透過人物，理解聖經大敘事</span>
+<!-- 彈出視窗：動態表單編輯欄位 -->
+<div id="charModal" class="modal">
+  <div class="modal-content">
+    <h3 class="modal-title" id="modalTitle">編輯聖經人物</h3>
+    <form id="charForm" onsubmit="handleFormSubmit(event)">
+      <input type="hidden" id="form-mode" value="add">
+      <div class="form-group">
+        <label for="char-id">唯一識別碼 (id) <span>*</span> (限小寫英數字，如 moses)</label>
+        <input type="text" id="char-id" class="form-control" required pattern="^[a-z0-9_]+$">
+      </div>
+      <div class="form-group">
+        <label for="char-name">中文姓名 (name) <span>*</span></label>
+        <input type="text" id="char-name" class="form-control" required placeholder="如：以撒">
+      </div>
+      <div class="form-group">
+        <label for="char-nameEn">英文姓名 (nameEn) <span>*</span></label>
+        <input type="text" id="char-nameEn" class="form-control" required placeholder="如：Isaac">
+      </div>
+      <div class="form-group">
+        <label for="char-avatar">顯示頭像字元 (avatar) <span>*</span> (限 1~2 字)</label>
+        <input type="text" id="char-avatar" class="form-control" required maxlength="2" placeholder="如：撒">
+      </div>
+      <div class="form-group">
+        <label for="char-desc">短介紹描述 (desc) <span>*</span></label>
+        <textarea id="char-desc" class="form-control" rows="3" required placeholder="請輸入簡短生命描述..."></textarea>
+      </div>
+      <div class="form-group">
+        <label for="char-mbti">MBTI 類型 (mbti)</label>
+        <select id="char-mbti" class="form-control">
+          <option value="">請選擇...</option>
+          <option value="INTJ">INTJ</option><option value="INTP">INTP</option><option value="ENTJ">ENTJ</option><option value="ENTP">ENTP</option><option value="INFJ">INFJ</option><option value="INFP">INFP</option><option value="ENFJ">ENFJ</option><option value="ENFP">ENFP</option><option value="ISTJ">ISTJ</option><option value="ISFJ">ISFJ</option><option value="ESTJ">ESTJ</option><option value="ESFJ">ESFJ</option><option value="ISTP">ISTP</option><option value="ISFP">ISFP</option><option value="ESTP">ESTP</option><option value="ESFP">ESFP</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="char-file">對應 HTML 網頁名稱 (file) <span>*</span></label>
+        <input type="text" id="char-file" class="form-control" required placeholder="如：isaac_portrait.html">
+      </div>
+      <div class="form-group">
+        <label>所屬類別項目 (categories) <span>*</span> (可複選)</label>
+        <div class="checkbox-group">
+          <label class="checkbox-label"><input type="checkbox" name="category" value="ot"> 舊約人物 (ot)</label>
+          <label class="checkbox-label"><input type="checkbox" name="category" value="nt"> 新約人物 (nt)</label>
+          <label class="checkbox-label"><input type="checkbox" name="category" value="mbti"> MBTI 16型 (mbti)</label>
+          <label class="checkbox-label"><input type="checkbox" name="category" value="genealogy"> 主耶穌家譜 (genealogy)</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="char-tags">額外標籤 (tags) (以英文逗號隔開)</label>
+        <input type="text" id="char-tags" class="form-control" placeholder="如：應許之子, 立約承繼者">
+      </div>
+      <div class="modal-actions">
+        <button type="button" id="btn-delete" class="btn-danger" style="display:none;" onclick="handleDelete()">刪除此人物</button>
+        <div style="margin-left: auto; display: flex; gap: 10px;">
+          <button type="button" class="btn-secondary" onclick="closeModal('charModal')">取消</button>
+          <button type="submit" class="admin-btn">暫存修改</button>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
+
+<!-- 彈出視窗：排序面板 -->
+<div id="orderModal" class="modal">
+  <div class="modal-content">
+    <h3 class="modal-title">調整卡片排序順序</h3>
+    <div id="sort-list-container" style="max-height: 50vh; overflow-y: auto; margin-bottom: 20px;"></div>
+    <div class="modal-actions" style="justify-content: flex-end;">
+      <button type="button" class="btn-secondary" onclick="closeModal('orderModal')">完成調整</button>
+    </div>
+  </div>
+</div>
+
+<!-- 彈出視窗：程式碼產生區 -->
+<div id="codeModal" class="modal">
+  <div class="modal-content">
+    <h3 class="modal-title">最新的 CHARACTERS 程式碼片段</h3>
+    <p style="font-size: 13px; color: var(--ink-soft);">請複製下方生成的全新陣列，覆蓋回你原始碼中的 <code>const CHARACTERS = [...]</code> 段落中，並 Push 至 GitHub 即可：</p>
+    <textarea id="code-textarea" class="code-output" readonly></textarea>
+    <div class="modal-actions" style="justify-content: flex-end; gap: 10px;">
+      <button type="button" class="btn-secondary" onclick="closeModal('codeModal')">關閉</button>
+      <button type="button" class="admin-btn" onclick="copyToClipboard()">一鍵複製 Code</button>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">PORTRAIT 聖經人物深度研究 · <span>透過人物，理解聖經大敘事</span></div>
 
 <script>
 // ══════════════════════════════════════════
-// DATA · 人物資料庫
-// 新增人物：在 CHARACTERS 陣列加一個物件
-//
-// 欄位說明：
-//   id        唯一識別碼（英文小寫，用於未來擴充）
-//   name      中文名
-//   nameEn    英文名
-//   avatar    顯示在圓形頭像的字（通常取中文名第一字）
-//   desc      一句話描述（20–40字，顯示在卡片上）
-//   mbti      MBTI 類型字串，例 "INFJ"
-//   tags      額外標籤陣列，例 ["信心之父", "立約先祖"]
-//   file      對應 HTML 檔名，例 "abraham_portrait.html"
-//   categories 此人物所屬清單，可多選：
-//              "ot"（舊約）、"nt"（新約）、"mbti"（MBTI）、"genealogy"（家譜）
+// DATA · 原始人物資料庫
 // ══════════════════════════════════════════
-const CHARACTERS = [
-  {
-    id: "abraham",
-    name: "亞伯拉罕",
-    nameEn: "Abraham",
-    avatar: "亞",
-    desc: "神叫他走，他就走了——連目的地也不知道。七十五歲踏入荒野，成為信心的原型",
-    mbti: "INFJ",
-    tags: ["信心之父", "諸民之父"],
-    file: "abraham_portrait.html",
-    categories: ["ot", "mbti","genealogy"]
-  },
-  {
-    id: "cornelius",
-    name: "哥尼流",
-    nameEn: "Cornelius",
-    avatar: "流",
-    desc: "一生忠誠於兩個不接受彼此的世界——帝國的劍與天國的禱告——直到有一天，神親自拆毀了那道牆",
-    mbti: "ISTJ",
-    tags: ["羅馬百夫長", "外邦宣教先驅"],
-    file: "cornelius_portrait.html",
-    categories: ["nt", "mbti"]
-  },
-  {
-    id: "isaac",
-    name: "以撒",
-    nameEn: "Isaac",
-    avatar: "撒",
-    desc: "是神用笑聲命名的孩子，卻一生背負著刀刃的陰影——活下來，是他最大的使命，也是最沉重的重量",
-    mbti: "ISFJ",
-    tags: ["應許之子", "立約承繼者"],
-    file: "isaac_portrait.html",
-    categories: ["ot", "mbti","genealogy"]
-  },
-  {
-    id: "jacob",
-    name: "雅各",
-    nameEn: "Jacob",
-    avatar: "各",
-    desc: "一生都在抓——抓哥哥的腳踵、抓祝福、抓神——直到那個夜晚，神反過來抓住他，把他掰斷，才讓他終於學會倚靠",
-    mbti: "INTJ",
-    tags: ["以色列之父", "立約先祖"],
-    file: "jacob_portrait.html",
-    categories: ["ot", "mbti","genealogy"]
-  },
-  // ── 以下為示範空白條目，實際填入後刪除 ──
-  // {
-  //   id: "moses",
-  //   name: "摩西",
-  //   nameEn: "Moses",
-  //   avatar: "摩",
-  //   desc: "從王宮到曠野，從殺人逃亡到帶領民族出埃及，神的呼召不因人的失敗而終止。",
-  //   mbti: "INFJ",
-  //   tags: ["律法頒布者", "民族領袖"],
-  //   file: "moses_portrait.html",
-  //   categories: ["ot", "mbti", "genealogy"]
-  // },
-  // {
-  //   id: "david",
-  //   name: "大衛",
-  //   nameEn: "David",
-  //   avatar: "大",
-  //   desc: "牧羊少年、詩人、戰士、王、姦夫——他是整本詩篇的心跳，也是神心意中的人。",
-  //   mbti: "ENFP",
-  //   tags: ["合神心意的人", "大衛之約"],
-  //   file: "david_portrait.html",
-  //   categories: ["ot", "mbti", "genealogy"]
-  // },
-  // {
-  //   id: "paul",
-  //   name: "保羅",
-  //   nameEn: "Paul",
-  //   avatar: "保",
-  //   desc: "迫害教會的法利賽人，在大馬士革路上被翻轉，成為外邦人的使徒與神學建構者。",
-  //   mbti: "ENTJ",
-  //   tags: ["外邦使徒", "書信作者"],
-  //   file: "paul_portrait.html",
-  //   categories: ["nt", "mbti"]
-  // },
+let CHARACTERS = [
+  { id: "abraham", name: "亞伯拉罕", nameEn: "Abraham", avatar: "亞", desc: "神叫他走，他就走了——連目的地也不知道。七十五歲踏入荒野，成為信心的原型", mbti: "INFJ", tags: ["信心之父", "諸民之父"], file: "abraham_portrait.html", categories: ["ot", "mbti","genealogy"] },
+  { id: "cornelius", name: "哥尼流", nameEn: "Cornelius", avatar: "流", desc: "一生忠誠於兩個不接受彼此的世界——帝國的劍與天國的禱告——直到有一天，神親自拆毀了那道牆", mbti: "ISTJ", tags: ["羅馬百夫長", "外邦宣教先驅"], file: "cornelius_portrait.html", categories: ["nt", "mbti"] },
+  { id: "isaac", name: "以撒", nameEn: "Isaac", avatar: "撒", desc: "是神用笑聲命名的孩子，卻一生背負著刀刃的陰影——活下來，是他最大的使命，也是最沉重的重量", mbti: "ISFJ", tags: ["應許之子", "立約承繼者"], file: "isaac_portrait.html", categories: ["ot", "mbti","genealogy"] },
+  { id: "jacob", name: "雅各", nameEn: "Jacob", avatar: "各", desc: "一生都在抓——抓哥哥的腳踵、抓祝福、抓神——直到那個夜晚，神反過來抓住他，把他掰斷，才讓他終於學會倚靠", mbti: "INTJ", tags: ["以色列之父", "立約先祖"], file: "jacob_portrait.html", categories: ["ot", "mbti","genealogy"] }
 ];
 
-// ══════════════════════════════════════════
-// APP LOGIC（不需修改）
-// ══════════════════════════════════════════
 const LABELS = { ot: "舊約人物", nt: "新約人物", mbti: "MBTI 16型", genealogy: "主耶穌家譜" };
-
 let currentTab = "ot";
 let currentMbti = "all";
+let isAdminMode = false;
 
-function updateStatTotal() {
-  document.getElementById("stat-total").textContent = CHARACTERS.length;
+function updateStatTotal() { document.getElementById("stat-total").textContent = CHARACTERS.length; }
+
+function handleAuthClick() {
+  if (isAdminMode) {
+    if (confirm("是否確定退出管理後台編纂模式？")) {
+      isAdminMode = false;
+      document.getElementById("admin-bar").style.display = "none";
+      const btn = document.getElementById("nav-auth-btn");
+      btn.textContent = "🔒 登入管理";
+      btn.classList.remove("logged-in");
+      renderCards();
+    }
+    return;
+  }
+
+  const emailInput = prompt("請進行管理身分校驗，請輸入指定授權信箱：");
+  if (emailInput && emailInput.trim().toLowerCase() === "vup5xu3@gmail.com") {
+    isAdminMode = true;
+    document.getElementById("admin-bar").style.display = "flex";
+    
+    const btn = document.getElementById("nav-auth-btn");
+    btn.textContent = "🔓 已登入後台";
+    btn.classList.add("logged-in");
+    
+    renderCards(); // 登入成功，立即重新著色出編輯紐
+    alert("後台編纂模式已解鎖！卡片右下角已出現編輯按鈕。");
+  } else if (emailInput) {
+    alert("驗證失敗，無編輯存取權限。");
+  }
 }
 
 function renderCards() {
   const grid = document.getElementById("cards-grid");
   const empty = document.getElementById("empty-state");
   const geno  = document.getElementById("genealogy-notice");
-  const labelText = document.getElementById("section-label-text");
-  const countEl   = document.getElementById("section-count");
-
   grid.innerHTML = "";
-  empty.classList.remove("visible");
-  geno.classList.remove("visible");
-  grid.style.display = "grid";
+  empty.classList.remove("visible"); geno.classList.remove("visible"); grid.style.display = "grid";
+  document.getElementById("section-label-text").textContent = LABELS[currentTab];
 
-  labelText.textContent = LABELS[currentTab];
+  if (currentTab === "genealogy") { geno.classList.add("visible"); }
 
-	if (currentTab === "genealogy") {
-	  geno.classList.add("visible");
-	  geno.style.marginBottom = "16px";
-	}
+  let filtered = CHARACTERS.filter(c => c.categories.includes(currentTab));
+  if (currentTab === "mbti" && currentMbti !== "all") { filtered = filtered.filter(c => c.mbti === currentMbti); }
 
-	let filtered = CHARACTERS.filter(c => c.categories.includes(currentTab));
-	if (currentTab === "mbti" && currentMbti !== "all") {
-	  filtered = filtered.filter(c => c.mbti === currentMbti);
-	}
-
-  countEl.textContent = `— ${filtered.length} 人物`;
-
-  if (filtered.length === 0) {
-    grid.style.display = "none";
-    empty.classList.add("visible");
-    return;
-  }
+  document.getElementById("section-count").textContent = `— ${filtered.length} 人物`;
+  if (filtered.length === 0) { grid.style.display = "none"; empty.classList.add("visible"); return; }
 
   filtered.forEach(c => {
-    const card = document.createElement("a");
-    card.className = "char-card";
+    // 建立外層卡片容器包裹
+    const cardWrap = document.createElement("div"); 
+    cardWrap.className = "char-card-wrap";
+
+    // 內層超連結主體
+    const card = document.createElement("a"); 
+    card.className = "char-card"; 
     card.href = c.file;
 
     const tagsHTML = c.tags.map(t => `<span class="char-tag">${t}</span>`).join("");
     const mbtiTag  = c.mbti ? `<span class="char-tag mbti">${c.mbti}</span>` : "";
 
     card.innerHTML = `
-      <div class="char-card-top">
-        <div class="char-avatar">${c.avatar}</div>
-        <div class="char-name-block">
-          <div class="char-name">${c.name}</div>
-          <div class="char-name-en">${c.nameEn}</div>
-        </div>
-      </div>
-      <div class="char-desc">${c.desc}</div>
-      <div class="char-tags">${tagsHTML}${mbtiTag}</div>
+      <div class="char-card-top"><div class="char-avatar">${c.avatar}</div><div class="char-name-block"><div class="char-name">${c.name}</div><div class="char-name-en">${c.nameEn}</div></div></div>
+      <div class="char-desc">${c.desc}</div><div class="char-tags">${tagsHTML}${mbtiTag}</div>
     `;
-    grid.appendChild(card);
+    cardWrap.appendChild(card);
+
+    // ✨ 核心修正：若開啟管理模式，強行在卡片最下方塞入一個實體編輯條，不跟原本文字撞色 ✨
+    if (isAdminMode) {
+      const actionArea = document.createElement("div");
+      actionArea.className = "admin-card-action";
+      
+      const editBtn = document.createElement("button");
+      editBtn.className = "edit-badge-btn";
+      editBtn.innerHTML = "✍ 編輯此人物";
+      
+      // 綁定編輯點擊，並阻擋 <a> 的超連結跳轉
+      editBtn.onclick = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        openModalForEdit(c.id);
+      };
+      
+      actionArea.appendChild(editBtn);
+      cardWrap.appendChild(actionArea);
+    }
+    
+    grid.appendChild(cardWrap);
   });
 }
 
-// Tab switching
+// ── 表單控制 ──
+const modal = document.getElementById("charModal");
+const form = document.getElementById("charForm");
+
+function openModalForAdd() {
+  form.reset();
+  document.getElementById("modalTitle").textContent = "新增聖經人物";
+  document.getElementById("form-mode").value = "add";
+  document.getElementById("char-id").disabled = false;
+  document.getElementById("btn-delete").style.display = "none";
+  modal.classList.add("visible");
+}
+
+function openModalForEdit(id) {
+  form.reset();
+  const c = CHARACTERS.find(item => item.id === id);
+  if (!c) return;
+  document.getElementById("modalTitle").textContent = `編輯人物：${c.name}`;
+  document.getElementById("form-mode").value = "edit";
+  document.getElementById("char-id").value = c.id; document.getElementById("char-id").disabled = true;
+  document.getElementById("char-name").value = c.name; document.getElementById("char-nameEn").value = c.nameEn;
+  document.getElementById("char-avatar").value = c.avatar; document.getElementById("char-desc").value = c.desc;
+  document.getElementById("char-mbti").value = c.mbti || ""; document.getElementById("char-file").value = c.file;
+  document.getElementById("char-tags").value = c.tags.join(", ");
+  document.querySelectorAll('input[name="category"]').forEach(cb => { if (c.categories.includes(cb.value)) cb.checked = true; });
+  document.getElementById("btn-delete").style.display = "block";
+  modal.classList.add("visible");
+}
+
+function closeModal(id) { document.getElementById(id).classList.remove("visible"); }
+
+function handleFormSubmit(e) {
+  e.preventDefault();
+  const checkedBoxes = document.querySelectorAll('input[name="category"]:checked');
+  if (checkedBoxes.length === 0) { alert("請至少選擇一個所屬類別項目！"); return; }
+  
+  const mode = document.getElementById("form-mode").value;
+  const targetId = document.getElementById("char-id").value.trim();
+  const payload = {
+    id: targetId,
+    name: document.getElementById("char-name").value.trim(),
+    nameEn: document.getElementById("char-nameEn").value.trim(),
+    avatar: document.getElementById("char-avatar").value.trim(),
+    desc: document.getElementById("char-desc").value.trim(),
+    mbti: document.getElementById("char-mbti").value || "",
+    file: document.getElementById("char-file").value.trim(),
+    categories: Array.from(checkedBoxes).map(cb => cb.value),
+    tags: document.getElementById("char-tags").value.split(",").map(t => t.trim()).filter(t => t)
+  };
+
+  if (mode === "add") {
+    if (CHARACTERS.some(x => x.id === payload.id)) { alert("此識別碼 (id) 已存在。"); return; }
+    CHARACTERS.push(payload);
+  } else {
+    const index = CHARACTERS.findIndex(x => x.id === targetId);
+    if (index !== -1) CHARACTERS[index] = payload;
+  }
+  closeModal('charModal'); updateStatTotal(); renderCards();
+}
+
+function handleDelete() {
+  const id = document.getElementById("char-id").value;
+  if (confirm("確定要在網頁面板中移除此人物嗎？")) {
+    CHARACTERS = CHARACTERS.filter(x => x.id !== id);
+    closeModal('charModal'); updateStatTotal(); renderCards();
+  }
+}
+
+// ── 排序控制 ──
+function openOrderModal() { renderSortList(); document.getElementById("orderModal").classList.add("visible"); }
+function renderSortList() {
+  const container = document.getElementById("sort-list-container"); container.innerHTML = "";
+  CHARACTERS.forEach((c, index) => {
+    const item = document.createElement("div"); item.className = "sort-item";
+    item.innerHTML = `
+      <span style="font-size:14px; font-weight:500;">${index + 1}. ${c.name} (${c.nameEn})</span>
+      <div class="sort-arrows">
+        <button class="arrow-btn" onclick="moveItem(${index}, -1)">▲ 上移</button>
+        <button class="arrow-btn" onclick="moveItem(${index}, 1)">▼ 下移</button>
+      </div>
+    `;
+    container.appendChild(item);
+  });
+}
+function moveItem(index, direction) {
+  const targetIndex = index + direction; if (targetIndex < 0 || targetIndex >= CHARACTERS.length) return;
+  const temp = CHARACTERS[index]; CHARACTERS[index] = CHARACTERS[targetIndex]; CHARACTERS[targetIndex] = temp;
+  renderSortList(); renderCards();
+}
+
+// ── 匯出 Code ──
+function openCodeModal() {
+  document.getElementById("code-textarea").value = `const CHARACTERS = ${JSON.stringify(CHARACTERS, null, 2)};`;
+  document.getElementById("codeModal").classList.add("visible");
+}
+function copyToClipboard() {
+  document.getElementById("code-textarea").select(); document.execCommand("copy");
+  alert("最新程式碼已成功複製！請覆蓋回 GitHub 的程式碼中。");
+}
+
+// Tab 選項事件
 document.querySelectorAll(".tab-btn").forEach(btn => {
   btn.addEventListener("click", () => {
     document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
-    currentTab = btn.dataset.tab;
-    currentMbti = "all";
-
+    btn.classList.add("active"); currentTab = btn.dataset.tab; currentMbti = "all";
     const mbtiSub = document.getElementById("mbti-sub");
     if (currentTab === "mbti") {
       mbtiSub.classList.add("visible");
       document.querySelectorAll(".mbti-pill").forEach(p => p.classList.remove("active"));
       document.querySelector('.mbti-pill[data-mbti="all"]').classList.add("active");
-    } else {
-      mbtiSub.classList.remove("visible");
-    }
+    } else { mbtiSub.classList.remove("visible"); }
     renderCards();
   });
 });
-
-// MBTI sub-filter
 document.querySelectorAll(".mbti-pill").forEach(pill => {
   pill.addEventListener("click", () => {
     document.querySelectorAll(".mbti-pill").forEach(p => p.classList.remove("active"));
-    pill.classList.add("active");
-    currentMbti = pill.dataset.mbti;
-    renderCards();
+    pill.classList.add("active"); currentMbti = pill.dataset.mbti; renderCards();
   });
 });
 
-// Init
+// 啟動
 updateStatTotal();
 renderCards();
 </script>

@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>創世記 1–11 · 亞伯拉罕之前的原始歷史 深度解析報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; position: relative; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(36px, 6vw, 64px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; position: relative; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; position: relative; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; position: relative; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; position: relative; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; position: relative; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── FLOW CHART ── */
+  .flow-wrap { margin: 36px 0; }
+  .flow-title { font-family: 'Noto Serif TC', serif; font-size: 15px; font-weight: 500; color: var(--ink); margin-bottom: 20px; letter-spacing: 0.05em; }
+  .flow-row { display: flex; align-items: center; gap: 0; overflow-x: auto; padding-bottom: 4px; }
+  .flow-node { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 18px 20px; min-width: 120px; text-align: center; flex-shrink: 0; }
+  .flow-node.alt { background: var(--teal-deep); }
+  .flow-node.crimson { background: var(--crimson); }
+  .flow-node.gold-bg { background: var(--gold); color: var(--ink); }
+  .flow-node-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .flow-node.alt .flow-node-label { color: rgba(184,150,46,0.7); }
+  .flow-node.crimson .flow-node-label { color: rgba(255,200,200,0.7); }
+  .flow-node.gold-bg .flow-node-label { color: var(--ink-mid); opacity: 0.7; }
+  .flow-node-name { font-family: 'Noto Serif TC', serif; font-size: 16px; font-weight: 500; line-height: 1.3; }
+  .flow-node-sub { font-size: 11px; opacity: 0.75; margin-top: 4px; line-height: 1.4; }
+  .flow-arrow { font-size: 20px; color: var(--gold); padding: 0 6px; flex-shrink: 0; opacity: 0.6; }
+  .flow-desc-row { display: flex; gap: 0; margin-top: 1px; overflow-x: auto; }
+  .flow-desc { min-width: 120px; padding: 10px 12px; background: var(--gold-faint); border: 1px solid var(--border); font-size: 11px; color: var(--ink-soft); line-height: 1.6; text-align: center; flex-shrink: 0; }
+  .flow-desc-gap { min-width: 36px; flex-shrink: 0; background: transparent; }
+
+  /* ── VERTICAL FLOW ── */
+  .vflow { display: flex; flex-direction: column; gap: 0; margin: 28px 0; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+  .vflow-item { display: grid; grid-template-columns: 56px 1fr; gap: 0; background: var(--parchment); border-bottom: 1px solid var(--border); }
+  .vflow-item:last-child { border-bottom: none; }
+  .vflow-num { background: var(--ink); display: flex; align-items: center; justify-content: center; font-family: 'IM Fell English', serif; font-size: 20px; color: var(--gold); }
+  .vflow-num.alt { background: var(--teal-deep); }
+  .vflow-num.crim { background: var(--crimson); }
+  .vflow-num.gold { background: var(--gold); color: var(--ink); }
+  .vflow-body { padding: 18px 20px; }
+  .vflow-badge { font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; display: inline-block; margin-bottom: 8px; }
+  .badge-teal { background: rgba(26,74,62,0.12); color: var(--teal-mid); border: 1px solid rgba(26,74,62,0.2); }
+  .badge-gold { background: var(--gold-faint); color: var(--gold); border: 1px solid var(--border); }
+  .badge-crim { background: rgba(122,32,32,0.08); color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .vflow-title { font-family: 'Noto Serif TC', serif; font-size: 16px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .vflow-text { font-size: 13.5px; color: var(--ink-soft); line-height: 1.9; }
+  .vflow-ref { font-size: 12px; color: var(--gold); font-style: italic; margin-top: 6px; }
+
+  /* ── HEBREW WORD CARDS ── */
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-original.hebrew { font-size: 24px; direction: rtl; font-family: serif; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+
+  /* ── THREE COLUMN ── */
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .three-cell { background: var(--parchment); padding: 18px 20px; }
+  .three-cell.dark { background: var(--teal-deep); }
+  .three-cell.mid { background: var(--ink-mid); }
+  .three-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .three-cell.dark .three-cell-label { color: rgba(184,150,46,0.7); }
+  .three-cell.mid .three-cell-label { color: rgba(184,150,46,0.7); }
+  .three-cell-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .three-cell.dark .three-cell-title { color: var(--gold-pale); }
+  .three-cell.mid .three-cell-title { color: var(--gold-pale); }
+  .three-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .three-cell.dark .three-cell-body { color: var(--sand); opacity: 0.9; }
+  .three-cell.mid .three-cell-body { color: var(--sand); opacity: 0.85; }
+
+  /* ── VERSE BLOCK ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+
+  /* ── INSIGHT / MEMO ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── THEOLOGY INSIGHT ── */
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── TYPOLOGY ── */
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── FINAL ── */
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── TAGS ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── VOICE PROSE ── */
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+
+  /* ── SECTION HEADING ── */
+  h3.sub { font-family: 'Noto Serif TC', serif; font-size: 15px; font-weight: 500; color: var(--ink); margin: 28px 0 16px; letter-spacing: 0.05em; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  /* ── SVG FLOW DIAGRAM ── */
+  .diagram-wrap { margin: 32px 0; overflow-x: auto; }
+  .diagram-wrap svg { display: block; max-width: 100%; height: auto; }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .word-cards { grid-template-columns: 1fr; }
+    .three-col { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+    .flow-row { gap: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════
+     HERO
+════════════════════════════ -->
+<div class="hero">
+  <div class="hero-label">GENESIS STUDY · 創世記深度解析報告</div>
+  <h1 class="hero-name">原始歷史</h1>
+  <span class="hero-name-en">Primeval History · בְּרֵאשִׁית א–יא</span>
+  <p class="hero-slogan">「在亞伯拉罕被揀選之前，神已與全人類交手過——祂在每一次毀滅中都留下了一道門。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">章節範圍</span>
+      <span class="hero-meta-value">創世記 1–11 章</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">敘事類型</span>
+      <span class="hero-meta-value">神話史詩 · 神學序言</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心張力</span>
+      <span class="hero-meta-value">秩序 ⇔ 混沌 · 創造 ⇔ 墮落</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">神學功能</span>
+      <span class="hero-meta-value">全聖經的 DNA</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- ════════════════════════════
+     NAV
+════════════════════════════ -->
+<nav class="nav">
+  <a href="#overview">I · 總覽架構</a>
+  <a href="#creation">II · 創造</a>
+  <a href="#fall">III · 墮落與罪</a>
+  <a href="#flood">IV · 洪水審判</a>
+  <a href="#babel">V · 巴別塔</a>
+  <a href="#hebrew">VI · 原文字義</a>
+  <a href="#theology">VII · 神學預表</a>
+  <a href="#legacy">VIII · 救贖弧線</a>
+</nav>
+
+<div class="container">
+
+<!-- ══════════════════════════════════
+     I · 總覽架構
+══════════════════════════════════ -->
+<div class="section" id="overview">
+  <div class="section-header">
+    <span class="section-roman">I</span>
+    <h2 class="section-title">Overview · 總覽架構</h2>
+    <span class="section-subtitle">五大事件 · 神學序言</span>
+  </div>
+  <p class="section-epigraph">創世記 1–11 章不是「故事集錦」，而是一部精心設計的神學序言——每個事件都是下一個的伏筆，每一次審判都藏著一個救恩的縫隙。</p>
+
+  <div class="info-grid">
+    <div class="info-cell">
+      <span class="info-cell-label">敘事學名稱</span>
+      <div class="info-cell-value">原始歷史<br>Primeval History</div>
+    </div>
+    <div class="info-cell">
+      <span class="info-cell-label">五大事件</span>
+      <div class="info-cell-value">創造 · 墮落 · 洪水<br>巴別塔 · 族譜過渡</div>
+    </div>
+    <div class="info-cell">
+      <span class="info-cell-label">核心人物</span>
+      <div class="info-cell-value">亞當 · 夏娃 · 該隱<br>以諾 · 挪亞 · 寧錄</div>
+    </div>
+    <div class="info-cell">
+      <span class="info-cell-label">結構關鍵字</span>
+      <div class="info-cell-value">תּוֹלְדוֹת toledot<br>「後代 / 歷史展開」</div>
+    </div>
+    <div class="info-cell">
+      <span class="info-cell-label">神學轉折點</span>
+      <div class="info-cell-value">創 12:1<br>普世 → 揀選特殊</div>
+    </div>
+  </div>
+
+  <p>創世記 1–11 章在聖經神學中有一個專門術語：<strong>原始歷史（Primeval History）</strong>。這 11 章的視野是宇宙性的，涵蓋全人類——創造、全人類的墮落、全地的洪水、全人類的語言分散。它是整本聖經的「DNA」：幾乎所有重要的神學主題都在這裡埋下種子，包括罪、死亡、恩典、聖約、救贖、末世。</p>
+
+  <p>這 11 章不是獨立的故事，而是一個精密的神學論證：<strong>人類問題規模有多大，神的解決方案就需要有多大。</strong>創 12 章亞伯拉罕的出現，是神對前 11 章所有問題的第一個具體回應。</p>
+
+  <!-- 架構流程圖 -->
+  <h3 class="sub">五大事件的敘事流動</h3>
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 780 320" xmlns="http://www.w3.org/2000/svg" style="width:100%; min-width:600px;">
+      <defs>
+        <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="#B8962E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </marker>
+      </defs>
+
+      <!-- Row 1: event boxes -->
+      <!-- Box 1 -->
+      <rect x="10" y="20" width="128" height="80" rx="8" fill="#1A1610" stroke="rgba(184,150,46,0.4)" stroke-width="1"/>
+      <text x="74" y="46" text-anchor="middle" font-family="'Noto Serif TC', serif" font-size="13" fill="#D4AF5A" letter-spacing="1">創造</text>
+      <text x="74" y="63" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="10" fill="#9C8E72">創 1–2 章</text>
+      <text x="74" y="78" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="10" fill="#6B5E42">亞當 · 夏娃</text>
+      <text x="74" y="93" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="10" fill="#6B5E42">伊甸園</text>
+
+      <!-- Arrow -->
+      <line x1="138" y1="60" x2="155" y2="60" stroke="#B8962E" stroke-width="1" marker-end="url(#arr)"/>
+
+      <!-- Box 2 -->
+      <rect x="157" y="20" width="128" height="80" rx="8" fill="#7A2020" stroke="rgba(184,150,46,0.3)" stroke-width="1"/>
+      <text x="221" y="46" text-anchor="middle" font-family="'Noto Serif TC', serif" font-size="13" fill="#F5EDD5" letter-spacing="1">墮落與罪</text>
+      <text x="221" y="63" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="10" fill="rgba(245,237,213,0.7)">創 3–5 章</text>
+      <text x="221" y="78" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="10" fill="rgba(245,237,213,0.6)">該隱 · 亞伯</text>
+      <text x="221" y="93" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="10" fill="rgba(245,237,213,0.6)">塞特 · 以諾</text>
+
+      <!-- Arrow -->
+      <line x1="285" y1="60" x2="302" y2="60" stroke="#B8962E" stroke-width="1" marker-end="url(#arr)"/>
+
+      <!-- Box 3 -->
+      <rect x="304" y="20" width="128" height="80" rx="8" fill="#1A4A3E" stroke="rgba(184,150,46,0.3)" stroke-width="1"/>
+      <text x="368" y="46" text-anchor="middle" font-family="'Noto Serif TC', serif" font-size="13" fill="#F5EDD5" letter-spacing="1">洪水審判</text>
+      <text x="368" y="63" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="10" fill="rgba(245,237,213,0.7)">創 6–9 章</text>
+      <text x="368" y="78" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="10" fill="rgba(245,237,213,0.6)">挪亞一家</text>
+      <text x="368" y="93" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="10" fill="rgba(245,237,213,0.6)">瑪土撒拉</text>
+
+      <!-- Arrow -->
+      <line x1="432" y1="60" x2="449" y2="60" stroke="#B8962E" stroke-width="1" marker-end="url(#arr)"/>
+
+      <!-- Box 4 -->
+      <rect x="451" y="20" width="128" height="80" rx="8" fill="#3D3525" stroke="rgba(184,150,46,0.4)" stroke-width="1"/>
+      <text x="515" y="46" text-anchor="middle" font-family="'Noto Serif TC', serif" font-size="13" fill="#D4AF5A" letter-spacing="1">巴別塔</text>
+      <text x="515" y="63" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="10" fill="#9C8E72">創 10–11 章</text>
+      <text x="515" y="78" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="10" fill="#6B5E42">寧錄 · 法勒</text>
+      <text x="515" y="93" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="10" fill="#6B5E42">語言分散</text>
+
+      <!-- Arrow -->
+      <line x1="579" y1="60" x2="596" y2="60" stroke="#B8962E" stroke-width="1" marker-end="url(#arr)"/>
+
+      <!-- Box 5 -->
+      <rect x="598" y="20" width="170" height="80" rx="8" fill="#B8962E" stroke="rgba(184,150,46,0.6)" stroke-width="1"/>
+      <text x="683" y="46" text-anchor="middle" font-family="'Noto Serif TC', serif" font-size="13" fill="#1A1610" font-weight="500" letter-spacing="1">亞伯拉罕登場</text>
+      <text x="683" y="63" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="10" fill="rgba(26,22,16,0.7)">創 12 章</text>
+      <text x="683" y="78" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="10" fill="rgba(26,22,16,0.65)">神的揀選性回應</text>
+      <text x="683" y="93" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="10" fill="rgba(26,22,16,0.65)">普世問題 → 特殊解</text>
+
+      <!-- Row 2: theological arc labels -->
+      <text x="74" y="130" text-anchor="middle" font-family="'IM Fell English', serif" font-size="11" fill="#B8962E">秩序建立</text>
+      <text x="74" y="145" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="10" fill="#6B5E42">tov × 7</text>
+
+      <text x="221" y="130" text-anchor="middle" font-family="'IM Fell English', serif" font-size="11" fill="#A33030">秩序崩毀</text>
+      <text x="221" y="145" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="10" fill="#6B5E42">罪擴散 → 死亡</text>
+
+      <text x="368" y="130" text-anchor="middle" font-family="'IM Fell English', serif" font-size="11" fill="#266655">審判中有餘民</text>
+      <text x="368" y="145" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="10" fill="#6B5E42">反創造 → 再創造</text>
+
+      <text x="515" y="130" text-anchor="middle" font-family="'IM Fell English', serif" font-size="11" fill="#B8962E">文明終結</text>
+      <text x="515" y="145" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="10" fill="#6B5E42">語言 · 國族分散</text>
+
+      <text x="683" y="130" text-anchor="middle" font-family="'IM Fell English', serif" font-size="11" fill="#B8962E">救贖計劃啟動</text>
+      <text x="683" y="145" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="10" fill="#6B5E42">一人 → 萬族蒙福</text>
+
+      <!-- Theological arc line -->
+      <line x1="10" y1="175" x2="768" y2="175" stroke="rgba(184,150,46,0.3)" stroke-width="0.5" stroke-dasharray="4 3"/>
+      <text x="390" y="170" text-anchor="middle" font-family="'IM Fell English', serif" font-size="10" fill="#B8962E" letter-spacing="1.5">REDEMPTIVE ARC</text>
+
+      <!-- Sin escalation arrow below -->
+      <text x="20" y="200" font-family="'Noto Sans TC', sans-serif" font-size="11" fill="#A33030">罪的規模：</text>
+      <text x="100" y="200" font-family="'Noto Sans TC', sans-serif" font-size="10.5" fill="#6B5E42">個人（亞當）→ 家庭（該隱）→ 社會（拿非利人世代）→ 文明（巴別）</text>
+      <line x1="16" y1="207" x2="750" y2="207" stroke="#A33030" stroke-width="0.8" marker-end="url(#arr)" opacity="0.5"/>
+
+      <!-- Grace preservation arrow below -->
+      <text x="20" y="235" font-family="'Noto Sans TC', sans-serif" font-size="11" fill="#266655">恩典線：</text>
+      <text x="75" y="235" font-family="'Noto Sans TC', sans-serif" font-size="10.5" fill="#6B5E42">衣服（創 3）→ 塞特血脈（創 4）→ 挪亞方舟（創 6）→ 閃的後裔（創 11）→ 亞伯拉罕</text>
+      <line x1="16" y1="242" x2="750" y2="242" stroke="#266655" stroke-width="0.8" marker-end="url(#arr)" opacity="0.5"/>
+
+      <!-- Structure key -->
+      <rect x="10" y="262" width="758" height="48" rx="6" fill="rgba(184,150,46,0.06)" stroke="rgba(184,150,46,0.2)" stroke-width="0.5"/>
+      <text x="390" y="282" text-anchor="middle" font-family="'Noto Serif TC', serif" font-size="12" fill="#3D3525">結構關鍵：每次審判之後，神都留下一個「餘民」——這是整本聖經「審判中有恩典」神學的原型。</text>
+      <text x="390" y="300" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="11" fill="#9C8E72">逐出伊甸→衣服  ·  殺亞伯→給塞特  ·  洪水→方舟  ·  分散語言→留閃族→呼召亞伯拉罕</text>
+    </svg>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════
+     II · 創造
+══════════════════════════════════ -->
+<div class="section" id="creation">
+  <div class="section-header">
+    <span class="section-roman">II</span>
+    <h2 class="section-title">Creation · 創造</h2>
+    <span class="section-subtitle">創世記 1–2 章</span>
+  </div>
+  <p class="section-epigraph">神的第一個行動不是愛，也不是審判——而是創造秩序。混沌無序不是神創造的材料；而是神要克服的問題。</p>
+
+  <div class="verse-block">
+    <div class="verse-text">「起初，神創造天地。地是空虛混沌，淵面黑暗；<br>神的靈運行在水面上。」</div>
+    <div class="verse-ref">創世記 1:1–2</div>
+  </div>
+
+  <h3 class="sub">七天的對稱結構</h3>
+
+  <!-- Seven Days Flow -->
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 760 200" xmlns="http://www.w3.org/2000/svg" style="width:100%; min-width:560px;">
+      <defs>
+        <marker id="arr2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="#B8962E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </marker>
+      </defs>
+
+      <!-- Labels -->
+      <text x="180" y="18" text-anchor="middle" font-family="'IM Fell English', serif" font-size="11" fill="#B8962E" letter-spacing="1">FRAMEWORK · 框架天</text>
+      <text x="560" y="18" text-anchor="middle" font-family="'IM Fell English', serif" font-size="11" fill="#266655" letter-spacing="1">FILLING · 填充天</text>
+      <line x1="10" y1="22" x2="370" y2="22" stroke="rgba(184,150,46,0.4)" stroke-width="0.5"/>
+      <line x1="380" y1="22" x2="750" y2="22" stroke="rgba(38,102,85,0.4)" stroke-width="0.5"/>
+
+      <!-- Day 1 -->
+      <rect x="10" y="32" width="102" height="64" rx="6" fill="#1A1610" stroke="rgba(184,150,46,0.35)" stroke-width="1"/>
+      <text x="61" y="52" text-anchor="middle" font-family="'IM Fell English', serif" font-size="11" fill="#B8962E">Day I</text>
+      <text x="61" y="67" text-anchor="middle" font-family="'Noto Serif TC', serif" font-size="12" fill="#F5EDD5">光 與 暗</text>
+      <text x="61" y="85" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="10" fill="#9C8E72">分開光暗</text>
+
+      <!-- Day 2 -->
+      <rect x="120" y="32" width="102" height="64" rx="6" fill="#1A1610" stroke="rgba(184,150,46,0.35)" stroke-width="1"/>
+      <text x="171" y="52" text-anchor="middle" font-family="'IM Fell English', serif" font-size="11" fill="#B8962E">Day II</text>
+      <text x="171" y="67" text-anchor="middle" font-family="'Noto Serif TC', serif" font-size="12" fill="#F5EDD5">天 與 水</text>
+      <text x="171" y="85" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="10" fill="#9C8E72">分開上下水</text>
+
+      <!-- Day 3 -->
+      <rect x="230" y="32" width="102" height="64" rx="6" fill="#1A1610" stroke="rgba(184,150,46,0.35)" stroke-width="1"/>
+      <text x="281" y="52" text-anchor="middle" font-family="'IM Fell English', serif" font-size="11" fill="#B8962E">Day III</text>
+      <text x="281" y="67" text-anchor="middle" font-family="'Noto Serif TC', serif" font-size="12" fill="#F5EDD5">地 與 植物</text>
+      <text x="281" y="85" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="10" fill="#9C8E72">陸地與植被</text>
+
+      <!-- Correspond arrows -->
+      <path d="M61 102 Q61 135 428 135 Q750 135 750 102" fill="none" stroke="rgba(184,150,46,0.25)" stroke-width="0.7" stroke-dasharray="3 2"/>
+      <path d="M171 102 Q171 148 465 148 Q640 148 640 102" fill="none" stroke="rgba(184,150,46,0.25)" stroke-width="0.7" stroke-dasharray="3 2"/>
+      <path d="M281 102 Q281 162 500 162 Q530 162 530 102" fill="none" stroke="rgba(184,150,46,0.25)" stroke-width="0.7" stroke-dasharray="3 2"/>
+      <text x="390" y="133" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="9" fill="rgba(184,150,46,0.6)">對應填充</text>
+
+      <!-- Day 4 -->
+      <rect x="428" y="32" width="102" height="64" rx="6" fill="#1A4A3E" stroke="rgba(184,150,46,0.3)" stroke-width="1"/>
+      <text x="479" y="52" text-anchor="middle" font-family="'IM Fell English', serif" font-size="11" fill="rgba(184,150,46,0.8)">Day IV</text>
+      <text x="479" y="67" text-anchor="middle" font-family="'Noto Serif TC', serif" font-size="12" fill="#F5EDD5">日 月 星辰</text>
+      <text x="479" y="85" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="10" fill="rgba(245,237,213,0.6)">掌管光暗</text>
+
+      <!-- Day 5 -->
+      <rect x="538" y="32" width="102" height="64" rx="6" fill="#1A4A3E" stroke="rgba(184,150,46,0.3)" stroke-width="1"/>
+      <text x="589" y="52" text-anchor="middle" font-family="'IM Fell English', serif" font-size="11" fill="rgba(184,150,46,0.8)">Day V</text>
+      <text x="589" y="67" text-anchor="middle" font-family="'Noto Serif TC', serif" font-size="12" fill="#F5EDD5">魚 與 鳥</text>
+      <text x="589" y="85" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="10" fill="rgba(245,237,213,0.6)">充滿水天</text>
+
+      <!-- Day 6 -->
+      <rect x="648" y="32" width="102" height="64" rx="6" fill="#1A4A3E" stroke="rgba(184,150,46,0.3)" stroke-width="1"/>
+      <text x="699" y="52" text-anchor="middle" font-family="'IM Fell English', serif" font-size="11" fill="rgba(184,150,46,0.8)">Day VI</text>
+      <text x="699" y="67" text-anchor="middle" font-family="'Noto Serif TC', serif" font-size="12" fill="#F5EDD5">人 與 動物</text>
+      <text x="699" y="85" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="10" fill="rgba(245,237,213,0.6)">管理大地</text>
+
+      <!-- Day 7 middle footer -->
+      <rect x="300" y="172" width="160" height="24" rx="5" fill="#B8962E"/>
+      <text x="380" y="189" text-anchor="middle" font-family="'Noto Serif TC', serif" font-size="12" fill="#1A1610" font-weight="500">第七天 · שַׁבָּת 安息</text>
+    </svg>
+  </div>
+
+  <h3 class="sub">亞當 · 夏娃 · 伊甸園</h3>
+  <div class="soul-grid">
+    <div class="soul-row">
+      <div class="soul-icon">🌿</div>
+      <div>
+        <span class="soul-label">亞當 · אָדָם Adam</span>
+        <div class="soul-title">塵土的生命——「人」與「地」的永恆連結</div>
+        <div class="soul-body">Adam 字根來自 אֲדָמָה（adamah，土地），人（Adam）從地（adamah）而來。這不只是起源的說明，而是本體論的定義：人是「塵土中的生命」，既屬於物質世界，又承載了神吹入的 nishmat chayim（生命之氣）。人是兩個世界的交界點——神聖的靈與塵土的肉。</div>
+      </div>
+    </div>
+    <div class="soul-row">
+      <div class="soul-icon">✨</div>
+      <div>
+        <span class="soul-label">夏娃 · חַוָּה Chavah</span>
+        <div class="soul-title">ezer kenegdo——不是從屬，而是「相對的力量」</div>
+        <div class="soul-body">夏娃名字的字根是「生命」（chay）——「眾生之母」。她被稱為 עֵזֶר כְּנֶגְדּוֹ（ezer kenegdo），通常譯為「配偶/幫助者」，但原文更精確的意思是「與他相對的力量」——kenegdo 含有「面對面、匹敵、鏡像」之意。她不是從屬關係，而是對等的互補，是讓亞當的存在完整的另一個維度。</div>
+      </div>
+    </div>
+    <div class="soul-row">
+      <div class="soul-icon">🏛️</div>
+      <div>
+        <span class="soul-label">伊甸園 · עֵדֶן Eden</span>
+        <div class="soul-title">伊甸是聖殿原型——神與人同住的最初藍圖</div>
+        <div class="soul-body">伊甸園在聖經中具有清晰的聖殿結構：神在其中行走、有看守入口的基路伯、有特殊材料（黃金、紅瑪瑙），這一切在出埃及記的會幕和列王記的聖殿都有精確的回應。這意味著「創造-墮落-恢復」的神學弧線指向同一個終末異象：神與人在新的伊甸中同住（啟示錄 21–22 章）。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="insight-box">「神的形像」（צֶלֶם 和 דְּמוּת）不只是「長得像神」——這兩個字合在一起意指：人被設計成在地上代表神的統治，是神在受造世界的「攝政王」。人存在的意義，從第一章就已經是使命性的。</div>
+</div>
+
+
+<!-- ══════════════════════════════════
+     III · 墮落與罪
+══════════════════════════════════ -->
+<div class="section" id="fall">
+  <div class="section-header">
+    <span class="section-roman">III</span>
+    <h2 class="section-title">Fall · 墮落與罪的擴散</h2>
+    <span class="section-subtitle">創世記 3–5 章</span>
+  </div>
+  <p class="section-epigraph">罪的第一個行動不是暴力，而是懷疑——「神豈是真說……」在那個問題之後，所有的門都開始關閉。</p>
+
+  <div class="verse-block">
+    <div class="verse-text">「罪就伏在門口，它必戀慕你，你卻要制伏它。」</div>
+    <div class="verse-ref">創世記 4:7</div>
+  </div>
+
+  <h3 class="sub">罪的擴散路徑</h3>
+  <div class="vflow">
+    <div class="vflow-item">
+      <div class="vflow-num">1</div>
+      <div class="vflow-body">
+        <span class="vflow-badge badge-gold">蛇的試探 · 創 3:1</span>
+        <div class="vflow-title">知識的僭越——以「認識」取代「信靠」</div>
+        <div class="vflow-text">蛇用 af ki（「難道神是真說」）這個強烈疑問語氣在夏娃心中埋下懷疑。「分別善惡樹」的核心不是「知識本身有罪」，而是 da'at（知識/認識）在此代表人類試圖自立為道德的仲裁者——脫離對神的依賴，自行決定什麼是善惡。這是所有罪的原型模式。</div>
+        <div class="vflow-ref">創 3:1–7 · 羅 5:12</div>
+      </div>
+    </div>
+    <div class="vflow-item">
+      <div class="vflow-num crim">2</div>
+      <div class="vflow-body">
+        <span class="vflow-badge badge-crim">第一個殺人 · 創 4:8</span>
+        <div class="vflow-title">嫉妒在家庭中爆炸——個人的罪成為他人的死亡</div>
+        <div class="vflow-text">該隱（Qayin，名字意指「我得了」）殺死亞伯（Hevel，意指「虛空、霧氣」），是罪從個人層面進入人際關係的第一步。神告訴該隱「罪就伏在門口」——原文 rovetz（蹲伏）是捕食性動物等待獵物的姿態。罪不只是行為，而是一個主動等待你的存在。</div>
+        <div class="vflow-ref">創 4:1–16</div>
+      </div>
+    </div>
+    <div class="vflow-item">
+      <div class="vflow-num">3</div>
+      <div class="vflow-body">
+        <span class="vflow-badge badge-gold">拉麥的詩 · 創 4:23</span>
+        <div class="vflow-title">復仇的通貨膨脹——七十七倍的暴力宣言</div>
+        <div class="vflow-text">神的恩典是保護該隱「七倍的報復」，但拉麥（Lemech）幾代後宣告「我殺人要七十七倍地報仇」——罪在文化中自我放大，從個人憤怒演變成系統性的報復哲學。這是罪從家庭層面進入社會文化的標誌。</div>
+        <div class="vflow-ref">創 4:23–24</div>
+      </div>
+    </div>
+    <div class="vflow-item">
+      <div class="vflow-num alt">4</div>
+      <div class="vflow-body">
+        <span class="vflow-badge badge-teal">恩典的例外 · 創 5:22–24</span>
+        <div class="vflow-title">以諾——在死亡族譜中唯一沒有死亡的名字</div>
+        <div class="vflow-text">創 5 章是一篇「X 生了 Y，X 又生兒女，X 就死了」的重複合唱，死亡作為判決貫穿全章。唯一的例外是以諾：「他與神同行，神將他取去，他就不在世了」——既不說「死了」，也沒有壽命後的「就死了」。在一片死亡的族譜中，以諾是一個活著的神學問號：與神同行可以超越死亡。</div>
+        <div class="vflow-ref">創 5:21–24 · 希 11:5</div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="sub">三位核心人物比較</h3>
+  <div class="three-col">
+    <div class="three-cell">
+      <span class="three-cell-label">該隱 · קַיִן</span>
+      <div class="three-cell-title">失落的長子</div>
+      <div class="three-cell-body">名字意指「我得了」——夏娃以為他是應許的後裔。他是第一個殺人者，也是第一個城市建造者，代表人類文明的悖論：最有能力的人，往往帶著最深的傷。他的標記既是審判也是保護——恩典藏在懲罰之中。</div>
+    </div>
+    <div class="three-cell">
+      <span class="three-cell-label">亞伯 · הֶבֶל</span>
+      <div class="three-cell-title">虛空的預言</div>
+      <div class="three-cell-body">「Hevel」就是傳道書「虛空的虛空」同一個字——霧氣、轉瞬即逝。他的名字本身是一個悲劇預言，他的一生短暫而無後。但他的獻祭被神悅納，他的名字在希伯來書 11 章仍然說話——短暫的生命可以有永恆的迴響。</div>
+    </div>
+    <div class="three-cell dark">
+      <span class="three-cell-label">塞特 · שֵׁת</span>
+      <div class="three-cell-title">應許的延續</div>
+      <div class="three-cell-body">名字意指「安置、另立」——神在亞伯死後為夏娃另立的後裔。創 4:26 記載塞特時代「人才開始求告耶和華的名」，標誌著從個人信仰走向群體敬拜的開始。塞特的血脈一直延伸到挪亞、閃，最終到亞伯拉罕。</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════
+     IV · 洪水審判
+══════════════════════════════════ -->
+<div class="section" id="flood">
+  <div class="section-header">
+    <span class="section-roman">IV</span>
+    <h2 class="section-title">Flood · 洪水審判</h2>
+    <span class="section-subtitle">創世記 6–9 章</span>
+  </div>
+  <p class="section-epigraph">洪水不只是天災——它是神把宇宙倒帶，讓創世記第一章的混沌之水重新湧現，然後重新開始。</p>
+
+  <!-- bene haElohim mystery -->
+  <div class="three-col">
+    <div class="three-cell">
+      <span class="three-cell-label">詮釋一 · 守望者說</span>
+      <div class="three-cell-title">墮落天使越界</div>
+      <div class="three-cell-body">bene haElohim（神的兒子們）在約伯記指天使。這裡是墮落天使與人類的結合，產生 Nephilim（拿非利人）——神靈界與物質界的越界破壞了創造秩序。《以諾書》詳盡發展這個傳統，新約彼得後書 2:4 似乎呼應此說。</div>
+    </div>
+    <div class="three-cell">
+      <span class="three-cell-label">詮釋二 · 塞特族說</span>
+      <div class="three-cell-title">信仰界線崩潰</div>
+      <div class="three-cell-body">「神的兒子們」指虔誠的塞特族後裔，「人的女兒們」指該隱族的女子。洪水前的婚配代表信仰群體的界線崩潰——神的子民與悖逆者的同化，是墮落的社會版本，最終導致全人類的道德崩潰。</div>
+    </div>
+    <div class="three-cell mid">
+      <span class="three-cell-label">神學共識</span>
+      <div class="three-cell-title">宇宙層面的臨界點</div>
+      <div class="three-cell-body">無論哪種詮釋，神學核心相同：邪惡的感染達到了宇宙層面的臨界點，連神靈秩序也被染污。這是為何洪水的規模是全宇宙性的——問題的規模決定了審判的規模。</div>
+    </div>
+  </div>
+
+  <h3 class="sub">洪水作為「反創造」——宇宙重置的神學</h3>
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 760 170" xmlns="http://www.w3.org/2000/svg" style="width:100%; min-width:540px;">
+      <defs>
+        <marker id="arr3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="#B8962E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </marker>
+      </defs>
+      <!-- 創造 -->
+      <rect x="10" y="20" width="160" height="130" rx="8" fill="#1A4A3E" stroke="rgba(184,150,46,0.3)" stroke-width="1"/>
+      <text x="90" y="45" text-anchor="middle" font-family="'IM Fell English', serif" font-size="11" fill="rgba(184,150,46,0.8)">CREATION · 創造</text>
+      <text x="90" y="65" text-anchor="middle" font-family="'Noto Serif TC', serif" font-size="12" fill="#F5EDD5">上方的水</text>
+      <line x1="30" y1="78" x2="150" y2="78" stroke="rgba(245,237,213,0.3)" stroke-width="0.5" stroke-dasharray="3 2"/>
+      <text x="90" y="97" text-anchor="middle" font-family="'Noto Serif TC', serif" font-size="12" fill="#F5EDD5">陸地與生命</text>
+      <line x1="30" y1="110" x2="150" y2="110" stroke="rgba(245,237,213,0.3)" stroke-width="0.5" stroke-dasharray="3 2"/>
+      <text x="90" y="130" text-anchor="middle" font-family="'Noto Serif TC', serif" font-size="12" fill="#F5EDD5">下方的水</text>
+      <text x="90" y="143" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="10" fill="rgba(245,237,213,0.5)">創 1:6–9 的分水</text>
+
+      <!-- Arrow: 反創造 -->
+      <text x="210" y="75" text-anchor="middle" font-family="'IM Fell English', serif" font-size="11" fill="#A33030">UN-CREATION</text>
+      <text x="210" y="90" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="10" fill="#9C8E72">大淵裂開</text>
+      <text x="210" y="104" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="10" fill="#9C8E72">天窗敞開</text>
+      <line x1="172" y1="85" x2="248" y2="85" stroke="#A33030" stroke-width="1" marker-end="url(#arr3)" opacity="0.7"/>
+
+      <!-- 洪水 -->
+      <rect x="250" y="20" width="160" height="130" rx="8" fill="#7A2020" stroke="rgba(184,150,46,0.25)" stroke-width="1"/>
+      <text x="330" y="45" text-anchor="middle" font-family="'IM Fell English', serif" font-size="11" fill="rgba(245,237,213,0.7)">FLOOD · 洪水</text>
+      <text x="330" y="70" text-anchor="middle" font-family="'Noto Serif TC', serif" font-size="13" fill="#F5EDD5">混沌之水</text>
+      <text x="330" y="88" text-anchor="middle" font-family="'Noto Serif TC', serif" font-size="13" fill="#F5EDD5">重新覆蓋</text>
+      <text x="330" y="110" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="11" fill="rgba(245,237,213,0.6)">tohu vavohu</text>
+      <text x="330" y="127" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="11" fill="rgba(245,237,213,0.6)">重臨大地</text>
+      <text x="330" y="143" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="10" fill="rgba(245,237,213,0.4)">מַבּוּל mabbul</text>
+
+      <!-- Arrow: 再創造 -->
+      <text x="450" y="75" text-anchor="middle" font-family="'IM Fell English', serif" font-size="11" fill="#266655">RE-CREATION</text>
+      <text x="450" y="90" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="10" fill="#9C8E72">神記念挪亞</text>
+      <text x="450" y="104" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="10" fill="#9C8E72">水退·地現</text>
+      <line x1="412" y1="85" x2="488" y2="85" stroke="#266655" stroke-width="1" marker-end="url(#arr3)" opacity="0.7"/>
+
+      <!-- 再創造 -->
+      <rect x="490" y="20" width="160" height="130" rx="8" fill="#1A4A3E" stroke="rgba(184,150,46,0.3)" stroke-width="1"/>
+      <text x="570" y="45" text-anchor="middle" font-family="'IM Fell English', serif" font-size="11" fill="rgba(184,150,46,0.8)">NEW ORDER</text>
+      <text x="570" y="65" text-anchor="middle" font-family="'Noto Serif TC', serif" font-size="12" fill="#F5EDD5">挪亞一家</text>
+      <text x="570" y="85" text-anchor="middle" font-family="'Noto Serif TC', serif" font-size="12" fill="#F5EDD5">彩虹聖約</text>
+      <text x="570" y="105" text-anchor="middle" font-family="'Noto Serif TC', serif" font-size="12" fill="#F5EDD5">神的弓收起</text>
+      <text x="570" y="125" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="10" fill="rgba(245,237,213,0.5)">創 8:1「神記念挪亞」</text>
+      <text x="570" y="143" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="10" fill="rgba(245,237,213,0.4)">與創 1:2 呼應</text>
+
+      <!-- Key insight -->
+      <rect x="660" y="20" width="90" height="130" rx="6" fill="#B8962E"/>
+      <text x="705" y="47" text-anchor="middle" font-family="'Noto Serif TC', serif" font-size="11" fill="#1A1610" font-weight="500">神記念</text>
+      <text x="705" y="65" text-anchor="middle" font-family="'Noto Serif TC', serif" font-size="11" fill="#1A1610" font-weight="500">זָכַר</text>
+      <text x="705" y="83" text-anchor="middle" font-family="'Noto Serif TC', serif" font-size="11" fill="#1A1610" font-weight="500">zachar</text>
+      <line x1="670" y1="95" x2="740" y2="95" stroke="rgba(26,22,16,0.2)" stroke-width="0.5"/>
+      <text x="705" y="114" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="10" fill="#3D3525">不是遺忘</text>
+      <text x="705" y="130" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="10" fill="#3D3525">而是主動</text>
+      <text x="705" y="146" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="10" fill="#3D3525">介入行動</text>
+    </svg>
+  </div>
+
+  <h3 class="sub">挪亞 · 方舟 · 彩虹聖約</h3>
+  <div class="soul-grid">
+    <div class="soul-row">
+      <div class="soul-icon">🕊️</div>
+      <div>
+        <span class="soul-label">挪亞 · נֹחַ Noach</span>
+        <div class="soul-title">צַדִּיק + תָּמִים——義且完全：關係正確，整全無瑕</div>
+        <div class="soul-body">「義」（tzaddiq）是關係性的——與神的關係正確；「完全」（tamim）是整全性的——同用於「沒有殘疾的獻祭牲口」。挪亞是在一個完全腐敗的世代中，保持了這兩個維度的人。他的順服不是英雄式的，而是安靜的——他做了神說的每一件事，沒有多說一個字的問句。</div>
+      </div>
+    </div>
+    <div class="soul-row">
+      <div class="soul-icon">⛵</div>
+      <div>
+        <span class="soul-label">方舟 · תֵּבָה teva</span>
+        <div class="soul-title">無舵的漂浮箱——依賴神引導的圖像</div>
+        <div class="soul-body">teva 不是普通的「船」（aniyyah），而是一個「浮動的箱子」，沒有方向舵、沒有槳、沒有掌舵者。這個字在舊約只出現兩次：挪亞方舟，和摩西嬰兒的蒲草箱（出 2:3）——兩次都是在審判的危機中，神保護一個蒙揀選之人的「容器」，象徵完全依賴神引導的信仰姿態。</div>
+      </div>
+    </div>
+    <div class="soul-row">
+      <div class="soul-icon">🌈</div>
+      <div>
+        <span class="soul-label">彩虹 · קֶשֶׁת qeshet</span>
+        <div class="soul-title">神把他的弓掛在天上——停戰的宇宙宣告</div>
+        <div class="soul-body">qeshet 同時是「弓（武器）」和「彩虹」——古代近東神話中，神在戰鬥後把武器掛起代表停戰。神把祂的「弓」掛在雲間，是象徵：神的審判之弓已收起，指向天空而非地面。這個聖約（berit）的獨特之處在於：它是單方面、無條件的，神對著自己立誓，不需要人的承諾來維持——這是恩典聖約的原型。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════
+     V · 巴別塔
+══════════════════════════════════ -->
+<div class="section" id="babel">
+  <div class="section-header">
+    <span class="section-roman">V</span>
+    <h2 class="section-title">Babel · 巴別塔</h2>
+    <span class="section-subtitle">創世記 10–11 章</span>
+  </div>
+  <p class="section-epigraph">巴比倫人說「Babel」是「神的門」，但神的評語只有一個字：混亂。這個文字遊戲是聖經對人類文明自大的最辛辣評論。</p>
+
+  <div class="verse-block">
+    <div class="verse-text">「耶和華降臨，要看看世人所建造的城和塔。」</div>
+    <div class="verse-ref">創世記 11:5</div>
+  </div>
+
+  <!-- Babel structure diagram -->
+  <h3 class="sub">巴別塔的諷刺結構</h3>
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 760 220" xmlns="http://www.w3.org/2000/svg" style="width:100%; min-width:500px;">
+      <defs>
+        <marker id="arr4" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="#B8962E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </marker>
+      </defs>
+
+      <!-- Tower (ziggurat shape) -->
+      <rect x="180" y="130" width="200" height="30" rx="3" fill="#3D3525" stroke="rgba(184,150,46,0.4)" stroke-width="0.8"/>
+      <rect x="200" y="105" width="160" height="28" rx="3" fill="#3D3525" stroke="rgba(184,150,46,0.35)" stroke-width="0.8"/>
+      <rect x="220" y="82" width="120" height="26" rx="3" fill="#3D3525" stroke="rgba(184,150,46,0.3)" stroke-width="0.8"/>
+      <rect x="240" y="62" width="80" height="23" rx="3" fill="#3D3525" stroke="rgba(184,150,46,0.3)" stroke-width="0.8"/>
+      <rect x="260" y="45" width="40" height="20" rx="3" fill="#B8962E" stroke="rgba(184,150,46,0.5)" stroke-width="0.8"/>
+      <text x="280" y="59" text-anchor="middle" font-family="'IM Fell English', serif" font-size="10" fill="#1A1610">頂</text>
+
+      <!-- Human claim arrow going up -->
+      <path d="M460 155 Q500 100 490 55" fill="none" stroke="#A33030" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#arr4)"/>
+      <text x="510" y="85" text-anchor="start" font-family="'Noto Sans TC', sans-serif" font-size="11" fill="#A33030">人的宣稱：</text>
+      <text x="510" y="100" text-anchor="start" font-family="'Noto Serif TC', serif" font-size="12" fill="#3D3525">「頂通天」</text>
+      <text x="510" y="118" text-anchor="start" font-family="'Noto Sans TC', sans-serif" font-size="10" fill="#9C8E72">vero'sho vashamayim</text>
+
+      <!-- God descends arrow going down -->
+      <path d="M120 20 Q100 80 155 125" fill="none" stroke="#266655" stroke-width="1.2" marker-end="url(#arr4)"/>
+      <text x="10" y="35" text-anchor="start" font-family="'Noto Sans TC', sans-serif" font-size="11" fill="#266655">神的行動：</text>
+      <text x="10" y="52" text-anchor="start" font-family="'Noto Serif TC', serif" font-size="12" fill="#3D3525">「降臨查看」</text>
+      <text x="10" y="70" text-anchor="start" font-family="'Noto Sans TC', sans-serif" font-size="10" fill="#9C8E72">wayyered YHWH lir'ot</text>
+
+      <!-- Irony label -->
+      <rect x="240" y="172" width="80" height="18" rx="4" fill="rgba(184,150,46,0.1)" stroke="rgba(184,150,46,0.3)" stroke-width="0.5"/>
+      <text x="280" y="185" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="10" fill="#B8962E">Ziggurat 廟塔</text>
+
+      <!-- People at base -->
+      <text x="280" y="205" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="10" fill="#6B5E42">人類集結於示拿平原 · 一種語言 · 一個目標</text>
+
+      <!-- Irony box -->
+      <rect x="490" y="140" width="260" height="72" rx="6" fill="var(--gold-faint)" stroke="rgba(184,150,46,0.3)" stroke-width="0.5"/>
+      <text x="620" y="162" text-anchor="middle" font-family="'Noto Serif TC', serif" font-size="12" fill="#3D3525" font-style="italic">諷刺的核心：</text>
+      <text x="620" y="180" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="11" fill="#6B5E42">人認為「通天」的最高成就</text>
+      <text x="620" y="198" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="11" fill="#6B5E42">對神來說連「看見」都需要俯身</text>
+    </svg>
+  </div>
+
+  <h3 class="sub">寧錄 · 法勒 · 語言分散的神學</h3>
+  <div class="soul-grid">
+    <div class="soul-row">
+      <div class="soul-icon">👑</div>
+      <div>
+        <span class="soul-label">寧錄 · נִמְרוֹד Nimrod</span>
+        <div class="soul-title">第一個帝國建造者——「在神面前的勇士獵人」</div>
+        <div class="soul-body">Nimrod 可能來自 marad（反叛），意指「讓我們反叛」。他被稱為 gibbor tzayid（強大的獵人），「在耶和華面前」帶有「甚至在神面前也以此著名」的挑戰語氣。他建立了示拿地（巴比倫尼亞）的諸城，是聖經對人類中央集權帝國野心的第一次明確呈現。帝國從這裡開始，啟示錄的巴比倫在這裡結束。</div>
+      </div>
+    </div>
+    <div class="soul-row">
+      <div class="soul-icon">🌍</div>
+      <div>
+        <span class="soul-label">語言分散的神學</span>
+        <div class="soul-title">分散不只是懲罰，更是保護性的慈悲</div>
+        <div class="soul-body">神說「他們所要做的事就沒有不成就的了」——統一的惡意若無限擴張，後果更加不可收拾。語言的分散是神以混亂對抗集中化的惡，是「以毒攻毒」的恩典。諷刺的是：這個「懲罰」也成全了神對亞當的使命——「遍滿全地」（創 1:28）。人類終於散佈到各地，儘管動機是被迫的。</div>
+      </div>
+    </div>
+    <div class="soul-row">
+      <div class="soul-icon">⏳</div>
+      <div>
+        <span class="soul-label">法勒 · פֶּלֶג Peleg</span>
+        <div class="soul-title">他的名字是歷史的時間戳</div>
+        <div class="soul-body">法勒的名字意思就是「分裂、分開」，他的命名記錄說「因為那時人分地居住」——這個命名本身是巴別事件的歷史時間戳，標記語言分散發生在他的時代。他在族譜中不起眼，卻承載著歷史轉折的座標。從他到亞伯拉罕，只有六代。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="insight-box">巴別（בָּבֶל）在巴比倫語是「神的門」，但希伯來文的雙關是 balal（變亂）。聖經在此做了一個徹底的神學解構：人類自稱的文明頂點「神的門」，神稱之為「混亂之地」。每個自稱是通往神的道路的人類系統，都在這個命名中受到評判。</div>
+</div>
+
+
+<!-- ══════════════════════════════════
+     VI · 原文字義
+══════════════════════════════════ -->
+<div class="section" id="hebrew">
+  <div class="section-header">
+    <span class="section-roman">VI</span>
+    <h2 class="section-title">Hebrew · 核心原文字義</h2>
+    <span class="section-subtitle">希伯來語根與神學重量</span>
+  </div>
+  <p class="section-epigraph">希伯來文不只是語言，它是神學的載體。每一個詞根都包含著世界觀——讀懂原文，就是讀懂神說話的方式。</p>
+
+  <div class="word-cards">
+    <div class="word-card">
+      <span class="word-original hebrew">בָּרָא</span>
+      <div class="word-transliteration">bara · 希伯來文</div>
+      <span class="word-section-label">字面原意</span>
+      <div class="word-section-body">「從無到有的創造」。這個動詞在聖經中<strong>只以神為主詞</strong>，從不用於人的製作行為。人可以「製作」（asah）、「塑造」（yatsar），但只有神能 bara——意指不依賴預先材料的創造行動。</div>
+      <span class="word-section-label">神學重量</span>
+      <div class="word-section-body">Creatio ex nihilo（從虛無中創造）的聖經基礎。神不是從預存的混沌「整理」出宇宙，而是宇宙本身就是神話語的產物。新約約翰福音 1:3「萬物是藉著祂造的」呼應同樣的概念。</div>
+    </div>
+    <div class="word-card">
+      <span class="word-original hebrew">צֶלֶם</span>
+      <div class="word-transliteration">tselem · 希伯來文</div>
+      <span class="word-section-label">字面原意</span>
+      <div class="word-section-body">「形像、雕像、實體代表」。古代近東語境中，tselem 常用於國王在遠方領土豎立自己的「形像」以宣示統治權。神創造人按祂的 tselem，意指人是神在受造世界的代理統治者。</div>
+      <span class="word-section-label">神學重量</span>
+      <div class="word-section-body">人的尊嚴與使命的根基。墮落沒有消除 tselem（創 9:6 洪水後仍以此為禁殺人的理由），但扭曲了它。基督是「神形像」的完全彰顯（哥 1:15），是使人的 tselem 得以完全恢復的那一位。</div>
+    </div>
+    <div class="word-card">
+      <span class="word-original hebrew">דַּעַת</span>
+      <div class="word-transliteration">da'at · 希伯來文</div>
+      <span class="word-section-label">字面原意</span>
+      <div class="word-section-body">「知識、認識」——但不是認知性的資訊，而是<strong>親密的、實驗性的體驗</strong>。同一個字用於夫妻的性結合（創 4:1「亞當知道夏娃」）。「吃分別善惡樹的果子」意指親身體驗、掌握善惡的決定權。</div>
+      <span class="word-section-label">神學重量</span>
+      <div class="word-section-body">罪的本質不是「追求知識」，而是「以自身體驗取代對神的信靠」，自立為道德仲裁者。箴言 1:7「敬畏耶和華是知識的開端」——da'at 的真正起點是神，而非人的自主。</div>
+    </div>
+    <div class="word-card">
+      <span class="word-original hebrew">מַבּוּל</span>
+      <div class="word-transliteration">mabbul · 希伯來文</div>
+      <span class="word-section-label">字面原意</span>
+      <div class="word-section-body">「洪水、天上的洪流」。這個字在聖經中只出現在創世記洪水敘事和詩篇 29:10（「耶和華坐在洪水之上為王」）兩處。它不是普通的河水泛濫，而是宇宙層面的水的釋放。</div>
+      <span class="word-section-label">神學重量</span>
+      <div class="word-section-body">mabbul 連結著創 1:7 神分開「諸水之上」的水——洪水是那個創造行動的逆轉，是「反創造」。彼得前書 3:20–21 以洗禮與洪水類比：穿越審判的水而得救，預表基督徒的死而復活。</div>
+    </div>
+    <div class="word-card">
+      <span class="word-original hebrew">בְּרִית</span>
+      <div class="word-transliteration">berit · 希伯來文</div>
+      <span class="word-section-label">字面原意</span>
+      <div class="word-section-body">「聖約、盟約」。古代近東語境中，berit 是通過儀式確立的正式盟約，通常以動物切割（「立約」字面是「切割聖約」）和宣誓為記。聖約確立雙方的身份認同與義務。</div>
+      <span class="word-section-label">神學重量</span>
+      <div class="word-section-body">挪亞聖約是第一個以「berit」正式記錄的聖約，且是單方面、無條件的恩典聖約——神對自己立誓。這奠定了聖約神學的原型：神主動發起、人被動接受、不需要人的表現來維持。</div>
+    </div>
+    <div class="word-card">
+      <span class="word-original hebrew">תּוֹלְדוֹת</span>
+      <div class="word-transliteration">toledot · 希伯來文</div>
+      <span class="word-section-label">字面原意</span>
+      <div class="word-section-body">「後代、產生的歷史、展開的故事」。toledot 不只是「後代名單」，字根 yalad（生育）帶有「由某人/某事展開的一切」之意。創世記中出現 11 次，每次都引出一個新的敘事段落。</div>
+      <span class="word-section-label">神學重量</span>
+      <div class="word-section-body">toledot 是創世記的骨架結構。整本書可以理解為一連串「由某人展開的歷史」：天地的歷史、亞當的歷史、挪亞的歷史……直到雅各的歷史。每個 toledot 都是「神在誰身上繼續工作」的問題。</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════
+     VII · 神學預表
+══════════════════════════════════ -->
+<div class="section" id="theology">
+  <div class="section-header">
+    <span class="section-roman">VII</span>
+    <h2 class="section-title">Typology · 神學預表</h2>
+    <span class="section-subtitle">舊約影子 · 新約實體</span>
+  </div>
+  <p class="section-epigraph">創世記 1–11 章是一個預言性的底稿，整本聖經的後續歷史都是在詮釋、應驗、或反轉這幾章的主題。</p>
+
+  <h3 class="sub">預表對照表</h3>
+  <div class="typology-list">
+    <div class="typology-item">
+      <div class="typology-cell">
+        <span class="typology-cell-label">原型 · 舊約</span>
+        <div class="typology-cell-body">亞當——神形像的代理王，在伊甸園受試探，失敗墮落，帶來死亡進入全人類</div>
+      </div>
+      <div class="typology-cell bridge">
+        <span class="typology-cell-label">連結主題</span>
+        <div class="typology-cell-body">神形像 · 試探 · 順服 · 義 · 一人代表全人類</div>
+      </div>
+      <div class="typology-cell">
+        <span class="typology-cell-label">應驗 · 新約</span>
+        <div class="typology-cell-body">耶穌——神形像的完全彰顯，在曠野受試探，完全順服，帶來生命進入全人類（羅 5:12–21；林前 15:22）</div>
+      </div>
+    </div>
+    <div class="typology-item">
+      <div class="typology-cell">
+        <span class="typology-cell-label">原型 · 舊約</span>
+        <div class="typology-cell-body">挪亞方舟（teva）——穿越審判之水得救，只有在方舟「裡面」的才能存活</div>
+      </div>
+      <div class="typology-cell bridge">
+        <span class="typology-cell-label">連結主題</span>
+        <div class="typology-cell-body">審判之水 · 一個容器 · 在其中得救 · 舊世界結束</div>
+      </div>
+      <div class="typology-cell">
+        <span class="typology-cell-label">應驗 · 新約</span>
+        <div class="typology-cell-body">洗禮神學——彼前 3:20–21 明確類比：穿越水得救預表洗禮；在基督「裡面」才能穿越死亡審判</div>
+      </div>
+    </div>
+    <div class="typology-item">
+      <div class="typology-cell">
+        <span class="typology-cell-label">原型 · 舊約</span>
+        <div class="typology-cell-body">伊甸園——神與人同住、行走其中、沒有死亡的聖殿空間，有特殊寶石與守衛</div>
+      </div>
+      <div class="typology-cell bridge">
+        <span class="typology-cell-label">連結主題</span>
+        <div class="typology-cell-body">神與人同住 · 特殊材料 · 守衛 · 聖殿建築</div>
+      </div>
+      <div class="typology-cell">
+        <span class="typology-cell-label">應驗 · 新約</span>
+        <div class="typology-cell-body">會幕→聖殿→耶穌的身體（約 2:21）→聖靈居住的信徒→新耶路撒冷（啟 21–22 章）：伊甸恢復</div>
+      </div>
+    </div>
+    <div class="typology-item">
+      <div class="typology-cell">
+        <span class="typology-cell-label">原型 · 舊約</span>
+        <div class="typology-cell-body">巴別塔——語言分散，各族各語分離，人類試圖自建通天之路，神予以挫敗</div>
+      </div>
+      <div class="typology-cell bridge">
+        <span class="typology-cell-label">連結主題</span>
+        <div class="typology-cell-body">語言 · 分散 · 聚集 · 萬族歸一</div>
+      </div>
+      <div class="typology-cell">
+        <span class="typology-cell-label">應驗 · 新約</span>
+        <div class="typology-cell-body">五旬節（徒 2）——聖靈降下，每人用自己的語言聽見神的話；啟示錄 7:9 萬族萬語同聲讚美神：巴別的反轉</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="theology-insight">
+    <div class="theology-insight-title">創世記 3:15 原始福音（Proto-Evangelium）</div>
+    <div class="theology-insight-body">「女人的後裔要傷你的頭，你要傷他的腳跟。」希伯來文「傷」（shuph）兩次相同，但傷的部位不同——傷頭是致命的，傷腳跟是可以復原的。這是整本聖經第一個彌賽亞預言：一位女人的後裔，將以代價（傷腳跟）換來對蛇的終極勝利（傷頭），指向十字架與復活的核心神學。</div>
+  </div>
+  <div class="theology-insight">
+    <div class="theology-insight-title">以諾神學：死亡的例外與末世的伏線</div>
+    <div class="theology-insight-body">以諾「不見了，因為神將他取去」（創 5:24），用的是 laqach（取走），同一個字用於以利亞被旋風接走（王下 2:10）。在一片死亡的族譜中，以諾是一個神學問號：與神同行（hithallek et-haElohim）可以超越死亡。希伯來書 11:5 明確說他「因著信，以諾被接去，不見死亡」——他是末日身體被接走的最早預表。</div>
+  </div>
+  <div class="theology-insight">
+    <div class="theology-insight-title">從普世到特殊：神的揀選策略轉換</div>
+    <div class="theology-insight-body">創 1–11 章是宇宙性的問題呈現（全人類），創 12 章開始是揀選性的解決方案（一個人）。這個策略看似收縮，實則是擴張的籌備——選一個人（亞伯拉罕），一個家族（以色列），一個彌賽亞，最終再次「地上萬族都要因你得福」。這個邏輯一直延伸到保羅在羅馬書中的神學：一個人的罪進入全人類，一個人的義也歸回全人類。</div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════
+     VIII · 救贖弧線
+══════════════════════════════════ -->
+<div class="section" id="legacy">
+  <div class="section-header">
+    <span class="section-roman">VIII</span>
+    <h2 class="section-title">Arc · 救贖歷史弧線</h2>
+    <span class="section-subtitle">終章 · 從混沌到呼召</span>
+  </div>
+  <p class="section-epigraph">每一次審判都不是終點，而是一個新開始的門檻。神不是在滅除人類的歷史，而是在一次次重寫它的走向。</p>
+
+  <div class="legacy-list">
+    <div class="legacy-item">
+      <div class="legacy-num">I</div>
+      <div>
+        <div class="legacy-title">「審判中有救恩」——神的永恆模式</div>
+        <div class="legacy-body">逐出伊甸但給衣服（創 3:21）、殺亞伯但給塞特（創 4:25）、洪水滅世但保留方舟（創 6:8）、分散語言但留閃的血脈（創 11:10）——這個「審判後留餘民」的模式不是偶然的，而是神性格的表達：公義的審判與慈愛的保全同時並存。整本聖經的十字架神學，在這裡已經有了完整的輪廓。</div>
+      </div>
+    </div>
+    <div class="legacy-item">
+      <div class="legacy-num">II</div>
+      <div>
+        <div class="legacy-title">族譜神學——toledot 的救贖歷史功能</div>
+        <div class="legacy-body">創世記中的族譜（toledot）不是無聊的名單，而是神選擇在哪個血脈上繼續工作的地圖。從亞當→塞特→以諾→瑪土撒拉→挪亞→閃→法勒→他拉→亞伯蘭，這條線不是王朝血統，而是「神的應許如何穿越歷史」的路線圖。每一個 toledot 都是神繼續持守祂承諾的標記。</div>
+      </div>
+    </div>
+    <div class="legacy-item">
+      <div class="legacy-num">III</div>
+      <div>
+        <div class="legacy-title">人類問題的宇宙規模——為何需要如此偉大的救贖</div>
+        <div class="legacy-body">創 1–11 章將罪呈現為宇宙性的、系統性的問題，而不只是個人的道德失誤。罪影響了人與神的關係（伊甸）、人與人的關係（該隱）、人與宇宙的關係（洪水）、人與文明的關係（巴別）——四個維度全面崩潰。這解釋了為何「解決方案」（十字架）也必須是宇宙性的，影響所有維度的存在秩序。</div>
+      </div>
+    </div>
+    <div class="legacy-item">
+      <div class="legacy-num">IV</div>
+      <div>
+        <div class="legacy-title">五旬節是巴別的反轉，新耶路撒冷是伊甸的恢復</div>
+        <div class="legacy-body">聖經的結構是：創世記的問題在啟示錄得到答案。伊甸的失落（神與人分離）→新耶路撒冷的相聚（神的帳幕在人間）。巴別的語言分散→五旬節各語族聽見同一個信息。洪水的毀滅→新天新地的更新。創 1–11 章是問題，啟示錄 21–22 章是答案，十字架是中間的轉折點。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Final arc diagram -->
+  <h3 class="sub">大敘事弧線</h3>
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 760 110" xmlns="http://www.w3.org/2000/svg" style="width:100%; min-width:500px;">
+      <defs>
+        <marker id="arr5" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="#B8962E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </marker>
+      </defs>
+      <!-- Boxes -->
+      <rect x="10" y="20" width="100" height="52" rx="6" fill="#1A4A3E" stroke="rgba(184,150,46,0.3)" stroke-width="0.8"/>
+      <text x="60" y="41" text-anchor="middle" font-family="'Noto Serif TC', serif" font-size="12" fill="#F5EDD5">創造</text>
+      <text x="60" y="59" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="10" fill="rgba(245,237,213,0.6)">創 1–2</text>
+
+      <line x1="110" y1="46" x2="130" y2="46" stroke="#B8962E" stroke-width="0.8" marker-end="url(#arr5)"/>
+
+      <rect x="132" y="20" width="100" height="52" rx="6" fill="#7A2020" stroke="rgba(184,150,46,0.25)" stroke-width="0.8"/>
+      <text x="182" y="41" text-anchor="middle" font-family="'Noto Serif TC', serif" font-size="12" fill="#F5EDD5">墮落</text>
+      <text x="182" y="59" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="10" fill="rgba(245,237,213,0.6)">創 3–5</text>
+
+      <line x1="232" y1="46" x2="252" y2="46" stroke="#B8962E" stroke-width="0.8" marker-end="url(#arr5)"/>
+
+      <rect x="254" y="20" width="100" height="52" rx="6" fill="#3D3525" stroke="rgba(184,150,46,0.35)" stroke-width="0.8"/>
+      <text x="304" y="41" text-anchor="middle" font-family="'Noto Serif TC', serif" font-size="12" fill="#D4AF5A">洪水</text>
+      <text x="304" y="59" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="10" fill="#9C8E72">創 6–9</text>
+
+      <line x1="354" y1="46" x2="374" y2="46" stroke="#B8962E" stroke-width="0.8" marker-end="url(#arr5)"/>
+
+      <rect x="376" y="20" width="100" height="52" rx="6" fill="#3D3525" stroke="rgba(184,150,46,0.35)" stroke-width="0.8"/>
+      <text x="426" y="41" text-anchor="middle" font-family="'Noto Serif TC', serif" font-size="12" fill="#D4AF5A">巴別塔</text>
+      <text x="426" y="59" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="10" fill="#9C8E72">創 10–11</text>
+
+      <line x1="476" y1="46" x2="496" y2="46" stroke="#B8962E" stroke-width="0.8" marker-end="url(#arr5)"/>
+
+      <rect x="498" y="20" width="108" height="52" rx="6" fill="#B8962E" stroke="rgba(184,150,46,0.5)" stroke-width="0.8"/>
+      <text x="552" y="41" text-anchor="middle" font-family="'Noto Serif TC', serif" font-size="12" fill="#1A1610" font-weight="500">亞伯拉罕</text>
+      <text x="552" y="59" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="10" fill="rgba(26,22,16,0.6)">創 12</text>
+
+      <line x1="606" y1="46" x2="626" y2="46" stroke="#B8962E" stroke-width="0.8" marker-end="url(#arr5)"/>
+
+      <rect x="628" y="20" width="122" height="52" rx="6" fill="#1A1610" stroke="rgba(184,150,46,0.5)" stroke-width="1"/>
+      <text x="689" y="38" text-anchor="middle" font-family="'Noto Serif TC', serif" font-size="11" fill="#D4AF5A">基督 · 十字架</text>
+      <text x="689" y="54" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="10" fill="#9C8E72">萬族蒙福 · 新創造</text>
+
+      <!-- Bottom labels -->
+      <text x="390" y="90" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="11" fill="#6B5E42">問題的規模決定了解決方案的規模——宇宙級的罪，需要宇宙級的救贖。</text>
+    </svg>
+  </div>
+
+  <div class="final-verse">
+    <div class="final-verse-text">「地上萬族都要因你得福。」</div>
+    <div class="verse-ref" style="font-size:13px; color:var(--gold); letter-spacing:0.1em;">創世記 12:3 · 神對亞伯拉罕的呼召</div>
+  </div>
+
+  <div class="memo-card">
+    <span class="memo-label">給現代讀者的備忘錄</span>
+    <p>如果你讀創世記 1–11 章只是在讀古代故事，你錯過了它的意圖。這是一面鏡子：每一代人都可以在亞當身上看到自己的自主渴望，在該隱身上看到自己的嫉妒，在巴別人身上看到自己打造的系統和身份。</p>
+    <p style="margin-top:12px;">聖經的誠實之處在於：它沒有迴避人類問題的規模。它不是告訴你「你只要努力一點就好」，而是說「問題大到需要神親自下來解決」。這是謙卑，也是希望的起點。</p>
+    <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">在你的「巴別塔」被拆毀的地方，神的呼召往往才真正開始。</p>
+  </div>
+
+  <div class="final-question">當你讀到「神降臨，要看看世人所建造的」——你正在建造什麼，而你認為它有多高？</div>
+</div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  GENESIS STUDY · 創世記原始歷史深度解析 · <span>創 1–11 章</span> · 亞伯拉罕之前的神學序言
+</div>
+
+</body>
+</html>
