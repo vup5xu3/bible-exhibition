@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>法勒斯 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">法勒斯</h1>
+  <span class="hero-name-en">Perez · פֶּרֶץ</span>
+  <p class="hero-slogan">「在崩解的家族廢墟中強行突圍，以非典型方式承接彌賽亞聖約的恩典之子」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">主前 19–18 世紀</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ESTP · 創業家型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">創世記 38 章 · 路得記 4 章</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">彌賽亞血祖 · 破局先鋒</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<nav class="nav">
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <!-- I · PORTRAIT -->
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">每位聖經人物都是特定歷史時刻的產物，也是神救贖計劃的棋子。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">約主前 19–18 世紀<br>希伯來族長時代晚期</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">多重身份</span>
+        <div class="info-cell-value">猶大支派核心先祖 · 法勒斯族始祖<br>大衛王直系祖裔 · 基督彌賽亞血祖</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">迦南謝非拉地區（以暗、亞杜蘭）<br>→ 埃及歌珊地</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">背景</span>
+        <div class="info-cell-value">猶大支派（君王聖約核心）<br>猶大與她瑪所生的雙胞胎長子</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">創世記 38 章 · 民數記 26 章<br>路得記 4 章 · 歷代志上 2、4 章<br>馬太福音 1 章 · 路加福音 3 章</div>
+      </div>
+    </div>
+
+    <p>法勒斯誕生之際，雅各家族正處於極其嚴峻的信仰同化與道德消融危機之中。身為長子繼承權潛在繼承人的猶大，選擇「下去」離開他的弟兄，與迦南人亞杜蘭友拉為友，並娶了迦南人書亞的女兒為妻。這一偏離亞伯拉罕聖約傳統的聯姻，為猶大夫家帶來了慘痛的代際悲劇。在高度父權制的古典近東社會，未亡人她瑪在接連喪失兩任丈夫後，被猶大視為詛咒的「致命女子」，以欺騙與拖延手段將她排除在家族生命之外，使其陷入無法自由改嫁亦無法繁衍後代的法律與生存「中介狀態」。</p>
+    <p>在政治、經濟與宗教秩序近乎停滯且崩解的歷史關頭，神聖的揀選並未因人類的自私、偽善或迦南惡俗的污染而中斷。相反地，當歷史與法律制度的局限使常規道路封死，神竟藉由她瑪驚人的主動性與智慧實現突圍。法勒斯的誕生不是常規秩序的產物，而是神聖恩典在社會邊緣與制度死局中強行破開的全新生命通道，用以保存和延續彌賽亞的聖約血脈。</p>
+  </div>
+
+
+  <!-- II · TIMELINE -->
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">生命不是直線，而是一系列破碎與重建。</p>
+
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">母腹深處的雙子博弈——在扭曲與悔改的陣痛中受孕</div>
+        <div class="timeline-body">在猶大與她瑪因不倫與悔改而達成的和解中，法勒斯與謝拉在母腹中悄然成形。這並非一段備受期待的傳統孕程，而是在不公、欺騙、死亡威脅與驚天逆轉後留下的生命餘溫。神在此處默默雕刻這對雙胞胎，將不倫的醜聞轉化為救贖歷史中最核心的恩典容器，預示著生命必將在廢墟中重新發芽。</div>
+        <div class="timeline-ref">創世記 38:27</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">產道突圍的驚世破局——超越長幼常規的「破局誕生」</div>
+        <div class="timeline-body">分娩之際，謝拉的手先伸出，助產士已繫上硃紅線標定其為法律意義上的長子。然而，就在人意與傳統即將蓋棺論定之際，謝拉縮回了手，法勒斯以驚人的生命渴望與力量「破局而出」。接生婆驚嘆道：「你怎麼搶著破開呢？」這次不尋常的生產使他得名「法勒斯（Perez，破開之意）」，徹底顛覆了人性的預期與長幼順序，標誌著他作為「神聖主權恩典開路者」的命定。</div>
+        <div class="timeline-ref">創世記 38:28–30</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">黑暗低谷</span>
+        <div class="timeline-title">寄居異鄉的曠野奠基——下埃及與家族支派的隱祕繁衍</div>
+        <div class="timeline-body">隨雅各全家下埃及，面對大饑荒的生存危機與異教文化的包圍，法勒斯在沉默與寄居中生下了希斯崙與哈母勒。這段寄居埃及歌珊地的歲月，是神聖約線索的隱密溫床。神藉由將其全家遷離迦南同化環境，保守了法勒斯後裔免受迦南惡俗腐蝕，並在悄然壯大中，使「破局之子」繁衍成猶大支派中最龐大的宗族。</div>
+        <div class="timeline-ref">創世記 46:12 · 民數記 26:20–21</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">曠野試煉</span>
+        <div class="timeline-title">曠野行軍與會幕的試煉——利蒙法勒斯的紀律與信實</div>
+        <div class="timeline-body">在出埃及後漫長的三十八年曠野漂流中，法勒斯的名字被刻在曠野的營地上——「利蒙法勒斯」。這處遺址見證了第一代以色列人在不信中的倒斃，但也見證了神的信實與管教。神在枯乾的荒野中，藉由磐石出水與每日的嗎哪，繼續雕刻這個以「破局」為名的宗族，使他們學習順服，將肉體的強悍轉化為屬靈的紀律。</div>
+        <div class="timeline-ref">民數記 33:19–20</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-major">歷史洗冤</span>
+        <div class="timeline-title">伯利恆聖約的歷史洗冤——在波阿斯贖回產業中被公開稱頌</div>
+        <div class="timeline-body">在士師時代末期的伯利恆城門口，波阿斯履行「至近親屬贖回權（Goel）」迎娶路得，眾長老公開高聲祝福：「願他的家像她瑪從猶大所生法勒斯的家一樣。」法勒斯的名字不再與恥辱、不倫相連，而成為生命繁茂、家族忠貞與神聖救贖成就的最高榮譽代名詞。神在歷史長河中徹底洗刷了這個家族最初的污名，使其成為彌賽亞譜系的黃金骨幹。</div>
+        <div class="timeline-ref">路得記 4:12–22</div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- III · CHARACTER -->
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">從最深的核心信念到外在表現，層層解構一個複雜的人。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心驅動力</span>
+          <div class="soul-title">拒絕在死局中認命——上主主權恩典必能硬生生撞開出路</div>
+          <div class="soul-body">法勒斯的靈魂深處烙印著一種「不認命」的意志。他不甘屈服於既定秩序與命運缺陷，拒絕被動接受屬地長子繼承的常規，其生命動力直接朝向上主的主權選召，在絕無可能之中實現逆轉。</div>
+        </div>
+      </div>
+      <div class="soul-row">
+        <div class="soul-icon">💛</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">顛覆性的生命爆發力（Breakthrough）與無懼偏見的擴張韌性</div>
+          <div class="soul-body">繼承自母親她瑪那種「為了聖約不惜打破常規、超越生死」的勇氣與智慧。在面對家族衰敗與惡名時，法勒斯和他的子孫展現出極強的生命韌性，成為猶大支派中最勇猛、最具開創性的先鋒。</div>
+        </div>
+      </div>
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">過度競爭導致的界線混亂，以及「為達目的不擇手段」的越界風險</div>
+          <div class="soul-body">破局者的另一面是容易踐踏既有的法律與人際邊界。若缺乏內在的敬畏與聖約限制，這種「突圍本能」可能演變為對秩序的破壞——如其後裔亞干的貪婪，或大衛王在拔示巴事件中的權力越界。</div>
+        </div>
+      </div>
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">肉身實踐的先知性預言者——誕生本身即是一齣超前時代的身體默劇</div>
+          <div class="soul-body">法勒斯的一生幾乎沒有留下言語記錄，但其誕生的生理奇蹟（退回與破出）本身就預表了律法時代（硃紅線代表的行為先到卻又退去）與恩典時代（基督恩典在死局中突然破出）的交替更迭。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">神聖的「公義（Tzedakah）」往往不是死守僵硬的系統條框（如猶大為了自保而扣留示拉），而是像她瑪與法勒斯那樣，帶著對聖約應許的極致飢渴，不惜冒著被燒死、被唾棄的極大風險，也要在死局中撞開通道。神的恩典專門揀選並雕刻這些「不甘在死局中擺爛的破局靈魂」。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ESTP</span>
+      <div class="mbti-name">創業家型 · 實踐者型人格</div>
+      <div class="mbti-slogan">「打破硃紅線的常規，只在產道的風暴中強行突圍。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Se · 外向感覺</span>
+          <div class="mbti-fn-body">對物理環境與客觀時機無與倫比的即時掌控。在分娩的混亂生理高壓中，以純粹的本能與爆發力，精準抓住了謝拉縮回手的微秒時機，反客為主強佔產道。</div>
+        </div>
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Ti · 內向思考</span>
+          <div class="mbti-fn-body">極其實用主義、不受傳統長子制度與社會禮俗束縛的內在邏輯。對法勒斯一系而言，生存、延續和聖約的實質承接重於任何虛浮的形式標籤（如硃紅線）。</div>
+        </div>
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Fe · 外向情感</span>
+          <div class="mbti-fn-body">在其後代身上展現為極強的社群感染力與宗族凝聚力。如在尼希米時代，法勒斯子孫甘願冒險遷入荒涼的耶路撒冷廢墟中居住，展現高度的社群承擔與集體英雄主義。</div>
+        </div>
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">由於缺乏對宏大宿命與長期因果的深層直覺，若不依靠外在神聖啟示（聖約），極易陷入短視的資源爭奪與當下肉體衝動，如其父猶大的嫖妓衝動。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- IV · RELATIONS -->
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">沒有人是孤島；他生命的形塑，正是在一段段關係的摩擦與連結中完成。</p>
+
+    <div class="relation-list">
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">神</div>
+          <div class="relation-name">耶和華（上主）</div>
+          <div class="relation-type-badge">神聖盟約揀選者</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">上主對法勒斯的關係展現了極致的「恩典突變」。即便法勒斯始於猶大和她瑪的不倫結合，耶和華卻親自否定了世俗的道德羞恥判定，直接揀選他承接大衛與基督的直系王權血脈。這昭示了神聖主權不被人類的失敗和罪惡所綁架，反而專門在廢墟上建立榮耀。</div>
+          <div class="relation-ref">創世記 38:29 · 路得記 4:12</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">猶</div>
+          <div class="relation-name">猶大（父親）</div>
+          <div class="relation-type-badge">血親父子 · 鏡像反照</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">猶大最初是一個在迦南文化中道德消融、賣弟欺父、欺壓兒媳的「低功能父親」。然而，她瑪的「認領證物」行動成了他靈魂的照妖鏡與救贖點，逼使他坦承「她比我更有義」。法勒斯的誕生，是猶大生命從「自私逃避」到「真誠悔改」的轉折路標，法勒斯的「破局」直接映射出猶大靈魂防線的破裂與重生。</div>
+          <div class="relation-ref">創世記 38:26</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">她</div>
+          <div class="relation-name">她瑪（母親）</div>
+          <div class="relation-type-badge">繁衍保護者 · 生命導師</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">她瑪是將「開路者基因」注入法勒斯骨血的決定性人物。面對夫家的欺騙、社會的污名與焚刑威脅，她瑪展現了不可思議的智謀與主動性。法勒斯在產道中的奮力一搏，正是其母親不屈服於命運、敢於打破常規之靈魂力量的完美重現，是生命意志的直接遺傳。</div>
+          <div class="relation-ref">創世記 38:24–25</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">謝</div>
+          <div class="relation-name">謝拉（雙胞胎兄弟）</div>
+          <div class="relation-type-badge">產道博弈 · 長子名分對照</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">謝拉是法勒斯生命中「屬地天然優勢」的對照組。謝拉先伸手並綁上硃紅線，象徵著看得見的應許和長子身分。然而法勒斯的突然奪路而出，徹底打碎了謝拉的優先權，奠定了「神聖揀選超越人為努力」的象徵意義，其後代在歷史上全面壓制並取代了謝拉一系。</div>
+          <div class="relation-ref">創世記 38:28–30</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- V · THEOLOGY -->
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">每一位聖經人物都是指向基督的箭頭。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「猶大從她瑪氏生法勒斯和謝拉；法勒斯生希斯崙；希斯崙生亞蘭；」</div>
+      <div class="verse-ref">馬太福音 1:3</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">פֶּרֶץ</span>
+        <div class="word-transliteration">Perez / Peretz · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">來自動詞字根 Parats（פָּרַץ），意為「破開、決堤、爆發、開闢裂口、使之分散」。是一個充滿爆破能量與空間擴張感的動詞。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">在救贖歷史中，Parats 代表上主那種「無法被死亡、罪惡、律法禁錮的主動性衝擊」。創 28:14 神對雅各的應許「你的後裔必向東西南北開展（parats）」正是用此字；先知書更以「開路者（Ha Poretz）」稱呼彌賽亞，行在被擄子民前頭，強行撞開仇敵城門。</div>
+      </div>
+      <div class="word-card">
+        <span class="word-original">תּוֹלְדוֹת</span>
+        <div class="word-transliteration">Toledot · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">意為「後代、歷史、家譜、創生記錄」，是摩西五經中記錄救贖歷史傳承的核心結構詞。拼寫形式分完整（full）與殘缺（defective）兩種，承載著深刻的拉比神學詮釋。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">拉比文獻（Leviticus Rabbah 30）指出，自人類墜落後，摩西五經中所有 Toledot 均以殘缺拼寫呈現，預示死亡帶來的不完全；唯獨路得記 4:18「法勒斯的後代」，Toledot 再次以完整拼寫出現——預示彌賽亞將從此支派出，徹底修復死亡帶來的殘缺。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">硃紅線的隱退與非人為揀選</div>
+      <div class="theology-insight-body">謝拉手腕上的「硃紅線」象徵著人類企圖以肉眼所見、天然順序來鎖定繼承權的嘗試。然而法勒斯在紅線撤回之際的「插隊」出生，宣告了神聖揀選絕不依附於人為標籤或行為制度——由硃紅線代表的律法先行，卻因軟弱撤回；唯獨恩典的「突圍」得以確立神的主權。</div>
+    </div>
+    <div class="theology-insight">
+      <div class="theology-insight-title">Toledot 的字元修復與死亡的吞滅</div>
+      <div class="theology-insight-body">從法勒斯一系而出的彌賽亞，將徹底修復亞當墮落帶來的殘缺。Toledot 拼寫在路得記 4:18 的回歸完整，是希伯來聖經最深層的預言密碼——死亡對人類「完整性」的吞噬，將在彌賽亞降臨時被徹底逆轉，一切重歸完美。</div>
+    </div>
+    <div class="theology-insight">
+      <div class="theology-insight-title">彌賽亞「破局者（Ha Poretz）」的原型奠立</div>
+      <div class="theology-insight-body">法勒斯的名字與誕生方式為後續舊約先知（彌迦書 2:13）與新約使徒提供了最生動的預表學模型。那位「行在羊群前面、衝破仇敵城門的開路者」，在基督的十字架與復活中得到終極應驗——最大的「Breach」（破口）發生在墳墓空了的那個清晨。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">謝拉的手先伸出並綁上硃紅線，隨後縮回，法勒斯搶先破局而出。</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">硃紅線象徵行為律法的外在標記，但它在拯救生命上是無效的，必須退去；唯有恩典在「不合法」的歷史中破局而出。</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">律法與屬地禮儀先行，因肉體軟弱無法成就；基督以恩典之約突然臨到，後來居上，開創了新約。</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">法勒斯在母腹與分娩的極大苦難中，強行打碎限制，在人意料之外開闢產道。</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">基督的復活是宇宙中最大的「Breach」（破口），以血肉之軀衝破了墳墓與陰間的防線。</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督在十字架苦難與墳墓封鎖中，強行震開巨石，粉碎死亡權勢復活，為罪人開闢通往至聖所的「新而活的路」。</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">彌迦書 2:13 中，那「開路者/破局者（Ha Poretz）」行在羊群前面，衝破仇敵城門。</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">彌賽亞的本質不是守成與禁錮，而是革命性的突圍——帶領子民衝破舊有宗教體制與文化邊界。</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">耶穌宣告自己是「羊的門」與「好牧人」，帶領羊群衝出封閉的猶太律法羊圈，將神國疆域擴展至萬國萬邦。</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- VI · MIRROR -->
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">聖經不是博物館的展品，而是活的對話。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">如何在充滿功能失調的「有害系統」與「命運污名」中，拒絕精緻擺爛，活出依靠主權恩典、強韌突圍的生命分化——這是法勒斯的故事向每個深陷系統死局者發出的核心叩問。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">當家庭背景或過去的黑歷史被貼上「不合格」的標籤（那條束縛人的硃紅線）時，你是選擇認命妥協，還是相信神的主權揀選能在不可能中開闢道路？</div>
+      </div>
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">你是否像俄南那樣，表面上維持著體面的配合，私底下卻用「擺爛、不承擔責任、精緻利己」的方式來剝削他人、保全自己？</div>
+      </div>
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">你是否正被身邊的權威人士當作「替罪羊」，默默承受著不屬於自己的恐懼與焦慮？你是否敢像她瑪那樣，勇敢地宣告真實，要求系統直面真相？</div>
+      </div>
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">當真相被揭露時，你是否敢放下自我保護的虛偽外殼，像猶大那樣真誠認罪，宣告「對方比我更有義」，以此打斷代際的欺騙與創傷循環？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 祖輩（雅各與猶大）</span>
+        <div class="gen-title">應激劇本：偏愛、欺騙與情感切割</div>
+        <div class="gen-body">猶大在兒子暴斃後，無法面對自身在迦南同化與教養上的失職，將所有系統焦慮與恐懼「投射」並「三角化」到她瑪身上，將其污名化為「致命女子」。透過她瑪呈現的「印章、細帶、手杖」，猶大在城門口經歷靈魂的徹底破碎與公開認罪，打斷了亞伯拉罕家族以謊言遮蓋謊言的系統性防禦。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 子輩（珥、俄南與示拉）</span>
+        <div class="gen-title">精確複製：精緻利己與欺騙擺爛</div>
+        <div class="gen-body">珥的行惡與俄南的體外排精，本質上是為了保全自身繼承利益而採取的精緻剝削。俄南若無後，可繼承更多產業，故刻意體外排精。這與猶大用虛假承諾放逐她瑪的「只享受特權、不承擔責任」的應激劇本如出一轍，代際創傷的腳本精確被複製。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入：系統突變</div>
+        <div class="gen-body light">她瑪展現了極高的自我分化，不甘在被動受害者角色中消融，不惜冒著被燒死的危險，強行逼使猶大面對他應負的立約義務。耶和華的恩典主權在法勒斯出生的那一刻實施了「系統突變」，接納了在罪與悔改中孕育的生命，賜予其超越常規的繁衍力，使「破局之子」成為洗淨家族恥辱的轉捩點。</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- VII · VOICE -->
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">讓數千年前的故事，說出你此刻最需要聽見的話。</p>
+
+    <div class="tags">
+      <span class="tag">#打破硃紅線的設定</span>
+      <span class="tag">#社畜的產道逆襲</span>
+      <span class="tag">#上帝的非典型恩典</span>
+      <span class="tag">#拒絕精緻擺爛</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>想像一下，在一家歷史悠久的家族跨國集團裡，一個沒有任何背景、甚至被貼上「剋死高管」標籤的邊緣實習生（她瑪），面對著大老闆（猶大）那種「等有職缺再通知你」的萬年空頭支票，以及高管們（俄南）「只拿薪水、不幹實活、精緻利己」的擺爛態度。</p>
+      <p>一般人可能早就忍氣吞聲，寫好離職信了。但她瑪卻在老闆去參加年終尾牙大喝特喝的路上，設了一個驚天的反擊局，拿到了老闆本人的身份證和簽名章作為擔保。當大老闆氣急敗壞想動用HR將她「開除並拉黑」時，她把擔保品往會議桌上一甩：「老闆，認認看，這是誰的簽名？」大老闆一瞬間靈魂破碎，公開認錯。</p>
+      <p>而就在這個「系統毒性被誠實徹底解毒」的尷尬、狗血卻又充滿生命力的節點上，法勒斯誕生了。他沒有在任何人為設定的「硃紅色起跑線」前乖乖排隊，而是趁著命運的防線露出微小破口的瞬間，直接「插隊」突圍。</p>
+      <p>這場聖經中最生猛、最不遮掩的「黑歷史」，宣告了神聖的揀選從不依賴無暇的道德溫室。神不需要一個毫無瑕疵的履歷，祂只需要一個在廢墟中仍渴望突圍的靈魂。</p>
+      <p style="font-weight:500; color:var(--ink);">神專門揀選那些拒絕在死局中擺爛的人——因為每一個真實的破局，都是祂親手撞開的恩典之門。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你正在經歷「覺得自己不夠好」、「起跑線落後別人一大截」，或者「在僵化的體制與關係中被無限期邊緣化」的焦慮，請記得法勒斯的名字——「突圍（Perez）」。</p>
+      <p style="margin-top:12px;">那條世俗綁在別人手腕上、象徵著順風順水與既得利益的「硃紅色線」，從來都不能決定一個人的命運。神在歷史長河中花了多少代才為法勒斯的家族洗冤——但祂從未放棄這條線。</p>
+      <p style="margin-top:12px;">上主不需要你的履歷毫無瑕疵，祂只需要你在最深的幽暗中，依然保持著對「生命、聖約與公義」最真實的飢渴。那位早已在歷史中行在前方的「開路之主（Ha Poretz）」，必會在死局中為你震開一道恩典破口。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">當那條硃紅線縮回的瞬間——那正是你破局而出的時刻。</p>
+    </div>
+
+    <div class="insight-box">在現代組織領導力中，法勒斯模式挑戰了僵化的「程序正義與資歷限制（硃紅色線的既得利益）」。真正的變革往往來自被系統忽視、邊緣化的非傳統力量。當組織面臨創新死局時，過度迷信常規只會像俄南那樣帶來無效的內耗；唯有容忍、甚至擁抱那些看似「不合常理」的突圍式力量，組織才能在變革陣痛中實現二次曲線的飛躍。</div>
+  </div>
+
+
+  <!-- VIII · LEGACY -->
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">一個人死後，他留下的比他的生命更長。</p>
+
+    <div class="legacy-list">
+
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">神聖選召勝過天然長子權的永恆證據</div>
+          <div class="legacy-body">法勒斯以「後來居上」的突圍方式，與雅各、以撒等祖先共同構成希伯來聖約中「恩典超越行為、神聖主權否定屬地常規」的決定性證據。他的誕生奠定了整部聖經最核心的神學主軸：神揀選的標準不是天然優勢，而是祂自己的主權與恩典。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">大衛王權與彌賽亞血脈的歷史合法性基石</div>
+          <div class="legacy-body">法勒斯在路得記 4 章與馬太福音 1 章中，成為連接族長時代與大衛王朝、乃至基督降生無可替代的家譜樞紐。他的名字出現在耶穌基督家譜的起點位置，是神以不完美的人性寫就的最完美救贖筆墨。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">開路者（Ha Poretz）彌賽亞神學的原型奠立</div>
+          <div class="legacy-body">法勒斯的名字與誕生方式為後續舊約先知（彌迦書 2:13）和新約使徒提供了最生動的「救贖突破、復活勝過死亡」之預表學模型。那位「行在羊群前面、衝破仇敵城門的開路者」，在基督的十字架與復活中得到終極應驗，成為整個基督論最深刻的字根意象。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">曠野與回歸時期勇於擔當的領袖宗族</div>
+          <div class="legacy-body">在民數記的曠野人口普查以及尼希米記的耶路撒冷重建中，法勒斯族人始終是人數最多、最勇於承擔重任的領袖階層。在廢墟中開拓、在荒涼中居住的選擇，正是法勒斯「破局基因」在歷史上最具體的世代傳承。</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「猶大從她瑪氏生法勒斯和謝拉；法勒斯生希斯崙；希斯崙生亞蘭；」</div>
+      <div class="final-verse-ref">馬太福音 1:3</div>
+    </div>
+
+    <div class="final-question">當一個生命中那條象徵世俗安全感的「硃紅色線」在動盪中縮回時，你是否敢於相信，那曾帶領法勒斯在產道中突圍、並在十字架上震碎陰間門戶的「開路之主（Ha Poretz）」，早已在你最深的絕境中，撞開了一道無人能關閉的恩典破口？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 法勒斯 <span>פֶּרֶץ</span> · 彌賽亞血祖 · 聖約破局者
+</div>
+
+</body>
+</html>

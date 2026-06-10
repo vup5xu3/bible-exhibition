@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>謝拉 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">謝拉</h1>
+  <span class="hero-name-en">Zerah · זֶרַח</span>
+  <p class="hero-slogan">「手伸出來，又縮回去——他帶著長子的紅線降生，卻把王冠讓給了弟弟，而恩典早已把他的名字刻入永恆家譜」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">主前 1800 年前後（族長時代）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">INFP · 調停者型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">創 38:30 · 代上 2:4–6</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">雙胞胎次子 · 長子標記承載者</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<nav class="nav">
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <!-- I · PORTRAIT -->
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">每一個在聖經邊緣被輕輕帶過的名字，都是救贖歷史中不可或缺的一塊拼圖。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">主前 1800 年前後<br>希伯來族長時代</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">多重身份</span>
+        <div class="info-cell-value">猶大之子 · 她瑪之子<br>法勒斯雙胞胎兄弟 · 謝拉族始祖</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">迦南地 → 後裔遍及猶大支派</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">背景</span>
+        <div class="info-cell-value">猶大支派嫡系<br>其母她瑪為迦南或亞蘭裔婦女</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">創 38:30；46:12<br>代上 2:4–6；書 7:1；太 1:3</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">後裔顯要</span>
+        <div class="info-cell-value">以單、希幔（智慧賢士）<br>亞干（背約僭越者）</div>
+      </div>
+    </div>
+
+    <p>謝拉誕生於創世記第 38 章中那場充滿道德複雜性的宗族危機之中。猶大「下去」（יָרַד）離開弟兄、娶迦南女子為妻，長子珥與次子俄南先後因行惡被耶和華除去生命。由於猶大假意讓兒媳她瑪回娘家守寡、實則企圖斷絕其叔娶寡嫂的名分，她瑪在宗族邊緣忍辱苦等。在宗族身份與家嗣延續的危機中，她瑪以化裝的方式迫使猶大承認其不義，藉此誕下了雙胞胎法勒斯與謝拉。謝拉的誕生，是一個被道德困局、宗族壓迫與奇異恩典共同催生的生命時刻。</p>
+    <p>在救贖歷史的宏觀脈絡中，謝拉的出現既是猶大支派延續的見證，亦是一個深具神學張力的符號：他帶著接生婆繫上的朱紅色長子線降生，卻在生理上退居次位，讓出王權血脈給弟弟法勒斯。然而神並沒有抹去謝拉的名字——馬太福音 1:3 在記錄耶穌家譜時，刻意將他與法勒斯並列，宣告恩典從不以「誰先出來」來決定誰被記念。</p>
+  </div>
+
+
+  <!-- II · TIMELINE -->
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">謝拉的故事不在一生，而在一個手勢——伸出又縮回的手，繫著世界最古老的矛盾：人的宣告與神的主權。</p>
+
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">宗族危機背景</span>
+        <div class="timeline-title">猶大家族的靈性墮落——謝拉誕生的歷史前夜</div>
+        <div class="timeline-body">猶大「下去」（יָרַד）離開弟兄，象徵其屬靈下沉。長子珥、次子俄南相繼因惡行被耶和華奪去生命。猶大拖延叔娶寡嫂制，讓兒媳她瑪在守寡的邊緣地帶苦等。這是謝拉誕生之前猶大家族最深的低谷，也是神要在廢墟中開出恩典之花的前夜。</div>
+        <div class="timeline-ref">創世記 38:1–14</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">誕生時刻</span>
+        <div class="timeline-title">朱紅色線——手伸出來，又縮回去</div>
+        <div class="timeline-body">分娩開始，謝拉首先伸出一隻手。接生婆立刻用朱紅色線（שָׁנִי）繫於其手腕，宣告「這個先出來」。然而謝拉隨即將手縮回，弟弟法勒斯破口而出，接生婆驚嘆：「你為什麼搶著出來呢？」謝拉帶著紅線誕生，卻以次子身份走入歷史。這一瞬間，人為的「長子標記」被神主權的「突破者」所顛覆。</div>
+        <div class="timeline-ref">創世記 38:28–30</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">家族遷移</span>
+        <div class="timeline-title">隨族下埃及——雙胞胎進入以色列大家庭</div>
+        <div class="timeline-body">法勒斯與謝拉皆被記錄於雅各族人下埃及的名單中，成為以色列七十口之一部分。謝拉後裔在埃及寄居期間孕育出一批極具智慧恩賜的後代，包括被猶太傳統記載為先知的賢士以單與希幔，為後來聖殿敬拜事工奠下家族底蘊。</div>
+        <div class="timeline-ref">創世記 46:12；民數記 26:20</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">後裔榮耀</span>
+        <div class="timeline-title">智慧的巔峰——以單與希幔，所羅門的標竿</div>
+        <div class="timeline-body">謝拉的後裔以單與希幔成為古代以色列最著名的智慧賢士。列王紀上 4:31 特別以他們為標竿，稱所羅門的智慧「超過以斯拉人以單，並希幔」。他們被大衛王延攬為聖殿詩班核心人物，詩篇 88 篇與 89 篇分別冠以二人名字，成為聖殿敬拜禮儀中最深沉的智慧哀歌與末世宣告。</div>
+        <div class="timeline-ref">列王紀上 4:31；詩篇 88–89 篇；歷代志上 2:6</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">後裔審判</span>
+        <div class="timeline-title">亞割谷的烈火——謝拉世系的背約慘劇</div>
+        <div class="timeline-body">謝拉之孫亞干（歷代志上 2:7 稱「亞割」，意「製造禍患者」）在耶里哥征服後私藏當滅之物，導致以色列在艾城慘敗、三十六人陣亡。神聖掣籤從猶大支派逐步鎖定謝拉宗族、心利家，最終鎖定亞干。他與全家在亞割谷被石頭打死並用火焚燒，謝拉世系的繼承權在應許之地被徹底剪除。</div>
+        <div class="timeline-ref">約書亞記 6:18；7:1–26；歷代志上 2:7</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">永恆記念</span>
+        <div class="timeline-title">馬太福音家譜——謝拉與法勒斯並列基督譜系</div>
+        <div class="timeline-body">馬太福音 1:3 在耶穌基督的家譜中，刻意將謝拉與法勒斯並列，同時提及她瑪之名。這一非典型的家譜寫法，跨越了謝拉在誕生時刻的「退隱」、亞干後裔的「慘敗」，宣告這個帶著朱紅色線縮回去的手，在彌賽亞的恩典中依然被神記念、被福音書永遠記錄。</div>
+        <div class="timeline-ref">馬太福音 1:3</div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- III · CHARACTER -->
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">謝拉的靈魂輪廓，是在他人的決定與神的主權之間尋找自己位置的靈魂——一個學會退讓的先驅者。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🌟</div>
+        <div>
+          <span class="soul-label">核心驅動力</span>
+          <div class="soul-title">先行者的本能，與退讓的命運</div>
+          <div class="soul-body">謝拉最初的本能是向前——在子宮中他首先伸出手，是天生的開路者。然而他的整個歷史軌跡，卻是在「伸出後縮回」中成形。這一核心張力孕育了謝拉世系獨特的靈性氣質：既有前驅者的眼光（以單的先知智慧），又有深淵中的哀歌（希幔的詩篇 88 篇）。</div>
+        </div>
+      </div>
+      <div class="soul-row">
+        <div class="soul-icon">💛</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">深淵中的智慧與屬靈洞察</div>
+          <div class="soul-body">謝拉後裔中最耀眼的遺產，是在苦難與矛盾中孕育出的智慧。以單的詩篇 89 篇在歌頌神約之後，面對以色列王權的崩解發出深沉質問；希幔的詩篇 88 篇是整部詩篇最黑暗的個人哀歌，卻毫不逃避地將痛苦帶到神面前。這是謝拉世系留給敬拜神學最珍貴的禮物。</div>
+        </div>
+      </div>
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">眼目的貪婪——紅線的遺毒</div>
+          <div class="soul-body">謝拉手腕上的朱紅色線，是人類對「先得者」身份最原始的宣告，而這種「應得感」的基因在其後裔亞干身上以毀滅性的方式爆發：一件巴比倫衣服、兩百舍客勒銀子、五十舍客勒金條，埋在帳篷底下，帶走了三十六條無辜生命，也毀滅了整個謝拉支系的應許地繼承權。</div>
+        </div>
+      </div>
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">「黎明之升起」——名字中預藏的救贖隱喻</div>
+          <div class="soul-body">「謝拉」（זֶרַח）字根意為「升起、破曉、發光」。在以賽亞書 60:1 中，同一字根被用於錫安重建時的屬靈黎明，指向末世的救贖榮耀。謝拉的名字，是在他縮回子宮那一刻由誕生情境所賦予的神聖預言：即使退隱，曙光終將升起。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">謝拉最深的靈魂張力，是「被標記卻被超越」的存在——他帶著長子標記卻以次子活著，其世系同時高舉了以色列最深邃的敬拜智慧，也上演了最慘痛的背約審判。這或許正是他名字「黎明」的真實意涵：曙光之前，必有最深的黑暗。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">INFP</span>
+      <div class="mbti-name">調停者型 · 深淵先知人格</div>
+      <div class="mbti-slogan">「我首先伸出手——卻在神的手掌中，學會了退讓是另一種先行」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">對內在價值與身份認同高度敏感。謝拉世系的以單與希幔以詩篇呈現靈魂深處的質問，毫不修飾地在神面前傾倒苦杯——這是 Fi 主導者最典型的屬靈誠實。</div>
+        </div>
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Ne · 外向直覺</span>
+          <div class="mbti-fn-body">善於跨越時代的洞見連結。以單的詩篇 89 篇將大衛之約與末世彌賽亞期待相扣，展現出 Ne 特有的跨越文本、預見未竟應驗的神學想像力。</div>
+        </div>
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Si · 內向感知</span>
+          <div class="mbti-fn-body">對過去的印記與宗族記憶具有強烈依附。謝拉世系在整個以色列歷史中始終以「謝拉族」的身份保持集體記憶，智慧傳承幾乎構成了家族基因。</div>
+        </div>
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">在外在秩序、律法邊界的把握上最脆弱。亞干的悲劇正是 Te 功能失控的縮影：在佔有與分析的慾望驅動下，無視了「當滅之物」的神聖邊界。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- IV · RELATIONS -->
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">謝拉的生命，被三層關係所定義：與雙胞胎兄弟的命運競奪、與父親猶大的宗族糾葛，以及與神那根看不見的揀選主權。</p>
+
+    <div class="relation-list">
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">法</div>
+          <div class="relation-name">法勒斯</div>
+          <div class="relation-type-badge">雙胞胎兄弟</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">法勒斯（פֶּרֶץ，意「破口、突破者」）是謝拉最直接的命運對手，也是神主權揀選的具體呈現。他在謝拉縮回手的瞬間破門而出，奪走了接生婆的長子宣告，成為王權與彌賽亞家譜的承載者。然而，馬太福音 1:3 刻意將兄弟二人並列，宣告神的揀選從未是對謝拉的棄絕，而是一種超越次序的並存。</div>
+          <div class="relation-ref">創世記 38:29–30；馬太福音 1:3</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">她</div>
+          <div class="relation-name">她瑪</div>
+          <div class="relation-type-badge">母親</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">謝拉的母親她瑪是整個誕生敘事中最具道德勇氣的人物。她在宗族系統對她施加不公義時，以非常規的行動奪回兒媳的名分，被猶大親口稱為「比我更有理（義）」。謝拉是她以生命代價換來的孩子，也是她追求宗族正義的活見證。她的堅韌與智慧，深刻烙印在謝拉世系後裔的基因裡。</div>
+          <div class="relation-ref">創世記 38:15–26；馬太福音 1:3</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">猶</div>
+          <div class="relation-name">猶大</div>
+          <div class="relation-type-badge">父親</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">猶大是謝拉的父親，也是整場宗族危機的肇事者與最終悔改者。他對她瑪的不義拖延，製造了謝拉誕生的特殊處境；而他的公開認罪，賦予了謝拉與法勒斯合法的宗族身份。猶大生命中「下去」後藉著恩典「升起」的弧線，與謝拉之名的語義形成深刻的文學呼應。</div>
+          <div class="relation-ref">創世記 38:1–26；46:12</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">以</div>
+          <div class="relation-name">以單與希幔</div>
+          <div class="relation-type-badge">後裔智慧賢士</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">謝拉五個兒子中的以單與希幔，是他最具神學遺產的後裔。他們的智慧超越時代，成為所羅門智慧的比較標竿，也成為大衛聖殿敬拜的核心樂師。詩篇 88、89 篇的哀歌與宣告，是謝拉世系對整個以色列信仰傳承最深刻的屬靈禮物。</div>
+          <div class="relation-ref">列王紀上 4:31；詩篇 88–89 篇；歷代志上 2:6</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">亞</div>
+          <div class="relation-name">亞干</div>
+          <div class="relation-type-badge">後裔 · 背約者</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">亞干（歷代志上記為「亞割」）是謝拉世系最沉重的陰影。他私藏耶里哥的當滅之物，在亞割谷被石頭打死。他的名字（意「禍患者」）成為謝拉世系中貪婪基因的極端呈現，也構成了與外邦妓女喇合最強烈的神學對比：喇合因信心在耶里哥得救，亞干卻因貪婪在此世系中滅亡。</div>
+          <div class="relation-ref">約書亞記 7:1–26；歷代志上 2:7</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- V · THEOLOGY -->
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">謝拉手腕上的一根紅線，成為舊約正典中「朱紅色救贖線索」的起點，貫穿喇合的窗台、聖所的祭牲，直抵十字架的寶血。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「猶大從她瑪氏生法勒斯和謝拉；法勒斯生希斯崙……」</div>
+      <div class="verse-ref">馬太福音 1:3</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">זֶרַח</span>
+        <div class="word-transliteration">Zéraḥ · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">字根 √z-r-ḥ，語義為「升起、破曉、發光」。天文語境指日出（傳 1:5）；自然語境指光芒顯現；病理語境指病變爆發（代下 26:19）。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">以賽亞書 60:1「興起，發光！」與同字根連結，指向錫安末世的屬靈黎明。謝拉的名字預藏了後裔世系「先退隱、後升起」的救贖弧線。</div>
+      </div>
+      <div class="word-card">
+        <span class="word-original">שָׁנִי</span>
+        <div class="word-transliteration">šānî · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">朱紅色，源自胭脂蟲（Kermes）染料，在古代近東極其昂貴。不僅是顏色，更是尊貴、法律宣告與禮儀潔淨的象徵物質。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">同一詞彙出現於喇合窗前的朱紅色線繩（書 2:18）、利未聖所的潔淨儀式（利 14:4；民 19:6），在希伯來書 9:19–22 中匯入基督十字架寶血的終極指向。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">長子權的顛覆——恩典超越次序</div>
+      <div class="theology-insight-body">謝拉手腕的朱紅色線，是人類試圖以生理優先與律法標記確立主權的縮影。然而神的揀選一貫打破這一次序：阿伯勝該隱、以撒勝以實瑪利、雅各勝以掃、法勒斯勝謝拉。真正的長子名分不依賴人為宣告，而取決於神主權的恩典——這是貫穿創世記族長敘事的核心神學動脈。</div>
+    </div>
+    <div class="theology-insight">
+      <div class="theology-insight-title">朱紅色線的正典連貫性——謝拉、喇合與基督</div>
+      <div class="theology-insight-body">謝拉手腕的紅線是以色列正典「朱紅色救贖線索」的原點。喇合窗前的紅線繩（書 2:18）將外邦妓女接入法勒斯世系，成為大衛與基督的先祖。人為的長子標記退隱了，信心的救贖標記卻將邊緣人帶入彌賽亞譜系。教父游斯丁在《與特里豐對話錄》中指出，這條貫穿正典的朱紅色線，最終在十字架寶血中完全應驗。</div>
+    </div>
+    <div class="theology-insight">
+      <div class="theology-insight-title">罪人家譜的神學宣告——馬太的大膽並列</div>
+      <div class="theology-insight-body">馬太福音在耶穌家譜中並列謝拉與法勒斯，同時點明她瑪之名，是刻意宣告：彌賽亞的降生不依賴道德純潔的血統，而是神無條件恩典在罪惡廢墟中強行切入的結果。謝拉的「退隱」被記入，亞干的「慘敗」未被隱去，恩典比歷史更大。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">謝拉手腕的朱紅色線——人為宣告的長子標記，卻在生產中退回</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">律法標記的暫時退隱，讓位於神主權的突破；紅色象徵遮蓋與救贖</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督在十字架上流的寶血，是真正遮蓋一切罪惡的「朱紅色線」，使所有人得入長子的產業</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">亞干在亞割谷（慘痛之谷）因貪婪被審判，謝拉世系的繼承權在此滅絕</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">亞割谷在何西阿書 2:15 被重新詮釋為「盼望之門」，審判之地成為恩典入口</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督在各各他受死，使最深的咒詛之地成為罪人重生的盼望之門</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">謝拉世系的以單著詩篇 89 篇，在王權崩解後發出對大衛之約的末世質問</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">詩篇 89 篇在新約中被詮釋為對永恆王權的先知性期待，指向彌賽亞的降臨</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">耶穌基督以復活應驗大衛之約，成為謝拉世系哀歌的終極答案</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- VI · MIRROR -->
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">謝拉的紅線，是每一個曾經「幾乎得到」卻又縮手的靈魂，在歷史最古老的產房裡留下的問題。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">謝拉的故事映照著所有曾被「長子標記」所定義卻又未能承接那應許的人：那些在職場、家族、信仰旅程中被他人的突破所超越、帶著本應屬於自己的標記退回邊緣的靈魂。神的回應不是抹去謝拉的名字，而是在彌賽亞的家譜中將他與法勒斯並列——退隱從未等於被棄絕。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你生命中是否有一根「朱紅色線」——某個你深信本應屬於你的身份、機會或應許，卻在最後時刻被他人「突破」取走？你如何看待那次的退縮？</div>
+      </div>
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">謝拉世系同時孕育了聖殿最深邃的詩篇（以單、希幔）與最慘痛的背約（亞干）。你的家族遺傳中，哪些模式是需要被恩典打斷的「亞干傾向」？</div>
+      </div>
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">希幔的詩篇 88 篇在神的沉默中依然開口禱告，以單的詩篇 89 篇在王朝崩解中依然宣告神約。面對你生命中的「深淵時刻」，你能否學習在無答案中繼續開口？</div>
+      </div>
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">馬太福音將謝拉寫入基督家譜，是對「退隱者」最深的神學安慰。在你認為自己被歷史邊緣化的那些角落，你是否相信神依然在那裡記念你的名字？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 謝拉</span>
+        <div class="gen-title">「應得感」的起點</div>
+        <div class="gen-body">謝拉帶著接生婆宣告的長子標記誕生，卻在生理上退居次位。這種「本應屬我的」身份認同，成為謝拉世系深層心理的第一條裂縫——當所宣告的不符合所得到的，靈魂的反應將決定後代的走向。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">後裔 · 亞干（謝拉曾孫）</span>
+        <div class="gen-title">應得感的極端爆發</div>
+        <div class="gen-body">亞干在耶里哥城的禁物面前，讓隱藏的「應得感」徹底發作——「我想要的，我有資格拿」。他埋藏戰利品的動作，是謝拉世系潛藏數代的貪婪在最不適宜的時刻爆發，帶來了宗族整體的滅頂之災。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">神沒有讓亞割谷成為謝拉世系的終點。先知何西阿宣告，亞割谷將成為「盼望之門」（何 2:15）。馬太福音在基督家譜中並列謝拉，是神跨越宗族恥辱、將退隱者接入永恆的終極介入。</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- VII · VOICE -->
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">如果謝拉活在今天，他大概不會有很多 IG 追蹤數，但他的後代會寫出讓整個世代哭泣的詩。</p>
+
+    <div class="tags">
+      <span class="tag">#幾乎是長子</span>
+      <span class="tag">#紅線的故事</span>
+      <span class="tag">#退隱不等於放棄</span>
+      <span class="tag">#家族的光與暗</span>
+      <span class="tag">#深淵裡的智慧</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>謝拉是那種你在聖經讀到名字、卻幾乎想不起任何事的人。他出現在創世記 38 章最後幾行，就是那個「手先伸出來又縮回去、手腕上被繫了根紅線」的雙胞胎。就這樣。然後歷史繼續。</p>
+      <p>但等一下——謝拉的後代可不一般。他的子孫裡，有兩個人的智慧大到讓所羅門王的傳記作者用他們來當比較基準：「所羅門的智慧勝過以斯拉人以單和希幔。」這相當於說，「他比迄今為止最厲害的人還厲害」。而那兩位「最厲害的人」，就是謝拉的孫子輩。他們還寫了詩篇 88 篇和 89 篇——一首是整本詩篇最黑暗的哀歌，另一首是最宏大的盟約宣告。能寫出這種東西的人，靈魂深度不是普通的。</p>
+      <p>當然，謝拉世系裡也有讓人皺眉的。他的曾孫亞干，在耶里哥城的禁物面前沒有把持住——一件巴比倫衣服、一些金銀，埋在帳篷底下。結果呢？三十六個無辜的以色列士兵死在下一場戰役裡，然後亞干全家被石頭砸死。代際的貪婪，用最殘忍的方式終結了謝拉這一支的應許地繼承資格。</p>
+      <p>這就是聖經的誠實：謝拉的子孫可以既寫出最深邃的敬拜詩歌，也可以鑄下最致命的錯誤。這不是矛盾，這是人。神揀選的不是完美家譜，而是在破碎中願意被恩典重寫的家族故事。</p>
+      <p style="font-weight:500; color:var(--ink);">馬太福音把謝拉寫進耶穌的家譜，不是因為他的後代全部優秀——而是因為那根縮回去的紅線，在神的記念裡從來沒有消失。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你正處於「幾乎得到、卻在最後縮手」的位置——在職場被後進超越，在家族中被低估，在信仰旅途中感覺神的應許好像給了別人——謝拉的故事是給你的。</p>
+      <p style="margin-top:12px;">謝拉世系裡，以單和希幔被大衛王看見、被接入聖殿最核心的事工，距離謝拉誕生大約四百到六百年。有時候神的記念是跨代際的。你現在種的深根，也許要等到你的後代才長成大樹。</p>
+      <p style="margin-top:12px;">亞干的錯誤提醒我們：恩典的標記（紅線）若沒有對神聖邊界的敬畏，依然可以在亞割谷被燒盡。被記念不等於免於責任，而是在責任中更需要倚靠那份記念。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">帶著你的紅線，不管它代表的是夢想、身份還是盼望——交在那位把謝拉寫入永恆家譜的神手中，讓祂決定何時讓曙光升起。</p>
+    </div>
+
+    <div class="insight-box">在現代領導力與組織心理學的視角下，謝拉世系呈現了一個「隱性天才家族」的雙重面貌：擁有極深厚的智慧底蘊，卻在邊界感上存在系統性的脆弱。企業與教會組織研究中常見到這類現象：最有洞見的聲音，往往也最容易在資源壓力下越界——智慧與節制需要同時被培育，才能讓恩賜成為祝福而非陷阱。</div>
+  </div>
+
+
+  <!-- VIII · LEGACY -->
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">謝拉從未突破。但他的名字比突破者存活得更久，因為神的記念不以「誰先出來」來計算。</p>
+
+    <div class="legacy-list">
+
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">朱紅色救贖線索的起點</div>
+          <div class="legacy-body">繫於謝拉手腕的朱紅色線，是舊約正典中「朱紅色救贖線索」的原點。這條線索延伸至喇合的信心窗口、利未聖所的潔淨祭禮，最終在十字架的寶血中達到終極應驗。謝拉手腕的一個短暫動作，在神學上成為整部正典最具詩意的救贖象徵之一。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">聖殿智慧敬拜的家族傳承</div>
+          <div class="legacy-body">謝拉後裔以單與希幔所著的詩篇 88、89 篇，至今仍是全球教會崇拜禮儀中最具深度的哀歌與末世宣告文本。他們在黑暗中不放棄禱告（詩篇 88 篇）、在王朝崩解後依然宣告神約（詩篇 89 篇）的屬靈遺產，成為以色列敬拜神學中「在苦難中持守信仰」的典範。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">亞割谷的警示：選民身份的脆弱性</div>
+          <div class="legacy-body">亞干的悲劇作為謝拉世系最沉重的歷史遺產，在以色列神學中確立了一個永久性的屬靈原則：外在的揀選標記（朱紅色線、支派身份）從不能取代內在的聖約敬畏。亞割谷的石堆成為以色列歷代信仰教育中「應得感之危險」最具象的地理紀念碑。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">馬太福音：「退隱者被記念」的神學宣言</div>
+          <div class="legacy-body">馬太福音 1:3 將謝拉與法勒斯並列於基督家譜，是新約對謝拉最大的神學平反。這不只是一個家譜細節，而是對所有「帶著標記卻退回去的靈魂」的宣告：神的記念不因歷史上的退隱、失敗或後代的羞恥而撤回。曙光（謝拉）在最黑暗的正典邊緣，依然被神記念地寫入永恆。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">V</div>
+        <div>
+          <div class="legacy-title">長子權神學的救贖倒置範式</div>
+          <div class="legacy-body">謝拉的誕生敘事是創世記「長子權倒置」系列最後也最具象的一幕，成為系統神學中討論神主權揀選（Divine Election）的經典原型。從保羅書信（羅 9:6–13 論雅各與以掃）到宗教改革的預定論神學，謝拉與法勒斯的誕生被反覆引用為「恩典非基於人的優先次序」的聖經根據。</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「我要以亞割谷為盼望的門，她必在那裡應聲，與幼年的時候一樣，與從埃及地上來的日子相同。」</div>
+      <div class="final-verse-ref">何西阿書 2:15</div>
+    </div>
+
+    <div class="final-question">那根繫在你手腕上、卻隨著縮回去的手一同隱沒的朱紅色線——<br>你相信神從來沒有真正鬆開它嗎？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 謝拉 <span>זֶרַח</span> · 猶大支派謝拉族始祖 · 法勒斯雙胞胎兄弟
+</div>
+
+</body>
+</html>
