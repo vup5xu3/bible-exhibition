@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>希斯崙 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── SCHOLAR TABLE ── */
+  .scholar-table { width: 100%; border-collapse: collapse; margin-bottom: 28px; font-size: 13px; }
+  .scholar-table th { background: var(--ink-mid); color: var(--gold-light); font-weight: 400; letter-spacing: 0.08em; padding: 10px 14px; text-align: left; }
+  .scholar-table td { background: var(--parchment); color: var(--ink-soft); padding: 10px 14px; border-bottom: 1px solid var(--border); line-height: 1.75; vertical-align: top; }
+  .scholar-table tr:last-child td { border-bottom: none; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+    .scholar-table { font-size: 12px; }
+    .scholar-table th, .scholar-table td { padding: 8px 10px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════ -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">希斯崙</h1>
+  <span class="hero-name-en">Hezron · חֶצְרוֹן</span>
+  <p class="hero-slogan">「他的名字意為屏障與城堡——在族長時代的混沌裂縫中，他是那一道奇妙被保守的牆，讓彌賽亞的血脈得以穿越埃及的黑暗而存活」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">約主前 1700–1600 年</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ISTJ · 守護者型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">創 46 · 代上 2 · 路得記</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">彌賽亞族譜樞紐 · 氏族政治建構者</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <!-- ══════════════════════════════════════════
+       I · PORTRAIT
+  ══════════════════════════════════════════ -->
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">在救贖歷史的長河中，最關鍵的節點往往不是最耀眼的人物，而是那些在黑暗過渡期默默承載應許的無名守護者。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">族長末期 · 約主前 1700–1600 年<br>以色列下埃及的過渡世代</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">多重身份</span>
+        <div class="info-cell-value">法勒斯之子 · 猶大之孫<br>彌賽亞世系的樞紐節點 · 三大氏族之父</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">迦南地 → 埃及歌珊地<br>晚年跨入約旦河東基列高原</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">名字語源</span>
+        <div class="info-cell-value">希伯來語 חצר（ḥ-ṣ-r）<br>「被牆圍住的空間」、「城堡院落」</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">創 46:12 · 民 26:21<br>代上 2:5–25 · 路 4:18–19<br>太 1:3 · 路 3:33</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">七十士譯本名</span>
+        <div class="info-cell-value">Ἑσρώμ（Esrōm）<br>新約彌賽亞族譜採用此音譯</div>
+      </div>
+    </div>
+
+    <p>希斯崙生存於以色列歷史最脆弱的過渡時刻——族長時代的末尾，以色列全家正從迦南的應許地遷入埃及的異邦土地。他的名字源自閃語族系中的古老詞根「חצר」，在阿卡德語系中此詞根意指「圈圍牲畜的防禦欄」，在烏加里特語中則指代宮殿的外庭院落。這種從游牧圍欄到定居城堡的語義演進，正完美映照了希斯崙在救贖歷史中的角色：他是從法勒斯（意為「突破」、「裂口」）那個充滿混亂與非常規突破的世代，走向有秩序、有制度保障的新世代的那道屏障。作為地名，希斯崙也出現於南猶大的邊境線上，毗鄰加低斯巴尼亞，是內蓋夫曠野中一處具有天然防禦屏障意義的地理節點。</p>
+    <p>在救贖歷史的版圖中，希斯崙是連接族長時代與大衛王朝的不可或缺的樞紐。從亞伯拉罕、以撒、雅各、猶大、法勒斯，到希斯崙、蘭、亞米拿達、拿順、波阿斯、俄備得、耶西、大衛——這條線路上，希斯崙正處於以色列民族從家族進化為支派組織的關鍵節點。他不僅生下了直接承載大衛王朝法統的蘭支系，更以六十歲高齡的跨支派聯姻，將猶大支派的政治觸角伸向了約旦河東的基列高原，展現了古代以色列氏族政治中最複雜的人口與土地法理運作。</p>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       II · TIMELINE
+  ══════════════════════════════════════════ -->
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">歷史的轉捩點不總是伴隨雷鳴與異象，有時只是一個名字被悄悄寫入族譜，卻承載著整個民族的未來。</p>
+
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">出生與命名</span>
+        <div class="timeline-title">法勒斯之子——秩序從裂口中誕生</div>
+        <div class="timeline-body">希斯崙出生於其父法勒斯（意為「突破」）的家族，乃猶大族系中第三代。法勒斯本身的誕生即充滿戲劇性張力——他的母親他瑪透過一場不尋常的安排，從猶大的遮掩中突破而出。希斯崙之名「院落」、「屏障」則象徵著下一代的轉型：從突破與混亂，走向有邊界、有結構的建制秩序。這是神在歷史中慣常的工作方式——先破舊，再立新。</div>
+        <div class="timeline-ref">創 38:29 · 創 46:12 · 代上 2:5</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">族譜關鍵節點</span>
+        <div class="timeline-title">被列入七十人名單——歷史年代學的謎題</div>
+        <div class="timeline-body">《創世記》四十六章明確記載希斯崙與其兄弟哈母勒同列於雅各下埃及的七十人名單中。這引發了學界重大爭議：依據內部紀年，雅各全家遷埃及時，法勒斯至多不超過十歲，其子怎能同時被列名？奧古斯丁等學者提出「十七年說」：希斯崙實際上在雅各遷埃及後的十七年內於埃及出生，因其法理地位特殊而被「追溯性」列入始祖名單，如同利未在亞伯拉罕的腰中預先獻上十分之一。</div>
+        <div class="timeline-ref">創 46:8–27 · 希伯來書 7:9–10</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">氏族建立</span>
+        <div class="timeline-title">生下三大支系——蘭、耶拉篾、基路拜</div>
+        <div class="timeline-body">希斯崙在埃及歌珊地建立了猶大支派最重要的三大分支。長子耶拉篾負責守護南方邊疆的曠野屏障；次子蘭雖非長子，卻承載了從波阿斯到大衛的王室法統；三子基路拜（即迦勒）後來與基尼人及土著氏族深度融合，並誕生了曠野時期會幕的建造者比撒列。三大支系的分工，奠定了此後整個猶大支派的地理、政治與宗教版圖。</div>
+        <div class="timeline-ref">代上 2:9 · 代上 2:25–41 · 出 31:2</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">晚年跨支派聯姻</span>
+        <div class="timeline-title">六十歲娶瑪拿西支派之女——打破支派邊界的政治棋局</div>
+        <div class="timeline-body">希斯崙在六十歲高齡時迎娶了瑪拿西支派首領瑪姬的女兒。這段婚姻直接突破了《民數記》三十六章關於支派產業不得跨族繼承的律法精神，卻因瑪姬缺乏男性繼承人而具有法理正當性。由此聯姻所生的西割，再生睚珥，睚珥征服基列地並取得多達六十個城鎮的控制權，但其支派歸屬卻在後代文本中被記錄為「瑪拿西的子孫」，形成「父系屬猶大、支派屬瑪拿西」的獨特雙重身份。</div>
+        <div class="timeline-ref">代上 2:21–23 · 民 32:41 · 申 3:14</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">文本爭議</span>
+        <div class="timeline-title">死後的倫理謎團——迦勒與以法他的歷史疑案</div>
+        <div class="timeline-body">《歷代志上》二章二十四節的馬索拉文本記載希斯崙死於「迦勒以法他」，但這一地名在整部舊約中毫無記錄。希臘文七十士譯本則提供了迥異的重構：希斯崙死後，其子迦勒「進入」了繼母以法他（即希斯崙的遺孀），此舉在《利未記》十八章的律法下屬於死罪。學界爭論此究竟是氏族兼併的擬人化表述，還是後代文士為維護大衛王朝道德純潔性而刻意修改的「文本遮蔽」。</div>
+        <div class="timeline-ref">代上 2:24 · 利 18:8 · 申 27:20</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">歷史傳承</span>
+        <div class="timeline-title">新約的族譜連結——彌賽亞法統的靜默見證</div>
+        <div class="timeline-body">數百年後，希斯崙之名以希臘文「Esrōm」（Ἑσρώμ）的形式出現在《馬太福音》一章三節與《路加福音》三章三十三節的彌賽亞族譜中。他的名字靜默地佇立在亞伯拉罕與耶穌基督之間的傳承鏈條上，成為一個幾乎不為人知、卻不可或缺的名字。正是這些不顯眼的「過渡節點」，讓應許橫跨了幾個世紀的黑暗與混沌而抵達應驗。</div>
+        <div class="timeline-ref">太 1:3 · 路 3:33 · 路 4:18–19</div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       III · CHARACTER
+  ══════════════════════════════════════════ -->
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">聖經的族譜不只是名字的排列，而是性格的遺傳、創傷的傳承，以及神介入歷史的切面。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🏛️</div>
+        <div>
+          <span class="soul-label">核心驅動力</span>
+          <div class="soul-title">在動盪中建立秩序與結構的本能</div>
+          <div class="soul-body">希斯崙的整個生命軌跡，從三大氏族的建立到六十歲的跨支派聯姻，無不體現著一種強烈的「建制本能」。他不是革命者，而是在他父親法勒斯打破秩序後，用一生去重建邊界、確立法統、鞏固疆域的那個人。這種驅動力在古代近東的氏族領袖中，是生存的必要條件，也是神學上盟約穩固性的人格投影。</div>
+        </div>
+      </div>
+      <div class="soul-row">
+        <div class="soul-icon">🤝</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">超越血統界限的包容與整合能力</div>
+          <div class="soul-body">希斯崙氏族的族譜記錄顯示了高度驚人的族群包容性：耶拉篾支系中，舍珊將女兒嫁給埃及僕人耶哈，其後代依然被完整納入猶大族譜；基路拜支系則與迦南在地的基尼人、基尼洗人深度融合。這種吸納外邦血統的能力，預表了後來神在大衛王朝中對外邦人的接納，也呼應了路得記中對「外邦人在立約群體中的合法性」的神學宣告。</div>
+        </div>
+      </div>
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">政治算計凌駕於道德律法的模糊地帶</div>
+          <div class="soul-body">六十歲的跨支派婚姻及其後代的雙重身份問題，以及《歷代志上》二章二十四節中被疑似遮蔽的家族倫理醜聞，都指向希斯崙家族中一個隱伏的陰影：以氏族兼併與政治算計為優先，而非嚴格恪守道德律法。這是古代宗族社會中普遍的灰色地帶，卻也讓後代的聖經文士不得不對其族譜進行謹慎的「倫理修辭」處理。</div>
+        </div>
+      </div>
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">在歷史的靜默中承載應許——無名英雄的神學地位</div>
+          <div class="soul-body">希斯崙幾乎沒有任何個人敘事，他的整個存在，在正典文本中就只是一個被傳遞的名字。然而，他的名字在新約的彌賽亞族譜中被神聖地保留下來，在亞伯拉罕與耶穌之間充當不可缺少的橋樑。這種「靜默卻不可或缺」的存在方式，本身就是一種神學宣告：神的救贖計畫不只需要先知和王，也需要這些默默傳遞生命火炬的無名守護者。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">希斯崙的最深層矛盾在於：他的名字意為「屏障」與「秩序」，他的一生卻充滿了對邊界的主動跨越——跨越支派的婚姻、跨越倫理灰色地帶的家族決策。這提醒我們：在神的救贖歷史中，「保守應許」從來不等於「完美無瑕」，而是在不完美與矛盾中，那條金線依然奇妙地延續。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ISTJ</span>
+      <div class="mbti-name">守護者型 · 盟約制度的承載者</div>
+      <div class="mbti-slogan">「他不問目的地，只確保每一個名字都被正確地記錄在案——哪怕其中埋藏著不能說的秘密」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Si · 內向感知</span>
+          <div class="mbti-fn-body">對家族傳統、先祖盟約與制度規範有近乎本能的尊重與記憶。三大支系的建立與命名，體現了他將歷史秩序具體化、制度化的強烈傾向。</div>
+        </div>
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">六十歲的跨支派政治聯姻展現了高度的策略性外向思考：面對瑪姬家族缺乏男嗣的危機，他以精準的家族政治操作，將猶大的影響力合法延伸至約旦河東。</div>
+        </div>
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">對於家族道德倫理的判斷，希斯崙傾向於內化而非外顯。歷代志文本中可能存在的「倫理遮蔽」現象，或許正反映了他內在的道德掙扎被私下處理，而非公開面對。</div>
+        </div>
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Ne · 外向直覺</span>
+          <div class="mbti-fn-body">希斯崙的視野主要落在已知的制度框架之內，對於未來的開放性可能缺乏主動探索。他的偉大貢獻不是創造新的願景，而是確保舊的應許在新環境中得到制度性的保存。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       IV · RELATIONS
+  ══════════════════════════════════════════ -->
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">在古代以色列，每一段關係都不只是私人情感，更是氏族法理、神聖盟約與地緣政治的複合交織。</p>
+
+    <div class="relation-list">
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">法</div>
+          <div class="relation-name">法勒斯（父）</div>
+          <div class="relation-type-badge">血緣根源</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">法勒斯（Perez，意為「突破」）的誕生本身是一個充滿衝破規範的事件——他是猶大與兒媳他瑪之間不尋常結合的產物。希斯崙繼承了父親「從邊緣進入核心」的歷史地位，卻以截然不同的方式回應之：他不再「突破」，而是「圍守」，以秩序和建制回應父代的混亂，完成了一個家族命運的辯證轉化。</div>
+          <div class="relation-ref">創 38:29 · 代上 2:4–5</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">蘭</div>
+          <div class="relation-name">蘭（Ram，子）</div>
+          <div class="relation-type-badge">王室法統承載者</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">蘭雖非長子，卻在歷代志的族譜編排中被置於首位，直接目的是確立大衛王室的正統性。蘭之孫拿順在出埃及時期成為猶大支派的首領，其妹伊利沙伯嫁給大祭司亞倫，意味著希斯崙透過蘭這一子嗣，將君王應許（猶大）與祭司體系（利未）進行了深度的家族政治聯盟。</div>
+          <div class="relation-ref">代上 2:9–10 · 民 1:7 · 出 6:23</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">瑪</div>
+          <div class="relation-name">瑪姬之女（晚年妻）</div>
+          <div class="relation-type-badge">跨支派政治聯姻</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">這位瑪拿西支派首領之女的名字在文本中未被記載，但其政治意義卻極為深遠。她所帶來的外祖父產業，最終透過其子西割、孫睚珥的征服行動，使猶大支派的實際影響力越過約旦河，延伸至基列高原的六十個城鎮。這段婚姻也製造了以色列歷史上最獨特的「父系屬猶大、支派歸瑪拿西」的雙重身份案例。</div>
+          <div class="relation-ref">代上 2:21–23 · 民 32:41</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">迦</div>
+          <div class="relation-name">迦勒（基路拜，子）</div>
+          <div class="relation-type-badge">族群融合者</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">希斯崙的三子迦勒（基路拜）所建立的氏族，是猶大支派中族群融合程度最高的分支：與迦南土著的基尼人、基尼洗人深度整合，誕生了建造會幕的工藝天才比撒列，也成為後來伯利恆、希伯崙周邊的社會中堅。圍繞希斯崙死後迦勒與繼母以法他之間的文本爭議，則讓這段父子關係蒙上了一層難以釐清的倫理陰影。</div>
+          <div class="relation-ref">代上 2:18–20 · 代上 2:24 · 出 31:2</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">睚</div>
+          <div class="relation-name">睚珥（曾孫）</div>
+          <div class="relation-type-badge">跨河東征服者</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">希斯崙晚年婚姻最直接的果實，睚珥在基列地征服並命名了多達六十個城鎮為「睚珥的村莊」（Havvoth-jair）。他的身份認同在申命記中被記錄為「瑪拿西的子孫」，儘管父系血統清晰屬於猶大；這一矛盾完美體現了希斯崙跨支派聯姻所製造的、在古代近東「母系產業兼併」習俗下的法理複雜性。</div>
+          <div class="relation-ref">代上 2:22 · 民 32:41 · 申 3:14</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       V · THEOLOGY
+  ══════════════════════════════════════════ -->
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">在救贖歷史的敘事中，族譜不是枯燥的名單，而是神聖盟約在歷史破碎性中奇妙得以保守的見證。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「法勒斯生希斯崙，希斯崙生亞蘭，亞蘭生亞米拿達……耶西生大衛王。」</div>
+      <div class="verse-ref">馬太福音 1:3–6（彌賽亞族譜）</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">חֶצְרוֹן</span>
+        <div class="word-transliteration">Ḥeṣrōn · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">源自字根 חצר（ḥ-ṣ-r），核心意義為「被牆圍住的院落」、「城堡的外庭」，對應阿卡德語「ḫaṣāru」（圈圍、設圈）及烏加里特語「ḥẓr」（宮殿外庭）。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">在救贖歷史的脈絡中，此字所代表的「有秩序的保護空間」，象徵著神的盟約如何在歷史的混亂中設立邊界，使應許的血脈得以在圍護之中被保守，直到彌賽亞降臨。</div>
+      </div>
+      <div class="word-card">
+        <span class="word-original">Ἑσρώμ</span>
+        <div class="word-transliteration">Esrōm · 希臘文（七十士譯本）</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">七十士譯本對希伯來文「Ḥeṣrōn」的音譯，保留了原文閉合性的語音特徵。此形式被《馬太福音》與《路加福音》的族譜所採用，成為新約中彌賽亞世系的官方記錄名稱。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">在新約中，Ἑσρώμ 的出現連結了亞伯拉罕之約與拿撒勒人耶穌，宣告這條歷經數百年、穿越埃及奴役與曠野漂流的血脈，在基督身上達到了神聖的完全應驗。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">過渡性護衛：神在歷史黑暗期的制度性保守</div>
+      <div class="theology-insight-body">希斯崙處於以色列從自由家族進入埃及奴役這一歷史最脆弱時期。他的生命見證了一個神學命題：應許的保守，不單靠先知的異象與君王的作為，也靠那些在族譜中默默承載著名字、維繫著血脈連接的無名守護者。神的護衛方式往往是制度性的、靜默的、潛伏在歷史深處的。</div>
+    </div>
+    <div class="theology-insight">
+      <div class="theology-insight-title">外邦人的包容：族譜中的救贖開放性預表</div>
+      <div class="theology-insight-body">希斯崙氏族的族譜記錄顯示了古代以色列最高度的族群開放性：埃及僕人的後代、基尼人、基尼洗人，都被完整接納入猶大的聖約群體。這不只是歷史事實，更是神學預表：神的救贖從來不是種族性的封閉系統，而是朝向萬族敞開的盟約恩典，正如路得、喇合後來被接納進入同一族譜一樣。</div>
+    </div>
+    <div class="theology-insight">
+      <div class="theology-insight-title">不完美中的應許延續：聖經族譜的誠實神學</div>
+      <div class="theology-insight-body">《歷代志上》二章二十四節中可能存在的文本爭議，以及希斯崙氏族中不乏的道德灰色地帶，提示了一個深刻的神學真理：神的救贖應許並不依賴於人的道德完美性，而是在人的不完整、失敗乃至倫理爭議中，奇妙地穿透並延續。這正是整部聖經族譜神學的核心信息。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">希斯崙在混亂中建立三大支系，為猶大支派確立秩序與邊界，成為應許血脈的結構性守護者</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">盟約的守護需要在歷史的脆弱時期設立具體的「城堡」——制度、秩序與傳承，才能使應許安全抵達應驗</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督成為終極的「院落守護者」，在他裡面，所有歸屬他的人都被「聖靈的印」圍守，應許得到永恆的保全（弗 1:13–14）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">希斯崙氏族接納埃及僕人後代、基尼人等外邦血統，將他們完整納入猶大的聖約族譜</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">盟約群體的邊界，從一開始就不是純粹的種族邊界，而是以信心與歸附為標準的開放性接納框架</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督在十字架上拆毀隔斷的牆，使外邦人與以色列人同為後嗣，同蒙應許（弗 2:14–16）；大衛族譜中已有預表</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">希斯崙的名字在數百年後靜默地出現在新約族譜中，他本人毫無個人敘事，僅以「名字的傳遞」存在</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">神的救贖計畫需要無數「名字」——有些人的使命就是靜默地傳遞應許，在歷史中「不被看見地存在」，卻不可或缺</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督的降生需要數十代人的忠信傳遞才能抵達；每一個「無名節點」都在神全知的計畫中佔有完全確定的位置</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       VI · MIRROR
+  ══════════════════════════════════════════ -->
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">族譜的功能不在於證明血統的純正，而在於提醒我們：每一代人都是在從上一代人的傷口與恩典中繼承並傳遞某些東西。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">希斯崙的處境映照了現代人一個普遍的靈魂難題：當你活在上一代人的失敗與裂口之後，你是繼續突破還是選擇建立秩序？他選擇了後者——不是因為他沒有突破的勇氣，而是因為他看見了：有時候，神呼召一個人的使命，就是在混亂之後成為那道「牆」，讓應許在制度與邊界的保護下得以安全傳遞到下一代。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你是否曾在上一代人的「突破與裂口」之後，被神呼召成為那個建立秩序、守護傳承的人？你如何看待這個「不那麼耀眼」的使命？</div>
+      </div>
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">希斯崙的族譜中接納了外邦血統與社會邊緣者。在你的生命群體中，哪些「不符合傳統」的人，其實正在被神悄悄地納入他的救贖故事？</div>
+      </div>
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">希斯崙幾乎沒有個人敘事，他的存在方式是「靜默地傳遞」。你是否能接受，自己此生的使命或許就是做一個「不被看見卻不可或缺」的名字？</div>
+      </div>
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">文本中可能存在的「倫理遮蔽」，提示家族歷史中有時有些事不被公開談論。你的家族系統中，有哪些「未說出口的故事」正在影響著當下的行為模式？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 法勒斯</span>
+        <div class="gen-title">突破的創傷劇本</div>
+        <div class="gen-body">法勒斯誕生於他瑪以非常規手段「突破」猶大家族封閉性的戲劇事件。他的整個存在就是一道「裂口」——打破了傳統長幼繼承的秩序，也打破了猶大家族的自我封閉。這種「以衝突突破」的家族模式被烙印在猶大支派的底層劇本中。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 希斯崙</span>
+        <div class="gen-title">秩序建立的代償回應</div>
+        <div class="gen-body">面對父代的突破創傷，希斯崙的整個生命軌跡呈現出強烈的「代償性建制」傾向：建立三大氏族、確立族譜邊界、以政治聯姻擴張影響力。但在這種高度的秩序建構背後，文本中隱約可見的倫理灰色地帶，暗示著「突破的基因」並未完全消失。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">神沒有因為希斯崙家族的倫理複雜性而撤回應許；反而，恰恰是在這些充滿灰色地帶的族譜節點上，神讓大衛的王室血脈得以傳遞，並在最終在基督身上打破了整個家族系統的詛咒模式，以完全的恩典重寫了這個家族的終局。</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       VII · VOICE
+  ══════════════════════════════════════════ -->
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">每一個時代都需要重新用自己的語言，去觸碰那些古老名字背後的活生生的靈魂。</p>
+
+    <div class="tags">
+      <span class="tag">#被遺忘的關鍵人物</span>
+      <span class="tag">#族譜裡的神學炸彈</span>
+      <span class="tag">#無名英雄學</span>
+      <span class="tag">#代際創傷與恩典</span>
+      <span class="tag">#不完美的盟約承載者</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>好，我們來認識一個你幾乎從來不會在主日學聽到他名字的人——希斯崙。他夾在「法勒斯生希斯崙」和「希斯崙生亞蘭」這兩句話之間，就像一個在家庭合照裡站在中間、表情最平靜的那個人。</p>
+      <p>但你知道嗎？這個「沒有故事」的人，其實幹了一件超厲害的事：他在以色列歷史最脆弱的時期——就是全家族要從自由進入埃及奴役、前途完全不明朗的時候——悄悄地建立了三大氏族體系，讓猶大支派在那段黑暗中不至於失去結構。然後在六十歲（！）還跑去跟對岸支派的大家族聯姻，政治手腕比很多人強多了。</p>
+      <p>當然，這個人也不是完全沒有黑歷史。他的族譜裡藏著一個學界爭論不休的文本疑案——他死後，他兒子可能做了一件在摩西律法下屬於死罪的事，而後來的文士似乎非常努力地把這件事「修辭性地處理掉了」。所以，如果你以為大衛王室的祖先世代都是完美無瑕的聖人，那你大概沒仔細讀過歷代志上第二章。</p>
+      <p>但這正是聖經最誠實的地方：神選擇用這樣一個充滿複雜性、倫理灰色地帶、跨支派算計、以及靜默承載的普通人，來做彌賽亞血脈的傳遞節點。祂沒有等到找到一個完美的家族，才讓應許繼續往前走。</p>
+      <p style="font-weight:500; color:var(--ink);">神的救贖歷史，從來就不是一條筆直的完美大道，而是一條穿越無數個「希斯崙」——那些靜默的、複雜的、被遺忘的承載者——才終於抵達伯利恆馬槽的彎曲小路。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你正處於一個「沒有人看見你」的季節——你在默默做基礎建設、在家族或群體中扮演那個穩住秩序的人，卻沒有任何耀眼的「個人敘事」可說——希斯崙的故事是寫給你的。</p>
+      <p style="margin-top:12px;">他在族譜中存在了超過一千五百年，才在《馬太福音》的第一章被人重新讀到。那個等待的時間尺度，可能提醒你：神計算意義的方式和我們完全不同。</p>
+      <p style="margin-top:12px;">你的使命不一定要有人看見，才算真實。有時候，神呼召一個人最大的使命，就是成為那道沒有人注意到、卻讓一切得以繼續的屏障。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">不要輕看自己在族譜中的那個位置——沒有你，那條線就會斷掉。</p>
+    </div>
+
+    <div class="insight-box">在現代組織行為學中，「希斯崙型」的人格往往是那些讓機構穩定運作、卻在聚光燈之外工作的中層建構者。心理學家稱之為「過渡性客體」的人格類型——他們不是開創者，也不是終結者，但正是他們，讓創傷世代與希望世代之間的橋樑得以存在。在一個崇尚「個人品牌」與「耀眼敘事」的時代，希斯崙提醒我們：基礎建設者的榮耀，往往在歷史的長時段中才能被看見。</div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       VIII · LEGACY
+  ══════════════════════════════════════════ -->
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">一個人的遺產，不只是他留下了什麼，更是他在歷史的縫隙中守護了什麼，使它得以穿越黑暗繼續存在。</p>
+
+    <div class="legacy-list">
+
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">彌賽亞族譜的不可或缺節點</div>
+          <div class="legacy-body">希斯崙的名字在新約《馬太福音》一章三節與《路加福音》三章三十三節的彌賽亞族譜中被雙重記錄，確立了他在亞伯拉罕之約與基督降生之間不可缺少的歷史位置。沒有希斯崙，那條從猶大到大衛再到耶穌的血脈鏈條，在歷史年代學上便無法完整成立。他的遺產，是在最沉默的方式中承載了歷史最重大的使命。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">猶大支派三大氏族體系的奠基者</div>
+          <div class="legacy-body">希斯崙的三個兒子——蘭、耶拉篾、迦勒——各自建立了在猶大歷史中分工明確的氏族體系：王室法統的蘭支系、南方邊疆的耶拉篾屏障、與在地族群融合的迦勒/比撒列工藝傳統。這三大支系在被擄歸回後的重建時期，構成了猶大支派的社會、政治與地理骨架，其影響延伸至第二聖殿時代。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">古代以色列族群包容性的早期典範</div>
+          <div class="legacy-body">希斯崙族譜中對外邦血統（埃及僕人後代、基尼人、基尼洗人）的完整接納，在聖經歷史上為「外邦人進入盟約群體」提供了最早的系統性族譜先例。這一傳統在後來的喇合、路得、烏利亞的妻子等人物中得到延續，並最終在基督的救贖中達到神學的完全高度。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">聖經文本批判學的重要研究案例</div>
+          <div class="legacy-body">《歷代志上》二章二十四節圍繞希斯崙死亡事件的馬索拉文本與七十士譯本之間的重大差異，成為聖經文本批判學與詮釋學中最富研究價值的案例之一。這一爭議揭示了後期猶太文士如何在道德護衛與歷史真實之間進行修辭性的文本處理，對於理解舊約文本的形成過程與神學意圖，具有深刻的學術意義。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">V</div>
+        <div>
+          <div class="legacy-title">「無名過渡者」的神學典型</div>
+          <div class="legacy-body">希斯崙在聖經正典中幾乎沒有任何個人敘事，卻是救贖歷史中不可缺少的「過渡性承載者」。他的存在方式建立了一種神學原型：神的計畫需要那些不求被看見、只求忠實傳遞的人。在一個以「個人敘事」與「即時影響力」為標準衡量意義的時代，希斯崙的生命模式提供了另一種截然不同的神聖使命觀。</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「從亞伯拉罕到大衛，共有十四代；從大衛到遷移巴比倫，共有十四代；從遷移巴比倫到基督，共有十四代。」</div>
+      <div class="final-verse-ref">馬太福音 1:17</div>
+    </div>
+
+    <div class="final-question">
+      在那四十二代的名字鏈條中，你願意做哪一個節點？<br>那個靜默傳遞、不被記念、卻讓應許得以抵達的人？
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 希斯崙 <span>חֶצְרוֹן · Hezron</span> · 彌賽亞族譜樞紐 · 盟約歷史的屏障
+</div>
+
+</body>
+</html>
