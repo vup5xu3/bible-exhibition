@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>亞米拿達 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── NOTICE BOX ── */
+  .notice-box { background: var(--parchment-dark); border: 1px solid var(--border); border-radius: 8px; padding: 14px 18px; margin-bottom: 28px; font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .notice-box strong { color: var(--ink-mid); font-weight: 500; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════ -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">亞米拿達</h1>
+  <span class="hero-name-en">Amminadab · עַמִּינָדָב</span>
+  <p class="hero-slogan">「聖經點名他十三次，卻沒給他一句台詞；歷史將他的一生壓縮成一個『生』字——而通往基督的整條鎖鏈，正懸在這個字上。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">約主前 16–15 世紀</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ISFJ · 傳承者原型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">太 1:4 · 民 1:7 · 出 6:23</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">彌賽亞家譜樞紐 · 沉默鉚釘</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     NAV
+════════════════════════════════════════════ -->
+<nav class="nav">
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <!-- ══════════════════════════════════════════
+       I · PORTRAIT
+  ══════════════════════════════════════════ -->
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">每位聖經人物都是特定歷史時刻的產物，也是神救贖計劃的棋子。</p>
+
+    <div class="notice-box">
+      📌 <strong>辨析說明：</strong>本報告研究對象為「亞蘭生亞米拿達」（太 1:4）之猶大支派亞米拿達，請勿與大衛年間抬約櫃的利未人亞米拿達（代上 15:10–11）及哥轄譜系中的同名者（代上 6:22）混淆。
+    </div>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">約主前 16–15 世紀<br>以色列寄居埃及四百三十年後段</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">多重身份</span>
+        <div class="info-cell-value">猶大支派法勒斯宗族族長<br>拿順與以利沙巴之父 · 亞倫之岳父<br>大衛王六世祖 · 彌賽亞家譜環節</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">埃及歌珊地<br>（尼羅河三角洲東部以色列牧區）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">所屬支派 / 背景</span>
+        <div class="info-cell-value">猶大支派、法勒斯一脈<br>承載「圭必不離猶大」之應許宗族</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">路 4:19–20 · 代上 2:10<br>出 6:23 · 民 1:7、2:3、7:12、10:14<br>太 1:4 · 路 3:33</div>
+      </div>
+    </div>
+
+    <p>亞米拿達生在一個「約瑟已被遺忘」的埃及（出 1:8）。新王朝的法老視希伯來人為國安威脅，以磚窯配額、苦工監督與男嬰滅絕令系統性地碾壓這個寄居民族（出 1:11–14, 22）。他的曾祖父希斯崙是隨雅各下埃及的七十人之一（創 46:12）——換言之，亞米拿達是「在埃及出生、在埃及長大、可能也在埃及死去」的世代：沒見過迦南的山，沒摸過亞伯拉罕的井，他所擁有的「應許之地」，只是一份口傳的族譜與一個古老的誓言。值得注意的是，從法勒斯到拿順僅四、五代卻橫跨四百餘年，顯示聖經族譜採「選擇性縮編」（telescoping）的記載慣例；但敘事神學上，這恰恰呼應了神對亞伯拉罕的話：「到了第四代，他們必回到此地」（創 15:16）——而亞米拿達的兒子，正是踏出埃及的那一代。</p>
+    <p>神為何在這個時間點揀選他？嚴格說，聖經從未記載神向亞米拿達顯現、說話或差遣。他的揀選是另一種形態：血脈式的揀選。在啟示靜默、神蹟缺席、先知未興的四百年裡，神的救贖計劃不靠英雄推進，而靠一代又一代「把約傳下去」的無名守望者托住。亞米拿達與摩西的父親暗蘭約屬同代——當暗蘭家藏匿一個嬰孩，亞米拿達家正在養育一位未來的支派統帥與一位未來的大祭司夫人。神在黑暗中同時佈局了出埃及的「先知線」與「猶大線」，而後者，安靜地穿過亞米拿達的帳棚。</p>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       II · TIMELINE
+  ══════════════════════════════════════════ -->
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">生命不是直線，而是一系列破碎與重建。以下軌跡依據經文座標、歷史處境與家族結果所作的紀律性重構，凡屬推論處均以脈絡標明。</p>
+
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">為奴之家的第四代——無名的出生</div>
+        <div class="timeline-body">他睜眼所見的世界是磚窯、監工與配額（出 1:14）。對這個世代而言，「神」不是經歷，而是傳聞；「應許」不是地契，而是床邊故事。神在此雕刻他的第一刀，是讓他學會在毫無證據的處境裡，決定要不要繼續相信祖先的口傳。信心的第一課，往往不是看見，而是「在看不見中不放手」（參來 11:1）。</div>
+        <div class="timeline-ref">出埃及記 1:8–14 · 創世記 15:13</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折（內在性）</span>
+        <div class="timeline-title">承接記憶——名單成為身份</div>
+        <div class="timeline-body">在沒有聖經、沒有聖殿的年代，族譜就是聖經，背誦就是禮拜。父親蘭把名單交給他的那一刻，等於交付一個反帝國的宣言：「埃及說你是編號，耶和華說你是猶大的後裔，而圭必不離猶大」（創 49:10）。神用一份名單，在奴隸的骨頭裡灌注王族的記憶。</div>
+        <div class="timeline-ref">創世記 49:8–10 · 創世記 46:12 · 路得記 4:18–19</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">命名的反抗——把信仰刻進兒女的名字</div>
+        <div class="timeline-body">女兒名叫以利沙巴（Elisheba）——「我的神是誓約」。在男嬰被丟進尼羅河的年代，一個奴隸父親給女兒取名「神起了誓」，這不是取名，這是抗命；不是浪漫，是神學。他無力改變法老的政策，卻在自己唯一的主權範圍——孩子的名字——裡，釘下對盟約的死忠。神藉此塑造他成為「用日常細節抵抗絕望」的人。</div>
+        <div class="timeline-ref">出埃及記 6:23 · 民數記 1:7</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">血脈的外交——將女兒嫁入利未家</div>
+        <div class="timeline-body">這是他一生中唯一可考的「決策」，卻是震動救贖史的一步：王族支派的女兒，進入未來祭司支派的家。從此，以色列歷任大祭司的血管裡都流著猶大的血。猶太傳統（《巴比倫他勒目・Bava Batra 110a》）甚至從「拿順的妹妹」這個註記，引申出「娶妻當察其兄弟」的格言。神在亞米拿達手上，預先排演了「君王與祭司合於一身」的千年伏筆。</div>
+        <div class="timeline-ref">出埃及記 6:23 · 撒迦利亞書 6:13</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">巔峰期（以子為冠冕）</span>
+        <div class="timeline-title">巔峰於無形——教養出埃及的統帥</div>
+        <div class="timeline-body">他人生的「代表作」不是一場戰役，而是一個兒子。拿順在出埃及後成為猶大軍隊的首領（民 2:3）、會幕落成獻供物的第一人（民 7:12）、雲彩起行時走在全以色列最前頭的旗手（民 10:14）。猶太傳統（《他勒目・Sotah 37a》）更傳頌拿順是紅海未分之際第一個踏進水裡的人。父親一生不曾邁出埃及一步，卻養出了那雙最先踏進紅海的腳。</div>
+        <div class="timeline-ref">民數記 1:7 · 2:3 · 7:12 · 10:14</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-dark">終章</span>
+        <div class="timeline-title">倒在應許的門檻之外——死於埃及（推論）</div>
+        <div class="timeline-body">按年齡推算（女婿亞倫出埃及時已八十三歲，出 7:7），亞米拿達極可能在號角吹響之前，就葬在歌珊的土裡——一生為奴，至死未見一個神蹟、一片紅海、一塊應許之地。然而希伯來書為這類人寫好了墓誌銘：「這些人都是存著信心死的，並沒有得著所應許的，卻從遠處望見」（來 11:13）。他的死不是故事的中斷，而是接力棒的交出。</div>
+        <div class="timeline-ref">希伯來書 11:13, 39–40</div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       III · CHARACTER
+  ══════════════════════════════════════════ -->
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">從最深的核心信念到外在表現，層層解構一個複雜的人。以下為基於極簡文本、命名線索與家族結果的神學性人格重構，屬詮釋而非經文直述。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🌟</div>
+        <div>
+          <span class="soul-label">核心驅動力</span>
+          <div class="soul-title">「神的記念，比埃及的遺忘更真實」</div>
+          <div class="soul-body">他活在一個被帝國除名、被歷史略過的位置，支撐他的不是經歷而是盟約——「神聽見……記念祂與亞伯拉罕、以撒、雅各所立的約」（出 2:24）。他賭上一生相信：被人遺忘不等於被神遺忘。</div>
+        </div>
+      </div>
+      <div class="soul-row">
+        <div class="soul-icon">💛</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">隱藏的忠心與長線的傳承力</div>
+          <div class="soul-body">他做的每一件可考之事都指向「下一代」：傳族譜、取名字、結姻親、養領袖。這是一種反速食的屬靈資產——願意做自己看不見收成的工，在體制夾縫中經營身份的「基礎建設」。</div>
+        </div>
+      </div>
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">沉默的雙面性——堅忍可能滑向消極</div>
+          <div class="soul-body">以西結書回顧那個世代：「他們各人沒有拋棄……埃及的偶像」（結 20:7–8）。沉默者最大的試探，是把「不出聲」當成「沒有罪」。低調掩護妥協，忍耐成為恐懼穿上的敬虔外衣。</div>
+        </div>
+      </div>
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">名字成為跨千年的彌賽亞預言</div>
+          <div class="soul-body">「亞米拿達」意為「我的民甘心樂意」——這句話日後竟成為彌賽亞詩篇的核心宣告（詩 110:3）。雅歌 6:12 赫然出現 ʿammî-nāḏîḇ 一語，一個奴隸的名字，迴盪成君尊祭司之歌的歌詞——彷彿神在他出生時，就把結局寫進了開頭。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">亞米拿達揭示一種被現代人嚴重低估的靈性人格：「中間世代」的靈魂。他不是領受應許的亞伯拉罕，也不是實現應許的拿順，而是夾在中間、兩頭都搆不著的傳遞者。他的掙扎不是戲劇性的墮落，而是日復一日的「意義匱乏」——最深的信心，有時不是為神做大事，而是甘心在神的長句子裡，當一個不被朗讀出聲的字。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ISFJ</span>
+      <div class="mbti-name">守護者型 · 傳承者原型</div>
+      <div class="mbti-slogan">「沉默不是沒有立場，而是把立場活成血脈——但小心，守護記憶的人，也可能被記憶困住。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Si · 內向感覺</span>
+          <div class="mbti-fn-body">盟約記憶的活體硬碟。他的信仰核心建立在「過去的真實」上——祖先的名單、神的誓言、家族的敘事。這使他在毫無現時神蹟的年代仍能持守，因為他的確據不在眼前，而在傳承。</div>
+        </div>
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Fe · 外向情感</span>
+          <div class="mbti-fn-body">以關係網絡實踐使命。他最重要的人生棋步是一場婚姻外交（女兒嫁亞倫），顯示他直覺地懂得：信仰的存續不靠個人英雄，靠群體聯結。Fe 使他成為支派內凝聚認同的隱形樞紐。</div>
+        </div>
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ti · 內向思考</span>
+          <div class="mbti-fn-body">健康時，表現為安靜的分辨力——在埃及文化洪流中判斷哪些傳統是命脈；不健康時，淪為自我合理化的內在律師，替消極與妥協找出一套說得通的理由。</div>
+        </div>
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Ne · 外向直覺</span>
+          <div class="mbti-fn-body">崩潰點。在極端壓力下，Si–Ne 軸失衡會引爆災難化想像：「應許是不是一場四百年的集體幻覺？」而恩典的反轉在於：同一個 Ne，在被信心收服時，成了「從遠處望見應許」（來 11:13）的器官。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       IV · RELATIONS
+  ══════════════════════════════════════════ -->
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">沒有人是孤島；他生命的形塑，正是在一段段關係的摩擦與連結中完成。</p>
+
+    <div class="relation-list">
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">神</div>
+          <div class="relation-name">耶和華</div>
+          <div class="relation-type-badge">神聖盟約</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">神給他的不是經歷，而是位置——把他鑲嵌進彌賽亞的鎖鏈。無顯現、無對話的「單向忠誠」：神在這四百年看似缺席，實則「聽見、記念、看顧、知道」（出 2:24–25）。這段關係定義了一種信仰原型：在神不說話的季節，繼續把神說過的話傳下去。</div>
+          <div class="relation-ref">出埃及記 2:23–25 · 創世記 15:13–16</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">蘭</div>
+          <div class="relation-name">亞蘭（父親）</div>
+          <div class="relation-type-badge">屬靈導師</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">亞蘭給他的遺產不是財物（奴隸無產可傳），而是一個「他是誰」的答案——族譜與盟約敘事的代際交接。這份口傳身份成為亞米拿達一生所有選擇的底層作業系統，讓他在帝國的格式化壓力下仍知道自己的名字。</div>
+          <div class="relation-ref">路得記 4:19 · 歷代志上 2:10</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">順</div>
+          <div class="relation-name">拿順（兒子）</div>
+          <div class="relation-type-badge">使命延續者</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">拿順是亞米拿達信仰工程的「成品驗收」：當會幕落成，十二支派首領獻供，第一天第一位，是「亞米拿達的兒子拿順」（民 7:12）。父親一生的隱藏，在兒子身上公開結算。歷史記住兒子的腳步，神記住父親的手。</div>
+          <div class="relation-ref">民數記 1:7 · 2:3 · 7:12 · 10:14</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">沙</div>
+          <div class="relation-name">以利沙巴（女兒）</div>
+          <div class="relation-type-badge">血脈橋樑</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">透過她，猶大的血進入祭司世系——亞倫四子拿答、亞比戶、以利亞撒、以他瑪，全是亞米拿達的外孫（出 6:23）。她的名字「我的神是誓約」是父親沉默神學的最佳註腳：名字本身就是講道。</div>
+          <div class="relation-ref">出埃及記 6:23</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">倫</div>
+          <div class="relation-name">亞倫（女婿）</div>
+          <div class="relation-type-badge">聯盟姻親</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">這門親事讓亞米拿達同時連上出埃及的兩大軸線——摩西亞倫的「拯救線」與猶大的「君王線」。但亞倫日後鑄金牛犢（出 32），也讓這個家族見證：最靠近聖所的人，未必最遠離偶像。</div>
+          <div class="relation-ref">出埃及記 6:23 · 出埃及記 32:1–6</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">埃</div>
+          <div class="relation-name">法老 / 埃及帝國</div>
+          <div class="relation-type-badge">宿命對立</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">帝國想把他格式化為勞動編號，反而逼出他最深的身份自覺。他從未與法老交手，卻一生活在法老的陰影經濟裡。壓迫沒能拆毀這個家，卻意外成了鍛造下一代領袖的鐵砧。</div>
+          <div class="relation-ref">出埃及記 1:8–14, 22</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       V · THEOLOGY
+  ══════════════════════════════════════════ -->
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">每一位聖經人物都是指向基督的箭頭。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「亞蘭生亞米拿達；亞米拿達生拿順。」</div>
+      <div class="verse-ref">馬太福音 1:4</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">עַמִּינָדָב</span>
+        <div class="word-transliteration">ʿAmmî-nāḏāḇ · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">ʿammî「我的民／我的親族」＋ nāḏāḇ「尊貴的、甘心樂意的」＝「我的民是甘心樂意的」或「我的親族尊貴」</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">字根 נדב（n-d-b）正是「甘心祭」（nedavah）的字根——會幕的建造材料全出於「甘心樂意」的奉獻（出 25:2）；底波拉之歌頌讚「民甘心犧牲自己」（士 5:2, 9）；彌賽亞詩篇宣告「你的民要甘心犧牲自己」（詩 110:3）。一個奴隸的名字，是一則尚未拆封的彌賽亞預言。</div>
+      </div>
+      <div class="word-card">
+        <span class="word-original">ἐγέννησεν</span>
+        <div class="word-transliteration">egennēsen · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">生育、成為……之父。這個動詞在馬太福音第一章重複了三十九次，是亞米拿達在新約中唯一「做過」的事。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">正是這個最平凡的動詞，構成救贖史的承重結構。神的兒子「按肉體說，是從大衛後裔生的」（羅 1:3），而每一個「生」字，都是一節不可缺席的脊椎骨。亞米拿達的神學身份就是：他是一個動詞，而那動詞通向道成肉身。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">靜默中的主權</div>
+      <div class="theology-insight-body">創世記 15 的盟約預告了四百年的苦待與「第四代」的歸回——亞米拿達世代的沉默歲月不是計劃的中斷，而是計劃本身。神的救贖史包含「不發生任何事」的章節，而祂在那些章節裡照樣掌權。四百年的無聲，是另一種形式的話語。</div>
+    </div>
+    <div class="theology-insight">
+      <div class="theology-insight-title">舊約內部的推進與張力</div>
+      <div class="theology-insight-body">透過以利沙巴的婚姻，圭（猶大）與壇（利未）首次血脈相連，卻又被律法刻意分隔——君王不可獻祭（撒上 13；代下 26）。這個「已連結、未合一」的張力，懸宕了一千五百年，呼喊著一位能同時合法持圭與執壇的人。</div>
+    </div>
+    <div class="theology-insight">
+      <div class="theology-insight-title">新約的終極應驗</div>
+      <div class="theology-insight-body">希伯來書宣告「我們的主分明是從猶大出來的」，並照麥基洗德的等次成為永遠的祭司（來 7:11–17）。撒迦利亞早已預言「他要坐在位上掌王權，又必在位上作祭司」（亞 6:13）。耐人尋味的是：馬利亞的親戚以利沙伯正是「亞倫的後人」（路 1:5, 36）——連名字都是以利沙巴的希臘文迴響。歷史在基督降生的門口，溫柔地重演了亞米拿達的伏筆。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">在埃及被隱藏、無聲度日的盟約世代</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">神的救恩慣於在「無人觀看處」醞釀；隱藏不是降格，而是道成肉身的方法論</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">聖子避難埃及（「我從埃及召出我的兒子來」太 2:15）與拿撒勒三十年的隱藏歲月（路 2:51–52）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">猶大之女嫁入祭司家，王族血入聖所</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">亞米拿達以一場婚姻「拼接」了兩個職分；基督則在自己的位格裡「合一」了兩個職分——影子靠聯姻，實體靠道成肉身</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督——猶大的獅子兼永遠的大祭司（來 7:14–17），在一個位格中成全王職與祭司職</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">名字宣告「我的民甘心樂意」（nedavah）</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">律法能強制獻祭，唯有恩典能產生甘心祭；亞米拿達的名字是題目，各各他是解答</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">「神啊，我來了，為要照你的旨意行」（來 10:7）——基督甘心的自我獻上，並召出一群「甘心」的子民（詩 110:3；林後 9:7）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">族譜中無台詞的一環，僅以「生」存在</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">家譜不是名單，是約的建築圖；每個無名環節都被那位「末後的環節」追認、成全並賦予永恆意義</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">「亞伯拉罕的後裔、大衛的子孫、耶穌基督的家譜」（太 1:1）；那應許的「子孫」就是基督（加 3:16）</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       VI · MIRROR
+  ══════════════════════════════════════════ -->
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">聖經不是博物館的展品，而是活的對話。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">「無名的忠心」——在一個用流量、頭銜與即時成果定義價值的時代，如何安於做看不見收成的傳遞者？亞米拿達直擊現代人三大焦慮：被看見的渴望（我若不發聲，是否等於不存在？）、即時回報的成癮（看不到結果的堅持還有意義嗎？）、以及世代斷裂的恐慌（我究竟在傳什麼給下一代？）。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">如果你的一生最終只會被濃縮成一句話，你希望那句話的<strong>動詞</strong>是什麼？——而你今天的行事曆，正在書寫那個動詞，還是在書寫別的？</div>
+      </div>
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">當你的忠心沒有觀眾、沒有按讚、沒有年終獎金，你內心靠什麼撐住「繼續」？是「被人看見」的渴望，還是「被神記念」的確信？</div>
+      </div>
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">誠實盤點你正向下一代傳遞的東西：哪些是你<strong>刻意傳承的信念</strong>，哪些是你<strong>不自覺滲漏的恐懼與生存劇本</strong>？亞米拿達傳了族譜，也可能傳了埃及的偶像——你呢？</div>
+      </div>
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">你的付出與奉獻，是出於「甘心」（nedavah），還是出於表演、恐懼、或一場隱形的交換？若撤走所有觀眾與回報，你還會獻上嗎？剩下的那部分，才是你真實的敬拜。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 亞米拿達世代</span>
+        <div class="gen-title">沉默生存主義</div>
+        <div class="gen-body">長期奴役催生「低頭、不惹事」的應激劇本。以西結書揭露這個世代的隱性病灶：他們始終「沒有拋棄埃及的偶像」（結 20:7–8）。其防衛機制是靈性的雙軌制：口傳耶和華的約，手不離埃及的神——用妥協換生存，再用「忍耐」為妥協命名。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 亞倫與外孫們</span>
+        <div class="gen-title">精確複製</div>
+        <div class="gen-body">出埃及後僅三個月，亞倫鑄金牛犢（出 32:1–6）——埃及式偶像工藝配上耶和華的名義，完美復刻上一代雙軌信仰。外孫拿答、亞比戶把名字中「甘心」的字根扭曲為「隨己意」，獻上凡火，當場被吞滅（利 10:1–2）：同一個字根，兩種命運。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">神以三重介入打斷複製：用西奈之約重新定義「甘心」為順服中的自由；用拿答、亞比戶之死截斷劇本；又藉非尼哈的忌邪熱心（民 25:10–13）與喇合、路得的加入（得 4:20–22；太 1:5），將這個家族的熱情從凡火重塑為聖火。</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       VII · VOICE
+  ══════════════════════════════════════════ -->
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">讓數千年前的故事，說出你此刻最需要聽見的話。</p>
+
+    <div class="tags">
+      <span class="tag">#族譜裡的無名氏</span>
+      <span class="tag">#一行字的人生</span>
+      <span class="tag">#隱形的忠心</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>想像一下亞米拿達的 LinkedIn：履歷欄只有一行——「拿順的爸爸」。沒有代表作、沒有得獎紀錄、沒有 TED 演講，連一句被引用的金句都沒有。聖經提到他十三次，全是「某某的兒子」「某某的爸爸」「某某的岳父」——他是整本聖經最徹底的「工具人」設定。</p>
+      <p>他的職場更慘：終身受僱於一間叫「埃及」的血汗帝國，KPI 是磚塊配額，沒有勞基法，沒有離職選項，老闆還會定期裁掉你的男性新生兒。換作是我們，大概早就躺平、發限動罵公司、然後偷偷拜一下埃及的財神求轉運——欸，等等，聖經還真的暗示他們那代人就是這樣，一邊念著耶和華，一邊沒丟掉埃及的偶像（結 20:7–8）。所以別急著把他想成完美聖人：這家人的「黑歷史」夠精彩——女婿是鑄金牛犢的主嫌，兩個外孫因為在敬拜裡「玩自己的創意」被火當場帶走。</p>
+      <p>但這正是重點：聖經不是完美英雄傳，而是原石被雕刻的過程。亞米拿達能做的事少得可憐，他就把那一點點做到底：把家族的故事講給孩子聽、給女兒取一個叫「神起過誓」的名字、安排一門連結未來的婚事。</p>
+      <p>結果呢？他這個一生沒踏出埃及半步的男人，養出了傳說中第一個跳進紅海的兒子；他這行不起眼的「亞米拿達生拿順」，一路接到了「雅各生約瑟，就是馬利亞的丈夫；那稱為基督的耶穌，是從馬利亞生的」（太 1:16）。他不是主角。他是讓主角得以登場的那一行字。</p>
+      <p style="font-weight:500; color:var(--ink);">在天國的敘事學中，從來沒有跑龍套的角色，只有不肯就位的環節。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>寫給此刻覺得自己「只是個無名小卒」的你：你可能正卡在一個看不到盡頭的階段——薪水普通的職位、沒人鼓掌的照顧者角色、一份做了很久卻看不見果效的堅持。你滑著別人的高光時刻，懷疑自己的人生是不是被跳過了。</p>
+      <p style="margin-top:12px;">請記得亞米拿達：神的故事裡有大量「不發生大事」的章節，而那些章節同樣是聖靈默示的正典。那位在四百年沉默中仍「聽見、記念、看顧、知道」（出 2:24–25）的神，沒有漏掉任何一個名字。</p>
+      <p style="margin-top:12px;">神在不完美中繼續同行——祂選用有陰影的家族、寫進有黑歷史的家譜，卻在每一個「生」字之後，繼續書寫下去。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，請繼續做那些小而忠心的事：好好說一個故事給孩子聽、好好為一個人取名般地祝福他、好好赴一個無人知曉的約。你看不見的收成，自有人替你踏進紅海。</p>
+    </div>
+
+    <div class="insight-box">亞米拿達示範了「接班人型領導」——真正的領袖建造的不是個人品牌，而是讓下一棒比自己跑得更遠的交棒系統。對活在強勢文化夾縫中的群體（移民、海外遊子、職場信仰少數），他提供第三條路：以記憶、命名與群體聯結，做「在巴比倫卻不屬巴比倫」的人（參提後 1:5 羅以與友尼基的信仰傳承）。</div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       VIII · LEGACY
+  ══════════════════════════════════════════ -->
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">一個人死後，他留下的比他的生命更長。</p>
+
+    <div class="legacy-list">
+
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">彌賽亞鎖鏈的不斷之環</div>
+          <div class="legacy-body">從路得記、歷代志到馬太、路加兩份家譜，舊新兩約跨越千年五度鄭重點名他。整條從亞伯拉罕到基督的血脈，任何一環脫落都不成立——而他穩穩扣在那裡。他證明了：在神的救贖工程中，沒有小角色，只有不可或缺的環節。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">圭與壇的聯姻者</div>
+          <div class="legacy-body">透過以利沙巴，他讓以色列全部祭司世系流著猶大王族的血，為「君王—祭司合一」的彌賽亞神學（詩 110；亞 6:13；來 7）預埋了第一塊基石。一場奴隸營裡的婚禮，迴響在各各他與天上聖所，完成了歷代以色列律法所無法實現的合一。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">出埃及統帥的鑄造者</div>
+          <div class="legacy-body">拿順——猶大營的旗手、會幕奉獻的第一人、行軍序列的開路先鋒——是他無聲教養的有聲成果。歷史記住兒子的腳步，神記住父親的手。他的教養工程，在拿順踏進紅海的那一刻，完成了它最壯麗的驗收。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">把「甘心」寫進敬拜辭典的家族</div>
+          <div class="legacy-body">他的名字承載的字根 נדב（甘心樂意），貫穿會幕奉獻、底波拉之歌、大衛詩篇，最終由基督「照你的旨意行」（來 10:7）一語完滿——一個人的名字，成了一個民族敬拜神學的關鍵詞。從歌珊地的帳棚到天上的聖所，這個字根走完了它的完整旅程。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">V</div>
+        <div>
+          <div class="legacy-title">「無名忠心者」的永恆原型</div>
+          <div class="legacy-body">他代表救贖史上所有沒有台詞的世代——四百年埃及的、四百年兩約之間的、以及今日每一個默默持守的人。希伯來書為他們集體加冕：「他們若沒有我們，就不能完全」（來 11:40）。他的沉默，被神的永恆記念所收藏。</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「亞蘭生亞米拿達；亞米拿達生拿順。」<br>——新約對他一生的全部評語，僅此一句；而這一句，已是至高的冠冕：<br>他被寫進了神兒子的家譜。</div>
+      <div class="final-verse-ref">馬太福音 1:4</div>
+    </div>
+
+    <div class="final-question">當歲月最終把你的一生壓縮成族譜裡的一行字——那一行字，會不會剛好接在神的故事裡？<br>今天，你願不願意，做那個甘心就位的「生」字？</div>
+  </div>
+
+</div>
+
+<!-- ════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════ -->
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 亞米拿達 <span>עַמִּינָדָב</span> · 彌賽亞家譜樞紐 · 沉默鉚釘
+</div>
+
+</body>
+</html>
