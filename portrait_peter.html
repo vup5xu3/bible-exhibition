@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>彼得 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">彼得</h1>
+  <span class="hero-name-en">Peter · Πέτρος · כֵּיפָא</span>
+  <p class="hero-slogan">「他是第一個喊出「你是基督」的人，<br>也是第一個喊出「我不認得這個人」的人——同一張嘴，同一年裡。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">主後約 1–64 年</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ESFP · 表演者型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">四福音 · 徒 1–12<br>彼前後書</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">使徒之首 · 教會磐石</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">神揀選人，很少揀選那個最穩的；祂常揀選那個最會跌倒、卻也最會爬起來的。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">第一世紀<br>羅馬治下的猶太行省</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">多重身份</span>
+        <div class="info-cell-value">加利利漁夫 · 十二使徒之首<br>耶路撒冷教會柱石 · 書信作者</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">伯賽大 → 迦百農 → 耶路撒冷<br>→ 安提阿 → 羅馬</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">背景</span>
+        <div class="info-cell-value">加利利猶太人 · 約拿之子<br>安得烈之兄 · 已婚（有岳母）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">太、可、路、約四福音全書<br>徒 1–12 · 加 2 · 彼前後書</div>
+      </div>
+    </div>
+
+    <p>西門出身伯賽大，一個位於加利利海北岸的漁村，名字的意思是「打魚人的家」。他後來遷居迦百農，與弟弟安得烈、以及西庇太的兩個兒子雅各與約翰合夥經營漁業——考古在迦百農發現的第一世紀民居與漁具，讓我們知道這不是浪漫的湖畔生活，而是重稅、夜工與市場議價的辛苦行業。加利利在當時被耶路撒冷的宗教菁英半帶輕蔑地稱為「外邦人的加利利」，口音濃重、律法造詣有限；後來在大祭司的院子裡，正是這口鄉音出賣了他（太 26:73）。他是個沒有拉比學歷的人——公會後來直接稱他與約翰為「沒有學問的小民」（徒 4:13）。</p>
+    <p>而神偏偏在這裡下手。第二聖殿晚期的猶太社會，正陷在對彌賽亞的高度焦慮中：奮銳黨要用刀劍逼出神的國，法利賽人要用律法的潔淨逼出神的國，愛色尼人乾脆退到曠野等神的國。耶穌卻走到湖邊，向一個滿手魚腥味的粗人說「來跟從我」。這揀選本身就是宣告：新的以色列不建立在血統、學歷或宗教資本上，而建立在被恩典抓住的人身上。神給西門一個新名字——磯法／彼得，「石頭」——那不是對他當下性格的描述（他當時像流沙），而是對他將來的預言。神命名，向來不是在肯定現況，而是在宣告終局。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">他的一生像海浪：衝得最前面的是他，退得最狼狽的也是他，最後被鑄成磐石的還是他。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">湖邊蒙召——撇下最大的一網魚</div>
+        <div class="timeline-body">耶穌借他的船講道，講完叫他把船開到水深之處下網。整夜勞力無所得的漁夫，順從了這個外行的指令，結果網滿到裂開。彼得的反應極具啟示性：他不是歡呼豐收，而是俯伏說「主啊，離開我，我是個罪人」——他在那一網魚裡認出的不是好運，是聖潔。神給他一生最大的一筆漁獲，然後叫他撇下它；蒙召的代價，往往不是撇下失敗，而是撇下剛剛到手的成功。</div>
+        <div class="timeline-ref">路 5:1–11 · 太 4:18–20 · 可 1:16–18</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">該撒利亞腓立比的認信——與緊接著的斥責</div>
+        <div class="timeline-body">在異教神龕林立的潘神洞穴前，耶穌問「你們說我是誰」，彼得脫口而出：「你是基督，是永生神的兒子。」耶穌宣告這是天父的啟示，並把「磐石」與天國的鑰匙給了他。然而僅僅數節之後，當耶穌預言受死，同一個彼得拉著祂勸阻，換來史上最重的一句斥責：「撒但，退我後邊去吧。」高峰與深谷之間，只隔了幾句話——他能認出基督的身分，卻無法接受基督的道路。</div>
+        <div class="timeline-ref">太 16:13–23 · 可 8:27–33</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">黑暗低谷</span>
+        <div class="timeline-title">雞叫以前——三次不認主</div>
+        <div class="timeline-body">幾小時前他還誓言「我就是必須和你同死，也總不能不認你」，還在客西馬尼揮刀削掉馬勒古的耳朵。但真正的考驗不是刀劍，是大祭司院子裡一個使女的隨口一問。他三次否認，第三次還起誓賭咒。雞叫了，主轉過身來看他——路加特別記下這個眼神。彼得出去痛哭。這不是懦弱者的失敗，這是自信者的崩塌：他跌倒的地方，正是他最誇口的地方。</div>
+        <div class="timeline-ref">路 22:54–62 · 太 26:69–75 · 約 18:15–27</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">提比哩亞海邊的炭火——三問三答的復原</div>
+        <div class="timeline-body">復活的主在岸邊生了一堆「炭火」——約翰用了與大祭司院中那堆火完全相同的字（ἀνθρακιά），全新約僅此兩處。主把他帶回犯罪現場，三次問「你愛我嗎」，對應他三次的否認。祂沒有要他解釋、道歉或立誓，只要他承認愛。然後三次託付：「餵養我的羊。」恢復不是抹去記憶，是讓記憶改變用途——他從此知道，牧養羊群的資格不是完美，是被赦免。</div>
+        <div class="timeline-ref">約 21:9–19 · 路 22:31–32</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">五旬節講道——三千人歸主</div>
+        <div class="timeline-body">五十天前在使女面前失聲的人，如今站在來自天下各國的群眾前放膽宣講，引用約珥書與詩篇，直指「你們釘在十字架上的這位耶穌，神已經立他為主為基督」。當日約三千人受洗。差別不在性格改造，而在聖靈澆灌——他的衝動沒有被拿走，只是重新對準了方向。同一份不假思索的膽量，過去讓他削人耳朵，現在讓他撬開列國的心。</div>
+        <div class="timeline-ref">徒 2:14–41 · 徒 4:8–13</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">哥尼流家的異象——與安提阿的退縮</div>
+        <div class="timeline-body">神用一塊布降下的異象三次逼問他，才使這位守潔淨條例一生的猶太人踏進外邦人的家，說出「神是不偏待人的」。這是教會史的分水嶺。然而在安提阿，當雅各那裡來的人到了，他又因怕受割禮的人而退去、與外邦信徒隔開，被保羅當眾指責「行的不正」。他的軟弱從來不是不信，是怕人——同一種怕，在使女面前叫他否認主，在弟兄面前叫他離席。</div>
+        <div class="timeline-ref">徒 10:9–48 · 徒 11:1–18 · 加 2:11–14</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">牧者的書信與倒釘的十架</div>
+        <div class="timeline-body">晚年他從「巴比倫」（羅馬）寫信給散居各地受逼迫的信徒，勸勉長老「務要牧養在你們中間神的群羊」——那正是主在海邊託付他的話，他一字不改地傳了下去。他也預告自己將要「脫離這帳棚」，呼應主說過「你老的時候……別人要把你束上，帶你到不願意去的地方」。教會傳統記載他在尼祿逼迫中殉道，自認不配與主同樣的死法，求人將他倒釘十字架。</div>
+        <div class="timeline-ref">彼前 5:1–4 · 彼後 1:13–15 · 約 21:18–19</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他的優點與缺點是同一樣東西，只是朝向不同：那份不經計算就往前衝的熱度。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">跟隨是全身投入，不是評估後的決定</div>
+          <div class="soul-body">他從不站在岸邊觀望。看見主在水面上，他喊「叫我從水面上走到你那裡」；聽見是主，他直接跳下海游過去；聽說主要洗他的腳，他先拒絕，一被說服就要求連手和頭都洗。這種「要就全要」的內在確信，是他一切光榮與災難的共同源頭。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">認錯與回頭的速度</div>
+          <div class="soul-body">聖經裡失敗的人不少，肯回頭的人不多。掃羅王失敗後推責任，猶大失敗後上吊，彼得失敗後出去痛哭、然後回到弟兄中間。主為他所求的不是「你不至於跌倒」，而是「你的信心不至於失了」，並預備了那句「你回頭以後，要堅固你的弟兄」。他的偉大不在紀錄乾淨，在跌倒後仍願意被找回來。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">先行動，後理解</div>
+          <div class="soul-body">他的決策幾乎沒有中間層：湖上見鬼影就喊、山上看見榮光就提議搭三座棚、園中見兵丁就拔刀。路加誠實記下「他卻不知道所說的是什麼」。這種即刻反應在危機中極具行動力，卻也讓他一再說出、做出自己承擔不起的事。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">對人的眼光的恐懼</div>
+          <div class="soul-body">他不怕羅馬兵丁的刀，卻怕一個使女的追問；不怕站在公會前放膽講道，卻怕雅各那裡來的人怎麼看他。他的破口從來不是缺乏勇氣，而是缺乏獨處於眾人眼光之外的安全感——一個活在當下、極度在意現場氛圍的人，最脆弱之處正是氛圍改變的那一刻。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">被啟示直接擊中的瞬間</div>
+          <div class="soul-body">他一生的洞見不是推導出來的，是被給予的。認出基督時，主說「這不是屬血肉的指示你的，乃是我在天上的父指示的」。他不是最會思考的門徒——那可能是約翰——但他是最常被真理當場擊中、並立刻脫口而出的那一個。神似乎特別喜歡透過一張藏不住話的嘴說話。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">彼得真正的難題，不是他愛得不夠，而是他把「愛的強度」誤認為「愛的可靠度」。他真心以為自己願意同死，那不是說謊——他只是不知道，人的意志在極度恐懼下會如何背叛自己的誓言。主的回應極其溫柔：祂不責備他的高估，只在他崩塌之後，把那份愛從「我保證」重建為「主啊，你知道」。成熟的信仰，就是把根據從自己的決心，挪到主的認識上。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ESFP</span>
+      <div class="mbti-name">表演者型 · 當下行動者</div>
+      <div class="mbti-slogan">「他活在此刻，所以能立刻踏出船外；也因為活在此刻，所以看見風浪就沉了下去。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Se · 外向實感</span>
+          <div class="mbti-fn-body">他對當下的物理與人際現場有極高解析度：他注意到網要裂了、注意到耶穌的眼神、注意到院子裡火光下每一張臉。這使他反應極快，卻也使他被眼前的風、眼前的使女、眼前的氣氛完全佔據——Se 讓他能走上水面，也讓他在「見風甚大」的那一刻立刻下沉。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">他的判準是內在的忠誠感而非抽象邏輯。「你若洗我的腳……」「我就是必須和你同死」「主啊，你是無所不知的，你知道我愛你」——全都是價值宣告，不是論證。這份深切的個人忠誠使他的悔改真實而劇烈：他不是懊惱失策，他是心碎。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">壓力較低時，他展現出乾脆的組織力：主持選補馬提亞的程序、在耶路撒冷會議上作結論性發言、在書信中條理分明地勸勉長老。這是他成熟後最明顯的長進——衝動被賦予了結構。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">他最大的盲區是看不見長線的意義。當主預告受死，他立刻攔阻「這事必不臨到你身上」——他無法容忍一個必須經過死亡的計畫。在山上看見榮光，他的直覺是「搭三座棚」把此刻凍住。壓力下他的 Ni 不是缺席，而是扭曲成災難化的恐懼：一旦想像不出好結局，他就用當下的行動（拔刀、否認）強行了結不確定性。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他的生命由四種目光雕成：主的注視、弟兄的並肩、同工的糾正，以及一個使女無心的一瞥。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">耶</div>
+          <div class="relation-name">耶穌基督</div>
+          <div class="relation-type-badge">主與門徒 · 呼召者</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">這段關係的核心是主單方面的堅持。祂給他新名字、給他鑰匙、也給他最重的斥責；祂預告他會跌倒，同時預告他會回頭，並提前為他的信心禱告。主從未因他的失敗調降對他的託付——「餵養我的羊」是在他否認之後說的，不是之前。彼得一生的安全感，最終不是建立在自己愛主多深，而是建立在「主啊，你是無所不知的，你知道」。</div>
+          <div class="relation-ref">太 16:17–19 · 路 22:31–32 · 約 21:15–17</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">安</div>
+          <div class="relation-name">安得烈</div>
+          <div class="relation-type-badge">手足 · 引路人</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">是弟弟先遇見彌賽亞，然後「先找著自己的哥哥西門」領他去見耶穌。教會史上最有影響力的使徒，是被一個相對沉默的弟弟帶進門的。這段關係提醒一個常被忽略的事實：把人帶到主面前的，不一定是後來站在講台上的那一位。安得烈一生的記載都是「帶人來見耶穌」——帶哥哥、帶孩童、帶希臘人。</div>
+          <div class="relation-ref">約 1:40–42 · 約 6:8–9 · 約 12:20–22</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">約</div>
+          <div class="relation-name">約翰</div>
+          <div class="relation-type-badge">同工 · 一生的搭檔</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">兩人性格幾乎相反：一個衝動外放，一個沉靜內省。卻總是成對出現——一同被差去預備逾越節、一同賽跑到空墳墓、一同上聖殿醫治瘸腿的、一同被押到公會。約翰跑得快先到墳墓卻站著不進去，彼得後到卻直接走進去；福音書把這個細節保留下來，像是在說：教會需要這兩種人，而且需要他們在一起。</div>
+          <div class="relation-ref">路 22:8 · 約 20:3–8 · 徒 3:1–11 · 徒 4:13</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">保</div>
+          <div class="relation-name">保羅</div>
+          <div class="relation-type-badge">同儕 · 公開的張力</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">保羅在耶路撒冷承認他是教會的柱石，卻也在安提阿當面抵擋他，因為他在外邦弟兄面前退縮。這段關係珍貴之處在於它被誠實記錄下來——初代教會沒有把領袖的衝突修掉。而更珍貴的是後續：彼得在晚年的書信中稱保羅為「我們所親愛的兄弟保羅」，並承認他的書信中「有些難明白的」。被公開糾正而不記恨，是磐石真正成形的證據。</div>
+          <div class="relation-ref">加 2:9 · 加 2:11–14 · 彼後 3:15–16</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">馬</div>
+          <div class="relation-name">馬可</div>
+          <div class="relation-type-badge">屬靈父子 · 傳承</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">彼得稱他為「我兒子馬可」。教父帕皮亞記載，馬可福音實為彼得講道的記錄——若屬實，那麼四福音中把彼得的失敗寫得最不留情的那一卷，正出自他自己的口述。一個領袖願意讓自己的否認被完整寫進正典，這本身就是悔改的最高形式。而馬可自己也曾中途離開宣教隊伍，後來被恢復——師徒二人的生命裡，寫著同一句話：跌倒不是結局。</div>
+          <div class="relation-ref">彼前 5:13 · 徒 13:13 · 提後 4:11</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">使</div>
+          <div class="relation-name">大祭司院中的使女</div>
+          <div class="relation-type-badge">命運的偶遇 · 意外的鏡子</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">四卷福音書都記下了她。她沒有名字、沒有權柄、沒有惡意，只是隨口說了一句「你也是同那加利利人耶穌一夥的」。整本聖經最鋒利的試驗，往往不是來自敵人的刀，而是來自無關緊要之人的一句閒話。她讓彼得看見了自己真正的尺寸——也因此，讓他有機會被重新量過。</div>
+          <div class="relation-ref">太 26:69–70 · 可 14:66–68 · 約 18:17</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">教會不是建在一個從不失敗的人身上，是建在一位從不放棄失敗者的主身上。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「我還告訴你，你是彼得，我要把我的教會建造在這磐石上；陰間的權柄，不能勝過他。」</div>
+      <div class="verse-ref">馬太福音 16:18</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">Πέτρος</span>
+        <div class="word-transliteration">Petros · 彼得 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">陽性名詞，意為「石頭、岩塊」，對應亞蘭文 כֵּיפָא（Kephas，磯法）。主耶穌說的是亞蘭文，因此原話中「彼得」與「磐石」實為同一個字 Kepha——希臘文為配合人名的陽性語法，才分化成 Πέτρος（石）與 πέτρα（磐）。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">神給名字，是在宣告終局而非描述現況。這個人被命名為「石頭」的時候，性格恰恰最不像石頭；直到他被主的禱告托住、被復活的主重新託付，這名字才成真。這是恩典的基本語法：神先給你新名字，再帶你長成那個名字。舊約中亞伯蘭成為亞伯拉罕、雅各成為以色列，走的都是同一條路。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">ἀνθρακιά</span>
+        <div class="word-transliteration">anthrakia · 炭火 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「一堆燒著的木炭」。這個字在全本新約只出現兩次：約翰福音 18:18，彼得在大祭司院中的炭火旁否認主；以及約翰福音 21:9，復活的主在海邊生的那堆炭火。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">約翰的用字絕非偶然。主刻意重建了犯罪現場的氣味與溫度——同樣的炭火、同樣的清晨、同樣的三次發問。醫治不是繞過創傷，是被主帶回創傷之處重走一遍。真正的赦免不怕記憶：它讓那堆火從定罪的火，變成早餐的火。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">鑰匙不是權力，是開門的職分</div>
+      <div class="theology-insight-body">「天國的鑰匙」在使徒行傳中具體兌現：五旬節他向猶太人開門（徒 2），撒瑪利亞人藉他與約翰按手領受聖靈（徒 8），哥尼流家他向外邦人開門（徒 10）。鑰匙的功能是開門而非把門——彼得從未用它攔阻任何人，只用它讓越來越多人進來。任何以此建立階級與排他的解讀，都與經文中鑰匙實際被使用的方向相反。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">代求先於跌倒</div>
+      <div class="theology-insight-body">「西門，西門，撒但想要得著你們，好篩你們像篩麥子一樣；但我已經為你祈求，叫你不至於失了信心。」主的禱告不是在他悔改之後才發出，而是在他跌倒之前就已完成。這是新約中保職分最溫暖的一幅圖：基督的代求不是對我們表現的獎賞，是我們得以站立的前提。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">ἀγαπάω 與 φιλέω 之間</div>
+      <div class="theology-insight-body">海邊三問中，主前兩次用 ἀγαπᾷς（你以聖愛愛我嗎），彼得三次都答 φιλῶ（我以摯友之情愛你）；第三次主降到彼得的詞：φιλεῖς με？學者對此二字是否有嚴格區分仍有爭論，但敘事的張力清楚可見——主最終走下來，用他能承受的字問他。恩典的一貫作風，是屈就人現在能給的，而不是等他先長到位。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">摩西在何烈山牧羊時被火焰中的神呼召，從牧羊人成為牧養以色列的人</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">兩人都在最日常的謀生現場被打斷，都在自認不配時被指派牧養神的群羊；而彼得所領受的「餵養我的羊」，正是把摩西的職分接續到新約群體</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督是好牧人，為羊捨命（約 10:11）；彼得只是受託的「牧人的助手」，他自己稱主為「牧長」（彼前 5:4）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">約拿三日三夜在大魚腹中，之後被差往外邦的尼尼微傳悔改的信息</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">彼得被稱為「約拿的兒子西門」（巴約拿），而他正是那個被神強行差往外邦人哥尼流家的猶太人——同樣抗拒、同樣被神的手扭轉、同樣成為外邦人得救的門</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督以「約拿的神蹟」預言自己三日的死與復活（太 12:39–41），並在復活後差門徒往普天下去</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">以賽亞在聖殿見異象時喊「禍哉，我滅亡了，因為我是嘴唇不潔的人」</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">彼得在滿網的魚前俯伏喊「主啊，離開我，我是個罪人」——遇見聖潔的第一反應都是自覺當毀滅，而神的回應都不是毀滅，是潔淨與差遣</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督親自成為潔淨的祭，使人得以坦然無懼來到施恩寶座前（來 4:16）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">大衛在犯下大罪後寫下詩篇 51，求神造清潔的心，並立志「我就把你的道指教有過犯的人」</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">彼得的復原走了完全相同的路徑：徹底破碎、被赦免、然後被指派去堅固弟兄。神使用被赦免者去牧養，是舊約與新約一致的模式</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督在十字架上成就赦罪，使「軟弱的人」得以被立為執事（來 5:2, 7:28）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你曾在關鍵時刻讓自己失望，這一頁是為你寫的。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">彼得的故事精準命中現代人一個很深的恐懼：我以為我是某種人，直到某個瞬間，我做了那個「我絕不會做」的事——在會議上沒有替同事說話、在家人需要時選擇了沉默、在該堅持時折了腰。那一刻真正瓦解的不是別人對你的評價，是你對自己的敘事。彼得的經歷指出一條出路：你的身分不是由你最糟的那一刻定義的，也不是由你最好的誓言定義的，而是由那位在雞叫時轉身看你、卻仍替你預備早餐的主定義的。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你最近一次「知道該說話卻沒說」是什麼時候？當時真正讓你噤聲的，是實際的危險，還是某個人會怎麼看你？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">你對自己說過哪些「我絕對不會……」？如果那句話已經被你自己打破了，你是用什麼方式在跟自己解釋這件事——推責、麻痺，還是真正的哀傷？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">彼得跌倒後回到了弟兄中間，猶大則獨自離開。當你搞砸了，你的預設動作是靠近人還是消失？是什麼讓消失感覺比較安全？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">如果主今天把你帶回你最不想重訪的那個現場，不是為了追究，而是為了問你「你愛我嗎」——你想先解釋什麼？而祂為什麼可能根本不需要那個解釋？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 彼得</span>
+        <div class="gen-title">應激劇本：在壓力下用切割保全自己</div>
+        <div class="gen-body">他的壓力反應模式高度一致：遇到無法承受的處境，就用一個當下的動作把自己切離。園中拔刀，是切離；院中否認，是切離；安提阿離席與外邦弟兄隔開，仍是切離。他從不是不愛，他是在恐懼中選擇先讓自己脫身——而每一次切割，都在關係上留下一道傷口。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 馬可</span>
+        <div class="gen-title">精確複製：在旅途中途離開</div>
+        <div class="gen-body">被彼得稱為「我兒子」的馬可，在保羅第一次宣教旅程中「離開他們回耶路撒冷去了」。經文沒說原因，但後果嚴重到讓保羅拒絕再帶他，並因此與巴拿巴大起爭論、分道揚鑣。同一個屬靈家族裡，第二代在壓力下做出了同一件事：中途退出。屬靈的父親把恩賜傳下去，也常常把破口一起傳下去。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">打斷發生在兩處。第一，主親自為彼得重寫了結局——不是靠他發更重的誓，是靠主提前的代求與事後的三次託付。第二，彼得把自己領受的恩典原樣轉給了馬可：他沒有像保羅當時那樣判定馬可不合用，而是收他作兒子。多年後連保羅都改口說「他在傳道的事上於我有益處」。這就是恩典打斷循環的方式——不是讓下一代不再跌倒，而是讓下一代跌倒時，有一個曾經跌倒過的人願意等他回來。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把兩千年前那個海邊的清晨，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#跌倒後怎麼站起來</span>
+      <span class="tag">#我不是我以為的那種人</span>
+      <span class="tag">#被主再問一次</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>彼得大概是全本聖經裡最好認的一個人——因為他就是那種在群組裡總是第一個跳出來說話、然後常常需要撤回訊息的人。</p>
+      <p>他有一種現在很稀缺的東西：不會權衡。看見主在水上走，他不是先評估風速，是直接說「叫我走過去」。他真的走了幾步——這件事本身很了不起，十二個人裡只有他下船。他的問題從來不是不敢，而是他的膽子跑得比他的續航力快。</p>
+      <p>然後就是那個晚上。他不是被酷刑逼供，不是被威脅家人，就只是有個打雜的女生順口問了一句「你不是跟他一夥的嗎」。他說不是。再問，還說不是。第三次他急了，賭咒發誓說不認識這個人。幾個小時前他才拍胸脯說願意一起死。真正壓垮我們的，常常不是什麼大場面，是那些小到不值一提、卻剛好戳中我們的時刻。</p>
+      <p>但這故事真正離譜的地方在後面。主復活以後，去湖邊等他。生了一堆火，煮好早餐——用的是跟他否認那晚一模一樣的炭火。主沒有問「你為什麼那樣做」，沒有要他寫檢討，甚至沒有提那件事。只問了三次：你愛我嗎。問完就說：去餵我的羊。他被交付的責任，比跌倒前更重，不是更輕。</p>
+      <p>而最狠的一刀是這個：馬可福音幾乎公認是彼得口述的。也就是說，那段把他寫得最難堪、連「他就發咒起誓」都不放過的記載，很可能是他自己講出來讓人寫下的。他大可以美化一點，沒有人會知道。他選擇留下全部。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——而那個被叫做「石頭」的人，是在他碎得最徹底之後，才真的成為磐石的。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你正在為某件自己做過的事感到羞恥——尤其是那種「我怎麼會是這種人」的羞恥——請先知道一件事：那不代表你的信仰是假的。彼得的眼淚是真的，他的愛也是真的，兩者可以同時存在。</p>
+      <p style="margin-top:12px;">從雞叫到海邊的早餐，中間隔了大約三天。但對彼得來說，那三天大概是他一生最長的時間——他不知道故事還會不會有他的份。而主早就知道會有，主甚至在他跌倒之前就說了「你回頭以後」——不是「如果你回頭」，是「你回頭以後」。</p>
+      <p style="margin-top:12px;">神從來沒有打算等你變成一個不會跌倒的人才用你。祂用的一直都是那些跌倒過、哭過、然後願意回到桌邊吃早餐的人。你的失敗沒有取消你的呼召，它只是把你從「我可以」的地基，挪到「主啊你知道」的地基上——而後面這塊，才撐得住。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">去把火生起來，坐下，把早餐吃了。話等吃完再說。</p>
+    </div>
+
+    <div class="insight-box">在現代領導力語境中，彼得提供了一個對「脆弱型領導」極具說服力的案例：他的權威不是建立在完美紀錄上，而是建立在公開承認失敗並被恢復的過程中——這正是當代組織心理學所說的心理安全感的源頭。一個領導者若能讓團隊看見自己被糾正（如安提阿事件）而不崩解、不記恨，團隊才敢承認自己的錯誤。而在家庭系統的層面，他與馬可的關係示範了如何打斷代際傳遞：不是要求下一代做得更好，是在他們重複你的破口時，做那個願意等他回來的人。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他死了將近兩千年，而每一個曾經搞砸又被接納的人，都還走在他鋪的路上。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">向三個世界開門的鑰匙</div>
+          <div class="legacy-body">使徒行傳把「天國鑰匙」的應驗排成清晰的三步：五旬節向猶太人（徒 2）、撒瑪利亞人領受聖靈（徒 8）、哥尼流家向外邦人（徒 10）。每一次擴張，神都刻意讓那個最守猶太潔淨傳統的人去開門——好讓教會無法否認這是神的作為而非人的策略。今日教會的普世性，法理上是從彼得屋頂上那塊布開始的。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">馬可福音的口述來源</div>
+          <div class="legacy-body">教父帕皮亞（約主後 130 年）記載馬可是彼得的傳譯，把彼得所講的準確記下。若屬實，最早成書的福音書便是彼得的記憶。而這卷書最鮮明的特色之一，正是對門徒——尤其對彼得——的失敗毫不掩飾。這份不修飾自己的誠實，成為福音書歷史可信度最有力的內證之一。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">受苦神學的牧函</div>
+          <div class="legacy-body">彼得前書寫給散居在本都、加拉太等地受逼迫的信徒，把「受苦」從信仰的例外重新定義為信仰的常態與參與：「你們是與基督一同受苦。」這封信塑造了此後兩千年逼迫中的教會如何自我理解——不是神不在，是正在有份於祂的苦難。而寫這封信的人，曾經因為怕一個使女而否認主。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">長老職分的原型</div>
+          <div class="legacy-body">「務要牧養在你們中間神的群羊……不是轄制所託付你們的，乃是作群羊的榜樣。」彼得前書五章成為此後教會論長老職分最核心的經文之一：牧養而非統治、甘心而非勉強、榜樣而非權柄。他有資格這樣說，因為託付他的那位，正是在他最沒有資格的時候說「餵養我的羊」。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">V</div>
+        <div>
+          <div class="legacy-title">失敗者的正典地位</div>
+          <div class="legacy-body">彼得留給教會最持久的遺產或許不是任何一項制度，而是一個事實：新約把使徒之首的失敗完整保存下來，並且沒有為他辯護。這使得後世每一個跌倒的信徒都無法被以「你不夠格」定罪——因為那位被主稱為磐石的人，紀錄比你更難看，而他的職分沒有被收回。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「願榮耀、權能歸給他，直到永永遠遠。阿們。……那賜諸般恩典的神曾在基督裡召你們，得享他永遠的榮耀，等你們暫受苦難之後，必要親自成全你們，堅固你們，賜力量給你們。」</div>
+      <div class="final-verse-ref">彼得前書 5:11, 5:10</div>
+    </div>
+
+    <div class="final-question">如果主現在坐在你面前，火已經生好了，早餐已經備好——祂不打算追究，只想問你一句「你愛我嗎」；你會發現自己最想閃避的，究竟是那個問題，還是那份不必解釋就被接納的溫柔？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 彼得 <span>Πέτρος · כֵּיפָא</span> · 使徒之首 · 教會磐石</div>
+
+</body>
+</html>

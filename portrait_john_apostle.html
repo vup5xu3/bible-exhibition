@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>約翰 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">約翰・使徒</h1>
+  <span class="hero-name-en">John the Apostle · Ἰωάννης · יוֹחָנָן</span>
+  <p class="hero-slogan">「主給他的外號是「雷子」，<br>而他留給教會的最後一句話是「你們要彼此相愛」——恩典最擅長的，就是這種漫長的改寫。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">主後約 6–100 年</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">INFJ · 提倡者型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">約翰福音 · 約壹貳參<br>啟示錄</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">主所愛的門徒 · 五卷書作者</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">有些人被神使用的方式是爆發，有些人是滲透——約翰用了七十年，慢慢滲進教會的血液裡。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">第一世紀初至末<br>橫跨使徒時代全程</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">多重身份</span>
+        <div class="info-cell-value">加利利漁夫 · 十二使徒之一<br>耶路撒冷教會柱石 · 五卷書作者</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">加利利 → 耶路撒冷 →<br>以弗所 → 拔摩海島</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">背景</span>
+        <div class="info-cell-value">西庇太之子 · 雅各之弟<br>母親撒羅米 · 家境可雇工人</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">四福音 · 徒 1–8<br>約翰福音、約壹貳參、啟示錄</div>
+      </div>
+    </div>
+
+    <p>約翰是西庇太的兒子、雅各的弟弟，出身加利利海的漁業家庭。馬可福音提到他們的父親「和雇工人留在船上」，顯示這不是最底層的漁戶——這個家族有能力雇人，母親撒羅米後來也在供給耶穌的婦女之列。約翰福音提到「那門徒是大祭司所認識的」，因此能帶彼得進入大祭司的院子，暗示這個家族與耶路撒冷的祭司階層有某種往來。他很可能是十二使徒中最年輕的一位，也因此成為唯一活到第一世紀末、親眼看見教會從耶路撒冷的閣樓長成橫跨帝國之信仰的人。</p>
+    <p>他登場時的形象與後世「愛的使徒」的印象幾乎相反。耶穌給他和哥哥的外號是「半尼其」——雷子。撒瑪利亞人不接待耶穌，兄弟倆的建議是「吩咐火從天上降下來燒滅他們」；他們的母親替他們求在國度裡坐左右兩邊的位置；他還曾禁止一個不與他們同行的人奉主名趕鬼。這是一個充滿排他性熱情、界線分明、渴望位居核心的年輕人。神揀選他，不是因為他已經溫柔，而是因為那份強烈的忠誠一旦被重新塑造，會成為新約中最深邃的愛的神學。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">他的生命不是一次翻轉，是一場長達七十年的緩慢熔煉。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">撇下船與父親——立刻的跟隨</div>
+        <div class="timeline-body">耶穌沿海邊行走，看見他和哥哥雅各在船上補網，就召他們。「他們立刻捨了船，別了父親，跟從了耶穌。」馬太特別記下「別了父親」——這不只是換工作，是在一個以家族事業為身分根基的社會中撕開一道口。他從此進入那個由三人組成的核心圈：登山變像在場、睚魯家裡在場、客西馬尼在場。</div>
+        <div class="timeline-ref">太 4:21–22 · 可 1:19–20</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">黑暗低谷</span>
+        <div class="timeline-title">雷子的火——與求座位的手</div>
+        <div class="timeline-body">撒瑪利亞的村莊不接待耶穌，他和哥哥立刻請求降火燒滅全村，被耶穌轉身責備。不久後，他們又透過母親請求在榮耀裡坐主的左右兩邊，惹得其餘十人惱怒。這兩件事揭露同一個核心：他對主的忠誠是真的，但那份忠誠當時綁著強烈的排他與地位焦慮。愛若沒有被十字架煉過，很容易長成佔有。</div>
+        <div class="timeline-ref">路 9:51–56 · 太 20:20–24 · 可 9:38</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">靠著主胸膛的那一夜</div>
+        <div class="timeline-body">最後的晚餐，他「側身挨近耶穌的懷裡」。彼得不敢直接問誰是賣主的，示意他去問。四卷福音書中只有他自己的那卷用「耶穌所愛的門徒」來自稱——不是誇口，而是一個老人在回望一生後，找到的唯一足以定義自己的稱呼。他沒有寫下自己的名字，只寫下自己被愛的事實。</div>
+        <div class="timeline-ref">約 13:23–25 · 約 21:20</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">站在十字架下——接下主的母親</div>
+        <div class="timeline-body">門徒幾乎都逃了，只有他站在十字架下。耶穌在極刑中看見他，對母親說「看你的兒子」，對他說「看你的母親」——「從此那門徒就接她到自己家裡去了」。這是耶穌在世上處理的最後一件家務事。在那個以血緣定義責任的社會，主用一句話重新定義了家：跟隨祂的人彼此就是家人。約翰餘生的「彼此相愛」，不是抽象教義，是從這一刻開始的實際承擔。</div>
+        <div class="timeline-ref">約 19:25–27</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">空墳墓前的停頓——與教會的柱石歲月</div>
+        <div class="timeline-body">他跑得比彼得快，先到墳墓，卻俯身往裡看而沒有進去——一個極能說明他性格的細節：他先感受、先觀察，讓別人先行動。但當他進去以後，福音書記下「他看見就信了」。此後他與彼得同上聖殿、同被押到公會、同被差往撒瑪利亞——那個他曾想燒掉的地方，如今他去為他們按手禱告。</div>
+        <div class="timeline-ref">約 20:3–8 · 徒 3:1 · 徒 8:14–17</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">黑暗低谷</span>
+        <div class="timeline-title">拔摩海島——被放逐者看見的異象</div>
+        <div class="timeline-body">晚年因「為神的道，並為給耶穌作的見證」被放逐到拔摩海島。傳統認為在多米田皇帝逼迫期間。一個孤立的老人在流放地，看見了整本聖經最恢弘的異象：羔羊、寶座、新天新地。啟示錄從來不是給勝利者的書，是給被關起來的人的書——它的核心信息只有一句：現在掌權的看起來是帝國，但真正坐寶座的不是。</div>
+        <div class="timeline-ref">啟 1:9–19</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">以弗所的老人——「你們要彼此相愛」</div>
+        <div class="timeline-body">傳統記載他晚年牧養以弗所教會，是十二使徒中唯一未殉道而終老的。教父耶柔米轉述一個廣為流傳的故事：年老的約翰被人抬進聚會時，已無力講長篇道理，每次只重複同一句「小子們哪，你們要彼此相愛」。有人問他為何總說這一句，他答：因為這是主的命令，只要做到這一件，就夠了。那個曾要求降火燒村的人，用七十年走到了這裡。</div>
+        <div class="timeline-ref">約壹 3:11 · 約壹 4:7–8 · 約貳 5</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他不是天生溫柔的人，他是被愛慢慢改寫成溫柔的人——這比天生溫柔更有力量。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">真理與愛不可分割，缺一即是假</div>
+          <div class="soul-body">他的書信有一種令人不安的絕對性：「不愛弟兄的，就是在死中」「說是住在主裡面的，就該自己照主所行的去行」。他從不把愛講成柔軟的情緒，而是講成一種可驗證的證據。同時他也毫不猶豫地劃界線——「不認耶穌基督是成了肉身來的，就是敵基督的」。雷子的火沒有熄滅，只是換了燃料。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">留下來的忠誠</div>
+          <div class="soul-body">他是十字架下唯一在場的門徒。他不是最勇敢的——他也逃過——但他回來了，並且站到最後。同樣的品質貫穿一生：他接下馬利亞、留在以弗所牧養到老、在流放中仍為受苦的七個教會寫信。他的貢獻不是任何單一的英勇時刻，是他一直在。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">先觀察，後行動；先默想，後定論</div>
+          <div class="soul-body">他跑到墳墓先到卻站著不進去，等彼得進去了才跟著進；聽見岸上的人是主，是他先認出來說「是主」，然後彼得跳進海裡。他總是先看見，讓別人先動。他的福音書也是這樣寫的——不急著敘事，先鋪陳七個神蹟、七個「我是」，把意義織進結構裡。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">排他性——把愛窄化成圈內人的專利</div>
+          <div class="soul-body">年輕時他的界線意識極強：不與我們同行的就該禁止，不接待主的就該燒滅，最好的位子應該是我們兄弟的。這種傾向從未完全消失，只是被馴服——他晚年仍寫下極銳利的排他判準。INFJ 的陰影正在此：一份極深的理想與忠誠，若沒有被恩典鬆開，會變成對不合格者的冷酷。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">看見尚未顯明之事的眼睛</div>
+          <div class="soul-body">他是唯一寫下啟示錄的使徒，也是唯一以「太初有道」開篇的福音書作者。他不從馬槽或家譜起頭，而從永恆起頭。他的文字充滿光與暗、生命與死亡、真理與謊言的原型對立——這是一種能穿透事件表層、直接看見底層結構的心智。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">約翰最深的張力在於：那個被稱為「主所愛的門徒」的人，年輕時最想要的其實是位子。他請母親去求左右兩邊的座位——那是一個渴望被特別偏愛的人的動作。而主給他的答案，不是給他位子，是給他十字架旁的一個位置：接下一位母親。到了晚年，他自稱時不再用名字、不再用職分，只用「耶穌所愛的那門徒」——他終於不需要靠位子確認自己被愛了。從「請給我最好的座位」到「我是被愛的那一個」，這是同一個渴望被治癒後的樣子。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">INFJ</span>
+      <div class="mbti-name">提倡者型 · 洞見的守望者</div>
+      <div class="mbti-slogan">「他能看見萬物底下那條線，卻也因此差點無法容忍任何不在線上的人。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">他不記錄事件，他解讀事件。約翰福音刻意選了七個「神蹟」並稱之為「記號」（σημεῖα）——重點不在發生了什麼，在指向什麼。他從一場迦拿的婚宴看見新約的酒，從五餅二魚看見生命的糧，從空墳墓看見新創造的第一天。Ni 讓他成為新約中最擅長看見底層結構的心智。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Fe · 外向情感</span>
+          <div class="mbti-fn-body">他對群體的情感氛圍極為敏銳，也極度重視群體的合一。他書信的核心命令不是個人靈修，而是「彼此相愛」；他對分裂與離開群體的人有近乎痛楚的反應。Fe 使他成為牧者，也使他晚年能用最簡單的一句話反覆餵養一整間教會。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ti · 內向思考</span>
+          <div class="mbti-fn-body">他的思維有極簡而嚴密的二元結構：光與暗、生與死、真理與謊言、愛與恨，中間幾乎沒有灰色。這使他的書信具備罕見的邏輯穿透力——「凡從神生的，就不犯罪」這類命題乾淨得近乎鋒利。Ti 是他劃界線的工具。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Se · 外向實感</span>
+          <div class="mbti-fn-body">壓力下他傾向於用戲劇性的外部行動一舉解決問題——最典型的就是「吩咐火從天上降下來」。這是 INFJ 在劣勢 Se 失控時的經典樣態：長期壓抑的張力尋求一次爆炸性的物理宣洩。年老後這份能量沒有消失，而是被引導成啟示錄那些恢弘的異象畫面。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生站在幾個人的身邊，而正是那些位置，把他刻成了後來的樣子。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">耶</div>
+          <div class="relation-name">耶穌基督</div>
+          <div class="relation-type-badge">主與門徒 · 被愛的確據</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">他從不說自己多愛主，只反覆說自己是「主所愛的」。這個方向極重要：他一生神學的根基不是他的忠誠，是他被愛的事實——「不是我們愛神，乃是神愛我們」。而主對他的信任也極具體：在十字架上把自己的母親託付給他，那是把最私密的責任交出去。</div>
+          <div class="relation-ref">約 13:23 · 約 19:26–27 · 約壹 4:10</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">雅</div>
+          <div class="relation-name">雅各</div>
+          <div class="relation-type-badge">手足 · 一同被稱為雷子</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">哥哥雅各與他同被稱為「半尼其」，同求座位、同要降火。兩人性格如此相近，命運卻截然不同：雅各成為第一位殉道的使徒，被希律用刀殺了；約翰則活到將近百歲。同一個家庭、同一種火，一個被早早燒盡，一個被慢慢煉淨。聖經沒有解釋為什麼，只誠實地並排放著。</div>
+          <div class="relation-ref">可 3:17 · 徒 12:2</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">彼</div>
+          <div class="relation-name">彼得</div>
+          <div class="relation-type-badge">同工 · 互補的一生</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">他們是新約中最持久的搭檔，也是性格光譜的兩端。約翰先到墳墓卻不進去，彼得後到卻直接闖入；約翰先認出「是主」，彼得先跳下海。復活的主重新託付彼得時，彼得回頭指著約翰問「主啊，這人將來如何」，得到的答覆是「與你何干？你跟從我吧」。連在恢復的時刻，比較的衝動仍在——而主拒絕回答。</div>
+          <div class="relation-ref">約 20:3–8 · 約 21:7 · 約 21:20–22</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">馬</div>
+          <div class="relation-name">馬利亞（耶穌之母）</div>
+          <div class="relation-type-badge">受託的家人</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">「從此那門徒就接她到自己家裡去了。」這是新約中最安靜也最重的一次託付。約翰餘生所講的「彼此相愛」，有一個具體的起點：他真的把一位失去兒子的母親接回家照顧。他的愛的神學不是從沉思中長出來的，是從一個實際的家務責任中長出來的。</div>
+          <div class="relation-ref">約 19:26–27</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">撒</div>
+          <div class="relation-name">撒瑪利亞人</div>
+          <div class="relation-type-badge">從仇敵到羊群</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">他曾請求降火燒滅一個撒瑪利亞村莊。多年後，當撒瑪利亞人領受了神的道，耶路撒冷教會差遣的正是彼得與約翰——他親自去為那些他曾想燒掉的人按手禱告，使他們受聖靈。神修復人的方式往往極具詩意：祂常把你差回你曾經定罪的那個地方。</div>
+          <div class="relation-ref">路 9:54 · 徒 8:14–17</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">丟</div>
+          <div class="relation-name">丟特腓</div>
+          <div class="relation-type-badge">牧養中的對立</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">約翰三書記下一個「好為首」的教會領袖丟特腓，不接待弟兄，還把接待的人趕出教會，甚至「用惡言妄論我們」。這封短信讓我們看見晚年的約翰仍在處理真實的教會政治。而他的回應很值得注意：他沒有降火，只說「我若去，必要提說他所行的事」——那火還在，只是被關進了牧者的節制裡。</div>
+          <div class="relation-ref">約參 9–10</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">他把整本聖經濃縮成一個字：道成了肉身。神不再只是說話，神走進來了。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「道成了肉身，住在我們中間，充充滿滿地有恩典有真理。我們也見過他的榮光，正是父獨生子的榮光。」</div>
+      <div class="verse-ref">約翰福音 1:14</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">λόγος</span>
+        <div class="word-transliteration">logos · 道 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「話語、理性、萬物運行的原理」。在希臘哲學中，logos 是宇宙背後那個使一切有序的抽象原則；在希伯來傳統中，「耶和華的話」是具創造力的、會成就事情的實體——「神說，要有光，就有了光」。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">約翰同時對兩個世界說話。他對希臘人說：你們一直在尋找的那個宇宙原理，有名字。他對猶太人說：那位以話語創造世界的神，親自成了肉身。而「住在我們中間」（ἐσκήνωσεν）字面是「支搭帳棚」——直接指向會幕。神不再住在幔子後面，祂搬到隔壁了。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">ἀγάπη</span>
+        <div class="word-transliteration">agapē · 愛 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">一種出於意志的、不以對方是否值得為條件的委身之愛，與 ἔρως（渴慕之愛）、φιλία（友愛）、στοργή（親情）相區別。這個字在古典希臘文中並不常用，是新約作者將它充填了全新的重量。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">約翰是新約中最集中使用這個字的作者，並且做了一件前所未有的事：他不說神有愛，他說「神就是愛」。這不是把神情感化，而是宣告愛是神的存在本質而非屬性之一。因此在他筆下，不愛弟兄不只是道德缺失，是一項本體論證據——「沒有愛心的，就不認識神」。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">道成肉身：神學與歷史的接合點</div>
+      <div class="theology-insight-body">約翰堅持基督的肉身真實性，是為了對抗當時已萌芽的諾斯底思想——那種認為物質敗壞、神絕不會沾染肉體的觀念。他在書信開頭用了極感官的動詞：「我們所聽見、所看見、親眼看過、親手摸過的。」信仰若不落在可觸摸的歷史裡，就只是一套觀念。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">七個「我是」：借用神的名字</div>
+      <div class="theology-insight-body">「我是生命的糧」「我是世界的光」「我是好牧人」「我是復活與生命」——這七句的希臘文 ἐγώ εἰμι 正是七十士譯本中神向摩西自稱「我是自有永有」的用語。約翰不是在記錄比喻，是在記錄一連串身分宣告。也因此，當耶穌說「還沒有亞伯拉罕就有了我」，猶太人立刻拿石頭要打他——他們完全聽懂了。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">啟示錄：給受苦者的政治神學</div>
+      <div class="theology-insight-body">啟示錄不是給末世推算者的密碼本，是給小亞細亞七個在羅馬帝國壓力下的教會的牧函。它的核心對比是：帝國的寶座 vs 天上的寶座；凱撒的勝利 vs 被殺羔羊的勝利。它宣告的不是逃離，是主權——現在看起來得勝的不是真的得勝，而被殺的羔羊已經得勝了。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">會幕支搭在以色列營中，神的榮耀充滿其中，使神得以住在祂百姓中間</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">約翰用「支搭帳棚」（ἐσκήνωσεν）描述道成肉身，直接把耶穌的身體指認為真正的會幕；他也記下耶穌指著自己的身體說「你們拆毀這殿」</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督的身體就是那真會幕，最終在新耶路撒冷成全——「神的帳幕在人間」（啟 21:3）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">逾越節羔羊的血塗在門框上，使滅命的天使越過；羔羊的骨頭一根也不可折斷</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">施洗約翰指著耶穌說「看哪，神的羔羊」；而約翰福音特別記下兵丁不打斷耶穌的腿，明言這是要應驗「他的骨頭一根也不可折斷」</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督是逾越節的羔羊，被殺卻站立在寶座中（林前 5:7 · 啟 5:6）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">摩西在曠野舉起銅蛇，凡被蛇咬的一望這銅蛇就活了</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">耶穌親自引用此事解釋自己的死：「摩西在曠野怎樣舉蛇，人子也必照樣被舉起來。」得救的條件是看，不是行為</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督被舉起在十字架上，「叫一切信他的都得永生」（約 3:14–15）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">以西結見異象中的四活物與神的榮耀寶座，並被吩咐吃下書卷</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">啟示錄中約翰見到幾乎相同的四活物與寶座異象，也被吩咐吃下小書卷，「在口中甘甜，肚子裡發苦」——先知職分的重量在兩處完全一致</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">被殺的羔羊配展開書卷，成就一切先知所預言的終局（啟 5:5–9）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你曾經因為太在乎，而變得太尖銳——這一頁是為你寫的。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">約翰處理的是一種很現代的困境：熱忱與刻薄之間，往往只有一線之隔。那些對正義最敏感的人，常常也是最難原諒不合格者的人；那些最渴望深度連結的人，常常也最容易在關係裡築起隱形的門檻。年輕的約翰要求降火燒村，動機不是冷酷，是太在乎。而他的改變不是熱度降低，是那份熱度終於學會了先承接一個人、再判斷一個人——從十字架下接過一位母親開始。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你最近一次對某人失去耐性，是因為對方真的做錯了，還是因為對方沒有達到你心裡那條沒說出口的標準？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">約翰晚年不再用名字或職分稱呼自己，只說「主所愛的那門徒」。如果要你用一個不含成就的說法介紹自己，你說得出來嗎？說出來時心裡踏實嗎？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">你有沒有一個曾經「想燒掉」的人或群體？如果神有一天差你回去為他們禱告，你會抗拒的是什麼？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">約翰花了七十年才把一生濃縮成一句「彼此相愛」。你現在追求的那些東西，有多少會在七十年後還留在你的清單上？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 西庇太一家</span>
+        <div class="gen-title">應激劇本：靠爭取位置來確認價值</div>
+        <div class="gen-body">這個家族的行為模式相當一致。母親撒羅米直接向耶穌求兩個兒子在國度裡的左右座位；兩兄弟自己也再問過一次。他們對主的忠誠毫無疑問，但那份忠誠內建了一個焦慮：我必須被排在前面，才能確定我真的重要。這種模式在能力強、投入深的家庭中極為常見。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 約翰所牧養的教會</span>
+        <div class="gen-title">精確複製：丟特腓的「好為首」</div>
+        <div class="gen-body">約翰晚年寫信處理的，正是同一個病灶的翻版：丟特腓「在教會中好為首」，不接待弟兄，還把接待的人趕出去。爭位子的劇本從使徒的青年時代，原封不動地出現在他所牧養的下一代教會裡。屬靈家族傳遞的從來不只有真理，也包括未被處理的渴望。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">打斷發生在十字架下。主沒有給約翰他想要的位子，而是給了他一個責任——「看你的母親」。從那一刻起，他的價值不再靠排名確認，而靠被託付確認。這個轉變在他的自稱裡留下痕跡：他終其一生不寫自己的名字，只寫「耶穌所愛的那門徒」。而他處理丟特腓的方式也顯示循環真的被打斷了——他沒有動用使徒權柄去碾壓，只說「我若去，必要提說他所行的事」。火還在，但已經被關進節制裡。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那個花了七十年才學會溫柔的人，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#太在乎所以太尖銳</span>
+      <span class="tag">#被愛比會愛更根本</span>
+      <span class="tag">#慢慢變成的溫柔</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>先破除一個印象：約翰不是那種天生溫和、講話輕聲細語的人。主給他取的外號是「雷子」。</p>
+      <p>他年輕的時候幹過什麼？有個撒瑪利亞村莊不接待耶穌，他的第一反應是「要不要叫火從天上降下來把他們燒了」。還有一次他看到有人不跟他們同一掛卻在奉主名趕鬼，他直接去禁止。他還請他媽去跟耶穌談條件，想預訂國度裡最好的兩個位子。</p>
+      <p>這種人你應該認識——就是那種對信念極度認真、對自己人極度忠誠，但一旦有人不符合標準，臉就沉下來的那種。他不是壞人，他是太在乎了。</p>
+      <p>然後是十字架下。其他人幾乎都跑了，他站在那裡。耶穌在斷氣前看見他，說了一句：看你的母親。他就真的把馬利亞接回家養。這件事沒有什麼戲劇性，就是一個很長很日常的責任。而那大概就是他整個人開始被改寫的起點——愛從一個概念，變成一個要每天做的家務。</p>
+      <p>他活到快一百歲，是十二個人裡唯一沒有被殺的。教父的記載說，他老到走不動了，被人抬進聚會，每次都只講同一句話：小子們哪，你們要彼此相愛。有人受不了問他為什麼老是講這句，他說：因為這是主的命令，只要做到這一件，就夠了。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——而最溫柔的那個人，往往不是天生溫柔，是被磨了七十年才成為那樣的。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你身上有那種「太在乎所以會傷人」的性格，請先聽這句話：主沒有要拿掉你的火。祂給約翰的外號一直是雷子，直到最後也沒有改。祂只是花了很長時間教他把火燒在對的地方。</p>
+      <p style="margin-top:12px;">還有那個自稱。約翰在寫自己的福音書時，可以寫「使徒約翰」「主的門徒約翰」，任何一個都名正言順。他選的是「耶穌所愛的那門徒」。一個年輕時拚命想要好位子的人，到老只想被記得這件事——他是被愛的。這中間發生了什麼，就是整卷約翰福音在講的事。</p>
+      <p style="margin-top:12px;">如果你現在覺得自己改變得太慢——慢到懷疑自己到底有沒有在改——記得約翰用了七十年。而聖經把他年輕時想燒掉一整村人的事，跟他老年那句彼此相愛，並排放在同一本書裡，沒有刪掉前面那段。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天不用變成更好的人。今天只要對一個人好一點，就夠了。</p>
+    </div>
+
+    <div class="insight-box">在現代心理學語境中，約翰的生命提供了一個關於「依附安全感」的罕見長時段案例：從外求認可（爭取座位）到內在確據（我是被愛的那一個），這正是安全型依附建立的核心歷程——而關鍵不是他更努力去愛，是他先確認自己被愛。在領導與群體經營上，他也示範了理想主義者最重要的一課：把對群體純度的關切，從「排除不合格者」轉為「承接具體的人」。至於他晚年那句被反覆重複的話，則對當代注意力經濟提出一個尖銳的反問：我們是否誤以為深刻必須來自新穎，而忘了最深的真理往往需要被重複一輩子。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他沒有殉道，所以他有時間把整個信仰，慢慢寫成一句話。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">第四福音書：從永恆起筆的基督論</div>
+          <div class="legacy-body">當三卷符類福音從家譜或曠野呼聲開始，約翰把起點推到「太初」。他不重述已有的敘事，而是提供一套解讀框架——七個記號、七個「我是」、光與暗的原型對立。此後所有關於基督神性的教義爭論（尼西亞、迦克墩），核心經文幾乎全部出自這一卷。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">「神就是愛」：西方倫理的一句地基</div>
+          <div class="legacy-body">他不說神有愛，他說神就是愛。這個本體論宣告成為後世基督教倫理最深的根：愛不是神的一項行為，是神的存在方式，因此人愛人也不是道德加分項，是與神本質相連的證據。這句話的影響遠遠溢出教會，滲進西方對人權、慈善與人道主義的基本假設。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">啟示錄：受壓迫者的想像力</div>
+          <div class="legacy-body">在帝國宣稱自己就是永恆的時代，啟示錄提供了另一套視野：真正的寶座不在羅馬。這卷書此後成為每一個處於壓迫下的信仰群體的語言——從早期殉道者到黑奴靈歌到二十世紀的抵抗神學。它教會了受苦者一件事：現在的權勢不是最終的敘事。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">彼此相愛：教會最古老的家規</div>
+          <div class="legacy-body">「我賜給你們一條新命令，乃是叫你們彼此相愛。」他把主的這句話寫進福音書，又在三封書信中反覆申明，最後用一生示範。第二世紀的教父德爾圖良記下外邦人對基督徒的評語：「你看他們何等彼此相愛。」教會最早被世界辨認出來的標記，不是教義，是這個。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">V</div>
+        <div>
+          <div class="legacy-title">活得夠久，成為連結兩代的橋</div>
+          <div class="legacy-body">他是唯一跨越整個使徒時代的見證人——親眼見過在世的耶穌，也親眼見過教會的第二、第三代。這使他成為口傳與正典之間、耶路撒冷與外邦教會之間活著的接點。有些遺產不是靠功業建立的，是靠留得夠久。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「親愛的弟兄啊，我們要彼此相愛，因為愛是從神來的。凡有愛心的，都是由神而生，並且認識神。」</div>
+      <div class="final-verse-ref">約翰一書 4:7</div>
+    </div>
+
+    <div class="final-question">如果你也要花七十年，才把一生真正學會的事濃縮成一句話——你希望那句話是什麼？而你今天做的事，正在往那句話走嗎？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 約翰 <span>Ἰωάννης · יוֹחָנָן</span> · 主所愛的門徒 · 愛的使徒</div>
+
+</body>
+</html>

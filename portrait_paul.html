@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>保羅 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">保羅</h1>
+  <span class="hero-name-en">Paul · Παῦλος · שָׁאוּל</span>
+  <p class="hero-slogan">「他一生只做過一件事：全力以赴。<br>問題從來不是他不夠盡力，是他曾經朝著完全相反的方向盡力。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">主後約 5–67 年</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ENTJ · 指揮官型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">徒 9–28<br>羅馬書至腓利門書</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">外邦人的使徒 · 神學建構者</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">神要開拓一條通往列國的路，就揀選了一個同時擁有三本護照的人。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">第一世紀 · 羅馬帝國全盛期</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">多重身份</span>
+        <div class="info-cell-value">羅馬公民 · 法利賽人拉比<br>織帳棚工匠 · 外邦人的使徒</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">基利家大數 → 耶路撒冷 →<br>安提阿 → 小亞細亞、希臘 → 羅馬</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">背景</span>
+        <div class="info-cell-value">便雅憫支派 · 希伯來人所生的希伯來人<br>受業於迦瑪列門下 · 通希臘文化</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">徒 7:58–28:31<br>十三卷書信 · 彼後 3:15–16</div>
+      </div>
+    </div>
+
+    <p>掃羅生於基利家的大數——一座以斯多亞學派學術著稱的希臘化城市，同時擁有羅馬自由城的地位。他因此天生具備三重身分：血統上是「便雅憫支派、希伯來人所生的希伯來人」，教育上受業於當代最負盛名的拉比迦瑪列，法律上則是生來即擁有的羅馬公民權——這在當時是極稀有的資產，後來多次救他的命，並最終讓他得以「上告於凱撒」，把福音一路送進帝國首都。他還會織帳棚，這是拉比傳統要求兼具一門手藝的產物，使他在宣教中能自給自足，不受供養牽制。</p>
+    <p>神在此時揀選他，時機精準到近乎刺眼。羅馬和平（Pax Romana）帶來史上最安全的道路網，希臘通用語（Koine）讓地中海世界共用一種語言，而散居各地的猶太會堂為福音預備了現成的講台與初步聽眾。整個帝國像是一套為福音鋪設的基礎建設——而神需要一個能同時走進猶太會堂與雅典亞略巴古的人。掃羅正是那個接口。諷刺的是，他被裝備得如此完備，卻先把這一切用來摧毀教會：他「不但把男女下在監裡，又逼他們說褻瀆的話」。神沒有換掉他的性格與能力，只調轉了方向。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">他的人生只有一個轉彎，但那一個彎，轉了一百八十度。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">站在司提反的血旁邊看衣裳</div>
+        <div class="timeline-body">他初次登場沒有說任何一句話：眾人把司提反拖出城用石頭打死，「作見證的人把衣裳放在一個少年人名叫掃羅的腳前」。路加補了一句冷冽的評註——「掃羅也喜悅他被害」。他不是動手的人，是同意的人。多年後他自己反覆提起這一幕，稱自己是「罪人中的罪魁」。有些記憶不會因為被赦免而消失，只會從定罪的重量，變成恩典的度量衡。</div>
+        <div class="timeline-ref">徒 7:58–8:1 · 徒 22:20 · 提前 1:15</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">大馬士革路上的光——與三天的黑暗</div>
+        <div class="timeline-body">他帶著公文去大馬士革捉拿信徒，路上忽然有光四面照著他。他仆倒，聽見「掃羅、掃羅，你為什麼逼迫我」。關鍵在那個「我」——耶穌把門徒受的逼迫算在自己身上，這句話後來長成保羅整套「基督的身體」神學。他瞎了三天，不吃不喝。一個一生靠著看得清楚律法而自豪的人，被迫在黑暗中重新學習什麼叫看見。</div>
+        <div class="timeline-ref">徒 9:1–9 · 徒 22:6–11 · 徒 26:12–18</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">亞拿尼亞按手——與阿拉伯的沉默年日</div>
+        <div class="timeline-body">神差一個普通門徒亞拿尼亞去見他，亞拿尼亞坦白抗辯「我聽見許多人說這人的許多惡事」，卻仍去了，並稱他「兄弟掃羅」。教會史上最偉大的神學家，是被一個沒沒無名的門徒接納進門的。之後他沒有立刻投入事奉，而是往阿拉伯去，前後約三年才上耶路撒冷——這段沉默期正是他重新用基督重讀整本舊約的熔爐。</div>
+        <div class="timeline-ref">徒 9:10–19 · 加 1:15–18</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">安提阿的差遣——三次宣教旅程</div>
+        <div class="timeline-body">聖靈在安提阿說「要為我分派巴拿巴和掃羅」，此後二十年他橫跨小亞細亞與希臘，建立了以弗所、腓立比、帖撒羅尼迦、哥林多等一連串教會。他的策略極具系統性：進入戰略性大城、先入會堂、建立本地長老、再移動，並以書信持續遠距牧養。他不只傳福音，他建立可以自行繁殖的結構——這是 ENTJ 的組織直覺被聖靈使用的樣子。</div>
+        <div class="timeline-ref">徒 13:1–3 · 徒 13–20 章</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">黑暗低谷</span>
+        <div class="timeline-title">身上的一根刺——三次求主挪去</div>
+        <div class="timeline-body">他曾被提到三層天，聽見隱祕的言語；也正因這極大的啟示，「有一根刺加在我肉體上」。他三次求主挪開，得到的回答不是醫治，是一句話：「我的恩典夠你用的，因為我的能力是在人的軟弱上顯得完全。」這是他神學的核心轉折點——從「我能」到「祂夠」。一個一生靠績效自我定義的人，最後把自己的招牌換成了誇自己的軟弱。</div>
+        <div class="timeline-ref">林後 12:1–10</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">黑暗低谷</span>
+        <div class="timeline-title">被捆鎖的使徒——耶路撒冷至該撒利亞的四年</div>
+        <div class="timeline-body">他明知有捆鎖等著仍上耶路撒冷，在聖殿被暴民圍攻，被羅馬千夫長救下，此後在該撒利亞下監兩年，又經海難漂流，最後戴著鎖鏈進入羅馬。表面上這是事工的中斷，實際上腓立比書、以弗所書、歌羅西書、腓利門書都寫於獄中。他在信裡說：「我所遭遇的事更是叫福音興旺。」神沒有繞過鎖鏈，神使用鎖鏈。</div>
+        <div class="timeline-ref">徒 21:27–36 · 徒 24:27 · 徒 27–28 · 腓 1:12</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">那美好的仗已經打過</div>
+        <div class="timeline-body">最後一封書信寫給提摩太，語氣不再是辯論或策略，只剩交代：把馬可帶來、把外衣帶來、把書卷帶來。他坦承「底馬貪愛現今的世界離棄了我」，也說「初次申訴，沒有人前來幫助」。然後留下那句被無數人在臨終前引用的話：「那美好的仗我已經打過了，當跑的路我已經跑盡了，所信的道我已經守住了。」傳統記載他在尼祿逼迫中被斬。</div>
+        <div class="timeline-ref">提後 4:6–18</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他從不是一個溫和的人。恩典沒有把他變溫和，恩典把他的猛烈重新對準了目標。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">真理值得付上任何代價——包括我自己</div>
+          <div class="soul-body">他逼迫教會與建立教會，動機結構完全相同：他相信某件事是絕對真實的，因此無法容忍任何偏離。轉變的不是強度，是對象。他對此毫不掩飾：「我先前是褻瀆神的、逼迫人的、侮慢人的。」他從未把過去說成誤會，他說那是罪——但也說「我如今成了何等人，是蒙神的恩才成的」。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">為了他人的得救而自願縮小自己</div>
+          <div class="soul-body">「向什麼樣的人，我就作什麼樣的人。」一個擁有羅馬公民權、拉比學位與驚人智識的人，選擇放棄受供養的權利、親手織帳棚、在猶太人中守律法、在外邦人中不守——只為了不在福音上絆倒任何人。他甚至說「為我弟兄……就是自己被咒詛，與基督分離，我也願意」。這不是謙卑的姿態，是計算過代價後的決定。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">戰略性、系統化、絕不留模糊地帶</div>
+          <div class="soul-body">他的宣教路線沿羅馬大道與港口城市推進，先建立據點再向外輻射。他的書信結構嚴謹：先鋪陳教義、再導出倫理、最後具體指名問安。他處理爭議從不含糊——安提阿當面抵擋彼得、與巴拿巴為馬可的事大起爭論到分開、在哥林多書信中逐條駁斥。清晰是他的美德，也是他的鋒利之處。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">對人的耐性遠不及對真理的耐性</div>
+          <div class="soul-body">他能為軟弱的弟兄放棄吃肉，卻無法忍受一個中途退出的年輕同工。他與巴拿巴「爭論甚為激烈」到彼此分開，起因只是馬可。他在書信中也不時流露被辜負的銳利與孤獨感。神學上他是恩典的最大宣講者，人際上他花了很久才把同樣的恩典用在自己身邊的人身上——晚年那句「馬可……在傳道的事上於我有益處」，是走了很長一段路才說出口的。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">被提到三層天的人，卻選擇誇軟弱</div>
+          <div class="soul-body">他有過整本新約中最異常的超自然經歷——被提到樂園、聽見人不可說的言語。但他用第三人稱迂迴地講，講完立刻轉向那根刺。一個握有最強屬靈履歷的人，公開拒絕以此建立權威。這在充斥屬靈階級競賽的哥林多教會，是一記極重的打擊，也是新約中最反直覺的領導示範。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">保羅一生的張力在於：他是一個必須靠成就活著的人，卻被指派去宣講一個「不靠行為，只靠恩典」的信息。他的履歷完美到可以逐條列出——第八天受割禮、便雅憫支派、就律法說是法利賽人、就律法上的義說是無可指摘的——然後他說：「我都當作有損的。」那不是輕描淡寫的謙辭，那是一個績效型人格把整個自我價值系統拆掉重建。他能把因信稱義講得那麼透徹，正因為他是最有資格靠行為誇口、卻親手放棄的那一個。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ENTJ</span>
+      <div class="mbti-name">指揮官型 · 戰略建構者</div>
+      <div class="mbti-slogan">「他能為一個信念規劃出橫跨三大洲的路線圖，卻曾經因為一個年輕人的退縮而失去一位摯友。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">他天然地把混沌組織成系統：宣教路線有策略、教會有長老架構、書信有教義—倫理的固定邏輯、爭議有明確裁決。羅馬書從人的普世墮落一路推導到以色列的命運與生活實踐，是新約中最接近系統神學的文本。Te 讓他不只傳福音，而是建構出能自我複製的體制。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">他能看見尚未發生的整體圖景：早在教會多為猶太人時，他就洞見外邦人與猶太人在基督裡同為一體，並為此對抗整個既有共識。「奧祕」是他最愛的字之一——他總在看事情底下那條尚未顯明的線。馬其頓的異象、堅持要去羅馬與西班牙，都是 Ni 在拉著他往地圖外走。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Se · 外向實感</span>
+          <div class="mbti-fn-body">在健康狀態下，這使他極能承受肉身的現實：鞭打、石頭、船壞、飢渴、赤身。他能一邊織帳棚一邊辯論。這份對現實環境的耐受度，讓他的策略不至於停留在紙上——他親自走完了那些路線。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">這是他最疼的地方。他難以處理自己與他人的情緒需求，衝突時傾向以原則裁決而非修復關係（馬可事件）。壓力下 Fi 反噬的痕跡在書信中清晰可見：突然轉為受傷的自辯、列舉自己受過多少苦、坦承「沒有人前來幫助我」。而他最終的成熟恰恰發生在這裡——那根刺逼他承認自己的軟弱，那是 Fi 被恩典打開的入口。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他建立了無數教會，卻在最私人的幾段關係上，摔得最重、也學得最多。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">基</div>
+          <div class="relation-name">耶穌基督</div>
+          <div class="relation-type-badge">主與僕人 · 直接的攔截</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">他與基督的關係始於一次攔截而非一次邀請——他不是被呼召跟隨，是被撞倒在地。這決定了他整套神學的重心：救恩完全出於神的主動，人毫無可誇。他反覆用「在基督裡」這個介係詞片語（新約中出現逾百次）描述信徒的存在狀態。對他而言，基督不是他事奉的對象，是他所身處的位置。</div>
+          <div class="relation-ref">徒 9:3–6 · 加 2:20 · 腓 3:7–9</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">巴</div>
+          <div class="relation-name">巴拿巴</div>
+          <div class="relation-type-badge">引薦人 · 後來的裂痕</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">當耶路撒冷的門徒都怕他、不信他是門徒時，只有巴拿巴接待他、領他去見使徒。後來又是巴拿巴專程去大數把他找出來，帶到安提阿——保羅的整個事奉，是被一個「勸慰之子」從邊緣接回來的。諷刺的是，多年後兩人正因巴拿巴要再給馬可一次機會而爭論激烈、彼此分開。那個曾經給保羅第二次機會的人，因為要給別人第二次機會而離開了他。</div>
+          <div class="relation-ref">徒 9:26–27 · 徒 11:25–26 · 徒 15:36–39</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">提</div>
+          <div class="relation-name">提摩太</div>
+          <div class="relation-type-badge">屬靈父子 · 傳承</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">他稱提摩太為「因信主作我真兒子的」，並在最後一封信裡把整個託付交給這個生性怯懦、腸胃不好的年輕人：「你要傳道，無論得時不得時。」保羅最柔軟的文字幾乎都在給提摩太的信中——「記念你的眼淚，晝夜切切地想要見你」。那個對馬可毫無耐性的人，對提摩太卻極盡溫柔。人不是變成另一個人，是在某段特定關係裡被鬆開。</div>
+          <div class="relation-ref">提前 1:2 · 提後 1:4 · 提後 4:2</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">彼</div>
+          <div class="relation-name">彼得</div>
+          <div class="relation-type-badge">同儕 · 公開的對抗</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">他在耶路撒冷被彼得、雅各、約翰接納為同工，卻在安提阿當面抵擋彼得，因為彼得在外邦弟兄面前退縮。保羅記下這件事不是為了勝訴，是為了證明福音的真理不因人的身分而讓步——連使徒之首也不例外。而彼得晚年仍稱他「我們所親愛的兄弟保羅」，並把他的書信與「別的經書」並列。兩人都通過了這場考驗。</div>
+          <div class="relation-ref">加 2:9 · 加 2:11–14 · 彼後 3:15–16</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">馬</div>
+          <div class="relation-name">馬可</div>
+          <div class="relation-type-badge">破裂與復原</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">馬可在第一次旅程中途離開，保羅因此拒絕再帶他，寧可與巴拿巴分道揚鑣。這是保羅性格陰影最赤裸的一次顯露。但故事沒有停在那裡——十多年後，在他最後一封信中，他寫下：「你來的時候要把馬可帶來，因為他在傳道的事上於我有益處。」宣講恩典的人，花了十幾年才把恩典用在這一個人身上；而他終究用上了。</div>
+          <div class="relation-ref">徒 13:13 · 徒 15:37–39 · 提後 4:11</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">亞</div>
+          <div class="relation-name">亞拿尼亞</div>
+          <div class="relation-type-badge">無名的接納者</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">大馬士革一個普通門徒，聖經只記了他這一件事。神叫他去見那個專程來抓他的人，他老實地說出恐懼，然後仍然去了，按手在他身上，開口第一句是「兄弟掃羅」。整個外邦宣教的歷史，繫在一個沒沒無名的人肯不肯去敲那扇門上。保羅在多年後受審時，仍記得他的名字並公開提起。</div>
+          <div class="relation-ref">徒 9:10–19 · 徒 22:12–16</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">他不是發明了新的宗教，他是宣告舊的應許已經在一個被釘死的人身上兌現了。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「我已經與基督同釘十字架，現在活著的不再是我，乃是基督在我裡面活著；並且我如今在肉身活著，是因信神的兒子而活，他是愛我，為我捨己。」</div>
+      <div class="verse-ref">加拉太書 2:20</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">δικαιόω</span>
+        <div class="word-transliteration">dikaioō · 稱義 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">法庭用語，意為「宣告為義」而非「使之變義」。這是一個判決性的宣告，不是一個漸進的改造過程——法官宣告被告無罪，被告的地位當場改變，即使他的品格尚未改變。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">整場宗教改革的爭點就在這個字上。若 dikaioō 是「使人成為義」，救恩就取決於人被改造的程度；若是「宣告為義」，救恩就完全繫於基督的作為與神的宣判。保羅選用法庭語言，是要把信徒的安全感從自我檢查中永久移出——「如今那些在基督耶穌裡的，就不定罪了」。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">χάρις</span>
+        <div class="word-transliteration">charis · 恩典 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「白白給予的恩惠、不求回報的贈與」。在希臘社會，charis 通常存在於恩主與受惠者的互惠網絡中，接受者有回報的義務。保羅刻意保留這個字，卻切斷了互惠的環節。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">他把一個原本內建「你欠我」結構的字，改造成新約中最徹底的白白恩典。「你們得救是本乎恩，也因著信；這並不是出於自己，乃是神所賜的；也不是出於行為，免得有人自誇。」他親身經歷過：一個逼迫教會的人被指派為使徒，這件事在任何互惠邏輯裡都不成立。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">因信稱義：把根據從人挪到神</div>
+      <div class="theology-insight-body">他在羅馬書用了三章論證全人類——外邦人與猶太人一同——都在罪的權勢之下，「沒有義人，連一個也沒有」，然後才引入「如今卻在律法以外，神的義已經顯明出來」。順序至關重要：只有當自我拯救的所有出口都被封死，恩典才會被聽成好消息而非附加選項。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">外邦人與猶太人在基督裡同為一體</div>
+      <div class="theology-insight-body">這是他所稱的「奧祕」——不是外邦人被允許加入以色列，而是雙方一同被造成一個新人。「並且以自己的身體廢掉冤仇，就是那記在律法上的規條，為要將兩下藉著自己造成一個新人。」在一個以聖殿的隔斷牆為神學地標的時代，這幾乎是暴力性的宣告。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">軟弱神學：能力在軟弱上顯得完全</div>
+      <div class="theology-insight-body">哥林多後書是他最私人的一封信，也是他神學最成熟的一封。面對質疑他資格的對手，他不比較神蹟或口才，反而列出自己被鞭打、下監、船壞、缺乏的清單。他的結論扭轉了整套權柄邏輯：屬靈權柄不來自無懈可擊，來自被恩典托住的破口。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">摩西在何烈山遇見自燃的荊棘，被差回埃及去見他曾經逃離的族人</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">兩人都在流亡般的處境中被神攔截，都被差回自己最不可能被接納的群體；保羅回到那些他曾追捕的門徒中間，正如摩西回到他曾殺人逃離的埃及</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督是那位「比摩西算是更配多得榮耀」的中保，親自成全律法所指向的一切（來 3:3）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">約拿被神強行差往他所憎惡的外邦城市尼尼微，並對神的憐憫發怒</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">保羅走了與約拿相反的路：他從憎惡外邦人的法利賽人，成為為外邦人被囚的使徒。約拿抗拒的那份憐憫，保羅用一生去傳</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督親自成為「照亮外邦人的光」，使萬國得以進入神的救恩（路 2:32）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">以賽亞見異象後被差遣：「我在這裡，請差遣我」，卻被告知百姓聽是要聽見卻不明白</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">保羅在使徒行傳最後一章對羅馬的猶太人引用的正是這段以賽亞書，作為他轉向外邦人的神學依據——蒙差遣不保證被接受</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督自己成為「被棄的石頭」，卻成了房角的頭塊石頭（徒 4:11）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">亞伯拉罕未受割禮之時因信被算為義，成為一切因信之人的父</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">保羅以此證明因信稱義不是新約的創新，而是神從一開始的作法；律法是四百三十年後才加上的，不能廢掉先前的應許</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督是那應許中的「後裔」，使亞伯拉罕的福臨到外邦人（加 3:14–16）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你的價值感是靠成績單維持的，這一頁會有點刺。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">保羅命中的是現代最普遍的一種人格處境：高功能、高標準、靠產出證明自己存在的意義。這種人通常是團隊裡最可靠的那個，也是最難休息的那個——因為一旦停下來，就沒有東西可以拿來證明自己值得被愛。保羅把自己那份無可指摘的履歷列出來，然後說「我都當作有損的」，不是因為那些成就不好，而是因為他終於找到了一個不需要靠它們維持的身分。那根不被挪去的刺，是神留在他身上的提醒：你的價值不在你的產出裡。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">如果把你所有的頭銜、成績與能力拿掉，你還剩下什麼可以說明你是誰？你敢不敢在那個狀態下讓人看見你？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">你身上有沒有一根「求過三次仍未挪去」的刺？你是仍在求它消失，還是已經開始問它想教你什麼？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">保羅對真理極有耐性，對人卻常常沒有。你最容易對哪一種人失去耐性——那類人身上，是不是有某個你不允許自己擁有的特質？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">你曾經全力以赴、卻方向完全錯誤過嗎？如果那段時間不能被抹掉，它有沒有可能反而成為你現在最能理解某些人的原因？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 保羅</span>
+        <div class="gen-title">應激劇本：用切割處理讓他失望的人</div>
+        <div class="gen-body">他處理失望的預設方式是切斷關係。馬可中途離開，他就拒絕再帶；巴拿巴堅持，他就與這位一生的恩人分道揚鑣。這不是任性——他有正當理由，宣教隊伍確實承擔不起不可靠的成員。但這正是問題所在：他的標準永遠站得住腳，因此他從未被迫檢視標準背後那份「我絕不容許鬆動」的僵硬。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 提摩太</span>
+        <div class="gen-title">打斷而非複製：怯懦被接住了</div>
+        <div class="gen-body">提摩太的性格幾乎是馬可的翻版——生性膽怯、身體不好、需要被反覆鼓勵。按第一代的劇本，他早該被淘汰。但保羅對他寫下的是：「神賜給我們的，不是膽怯的心。」他沒有要求提摩太不害怕，他陪著一個害怕的人走完全程。同樣的破口類型，這一次沒有導向切割。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">打斷發生在兩個層面。第一，是那根刺——神拒絕挪去它，使保羅無法再用「毫無破綻」定義自己的資格，這從根本上瓦解了他評判他人的尺。第二，是他自己選擇改寫結局：在最後一封信裡，他主動要求把馬可帶來。恩典打斷代際循環的方式，通常不是讓你不再犯同樣的錯，而是給你足夠長的時間，讓你有機會回頭去修補它。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把這個把履歷撕掉的人，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#高成就者的疲憊</span>
+      <span class="tag">#撕掉履歷之後</span>
+      <span class="tag">#那根刺</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>保羅是那種你在職場上會又敬佩又有點怕的人：能力強得離譜，標準高得可怕，而且他真心覺得你也做得到。</p>
+      <p>他的履歷可以直接拿去參加任何一場資格審查：血統純正、名校出身、師承業界第一把交椅、專業表現「無可指摘」。他自己列了整整一串。然後下一句是：這些我全部當作垃圾。用的還是個很粗的字。</p>
+      <p>但他不是那種灑脫的人。他有很硬的稜角。有個年輕同工中途落跑，他就再也不肯帶那個人，甚至因此跟自己的伯樂——那個當初全教會都不敢理他、只有他肯出面擔保的巴拿巴——大吵一架，然後拆夥。這件事聖經寫得很直白，沒有幫他打圓場。</p>
+      <p>他身上還有一件事一直沒有被解決。他說有一根刺在他肉體上，求過三次，主沒有拿走，只說了一句「我的恩典夠你用的」。一個習慣把問題排除掉的人，被留下一個排除不掉的東西——而那正是他整套神學真正成熟的起點。</p>
+      <p>然後是很多年以後，他在死牢裡寫最後一封信。信裡他交代了幾件小事：把外衣帶來，天冷了；把書卷帶來；還有——把馬可帶來，他在傳道的事上於我有益處。就這麼一句，沒有解釋，沒有道歉。但認識這段歷史的人都知道那句話有多重。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——而這一塊石頭，是被一根拔不掉的刺、和一個他曾經放棄的人，慢慢磨圓的。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你正在一個「不夠好就不配」的迴圈裡——不管那個標準是別人給的還是你自己訂的——保羅的故事有一個很具體的安慰：他是那個最有資格靠成績誇口的人，而他親手把那份成績單放下了。不是因為他失敗了，是因為他找到了更穩的地基。</p>
+      <p style="margin-top:12px;">還有那根刺。他求了三次，主沒有拿走。這件事被誠實地寫在聖經裡，沒有被包裝成「後來就好了」。你身上那個沒有被解決的東西，不代表你的禱告失敗，也不代表你不夠有信心。有些刺留下來，是為了讓你永遠找不到理由靠自己站著。</p>
+      <p style="margin-top:12px;">至於那些你搞砸過的關係——保羅花了十幾年才對馬可說出那句話。如果你也需要十幾年，那也沒關係。重點不是快，是最後有沒有走回去。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">先把外衣穿上，天冷了。修補的事，等你暖起來再開始。</p>
+    </div>
+
+    <div class="insight-box">在現代領導力語境中，保羅提供了「高效能領導者如何避免燃燒團隊」的經典案例研究：他的策略能力、系統思維與執行紀律使他成為極少數能建立跨文化、可自我複製組織的人；但同一份特質也讓他在人際容錯上明顯滯後。他晚年的轉變——從淘汰馬可到主動召回馬可——是組織行為學所謂「領導者成熟度躍遷」最清晰的聖經範例。而在心理學層面，「那根刺」為現代高成就者提供了一個罕見的框架：把無法解決的限制，從必須被修復的缺陷，重新理解為身分安全感的守護者。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">沒有他，福音仍會傳開；但基督教會用完全不同的語言思考自己。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">新約正典近半數的作者</div>
+          <div class="legacy-body">傳統歸給他的十三卷書信構成新約的神學骨幹。彼得後書更把他的書信與「別的經書」並列，顯示他的著作在使徒時代末期已被視為具正典地位。從羅馬書的救恩論、哥林多前書的教會論、以弗所書的基督論，到腓利門書對奴隸制度的暗中拆解——後世兩千年的神學爭論，幾乎都在他鋪下的軌道上進行。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">把福音從猶太教內部運動變成普世信仰</div>
+          <div class="legacy-body">若沒有他在耶路撒冷會議上的堅持，外邦信徒可能必須先成為猶太人才能成為基督徒。他拒絕讓割禮成為入門條件，這一戰決定了基督教會成為一個跨越血統的信仰，而非一個猶太教派。今日全球絕大多數基督徒之所以不需要遵守摩西律法的禮儀條款，源頭在此。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">因信稱義：宗教改革的引信</div>
+          <div class="legacy-body">馬丁路德在羅馬書 1:17「義人必因信得生」上經歷突破，加爾文、衛斯理同樣如此。保羅的稱義論在歷史上反覆成為教會自我更新的槓桿——每當信仰重新滑向績效與制度，這幾封書信就再一次把它拉回恩典。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">基督的身體：教會論的核心隱喻</div>
+          <div class="legacy-body">「你們就是基督的身體，並且各自作肢體。」這個從「掃羅，你為什麼逼迫我」那句話長出來的圖像，重塑了信徒群體的自我理解：教會不是志同道合者的集會，是一個有機體。恩賜的多樣性、肢體的互需、對軟弱肢體的加倍體面——當代所有關於教會合一與多元的討論，仍在使用他的詞彙。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">V</div>
+        <div>
+          <div class="legacy-title">軟弱作為權柄的來源</div>
+          <div class="legacy-body">他留下一種與世界完全相反的領導範式：不以無懈可擊立威，而以公開的破口建立信任。「我更喜歡誇自己的軟弱。」這句話使後世每一個帶著未癒之傷仍在服事的人，都能在正典中找到自己的位置。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「那美好的仗我已經打過了，當跑的路我已經跑盡了，所信的道我已經守住了。從此以後，有公義的冠冕為我存留。」</div>
+      <div class="final-verse-ref">提摩太後書 4:7–8</div>
+    </div>
+
+    <div class="final-question">如果有一天你也要交出一份總結，你會發現自己最想被記得的，是你完成了多少——還是你終於學會了不必靠完成什麼來確認自己被愛？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 保羅 <span>Παῦλος · שָׁאוּל</span> · 外邦人的使徒 · 新約主要作者</div>
+
+</body>
+</html>

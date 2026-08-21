@@ -3,10 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="PORTRAIT 聖經人物深度研究 — 以八大維度剖析聖經人物的歷史、性格、神學意義與當代應用。">
 <title>PORTRAIT · 聖經人物深度研究</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📜</text></svg>">
 
 <!-- 引入 Supabase 官方 JavaScript SDK -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -34,32 +36,80 @@
   .hero-stat-label { font-size: 11px; letter-spacing: 0.15em; color: var(--ink-pale); }
   .hero-divider { width: 40px; height: 1px; background: var(--gold); margin: 36px auto 0; opacity: 0.4; }
 
-  /* ── FILTER BAR ── */
+  /* ── PRIMARY TABS ── */
   .filter-wrap { background: var(--ink-mid); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 12px rgba(0,0,0,0.15); display: flex; justify-content: space-between; align-items: center; padding-right: 16px; }
   .filter-primary { display: flex; overflow-x: auto; scrollbar-width: none; padding: 0 16px; flex: 1; }
   .filter-primary::-webkit-scrollbar { display: none; }
   .tab-btn { flex-shrink: 0; background: none; border: none; color: var(--ink-pale); font-family: 'Noto Sans TC', sans-serif; font-size: 12px; font-weight: 300; letter-spacing: 0.1em; padding: 14px 16px; cursor: pointer; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; white-space: nowrap; }
   .tab-btn:hover { color: var(--gold-light); }
   .tab-btn.active { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .tab-btn .tab-n { font-family: 'IM Fell English', serif; font-size: 10px; opacity: 0.55; margin-left: 5px; }
 
   .nav-login-btn { background: rgba(184, 150, 46, 0.15); border: 1px solid var(--gold); color: var(--gold-light); font-size: 11px; padding: 4px 12px; border-radius: 4px; cursor: pointer; font-family: 'Noto Sans TC', sans-serif; transition: all 0.2s; white-space: nowrap; }
   .nav-login-btn:hover { background: var(--gold); color: var(--ink); }
   .nav-login-btn.logged-in { background: var(--danger); border-color: rgba(255,255,255,0.2); color: #fff; }
 
-  .filter-secondary-wrap { background: #2D271B; }
-  .filter-secondary { display: none; overflow-x: auto; scrollbar-width: none; padding: 8px 16px; gap: 6px; flex-wrap: nowrap; }
-  .filter-secondary::-webkit-scrollbar { display: none; }
-  .filter-secondary.visible { display: flex; }
-  .mbti-pill { flex-shrink: 0; background: rgba(255,255,255,0.05); border: 1px solid rgba(184,150,46,0.2); border-radius: 20px; color: var(--ink-pale); font-family: 'IM Fell English', serif; font-size: 12px; letter-spacing: 0.05em; padding: 4px 14px; cursor: pointer; transition: all 0.18s; white-space: nowrap; }
+  /* ── SUB FILTER BAR ── */
+  .subfilter-wrap { background: #2D271B; border-top: 1px solid rgba(184,150,46,0.12); position: sticky; top: 43px; z-index: 99; }
+  .subfilter-row { display: flex; align-items: center; gap: 10px; padding: 9px 16px; flex-wrap: wrap; }
+  .tier-group { display: flex; gap: 4px; flex-shrink: 0; }
+  .tier-btn { background: rgba(255,255,255,0.05); border: 1px solid rgba(184,150,46,0.2); border-radius: 20px; color: var(--ink-pale); font-family: 'Noto Sans TC', sans-serif; font-size: 12px; padding: 4px 14px; cursor: pointer; transition: all 0.18s; white-space: nowrap; }
+  .tier-btn:hover { color: var(--gold-light); border-color: var(--gold); }
+  .tier-btn.active { background: rgba(184,150,46,0.18); border-color: var(--gold); color: var(--gold-light); }
+
+  .mbti-toggle { background: rgba(255,255,255,0.05); border: 1px solid rgba(184,150,46,0.2); border-radius: 20px; color: var(--ink-pale); font-family: 'Noto Sans TC', sans-serif; font-size: 12px; padding: 4px 14px; cursor: pointer; transition: all 0.18s; white-space: nowrap; display: flex; align-items: center; gap: 6px; }
+  .mbti-toggle:hover { color: var(--gold-light); border-color: var(--gold); }
+  .mbti-toggle.has-filter { background: rgba(184,150,46,0.18); border-color: var(--gold); color: var(--gold-light); }
+  .mbti-badge { background: var(--gold); color: var(--ink); border-radius: 10px; font-size: 10px; font-weight: 500; padding: 0 6px; line-height: 15px; }
+  .mbti-caret { transition: transform 0.2s; font-size: 9px; }
+  .mbti-toggle.open .mbti-caret { transform: rotate(180deg); }
+
+  .search-box { position: relative; flex: 1; min-width: 170px; max-width: 300px; margin-left: auto; }
+  .search-input { width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(184,150,46,0.2); border-radius: 20px; color: var(--sand); font-family: 'Noto Sans TC', sans-serif; font-size: 12px; font-weight: 300; padding: 5px 30px 5px 14px; outline: none; transition: border-color 0.18s; }
+  .search-input::placeholder { color: rgba(156,142,114,0.75); }
+  .search-input:focus { border-color: var(--gold); }
+  .search-clear { position: absolute; right: 4px; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--ink-pale); font-size: 15px; cursor: pointer; padding: 0 7px; line-height: 1; display: none; }
+  .search-clear.visible { display: block; }
+  .search-clear:hover { color: var(--gold-light); }
+
+  /* ── MBTI PANEL ── */
+  .mbti-panel { display: none; padding: 4px 16px 16px; border-top: 1px dashed rgba(184,150,46,0.15); }
+  .mbti-panel.open { display: block; }
+  .mbti-panel-head { display: flex; justify-content: space-between; align-items: baseline; padding: 12px 0 10px; gap: 12px; }
+  .mbti-panel-head span { font-size: 11px; letter-spacing: 0.18em; color: var(--ink-pale); }
+  .mbti-reset { background: none; border: none; color: var(--gold); font-family: 'Noto Sans TC', sans-serif; font-size: 11px; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
+  .mbti-reset:hover { color: var(--gold-light); }
+
+  .mbti-axes { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 6px 20px; margin-bottom: 6px; }
+  .mbti-axis { display: flex; align-items: center; gap: 9px; }
+  .axis-label { font-size: 11px; color: var(--ink-pale); letter-spacing: 0.1em; width: 30px; flex-shrink: 0; }
+  .axis-btns { display: flex; gap: 4px; }
+  .axis-btn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.18); border-radius: 5px; color: var(--ink-pale); font-family: 'Noto Sans TC', sans-serif; font-size: 11.5px; padding: 3px 11px; cursor: pointer; transition: all 0.16s; white-space: nowrap; }
+  .axis-btn b { font-family: 'IM Fell English', serif; font-size: 13px; margin-right: 3px; }
+  .axis-btn:hover { color: var(--gold-light); border-color: var(--gold); }
+  .axis-btn.active { background: var(--gold); border-color: var(--gold); color: var(--ink); font-weight: 400; }
+
+  .mbti-groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(215px, 1fr)); gap: 10px 20px; }
+  .mbti-group-title { font-size: 10.5px; letter-spacing: 0.12em; color: var(--ink-soft); margin-bottom: 6px; }
+  .mbti-group-title b { color: var(--gold); font-family: 'IM Fell English', serif; font-size: 11px; letter-spacing: 0.05em; }
+  .mbti-group-pills { display: flex; gap: 4px; flex-wrap: wrap; }
+  .mbti-pill { background: rgba(255,255,255,0.05); border: 1px solid rgba(184,150,46,0.2); border-radius: 20px; color: var(--ink-pale); font-family: 'IM Fell English', serif; font-size: 12px; letter-spacing: 0.05em; padding: 3px 12px; cursor: pointer; transition: all 0.18s; white-space: nowrap; }
   .mbti-pill:hover { color: var(--gold-light); border-color: var(--gold); }
-  .mbti-pill.active { background: rgba(184,150,46,0.15); border-color: var(--gold); color: var(--gold-light); }
+  .mbti-pill.active { background: rgba(184,150,46,0.2); border-color: var(--gold); color: var(--gold-light); }
+  .mbti-pill.dimmed { opacity: 0.25; }
+  .mbti-pill .pill-n { font-family: 'Noto Sans TC', sans-serif; font-size: 9.5px; opacity: 0.6; margin-left: 3px; }
 
   /* ── MAIN CONTENT ── */
   .main { max-width: 1100px; margin: 0 auto; padding: 40px 20px 80px; }
-  .section-label { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
+  .section-label { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
   .section-label-text { font-family: 'Noto Serif TC', serif; font-size: 13px; font-weight: 500; color: var(--ink-soft); letter-spacing: 0.1em; }
   .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
   .section-count { font-family: 'IM Fell English', serif; font-size: 12px; color: var(--gold); letter-spacing: 0.05em; }
+  .active-chips { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 20px; }
+  .active-chips:empty { margin-bottom: 0; }
+  .active-chip { font-size: 11px; padding: 2px 10px; border-radius: 20px; background: var(--gold-pale); border: 1px solid var(--border-strong); color: var(--ink-soft); display: flex; align-items: center; gap: 5px; }
+  .active-chip button { background: none; border: none; color: var(--ink-soft); cursor: pointer; font-size: 13px; line-height: 1; padding: 0; }
+  .active-chip button:hover { color: var(--danger); }
 
   /* ── CARDS GRID ── */
   .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
@@ -68,16 +118,19 @@
   .char-card { padding: 22px 22px 18px; text-decoration: none; color: inherit; display: block; flex: 1; position: relative; }
   .char-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--gold), var(--gold-light)); transform: scaleX(0); transform-origin: left; transition: transform 0.25s; }
   .char-card-wrap:hover .char-card::before { transform: scaleX(1); }
+  .char-card-wrap.is-major { border-color: var(--border-strong); }
 
   .char-card-top { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 12px; }
   .char-avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); flex-shrink: 0; }
   .char-name-block { flex: 1; min-width: 0; }
-  .char-name { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 2px; letter-spacing: 0.03em; }
+  .char-name { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 3px; letter-spacing: 0.03em; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; line-height: 1.4; }
+  .char-epithet { font-family: 'Noto Sans TC', sans-serif; font-size: 11px; font-weight: 300; color: var(--ink-soft); background: var(--gold-faint); border: 1px solid var(--border); border-radius: 4px; padding: 0 6px; letter-spacing: 0.02em; }
+  .char-star { color: var(--gold); font-size: 12px; }
   .char-name-en { font-family: 'IM Fell English', serif; font-size: 12px; color: var(--ink-pale); letter-spacing: 0.08em; }
   .char-desc { font-size: 13px; color: var(--ink-soft); line-height: 1.85; margin-bottom: 14px; }
   .char-tags { display: flex; gap: 6px; flex-wrap: wrap; }
   .char-tag { font-size: 10px; letter-spacing: 0.1em; padding: 2px 9px; border-radius: 20px; border: 1px solid rgba(184,150,46,0.25); color: var(--gold); background: var(--gold-faint); }
-  .char-tag.mbti { background: rgba(26,74,62,0.07); border-color: rgba(26,74,62,0.25); color: var(--teal-deep); }
+  .char-tag.mbti { background: rgba(26,74,62,0.07); border-color: rgba(26,74,62,0.25); color: var(--teal-deep); font-family: 'IM Fell English', serif; letter-spacing: 0.05em; }
 
   /* 醒目卡片編輯按鈕 */
   .admin-card-action { background: var(--gold-faint); border-top: 1px dashed var(--border); padding: 10px 14px; display: flex; justify-content: flex-end; align-items: center; }
@@ -85,15 +138,16 @@
   .edit-badge-btn:hover { background: var(--gold); color: #fff; transform: scale(1.05); }
 
   /* 後台頂部控制列 */
-  .admin-bar { background: #fff; border-bottom: 2px solid var(--gold); padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; gap: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+  .admin-bar { background: #fff; border-bottom: 2px solid var(--gold); padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; gap: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); flex-wrap: wrap; }
   .admin-btn { background: var(--teal-deep); color: #fff; border: none; padding: 6px 14px; border-radius: 4px; cursor: pointer; font-weight: 400; }
   .admin-btn.gold-btn { background: var(--gold); }
   .admin-btn:hover { opacity: 0.9; }
 
   /* 排序視窗樣式 */
-  .sort-item { display: flex; align-items: center; justify-content: space-between; padding: 10px; background: #fff; border: 1px solid var(--border); margin-bottom: 6px; border-radius: 6px; }
-  .sort-arrows { display: flex; gap: 5px; }
+  .sort-item { display: flex; align-items: center; justify-content: space-between; padding: 10px; background: #fff; border: 1px solid var(--border); margin-bottom: 6px; border-radius: 6px; gap: 8px; }
+  .sort-arrows { display: flex; gap: 5px; flex-shrink: 0; }
   .arrow-btn { background: var(--parchment-dark); border: 1px solid var(--ink-pale); padding: 2px 8px; font-size: 12px; cursor: pointer; border-radius: 4px; }
+  .sort-hint { font-size: 12px; color: var(--ink-soft); background: var(--gold-faint); border: 1px solid var(--border); border-radius: 6px; padding: 8px 12px; margin-bottom: 12px; line-height: 1.7; }
 
   /* ── MODAL DIALOG ── */
   .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 1000; align-items: center; justify-content: center; padding: 20px; }
@@ -102,7 +156,8 @@
   .modal-title { font-family: 'Noto Serif TC', serif; font-size: 20px; color: var(--ink); margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
   .form-group { margin-bottom: 16px; }
   .form-group label { display: block; font-size: 13px; font-weight: 500; color: var(--ink-mid); margin-bottom: 4px; }
-  .form-group label span { color: var(--danger); }
+  .form-group label span.req { color: var(--danger); }
+  .form-hint { font-size: 11px; color: var(--ink-pale); font-weight: 300; }
   .form-control { width: 100%; padding: 8px 12px; border: 1px solid var(--border-strong); background: #fff; border-radius: 6px; font-family: inherit; font-size: 14px; }
   .checkbox-group { display: flex; gap: 16px; flex-wrap: wrap; padding-top: 4px; }
   .checkbox-label { display: flex; align-items: center; gap: 6px; font-size: 13px; cursor: pointer; }
@@ -113,13 +168,18 @@
   .empty-state { text-align: center; padding: 80px 20px; color: var(--ink-pale); display: none; }
   .empty-state.visible { display: block; }
   .empty-state-icon { font-family: 'IM Fell English', serif; font-size: 48px; color: var(--border-strong); display: block; margin-bottom: 16px; }
-  .genealogy-notice { background: var(--teal-deep); border-radius: 12px; padding: 32px 28px; color: var(--sand); text-align: center; display: none; }
-  .genealogy-notice.visible { display: block; }
-  .genealogy-notice h3 { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 400; color: var(--gold-light); margin-bottom: 10px; letter-spacing: 0.05em; }
-  .genealogy-notice p { font-size: 14px; color: var(--sand); opacity: 0.8; line-height: 1.9; }
+  .tab-notice { background: var(--teal-deep); border-radius: 12px; padding: 32px 28px; color: var(--sand); text-align: center; display: none; margin-bottom: 24px; }
+  .tab-notice.visible { display: block; }
+  .tab-notice h3 { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 400; color: var(--gold-light); margin-bottom: 10px; letter-spacing: 0.05em; }
+  .tab-notice p { font-size: 14px; color: var(--sand); opacity: 0.8; line-height: 1.9; }
   .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 11px; letter-spacing: 0.12em; }
   .footer span { color: var(--gold); }
   .loading-mask { position: fixed; inset: 0; background: rgba(247,242,232,0.8); z-index: 2000; display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--ink-soft); }
+
+  @media (max-width: 640px) {
+    .subfilter-wrap { position: static; }
+    .search-box { max-width: none; margin-left: 0; width: 100%; }
+  }
 </style>
 </head>
 <body>
@@ -149,39 +209,52 @@
   <div class="hero-divider"></div>
 </div>
 
-<!-- FILTER BAR -->
+<!-- PRIMARY TABS -->
 <div class="filter-wrap">
-  <div class="filter-primary">
-    <button class="tab-btn active" data-tab="ot">舊約人物</button>
-    <button class="tab-btn" data-tab="nt">新約人物</button>
-    <button class="tab-btn" data-tab="mbti">MBTI 16型</button>
-    <button class="tab-btn" data-tab="genealogy">主耶穌家譜</button>
-  </div>
+  <div class="filter-primary" id="filter-primary"></div>
   <button id="nav-auth-btn" class="nav-login-btn" onclick="handleAuthClick()">🔒 Google 登入管理</button>
 </div>
 
-<!-- Secondary MBTI sub-filter -->
-<div class="filter-secondary-wrap">
-  <div class="filter-secondary" id="mbti-sub">
-    <button class="mbti-pill active" data-mbti="all">全部</button>
-    <button class="mbti-pill" data-mbti="INTJ">INTJ</button><button class="mbti-pill" data-mbti="INTP">INTP</button><button class="mbti-pill" data-mbti="ENTJ">ENTJ</button><button class="mbti-pill" data-mbti="ENTP">ENTP</button><button class="mbti-pill" data-mbti="INFJ">INFJ</button><button class="mbti-pill" data-mbti="INFP">INFP</button><button class="mbti-pill" data-mbti="ENFJ">ENFJ</button><button class="mbti-pill" data-mbti="ENFP">ENFP</button><button class="mbti-pill" data-mbti="ISTJ">ISTJ</button><button class="mbti-pill" data-mbti="ISFJ">ISFJ</button><button class="mbti-pill" data-mbti="ESTJ">ESTJ</button><button class="mbti-pill" data-mbti="ESFJ">ESFJ</button><button class="mbti-pill" data-mbti="ISTP">ISTP</button><button class="mbti-pill" data-mbti="ISFP">ISFP</button><button class="mbti-pill" data-mbti="ESTP">ESTP</button><button class="mbti-pill" data-mbti="ESFP">ESFP</button>
+<!-- SUB FILTER BAR -->
+<div class="subfilter-wrap" id="subfilter-wrap">
+  <div class="subfilter-row">
+    <div class="tier-group" id="tier-group">
+      <button class="tier-btn active" data-tier="all">全部</button>
+      <button class="tier-btn" data-tier="major">★ 重要人物</button>
+    </div>
+    <button class="mbti-toggle" id="mbti-toggle" onclick="toggleMbtiPanel()">
+      人格篩選<span class="mbti-badge" id="mbti-badge" style="display:none">0</span><span class="mbti-caret">▼</span>
+    </button>
+    <div class="search-box">
+      <input type="search" class="search-input" id="search-input" placeholder="搜尋名字、身份、標籤、MBTI…" autocomplete="off">
+      <button class="search-clear" id="search-clear" onclick="clearSearch()">×</button>
+    </div>
+  </div>
+
+  <!-- MBTI 兩層篩選面板 -->
+  <div class="mbti-panel" id="mbti-panel">
+    <div class="mbti-panel-head">
+      <span>第一層 · 維度快篩（可任意組合，未選＝不限）</span>
+      <button class="mbti-reset" onclick="resetMbti()">清除人格篩選</button>
+    </div>
+    <div class="mbti-axes" id="mbti-axes"></div>
+    <div class="mbti-panel-head"><span>第二層 · 十六型細分（依四大氣質群組）</span></div>
+    <div class="mbti-groups" id="mbti-groups"></div>
   </div>
 </div>
 
 <!-- MAIN -->
 <main class="main">
   <div class="section-label">
-    <span class="section-label-text" id="section-label-text">舊約人物</span>
+    <span class="section-label-text" id="section-label-text">全部人物</span>
     <span class="section-count" id="section-count">— 0 人物</span>
   </div>
-  <div class="genealogy-notice" id="genealogy-notice">
-    <h3>主耶穌家譜 · 馬太福音 1 章</h3>
-    <p>從亞伯拉罕到大衛，從大衛到被擄巴比倫，從被擄到基督降生——<br>家譜不只是名單，而是神在歷史中守約的見證。</p>
-  </div>
+  <div class="tab-notice" id="tab-notice"><h3 id="notice-title"></h3><p id="notice-body"></p></div>
+  <div class="active-chips" id="active-chips"></div>
   <div class="cards-grid" id="cards-grid"></div>
   <div class="empty-state" id="empty-state">
     <span class="empty-state-icon">∅</span>
-    <p>此分類尚未收錄人物，敬請期待。</p>
+    <p id="empty-text">此分類尚未收錄人物，敬請期待。</p>
   </div>
 </main>
 
@@ -192,44 +265,50 @@
     <form id="charForm" onsubmit="handleFormSubmit(event)">
       <input type="hidden" id="form-mode" value="add">
       <div class="form-group">
-        <label for="char-id">唯一識別碼 (id) <span>*</span> (限小寫英數字，儲存後不可改)</label>
+        <label for="char-id">唯一識別碼 (id) <span class="req">*</span> <span class="form-hint">＝檔名去掉 portrait_ 前綴，如 james_zebedee</span></label>
         <input type="text" id="char-id" class="form-control" required pattern="^[a-z0-9_]+$">
       </div>
       <div class="form-group">
-        <label for="char-name">中文姓名 (name) <span>*</span></label>
-        <input type="text" id="char-name" class="form-control" required placeholder="如：以撒">
+        <label for="char-name">中文姓名 (name) <span class="req">*</span></label>
+        <input type="text" id="char-name" class="form-control" required placeholder="如：雅各">
       </div>
       <div class="form-group">
-        <label for="char-nameEn">英文姓名 (nameEn) <span>*</span></label>
-        <input type="text" id="char-nameEn" class="form-control" required placeholder="如：Isaac">
+        <label for="char-epithet">中文辨識副標 (epithet) <span class="form-hint">同名者必填，如：西庇太之子</span></label>
+        <input type="text" id="char-epithet" class="form-control" placeholder="如：西庇太之子">
       </div>
       <div class="form-group">
-        <label for="char-avatar">顯示頭像字元 (avatar) <span>*</span> (限1~2字)</label>
-        <input type="text" id="char-avatar" class="form-control" required maxlength="2" placeholder="如：撒">
+        <label for="char-nameEn">英文姓名 (nameEn) <span class="req">*</span></label>
+        <input type="text" id="char-nameEn" class="form-control" required placeholder="如：James, son of Zebedee">
       </div>
       <div class="form-group">
-        <label for="char-desc">短介紹描述 (desc) <span>*</span></label>
+        <label for="char-avatar">顯示頭像字元 (avatar) <span class="req">*</span> (限1~2字)</label>
+        <input type="text" id="char-avatar" class="form-control" required maxlength="2" placeholder="如：雅">
+      </div>
+      <div class="form-group">
+        <label for="char-desc">短介紹描述 (desc) <span class="req">*</span></label>
         <textarea id="char-desc" class="form-control" rows="3" required placeholder="請輸入簡短生命描述..."></textarea>
       </div>
       <div class="form-group">
-        <label for="char-mbti">MBTI 類型 (mbti)</label>
+        <label for="char-mbti">MBTI 類型 (mbti) <span class="form-hint">填了就會自動出現在 MBTI 人格圖譜</span></label>
         <select id="char-mbti" class="form-control">
           <option value="">請選擇...</option>
           <option value="INTJ">INTJ</option><option value="INTP">INTP</option><option value="ENTJ">ENTJ</option><option value="ENTP">ENTP</option><option value="INFJ">INFJ</option><option value="INFP">INFP</option><option value="ENFJ">ENFJ</option><option value="ENFP">ENFP</option><option value="ISTJ">ISTJ</option><option value="ISFJ">ISFJ</option><option value="ESTJ">ESTJ</option><option value="ESFJ">ESFJ</option><option value="ISTP">ISTP</option><option value="ISFP">ISFP</option><option value="ESTP">ESTP</option><option value="ESFP">ESFP</option>
         </select>
       </div>
       <div class="form-group">
-        <label for="char-file">對應 HTML 網頁名稱 (file) <span>*</span></label>
-        <input type="text" id="char-file" class="form-control" required placeholder="如：isaac_portrait.html">
+        <label for="char-tier">重要度 (tier) <span class="req">*</span> <span class="form-hint">決定是否出現在「★ 重要人物」篩選</span></label>
+        <select id="char-tier" class="form-control">
+          <option value="normal">一般人物</option>
+          <option value="major">★ 重要人物</option>
+        </select>
       </div>
       <div class="form-group">
-        <label>選擇所屬類別項目 (categories) <span>*</span> (可複選)</label>
-        <div class="checkbox-group">
-          <label class="checkbox-label"><input type="checkbox" name="category" value="ot"> 舊約人物 (ot)</label>
-          <label class="checkbox-label"><input type="checkbox" name="category" value="nt"> 新約人物 (nt)</label>
-          <label class="checkbox-label"><input type="checkbox" name="category" value="mbti"> MBTI 16型 (mbti)</label>
-          <label class="checkbox-label"><input type="checkbox" name="category" value="genealogy"> 主耶穌家譜 (genealogy)</label>
-        </div>
+        <label for="char-file">對應 HTML 網頁名稱 (file) <span class="req">*</span></label>
+        <input type="text" id="char-file" class="form-control" required placeholder="如：portrait_james_zebedee.html">
+      </div>
+      <div class="form-group">
+        <label>選擇所屬類別項目 (categories) <span class="req">*</span> (可複選)</label>
+        <div class="checkbox-group" id="category-boxes"></div>
       </div>
       <div class="form-group">
         <label for="char-tags">額外標籤 (tags) (以英文半形逗號隔開)</label>
@@ -250,6 +329,7 @@
 <div id="orderModal" class="modal">
   <div class="modal-content">
     <h3 class="modal-title">調整卡片排序順序</h3>
+    <div class="sort-hint" id="sort-hint"></div>
     <div id="sort-list-container" style="max-height: 50vh; overflow-y: auto; margin-bottom: 20px;"></div>
     <div class="modal-actions" style="justify-content: flex-end;">
       <button type="button" class="btn-secondary" onclick="closeModal('orderModal')">完成調整</button>
@@ -261,7 +341,7 @@
 
 <script>
 // ══════════════════════════════════════════
-// ⚠️ 請替換成妳的 Supabase 實際專案網址與 Anon Key[cite: 1]
+// Supabase 專案設定
 // ══════════════════════════════════════════
 const SUPABASE_URL = "https://lhnviqsadfxpvwwmsubz.supabase.co";
 const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxobnZpcXNhZGZ4cHZ3d21zdWJ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkzNDQwMjYsImV4cCI6MjA5NDkyMDAyNn0.xzUOev3w-IxFB3Z5fjatYJef2VUWqJLMI8RUJT98OzM";
@@ -271,15 +351,158 @@ const ADMIN_EMAIL = "vup5xu3@gmail.com";
 let isAdminMode = false;
 let CHARACTERS = [];
 
-const LABELS = { ot: "舊約人物", nt: "新約人物", mbti: "MBTI 16型", genealogy: "主耶穌家譜" };
-let currentTab = "ot";
-let currentMbti = "all";
+// ── 分類定義（單一資料來源：頁籤與表單核取方塊皆由此產生）──
+const TABS = [
+  { key: "all",       label: "全部人物",              people: true, notice: null },
+  { key: "ot",        label: "舊約人物",              people: true, notice: null },
+  { key: "nt",        label: "新約人物",              people: true, notice: null },
+  { key: "apostle",   label: "十二使徒與末後首位使徒", people: true,
+    notice: { t: "十二使徒與末後首位使徒",
+              b: "主親自揀選的十二人，加上後來被選補的馬提亞與外邦使徒保羅——<br>以及在這末後的世代，被主同樣呼召差遣的首位使徒。" } },
+  { key: "genealogy", label: "主耶穌家譜",            people: true,
+    notice: { t: "主耶穌家譜 · 馬太福音 1 章",
+              b: "從亞伯拉罕到大衛，從大衛到被擄巴比倫，從被擄到基督降生——<br>家譜不只是名單，而是神在歷史中守約的見證。" } },
+  { key: "mbti",      label: "MBTI 人格圖譜",         people: true,
+    notice: { t: "MBTI 人格圖譜",
+              b: "所有已完成人格推導的人物皆自動收錄於此。<br>用上方「人格篩選」先挑維度（想看 I 人、想看 J 人），或直接點選十六型細分。" } },
+  { key: "study",     label: "專題研究",              people: false, notice: null },
+];
+// 可人工指派的分類（all 與 mbti 為自動計算，不需勾選）
+const ASSIGNABLE = ["ot", "nt", "apostle", "genealogy", "study"];
 
-// 網頁啟動初始化
+const AXES = [
+  { key: "EI", label: "傾向", opts: [["I", "內向"], ["E", "外向"]] },
+  { key: "NS", label: "訊息", opts: [["N", "直覺"], ["S", "實感"]] },
+  { key: "TF", label: "決策", opts: [["T", "思考"], ["F", "情感"]] },
+  { key: "JP", label: "生活", opts: [["J", "判斷"], ["P", "感知"]] },
+];
+const MBTI_GROUPS = [
+  { code: "NT", name: "分析家", types: ["INTJ", "INTP", "ENTJ", "ENTP"] },
+  { code: "NF", name: "外交家", types: ["INFJ", "INFP", "ENFJ", "ENFP"] },
+  { code: "SJ", name: "守衛者", types: ["ISTJ", "ISFJ", "ESTJ", "ESFJ"] },
+  { code: "SP", name: "探險家", types: ["ISTP", "ISFP", "ESTP", "ESFP"] },
+];
+
+let currentTab = "all";
+let currentTier = "all";
+let searchTerm = "";
+let mbtiFilter = { EI: null, NS: null, TF: null, JP: null };
+
 window.addEventListener("DOMContentLoaded", async () => {
+  buildTabs(); buildCategoryBoxes(); buildMbtiPanel(); bindControls();
   await checkUserSession();
   await loadDataFromSupabase();
 });
+
+// ── 動態建構 UI 骨架 ──
+function buildTabs() {
+  document.getElementById("filter-primary").innerHTML = TABS.map(t =>
+    `<button class="tab-btn${t.key === currentTab ? " active" : ""}" data-tab="${t.key}">${t.label}<span class="tab-n" id="tabn-${t.key}"></span></button>`
+  ).join("");
+  document.querySelectorAll(".tab-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      currentTab = btn.dataset.tab;
+      renderCards();
+    });
+  });
+}
+
+function buildCategoryBoxes() {
+  document.getElementById("category-boxes").innerHTML = ASSIGNABLE.map(k => {
+    const t = TABS.find(x => x.key === k);
+    return `<label class="checkbox-label"><input type="checkbox" name="category" value="${k}"> ${t.label} (${k})</label>`;
+  }).join("");
+}
+
+function buildMbtiPanel() {
+  document.getElementById("mbti-axes").innerHTML = AXES.map(ax => `
+    <div class="mbti-axis">
+      <span class="axis-label">${ax.label}</span>
+      <div class="axis-btns">
+        ${ax.opts.map(([L, zh]) => `<button class="axis-btn" data-axis="${ax.key}" data-letter="${L}"><b>${L}</b>${zh}</button>`).join("")}
+      </div>
+    </div>`).join("");
+
+  document.getElementById("mbti-groups").innerHTML = MBTI_GROUPS.map(g => `
+    <div class="mbti-group">
+      <div class="mbti-group-title"><b>${g.code}</b> ${g.name}</div>
+      <div class="mbti-group-pills">
+        ${g.types.map(t => `<button class="mbti-pill" data-mbti="${t}">${t}<span class="pill-n" id="pilln-${t}"></span></button>`).join("")}
+      </div>
+    </div>`).join("");
+}
+
+function bindControls() {
+  // 第一層：維度快篩（同軸再點一次即取消）
+  document.querySelectorAll(".axis-btn").forEach(b => b.addEventListener("click", () => {
+    const axis = b.dataset.axis, letter = b.dataset.letter;
+    mbtiFilter[axis] = mbtiFilter[axis] === letter ? null : letter;
+    syncMbtiUI(); renderCards();
+  }));
+
+  // 第二層：十六型細分（一次設定四個軸；再點一次全部清除）
+  document.querySelectorAll(".mbti-pill").forEach(p => p.addEventListener("click", () => {
+    const t = p.dataset.mbti;
+    if (currentMbtiType() === t) { resetMbti(); return; }
+    mbtiFilter = { EI: t[0], NS: t[1], TF: t[2], JP: t[3] };
+    syncMbtiUI(); renderCards();
+  }));
+
+  document.querySelectorAll(".tier-btn").forEach(b => b.addEventListener("click", () => {
+    document.querySelectorAll(".tier-btn").forEach(x => x.classList.remove("active"));
+    b.classList.add("active"); currentTier = b.dataset.tier; renderCards();
+  }));
+
+  const si = document.getElementById("search-input");
+  si.addEventListener("input", () => {
+    searchTerm = si.value.trim().toLowerCase();
+    document.getElementById("search-clear").classList.toggle("visible", si.value !== "");
+    renderCards();
+  });
+}
+
+// 目前四軸是否恰好構成一個完整的 MBTI 類型
+function currentMbtiType() {
+  const f = mbtiFilter;
+  return (f.EI && f.NS && f.TF && f.JP) ? f.EI + f.NS + f.TF + f.JP : null;
+}
+function activeAxisCount() { return AXES.filter(a => mbtiFilter[a.key]).length; }
+
+function toggleMbtiPanel() {
+  document.getElementById("mbti-panel").classList.toggle("open");
+  document.getElementById("mbti-toggle").classList.toggle("open");
+}
+function resetMbti() { mbtiFilter = { EI: null, NS: null, TF: null, JP: null }; syncMbtiUI(); renderCards(); }
+function clearSearch() {
+  document.getElementById("search-input").value = ""; searchTerm = "";
+  document.getElementById("search-clear").classList.remove("visible"); renderCards();
+}
+
+// 讓兩層 UI 狀態彼此同步：軸鈕高亮、型別藥丸高亮／變淡
+function syncMbtiUI() {
+  document.querySelectorAll(".axis-btn").forEach(b => {
+    b.classList.toggle("active", mbtiFilter[b.dataset.axis] === b.dataset.letter);
+  });
+  const exact = currentMbtiType();
+  document.querySelectorAll(".mbti-pill").forEach(p => {
+    const t = p.dataset.mbti;
+    p.classList.toggle("active", exact === t);
+    // 不符合目前維度快篩的型別淡化，讓「I 人有哪幾型」一眼看得出來
+    p.classList.toggle("dimmed", !exact && activeAxisCount() > 0 && !matchesAxes(t));
+  });
+  const n = activeAxisCount();
+  const badge = document.getElementById("mbti-badge");
+  badge.style.display = n ? "inline-block" : "none";
+  badge.textContent = exact ? exact : n;
+  document.getElementById("mbti-toggle").classList.toggle("has-filter", n > 0);
+}
+
+function matchesAxes(type) {
+  if (!type) return false;
+  return AXES.every((ax, i) => !mbtiFilter[ax.key] || type[i] === mbtiFilter[ax.key]);
+}
 
 // 驗證當前使用者是否已透過 Google OAuth 登入
 async function checkUserSession() {
@@ -288,128 +511,189 @@ async function checkUserSession() {
     isAdminMode = true;
     document.getElementById("admin-bar").style.display = "flex";
     const btn = document.getElementById("nav-auth-btn");
-    btn.textContent = "🚪 登出管理者系統";
-    btn.classList.add("logged-in");
+    btn.textContent = "🚪 登出管理者系統"; btn.classList.add("logged-in");
   } else {
     isAdminMode = false;
     document.getElementById("admin-bar").style.display = "none";
     const btn = document.getElementById("nav-auth-btn");
-    btn.textContent = "🔒 Google 登入管理";
-    btn.classList.remove("logged-in");
+    btn.textContent = "🔒 Google 登入管理"; btn.classList.remove("logged-in");
   }
 }
 
-// 右上角按鈕控管（登入/登出機制）
 async function handleAuthClick() {
   if (isAdminMode) {
-    if (confirm("是否確定登出管理後台？")) {
-      await _supabase.auth.signOut();
-      window.location.reload();
-    }
+    if (confirm("是否確定登出管理後台？")) { await _supabase.auth.signOut(); window.location.reload(); }
     return;
   }
-  
   document.getElementById("loading").style.display = "flex";
-  // 呼叫 Google 實名驗證機制
-  const { error } = await _supabase.auth.signInWithOAuth({
-    provider: 'google',
-    options: {
-      redirectTo: window.location.href
-    }
-  });
-  
-  if (error) {
-    alert("Google 登入重定向失敗: " + error.message);
-    document.getElementById("loading").style.display = "none";
-  }
+  const { error } = await _supabase.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: window.location.href } });
+  if (error) { alert("Google 登入重定向失敗: " + error.message); document.getElementById("loading").style.display = "none"; }
 }
 
 // 讀取雲端資料庫
 async function loadDataFromSupabase() {
   document.getElementById("loading").style.display = "flex";
-  
   const { data, error } = await _supabase
-    .from('bible_characters')
-    .select('*')
-    .order('sort_order', { ascending: true }); // 嚴格根據自訂順序載入
+    .from('bible_characters').select('*').order('sort_order', { ascending: true });
 
   if (error) {
     alert("讀取 Supabase 資料庫失敗: " + error.message);
   } else {
-    // 欄位轉駝峰格式
     CHARACTERS = data.map(d => ({
-      id: d.id,
-      name: d.name,
-      nameEn: d.name_en,
-      avatar: d.avatar,
-      desc: d.description,
-      mbti: d.mbti,
-      file: d.file_name,
-      categories: d.categories,
-      tags: d.tags || [],
-      sort_order: d.sort_order
+      id: d.id, name: d.name, nameEn: d.name_en, avatar: d.avatar,
+      desc: d.description, mbti: d.mbti, file: d.file_name,
+      categories: d.categories || [], tags: d.tags || [], sort_order: d.sort_order,
+      // 下列兩欄若資料庫尚未新增，會回傳 undefined，此處給予安全預設值
+      epithet: d.epithet || "", tier: d.tier || "normal"
     }));
-    
-    document.getElementById("stat-total").textContent = CHARACTERS.length;
     renderCards();
   }
   document.getElementById("loading").style.display = "none";
 }
 
+// ── 篩選核心 ──
+function inTab(c, tab) {
+  if (tab === "all")  return !c.categories.includes("study");
+  if (tab === "mbti") return !!c.mbti;   // 有推導出人格就自動收錄，不需另外打標籤
+  return c.categories.includes(tab);
+}
+function matchesSearch(c) {
+  if (!searchTerm) return true;
+  return [c.name, c.epithet, c.nameEn, c.desc, c.mbti].concat(c.tags || [])
+    .filter(Boolean).join(" ").toLowerCase().includes(searchTerm);
+}
+function applyFilters(tab) {
+  return CHARACTERS.filter(c =>
+    inTab(c, tab) &&
+    (currentTier === "all" || c.tier === currentTier) &&
+    (activeAxisCount() === 0 || matchesAxes(c.mbti)) &&
+    matchesSearch(c)
+  );
+}
+
 function renderCards() {
-  const grid = document.getElementById("cards-grid");
-  const empty = document.getElementById("empty-state");
-  const geno  = document.getElementById("genealogy-notice");
-  grid.innerHTML = "";
-  empty.classList.remove("visible"); geno.classList.remove("visible"); grid.style.display = "grid";
-  document.getElementById("section-label-text").textContent = LABELS[currentTab];
+  const grid   = document.getElementById("cards-grid");
+  const empty  = document.getElementById("empty-state");
+  const notice = document.getElementById("tab-notice");
+  const tabDef = TABS.find(t => t.key === currentTab);
 
-  if (currentTab === "genealogy") { geno.classList.add("visible"); }
+  grid.innerHTML = ""; empty.classList.remove("visible"); notice.classList.remove("visible");
+  grid.style.display = "grid";
+  document.getElementById("section-label-text").textContent = tabDef.label;
 
-  let filtered = CHARACTERS.filter(c => c.categories.includes(currentTab));
-  if (currentTab === "mbti" && currentMbti !== "all") { filtered = filtered.filter(c => c.mbti === currentMbti); }
+  // 專題研究不是人物，隱藏重要度與人格篩選
+  document.getElementById("subfilter-wrap").style.display = tabDef.people ? "block" : "none";
 
+  if (tabDef.notice) {
+    document.getElementById("notice-title").textContent = tabDef.notice.t;
+    document.getElementById("notice-body").innerHTML = tabDef.notice.b;
+    notice.classList.add("visible");
+  }
+
+  const filtered = applyFilters(currentTab);
   document.getElementById("section-count").textContent = `— ${filtered.length} 人物`;
-  if (filtered.length === 0) { grid.style.display = "none"; empty.classList.add("visible"); return; }
+  document.getElementById("stat-total").textContent =
+    CHARACTERS.filter(c => !c.categories.includes("study")).length;
+
+  updateTabCounts(); updatePillCounts(); renderActiveChips();
+
+  if (filtered.length === 0) {
+    grid.style.display = "none";
+    document.getElementById("empty-text").textContent =
+      (currentTier !== "all" || activeAxisCount() || searchTerm)
+        ? "沒有符合目前篩選條件的人物，試著放寬條件。"
+        : "此分類尚未收錄人物，敬請期待。";
+    empty.classList.add("visible");
+    return;
+  }
 
   filtered.forEach(c => {
-    const cardWrap = document.createElement("div"); 
-    cardWrap.className = "char-card-wrap";
+    const wrap = document.createElement("div");
+    wrap.className = "char-card-wrap" + (c.tier === "major" ? " is-major" : "");
 
-    const card = document.createElement("a"); 
-    card.className = "char-card"; 
-    card.href = c.file;
+    const card = document.createElement("a");
+    card.className = "char-card"; card.href = c.file;
 
-    const tagsHTML = c.tags.map(t => `<span class="char-tag">${t}</span>`).join("");
-    const mbtiTag  = c.mbti ? `<span class="char-tag mbti">${c.mbti}</span>` : "";
+    const tagsHTML = (c.tags || []).map(t => `<span class="char-tag">${esc(t)}</span>`).join("");
+    const mbtiTag  = c.mbti ? `<span class="char-tag mbti">${esc(c.mbti)}</span>` : "";
+    const epithet  = c.epithet ? `<span class="char-epithet">${esc(c.epithet)}</span>` : "";
+    const star     = c.tier === "major" ? `<span class="char-star" title="重要人物">★</span>` : "";
 
     card.innerHTML = `
-      <div class="char-card-top"><div class="char-avatar">${c.avatar}</div><div class="char-name-block"><div class="char-name">${c.name}</div><div class="char-name-en">${c.nameEn}</div></div></div>
-      <div class="char-desc">${c.desc}</div><div class="char-tags">${tagsHTML}${mbtiTag}</div>
-    `;
-    cardWrap.appendChild(card);
+      <div class="char-card-top">
+        <div class="char-avatar">${esc(c.avatar)}</div>
+        <div class="char-name-block">
+          <div class="char-name">${esc(c.name)}${epithet}${star}</div>
+          <div class="char-name-en">${esc(c.nameEn)}</div>
+        </div>
+      </div>
+      <div class="char-desc">${esc(c.desc)}</div>
+      <div class="char-tags">${tagsHTML}${mbtiTag}</div>`;
+    wrap.appendChild(card);
 
-    // 管理員登入後專屬的編輯按鈕區塊
     if (isAdminMode) {
       const actionArea = document.createElement("div");
       actionArea.className = "admin-card-action";
       const editBtn = document.createElement("button");
-      editBtn.className = "edit-badge-btn";
-      editBtn.innerHTML = "✍ 編輯此人物";
-      editBtn.onclick = (e) => {
-        e.preventDefault(); e.stopPropagation();
-        openModalForEdit(c.id);
-      };
-      actionArea.appendChild(editBtn);
-      cardWrap.appendChild(actionArea);
+      editBtn.className = "edit-badge-btn"; editBtn.innerHTML = "✍ 編輯此人物";
+      editBtn.onclick = (e) => { e.preventDefault(); e.stopPropagation(); openModalForEdit(c.id); };
+      actionArea.appendChild(editBtn); wrap.appendChild(actionArea);
     }
-    grid.appendChild(cardWrap);
+    grid.appendChild(wrap);
   });
+}
+
+function esc(s) {
+  return String(s == null ? "" : s).replace(/[&<>"']/g, m =>
+    ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m]));
+}
+
+// 每個頁籤右上角的收錄筆數
+function updateTabCounts() {
+  TABS.forEach(t => {
+    const el = document.getElementById("tabn-" + t.key);
+    if (el) el.textContent = CHARACTERS.filter(c => inTab(c, t.key)).length;
+  });
+}
+
+// 十六型藥丸上的即時人數，讓「哪一型有人」一目了然
+function updatePillCounts() {
+  const pool = CHARACTERS.filter(c =>
+    inTab(c, currentTab) && (currentTier === "all" || c.tier === currentTier));
+  MBTI_GROUPS.forEach(g => g.types.forEach(t => {
+    const el = document.getElementById("pilln-" + t);
+    if (!el) return;
+    const n = pool.filter(c => c.mbti === t).length;
+    el.textContent = n ? n : "";
+  }));
+}
+
+function renderActiveChips() {
+  const box = document.getElementById("active-chips");
+  const chips = [];
+  if (currentTier === "major") chips.push(["★ 重要人物", "tier"]);
+  const exact = currentMbtiType();
+  if (exact) chips.push([exact, "mbti"]);
+  else AXES.forEach(ax => { if (mbtiFilter[ax.key]) chips.push([ax.label + "：" + mbtiFilter[ax.key], "axis:" + ax.key]); });
+  if (searchTerm) chips.push(["搜尋「" + searchTerm + "」", "search"]);
+
+  box.innerHTML = chips.map(pair =>
+    `<span class="active-chip">${esc(pair[0])}<button onclick="removeChip('${pair[1]}')" title="移除">×</button></span>`).join("");
+}
+
+function removeChip(key) {
+  if (key === "tier") {
+    currentTier = "all";
+    document.querySelectorAll(".tier-btn").forEach(x => x.classList.toggle("active", x.dataset.tier === "all"));
+  } else if (key === "search") { clearSearch(); return; }
+  else if (key === "mbti") { resetMbti(); return; }
+  else if (key.indexOf("axis:") === 0) { mbtiFilter[key.slice(5)] = null; syncMbtiUI(); }
+  renderCards();
 }
 
 // ── 表單處理 ──
 const modal = document.getElementById("charModal");
-const form = document.getElementById("charForm");
+const form  = document.getElementById("charForm");
 
 function openModalForAdd() {
   form.reset();
@@ -424,14 +708,19 @@ function openModalForEdit(id) {
   form.reset();
   const c = CHARACTERS.find(item => item.id === id);
   if (!c) return;
-  document.getElementById("modalTitle").textContent = `編輯人物：${c.name}`;
+  document.getElementById("modalTitle").textContent = "編輯人物：" + c.name;
   document.getElementById("form-mode").value = "edit";
   document.getElementById("char-id").value = c.id; document.getElementById("char-id").disabled = true;
-  document.getElementById("char-name").value = c.name; document.getElementById("char-nameEn").value = c.nameEn;
-  document.getElementById("char-avatar").value = c.avatar; document.getElementById("char-desc").value = c.desc;
-  document.getElementById("char-mbti").value = c.mbti || ""; document.getElementById("char-file").value = c.file;
-  document.getElementById("char-tags").value = c.tags.join(", ");
-  document.querySelectorAll('input[name="category"]').forEach(cb => { if (c.categories.includes(cb.value)) cb.checked = true; });
+  document.getElementById("char-name").value = c.name;
+  document.getElementById("char-epithet").value = c.epithet || "";
+  document.getElementById("char-nameEn").value = c.nameEn;
+  document.getElementById("char-avatar").value = c.avatar;
+  document.getElementById("char-desc").value = c.desc;
+  document.getElementById("char-mbti").value = c.mbti || "";
+  document.getElementById("char-tier").value = c.tier || "normal";
+  document.getElementById("char-file").value = c.file;
+  document.getElementById("char-tags").value = (c.tags || []).join(", ");
+  document.querySelectorAll('input[name="category"]').forEach(cb => { cb.checked = c.categories.includes(cb.value); });
   document.getElementById("btn-delete").style.display = "block";
   modal.classList.add("visible");
 }
@@ -442,20 +731,22 @@ async function handleFormSubmit(e) {
   e.preventDefault();
   const checkedBoxes = document.querySelectorAll('input[name="category"]:checked');
   if (checkedBoxes.length === 0) { alert("請至少選擇一個所屬類別項目！"); return; }
-  
+
   document.getElementById("loading").style.display = "flex";
   closeModal('charModal');
 
   const mode = document.getElementById("form-mode").value;
   const targetId = document.getElementById("char-id").value.trim();
-  
+
   const payload = {
     id: targetId,
     name: document.getElementById("char-name").value.trim(),
+    epithet: document.getElementById("char-epithet").value.trim() || null,
     name_en: document.getElementById("char-nameEn").value.trim(),
     avatar: document.getElementById("char-avatar").value.trim(),
     description: document.getElementById("char-desc").value.trim(),
     mbti: document.getElementById("char-mbti").value || null,
+    tier: document.getElementById("char-tier").value,
     file_name: document.getElementById("char-file").value.trim(),
     categories: Array.from(checkedBoxes).map(cb => cb.value),
     tags: document.getElementById("char-tags").value.split(",").map(t => t.trim()).filter(t => t)
@@ -463,16 +754,11 @@ async function handleFormSubmit(e) {
 
   let resError;
   if (mode === "add") {
-    const { error } = await _supabase.from('bible_characters').insert([payload]);
-    resError = error;
+    const { error } = await _supabase.from('bible_characters').insert([payload]); resError = error;
   } else {
-    const { error } = await _supabase.from('bible_characters').update(payload).eq('id', targetId);
-    resError = error;
+    const { error } = await _supabase.from('bible_characters').update(payload).eq('id', targetId); resError = error;
   }
-
-  if (resError) {
-    alert("雲端儲存失敗，請檢查權限政策或是否 ID 重複: " + resError.message);
-  }
+  if (resError) alert("雲端儲存失敗，請檢查權限政策或是否 ID 重複: " + resError.message);
   await loadDataFromSupabase();
 }
 
@@ -487,60 +773,46 @@ async function handleDelete() {
   }
 }
 
-// ── 雲端排序處理 ──
+// ── 雲端排序（僅列出目前頁籤的人物，人數變多後才不會難以操作）──
 function openOrderModal() { renderSortList(); document.getElementById("orderModal").classList.add("visible"); }
+
 function renderSortList() {
   const container = document.getElementById("sort-list-container"); container.innerHTML = "";
-  CHARACTERS.forEach((c, index) => {
+  const tabDef = TABS.find(t => t.key === currentTab);
+  const list = CHARACTERS.filter(c => inTab(c, currentTab));
+  document.getElementById("sort-hint").innerHTML =
+    "目前調整範圍：<strong>" + esc(tabDef.label) + "</strong>（" + list.length +
+    " 人）。上下移動會與同分類中相鄰者交換全域順序，其他分類的相對次序不受影響。";
+
+  list.forEach((c, index) => {
     const item = document.createElement("div"); item.className = "sort-item";
-    item.innerHTML = `
-      <span style="font-size:14px; font-weight:500;">${index + 1}. ${c.name} (${c.nameEn})</span>
-      <div class="sort-arrows">
-        <button class="arrow-btn" onclick="swapCloudOrder(${index}, -1)">▲ 上移</button>
-        <button class="arrow-btn" onclick="swapCloudOrder(${index}, 1)">▼ 下移</button>
-      </div>
-    `;
+    item.innerHTML =
+      '<span style="font-size:14px; font-weight:500;">' + (index + 1) + ". " + esc(c.name) +
+      (c.epithet ? "・" + esc(c.epithet) : "") +
+      ' <span style="color:#9C8E72;font-size:12px;">(' + esc(c.nameEn) + ')</span></span>' +
+      '<div class="sort-arrows">' +
+        '<button class="arrow-btn" onclick="swapCloudOrder(' + index + ', -1)">▲ 上移</button>' +
+        '<button class="arrow-btn" onclick="swapCloudOrder(' + index + ', 1)">▼ 下移</button>' +
+      '</div>';
     container.appendChild(item);
   });
 }
 
 async function swapCloudOrder(index, direction) {
+  const list = CHARACTERS.filter(c => inTab(c, currentTab));
   const targetIndex = index + direction;
-  if (targetIndex < 0 || targetIndex >= CHARACTERS.length) return;
-  
-  document.getElementById("loading").style.display = "flex";
-  const currentItem = CHARACTERS[index];
-  const targetItem = CHARACTERS[targetIndex];
+  if (targetIndex < 0 || targetIndex >= list.length) return;
 
-  // 交換兩者在資料庫中的 sort_order 欄位值
+  document.getElementById("loading").style.display = "flex";
+  const currentItem = list[index], targetItem = list[targetIndex];
+
   const updateA = _supabase.from('bible_characters').update({ sort_order: targetItem.sort_order }).eq('id', currentItem.id);
   const updateB = _supabase.from('bible_characters').update({ sort_order: currentItem.sort_order }).eq('id', targetItem.id);
-  
+
   await Promise.all([updateA, updateB]);
   await loadDataFromSupabase();
   renderSortList();
 }
-
-// Tab 分類按鈕事件
-document.querySelectorAll(".tab-btn").forEach(btn => {
-  btn.addEventListener("click", () => {
-    document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
-    btn.classList.add("active"); currentTab = btn.dataset.tab; currentMbti = "all";
-    const mbtiSub = document.getElementById("mbti-sub");
-    if (currentTab === "mbti") {
-      mbtiSub.classList.add("visible");
-      document.querySelectorAll(".mbti-pill").forEach(p => p.classList.remove("active"));
-      document.querySelector('.mbti-pill[data-mbti="all"]').classList.add("active");
-    } else { mbtiSub.classList.remove("visible"); }
-    renderCards();
-  });
-});
-document.querySelectorAll(".mbti-pill").forEach(pill => {
-  pill.addEventListener("click", () => {
-    document.querySelectorAll(".mbti-pill").forEach(p => p.classList.remove("active"));
-    pill.classList.add("active"); currentMbti = pill.dataset.mbti; renderCards();
-  });
-});
 </script>
 </body>
 </html>
