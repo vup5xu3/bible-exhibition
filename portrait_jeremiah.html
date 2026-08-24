@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>耶利米 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">耶利米</h1>
+  <span class="hero-name-en">Jeremiah · יִרְמְיָהוּ</span>
+  <p class="hero-slogan">「他想過不再提耶和華的名，卻發現「他的話在我心裡如同燒著的火，閉塞在我骨中，我忍受不住」——<br>宣告審判的人，往往比誰都更希望自己所說的是假的。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">主前約 627–580 年</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">INFP · 調停者型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">耶利米書全書<br>耶利米哀歌（傳統歸於他）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">祭司家族出身的先知 · 猶大亡國的見證者</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他親眼見證了自己一生反覆宣告、卻始終無人願意相信的審判，真的降臨——耶路撒冷被毀，聖殿被燒，而他活著，看著這一切發生。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">主前約 627–580 年<br>猶大王國最後四十年至耶路撒冷淪陷</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">多重身份</span>
+        <div class="info-cell-value">便雅憫地亞拿突城的祭司家族後裔<br>猶大亡國前後最重要的先知</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">亞拿突 →<br>耶路撒冷 → 被擄者強行帶往埃及</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">背景</span>
+        <div class="info-cell-value">希勒家的兒子，出身祭司世家<br>蒙召時「年幼」，此後終身未娶</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">耶利米書全書（52章，舊約篇幅最長的書卷）<br>耶利米哀歌（傳統歸於他所著）</div>
+      </div>
+    </div>
+
+    <p>耶利米出身便雅憫地亞拿突城的祭司家族，他蒙召的時間，經文明確標記為「猶大王亞們的兒子約西亞在位十三年」——這是猶大王國走向滅亡前，最後一段相對穩定、甚至有宗教復興跡象（約西亞的宗教改革）的時期，卻也是此後急轉直下、走向亡國的開端。神呼召他時說：「我未將你造在腹中，我已曉得你；你未出母胎，我已分別你為聖」，這句話確立了他先知職分的根基，不是後天的選擇，而是神在他出生之前就已經設定的呼召。</p>
+    <p>他登場時的回應是推辭：「主耶和華啊，我不知怎樣說，因為我是年幼的。」神的回應斬釘截鐵：「你不要說我是年幼的，因為我差遣你到誰那裡去，你都要去；我吩咐你說什麼話，你都要說。你不要懼怕他們，因為我與你同在，要拯救你。」第七世紀末至六世紀初的猶大，正處在巴比倫帝國崛起、埃及與亞述殘餘勢力交錯角力的動盪國際局勢中，猶大內部則面對持續的偶像崇拜、社會不公、以及對即將到來之亡國危機的集體否認。耶利米一生的先知職事，幾乎全部用來反覆宣告一個他自己也極不願意接受的真相：耶路撒冷與聖殿即將被毀，除非百姓真心悔改——而百姓，包括祭司、假先知、乃至歷任君王，幾乎從未真正聽進去。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">他一生所做的事，幾乎只有一件——反覆宣告一個沒有人想聽的真相，並在真相應驗時，親眼見證自己畢生所愛的城市化為廢墟。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">蒙召——「我未將你造在腹中，我已曉得你」</div>
+        <div class="timeline-body">神在他出生之前就已分別他為先知，耶利米推辭「我是年幼的，不知怎樣說話」，神伸手按他的口說：「我已將當說的話傳給你」，並應許「我今日立你在列邦列國之上，為要施行拔出、拆毀、毀壞、傾覆，又要建立、栽植」。這個蒙召的雙重使命——既拆毀又建立——貫穿他此後一生的先知職事。</div>
+        <div class="timeline-ref">耶 1:4–10</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">反覆的象徵性行動——瓦器、腰帶、軛</div>
+        <div class="timeline-body">耶利米多次用具體的物件與行動來傳達神的信息——摔碎瓦瓶宣告耶路撒冷將被打碎、將腰帶埋在幼發拉底河邊使其朽壞象徵百姓的驕傲敗壞、頸戴木軛宣告必須順服巴比倫的統治。這些震撼性的象徵行動，是他試圖用言語之外的方式，讓麻木不仁的百姓真正「看見」神信息的努力。</div>
+        <div class="timeline-ref">耶 13, 19, 27–28 章</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">黑暗低谷</span>
+        <div class="timeline-title">被下在泥坑裡——因說真話而遭受的迫害</div>
+        <div class="timeline-body">耶利米宣告若百姓不投降巴比倫，城必陷落，官長們指控他是「向這城的人並國中的眾民口出此言，使他們的手發軟」，將他下在西底家王叔叔的兒子瑪基雅的院內，那裡沒有水，只有淤泥，耶利米就陷在淤泥中。此後在古實人以伯米勒的求情下，才被拉上來。這段記載赤裸裸地展現出，說真話的先知，往往要付上被自己同胞迫害的真實代價。</div>
+        <div class="timeline-ref">耶 38:1–13</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">黑暗低谷</span>
+        <div class="timeline-title">「我年輕輕的時候，你哄誘我」——向神的激烈控訴</div>
+        <div class="timeline-body">耶利米書中反覆出現他對神近乎控訴的激烈禱告——「耶和華啊，你曾勸導我，我也聽了你的勸導；你比我有力量，且勝了我，我終日成為笑話，人人都戲弄我」，甚至詛咒自己出生的那一天：「願我生的那日受咒詛……因你使我在腹中未成形的時候該死。」這些毫不掩飾的痛苦與絕望，成為聖經中對先知職事之孤獨與代價，描寫最誠實、最震撼人心的文本之一。</div>
+        <div class="timeline-ref">耶 20:7–18</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">耶路撒冷淪陷——親眼見證自己畢生宣告的審判應驗</div>
+        <div class="timeline-body">主前586年，巴比倫王尼布甲尼撒攻陷耶路撒冷，燒毀聖殿與王宮，拆毀城牆，擄走大批百姓。耶利米四十年來反覆宣告卻始終不被相信的審判，終於真實地降臨。巴比倫王卻特別善待耶利米，允許他選擇去留，他選擇留在猶大地，此後卻被逃亡的猶大殘餘勢力強行帶往埃及，據傳最終死在異鄉——那位一生為耶路撒冷心碎的先知，甚至沒能死在自己深愛的故土上。</div>
+        <div class="timeline-ref">耶 39, 40, 43 章</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他不是一個冷酷宣告審判的先知——他一邊說著耶路撒冷必要滅亡，一邊為這個必然的結局痛哭流涕，甚至寫下整卷哀歌來哀悼它。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">神的話語一旦臨到，就無法被壓抑或收回</div>
+          <div class="soul-body">他曾想過「我不再提耶和華，也不再奉他的名講論」，卻發現「他的話在我心裡如同燒著的火，閉塞在我骨中，我忍受不住，不能自禁」——這種話語內在的迫切性，超越了他個人想要迴避痛苦的意願。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">為那些拒絕相信自己的百姓，依然深切地哀慟</div>
+          <div class="soul-body">他被稱為「含淚的先知」，並非因為軟弱，而是因為即使百姓一再拒絕他所傳的信息、甚至迫害他，他依然為他們即將面臨的毀滅深切哀傷——「但願我的頭為水，我的眼為淚的泉源，我好為我百姓中被殺的人晝夜哭泣」。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">善用震撼性的象徵行動，且毫不隱藏內心真實的掙扎</div>
+          <div class="soul-body">他的先知職事不僅止於言語宣告，更透過摔瓦瓶、戴木軛等具體的行動來傳達信息；同時他也毫不掩飾地在禱告中向神表達自己的痛苦、憤怒甚至控訴，展現出極度真誠、不加修飾的內在世界。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">深陷絕望與孤獨，甚至一度詛咒自己的出生</div>
+          <div class="soul-body">「願我生的那日受咒詛」——這種近乎絕望的自我否定，展現出長期承受不被理解、被迫害、被孤立所帶來的巨大心理代價，即使是最忠心的先知，也可能被這種持續的孤獨與痛苦推向極端的情緒深淵。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">所預言的「新約」，成為此後救贖神學最核心的應許之一</div>
+          <div class="soul-body">耶利米書31章所預言的「新約」——「我要將我的律法放在他們裡面，寫在他們心上……他們各人不再教導自己的鄰舍……因為他們……都必認識我」，是舊約中對此後新約時代救恩本質最深刻、最精確的預言。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">耶利米最深刻的張力，在於他必須同時承擔兩個看似矛盾的角色：宣告不可逆轉之審判的先知，以及為這審判所帶來的毀滅深切哀慟的祭司之子。他從未因為百姓的悖逆而感到「他們活該」，反而在宣告審判的同時，一次又一次為他們哀求、哭泣，甚至在城破之後寫下整卷哀歌，逐字逐句地哀悼耶路撒冷的毀滅。這提醒我們，真正忠於真理的宣告，從來不需要以冷漠或幸災樂禍的姿態進行——一個人完全可以一邊誠實地說出一個令人心碎的真相，一邊為這個真相所帶來的傷害深深哀傷。這種「毫不妥協的誠實」與「毫不保留的憐憫」並存的品格，是他留給後世最珍貴、也最難以企及的先知典範。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">INFP</span>
+      <div class="mbti-name">調停者型 · 含淚的先知</div>
+      <div class="mbti-slogan">「他一邊宣告耶路撒冷必要滅亡，一邊為這個必然的結局痛哭流涕——說出真相與為真相心碎，在他身上從不互相排斥。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">他對真理與百姓的命運懷抱著極其深刻、毫不妥協的內在價值堅持——即使遭受迫害、被同胞唾棄，他依然無法違背神所交付的信息去說討好的話。同時他對百姓的苦難也懷抱著極深的個人化憐憫，這份情感從未因對方的悖逆而消減。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Ne · 外向直覺</span>
+          <div class="mbti-fn-body">他善於運用具體物件與行動，創造出富有象徵意義、能夠喚起深層聯想的先知性宣告——摔碎的瓦瓶、朽壞的腰帶、頸上的木軛，這種將抽象信息轉化為具象徵意義之行動的能力，展現出外向直覺的作用。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Si · 內向實感</span>
+          <div class="mbti-fn-body">他長期、持續地見證並記錄猶大從約西亞改革到耶路撒冷淪陷的具體歷史過程，耶利米書與哀歌對歷史細節的忠實記載，顯示他對具體歷史經驗的重視與珍視。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">他難以有效地說服掌權者採取具體的行動來避免審判——儘管他清楚知道問題所在，卻始終無法透過邏輯論證或策略性的說服，讓君王與百姓真正改變方向。這種在「知道真理」與「無法有效推動具體改變」之間的巨大落差，是他一生最深的無力感來源。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最痛苦的關係，是與那些他深愛卻始終不願聽他說話的百姓——他們把他下在泥坑裡，他卻仍為他們心碎。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">耶</div>
+          <div class="relation-name">耶和華神</div>
+          <div class="relation-type-badge">在他出生前就分別他為聖、卻交付他艱難使命的主</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">神在耶利米出生前就已呼召他，並在他推辭時堅定地應許同在與拯救——「我與你同在，要拯救你」。這段關係貫穿他一生的痛苦與掙扎，即使他向神發出激烈的控訴與質問，神從未收回對他的呼召與同在，兩者之間展現出一種允許誠實掙扎、卻始終不離不棄的深刻關係。</div>
+          <div class="relation-ref">耶 1:5, 8 · 耶 20:7–18</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">巴</div>
+          <div class="relation-name">巴錄</div>
+          <div class="relation-type-badge">忠心的文士助手，一同承受迫害的同工</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">巴錄是耶利米忠實的文士，將他口述的預言記錄成書卷，並在猶大王約雅敬將書卷焚燒後，重新記錄下同樣的內容。當巴錄向耶利米抱怨自己因這份服事所受的苦難，耶利米傳達神的話安慰他：「我要保全你的命，在你所往的各處，作你的掠物。」這段關係展現出即使是最忠心的助手，也需要在艱難的服事中被持續地扶持與安慰。</div>
+          <div class="relation-ref">耶 36 章, 45 章</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">西</div>
+          <div class="relation-name">西底家王</div>
+          <div class="relation-type-badge">私下求教、卻始終不敢公開順服的猶大末代君王</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">西底家多次私下召見耶利米求問神的旨意，耶利米也清楚傳達必須投降巴比倫的信息，然而西底家始終因懼怕自己的臣僕與百姓的反對，而不敢公開遵行——這段關係展現出，即使掌權者私下承認先知所言為真，若缺乏足夠的勇氣付諸行動，真理依然無法真正發揮扭轉局勢的效力。</div>
+          <div class="relation-ref">耶 37–38 章</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">古</div>
+          <div class="relation-name">古實人以伯米勒</div>
+          <div class="relation-type-badge">冒險為他求情、拯救他脫離泥坑的外邦太監</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">當耶利米被下在無水的泥坑中，是一位古實（衣索匹亞）的太監以伯米勒挺身而出，向王求情，並親自率人用破布舊衣墊在繩下，將耶利米從泥坑中拉上來——這位外邦人的義行，成為耶利米一生最黑暗時刻中，一道意外而珍貴的救援之光。</div>
+          <div class="relation-ref">耶 38:7–13</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「我要與以色列家……立新約……我要將我的律法放在他們裡面，寫在他們心上」——耶利米所預言的這個新約，成為理解基督救恩最核心的舊約基石。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「耶和華說：「日子將到，我要與以色列家和猶大家另立新約……我要將我的律法放在他們裡面，寫在他們心上。我要作他們的神，他們要作我的子民……因為我要赦免他們的罪孽，不再記念他們的罪惡。」」</div>
+      <div class="verse-ref">耶利米書 31:31, 33–34</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">בְּרִית חֲדָשָׁה</span>
+        <div class="word-transliteration">berit chadashah · 新約 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「新的盟約」，這是舊約中唯一一處明確使用「新約」這個詞組的經文，與此前西奈山所立、刻在石版上的摩西之約形成鮮明對照。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這個新約最核心的特質，在於律法不再只是外在刻在石版上的規條，而是要被神親自「放在他們裡面，寫在他們心上」——這確立了此後基督教救恩論的核心神學基礎：真正的更新，不是靠外在規條的遵守，而是靠神親自在人心中所成就的內在轉化。耶穌在最後的晚餐中，直接引用這個詞組，宣告「這杯是用我血所立的新約」（路22:20），親自成就了耶利米這段預言。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">בֶּטֶן</span>
+        <div class="word-transliteration">beten · 母腹 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「腹中、子宮」，神對耶利米說「我未將你造在腹中，我已曉得你」時所用的字。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這個字強調神對耶利米的揀選，早在他有任何自主意識或行動之前就已經確立——這確立了聖經中關於神主權性揀選的重要神學原則：呼召不是基於人的表現或選擇，而是源自神自己在創造之初就已設定的計畫，這對此後保羅在加拉太書中描述自己「從母腹裡分別出來」的蒙召經歷，提供了直接的舊約先例。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">新約神學：內在更新取代外在規條</div>
+      <div class="theology-insight-body">耶利米所預言的新約，其核心不在於一套新的律法條文，而在於律法被神親自「寫在心上」——這預示了此後聖靈內住、更新人心這一新約救恩論的核心教義，遠早於這個教義在新約中被完整闡述之前，就已在耶利米書中被清楚預告。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">審判與盼望並存的先知信息結構</div>
+      <div class="theology-insight-body">耶利米書的整體結構，交織著對即將來臨之審判的嚴厲宣告，與對未來復興、新約應許的深切盼望——這確立了舊約先知文學一個重要的結構模式：真實的審判信息，從不排除神終將施行更新與復興的盼望。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">先知的孤獨與神的話語的迫切性</div>
+      <div class="theology-insight-body">耶利米反覆掙扎於是否要繼續傳講神的話語、卻發現這話語「如同燒著的火」無法被壓抑——這確立了聖經中對「先知職分」本質的深刻理解：真正的先知性宣告，往往不是先知自己選擇要說的，而是神的話語本身所具有的不可抗拒的迫切性。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">摩西在西奈山上代表百姓與神立約，領受刻在石版上的律法，這個約後來因百姓的悖逆而屢屢被破壞</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">耶利米明確指出新約「不像我拉著他們祖宗的手，領他們出埃及地的時候，與他們所立的約——我雖作他們的丈夫，他們卻背了我的約」——他清楚地將新約定位為對舊約缺陷（外在律法無法真正改變人心）的根本性解決</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督親自在最後的晚餐中宣告「這杯是用我血所立的新約」，成就了耶利米所預言、超越西奈山之約的終極新約（路 22:20 · 來 8:6–13）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">耶利米一生忠心宣告神的話語，卻遭受同胞的拒絕、迫害，甚至被下在泥坑裡，最終眼看著自己所警告的審判真實降臨</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">他被稱為「含淚的先知」，一生為拒絕接受真理的百姓深切哀慟，這種「說真話卻被自己人拒絕、卻依然為他們心碎」的先知典範，成為此後基督受難敘事的重要舊約預表</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督親自「來到自己的地方，自己的人倒不接待他」，並在進耶路撒冷城前為這城哀哭：「巴不得你在這日子知道關係你平安的事」（約 1:11 · 路 19:41–42）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">耶利米哀歌逐字逐句、按希伯來字母順序哀悼耶路撒冷的毀滅，卻在極度的絕望中，插入了一段震撼人心的信心宣告：「耶和華的慈愛永不斷絕，他的憐憫不至斷絕，每早晨這都是新的；你的誠實極其廣大」</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這種在極致的絕望中依然堅持信靠神信實與憐憫的姿態，成為此後歷代信徒面對巨大苦難時，理解「盼望如何在絕望中依然存活」的重要典範</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督在十字架上經歷了看似神完全棄絕的絕望（「我的神，我的神，為什麼離棄我」），卻在復活中，成就了那超越一切絕望、每早晨都是新的慈愛與憐憫（哀 3:22–23 · 太 27:46）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你正因為說出一個不受歡迎的真相，而承受著被自己所愛之群體拒絕、甚至迫害的痛苦——這一頁是為你寫的。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">耶利米命中的是一種極其艱難、卻在任何世代都持續存在的處境：忠於自己所確信的真理，卻因此被最親近、最深愛的群體所拒絕、甚至攻擊。他的故事沒有給出一個輕鬆的答案——他確實承受了巨大的孤獨與痛苦，甚至一度想要放棄，卻發現真理本身有一種無法被壓抑的迫切性。他的故事更提醒我們，說出真相與為真相所帶來的傷害而心碎，這兩者從來不是互相矛盾的：一個人完全可以毫不妥協地堅持真理，同時毫無保留地愛著那些拒絕接受這個真理的人。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你有沒有經歷過，因為說出一個你深信不疑、卻不受歡迎的真相，而被自己所在的群體排斥或攻擊？你當時是如何堅持下去的？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">耶利米一度想要不再提神的名，卻發現話語如火在骨中燃燒，無法壓抑。你是否也曾經想要放棄某個你深知該做、卻承受巨大代價的呼召，最終卻發現自己無法真正放下？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">他一邊宣告審判，一邊為百姓哀哭。你在指出他人的錯誤或問題時，能否同時保有對他們真實的憐憫與心碎，而非冷漠或優越感？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">耶利米哀歌在極致的絕望中，依然堅持「耶和華的慈愛永不斷絕」。你此刻若正處在某種深沉的絕望中，是否也能在其中，找到一句類似的、微小卻真實的信靠宣告？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 耶利米</span>
+        <div class="gen-title">示範劇本：即使不被理解、甚至遭受迫害，依然堅持傳講真理，同時深切哀慟</div>
+        <div class="gen-body">他一生的行動模式高度一致——無論面對多少拒絕與迫害，他始終沒有停止傳講神所交付的信息，同時也從未停止為百姓的悖逆與即將面臨的苦難深切哀傷。這種「堅持真理」與「持守憐憫」並行不悖的模式，貫穿他四十年的先知職事。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 巴錄與此後歷代誦讀他書卷的人</span>
+        <div class="gen-title">延續而非打斷：他的信息透過忠心的記錄者，跨越時代持續發聲</div>
+        <div class="gen-body">儘管耶利米生前幾乎未曾真正說服他的同代人，他的信息卻透過巴錄的忠實記錄，跨越猶大亡國的巨大斷裂，持續影響了此後被擄與歸回時期的猶太群體，並最終成為新約新約神學最重要的舊約基石之一——他一人在孤獨中的堅持，最終在遠超他個人生命的時間跨度中，發揮了深遠的影響力。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">打斷發生在神持續不離不棄的同在之中——即使耶利米向神發出最激烈的控訴（「你哄誘我」「願我生的那日受咒詛」），神從未收回祂的呼召，也從未責備他這份誠實的痛苦。這提醒我們，恩典允許我們在忠於呼召的過程中，誠實地向神表達自己的軟弱、憤怒甚至絕望，而這份誠實的掙扎，本身不會使我們被神棄絕。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那個一邊宣告審判、一邊哭到寫出一整卷哀歌的先知，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#說真話的代價</span>
+      <span class="tag">#含淚也要說出口</span>
+      <span class="tag">#不被理解的孤獨</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>耶利米被神呼召的時候還很年輕，第一反應是推辭：我不知道怎麼說話，我年紀太小了。神直接打槍：別說你年紀小，我叫你去哪你就去，我叫你說什麼你就說，別怕，我與你同在。</p>
+      <p>然後他的人生，基本上就是一次又一次講一件沒有人想聽的事——耶路撒冷快完了，除非大家真心悔改。他還會用一些很戲劇化的方式加強效果，像是當眾把瓦瓶摔碎，象徵這座城要被打得粉碎。</p>
+      <p>結果呢？沒有人理他。更慘的是，他甚至因為講真話被抓起來，丟進一個沒有水、只有爛泥的坑裡，差點就這樣悶死在裡面，最後靠一個外邦來的太監求情，才被拉上來。</p>
+      <p>耶利米書裡有一段話特別赤裸——他跟神抱怨：你騙了我，你比我強大，你贏了。我整天被人笑話，被人戲弄。我原本說不要再提你的名了，結果你的話像火一樣，燒在我骨頭裡，我憋不住。他甚至詛咒過自己出生的那一天。</p>
+      <p>但他從沒有真的停下來。他一直講，一直講，直到主前586年，巴比倫真的攻破了耶路撒冷，燒了聖殿。他四十年來講的事，全都應驗了。而他，沒有得意，反而寫下了整卷耶利米哀歌，一字一句地哀悼這座他深愛的城市。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——而耶利米這塊石頭，一輩子都在說出讓人心碎的真話，而它自己，比誰都碎得更深。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你正因為說出一個真相，而被身邊的人排斥、甚至攻擊——耶利米大概比誰都懂那種感覺。他被自己的同胞丟進泥坑裡，只因為他說了真話。你不孤單。</p>
+      <p style="margin-top:12px;">你不需要因為堅持真理，就假裝自己不痛。耶利米一邊講審判，一邊哭到寫了一整卷哀歌。堅強跟心碎，可以是同一個人身上，同時發生的兩件事。</p>
+      <p style="margin-top:12px;">如果你已經厭倦了、想放棄那個讓你承受這麼多代價的呼召——先給自己一點空間去感受那份厭倦，但也記得，有些真理，一旦你真的知道了，就很難真正把它放下。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果你正在說一個沒人想聽的真話——你可以又堅定又心碎，這兩者不衝突。</p>
+    </div>
+
+    <div class="insight-box">在當代『吹哨者』（whistleblower）與說真話者所承受心理代價的討論中，耶利米的故事提供了一個歷久彌新、也極其誠實的聖經範例——他沒有被塑造成一個毫無畏懼、永遠堅強的英雄，而是真實地展現出長期承受排斥與迫害所帶來的孤獨、憤怒，甚至絕望，這對正在承受類似處境的現代人，提供了重要的心理共鳴與陪伴。而他『審判與哀慟並存』的姿態，也對當代如何在指出組織或群體問題時，同時保持對這個群體的真實關懷，提供了深刻的示範——真正的批判性聲音，不必然帶著冷漠或優越感，反而可以，也應該，帶著深切的愛與心碎。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他親眼見證了自己一生反覆宣告卻始終不被相信的審判，真實地降臨——而他留下的，不只是這場悲劇的記錄，更是一份超越悲劇的新約應許。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">「新約」神學的最早宣告</div>
+          <div class="legacy-body">耶利米書31章對新約的預言，成為此後基督教救恩論最核心的舊約基石之一，耶穌在最後晚餐中直接引用並成就了這段預言，深刻影響了整個新約神學對「內在更新」的理解。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">「含淚的先知」的品格典範</div>
+          <div class="legacy-body">他一生堅持真理卻毫不冷漠、深切哀慟卻毫不妥協的品格，成為此後歷代教會理解「如何在說出艱難真相的同時，依然保有對人真實憐憫」這一持久課題時，最重要也最動人的先知典範。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">耶利米哀歌：苦難文學的正典典範</div>
+          <div class="legacy-body">他所寫的哀歌，成為聖經中處理集體創傷與深沉苦難最重要的文學典範，其精密的字母離合詩結構與毫不迴避的哀傷筆調，深刻影響了此後猶太教與基督教處理苦難神學的方式。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">先知職事孤獨與代價的誠實記錄</div>
+          <div class="legacy-body">他毫不掩飾地記錄下自己與神爭辯、控訴、甚至詛咒自己出生的內心掙扎，這種罕見的誠實，成為此後理解「忠心服事所需付上之真實心理代價」時，最重要的聖經文本。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">V</div>
+        <div>
+          <div class="legacy-title">對亡國與被擄群體的持續盼望</div>
+          <div class="legacy-body">即使宣告了無可逆轉的審判，他同時也清楚傳達了七十年後歸回的應許（耶29:10–14），為此後被擄與歸回時期的猶太群體，提供了持久而堅實的盼望根基。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「我以永遠的愛愛你，因此我以慈愛吸引你。……我要為你重新建造，你就被建立……你必再被建立，佩戴手鼓，與歡樂的人一同跳舞而出。」</div>
+      <div class="final-verse-ref">耶利米書 31:3–4</div>
+    </div>
+
+    <div class="final-question">如果你此刻正承受著因說出真相而來的孤獨與痛苦——你願不願意相信，就像耶利米一樣，即使你所愛的人此刻拒絕聽見，那份真理最終仍會在神所定的時間裡，結出超越你個人生命所能看見的果效？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 耶利米 <span>יִרְמְיָהוּ</span> · 含淚的先知 · 宣告審判卻為百姓心碎的祭司</div>
+
+</body>
+</html>

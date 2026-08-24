@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>猶大 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">猶大・主的兄弟</h1>
+  <span class="hero-name-en">Jude, brother of Jesus · Ἰούδας ὁ ἀδελφόθεος</span>
+  <p class="hero-slogan">「他明明可以在信的開頭寫「我是耶穌的親弟弟」，<br>卻只寫了「耶穌基督的僕人」——這個選擇，說明了他真正在意的是什麼。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">第一世紀 · 主後約 10–80 年後（推測）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">INTJ · 建築師型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">太 13:55 · 可 6:3<br>猶大書全卷</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">耶穌肉身的兄弟 · 猶大書作者</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他是唯一一位在書信開頭，刻意不提自己與耶穌血緣關係、卻特意提及自己與雅各兄弟關係的新約作者。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">第一世紀<br>初代教會面對異端滲透的年代</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">多重身份</span>
+        <div class="info-cell-value">耶穌肉身的兄弟 · 雅各的兄弟<br>猶大書作者</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">拿撒勒 →<br>（此後活動地點未詳載）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">背景</span>
+        <div class="info-cell-value">馬太福音、馬可福音明確列出耶穌兄弟中有「猶大」<br>自稱「耶穌基督的僕人，雅各的兄弟」（猶1）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">太 13:55 · 可 6:3<br>猶大書（僅一章25節，全卷）</div>
+      </div>
+    </div>
+
+    <p>猶大是馬太福音與馬可福音中，明確列出的耶穌肉身兄弟之一——「雅各、約西、西門、猶大」。與雅各的情況相似，福音書記載耶穌的家人在祂傳道期間並不相信祂（約7:5），這意味著猶大很可能也經歷了與雅各類似的、從懷疑到相信的轉變過程，儘管聖經並未如記載雅各那樣，明確提及復活主是否曾單獨向他顯現。他此後的轉變，我們只能從他所寫的這封書信本身，反推出他堅定的信仰立場與深切的牧養關懷。</p>
+    <p>猶大書開篇的自我介紹極具份量：「耶穌基督的僕人，雅各的兄弟猶大」——他完全沒有提及自己與耶穌的血緣關係，反而選擇稱自己是雅各（很可能就是耶路撒冷教會那位著名的柱石）的兄弟。這個刻意的選擇，透露出他深刻的謙遜：與耶穌的血緣關係，本可以是一種極具權威性的自我背書，他卻選擇不倚靠這層關係，而以『僕人』的身分自稱。第一世紀中後期，初代教會正面臨著日益嚴重的異端滲透——某些人「暗暗地進來」，「將我們神的恩變作放縱情慾的機會，並且不認獨一的主宰、我們主耶穌基督」（猶4）——猶大書正是在這樣的處境下，以極其急迫而堅定的語氣寫成的一封警示信。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">他的生平幾乎沒有留下具體的敘事記載，卻用一封短信，留下了對抗異端最激烈也最深刻的一份文獻。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">黑暗低谷</span>
+        <div class="timeline-title">與其他兄弟一同，起初不相信耶穌</div>
+        <div class="timeline-body">約翰福音記載耶穌的弟兄們『不信他』，這段記載雖未特別點名猶大，但作為耶穌兄弟之一，他很可能同樣經歷了這段對兄長身分的懷疑期。這段沉默的空白，某種程度上也呼應了他此後書信中，對信徒『持守起初確信的地步，直到見底，就必和基督一同有分』（來3:14，雖非猶大書經文，卻是同類神學主題）這種堅持到底之信心的強調。</div>
+        <div class="timeline-ref">約 7:5</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">「耶穌基督的僕人，雅各的兄弟猶大」——謙遜的自我定位</div>
+        <div class="timeline-body">他在書信開篇的自我介紹，刻意選擇不提與耶穌的血緣關係，只稱自己是『耶穌基督的僕人』與『雅各的兄弟』。這個選擇顯示他深刻理解，真正的權柄與可信度，不應建立在血緣的特殊性上，而應建立在對基督謙卑的僕人身分之上。</div>
+        <div class="timeline-ref">猶 1</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">「本來熱心地要寫信給你們，論我們同得救恩」——寫作動機的轉變</div>
+        <div class="timeline-body">他坦承自己原本打算寫一封關於『我們同得救恩』的一般性書信，卻因『有些人偷著進來』、將恩典曲解為放縱情慾的藉口，而『不得不寫信勸你們，要為從前一次交付聖徒的真道竭力地爭辯』。這段自白顯示，他的寫作是出於對教會安危的急迫回應，而非事先規劃的教導計畫——某種緊急的牧養處境，迫使他改變了原本的寫作方向。</div>
+        <div class="timeline-ref">猶 3</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">黑暗低谷</span>
+        <div class="timeline-title">以強烈的舊約典故，警示異端者的結局</div>
+        <div class="timeline-body">他連續引用了以色列人在曠野因不信而滅亡、天使因不守本位而被鎖在黑暗中、所多瑪蛾摩拉因淫亂受永火的刑罰、該隱的道路、巴蘭的錯謬、可拉的背叛等一連串舊約典故，以極其密集而激烈的語言，警告那些混入教會、敗壞真道的假教師終將面臨的審判。這種高密度的舊約引用與強烈的警示語氣，在新約書信中相當罕見。</div>
+        <div class="timeline-ref">猶 5–13</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">引用以諾書——展現對次經傳統的熟悉</div>
+        <div class="timeline-body">猶大書第14–15節直接引用了《以諾一書》中的預言：「看哪，主帶著他的千萬聖者降臨」——這是新約中唯一明確引用次經（非正典猶太文獻）的段落，顯示猶大對當時猶太教內部流傳的宗教文獻相當熟悉，也反映出第一世紀猶太基督徒群體在使用聖經與傳統文獻上的複雜處境。</div>
+        <div class="timeline-ref">猶 14–15</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">「願榮耀、威嚴、能力、權柄，因我們的主耶穌基督，歸與他」——以頌讚作結</div>
+        <div class="timeline-body">在經歷了整封信如此強烈而急迫的警示語氣之後，猶大書卻以新約中最優美、最莊嚴的頌讚詞之一作結：「那能保守你們不失腳、叫你們無瑕無疵、歡歡喜喜站在他榮耀之前的我們的救主獨一的神，願榮耀、威嚴、能力、權柄，因我們的主耶穌基督，歸與他，從萬古以前，並現今，直到永永遠遠。阿們。」這個從激烈警告到莊嚴頌讚的轉折，展現出他信仰中，警惕與盼望並存的深刻張力。</div>
+        <div class="timeline-ref">猶 24–25</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他用一整封信警告教會提防危險，卻用信的結尾，把一切的保守與榮耀，完全歸給那位真正能保守人不失腳的神。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">真道值得竭力爭辯，即使代價是被視為過於激烈</div>
+          <div class="soul-body">他明確說出寫這封信的動機——『要為從前一次交付聖徒的真道竭力地爭辯』。這種對真理毫不妥協的堅持，顯示他深刻理解，教義上的鬆懈與模糊，可能對信仰群體帶來致命的傷害。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">刻意的謙遜——不倚靠血緣特權自我抬高</div>
+          <div class="soul-body">他本可以用『耶穌的親弟弟』這個身分，為自己的書信增添無可質疑的權威，卻選擇只稱自己是『耶穌基督的僕人』。這種對特權地位的主動放棄，展現出他對『真正的權柄源自僕人的身分，而非血緣的優越性』這一原則，有著極其清晰而堅定的認知。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">急迫、直接，善於運用豐富的舊約典故建構論證</div>
+          <div class="soul-body">面對異端滲透的緊急處境，他沒有選擇溫和迂迴的勸說，而是直接、密集地引用一連串舊約與次經典故，以強烈的警示語氣，正面對抗這個威脅。這種急迫而直接的溝通風格，展現出他對教會安危高度的責任感。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">語氣的激烈程度，可能使部分讀者感到被過度警告或恐嚇</div>
+          <div class="soul-body">整封書信充斥著大量關於審判、毀滅、黑暗、烈火的意象與警告，這種高強度的警示語氣，雖然出於保護教會的迫切心意，卻也可能讓部分讀者感受到過於嚴厲或令人不安的壓力。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">在極端警告之後，留下新約中最莊嚴優美的頌讚詞</div>
+          <div class="soul-body">整封信從激烈的警告，轉向書末那段被廣泛用於教會禮儀與詩歌創作的頌讚詞——這種在警戒與盼望之間的巨大情感跨度，顯示他的信仰，不是單純建立在恐懼之上，而是最終安穩地建立在對神保守大能的深刻信靠。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">猶大最深刻的張力，濃縮在他書信開頭那個刻意的自我介紹選擇裡——他明明擁有『耶穌親弟弟』這個獨一無二、任何人都無法質疑的身分資本，卻選擇完全不使用它，只稱自己是『僕人』。這個選擇背後，透露出一種深刻的神學洞見：真正的權柄與可信度，從來不應建立在血緣、地位、或任何形式的特殊身分之上，而應建立在對真理本身的忠心持守與見證之上。而他整封信在『竭力爭辯真道』的激烈警告，與『保守你們不失腳』的莊嚴頌讚之間的巨大跨度，也提醒我們：真正健康的信仰警醒，從來不是單純建立在恐懼之上，而是最終導向對神保守大能的深刻信靠與盼望。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">INTJ</span>
+      <div class="mbti-name">建築師型 · 為真道爭辯的僕人</div>
+      <div class="mbti-slogan">「他本可以用「耶穌的親弟弟」這個身分開場，卻只寫下「僕人」——這個選擇，比整封信的警告更有力量。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">他能夠敏銳地洞察到教會正面臨的深層危機——異端如何『偷著進來』、如何將恩典扭曲成放縱情慾的藉口，並清楚預見這種滲透若不及時處理，將帶來怎樣的災難性後果。這種對潛藏威脅的深刻洞察力，貫穿整封書信。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">他有系統地組織了一連串舊約典故（以色列人、天使、所多瑪、該隱、巴蘭、可拉），建構出一套極具說服力、邏輯緊密的警示論證架構，展現出高度的組織與論證能力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">他刻意選擇謙遜的自稱、以及書信結尾那段發自內心深處的莊嚴頌讚，都顯示出他內在深刻而真誠的價值信念——這不是表面的宗教辭令，而是源自他對神保守大能真實而深切的信靠。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Se · 外向實感</span>
+          <div class="mbti-fn-body">他的書信高度聚焦於典故的引用與神學性的警示，卻相對缺乏具體、當下處境的細節描述（例如異端者具體的教導內容、教會實際的應對步驟）——這與 INTJ 相對較弱的外向實感傾向一致，更擅長掌握抽象的模式與原則，而非鉅細靡遺的具體操作細節。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他與這個世界最重要的兩段關係，一個是他選擇不提的（與耶穌的血緣），一個是他特意強調的（與雅各的手足情誼）。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">耶</div>
+          <div class="relation-name">耶穌基督</div>
+          <div class="relation-type-badge">肉身的兄長，也是他此後全心事奉的主</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">他與雅各一樣，是耶穌肉身的兄弟，卻在書信中刻意選擇不強調這層關係，只自稱『耶穌基督的僕人』。這個選擇本身，就是一種深刻的神學宣告：與基督最重要的關係，不是血緣的親近，而是僕人般的順服與忠心。</div>
+          <div class="relation-ref">太 13:55 · 猶 1</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">雅</div>
+          <div class="relation-name">雅各（兄弟，教會柱石）</div>
+          <div class="relation-type-badge">他在書信開頭特意連結的兄弟</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">他自稱『雅各的兄弟』，這個選擇顯示，雅各作為耶路撒冷教會知名的柱石與領袖，他的名字本身，可能比單純的血緣關係更能為猶大的書信增添可信度與權威——猶大似乎更願意藉由與雅各的關係，而非與耶穌的血緣，來建立自己書信的正當性。</div>
+          <div class="relation-ref">猶 1</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">假</div>
+          <div class="relation-name">混入教會的假教師</div>
+          <div class="relation-type-badge">他書信中極力警示、對抗的對象</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">書信描述這些人『暗暗地進來』，『將我們神的恩變作放縱情慾的機會，並且不認獨一的主宰、我們主耶穌基督』——這些人很可能屬於當時興起的某種諾斯底主義或放縱主義（antinomianism）異端傾向，猶大以極其嚴厲的語氣，正面對抗這個威脅教會信仰純正性的危機。</div>
+          <div class="relation-ref">猶 4</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">信</div>
+          <div class="relation-name">他所寫信的收信教會</div>
+          <div class="relation-type-badge">他極力守護、勸勉持守真道的信仰群體</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">他稱收信對象為『那被召、在父神裡蒙愛、為耶穌基督保守的人』，並以父親般的關切語氣，勸勉他們『在至聖的真道上造就自己，在聖靈裡禱告，保守自己常在神的愛中』——這段話展現出他對這個群體深切的牧養關懷，而非單純冷漠的教義糾正。</div>
+          <div class="relation-ref">猶 1, 20–21</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「那能保守你們不失腳……歸與他，從萬古以前，並現今，直到永永遠遠」——這段頌讚，成為此後兩千年教會禮儀中最常被引用的祝禱詞之一。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「那能保守你們不失腳、叫你們無瑕無疵、歡歡喜喜站在他榮耀之前的我們的救主獨一的神，願榮耀、威嚴、能力、權柄，因我們的主耶穌基督，歸與他，從萬古以前，並現今，直到永永遠遠。阿們。」</div>
+      <div class="verse-ref">猶大書 24–25</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">παρεισέδυσαν</span>
+        <div class="word-transliteration">pareisedysan · 偷著進來 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「暗中溜進、偷偷混入」，這個字帶有強烈的隱密性、欺瞞性色彩，描繪出異端者並非公開對抗教會，而是以偽裝的方式滲透進入信仰群體內部。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這個字精準地捕捉了初代教會所面對異端滲透的特殊危險性——威脅不是來自外部明顯的敵對勢力，而是來自內部偽裝成信徒、卻扭曲真道的人。這提醒教會，屬靈的警醒不僅要對抗外在的逼迫，更需要對內部可能悄然出現的教義偏差，保持高度的敏銳與辨識力。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">ἐπαγωνίζεσθαι</span>
+        <div class="word-transliteration">epagōnizesthai · 竭力爭辯 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「竭盡全力地爭戰、奮力搏鬥」，字根與競技場上激烈的角力搏鬥（agōn，此字即英文agony、agonize的字源）有關，帶有強烈的努力與抗爭色彩。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">猶大選用這個極具張力的競技場意象，來描述信徒應當如何『為真道竭力爭辯』——這不是一種輕鬆隨意的教義討論，而是一場需要全力以赴、甚至帶著搏鬥般強度的屬靈爭戰。這確立了新約中『護教』（defending the faith）這一持續責任的重要神學基礎。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">對抗異端：教會歷史持續的責任</div>
+      <div class="theology-insight-body">猶大書所處理的『假教師滲透教會、扭曲恩典教義』的問題，此後在教會歷史中反覆出現於不同的世代與形式——這封書信因此成為教會歷史中，理解如何辨識、警惕、並回應內部教義偏差時，最重要的正典依據之一。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">謙遜的權柄：不倚靠特權而倚靠真理本身</div>
+      <div class="theology-insight-body">猶大刻意不使用『耶穌的親弟弟』這個身分優勢，只稱自己是『僕人』——這確立了一個重要的神學原則：屬靈的權柄，不應建立在血緣、地位或任何外在特權之上，而應建立在對真理忠心的持守與見證上。這對此後教會歷史中，理解『領袖權柄的合法性基礎』這一持續議題，提供了重要的參照。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">警戒與頌讚並存的信仰姿態</div>
+      <div class="theology-insight-body">整封書信從激烈的警告，最終導向莊嚴而充滿盼望的頌讚——這確立了健康信仰生活的一個重要平衡：對危險保持警醒，不等於陷入持續的恐懼或焦慮，最終的安穩，永遠建立在對神保守大能的堅定信靠之上。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">以色列人出埃及後，在曠野中因不信而倒斃，未能進入應許之地——這是猶大書開篇所引用的第一個警示性典故</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">猶大用這段舊約歷史，警示教會即使曾經『蒙拯救出埃及』，若後來心存不信與悖逆，依然可能面臨嚴重的屬靈後果——這提醒信徒，起初的蒙恩，不能替代持續的忠心與警醒</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督親自成就了那真正、永遠的應許之地——祂應許凡持守到底的人，必不至於失落（來 3:12–14, 4:1）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">可拉聚集反叛摩西與亞倫所設立的屬靈權柄，最終地開口吞滅了他和跟隨他的人——猶大特別提到假教師『照可拉的悖逆滅亡了』</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">猶大用這段典故，直接警示那些在教會內部，質疑並反抗神所設立之屬靈秩序與真道的人，將面臨與可拉相似的嚴重後果</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督是那位真正、合法被神所立的元首，凡真心順服祂權柄的人，必不至於像可拉一樣自取滅亡（來 3:1–6）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">以諾在洪水之前的世代，被記載『與神同行』，並在猶大書中被引用曾預言『主帶著他的千萬聖者降臨，要在眾人身上行審判』</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">猶大直接引用以諾這位以『與神同行』著稱的舊約人物的預言，來為自己對末後審判的警告增添權威性與歷史縱深——這顯示他對整個猶太傳統中關於神公義審判的教導，有著相當全面的掌握</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督親自應驗了以諾這段古老的預言，祂要在末後的日子，帶著眾聖者降臨，施行最終的審判（帖前 3:13 · 啟 1:7）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你曾經需要在「維護真理」與「不想顯得過於嚴厲」之間掙扎——這一頁是為你寫的。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">猶大命中的是一種在當代信仰群體中依然真實存在的張力：當你察覺到某種扭曲或危險的教導正在滲透你所在的群體，你是否願意冒著被視為『過於嚴厲』『不夠包容』的風險，堅定地指出這個問題？他的書信提醒我們，真正的愛與牧養，有時候需要包含清楚而堅定的警示，而非一味地追求表面的和諧。而他刻意不使用自己特權身分的選擇，也提醒我們：真正有力的發聲，不需要倚靠地位或關係的優勢，而應建立在對真理本身的忠心與清晰見證上。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你有沒有察覺過某種扭曲或危險的教導、觀念，正在你所在的群體中悄悄蔓延？你當時的反應是選擇沉默，還是像猶大一樣，願意站出來提醒？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">他刻意不使用『耶穌親弟弟』這個身分優勢來為自己的話增添權威。你在表達重要的觀點時，是傾向於倚靠自己的地位或關係，還是更看重論點本身的真實性與說服力？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">整封信在『竭力爭辯』的激烈警告，與『保守你們不失腳』的莊嚴頌讚之間，展現出巨大的情感跨度。你認為，在提醒他人警惕危險時，如何能同時傳遞出盼望與信靠，而非只留下恐懼？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">他的書信是因應教會具體、緊急的處境而寫的，而非事先規劃的教導。你是否也曾經因為看見某個急迫的需要，而臨時調整了自己原本的計畫，去回應那個更迫切的處境？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 猶大（及雅各）</span>
+        <div class="gen-title">示範劇本：從對耶穌的懷疑，轉化為對真道毫不妥協的堅定捍衛</div>
+        <div class="gen-body">與雅各一樣，猶大很可能也經歷了從『不信』到『堅信』的轉變。而這段經歷，或許正是他此後對『真道必須被竭力爭辯與持守』抱持如此強烈信念的重要背景——他深知信心可以是多麼容易被質疑、被扭曲，因此更加珍視、也更加堅定地捍衛這份得來不易的信心。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 此後閱讀猶大書的歷代信徒</span>
+        <div class="gen-title">延續而非打斷：持續被提醒要為真道竭力爭辯，同時安穩於神的保守</div>
+        <div class="gen-body">猶大書雖然短小，卻在教會歷史中持續發揮著獨特的警醒作用——每當教會面臨內部教義偏差或異端滲透的挑戰時，這封書信『竭力爭辯真道』的呼籲，總是被重新提起、重新應用。同時，書末那段莊嚴的頌讚，也持續安慰著歷代信徒，使警醒不至於淪為單純的焦慮，而是安穩地建立在對神保守大能的信靠之上。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在猶大的生命中，展現在他從『不信』的懷疑者，轉變為毫不妥協地捍衛真道的僕人這一過程之中——這個轉變的具體細節雖然沒有被詳細記載，卻透過他此後書信中，那份對真道近乎急迫的珍視與捍衛，清楚地顯明出來。這提醒我們，一個人若曾經真實地經歷過信心從懷疑到堅定的掙扎歷程，往往會對『守護這份得來不易的信心』，抱持著格外深切而堅定的委身。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那個寧可自稱「僕人」也不提「我是耶穌弟弟」的人，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#不靠關係硬要靠真理</span>
+      <span class="tag">#護教也要有分寸</span>
+      <span class="tag">#警告完了還要有盼望</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>猶大是耶穌的親弟弟——這個身分，放在現在大概等於是總統的親兄弟，隨便講句話都自帶流量跟權威。但他寫信的時候，開頭第一句話是：耶穌基督的僕人，雅各的兄弟猶大。他完全沒有提『我是耶穌的弟弟』這件事。</p>
+      <p>這個選擇很不簡單。他本來可以輕輕鬆鬆地說『我哥跟你們講的，你們最好聽』，卻選擇了一個更謙卑、也更需要靠內容本身說服人的立場。</p>
+      <p>他寫這封信，其實不是原本的計畫。他自己坦白說：我本來想寫一封關於『我們同得救恩』的一般性書信，結果聽到有些人偷偷混進教會，把神的恩典扭曲成放縱情慾的藉口，我不得不改變主意，寫信勸你們，要為真道竭力爭辯。</p>
+      <p>接下來的內容，語氣非常激烈——他一口氣搬出以色列人在曠野倒斃、天使犯罪被關、所多瑪蛾摩拉被燒、該隱、巴蘭、可拉一連串舊約『壞榜樣』，警告那些混進教會的假教師會有什麼下場。整封信讀起來，火藥味十足。</p>
+      <p>但最後的結尾，畫風完全轉了。他寫下了整本新約最優美、最莊嚴的一段祝福：那位能保守你們不失腳、叫你們無瑕無疵、歡歡喜喜站在他榮耀面前的獨一真神，願榮耀、威嚴、能力、權柄，都歸給祂，直到永遠。阿們。從嚴厲的警告，一路走到溫柔的盼望。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——而猶大這塊石頭，本來有一條捷徑可以走（靠關係），他卻選擇了一條更難、也更真實的路。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你手上有一個可以輕鬆說服別人的『關係』或『身分』，卻覺得靠這個講話有點取巧——猶大會懂你的猶豫。他選擇不靠『我是耶穌弟弟』這張牌，寧可讓真理本身站得住腳。</p>
+      <p style="margin-top:12px;">如果你正在猶豫，要不要指出你所在的群體裡某種讓你不安的教導或風氣——不用怕被說成小題大做。猶大寧可打斷自己原本溫和的寫作計畫，也要正面處理這個緊急的危險。</p>
+      <p style="margin-top:12px;">還有，提醒別人危險的時候，別忘了最後留一點盼望。猶大罵完該罵的，最後留下的，是一段溫柔到讓人想哭的祝福。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果你要說一句重要的話，試著別靠關係，靠內容本身站得住腳。</p>
+    </div>
+
+    <div class="insight-box">在當代討論『如何在不倚靠特權地位的情況下建立可信度』這一議題時，猶大提供了一個極具啟發性的範例——他刻意放棄使用『耶穌親弟弟』這個幾乎無可質疑的身分資本，選擇讓自己的論證單純以真理本身的重量說話，這對當代社群中常見的『訴諸權威』(appeal to authority)溝通模式，提供了一種值得深思的替代路徑。而他書信中『激烈警告』與『莊嚴頌讚』並存的結構，也對當代如何在提醒他人警惕危險的同時、避免製造持續性焦慮這一牧養挑戰，提供了重要的示範——真正健康的警醒，最終應當導向盼望，而非停留在恐懼之中。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他只留下二十五節經文，卻在新約正典中，永久地確立了教會必須「為真道竭力爭辯」這一持續的責任。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">護教學傳統的重要奠基文本</div>
+          <div class="legacy-body">「要為從前一次交付聖徒的真道竭力地爭辯」這句話，此後兩千年成為基督教護教學（apologetics）傳統中，最常被引用的核心經文之一，確立了教會對抗異端、捍衛正統教義這一持續責任的聖經基礎。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">新約中最莊嚴的頌讚詞之一</div>
+          <div class="legacy-body">書末那段「願榮耀、威嚴、能力、權柄……歸與他」的頌讚，因其優美而深刻的神學內涵，此後被廣泛應用於教會禮儀、詩歌創作與講道結尾，成為基督教敬拜傳統中極具代表性的祝禱文本。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">謙遜的權柄典範</div>
+          <div class="legacy-body">他刻意不使用血緣特權、只稱自己是『僕人』的選擇，為此後教會歷史中，理解『真正的屬靈權柄應建立在忠心的僕人身分之上，而非任何形式的特權地位』，提供了極具說服力的正典典範。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">保留猶太次經傳統的重要文獻</div>
+          <div class="legacy-body">他對《以諾一書》的直接引用，成為新約正典中，理解第一世紀猶太基督教群體如何看待與運用正典之外相關宗教文獻的重要線索，也持續引發神學家對聖經正典形成過程的深入研究與討論。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「親愛的弟兄啊，你們卻要在至聖的真道上造就自己，在聖靈裡禱告，保守自己常在神的愛中，仰望我們主耶穌基督的憐憫，直到永生。」</div>
+      <div class="final-verse-ref">猶大書 20–21</div>
+    </div>
+
+    <div class="final-question">如果你此刻擁有一個可以輕易借用的身分或關係優勢，卻選擇像猶大一樣，只憑真理本身的重量說話——你願意做出這樣的選擇嗎？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 猶大 <span>Ἰούδας ὁ ἀδελφόθεος</span> · 為真道竭力爭辯的守望者 · 猶大書作者</div>
+
+</body>
+</html>

@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>腓力 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">腓力・使徒</h1>
+  <span class="hero-name-en">Philip the Apostle · Φίλιππος</span>
+  <p class="hero-slogan">「他習慣先算清楚再相信，<br>而他這輩子最重要的一句話，卻是叫別人別多想，直接來看。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">第一世紀 · 主後約 5–80 年</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ISTJ · 物流師型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">約 1:43–46, 6:5–7, 12:20–22, 14:8–9</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">第一個被直接呼召的門徒</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他是四福音中唯一一位耶穌直接說「跟從我」而立刻服從、且留下姓名細節的第一批門徒之一。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">第一世紀<br>羅馬治下的加利利</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">多重身份</span>
+        <div class="info-cell-value">加利利人 · 十二使徒之一<br>希臘文使用者</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">伯賽大 →<br>加利利、猶太 →（傳統）弗里吉亞</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">背景</span>
+        <div class="info-cell-value">與安得烈、彼得同鄉<br>名字為希臘文，意為「愛馬者」</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">約 1:43–48, 6:5–7, 12:20–22, 14:8–9<br>太 10:3 · 可 3:18 · 路 6:14 · 徒 1:13</div>
+      </div>
+    </div>
+
+    <p>腓力出身伯賽大——與安得烈、彼得同一個漁村。他的名字是純希臘文（Φίλιππος，「愛馬者」），這在加利利地區並不罕見，反映了當地深受希臘化影響的社會環境。約翰福音特別記下，當幾個上耶路撒冷過節的希臘人想見耶穌時，他們找的正是腓力——這暗示他在門徒中可能是外邦訪客較容易接近、或者他本人與希臘語世界有較深淵源的一位。</p>
+    <p>他在符類福音中只出現在使徒名單裡，完整的形象幾乎全部來自約翰福音的四個場景。這四個場景有一個共同的模式：他總是先做計算，而計算的結果總是「不夠」或「不知道」。耶穌問他哪裡買餅給五千人吃，他答「就是二十兩銀子的餅，也不夠他們每人吃一點」；耶穌講到父，他還在問「求主將父顯給我們看，我們就知足了」。約翰把這些細節保留下來，勾勒出一個誠實卻缺乏想像力的門徒——而恰恰是這樣一個人，成了把拿但業帶到耶穌面前的那一位。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">他的四個場景，每一次都在同一個地方卡住——然後每一次都還是往前走了一步。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">「耶穌找著腓力，對他說：『來跟從我吧』」</div>
+        <div class="timeline-body">在約翰福音記載的最初幾次呼召中，腓力是唯一一位耶穌主動找上、並直接下達命令的人——不是經由他人介紹，是耶穌親自找到他。經文沒有記下任何猶豫或提問，只說「他就去找拿但業」。這個順序值得注意：他還沒來得及消化自己的呼召，第一個動作就是去找另一個人。</div>
+        <div class="timeline-ref">約 1:43</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">「你來看」——面對拿但業的懷疑</div>
+        <div class="timeline-body">拿但業聽說是拿撒勒人，直接說「拿撒勒還能出什麼好的嗎？」——這是一句帶著地域偏見的質疑。腓力沒有辯論、沒有列舉證據，只回了三個字：「你來看。」這句話後來耶穌自己在呼召安得烈與彼得時原封不動地說過。腓力沒有能力說服拿但業的理性，但他知道怎麼把人帶到能親自看見的地方。</div>
+        <div class="timeline-ref">約 1:45–46</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">黑暗低谷</span>
+        <div class="timeline-title">「就是二十兩銀子的餅，也不夠」——先算成本的直覺</div>
+        <div class="timeline-body">五千人在曠野，耶穌問腓力哪裡可以買餅，約翰特別註明「這話是要試驗腓力，他自己原知道要怎樣行」。腓力立刻算出具體數字：二十兩銀子的餅也不夠每人吃一點。他的計算是準確的——問題不在算術，在於他把「夠不夠」當成了唯一的問題框架，完全沒有把耶穌算進那個等式裡。</div>
+        <div class="timeline-ref">約 6:5–7</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">希臘人求見——他選擇先去問安得烈</div>
+        <div class="timeline-body">幾個希臘人對他說「先生，我們願意見耶穌」，他沒有直接帶他們去，而是先去告訴安得烈，兩人才一同回稟耶穌。這個細節顯示他面對不確定的處境時傾向於先確認、先徵詢，而不是獨自做決定——與他呼召拿但業時的直接乾脆形成有趣的對比。</div>
+        <div class="timeline-ref">約 12:20–22</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">黑暗低谷</span>
+        <div class="timeline-title">「求主將父顯給我們看，我們就知足了」</div>
+        <div class="timeline-body">最後的晚餐，耶穌說「你們若認識我，也就認識我的父……從今以後，你們認識他，並且已經看見他」。腓力卻說：「求主將父顯給我們看，我們就知足了。」耶穌的回應帶著少見的失望語氣：「腓力，我與你們同在這麼長久，你還不認識我嗎？」跟隨了三年，他仍在等一個更具體、更可見的證據——沒意識到那個證據一直站在他面前。</div>
+        <div class="timeline-ref">約 14:8–9</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">名單中的沉默——與此後的傳統</div>
+        <div class="timeline-body">他最後一次被提及是在使徒行傳第一章的名單中，此後聖經沒有再記載他的言行。教會傳統（部分可能與「傳福音的腓利」混淆）記載他往小亞細亞的希拉波立一帶傳道，最終在該地殉道。無論細節如何，可以確定的是：那個總是先問「夠不夠」的人，最後把自己整個人交了出去。</div>
+        <div class="timeline-ref">徒 1:13</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他不是沒有信心，他是那種信心必須先過一遍計算機的人——而耶穌從未因此把他晾在一邊。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">誠實面對眼前的數字，不誇大、不美化</div>
+          <div class="soul-body">他從不說虛話。五千人的問題他給出的是精確的成本估算，父顯現的問題他直說自己還不滿足。這種誠實在群體中並不討喜，卻極其可貴——他從不假裝自己已經懂了。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">把人帶到能看見的地方</div>
+          <div class="soul-body">他缺乏華麗的辯才，但他有一個持續一生的動作：帶人去看。呼召拿但業如此，希臘人求見時也是如此（雖然先繞了一步）。他知道自己說服不了誰，但他知道怎麼帶路。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">先計算，再行動；不確定時先徵詢</div>
+          <div class="soul-body">他習慣把問題拆成可衡量的單位——多少錢、夠不夠。面對希臘人的請求，他選擇先問安得烈而非自行決定。這是一種謹慎但也可能拖延行動的心智模式。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">把「看得見的證據」當成信心的門檻</div>
+          <div class="soul-body">他要求「將父顯給我們看」，暗示三年的同行、教訓與神蹟仍不足以使他安心——他總是在等下一個更具體的憑證。這是一種隱微卻持續的不安全感：不是不信，是總覺得還需要多一點才夠。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">在計算之外，仍然去做了</div>
+          <div class="soul-body">儘管他每次的第一反應都是算出「不夠」，他從未因此拒絕行動——他仍然去找了拿但業、仍然去回稟了希臘人的請求。這種在懷疑中依然邁步的模式，或許正是他留給後人最實際的一課。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">腓力的四個場景有一個共同結構：他先誠實地說出自己看不到的部分，然後仍然往前走一步。這與「先有十足把握才行動」的模式完全不同——他從未假裝自己已經想通了，卻也從未因為想不通而停下。耶穌對他的失望（「你還不認識我嗎」）不是責備他的謹慎，是指出一件更深的事：三年的同行本該讓一個人從「計算證據」轉為「認得那位」，而他還停留在前者。這對每一個習慣先算清楚才敢相信的人，都是一句溫柔卻扎實的提醒。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ISTJ</span>
+      <div class="mbti-name">物流師型 · 誠實的計算者</div>
+      <div class="mbti-slogan">「他把每一個問題都换算成具體的數字，卻沒有意識到答案一直是一個人，不是一個算式。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Si · 內向實感</span>
+          <div class="mbti-fn-body">他習慣依循既有的、可驗證的經驗來判斷處境——二十兩銀子買得到多少餅，他心裡有一本明確的帳。這種扎根於具體事實的思維方式，讓他極少誇大，卻也讓他難以跳出既有框架去想像神蹟的可能。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">他傾向把不確定的處境轉化為可執行的步驟——先問安得烈、再一同回稟。這種務實的組織傾向讓他成為可靠的執行者，卻也可能讓他在該獨自決斷時猶豫。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">他對拿但業的回應「你來看」，透露出一種簡單卻真誠的個人信念——他不辯論，他只是把自己相信的事直接攤開。這是他性格中安靜卻堅定的一面。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Ne · 外向直覺</span>
+          <div class="mbti-fn-body">他最弱的環節是想像尚未發生、無法被量化的可能性——五千人怎麼可能被餵飽、看不見的父要如何被「顯明」。壓力下他傾向退回可計算的範疇，而錯過了眼前正在發生的、超出算式之外的事。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他最深刻的一段關係，是他還沒站穩就急著去建立的——把一個懷疑者，帶到答案面前。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">耶</div>
+          <div class="relation-name">耶穌基督</div>
+          <div class="relation-type-badge">主與被直接呼召的門徒</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">他是少數幾位耶穌主動找上、直接說「跟從我」的門徒之一，沒有經過他人介紹。而三年後，主對他說出全福音書中少有的、帶著失望語氣的一句話：「我與你們同在這麼長久，你還不認識我嗎？」這段關係顯示一件事：親近的年日本身不會自動帶來認識，除非人願意放下對更多證據的等待。</div>
+          <div class="relation-ref">約 1:43 · 約 14:8–9</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">拿</div>
+          <div class="relation-name">拿但業（巴多羅買）</div>
+          <div class="relation-type-badge">被他引介的朋友</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">腓力找到他，告訴他遇見了摩西律法上所寫、眾先知所記的那位。拿但業第一反應是質疑，腓力沒有辯論，只說「你來看」。這三個字後來成為拿但業一生的轉捩點——他見到耶穌，立刻宣告「你是神的兒子，你是以色列的王」。一個不擅長說服人的人，用最少的話，完成了最重要的引介。</div>
+          <div class="relation-ref">約 1:45–49</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">安</div>
+          <div class="relation-name">安得烈</div>
+          <div class="relation-type-badge">同鄉 · 搭檔</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">兩人都出身伯賽大，且在福音書中兩次成對出現：五千人的場面裡一同面對「不夠」的難題，希臘人求見時腓力先去找他商量。這對搭檔一個負責注意到邊緣的個體（如那位帶餅的孩童），一個負責精確計算現實的限制——互補卻也互相牽制。</div>
+          <div class="relation-ref">約 6:8 · 約 12:22</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">希</div>
+          <div class="relation-name">求見耶穌的希臘人</div>
+          <div class="relation-type-badge">外邦訪客 · 求助的陌生人</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">他們找上腓力，很可能正因為他的希臘名字讓人覺得容易親近。這個小細節暗示了一件更大的事：神使用一個人身上看似平凡的背景（希臘化的成長環境、希臘文名字），成為外邦人叩門的入口。</div>
+          <div class="relation-ref">約 12:20–21</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「你來看」——三個字，沒有一句神學論證，卻是新約中最有效的一次佈道。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「腓力找著拿但業，對他說：「摩西在律法上所寫的和眾先知所記的那一位，我們遇見了，就是約瑟的兒子拿撒勒人耶穌。」……腓力說：「你來看！」」</div>
+      <div class="verse-ref">約翰福音 1:45–46</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">ἔρχου καὶ ἴδε</span>
+        <div class="word-transliteration">erchou kai ide · 你來看 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">兩個命令式動詞並列：「來」與「看」。這句簡短的邀請在約翰福音中出現不只一次——耶穌自己對安得烈與彼得說過幾乎相同的話（約 1:39「你們來看」）。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這句話確立了新約佈道學一個重要的基本款：面對懷疑與偏見，不一定需要辯贏對方，有時只需要提供一個親自查驗的機會。腓力沒有反駁拿但業對拿撒勒的偏見，他只是移除了距離。這對後世信仰群體是一個提醒——最有效的見證，常常不是辯論的勝利，而是一次邀請。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">πειράζων</span>
+        <div class="word-transliteration">peirazōn · 試驗 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">動詞 πειράζω 的現在分詞，意為「測試、考驗」。約翰福音明確註明耶穌問腓力哪裡買餅，「這話是要試驗腓力，他自己原知道要怎樣行」。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這個字說明了神有時提出的問題，答案早已預備好，重點不在考驗人是否知道解法，而在觀察人在不知道解法時如何反應。腓力給出的是誠實的無力感——這不是失敗的回答，而是被記錄下來、成為五餅二魚神蹟前奏的真實回應。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">「你來看」的佈道學</div>
+      <div class="theology-insight-body">腓力的方法論貫穿整卷約翰福音：面對懷疑，不強行說服，而是提供親自查驗的空間。這與後來使徒行傳中庇哩亞人「天天考查聖經，要曉得這道是與不是」的精神相通——信仰經得起被檢驗，不需要靠迴避檢驗來維持。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">誠實的無力感先於神蹟</div>
+      <div class="theology-insight-body">腓力說「二十兩銀子也不夠」之後，緊接著發生的正是五餅二魚的神蹟。這個敘事順序具有神學意義：承認自己的計算不足，不是信心的失敗，反而常是神蹟的前奏。神很少在人自以為足夠時介入，卻常在人誠實承認不足時展開作為。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">「看見父」的漸進啟示</div>
+      <div class="theology-insight-body">腓力求主「將父顯給我們看」，耶穌回答「人看見了我，就是看見了父」。這句話是約翰福音高基督論的核心宣告之一——神的可見性不是透過異象或神蹟展示，而是透過道成肉身這一位活生生的人。腓力想要的證據，其實一直站在他面前說話。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">摩西差十二個探子窺探迦南地，回來後約書亞與迦勒力排眾議，說「我們立刻上去得那地吧，我們足能得勝」</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">腓力的「不夠」與迦勒的「足能得勝」形成鮮明對照；聖經同時保留兩種聲音，卻讓神蹟總是發生在誠實的不足之後，而非虛張的樂觀之中</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督親自成就那使少變多的神蹟，不倚靠人的計算，只需人願意把有限的擺上（約 6:11）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">以利沙告訴窮寡婦，把僅有的一瓶油倒進她借來的每一個器皿，油直到器皿都滿了才止住</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">神蹟的限制不在神的供應，而在人預備了多少器皿；腓力算出的「二十兩銀子不夠」，恰恰對應了寡婦最初對自己資源的低估</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督是那使五餅二魚成為飽足萬民之糧的主，祂的供應不受人計算的限制（可 6:41–44）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">拿但業對腓力的邀請最初充滿偏見：「拿撒勒還能出什麼好的嗎」，卻在見到耶穌後立刻改口宣告祂是神的兒子</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">偏見往往在真正的相遇面前迅速瓦解——腓力沒有嘗試說服拿但業放下偏見，他只是提供了相遇的機會</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督親自對觀望與懷疑者發出邀請：「你們來看」（約 1:39），祂從不迴避被審視</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你也是那種凡事先算清楚才敢相信的人——這一頁是為你寫的。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">腓力命中的是一種相當理性、也相當普遍的信仰姿態：不輕易被感動說服，需要具體的證據與可行的計算才能安心行動。這樣的人常被批評「信心不足」，但福音書從未這樣定義腓力——耶穌只是溫柔地指出，三年的同行本該讓他從「持續要求證據」進展到「認得那位一直與他同在的」。這對每一個習慣先算清楚才敢相信的人是重要的提醒：誠實地承認自己算不出來，從來不是信心的敵人；把「算不出來」當成停下腳步的理由，才是。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你有沒有一件事，是你明明覺得資源或能力「不夠」，卻仍然邁出了那一步？後來發生了什麼？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">腓力要求「將父顯給我們看」，即使他已經同行三年。你目前是不是也在等某個更具體的證據，才願意真正安心？那個證據會是什麼？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">他對拿但業說的只有三個字：你來看。你身邊有沒有一個帶著偏見或懷疑的人，你可以用同樣簡單的方式邀請他親自查驗，而不是急著辯論？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">他每次遇到不確定的處境，第一反應是計算與徵詢。你的預設反應是什麼？那個反應曾經幫助過你，還是曾經讓你錯過了什麼？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 腓力</span>
+        <div class="gen-title">應激劇本：用「不夠」的計算延遲行動的信心</div>
+        <div class="gen-body">面對五千人的需要，他的第一反應是精確算出資源的不足，而非思考眼前這位是否能超越計算。這種模式不是虛偽，是一種根深蒂固的謹慎——先確認可行性，才敢投入。問題在於，這套邏輯用在有限的世界很可靠，用在神蹟面前卻常常成了絆腳石。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 此後仰賴他見證的人</span>
+        <div class="gen-title">被打斷而非複製：誠實反而成了通道</div>
+        <div class="gen-body">有趣的是，他的「不夠」並沒有演變成消極或退縮的循環——他仍然去找了拿但業、仍然去回稟了希臘人。他的誠實沒有阻止行動，只是伴隨著行動一起出現。這使他成為一種特別的見證：不需要先假裝有十足把握，才有資格帶人去看。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">打斷發生在耶穌那句略帶嘆息卻毫不苛責的話裡：「腓力，我與你們同在這麼長久，你還不認識我嗎？」主沒有因為他的遲鈍而收回託付，也沒有等他「想通了」才繼續使用他。恩典的介入方式，是持續地與一個總是慢半拍的人同在，直到那句「你來看」有一天終於也能反過來指向他自己——你所等待的證據，其實一直在你面前說話。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那個總是先算成本的人，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#先算清楚才敢信</span>
+      <span class="tag">#你來看就好</span>
+      <span class="tag">#誠實的不知道</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>腓力是那種在群組裡會先跳出來說「等等，我們先算一下需要多少預算」的人。耶穌問他哪裡買餅給五千人吃，他秒答：二十兩銀子的餅也不夠每人吃一點。算術完全正確，只是他忘了把耶穌算進那個等式裡。</p>
+      <p>他也是那種三年後還在說「你就再多給我一點證據吧」的人。最後晚餐上，他跟耶穌說：把父顯給我們看，我們就知足了。耶穌的回答帶著一絲你能感覺到的無奈：我跟你們在一起這麼久，你還不認識我嗎？</p>
+      <p>但別急著把他歸類成「信心不足的代表」。他做過一件事，簡單到近乎樸素，卻效果驚人。他找到拿但業，說遇見了那位彌賽亞。拿但業立刻嗆他：拿撒勒還能出什麼好的？換作很多人這時候會急著辯論、舉證、引經據典。腓力只說了三個字：你來看。</p>
+      <p>拿但業去看了。看完當場改口：祢是神的兒子，是以色列的王。腓力沒有贏得一場辯論，他只是拆掉了一段距離。</p>
+      <p>所以他大概是這種人：不擅長把不確定變成確定，但很擅長把懷疑的人帶到能親自檢驗的地方。他的信心不是那種閉著眼睛往前衝的類型，是那種算不出答案卻還是動了腳的類型。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——而有些人被雕刻的方式，是被反覆問「你還不認識我嗎」，直到有一天終於認得。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你是那種凡事都要先算清楚才敢相信的人，先聽這句話：腓力也是。而耶穌從沒有因此把他晾在一邊，還是把他放在十二人的名單裡，一直用到最後。</p>
+      <p style="margin-top:12px;">你的「不夠」「不知道」「我需要再多一點證據」，不是拒絕相信，只是你誠實的樣子。誠實地說出自己算不出來，比假裝自己已經想通更接近信心。</p>
+      <p style="margin-top:12px;">如果你身邊有一個帶著偏見或懷疑、你怎麼講都講不通的人——別急著辯論。試試腓力那三個字：你來看。有時候最好的邀請，就是這麼簡單。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">不用先把答案想清楚。今天，就帶一個人去看看就好。</p>
+    </div>
+
+    <div class="insight-box">在當代信仰對話與教育語境中，腓力示範了一種被低估的溝通策略：面對懷疑或偏見，直接提供第一手經驗的機會，往往比理性辯論更有效——這與現代教育學中「體驗式學習」的原理相通。而他反覆出現的「先算清楚」傾向，也對高度理性化的現代人提供了一種安慰：信心的成長未必來自消除所有不確定感，而可能發生在人願意帶著「不知道」依然邁步的那一刻。在領導與團隊管理的層面，他也提醒我們：一個總是先提出風險與限制的成員，未必是信心薄弱的阻力，反而常是團隊裡不可或缺的誠實聲音，只要他仍然願意行動。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他沒有留下講章，卻留下了一句至今仍是最有效邀請的話。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">「你來看」的佈道範式</div>
+          <div class="legacy-body">這句簡短的邀請成為此後歷代信仰見證的一個基本模型：不靠辯論取勝，而靠提供親自查驗的空間。無數個人佈道的實踐，本質上都是這三個字的變形。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">誠實面對信心不足的正典先例</div>
+          <div class="legacy-body">他多次坦白自己「不知道」「不夠」，卻從未因此被排除在核心圈之外。這為後世每一個帶著疑問卻仍願意跟隨的信徒，保留了一個誠實的位置——你不需要假裝自己已經全懂，才有資格繼續走下去。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">五餅二魚敘事中的關鍵配角</div>
+          <div class="legacy-body">他的「不夠」為這個著名神蹟提供了敘事的張力與對照，使這個故事不只是一場魔術式的展示，而是一堂關於人的有限與神的供應之間關係的課。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">為「不完整的認識」保留成長的空間</div>
+          <div class="legacy-body">「你還不認識我嗎」這句略帶嘆息的話，沒有伴隨懲罰或撤回託付。這使得教會歷史上每一個花很長時間才漸漸認識基督的人，都能找到自己的位置——認識是一個過程，不是一次到位的門檻。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「耶穌對他說：「腓力，我與你們同在這麼長久，你還不認識我嗎？人看見了我，就是看見了父；你怎麼說『將父顯給我們看』呢？」」</div>
+      <div class="final-verse-ref">約翰福音 14:9</div>
+    </div>
+
+    <div class="final-question">你心裡那個「再給我多一點證據我就相信」的等待清單上，寫的究竟是真正缺少的東西，還是一直站在你面前、只是你還沒認出來的那一位？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 腓力 <span>Φίλιππος</span> · 第一個被直接呼召的門徒 · 帶人來看的人</div>
+
+</body>
+</html>

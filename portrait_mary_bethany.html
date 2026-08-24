@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>馬利亞 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">馬利亞・伯大尼的</h1>
+  <span class="hero-name-en">Mary of Bethany · Μαρία ἡ ἐκ Βηθανίας</span>
+  <p class="hero-slogan">「她打破了一整瓶價值一年工資的香膏，只為了倒在耶穌腳上；<br>耶穌說：普天下無論在何處傳這福音，也要述說這女人所做的來紀念她。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">第一世紀 · 主後約 27–33 年</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">INFP · 調停者型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">路 10:38–42 · 約 11:1–44, 12:1–8</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">坐在主腳前的聆聽者 · 打破玉瓶的敬拜者</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">她做的每一件事,都與坐下、俯伏、傾倒有關——而耶穌對她三次不同的姿態,都給出了同樣深情的回應。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">第一世紀<br>耶路撒冷近郊</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">多重身份</span>
+        <div class="info-cell-value">伯大尼的女子 · 馬大之妹<br>拉撒路之姊妹</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">伯大尼<br>（橄欖山東側，距耶路撒冷約三公里）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">背景</span>
+        <div class="info-cell-value">與姊姊馬大、兄弟拉撒路同住<br>擁有價值極高的真哪噠香膏</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">路 10:38–42 · 約 11:1–44 · 約 12:1–8</div>
+      </div>
+    </div>
+
+    <p>伯大尼的馬利亞在福音書中三次出場，每一次的姿態都指向同一個核心動作——坐在耶穌腳前、俯伏在耶穌腳前、以及最後把香膏倒在耶穌腳上。這種反覆出現的姿態語言並非偶然：她與耶穌的關係，始終圍繞著一種俯就、專注、毫無保留的親近。約翰福音特別在記述拉撒路病重的段落中，提前註明「這馬利亞就是那用香膏抹主，又用頭髮擦他腳的那位」——顯示這件在受難前發生的敬拜行動，在初代教會的記憶中，是她最核心、最具代表性的身分標記。</p>
+    <p>第二聖殿晚期，真哪噠（νάρδος）是一種產自喜馬拉雅山區、需經由漫長貿易路線才能運抵猶太地的珍貴香料，一整瓶的價值，約翰福音記載猶大估算為「三十兩銀子」（原文為三百第拿流，相當於一名普通勞工近一年的工資）。這意味著馬利亞所擁有的這瓶香膏，很可能是她整個家庭最貴重的資產之一——或許是嫁妝，或許是家族長期積蓄的珍寶。她選擇在耶穌受難前夕，毫不保留地把這份最貴重的東西，全部倒在耶穌的腳上，這個舉動在當時在場眾人眼中，近乎瘋狂的揮霍。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">她三次俯伏在耶穌腳前，一次被稱許，一次流淚，一次被永遠紀念。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">「馬利亞在耶穌腳前坐著聽他的道」</div>
+        <div class="timeline-body">耶穌來到伯大尼，馬大忙著接待張羅，馬利亞卻「在耶穌腳前坐著聽他的道」。在當時的猶太文化中，女性通常不被允許正式坐在拉比腳前學習律法——這個姿態本身，是馬利亞主動打破當時社會對女性角色期待的一次舉動。她選擇了在忙亂的接待事務之外，單純地坐下來，全神貫注地聆聽。</div>
+        <div class="timeline-ref">路 10:39</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">「馬利亞已經選擇那上好的福分」</div>
+        <div class="timeline-body">面對馬大的抱怨，耶穌為馬利亞的選擇辯護：「馬利亞已經選擇那上好的福分，是不能奪去的。」這是耶穌在整本福音書中，少數幾次明確、公開地稱許一個人所做選擇的場景之一——而祂稱許的，正是那個在當時社會標準下，看似『沒有幫上什麼忙』的選擇。</div>
+        <div class="timeline-ref">路 10:42</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">黑暗低谷</span>
+        <div class="timeline-title">「主啊，你若早在這裡，我兄弟必不死」——俯伏在耶穌腳前哭泣</div>
+        <div class="timeline-body">拉撒路死後，馬利亞起初仍坐在家裡，直到馬大悄悄告訴她『夫子來了，叫你』，她才急忙起身去見耶穌。約翰福音記載她「一見耶穌，就俯伏在他腳前，說：主啊，你若早在這裡，我兄弟必不死。」與姊姊馬大說出同樣的話語不同，馬利亞是在極度的哀傷中俯伏哭泣，而耶穌的反應也格外不同——「耶穌看見她哭，並看見與她同來的猶太人也哭，就心裡悲歎，又甚憂愁」，最終，「耶穌哭了」——這是整本聖經中最短、也最深情的一節經文之一。</div>
+        <div class="timeline-ref">約 11:28–35</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">「拿一斤極貴的真哪噠香膏抹耶穌的腳」</div>
+        <div class="timeline-body">拉撒路復活後，耶穌再次來到伯大尼赴筵席，「馬利亞就拿著一斤極貴的真哪噠香膏，抹耶穌的腳，又用自己頭髮去擦，屋裡就滿了膏的香氣。」用頭髮擦拭他人的腳，在當時猶太文化中是極其謙卑、甚至帶有羞辱意味的姿態（女性的頭髮被視為極私密的部分）——馬利亞卻毫不猶豫地做出了這個舉動，表達出無比徹底的敬拜與感恩。</div>
+        <div class="timeline-ref">約 12:1–3</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">黑暗低谷</span>
+        <div class="timeline-title">猶大的責難——「這香膏為什麼不賣三十兩銀子賙濟窮人呢？」</div>
+        <div class="timeline-body">加略人猶大立刻提出質疑，約翰福音直接指出他這樣說「並不是掛念窮人，乃因他是個賊」。馬利亞這個毫無保留的敬拜行動，在旁觀者眼中被解讀為浪費，甚至招來公開的責難——她所付上的，不只是香膏本身的金錢代價，還包括承受他人對這份敬拜之動機與價值的質疑與嘲諷。</div>
+        <div class="timeline-ref">約 12:4–6</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">「由她吧！她是為我安葬之日存留的」</div>
+        <div class="timeline-body">面對猶大的指責，耶穌堅定地為她辯護：「由她吧！她是為我安葬之日存留的。因為常有窮人和你們同在，只是你們不常有我。」馬太福音的平行記載更進一步記下耶穌這句震撼人心的宣告：「我實在告訴你們，普天之下，無論在什麼地方傳這福音，也要述說這女人所行的，作個紀念。」她這個看似『浪費』的舉動，被耶穌賦予了與福音本身同等重要、要被『普天之下』傳講紀念的永恆份量。</div>
+        <div class="timeline-ref">約 12:7–8 · 太 26:10–13</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">她從不計算代價——無論是坐下聆聽時放下的『該做的事』，還是倒下香膏時付出的『整年工資』，她給的，永遠是全部。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">全然的專注與委身，勝過計算式的衡量</div>
+          <div class="soul-body">無論是坐在耶穌腳前聽道、還是倒盡整瓶香膏，她的行動都展現出一種不計算得失、不留餘地的全然投入。她似乎天生就理解，有些時刻，值得付出全部，而不是精打細算後的部分。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">毫無保留的敬拜與感恩</div>
+          <div class="soul-body">拉撒路復活後，她所做的第一件重要的事，不是慶祝，而是把最貴重的東西獻給那位使她弟弟復活的主。這種在經歷極大恩典之後，立刻以同等重量的敬拜作為回應的直覺，展現出她內心深處對神恩典之浩大的深刻體悟。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">安靜、內斂，卻在關鍵時刻展現驚人的行動力</div>
+          <div class="soul-body">她多數時間安靜地坐著、聆聽、陪伴——不像姊姊馬大那樣主動張羅忙碌。然而在拉撒路復活後的筵席上，她卻做出了整本福音書中最戲劇性、最引人矚目的敬拜行動之一。她的安靜，從不等於被動；當她認定某個時刻值得行動，她會毫不猶豫地全然付出。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">情感的深度有時使她難以承受巨大的哀傷</div>
+          <div class="soul-body">面對拉撒路的死，她起初無法立刻起身面對耶穌，直到姊姊悄悄叫她；見到耶穌時，她俯伏痛哭，情緒之深，甚至直接觸動了耶穌自己『心裡悲歎，又甚憂愁』的反應。她對至親的愛與失落的哀傷，深刻到近乎無法自持。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">似乎比其他門徒更早理解耶穌將要受死</div>
+          <div class="soul-body">耶穌親自解釋，她抹香膏的行動，是『為我安葬之日存留的』——這暗示她可能比周圍多數人（包括門徒）更早地、甚至可能是憑直覺地，預先感受到耶穌即將面對的死亡。她用這個敬拜的行動，提前完成了此後門徒因倉促而未能來得及做的膏抹儀式。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">馬利亞的三次出場，構成了一條完整而深刻的信心軌跡：先是安靜地坐下聆聽，建立起與耶穌真實而深刻的關係；然後在極度的哀傷中，把最真實的痛苦帶到祂面前，毫無掩飾；最後，在經歷了拉撒路復活這場最深的恩典之後，用最貴重的東西回應。這條軌跡揭示了一個重要的屬靈次序：真正毫無保留的敬拜（打破玉瓶），從來不是憑空而生的衝動，而是長期安靜聆聽（坐在腳前）與誠實面對痛苦（俯伏哭泣）之後，自然而然結出的果子。她教會我們：敬拜的深度，往往與我們與神建立關係的深度成正比。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">INFP</span>
+      <div class="mbti-name">調停者型 · 打破玉瓶的敬拜者</div>
+      <div class="mbti-slogan">「她很少說話，卻用一個安靜的坐下、一次痛哭的俯伏、和一整瓶香膏，說出了比任何言語都更深的委身。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">她的每一個行動，都源自內心深處極其真實、且不受外在評價左右的價值判斷——選擇坐下聽道而非幫忙做事、在眾人面前毫無保留地倒出香膏，即使招來嘲笑與指責，她依然堅持自己認定重要的事。這種忠於內在真實情感與價值、不隨外界標準搖擺的特質，是內向情感最鮮明的展現。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Ne · 外向直覺</span>
+          <div class="mbti-fn-body">她似乎能敏銳地感受到超越表面事件的深層意義——耶穌解釋她的行動『是為我安葬之日存留的』，暗示她可能憑直覺，預先感受到了耶穌將要面對的命運，並用一個具體的行動，回應了這份尚未被言明的深層領悟。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Si · 內向實感</span>
+          <div class="mbti-fn-body">她記得並珍視具體而私密的感官經驗——用自己的頭髮去擦拭耶穌的腳，這種極其細膩、私人化的行動方式，顯示她習慣用具體的身體感官經驗，來承載並表達深刻的情感與意義。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">她似乎完全不在意、甚至沒有考慮過旁觀者會如何用『效率』或『價值』的角度評判她的行動——猶大立刻計算出香膏值多少錢、能救濟多少窮人，馬利亞卻完全不在這套邏輯裡運作。這種對外在效率與價值計算的相對忽視，正是劣勢外向思考的典型表現，也正是她的行動之所以顯得如此『不計代價』的原因。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">她與耶穌的關係，濃縮在三個安靜卻份量極重的姿態裡——坐下、俯伏、傾倒。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">耶</div>
+          <div class="relation-name">耶穌基督</div>
+          <div class="relation-type-badge">主與被公開稱許、深情以待的敬拜者</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">耶穌兩次公開地為她辯護——一次對抗馬大的抱怨（『選擇了那上好的福分』），一次對抗猶大的指責（『由她吧！』），並宣告她的行動要『普天下傳講紀念』。這段關係展現出耶穌對於那些願意全然投入、毫無保留敬拜祂之人的深刻珍視與公開肯定——即使這份敬拜在旁人眼中顯得『不合常理』。</div>
+          <div class="relation-ref">路 10:42 · 約 12:7–8</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">馬</div>
+          <div class="relation-name">馬大（姊姊）</div>
+          <div class="relation-type-badge">手足 · 性格互補的對照</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">兩姊妹展現出截然不同的性格特質——馬大務實忙碌，馬利亞安靜聆聽。這種對照在拉撒路事件中同樣清晰可見：兩人都對耶穌說出同一句『你若早在這裡』的話，卻以完全不同的姿態表達——馬大站著與耶穌對話辯論，馬利亞俯伏痛哭。福音書並未評判哪一種表達方式更正確，而是完整地保留了兩種真實的信心樣式。</div>
+          <div class="relation-ref">約 11:20, 32</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">拉</div>
+          <div class="relation-name">拉撒路（弟弟）</div>
+          <div class="relation-type-badge">手足 · 因死而復活觸發她最深敬拜的對象</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">弟弟的死亡帶給她極深的哀傷，而弟弟的復活，則成為她此後在筵席上獻上香膏這個重大敬拜行動最直接的觸發點。她對這份恩典的回應，不是言語上的感謝，而是用最具體、最昂貴的行動來表達——這揭示了她理解與回應恩典的方式，始終是透過具體而全然的付出。</div>
+          <div class="relation-ref">約 11:43–44 · 約 12:1–3</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">猶</div>
+          <div class="relation-name">加略人猶大</div>
+          <div class="relation-type-badge">對立 · 質疑並貶低她敬拜之舉的人</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">猶大公開質疑她這個行動是浪費，並提出應該把香膏變賣救濟窮人——約翰福音揭露這句話背後的真正動機是他的貪婪，而非真正關心窮人。這段對立揭示了一個深刻的對比：馬利亞毫無保留的敬拜，與猶大表面正義、實則自利的算計，形成了整個受難敘事中最鮮明的道德對照之一。</div>
+          <div class="relation-ref">約 12:4–6</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「普天之下，無論在什麼地方傳這福音，也要述說這女人所行的」——耶穌把她的敬拜，與福音本身的傳講永遠綁在了一起。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「我實在告訴你們，普天之下，無論在什麼地方傳這福音，也要述說這女人所行的，作個紀念。」</div>
+      <div class="verse-ref">馬太福音 26:13</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">νάρδος πιστική</span>
+        <div class="word-transliteration">nardos pistikē · 真哪噠 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「真的、純正的哪噠香膏」，πιστική 一字帶有『純正、未經摻雜』之意，強調這瓶香膏是貨真價實、未經稀釋的珍品——源自喜馬拉雅山區，需經由漫長貿易路線運抵猶太地，是當時最昂貴的香料之一。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">約翰福音特別強調這瓶香膏的『純正』與『極貴』，凸顯馬利亞所獻上的，不是一份廉價或摻假的敬意，而是她所能給予的最真實、最貴重的東西。這與雅歌中新娘用『哪噠』（歌 1:12, 4:13–14）比喻自己最私密、最珍貴之愛的意象相呼應——她的敬拜，帶著新婦獻給良人般毫無保留的深情。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">μνημόσυνον</span>
+        <div class="word-transliteration">mnēmosynon · 紀念 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「紀念、記念的標記」，通常用於描述值得被永久記住、傳講的重大事件或行動。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">耶穌用這個字，把馬利亞的敬拜行動，提升到與『福音』本身同等重要、要被永遠傳講紀念的地位——這在整本新約中是極為罕見的宣告。這意味著，福音的傳講，從此不只是關於耶穌的死與復活，也永遠包含著這位女子毫無保留敬拜祂的見證，作為福音本身不可分割的一部分。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">敬拜的『浪費』邏輯</div>
+      <div class="theology-insight-body">馬利亞的行動，在世俗與功利的計算邏輯中，是徹底的『浪費』——猶大的質疑並非全無道理，若單純以金錢的社會效益衡量，這確實是一筆可觀的資源錯置。然而耶穌對此的回應，確立了一個重要的敬拜神學原則：真正的敬拜，本質上就是一種『超越實用計算』的全然付出，這種『浪費』，恰恰是敬拜之所以珍貴的核心特質。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">安葬的預先膏抹</div>
+      <div class="theology-insight-body">耶穌明確指出，馬利亞的行動『是為我安葬之日存留的』——猶太人安葬時有以香料膏抹遺體的習俗（此後婦女們在復活的清晨，正是帶著香膏要去膏耶穌的身體，卻發現墳墓已空）。馬利亞的敬拜，因此成為唯一一次、在耶穌尚且活著時，就完成的安葬膏抹——她比任何人都更早，用行動預表了耶穌即將面對的死亡。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">「選擇上好的福分」與「述說作紀念」的呼應</div>
+      <div class="theology-insight-body">路加福音中耶穌稱許她『選擇了那上好的福分，是不能奪去的』，與馬太福音中『普天之下也要述說這女人所行的』彼此呼應——她兩次最重要的行動（聆聽與敬拜），都被耶穌賦予了『不能被奪去』『要被永遠紀念』的永恆份量，顯示這兩種姿態（安靜的聆聽、全然的敬拜）在耶穌眼中，具有同等重要且不朽的屬靈價值。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">雅歌中的新娘描述「我以我的哪噠香膏,發出香氣」（歌1:12），並反覆用極珍貴的香料比喻自己對良人毫無保留的愛慕</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">馬利亞所用的正是同一種香料——真哪噠，她對耶穌的敬拜,帶著雅歌中新娘那種毫無保留、近乎奢侈的深情，把最私密珍貴的東西，全然獻給所愛的那一位</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督是那真正的新郎，教會作為祂的新婦，同樣被呼召以毫無保留的敬拜與愛回應祂（啟 19:7 · 弗 5:25–27）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">出埃及記中，以色列百姓為建造會幕與祭司衣袍，甘心樂意地獻上金銀、寶石與各樣貴重材料，「甘心樂意的人把耳環、鼻環、戒指、手鐲，各樣的金器,都拿來」</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">馬利亞的獻祭同樣出於一種甘心樂意、毫不計較代價的敬拜心志——不是出於律法的要求或義務,而是內心對神恩典的真實回應</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督是那真正的會幕、真正的施恩座，「神與我們同在」的終極應驗——祂親自成為那配得一切最貴重敬拜的對象（約 1:14）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">撒母耳記下，大衛堅持要用足價買下亞勞拿的禾場獻祭給神，說「我不肯用白得之物作燔祭獻給耶和華我的神」</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">大衛與馬利亞都展現了同一種敬拜的原則——真正的獻祭，必須是付上真實代價的，而非廉價或無關痛癢的表態</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督的犧牲，是那終極、無可比擬的付上代價的獻祭——祂用自己的生命，而非任何替代品，成就了救贖（來 9:12）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你曾經因為毫無保留地付出愛，而被人質疑『這樣值得嗎』——這一頁是為你寫的。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">伯大尼的馬利亞命中的是一種現代人越來越陌生的姿態：不計算、不衡量『投資報酬率』的全然付出。在一個高度講究效率與資源最佳化的時代，她那種『把最貴重的東西，毫無保留地獻給所愛的對象』的行動，很容易被貼上『不理性』『浪費』的標籤——就像猶大所做的那樣。她的故事提醒我們，生命中確實存在著一些時刻，值得我們超越計算式的衡量，全然地付出——而這種看似『不划算』的付出，往往正是愛與敬拜最真實的證據。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你有沒有一次毫無保留地付出（時間、金錢、精力）給某個人或某件事，卻被身邊的人質疑『這樣值得嗎』？那次經歷，讓你更堅定，還是讓你開始懷疑自己？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">她安靜地坐在耶穌腳前聽道，選擇了『不去幫忙』——在你的生活裡，是否也有一種類似的張力：知道『安靜地與神連結』很重要，卻總覺得應該去『做點什麼』才對？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">她用頭髮擦拭耶穌的腳，這是一個極其謙卑、甚至可能讓她感到羞辱的動作。你是否曾經願意為了表達對某人或某個信念的委身，做出一件會讓自己顯得『難堪』或『不合常理』的事？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">耶穌說她的行動『是為我安葬之日存留的』——暗示她可能比其他人更早地感受到即將發生的事。你是否也曾經有過一種直覺性的感受，促使你在『對的時刻』做出了一個事後看來意義深遠的行動？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 伯大尼的馬利亞</span>
+        <div class="gen-title">示範劇本：全然的專注與全然的付出，不計算代價</div>
+        <div class="gen-body">她一生的三個關鍵場景，都展現出同一種模式——無論是坐下聆聽、俯伏痛哭，還是傾倒香膏，她的投入始終是完整、不留餘地的。這種『全有或全無』的委身方式，貫穿她整個生命敘事，成為她最鮮明也最一貫的品格特徵。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · （材料有限，無明確後代或直接影響之記載）</span>
+        <div class="gen-title">（無可考具體代際對照）</div>
+        <div class="gen-body">聖經沒有記載她此後的婚姻、子女或直接的門徒傳承，因此無法進行具體的代際對照分析。然而她的行動本身，因耶穌『普天下也要述說』的宣告，成為此後兩千年教會歷史中，不斷被傳講、被效法的敬拜典範——某種意義上，每一個因她的見證而學會全然敬拜的信徒，都是她精神上的『後代』。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">她的故事本身，就是恩典打斷『計算式敬拜』這種普遍傾向的一個典範——面對猶大那套看似合理、實則自利的效率計算邏輯，耶穌選擇公開為馬利亞的『不划算』行動辯護，並賦予它永恆的紀念價值。這提醒每一個容易被『這樣做值得嗎』的計算心態所困的人：恩典邀請我們超越效率的邏輯，進入一種更深、更全然的委身姿態。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那個坐著不幫忙、後來卻打破一整瓶香水的女人，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#不計代價的付出</span>
+      <span class="tag">#被說浪費的敬拜</span>
+      <span class="tag">#安靜也是一種選擇</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>伯大尼的馬利亞第一次出場，就做了一件在當時很『政治不正確』的事——耶穌來她家作客，姊姊馬大在廚房忙進忙出，她卻直接坐到耶穌腳邊，聽祂講道。放在當時的文化背景，女性通常不會被允許這樣正式地『上課』，她這個動作本身就是一種安靜卻堅定的越界。</p>
+      <p>馬大受不了了，跑去跟耶穌抱怨：你不管管她嗎？我一個人忙得要死。耶穌卻反過來為馬利亞說話：馬利亞選的是更好的，沒有人能把這個從她那裡拿走。這句話等於是公開站在她這邊。</p>
+      <p>後來她弟弟拉撒路死了，她哭得幾乎站不起來,一見到耶穌就直接跪倒在祂腳前。耶穌看她哭,看周圍的人也哭，聖經只用了三個字形容耶穌當下的反應：耶穌哭了。整本聖經最短的一節經文，就發生在她面前。</p>
+      <p>拉撒路復活以後，最有戲劇性的一幕來了。耶穌再次來到她家吃飯，馬利亞拿出一整瓶極貴的香膏——貴到猶大立刻換算成錢，說值三十兩銀子，差不多是一個工人一整年的薪水——直接倒在耶穌腳上，還用自己的頭髮去擦。滿屋子都是香味,場面應該非常震撼。</p>
+      <p>猶大馬上跳出來說：這樣浪費幹嘛？拿去賣了周濟窮人不是更好？約翰在旁邊補了一句很毒的評論：他這樣說不是真的關心窮人，是因為他手腳不乾淨。耶穌直接護著馬利亞：別管她，她這是為我安葬預備的。而且我告訴你們，以後福音傳到哪裡，這件事也要被人記得、被人講述。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——而馬利亞這塊石頭，把自己最珍貴的部分,毫無保留地敲碎、倒了出去,而那份香氣,兩千年後還在。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你曾經因為全心全意地愛一個人、或投入一件事,而被身邊的人說『這樣值得嗎』——先別急著懷疑自己。馬利亞的做法在當時看起來確實不划算,但耶穌親自為她辯護,而且說這件事要被『普天下』紀念。</p>
+      <p style="margin-top:12px;">如果你正在某段關係或處境裡,覺得自己好像『什麼都沒幫上忙』,只是安靜地陪伴或聆聽——別小看這個選擇。耶穌說馬利亞『選擇了上好的福分』,而她當時做的,只是坐下來聽而已。</p>
+      <p style="margin-top:12px;">還有,如果你正經歷極深的哀傷,痛到說不出話,只能俯伏哭泣——耶穌會靠近你,就像祂當時靠近馬利亞一樣。祂沒有叫她『別哭了』,聖經只記下,耶穌自己也哭了。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天,如果心裡有什麼想毫無保留獻上的,就去做吧。別管那些說你浪費的聲音。</p>
+    </div>
+
+    <div class="insight-box">在當代關於『無條件的愛』與『理性計算』之間張力的討論中，馬利亞的敬拜行動提供了一個極具挑戰性的範例——效益主義的思維框架，傾向於用『這筆資源能產生多少實際效益』來評判每一項付出，而馬利亞的故事，正面挑戰了這種思維在親密關係與敬拜生活中的絕對適用性。這對正在思考『如何在務實生活與全然委身之間找到平衡』的現代人，提供了重要的參照。而她三次不同姿態（坐下聆聽、俯伏痛哭、傾倒香膏）的敘事完整性，也對靈修傳統中『默觀（contemplation）先於行動（action）』的次序，提供了一個生動的聖經例證——真正深刻的敬拜行動，往往根植於長期安靜、真實的關係積累之上。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">耶穌親口應許，普天之下，無論在何處傳福音，都要述說她所做的——這是新約中極少數被賦予如此永恆份量的個人紀念。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">敬拜神學的核心典範</div>
+          <div class="legacy-body">她打破玉瓶的行動，成為此後兩千年基督教敬拜傳統中，『全然委身、不計代價』這一核心精神最鮮明的聖經典範——無數詩歌、講道、靈修文學，都以她的故事作為理解真敬拜之本質的起點。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">「選擇上好的福分」的靈修傳統</div>
+          <div class="legacy-body">路加福音中她安靜聆聽的形象，深刻影響了此後基督教默觀靈修傳統（尤其是天主教與東正教修道傳統）對『默想優先於行動』的理解與實踐，她被許多靈修作家視為『默觀生活』的聖經原型。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">受難敘事中不可或缺的一環</div>
+          <div class="legacy-body">她提前膏抹耶穌、預表祂即將受死安葬的行動，被四福音書中的兩卷特別記載並置於受難敘事的關鍵位置，成為理解耶穌受難不可或缺的一個重要場景與神學註腳。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">對『浪費式敬拜』價值的永久肯定</div>
+          <div class="legacy-body">耶穌明確宣告要『普天之下』紀念她的行動，這使得此後教會歷史中，每一個因全然委身而被世俗標準視為『不理性』或『浪費』的敬拜行動——無論是奉獻鉅額財富、投入畢生心力於看似『沒有效益』的服事——都能在她的故事中，找到堅實的神學依據與鼓勵。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「耶穌說：「由她吧！為什麼難為她呢？她在我身上做的是一件美事。……我實在告訴你們，普天之下，無論在什麼地方傳這福音，也要述說這女人所行的，作個紀念。」」</div>
+      <div class="final-verse-ref">馬可福音 14:6, 9</div>
+    </div>
+
+    <div class="final-question">如果你此刻擁有一瓶「一整年工價」的香膏——一份你最珍視、最捨不得的東西——你會像馬利亞一樣，毫不猶豫地把它全部獻上嗎？而如果有人說你這樣做太浪費，你會如何回應？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 馬利亞 <span>Μαρία ἡ ἐκ Βηθανίας</span> · 坐在主腳前的聆聽者 · 打破玉瓶的敬拜者</div>
+
+</body>
+</html>

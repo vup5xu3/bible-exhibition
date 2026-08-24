@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>猶大 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">猶大・加略人</h1>
+  <span class="hero-name-en">Judas Iscariot · Ἰούδας Ἰσκαριώθ</span>
+  <p class="hero-slogan">「他不是外面的敵人，他是坐在桌邊的那一位。<br>主為他洗腳，把餅遞給他，一直到最後都稱他為朋友。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">第一世紀 · 主後約 30 年卒</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">INTJ · 建築師型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">四福音<br>徒 1:16–20</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">十二使徒之一 · 賣主者</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">聖經最不留情的一課：一個人可以站在光的最中心，卻始終沒有讓光照進自己。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">第一世紀<br>羅馬治下的猶太行省</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">多重身份</span>
+        <div class="info-cell-value">十二使徒之一 · 錢囊管理者<br>賣主者</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">（可能）猶大地加略 →<br>加利利 → 耶路撒冷</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">背景</span>
+        <div class="info-cell-value">西門之子<br>可能是十二人中唯一的猶大地人</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">太 26–27 · 可 14 · 路 22<br>約 6, 12, 13, 18 · 徒 1:16–20</div>
+      </div>
+    </div>
+
+    <p>「加略人」（Ἰσκαριώθ）最普遍的解釋是「加略的人」（אִישׁ־קְרִיּוֹת），指猶大地南部的一座城。若屬實，他很可能是十二使徒中唯一不是加利利人的一位——在一個以鄉音辨認身分的年代（彼得就是因口音被認出的），這意味著他從一開始就是團隊裡的外人。另有學者主張此字與 sicarii（匕首黨，激進的反羅馬武裝派系）有關，雖無定論，卻符合一種常見的推想：他可能懷抱著強烈的政治性彌賽亞期待。無論哪種解讀，他都是這群人裡最不一樣的那一個。</p>
+    <p>他被託付管理錢囊——這是一個需要能力與信任的職位，顯示他絕非無能之輩，也顯示其餘十一人並未防備他。約翰福音回顧時直言他「是個賊，常取其中所存的」，但這是事後的評述；當時沒有人察覺。最令人不安的事實是：他被差遣出去傳道趕鬼（十二使徒同受差遣，經文沒有把他排除）、他親眼見過五餅二魚與拉撒路復活、他的腳被主親手洗過。他擁有一個人可能擁有的一切外在條件。聖經把他放在那裡，不是為了讓我們指認一個怪物，是為了讓我們無法安心。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">他的墮落不是一次跳崖，是一段長長的、無人察覺的下坡。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">被揀選——並被託付錢囊</div>
+        <div class="timeline-body">耶穌整夜禱告之後才揀選十二人，猶大在名單上。每一份名單都把他排在最後，並附註「就是賣主的」——但那是事後的編輯。當時他與其他人一同被差遣，「醫治病人，叫死人復活，叫長大痲瘋的潔淨，把鬼趕出去」。他也被交託了錢囊。這是一個一開始就享有完整信任的人。</div>
+        <div class="timeline-ref">路 6:12–16 · 太 10:1–4</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">黑暗低谷</span>
+        <div class="timeline-title">無人察覺的侵蝕——「他是個賊」</div>
+        <div class="timeline-body">約翰福音在事後揭露：他常取錢囊中所存的。這不是一夜之間發生的。一個人不會第一次就偷大筆金額，他會先挪用一點、告訴自己會補上、然後習慣。真正致命的從來不是那三十塊錢，是這三年裡每一次沒有被任何人發現、也沒有被自己認真看待的小小挪用。當背叛真的來臨時，它只是最後一次挪用。</div>
+        <div class="timeline-ref">約 12:6</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">黑暗低谷</span>
+        <div class="timeline-title">香膏的爭執——最後一次公開的分歧</div>
+        <div class="timeline-body">馬利亞用極貴的真哪噠香膏抹主的腳，猶大立刻抗議：「這香膏為什麼不賣三十兩銀子賙濟窮人呢？」他的話聽起來無懈可擊——關心窮人，反對浪費，數字精確。約翰卻拆穿：「他說這話，並不是掛念窮人，乃因他是個賊。」這是全本聖經對虛偽最鋒利的一次解剖：最危險的自欺，是用一個真正的美德來包裝一個真正的貪婪。而馬太記下，他就是在這件事之後去見祭司長的。</div>
+        <div class="timeline-ref">約 12:3–8 · 太 26:6–16</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">黑暗低谷</span>
+        <div class="timeline-title">三十塊錢——一個奴隸的價格</div>
+        <div class="timeline-body">他去見祭司長，問：「我把他交給你們，你們願意給我多少錢？」他們給了三十塊錢——按出埃及記 21:32，那是牛觸死一個奴僕時應賠的價，撒迦利亞書也用同一數目諷刺牧人被估的身價。經文特別註明「從那時候，他就找機會要把耶穌交給他們」。從此他每天照常吃飯、走路、與同伴說話，心裡卻在等一個時機。</div>
+        <div class="timeline-ref">太 26:14–16 · 亞 11:12–13</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">黑暗低谷</span>
+        <div class="timeline-title">被洗腳、被遞餅、被稱為朋友</div>
+        <div class="timeline-body">最後的晚餐，主為所有門徒洗腳——包括他。主說「你們中間有一個人要賣我了」，門徒竟然彼此對看，沒有一個人懷疑他；他們甚至各自問「主，是我嗎」。主把那塊蘸了的餅遞給他——在近東禮儀中，那是主人給貴客的尊榮舉動。而在客西馬尼，猶大以親嘴為記號，主對他說的最後一句話是：「朋友，你來要做的事，就做吧。」祂到最後都沒有換掉那個稱呼。</div>
+        <div class="timeline-ref">約 13:1–30 · 太 26:20–25, 49–50</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">「我賣了無辜之人的血是有罪了」——與那條繩子</div>
+        <div class="timeline-body">看見耶穌被定罪，他後悔了，把銀錢丟在殿裡，說「我賣了無辜之人的血是有罪了」。祭司長回他一句冰冷的話：「那與我們有什麼相干？你自己承當吧。」他出去吊死了。他的悔恨是真的——馬太用的字是 μεταμεληθεὶς（懊悔），不是 μετάνοια（悔改轉向）。他知道自己錯了，也承認了，卻沒有回到那群人中間。彼得也失敗了，彼得回去了；猶大獨自走開。</div>
+        <div class="timeline-ref">太 27:3–5 · 徒 1:18–19</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他不是被撒但硬拖走的，他是一步一步、用很合理的理由，自己走過去的。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">結果應該按照我的推算發生</div>
+          <div class="soul-body">他的每一次發言都與價值計算有關：香膏該值多少、能賙濟多少窮人、交出耶穌可以拿到多少。有一種常見的推測是：他期待的是一位政治性的彌賽亞，而當耶穌一再避開權力、開始預告受死，他決定用逼迫的方式強行啟動局面。無論動機為何，核心是同一個——他無法接受一個不照他設想走的計畫。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">能力與可信度都是真實的</div>
+          <div class="soul-body">他不是被同情收留的閒人。他被託付錢囊，在一個資源緊縮的巡迴團隊裡，那是要害職位。他與其他十一人一同被差遣、一同回來報告。直到最後一夜，十一個人沒有一個懷疑他——這說明他三年來的表現無可指摘。這一點不是為他辯護，是讓警訊更響：外在的無可指摘，證明不了任何事。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">隱蔽、長線、獨自決定</div>
+          <div class="soul-body">他的所有關鍵行動都在暗處完成：私下挪用、私下去見祭司長、私下等候時機。他從未在團體中表達過異議或痛苦，唯一一次公開發言還披著關心窮人的外衣。他不是衝動型的背叛者，他是一個把整件事在心裡演練過很多次的人。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">用崇高的理由替私慾說話</div>
+          <div class="soul-body">「這香膏為什麼不賣了賙濟窮人呢」——這句話在道德上完美，在事實上虛假。這是他最致命的能力：他能為自己的私慾找到一個聽起來比別人更屬靈的說法，而且他很可能連自己都說服了。自欺到了最深處時，人不會覺得自己在說謊。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">他一直被當作朋友對待</div>
+          <div class="soul-body">整段敘事中最難承受的不是他的惡，是主的溫柔。主知道，卻仍為他洗腳；主知道，卻把貴客的那塊餅遞給他；被親嘴出賣的那一刻，主叫他「朋友」。門徒到最後一刻都沒有懷疑他，某種程度上是因為主從未當眾標記他。恩典一直開著門，直到他自己走出去。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">猶大最令人不安的地方，不是他與我們相距多遠，是他與主相距多近。他擁有一切外在條件——被揀選、被差遣、行過神蹟、被洗過腳、坐在桌邊。這些全都是真的，而且全都不夠。他與彼得的差別不在罪的大小：彼得公開否認三次，猶大私下交易一次，兩人都背叛了。真正的分岔在事後——彼得出去痛哭，然後回到那群人中間；猶大也懊悔，也承認「我賣了無辜之人的血」，卻獨自走開了。決定結局的不是失敗的程度，是失敗之後往哪個方向走。這是聖經給每一個宗教資歷豐富之人的一記警鐘：你可以離光那麼近，卻始終沒讓它照進來。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">INTJ</span>
+      <div class="mbti-name">建築師型 · 暗處的策劃者</div>
+      <div class="mbti-slogan">「他把一個他不認同的計畫，改寫成一個他能控制的計畫——然後失去了全部。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">他對事情「應該如何發展」有一幅強烈而私密的圖像，並長期依此判斷一切。當耶穌一再拒絕政治性的彌賽亞路線、開始預告受死，他的整幅圖像面臨崩解。Ni 一旦鎖定某個結局，極難修正——他選擇了改變現實，而不是修正自己的圖像。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">他的表達方式全是量化的：香膏值三十兩、可以賙濟多少人、交出去值多少錢。他被託付錢囊也絕非偶然，他確實擅長管理與衡量。Te 讓他有效率，也讓他把一個人的價值換算成一個數字。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">他的價值判斷完全內化、從不外顯，也從不接受檢驗。他不曾向任何人說出自己的失望或異議——連一次都沒有。Fi 在健康時是深刻的個人信念，在孤立中則發酵成無人知曉的怨懟；而那三十塊錢，是它唯一一次被說出口的形式。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Se · 外向實感</span>
+          <div class="mbti-fn-body">崩潰時 INTJ 的劣勢 Se 會導向極端而不可逆的物理行動。當他的計畫失控、耶穌真的被定罪，他無法在漫長的過程中承受後果，只能用一個立即而徹底的動作了結一切——丟下銀錢、出去、吊死。這正是劣勢 Se 失控的典型樣態：受不了懸而未決，就用最快的方式終止。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他身邊的每一個人都對他很好，這正是這個故事最恐怖的部分。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">耶</div>
+          <div class="relation-name">耶穌基督</div>
+          <div class="relation-type-badge">主與賣主的門徒</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">主從一開始就知道。約翰福音記下「耶穌從起頭就知道誰不信他，誰要賣他」。然而祂揀選了他、差遣了他、託付了他、為他洗腳、把貴客的餅遞給他，並在被出賣的那一刻稱他「朋友」。這段關係徹底排除了一種安慰：我們無法說猶大是因為缺乏機會或缺乏愛才墮落的。他得到的和其他十一人一模一樣。</div>
+          <div class="relation-ref">約 6:64 · 約 13:26 · 太 26:50</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">門</div>
+          <div class="relation-name">其餘十一位門徒</div>
+          <div class="relation-type-badge">同儕 · 完全沒有察覺的人</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">當主說「你們中間有一個人要賣我了」，門徒的反應是「彼此對看，猜不透」，並各自問「主，是我嗎」。三年朝夕相處，沒有一個人懷疑他——這既說明他偽裝得完美，也說明他從未向任何人透露過內心的掙扎。一個從不讓人看見自己的人，最後也沒有人能夠攔住他。</div>
+          <div class="relation-ref">約 13:22 · 太 26:22</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">祭</div>
+          <div class="relation-name">祭司長與長老</div>
+          <div class="relation-type-badge">交易對象 · 用完即棄</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">他們付了三十塊錢。當他帶著悔恨回去說「我賣了無辜之人的血是有罪了」，他們的回答是：「那與我們有什麼相干？你自己承當吧。」這句話是整段敘事的寒點——他用主的信任換來的關係，在他最需要的時候，一句話就把他推開。罪所承諾的同盟，從來不會在結帳時出現。</div>
+          <div class="relation-ref">太 26:14–15 · 太 27:3–4</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">彼</div>
+          <div class="relation-name">彼得</div>
+          <div class="relation-type-badge">對照 · 兩種失敗的分岔</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">同一夜，兩個人都背叛了主。彼得公開否認三次還起誓賭咒，猶大私下交易一次。兩人事後都極度痛苦。差別只在最後一步：彼得出去痛哭，然後回到門徒中間；猶大丟下銀錢，出去，獨自了結。福音書把兩段記載幾乎並排放置，像是刻意讓讀者比較——決定結局的不是罪的大小，是罪之後的方向。</div>
+          <div class="relation-ref">太 26:75 · 太 27:5</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">馬</div>
+          <div class="relation-name">伯大尼的馬利亞</div>
+          <div class="relation-type-badge">對立 · 兩種價值觀的正面碰撞</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">她打破玉瓶，把一年工價的香膏全部倒在主腳上；他當場算出那值三十兩銀子。一個把最貴的獻上而不計算，一個把最貴的換算成數字。主為她辯護說「她所做的是一件美事」，並宣告普天下傳福音的地方都要述說她。兩種對待價值的方式在同一個房間裡對撞，而聖經記下馬太緊接著寫的下一句：那時，十二門徒裡有一個叫加略人猶大的，去見祭司長。</div>
+          <div class="relation-ref">太 26:6–16 · 約 12:3–8</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">他的存在逼問一個沒有人想回答的問題：外在的一切都對了，如果裡面沒有變，那算什麼？</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「耶穌說：「朋友，你來要做的事，就做吧。」於是那些人上前，下手拿住耶穌。」</div>
+      <div class="verse-ref">馬太福音 26:50</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">μεταμέλομαι</span>
+        <div class="word-transliteration">metamelomai · 懊悔 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「事後感到後悔、為結果懊惱」。與 μετάνοια（metanoia，悔改）不同：後者字面是「心思的轉向」，指整個人生方向的改變；前者只是情緒上的追悔。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">馬太用的是前者：「猶大看見耶穌已經定了罪，就後悔（μεταμεληθεὶς）」。這個字的選擇具有決定性——他確實痛苦、確實承認「我賣了無辜之人的血是有罪了」、確實退回了錢。他做齊了懊悔的每一個動作，唯獨沒有轉身回去。聖經在此劃出一道極細卻致命的界線：感到抱歉不等於回頭。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">ἑταῖρος</span>
+        <div class="word-transliteration">hetairos · 朋友 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「同伴、夥伴」，一種帶有禮貌距離的稱呼，不同於 φίλος（親密摯友）。馬太福音三次使用這個字，全都出現在關係即將破裂或不對等的場合。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">在被親嘴出賣的那一刻，主用這個字稱呼他。祂沒有說「叛徒」，也沒有說「惡人」。這個稱呼保留了一扇門——它承認關係的存在，卻不假裝一切正常。恩典在最後一刻仍然開著，而它沒有被接受。整本福音書中最沉重的一句話，可能就是這兩個字。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">神的主權與人的責任並存</div>
+      <div class="theology-insight-body">彼得在五旬節說耶穌被交與人「是按著神的定旨先見」，同時又說「你們就藉著無法之人的手，把他釘在十字架上殺了」。聖經從不用預定來免除責任，也從不用責任來否定主權——兩者在同一句話裡並存。主耶穌自己說得最直接：「人子必要去世，正如經上指著他所寫的；但賣人子的人有禍了。」</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">近距離不等於得救</div>
+      <div class="theology-insight-body">猶大擁有的外在條件超過今日絕大多數信徒：親耳聽道三年、親眼見證神蹟、被差遣行過異能、被主親手洗腳。這一切都是真的，也都不足以。這是新約對宗教資歷最嚴厲的一次拆解——「凡稱呼我主啊主啊的人，不能都進天國」，而這句話恰恰記在馬太福音裡。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">馬提亞的補選：神的計畫不因背叛而停擺</div>
+      <div class="theology-insight-body">使徒行傳第一章，門徒引用詩篇處理這個空缺，並選出馬提亞「加入十一使徒之列」。十二這個數字必須完整——因為它對應以色列十二支派，象徵神更新的子民。一個人的背叛可以毀掉自己，卻改變不了神的工程；缺口會被補上，隊伍會繼續前行。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">亞希多弗背叛大衛投靠押沙龍，計謀不被採納後回本城、料理家事，然後吊死</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">大衛在詩篇 41:9 哀嘆「連我知己的朋友，我所倚靠、吃過我飯的，也用腳踢我」——耶穌在最後晚餐上親自引用這節，指向猶大；連結局的方式都一致</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督是那位被知己出賣、卻選擇不報復的真大衛（約 13:18）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">撒迦利亞書中，牧人向雇主索取工價，得了三十塊錢，耶和華說「丟給窯戶」</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">猶大所得正是三十塊錢，退回後祭司長用它買了窯戶的一塊田——馬太明言這應驗了先知的話，連買地的用途都對上</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督被估價為一個奴隸的身價，卻以此贖回了全人類（太 27:9–10）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">約瑟被自己的兄弟出賣，以二十塊銀子賣給以實瑪利人，而猶大是提議賣掉他的那一個</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">兩位「猶大」都以銀錢交易了自己的兄弟；而約瑟的結局宣告了一個更大的邏輯——「從前你們的意思是要害我，但神的意思原是好的」</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督被出賣的惡行，被神用來成就全人類的拯救（創 50:20 · 徒 2:23）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">這一頁不是用來指認別人的，是用來照自己的。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">猶大命中的是宗教生活中最隱蔽的一種危險：外在的一切都持續正常，而裡面早已停止運轉。他準時出席、擔任要職、表現無可指摘、沒有人察覺——這正是最危險的狀態，因為沒有任何外部訊號會叫停你。他的墮落不是一次戲劇性的叛教，是長達三年、每一次都有合理解釋的微小挪用。而他最後的失敗甚至不是背叛，是背叛之後的那個轉身：他懊悔了、他承認了、他退回了贓款——然後他選擇獨自處理。這裡有一句話值得每個人記住：彼得的罪不比他小，差別只在彼得哭完之後回到了那個房間。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你有沒有一件事，是你用一個聽起來很正當的理由在做、但心裡知道真正的動機不是那個？那個理由是什麼時候開始說得那麼順的？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">猶大三年裡從未向任何人透露過他的失望與異議。你目前有沒有一件事，是連最親近的人都不知道的？把它藏起來，實際上保護了誰？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">他做齊了懊悔的每一個動作——痛苦、承認、退錢——卻沒有回去。你最近一次感到抱歉，是停在情緒裡，還是真的改變了方向？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">如果你此刻搞砸了一件無法挽回的事，你的第一個念頭是回到人群裡，還是消失一陣子？那個預設反應，是從哪裡學來的？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 加略人猶大</span>
+        <div class="gen-title">應激劇本：獨自消化，然後自行了結</div>
+        <div class="gen-body">他的模式從頭到尾一致：所有關鍵動作都在暗處完成。私下挪用、私下交易、私下等待時機、最後私下了結。他從未讓任何人進入他的內在世界——連一次求助、一次抱怨、一次爭辯都沒有。而這份徹底的孤立，比那三十塊錢更致命：一個誰也不讓靠近的人，在最需要被攔住的時候，身邊不會有人。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 彼得</span>
+        <div class="gen-title">打斷循環：同樣的失敗，相反的轉身</div>
+        <div class="gen-body">同一夜，彼得公開否認三次還起誓賭咒——就罪的公開程度而言並不更輕。他也痛哭、也羞愧。但他做了猶大沒有做的那一件事：他回到那個房間，和那群知道他做了什麼的人待在一起。三天後他在那裡；復活的主在海邊找到的，是一個還留在隊伍裡的人。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">打斷的機會一直都在，而且開得很大。主早就知道，卻仍為他洗腳；主把貴客的餅遞給他；在被親嘴出賣的那一刻，主叫他「朋友」。整段敘事中，恩典從未收回，門從未關上——是他自己走出去，並且再也沒有走回來。這給了每一個讀者一個極具體的功課：恩典能不能救你，往往不取決於你的失敗有多重，而取決於你願不願意在失敗之後，仍然走回那個房間。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那個坐在桌邊的人，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#最危險的是最靠近的</span>
+      <span class="tag">#抱歉不等於回頭</span>
+      <span class="tag">#沒有人發現的小事</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>先說一件很多人沒注意到的事：猶大不是混進來的。他是耶穌整夜禱告之後親自挑的十二個人之一，被派出去傳道趕鬼，還被交託管錢——那在一個到處奔波的團隊裡是要害職位。他不是邊緣人，他是核心幹部。</p>
+      <p>他的問題不是某天突然叛變。約翰福音事後才揭穿他一直在偷錢囊裡的錢。而偷錢這種事沒有人是第一次就偷大的——先挪一點，告訴自己會補回來，然後習慣。三年下來沒有人發現，包括他自己都不覺得那算什麼。</p>
+      <p>他唯一一次公開發言，是抗議馬利亞把貴重香膏倒在耶穌腳上：這個為什麼不賣掉賙濟窮人呢？聽起來完全正確——關心窮人、反對浪費。約翰在旁邊補了一句：他說這話不是掛念窮人，是因為他是個賊。最可怕的謊話，是那種你連自己都騙過去的。</p>
+      <p>然後是最後那一夜。耶穌為所有人洗腳，包括他。耶穌說有人要賣我，十一個人竟然沒有一個懷疑他，還各自問「主，是我嗎」——他偽裝得有多好，看這一句就知道。而在客西馬尼，猶大上前親嘴的那一刻，耶穌對他說的是：朋友，你來要做的事，就做吧。到最後一秒都還叫他朋友。</p>
+      <p>最後這一段是整件事最扎人的地方。他後悔了，是真的後悔——他把錢丟回聖殿，說「我賣了無辜之人的血是有罪了」。他該做的都做了：痛苦、承認、退錢。同一個晚上，彼得也剛剛否認耶穌三次，還發咒起誓。兩個人都完了。差別只有一個：彼得哭完以後，回到那群人裡面；猶大轉身走開，自己解決。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——而這一塊石頭提醒我們：不是每一塊都被雕成了，而分岔點往往不在你摔得多重，在你摔了以後往哪裡走。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你正在為某件事感到極度羞恥，恥到覺得沒有臉再出現在那些人面前——請把這一段讀完。彼得的罪不比猶大輕，他公開否認、還發誓賭咒。他唯一做對的事，是哭完之後回去了。</p>
+      <p style="margin-top:12px;">羞恥有一個非常危險的特性：它會說服你「你現在最該做的是消失一陣子」。而那正是它最有效的殺法。猶大沒有死在那三十塊錢上，他死在那句「我自己承當」上。</p>
+      <p style="margin-top:12px;">還有：你不需要先把自己整理好才能回去。彼得回去的時候什麼都沒解決，他還是那個否認過主的人，他就只是坐在那裡。而復活的主，就是在那個房間裡找到他的。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">先不要一個人待著。回到那個房間，坐下就好。</p>
+    </div>
+
+    <div class="insight-box">在組織倫理與行為經濟學的討論中，猶大是「道德滑坡」（moral slippery slope）最完整的案例：研究一致顯示，重大舞弊極少始於重大決定，而是始於一連串個別看來微不足道、且每次都有正當理由的小額偏差，直到行為者的自我認知已經悄悄重寫。他的香膏發言則展示了「道德授權」效應——以一個真實的善行動機（賙濟窮人）為自己的私利背書，是最難被外部稽核發現的類型。而在自殺防治的語境中，他最後那一段提供了一個沉痛而清晰的提示：真正的致命轉折往往不是罪行本身，而是罪行之後的孤立；相對地，彼得的存活也不是因為他更堅強，是因為他回到了群體裡。這也是為什麼那十一個人的房間，在整個敘事中是一個神學意義上的救命現場。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他留下的不是榜樣，是一面沒有人願意照、卻每個人都需要的鏡子。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">對宗教資歷的終極拆解</div>
+          <div class="legacy-body">他擁有近乎完美的外在條件：親自被主揀選、三年隨行、被差遣行過神蹟、被主洗腳、坐在最後晚餐的桌邊。而這一切都不夠。他的存在使教會兩千年來無法用任何外在指標（年資、職位、事奉紀錄、屬靈經歷）來保證一個人的真實光景——「凡稱呼我主啊主啊的人，不能都進天國」這句警告，因他而有了臉孔。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">「懊悔」與「悔改」的分野</div>
+          <div class="legacy-body">馬太刻意用 μεταμέλομαι 而非 μετάνοια 描述他，使新約在語言層面確立了一組關鍵區分：為後果痛苦不等於轉向。這個分野此後成為基督教靈修傳統中辨識真假悔改的核心判準，也讓無數困在自責循環裡的人得以看清——真正缺的往往不是更深的自責，是轉身。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">彼得與猶大的並排敘事</div>
+          <div class="legacy-body">四卷福音書都把兩人同一夜的失敗放在相鄰的位置。這個編排本身就是教導：罪的分量不是分岔點，方向才是。它成為教會處理跌倒者的基本框架——不是評估你摔得多重，是確保你不必獨自站起來。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">馬提亞的補選與十二的完整</div>
+          <div class="legacy-body">使徒行傳第一章記下門徒如何處理這個空缺：查考聖經、禱告、選出馬提亞「加入十一使徒之列」。這確立了一個持續至今的原則——個人的失敗可以毀掉自己的位分，卻無法中止神的工程；隊伍會被補齊，然後繼續前行。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">V</div>
+        <div>
+          <div class="legacy-title">血田：無法被洗掉的紀錄</div>
+          <div class="legacy-body">那三十塊錢買下的窯戶之田被稱為「血田」（亞革大馬），使徒行傳說「住在耶路撒冷的眾人都知道這事」。聖經沒有為這段歷史修圖，也沒有為這位使徒留任何餘地或美化。這份不加掩飾的誠實，本身就是正典可信度的一部分——一個會編故事的宗教，不會把叛徒寫進創辦團隊的核心名單。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「人子必要去世，正如經上指著他所寫的；但賣人子的人有禍了。那人不生在世上倒好。」</div>
+      <div class="final-verse-ref">馬可福音 14:21</div>
+    </div>
+
+    <div class="final-question">你此刻心裡那件不敢說出口的事——你打算像彼得一樣帶著它回到人群裡，還是像猶大一樣，覺得自己承當比較乾脆？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 猶大 <span>Ἰούδας Ἰσκαριώθ</span> · 賣主的門徒 · 十二使徒之一</div>
+
+</body>
+</html>

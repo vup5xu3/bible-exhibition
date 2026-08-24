@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>雅各 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">雅各・主的兄弟</h1>
+  <span class="hero-name-en">James, brother of Jesus · Ἰάκωβος ὁ ἀδελφόθεος</span>
+  <p class="hero-slogan">「福音書記載，耶穌的家人一度認為祂「癲狂了」，想去拉住祂——<br>那個家人之中，很可能就有雅各。而復活的主，特意向他一個人顯現。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">主前約 5 年—主後 62 年</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ISTJ · 物流師型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">太 13:55 · 徒 15, 21 · 加 1–2<br>林前 15:7 · 雅各書全卷</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">耶路撒冷教會的柱石 · 雅各書作者</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他與耶穌在同一個家庭長大，卻在耶穌傳道期間並不相信祂——直到復活的主，特意單獨向他顯現。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">第一世紀<br>從耶穌傳道時期到耶路撒冷被毀前夕</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">多重身份</span>
+        <div class="info-cell-value">耶穌肉身的兄弟（馬利亞與約瑟所生）<br>耶路撒冷教會領袖 · 雅各書作者</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">拿撒勒 →<br>耶路撒冷（此後長期在耶路撒冷教會服事）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">背景</span>
+        <div class="info-cell-value">馬太福音明確列出耶穌有兄弟「雅各、約西、西門、猶大」<br>起初不信耶穌，復活後成為堅定的信徒與領袖</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">太 13:55 · 可 6:3 · 約 7:5<br>徒 12:17, 15:13–21, 21:18–25 · 加 1:19, 2:9, 2:12 · 林前 15:7 · 雅各書</div>
+      </div>
+    </div>
+
+    <p>馬太福音記載，拿撒勒的鄉親質疑耶穌的身分時說：「這不是木匠的兒子嗎？他母親不是叫馬利亞嗎？他弟兄們不是叫雅各、約西、西門、猶大嗎？」——這清楚指明雅各是耶穌肉身的兄弟（無論是馬利亞與約瑟所生的親兄弟、還是約瑟前妻所生的異母兄弟，教會歷史上有不同解讀，但天主教與東正教傳統傾向後者以維護馬利亞終身童貞的教義，多數新教學者則傾向前者）。約翰福音更直接地記載：「因為連他的弟兄說這話，是因為不信他」——這句話清楚顯示，在耶穌公開傳道期間，包括雅各在內的兄弟們，並不相信祂就是彌賽亞。</p>
+    <p>然而，這位曾經不信的兄弟，此後卻成為耶路撒冷教會最重要的領袖之一。保羅在加拉太書中，明確地把雅各與彼得、約翰並列為教會的「柱石」（στῦλοι），甚至在描述順序上把雅各放在第一位：「那稱為教會柱石的雅各、磯法、約翰」。第一世紀猶太基督教群體正經歷著身分認同的重大轉折——如何理解外邦人加入教會、是否需要遵守摩西律法——而雅各正是在這場關鍵爭議中，扮演著決定性調停角色的人物。這個從『不信』到『成為柱石』的巨大轉變，究竟發生了什麼，保羅給了我們一條極其關鍵的線索。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從一位認為兄長「癲狂了」的懷疑者，到耶路撒冷會議上一錘定音的教會柱石——他的轉變，繫於復活的主一次單獨的顯現。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">黑暗低谷</span>
+        <div class="timeline-title">「你的親屬聽見，就出來要拉住他，因為他們說他癲狂了」</div>
+        <div class="timeline-body">馬可福音記載耶穌傳道期間，「他的親屬聽見，就出來要拉住他，因為他們說他癲狂了」——這段記載雖未明確點名雅各，但『親屬』顯然包括耶穌的家人。約翰福音更直接地說「因為連他的弟兄說這話，是因為不信他」，清楚指出耶穌在世傳道時，自己的親兄弟並不相信祂的身分與使命。這對耶穌而言，是一種來自最親近之人的懷疑與否定。</div>
+        <div class="timeline-ref">可 3:21 · 約 7:3–5</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">「以後顯給雅各看」——復活後的單獨顯現</div>
+        <div class="timeline-body">保羅在哥林多前書中列出復活主顯現的次序時，特別提到：「以後顯給雅各看，再顯給眾使徒看。」這是新約中極其罕見、卻極具份量的記載——復活的主，在向眾使徒顯現之外，還特意單獨向雅各顯現。教會傳統與多數學者認為，正是這次個人化的相遇，徹底扭轉了雅各從『不信』到『堅信』的生命方向，儘管福音書並未詳細記載這次相遇的具體內容。</div>
+        <div class="timeline-ref">林前 15:7</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">與門徒同在馬可樓——「同他母親馬利亞和他弟兄」</div>
+        <div class="timeline-body">耶穌升天後，使徒行傳記載門徒回到馬可樓「都同心合意地恆切禱告」，並特別列出「耶穌的母親馬利亞，和耶穌的弟兄」也在其中——這顯示雅各此時已經徹底轉變立場，從原本的懷疑者，成為與使徒們一同禱告等候聖靈降臨的核心信徒之一。</div>
+        <div class="timeline-ref">徒 1:14</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">成為耶路撒冷教會的領袖——「你們去告訴雅各和眾弟兄」</div>
+        <div class="timeline-body">彼得從監獄被天使救出後，特別吩咐：「你們去告訴雅各和眾弟兄」——這句話清楚顯示，此時雅各已然成為耶路撒冷教會實際的核心領袖，享有與使徒同等、甚至更受倚重的地位。保羅在加拉太書中也提到自己歸信後上耶路撒冷，「至於使徒，除了主的兄弟雅各，我都沒有看見」，並在此後把雅各列為教會『柱石』之首。</div>
+        <div class="timeline-ref">徒 12:17 · 加 1:19, 2:9</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">耶路撒冷會議——「所以據我的意見，不可難為那歸服神的外邦人」</div>
+        <div class="timeline-body">面對外邦信徒是否需要受割禮、遵守摩西律法的重大爭議，雅各在耶路撒冷會議上，引用先知阿摩司書的預言，做出了具決定性的裁決發言：「所以據我的意見，不可難為那歸服神的外邦人；只要寫信，吩咐他們禁戒偶像的污穢和姦淫，並勒死的牲畜和血。」這個裁決，直接決定了此後基督教得以真正成為一個跨越猶太律法限制、向全世界開放的信仰——而做出這個關鍵裁決的，正是這位耶穌肉身的兄弟。</div>
+        <div class="timeline-ref">徒 15:13–21</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">黑暗低谷</span>
+        <div class="timeline-title">「信心沒有行為是死的」——面對信仰與行為割裂的憂慮</div>
+        <div class="timeline-body">雅各書中反覆強調信心必須有具體行為的印證——「這樣，信心若沒有行為就是死的」「你若說你有信心，我便說我有行為；你將你沒有行為的信心指給我看，我便藉著我的行為，將我的信心指給你看」。這封書信透露出，他極其憂慮初代教會中，某些信徒可能把『因信稱義』的教義，誤解或濫用成一種毫無實際行為改變的空洞宣稱。</div>
+        <div class="timeline-ref">雅 2:14–26</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">殉道——猶太史家約瑟夫斯的記載</div>
+        <div class="timeline-body">聖經本身沒有記載雅各的死，但猶太史家約瑟夫斯在《猶太古史記》中記載，主後62年，大祭司亞拿努斯趁羅馬總督職位空缺之際，召開公會，控告雅各與其他人違反律法，判決用石頭打死——這與司提反的殉道方式相同。教會史家優西比烏更進一步記載了雅各以極其虔誠、常年跪地禱告而膝蓋生繭聞名，被稱為「公義者雅各」（James the Just）。</div>
+        <div class="timeline-ref">（教會歷史傳統記載，非聖經正典內容）</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他是那種一旦真正相信了，就要求信心必須落實在每一個具體行為上的人——這或許正是因為，他曾親眼見過信心可以只是空洞的懷疑。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">真實的信心，必然會在具體行為中顯明出來</div>
+          <div class="soul-body">他書信中最著名、也最具張力的宣告——『信心沒有行為是死的』——反映出他對『空談信心卻毫無行為印證』這種現象，抱持著極其強烈的警惕。這很可能與他自己從『不信』到『堅信』的親身經歷有關：他深知，真正的相信，必然會帶來生命實質的轉變。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">極其虔誠的禱告生活與嚴謹自律的品格</div>
+          <div class="soul-body">教會傳統記載他因常年跪地禱告，膝蓋磨出厚繭如駱駝膝，並因此被稱為『公義者雅各』——這種持之以恆、毫不鬆懈的敬虔生活，展現出他對信仰極其嚴肅、認真到近乎苛刻的委身態度。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">務實、審慎，善於在複雜爭議中做出兼顧各方的具體裁決</div>
+          <div class="soul-body">耶路撒冷會議上，他沒有選擇激進地全面拒絕或全面接納外邦信徒的處境，而是提出了一個兼顧猶太傳統敏感性、又不為外邦信徒加添不必要重擔的中庸方案——這展現出他極高的智慧與務實的領導能力。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">對律法與行為的強調，有時可能被誤解為與因信稱義的教義相衝突</div>
+          <div class="soul-body">他那句『人稱義是因著行為，不是單因著信』，字面上似乎與保羅『因信稱義』的核心教義形成張力，此後歷代神學家（包括馬丁路德一度質疑雅各書的正典地位）持續在辯論如何協調這兩種表述——這顯示雅各對行為的強調，若脫離上下文脈絡，確實存在被誤解的風險。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">從『癲狂了』的懷疑者，到被復活主特意單獨顯現的對象</div>
+          <div class="soul-body">他生命中最戲劇性的轉折，發生在一次福音書從未詳細記載的私密相遇——復活的主特意單獨向他顯現。這場相遇的具體內容，是新約中最引人好奇、卻也最沉默的一段空白，只留下保羅簡短的一句『以後顯給雅各看』。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">雅各的一生，濃縮著一個極其深刻的屬靈張力：他曾是那個最有『理由』不相信耶穌的人——不是因為缺乏證據，而是因為太過熟悉。他與耶穌一同在拿撒勒的家中長大，看著這位兄長做木工、吃飯、睡覺，這種近距離的熟悉感，反而可能成為信心最大的障礙——『先知在自己的家鄉、親屬、本家，沒有不被人尊敬的』。而正是這樣一個人，在復活的主特意向他顯現之後，成為此後教會歷史上最堅定的柱石之一，甚至願意為此付上生命的代價。他此後對『信心必須有行為印證』的強調，或許正源自於他自己曾經歷過『空有親眼所見卻毫無信心』的深刻教訓——他比誰都清楚，僅僅認識耶穌是不夠的，真正的相信，必須徹底改變一個人生命的軌跡。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ISTJ</span>
+      <div class="mbti-name">物流師型 · 從懷疑到磐石的兄弟</div>
+      <div class="mbti-slogan">「他曾是那個最不相信的家人，卻在復活的主向他顯現之後，成了要求信心必須拿出具體行為證明的那位教會柱石。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Si · 內向實感</span>
+          <div class="mbti-fn-body">他極其重視具體、可驗證的行為與傳統——雅各書中大量的實踐性教導（照顧孤兒寡婦、控制舌頭、忍耐試煉），都展現出他傾向以具體、可操作的行動準則，來檢驗與落實信仰的真實性，而非停留在抽象的教義討論。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Fe · 外向情感</span>
+          <div class="mbti-fn-body">他在耶路撒冷會議上所做出的裁決，展現出對群體整體和諧與各方處境的細膩考量——既要維護福音的核心真理，又要顧及猶太信徒與外邦信徒雙方的實際感受與需要，這種平衡群體關係的能力，是他領導力的重要組成部分。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ti · 內向思考</span>
+          <div class="mbti-fn-body">他引用先知書的預言、並據此推導出具邏輯性的裁決結論，顯示他具備一定程度的分析與論證能力，能夠將複雜的神學與實踐議題，梳理成清晰、可執行的具體結論。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Ne · 外向直覺</span>
+          <div class="mbti-fn-body">他起初對耶穌身分的不信，某種程度上反映出一種難以跳脫既有框架（『這不就是我認識的那個木匠兄弟嗎』）、去想像更宏大可能性的傾向——這與 ISTJ 相對較弱的外向直覺特質一致，直到一場超乎尋常的直接相遇（復活顯現），才真正打破了他原有的認知侷限。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最深刻的關係，是與那位他曾經懷疑、後來卻徹底改變他一生的兄長。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">耶</div>
+          <div class="relation-name">耶穌基督</div>
+          <div class="relation-type-badge">肉身的兄長，也是他後來全心相信、事奉的主</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">兩人在同一個家庭中長大，而雅各在耶穌傳道期間並不相信祂。復活後，主特意單獨向他顯現——這場相遇具體改變了什麼，聖經沒有詳述，但此後的雅各，徹底轉變成為堅定的信徒與教會領袖。這段關係展現了信心最深刻的一種樣式：不是因為長期熟悉就必然帶來相信，而是需要一次真實的、個人性的相遇，才能真正打開一顆心。</div>
+          <div class="relation-ref">約 7:5 · 林前 15:7</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">彼</div>
+          <div class="relation-name">彼得</div>
+          <div class="relation-type-badge">同工 · 教會另一位柱石</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">彼得從監獄被救出後，特別指名要告知雅各——顯示雅各此時在耶路撒冷教會中的地位，已與彼得並駕齊驅，甚至在教會實際的日常領導上，可能扮演著比長期在外宣教的彼得更為穩定核心的角色。保羅將兩人與約翰並列為『柱石』，進一步確立了他們在初代教會中相輔相成的領導地位。</div>
+          <div class="relation-ref">徒 12:17 · 加 2:9</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">保</div>
+          <div class="relation-name">保羅</div>
+          <div class="relation-type-badge">同工，也曾在安提阿事件中與他的立場產生張力</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">保羅上耶路撒冷時特別去見雅各，並在耶路撒冷會議上得到他的支持與正式裁決。然而加拉太書也記載，『從雅各那裡來的人』曾使彼得在安提阿因懼怕而與外邦信徒隔開——這暗示雅各所代表的猶太基督徒群體立場，與保羅在外邦宣教上的主張之間，存在著需要持續溝通與調解的張力，儘管雅各本人在耶路撒冷會議上的正式裁決，明確支持了外邦信徒不必受割禮的立場。</div>
+          <div class="relation-ref">加 1:19 · 加 2:12</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">外</div>
+          <div class="relation-name">外邦信徒</div>
+          <div class="relation-type-badge">他在耶路撒冷會議上所裁決保護的對象</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">他在耶路撒冷會議上的裁決——『不可難為那歸服神的外邦人』——直接保護了此後無數外邦信徒，使他們得以不必背負猶太律法割禮等重擔而歸信基督。這個裁決，是初代教會歷史上，福音得以真正成為普世信仰的關鍵轉折點之一。</div>
+          <div class="relation-ref">徒 15:19–20</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">散</div>
+          <div class="relation-name">散住十二支派的信徒</div>
+          <div class="relation-type-badge">他書信的收信對象</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">雅各書開篇寫給『散住十二個支派之人』——這顯示他此後持續關懷散居各地、可能正承受經濟困苦與逼迫的猶太基督徒群體，並透過書信，具體地教導他們如何在試煉中持守信心、活出與信仰相稱的具體行為。</div>
+          <div class="relation-ref">雅 1:1</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「信心若沒有行為就是死的」——這句話，此後兩千年持續提醒教會，真正的信心，必然帶來生命具體的轉變。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「你們中間誰是有智慧有見識的呢？他就當在智慧的溫柔上，顯出他的善行來。……這樣，信心若沒有行為就是死的。」</div>
+      <div class="verse-ref">雅各書 3:13, 2:17</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">στῦλος</span>
+        <div class="word-transliteration">stylos · 柱石 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「柱子、支柱」，字面指建築物中承重的關鍵結構，引申為在群體中具有穩固、支撐性地位的核心人物。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">保羅用這個字來形容雅各、彼得、約翰在耶路撒冷教會中的地位——這個意象直接呼應舊約中神的殿宇由堅固的柱子支撐的圖像（如所羅門聖殿的雅斤與波阿斯兩根柱子），也預表了啟示錄中『得勝的，我要叫他在我神殿中作柱子』的應許（啟3:12）。雅各被列為柱石之首，顯示他在初代教會結構中，具有支撐整個信仰群體穩固運作的關鍵地位。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">ἔργα</span>
+        <div class="word-transliteration">erga · 行為 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「作為、行動、成果」，這個字在雅各書中反覆出現，與保羅書信中（尤其羅馬書、加拉太書）討論『因行律法稱義』時所使用的同一個字，形成了神學史上長期討論的張力焦點。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">雅各所反對的『沒有行為的信心』，其上下文脈絡清楚顯示，他所批評的是一種『口頭承認卻毫無實際生命改變』的空洞宣稱（『你信神只有一位，你信的不錯；鬼魔也信，卻是戰驚』），而非否定保羅『因信稱義、不靠行律法』的核心教義。多數當代神學家因此認為，雅各與保羅並非彼此矛盾，而是從不同角度，共同守護著『真信心』的完整性——保羅強調得救的根基（因信稱義），雅各強調得救之信心的證據（信心結出行為的果子）。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">耶路撒冷會議：教會歷史上第一次正式的神學裁決</div>
+      <div class="theology-insight-body">雅各在耶路撒冷會議上的裁決，是初代教會歷史上第一次透過正式集會、共同商議、並引用聖經依據所做出的重大神學與實踐裁決——這為此後教會歷史中，透過大公會議處理重大教義爭議的傳統，樹立了最早的典範。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">信心與行為：兩種強調的互補而非對立</div>
+      <div class="theology-insight-body">雅各書與保羅書信（尤其羅馬書）長期被視為新約中討論『因信稱義』議題時，存在張力的兩極——然而深入的神學研讀顯示，兩者實際上是在回應不同的處境與危險：保羅對抗的是『靠行律法稱義』的律法主義，雅各對抗的是『信心淪為空洞口號』的虛無主義，兩者共同構成了完整而平衡的救恩論圖像。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">「公義者雅各」：品格見證優先於言辭教導的典範</div>
+      <div class="theology-insight-body">教會傳統對他極其虔誠禱告生活的記載，顯示他自己身體力行地活出了書信中所教導的『信心與行為並重』的原則——他不僅用文字教導信徒『信心沒有行為是死的』，更用自己一生的敬虔實踐，成為這句話最直接的示範。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">約瑟被親兄弟嫉妒、出賣，卻在多年後成為拯救整個家族與埃及的重要領袖，最終與曾經傷害他的兄弟們和好</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">雅各同樣經歷了與『家人』之間信任關係的重大轉折——從被血緣至親所懷疑（『他癲狂了』），到此後成為承接整個信仰大家庭的關鍵領袖，兩段敘事都展現了家庭關係中，懷疑與和解如何在神的計畫中被翻轉</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督親自經歷了『先知在自己家鄉不被尊敬』的處境，卻藉由復活的大能，使包括自己肉身兄弟在內的懷疑者，最終成為堅定的見證人（可 6:4 · 林前 15:7）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">多馬起初堅持『非看見他手上的釘痕……總不信』，直到親眼見到復活的主，才發出『我的主，我的神』的宣告</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">雅各與多馬同樣經歷了從『不信』到『因親身相遇復活之主』而堅信的歷程——兩人都提醒我們，即使是曾經表達強烈懷疑的人，依然可以成為此後最堅定的見證者</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督親自對多馬說『沒有看見就信的有福了』，同時也用祂的親自顯現，成全了每一位需要更具體印證才能相信之人的信心（約 20:27–29）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">所羅門在建殿時，雅斤與波阿斯兩根堅固的銅柱，被立在聖殿的門廊前，象徵著神的同在與供應堅立不移</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">保羅稱雅各、彼得、約翰為教會的『柱石』，延續了這個舊約意象——神的殿宇（此時已從實體建築轉化為由信徒構成的屬靈群體）同樣需要堅固可靠的柱子來支撐其穩定運作</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督親自是那『房角石』，教會被建造在使徒和先知的根基上，而祂自己是最終極、不可動搖的根基（弗 2:20 · 王上 7:21）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你身邊有一個親近的人，因為太熟悉你，反而遲遲無法真正相信你所堅持的真理——這一頁是為你寫的。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">雅各命中的是一種極其真實卻常被忽視的信心處境：有時候，最難相信一個人真實身分或轉變的，恰恰是那些與他最親近、最熟悉的人——正如雅各因為太熟悉自己的兄長，反而遲遲無法相信祂就是彌賽亞。他的故事同時提醒我們兩件事：其一，如果你正是那個『不相信身邊親人所堅持之真理』的人，不要對自己太過苛責，這是一種真實而普遍的心理限制；其二，如果你正是那個『不被最親近的人相信』的人，不要因此絕望——神有祂自己的時間，能透過一次真實的相遇，徹底扭轉最堅固的懷疑。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你有沒有一位極其親近的家人或朋友，因為太熟悉你，反而難以真正相信你生命中發生的重大轉變或你所堅持的信念？你如何看待這種處境？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">雅各要等到復活的主親自向他顯現，才真正相信。你自己信心的轉折點，是透過怎樣的方式發生的——一次戲劇性的相遇，還是長期漸進的累積？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">他此後極其強調『信心必須有行為的印證』。在你自己的信仰生活中，你認為『相信』與『具體行動』之間，目前是否保持著健康的平衡？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">他在耶路撒冷會議上，做出了一個兼顧各方處境的智慧裁決。你在面對群體中的重大爭議時，是傾向於堅持單一立場，還是願意像雅各一樣，尋求兼顧各方的中庸智慧？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 雅各（信主前）</span>
+        <div class="gen-title">應激劇本：因太過熟悉而難以相信身邊之人真實的身分與呼召</div>
+        <div class="gen-body">他與耶穌一同成長於同一個家庭，這份極致的熟悉感，反而成為他相信耶穌就是彌賽亞最大的障礙——『這不就是那個我從小認識的木匠兄弟嗎』。這種因熟悉而低估、甚至否定身邊之人真實潛力或呼召的心理模式，在家庭與親密關係中極為常見。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 雅各（信主後）</span>
+        <div class="gen-title">打斷而非延續：從懷疑者成為要求信心必須落實於行為的柱石</div>
+        <div class="gen-body">一旦真正相信，他沒有停留在單純的情感認同，而是徹底翻轉了自己的生命方向，成為此後對『信心必須有具體行為印證』要求最嚴格的教導者之一。這種從『曾經的懷疑』直接轉化為『對空洞信心的高度警惕』的軌跡，顯示他深刻反思了自己過去信心缺失的經歷，並將這份反思轉化為對他人的教導與提醒。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">打斷發生在復活的主那次極其個人化、卻未被詳細記載的顯現之中——這提醒我們，恩典有時候不是透過公開的神蹟或宏大的宣講臨到，而是透過一次私密、卻極其真實的相遇，徹底扭轉一個人根深蒂固的懷疑。雅各的轉變证明，即使是最親近、最熟悉、因此最難被說服的人，依然可以在神所揀選的時刻，經歷徹底的翻轉。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那個曾經覺得自己哥哥「瘋了」、後來卻成為教會柱石的人，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#自家人最難信</span>
+      <span class="tag">#信心要有行動證明</span>
+      <span class="tag">#從懷疑到柱石</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>雅各是耶穌的親弟弟——這件事放到現在想想，其實蠻有意思的。你想想，如果你哥哥忽然開始說自己是神的兒子，能行神蹟，你的第一反應會是什麼？聖經很誠實地記載，耶穌的家人一度覺得祂『癲狂了』，跑去要拉住祂——這個『家人』，很可能就包括雅各。</p>
+      <p>太熟悉一個人，有時候反而是信任最大的障礙。從小一起長大、一起吃飯、看著對方做木工——這種近距離的熟悉，讓人很難相信眼前這個人，其實是神的兒子。</p>
+      <p>轉折點發生在耶穌復活以後。保羅在信裡簡短提了一句：復活的主『顯給雅各看』——福音書完全沒有記載這場相遇的細節，但顯然效果驚人。從此以後，雅各整個人變了，成了耶路撒冷教會最核心的領袖之一。</p>
+      <p>後來教會遇到一個大麻煩：外邦人信主到底要不要先受割禮、遵守猶太律法？大家吵得不可開交,最後是雅各拍板定案：不用為難那些歸向神的外邦人。這個決定,直接決定了基督教此後能不能真正成為一個屬於全世界的信仰,而不是猶太教的一個分支。</p>
+      <p>雅各自己寫的書信，最有名的一句話是：信心沒有行為就是死的。這句話讀起來有點嗆，但你想想他自己的經歷——他曾經『看見』耶穌一整個童年,卻毫無信心,直到真正相信的那一刻,才徹底改變了他整個人生。他比誰都清楚,光是『知道』或『看見』,不代表真的『信』。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——而雅各這塊石頭，曾經以為自己看得太清楚,反而看不見真相,直到那次私下的相遇,才真正把他雕成了柱石。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你身邊有一個很親近的人，因為太熟悉你，反而不相信你正在經歷的改變或你所堅持的信念——先別太難過。雅各的家人也是這樣，包括他自己。有時候，最親近的人，需要的不是更多的解釋，而是一次真實的相遇。</p>
+      <p style="margin-top:12px;">如果你自己就是那個『很難相信』身邊之人的角色——這不代表你冷漠或麻木，這是一種真實而普遍的心理限制。神有祂的時間，能用你意想不到的方式，翻轉最堅固的懷疑。</p>
+      <p style="margin-top:12px;">還有，如果你正在思考『信心』跟『行動』之間的關係——雅各的提醒很直接：光說相信是不夠的，真正的信心，會讓你的生活真的不一樣。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果你嘴上說信，就用一個具體的行動證明給自己看。</p>
+    </div>
+
+    <div class="insight-box">在當代家庭關係與信仰傳承的討論中，雅各的故事對『為什麼最親近的家人往往最難被說服接受某種重大的生命轉變』這個常見的心理現象，提供了深刻的聖經印證與安慰——心理學上稱之為『熟悉性偏誤』(familiarity bias)，即人們傾向於用既有、固化的印象來理解身邊親近之人，即使對方確實已經有了實質的改變。這對正處於『渴望被家人真正理解與相信』之處境的信徒，提供了重要的耐心與盼望：雅各的轉變證明，即使是最頑固的懷疑，也可能在對的時刻被徹底扭轉。而他『信心與行為』的教導，也持續為當代教會提供一個重要的自我檢視框架：我們所宣稱的信仰，是否確實在具體的生活行動中，得到了真實的印證？</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他從一個因太熟悉而不信的家人，成為教會史上第一次正式神學裁決的關鍵決策者——他的轉變，本身就是一部微型的救恩史。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">耶路撒冷教會的柱石與領袖</div>
+          <div class="legacy-body">他被保羅明確列為教會『柱石』之首，並在使徒行傳中，被描繪為耶路撒冷教會實際運作的核心領袖——這個角色，使他在初代教會從耶路撒冷向外擴展的關鍵過渡期，扮演著極其重要的穩定與領導功能。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">確立外邦信徒不必受律法捆綁的關鍵裁決</div>
+          <div class="legacy-body">他在耶路撒冷會議上的裁決，是初代教會歷史上第一次正式、集體性地處理重大神學爭議的典範，直接確立了基督教得以成為跨越猶太律法限制、向全世界開放的普世信仰——這個決定的深遠影響，持續形塑著此後兩千年教會的樣貌。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">雅各書：信心與行為並重的正典見證</div>
+          <div class="legacy-body">他所寫的雅各書，此後成為新約正典中，平衡『因信稱義』教義、避免信心淪為空洞口號的重要神學文本，深刻影響了教會歷史上對『真實信心的具體印證』這一議題的持續思考與教導。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">「公義者雅各」的敬虔典範</div>
+          <div class="legacy-body">教會傳統對他極其虔誠禱告生活的記載，使他成為此後教會歷史中，理解『領袖的權柄應建立在真實的敬虔生活之上』這一原則的重要典範人物。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">V</div>
+        <div>
+          <div class="legacy-title">從懷疑到殉道的完整信心軌跡</div>
+          <div class="legacy-body">他的一生，完整呈現了從『不信』到『堅信』、再到最終『為信仰付上生命代價』的完整信心歷程——這條軌跡，成為此後歷代信徒理解『真實的信心如何從懷疑走向殉道』這一主題時，極具說服力的歷史見證。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「以後顯給雅各看，再顯給眾使徒看。……那稱為教會柱石的雅各、磯法、約翰，既知道所賜給我的恩典，就向我和巴拿巴用右手行相交之禮。」</div>
+      <div class="final-verse-ref">哥林多前書 15:7 · 加拉太書 2:9</div>
+    </div>
+
+    <div class="final-question">如果你身邊有一個因為太熟悉你、而遲遲無法相信你正在經歷的轉變的人——你願不願意相信，就像雅各的故事一樣，神依然能在祂所定的時刻，用一次你完全無法預料的相遇，徹底扭轉這份懷疑？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 雅各 <span>Ἰάκωβος ὁ ἀδελφόθεος</span> · 從不信到磐石 · 耶路撒冷教會的柱石</div>
+
+</body>
+</html>

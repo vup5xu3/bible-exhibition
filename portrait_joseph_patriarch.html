@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>約瑟 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">約瑟・·雅各之子</h1>
+  <span class="hero-name-en">Joseph (son of Jacob) · יוֹסֵף</span>
+  <p class="hero-slogan">「約瑟對他們說：「不要害怕，我豈能代替神呢？從前你們的意思是要害我，但神的意思原是好的，要保全許多人的性命，成就今日的光景。」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">約主前十九至十八世紀（族長時代）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">INFJ · 提倡者型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">創世記 37, 39–50 章</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">雅各與拉結的長子 · 埃及宰相 · 以法蓮與瑪拿西之父</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他的一生像一條被反覆折斷又重新接上的線——從父親偏愛的彩衣少年，到被賣的奴隸，到蒙冤的囚犯，到一人之下萬人之上的埃及宰相，每一次跌落，都成為下一次高升的伏筆。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">約主前十九至十八世紀，族長時代晚期</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">雅各與拉結的長子，此後成為埃及宰相</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">生於巴旦亞蘭，成長於迦南地希伯崙一帶，此後大半生於埃及</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">父雅各；母拉結；胞弟便雅憫；異母兄十人；娶亞西納；子瑪拿西、以法蓮</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">創世記 37, 39–50 章 · 徒 7:9–14 · 來 11:22</div>
+      </div>
+    </div>
+
+    <p>約瑟是雅各晚年最鍾愛的兒子，因為他是雅各摯愛的妻子拉結所生，這份偏愛具體展現在雅各特意為約瑟做的一件彩衣之上——這件彩衣，此後成為引爆兄弟間嫉妒與仇恨的導火線。約瑟十七歲時做了兩個異夢，夢中禾捆與星辰都向他下拜，這些夢境不僅預示了他此後的命運，也讓本已心懷嫉妒的哥哥們，對他更加憎惡。當雅各差遣約瑟前往示劍探望放羊的哥哥們時，哥哥們一度商議要殺他，最終在流便與猶大的介入下，改為將他賣給路過的以實瑪利商隊，換得二十舍客勒銀子——約瑟就這樣，從父親最疼愛的兒子，一夕之間淪為埃及法老內臣波提乏家中的奴隸。</p>
+    <p>在埃及，約瑟的際遇經歷了戲劇性的起伏：他在波提乏家中因耶和華與他同在而凡事亨通，被立為家宰，卻因拒絕波提乏之妻的引誘、堅守對神與對主人的忠誠，反被誣陷下監。即使身陷囹圄，約瑟依然『耶和華與他同在，……使他所做的盡都順利』，並在監中正確解釋了法老酒政與膳長的夢——然而酒政獲釋後卻將他徹底遺忘，約瑟又在監牢中多等了整整兩年。直到法老自己做了兩個無人能解的異夢，酒政才想起約瑟，約瑟被急忙從監牢提出，剃頭刮臉、換衣裳，站在法老面前——他不僅正確解出了七個豐年與七個荒年的異夢，更提出了具體可行的儲糧對策，法老當場任命他為埃及全地的宰相，那一年他三十歲。此後饑荒臨到迦南地，約瑟的哥哥們前來埃及糴糧，卻認不出眼前這位埃及宰相，正是他們二十多年前賣掉的弟弟——約瑟幾經試探、終於在確認哥哥們真心悔改後，向他們表明身分，並說出了那句貫穿他整個生命敘事的核心宣告：『你們的意思是要害我，但神的意思原是好的。』</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從彩衣少年到被賣為奴，從波提乏家的家宰到蒙冤的囚犯，再從監牢直登宰相之位——約瑟的一生，是聖經中『跌落與高升交替出現』刻畫得最完整的敘事弧線。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">被兄長出賣——「他們就把約瑟賣了二十舍客勒銀子」</div>
+        <div class="timeline-body">約瑟因父親的偏愛、彩衣、以及向哥哥們述說的異夢，招致兄長們強烈的嫉妒。哥哥們原欲殺他，最終在流便、猶大的介入下，將他賣給路過的以實瑪利商隊，帶往埃及。</div>
+        <div class="timeline-ref">創 37:12–36</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">波提乏家的忠誠與蒙冤——「他豈可行這大惡，得罪神呢」</div>
+        <div class="timeline-body">約瑟在波提乏家中因耶和華同在而凡事亨通，被立為家宰，卻因堅拒波提乏之妻的引誘、寧可蒙冤也不願得罪神，被誣陷下獄——即使身陷監牢，耶和華仍使他所做的盡都順利。</div>
+        <div class="timeline-ref">創 39 章</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">解夢卻被遺忘——「酒政卻不記念約瑟，竟忘了他」</div>
+        <div class="timeline-body">約瑟在監中正確解釋了法老酒政與膳長的夢，酒政的夢應驗後獲釋復職，約瑟原本期盼酒政能在法老面前替他伸冤，然而酒政卻將他徹底遺忘，約瑟因此又在監牢中多等待了整整兩年。</div>
+        <div class="timeline-ref">創 40 章</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">從監牢直登宰相——「法老對約瑟說：我派你治理埃及全地」</div>
+        <div class="timeline-body">法老因無人能解的異夢而想起約瑟，急召他出監解夢。約瑟不僅正確解出七豐年七荒年的預兆，更提出具體的儲糧治國方略，法老當場任命他為埃及宰相，那一年他三十歲——從蒙冤的囚犯，一夕之間躍升為一人之下萬人之上的宰相。</div>
+        <div class="timeline-ref">創 41 章</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">與哥哥們相認——「神的意思原是好的」</div>
+        <div class="timeline-body">饑荒臨到迦南，約瑟的哥哥們前來埃及糴糧，約瑟認出他們卻未立即表明身分，而是透過一連串的試探（扣留西緬、要求帶便雅憫來、栽贓銀杯），確認哥哥們是否真心悔改，才向他們表明身分，並說出了『你們的意思是要害我，但神的意思原是好的』這句貫穿他整個生命的宣告，一家人得以在埃及團聚。</div>
+        <div class="timeline-ref">創 42–45 章 · 創 50:20</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">無論身處家中最受寵的兒子、被賣的奴隸、蒙冤的囚犯、或萬人之上的宰相，約瑟展現出一種罕見的一致性——在每一個處境中，都選擇盡忠職守，並持續相信神掌管著整個局面。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">無論身處何種境遇，堅信神的主權掌管著整個局面的最終走向</div>
+          <div class="soul-body">從奴隸到囚犯到宰相，約瑟的處境劇烈起伏，然而他對神主權的信靠卻從未動搖——這在他對哥哥們所說『神的意思原是好的』這句話中，得到了最完整的總結。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">在無人監督、極具誘惑的處境中，依然堅守對神的忠誠</div>
+          <div class="soul-body">面對波提乏之妻的引誘，約瑟選擇的理由不是害怕被發現，而是『我怎能行這大惡，得罪神呢』——這種即使在私密無人知曉的處境中，仍然堅守道德界線的品格，是他一生中最鮮明的美德。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">無論處境高低，都全心投入眼前的職責，盡忠到底</div>
+          <div class="soul-body">在波提乏家中盡忠成為家宰，在監牢中盡忠協助典獄長管理囚犯，成為宰相後盡忠治理埃及饑荒——約瑟的行事風格展現出一種『不因處境而改變投入程度』的一貫性。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">年少時可能因缺乏對兄長情感的敏銳覺察，無意間加深了衝突</div>
+          <div class="soul-body">約瑟十七歲時將自己的異夢毫無保留地告訴驕縱的哥哥們，這個舉動客觀上加深了兄弟間的嫉妒與衝突，儘管動機或許單純，卻也顯示出年少的他，在人際敏感度上仍有成長的空間。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">他的一生完整示範了『苦難本身可以被神轉化為祝福的管道』這一深刻真理</div>
+          <div class="soul-body">他所經歷的每一次苦難——被賣、蒙冤、被遺忘——最終都成為神成就更大拯救計畫不可或缺的環節，這種『苦難與恩典交織並行』的完整敘事弧線，在整本聖經中極為罕見而完整。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">約瑟的一生，是聖經中對『神的主權如何在人的惡意與苦難中，依然成就祂美好旨意』刻畫得最完整、也最動人的敘事之一。他所經歷的每一次跌落——被親兄弟出賣為奴、因堅守貞潔反被誣陷下獄、解夢之恩卻換來兩年被遺忘的等待——若單獨來看，都是徹底的不公與絕望。然而約瑟從未讓這些苦難定義他的身分或消磨他的忠誠，他在每一個處境中，都選擇全心投入、堅守對神的信靠。最終，當他有能力向出賣他的哥哥們報復時，他選擇的卻是那句貫穿他整個生命的宣告：『你們的意思是要害我，但神的意思原是好的。』這句話不是廉價的原諒或迴避傷痛，而是他用二十多年的苦難親身驗證後，才能說出的深沉信念——神的主權，能夠將人出於惡意的行動，轉化為成就祂拯救計畫的具體管道。約瑟的故事提醒我們，苦難的存在不代表神的缺席，而人的惡意，也從未超出神主權能夠掌管與轉化的範圍。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">INFJ</span>
+      <div class="mbti-name">提倡者型 · 從深坑到寶座的夢想家</div>
+      <div class="mbti-slogan">「他十七歲做的夢，被哥哥們當成狂妄的笑話——二十多年後，那個夢，一字不差地應驗了。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">他年少時所做的異夢，以及此後在監牢中正確解讀法老酒政、膳長與法老本人夢境的能力，展現出對深層意義與未來走向的敏銳洞察力，這是主導內向直覺最鮮明的體現。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Fe · 外向情感</span>
+          <div class="mbti-fn-body">他在與哥哥們相認的過程中，展現出極其深刻而細膩的情感——多次因情感激動而回避退下哭泣，顯示他對兄弟關係修復的高度重視，以及對他人心理狀態的敏銳體察。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ti · 內向思考</span>
+          <div class="mbti-fn-body">他向法老提出的儲糧治國方略，邏輯清晰、具體可行，展現出將洞察力轉化為具體制度性解決方案的能力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Se · 外向實感</span>
+          <div class="mbti-fn-body">他年少時毫無保留地向兄長們陳述自己的異夢，顯示出在解讀當下具體人際氛圍與後果的敏銳度上，仍有所欠缺，這種對眼前處境的判斷疏漏，反映出劣勢外向實感的特徵。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最深刻的關係傷痕與最終的醫治，都發生在同一群人身上——那些曾經把他賣為奴隸的親兄弟。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">雅</div>
+          <div class="relation-name">雅各</div>
+          <div class="relation-type-badge">偏愛他、卻也因失去他而痛不欲生的父親</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">雅各對約瑟的偏愛，是引爆兄弟衝突的直接導火線；約瑟『死去』的假象，使雅各多年活在喪子之痛中，直到多年後得知約瑟仍活著、且在埃及位居宰相，父子二人才得以在埃及重逢團聚。</div>
+          <div class="relation-ref">創 37:3–4 · 45:25–28</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">猶</div>
+          <div class="relation-name">猶大</div>
+          <div class="relation-type-badge">曾提議賣他、此後卻甘願代替便雅憫下監的兄長</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">猶大是提議將約瑟賣給商隊而非殺害的兄長之一，然而二十多年後，正是這位猶大，在約瑟試探哥哥們是否真心悔改時，主動請求代替便雅憫留下為奴——這個轉變，成為約瑟確信哥哥們已經真心悔改的關鍵證據。</div>
+          <div class="relation-ref">創 37:26–27 · 44:18–34</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">便</div>
+          <div class="relation-name">便雅憫</div>
+          <div class="relation-type-badge">他唯一的同母胞弟</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">便雅憫是約瑟與拉結所生的唯一胞弟，約瑟在與哥哥們相認前，特意要求他們將便雅憫帶到埃及，這個要求既是試探，也流露出約瑟對這位唯一血緣至親胞弟的深切思念。</div>
+          <div class="relation-ref">創 43:29–30</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">法</div>
+          <div class="relation-name">法老</div>
+          <div class="relation-type-badge">將他從監牢提升至宰相之位的埃及王</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">法老因約瑟正確解出異夢、並提出具體可行的治國方略，當場任命他為埃及全地的宰相——這個決定，使約瑟得以在此後的饑荒中，成為保全埃及與迦南兩地無數性命的關鍵人物。</div>
+          <div class="relation-ref">創 41:37–44</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「你們的意思是要害我，但神的意思原是好的，要保全許多人的性命」——這句話，是聖經中對神主權如何轉化人的惡意闡述得最深刻的宣告之一。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「從前你們的意思是要害我，但神的意思原是好的，要保全許多人的性命，成就今日的光景。」</div>
+      <div class="verse-ref">創世記 50:20</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">חָשַׁב</span>
+        <div class="word-transliteration">chashav · 意思 / 籌算 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「計畫、籌算、思量」，這個字在約瑟的宣告中出現了兩次——『你們的意思（籌算）是要害我，神的意思（籌算）原是好的』——形成鮮明的對照。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">同一個字，用來描述人與神兩種截然不同、卻同時真實運作的『籌算』，這個精巧的文字對照，精準地捕捉了聖經神學中一個核心的奧祕：人的自由意志與惡意選擇，和神主權性的計畫，可以在同一個歷史事件中同時真實存在，而神的籌算，終將超越並轉化人的惡意籌算。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">עִם</span>
+        <div class="word-transliteration">im · 同在 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「與……同在」，這個簡短的介詞，在約瑟的敘事中反覆出現：『耶和華與約瑟同在』。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">無論約瑟身處波提乏家中，或身陷監牢，聖經都反覆強調『耶和華與他同在』——這個反覆出現的短語，成為整段敘事最重要的神學基調：神的同在，並不以人的處境是否順利為前提，而在最深的谷底，依然真實可靠。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">神的主權能夠將人的惡意轉化為成就拯救的管道</div>
+      <div class="theology-insight-body">約瑟一生最核心的神學宣告，正是『神的意思原是好的』——這確立了聖經神學中一個重要原則：人出於惡意的自由選擇，從未能夠超出神主權掌管的範圍，神甚至能夠將這樣的惡意，轉化為成就更大拯救計畫的具體管道。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">神的同在不以順境為前提</div>
+      <div class="theology-insight-body">『耶和華與約瑟同在』這句話，在他身處奴隸與囚犯的低谷時同樣被強調，這提醒我們，神的同在與眷顧，從不因我們外在處境的順逆而有所增減。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">真實的饒恕建立在對神主權的深刻信靠之上</div>
+      <div class="theology-insight-body">約瑟能夠饒恕出賣他的哥哥們，其根基不是廉價的遺忘或迴避，而是建立在他對神主權如何在苦難中運作的深刻信念之上——這提醒我們，真正的饒恕，往往需要對神掌管全局的信靠作為根基。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">約瑟被自己的親兄弟出於嫉妒而出賣，經歷無辜的苦難，最終卻被高舉成為拯救者，使包括出賣他之人在內的許多人得以存活</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這個『被至親出賣、無辜受苦、卻因此成就拯救』的完整敘事弧線，是舊約中最完整、也最著名的基督預表之一——約瑟的生命歷程，與基督的受難及得勝，在敘事結構上高度呼應</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">耶穌同樣被自己的門徒猶大出賣，遭受無辜的苦難與死亡，卻藉著這苦難，成就了使全人類得以與神和好的救贖大工（羅 5:8 · 徒 2:23–24）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">約瑟在監牢與苦難中依然全心盡忠職守，最終被高舉至宰相之位，統管埃及全地的糧食供應，拯救無數人脫離饑荒</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這種『先受苦、後得榮耀，並藉此成為供應與拯救之源』的模式，預表了基督『因那擺在前面的喜樂，就輕看羞辱，忍受了十字架的苦難，便坐在神寶座的右邊』的救贖歷程</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督因受死的苦難而得著至高的尊榮，並成為凡信靠祂之人生命糧食與救恩的源頭（來 12:2 · 腓 2:8–11）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正經歷一段看似毫無道理、甚至充滿不公的苦難——約瑟的故事，想告訴你，神的籌算，可能遠比你此刻所能看見的更加深遠。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">約瑟的故事命中的是每一個此刻正經歷某種看似毫無道理、甚至充滿不公之苦難的人——被至親傷害、因堅持原則反而蒙受損失、付出的努力卻換來被遺忘的失望。約瑟的故事提醒我們，苦難的存在，從不代表神的缺席或計畫的失敗；相反地，正是在這些最深的低谷之中，神可能正在悄悄編織著一幅我們此刻完全無法看見的更大圖景。他最終對哥哥們說出的『神的意思原是好的』，不是廉價的樂觀，而是歷經二十多年苦難錘鍊後，才能說出的深沉信念。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你此刻是否正經歷某種看似不公、甚至出於他人惡意所帶來的苦難？約瑟『神的意思原是好的』這句宣告，對你此刻的處境，帶來什麼樣的盼望？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">約瑟無論身處奴隸、囚犯、或宰相的位置，都選擇全心盡忠職守。你此刻所處的位置，或許不是你理想中的處境，你是否仍然選擇全心投入，還是因處境不如意而消極應付？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">他堅拒波提乏之妻的引誘，理由是『我怎能得罪神呢』，而非害怕被發現。你在無人監督的處境中，持守道德界線的動機，主要是什麼？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">他花了相當長的時間試探哥哥們，才確認他們真心悔改，然後才選擇完全的饒恕與和好。這對你理解『真實的饒恕未必是立即而毫無保留的』，帶來什麼樣的啟發？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 約瑟</span>
+        <div class="gen-title">示範劇本：在每一次跌落中依然堅守忠誠，最終見證神主權如何轉化苦難</div>
+        <div class="gen-body">他經歷了被出賣、蒙冤、被遺忘的連續苦難，卻在每一個處境中，都選擇全心盡忠並持續信靠神的主權，最終見證了苦難如何被神轉化為拯救無數人的祝福管道。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 以法蓮、瑪拿西（他的兩個兒子）</span>
+        <div class="gen-title">延續：從苦難中誕生的祝福，成為以色列十二支派的一部分</div>
+        <div class="gen-body">約瑟在埃及所生的兩個兒子以法蓮與瑪拿西，此後被雅各特別祝福、納入以色列十二支派之中，象徵著約瑟所經歷的苦難與忠誠，最終結出了延續整個民族血脈的具體祝福。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在約瑟的故事中，展現在神從未在他最深的苦難時刻缺席，反而透過他一次次的忠誠與堅持，將原本出於惡意的傷害，轉化為保全整個家族、乃至無數埃及與迦南百姓性命的拯救工程。這提醒我們，神的恩典，能夠將人生命中最深的傷痛，轉化為祝福他人最重要的資源。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位從被出賣的奴隸，一路走到埃及宰相的男人，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#苦難不是神缺席的證據</span>
+      <span class="tag">#在每個位置都全力以赴</span>
+      <span class="tag">#遲來的公道依然算數</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>約瑟十七歲那年，做了兩個夢，夢裡哥哥們的禾捆都向他的禾捆下拜。他毫無保留地把這夢告訴了哥哥們——這下好了，本來就因為父親偏心而積怨已久的哥哥們，這下更加恨他。</p>
+      <p>後來的事，你大概知道——哥哥們把他賣給了路過的商隊，換了二十個銀子，然後拿他的彩衣沾了羊血，告訴父親約瑟被野獸吃了。約瑟就這樣，從家裡最受寵的孩子，變成了埃及一戶人家的奴隸。</p>
+      <p>在埃及，他表現得很好，很快被升為管家。結果主人的妻子看上了他，他拒絕了，理由很直接：我怎麼能做這種得罪神的事？結果呢，他被誣陷，關進了監牢。</p>
+      <p>在監牢裡，他遇到了法老的酒政和膳長，正確解開了他們的夢。他跟酒政說：你出去以後，記得幫我說句話。酒政出獄後，完全忘了這件事——約瑟又在監牢裡多待了整整兩年。</p>
+      <p>轉機出現在法老自己做了個沒人能解的夢。酒政這才想起約瑟，約瑟被匆忙從監牢裡拉出來，剃頭換衣服，站到法老面前。他不只解開了夢，還提出了具體的解決方案。法老當場拍板：你來管理整個埃及。那年，約瑟三十歲。</p>
+      <p>後來饑荒來了，哥哥們跑到埃及買糧食，完全認不出眼前這位埃及宰相，就是他們當年賣掉的弟弟。約瑟幾番試探，確認他們是真心悔改之後，才表明身分，說出那句流傳千古的話：你們的意思是要害我，但神的意思原是好的。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——約瑟這塊石頭，被反覆敲打、丟進最深的坑，卻在每一次的敲打裡，被雕成了拯救整個家族的形狀。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你此刻正經歷一段感覺毫無道理的苦難——被誤解、被虧待、努力了卻沒有得到應有的回報——約瑟的故事想告訴你：你現在看不懂的，不代表沒有意義。</p>
+      <p style="margin-top:12px;">他在每一個位置——奴隸、囚犯、宰相——都全力以赴，沒有因為處境不如意就擺爛。你現在的位置，或許不是你想要的，但你怎麼對待這個位置，很重要。</p>
+      <p style="margin-top:12px;">還有，公道有時候真的會遲到。約瑟等了十三年才等到翻身的機會，但機會來的時候，他已經準備好了。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，不管你正處在哪個位置——全力以赴，然後相信，神的意思，終將顯明是好的。</p>
+    </div>
+
+    <div class="insight-box">約瑟的故事，持續是當代逆境心理學、創傷後成長，以及職場倫理討論中，被引用頻率最高的聖經敘事之一——他展現的『在無法控制的苦難中，依然選擇對可控之事全力以赴』的心態，為許多正經歷不公或挫折的現代讀者，提供了具體而深刻的精神資源。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他從被出賣的奴隸,走到拯救整個家族與埃及百姓的宰相，留下了聖經中對『神的主權轉化人的惡意』刻畫得最完整的敘事典範。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">『神的意思原是好的』神學宣告的核心來源</div>
+          <div class="legacy-body">他對哥哥們所說的這句話，此後成為聖經神學中，闡明『神的主權能夠轉化人的惡意成就美好旨意』這一原則時，被引用頻率最高的經文之一。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">苦難中持守忠誠與正直的完整典範</div>
+          <div class="legacy-body">無論身處順境或逆境，約瑟展現出一貫的忠誠與正直，成為聖經中『品格不因處境而改變』這一美德最完整的敘事範例。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">基督受苦與得榮耀最完整的舊約預表</div>
+          <div class="legacy-body">他被至親出賣、無辜受苦、最終被高舉拯救眾人的完整生命弧線，是舊約中公認最完整、結構最清晰的基督預表敘事之一。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">以色列十二支派血脈延續的關鍵人物</div>
+          <div class="legacy-body">他在埃及所生的以法蓮與瑪拿西，此後被納入以色列十二支派，使他的忠誠與苦難，直接結出了延續整個民族血脈的具體果實。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「從前你們的意思是要害我，但神的意思原是好的，要保全許多人的性命，成就今日的光景。」</div>
+      <div class="final-verse-ref">創世記 50:20</div>
+    </div>
+
+    <div class="final-question">如果你此刻正經歷一段看似毫無道理的苦難——你願不願意相信，就像約瑟一樣，神的籌算，終將超越並轉化人一切的惡意？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 約瑟 <span>יוֹסֵף</span> · 雅各的愛子 · 被賣為奴的囚犯 · 埃及的宰相</div>
+
+</body>
+</html>

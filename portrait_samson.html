@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>參孫 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">參孫</h1>
+  <span class="hero-name-en">Samson · שִׁמְשׁוֹן</span>
+  <p class="hero-slogan">「他一生擁有神所賜的超凡力量，卻始終無法馴服自己的情慾——<br>直到雙眼被剜、被鎖鏈鎖在磨坊裡推磨，才終於在黑暗中求告神。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">主前約 1075–1055 年（士師時代末期）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ESTP · 企業家型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">士師記 13–16 章</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">以色列第十二位士師 · 對抗非利士人</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他從出生前就被神分別為聖，注定要「起首拯救以色列人脫離非利士人的手」——然而他一生的故事，幾乎全部圍繞著他無法克制的情慾展開。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">主前約 1075–1055 年<br>士師時代末期，非利士人壓迫以色列時期</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">多重身份</span>
+        <div class="info-cell-value">但支派瑪挪亞之子 · 拿細耳人<br>以色列第十二位、也是最後一位主要士師</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">瑣拉 →<br>亭拿 → 迦薩 · 與非利士人交界地帶</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">背景</span>
+        <div class="info-cell-value">母親原不生育，天使預告他將出生並終身作拿細耳人<br>力大無窮的根源在於從未剃過頭</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">士師記 13–16 章<br>來 11:32（列名於信心偉人榜）</div>
+      </div>
+    </div>
+
+    <p>參孫的出生本身就是一個神蹟性的預告：耶和華的使者向他不能生育的母親顯現，宣告她將懷孕生子，「不可用剃頭刀剃他的頭，因為這孩子一出胎就歸神作拿細耳人。他必起首拯救以色列人脫離非利士人的手」。拿細耳人（נָזִיר）是舊約中一種特殊的分別為聖之人，按民數記的規定，需終身或在特定時期禁戒酒類、不可剃頭、不可接觸屍體——參孫從出生起，就被神親自標記為承擔特殊使命的器皿，這使他一生的失敗，帶著更深的悲劇色彩：他浪費的，是一份極其鄭重的呼召。</p>
+    <p>士師時代末期，以色列人「又行耶和華眼中看為惡的事，耶和華將他們交在非利士人手中四十年」——非利士人是當時以色列西南沿海一支軍事與文化都相當先進的民族，長期壓迫以色列。參孫的一生，幾乎全部與這個民族的女子糾纏在一起：他先娶了亭拿的非利士女子，此後迷戀妓女，最終在大利拉身上徹底崩潰。他所展現的超凡力量——徒手撕裂獅子、隻身擊殺一千非利士人、拆毀迦薩城門——與他反覆在情慾上的失控形成極其鮮明的對照，構成了士師記中最令人扼腕、卻也最誠實地展現「屬靈恩賜與品格軟弱可以並存」這一深刻教訓的故事。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">他的一生反覆上演同一個模式——展現驚人的力量、被情慾牽引、付上慘痛代價——直到最後一次，在完全的黑暗與軟弱中，才真正尋回與神的關係。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">天使報喜——「這孩子一出胎就歸神作拿細耳人」</div>
+        <div class="timeline-body">耶和華的使者向瑪挪亞不能生育的妻子顯現，宣告她將懷孕生子，這孩子終身要作拿細耳人，「必起首拯救以色列人脫離非利士人的手」。這個蒙召的起點，帶著極其鄭重的神聖印記——他從出生起，就被神分別出來，承擔一項具體而重大的使命。</div>
+        <div class="timeline-ref">士 13:2–5</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">黑暗低谷</span>
+        <div class="timeline-title">娶亭拿女子——「因這女子在我眼中看為美」</div>
+        <div class="timeline-body">參孫看中一個非利士女子，堅持要娶她為妻，儘管父母質疑「在你弟兄的女兒中，或在本國的民中，豈沒有一個女子」。他的回答直白得驚人：「願你給我娶那女子，因她在我眼中看為美。」這句話揭示了他此後一生反覆重演的核心模式——被眼目的情慾所主導，而非審慎的判斷。</div>
+        <div class="timeline-ref">士 14:1–3</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">撕裂獅子、擊殺三十人——展現驚人力量卻也埋下衝突</div>
+        <div class="timeline-body">他徒手撕裂一隻少壯獅子如同撕裂山羊羔一般，「靈裡卻沒有告訴父母」；婚宴上他出謎語與非利士人打賭，妻子被逼迫套出謎底洩露給眾人，參孫因此震怒，擊殺三十個非利士人奪取衣裳償還賭注——這一連串事件展現出他驚人的力量，卻也顯示他處理衝突的方式，總是訴諸暴力的即時反應，而非深思熟慮的策略。</div>
+        <div class="timeline-ref">士 14:5–19</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">黑暗低谷</span>
+        <div class="timeline-title">迷戀妓女與與非利士人的持續衝突</div>
+        <div class="timeline-body">此後參孫進入迦薩，與一個妓女親近，非利士人埋伏要在城門殺他，他卻半夜起來，將城門連門框、門閂一齊拆下，扛在肩上背到希伯崙山頂——這段記載展現出他一方面持續陷於情慾的軟弱，另一方面又擁有近乎誇張的超凡力量，兩者的落差構成了他人生持續的張力。</div>
+        <div class="timeline-ref">士 16:1–3</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">大利拉的誘惑——三次欺瞞、第四次崩潰</div>
+        <div class="timeline-body">參孫愛上梭烈谷的女子大利拉，非利士首領重金收買她，要她套出他力量的秘密。大利拉三次逼問，參孫三次都用假話搪塞——這顯示他其實已經意識到危險，卻仍持續留在這段致命的關係中。「大利拉天天用話催逼他，甚至他心裡煩悶要死」，他終於說出真情：「向來人沒有用剃頭刀剃我的頭，因為我自出母胎就歸神作拿細耳人；若剃了我的頭髮，我的力氣就離開我，我便軟弱像別人一樣了。」</div>
+        <div class="timeline-ref">士 16:4–17</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">黑暗低谷</span>
+        <div class="timeline-title">被剃髮、被剜眼——「他卻不知道耶和華已經離開他了」</div>
+        <div class="timeline-body">大利拉趁參孫熟睡，叫人剃除他的七條髮綹，「他的力氣就離開他了」。士師記記下了整卷書中最令人心碎的一句話：「參孫醒了，心裡說，我要像前幾次出去活動身體，他卻不知道耶和華已經離開他了。」非利士人剜了他的眼睛，將他鎖在監裡，用銅鏈拘索他，使他在監裡推磨——這是他人生的最低谷，一位曾經力大無窮的士師，此刻雙目失明、被奴役、供人取笑。</div>
+        <div class="timeline-ref">士 16:19–21</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">最後的祈求與同歸於盡——「求你賜我力量，僅此一次」</div>
+        <div class="timeline-body">非利士人設宴慶祝，帶參孫出來戲弄取樂，「他的頭髮自從剃了以後，又漸漸長起來了」。參孫求那領他的童子讓他摸著托房的柱子，向耶和華禱告：「主耶和華啊，求你眷念我；神啊，求你賜我這一次的力量……使我在非利士人身上報那剜我雙眼的仇。」他抱住兩根柱子，盡力屈身，房子倒塌，「他死時所殺的人比活著所殺的還多」。士師記結尾記載：「參孫作以色列的士師二十年。」</div>
+        <div class="timeline-ref">士 16:23–31</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他的力量從未真正消失——真正軟弱的，一直是他抵擋情慾誘惑的能力，而這種軟弱，最終讓他付出了雙眼的代價。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">眼前立即的慾望滿足，優先於長遠的智慧判斷</div>
+          <div class="soul-body">從堅持娶「眼中看為美」的女子，到明知大利拉危險卻仍留在她身邊，他一生反覆展現出一種被當下強烈感受主導、卻難以顧及長遠後果的行為模式。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">在絕境中依然沒有放棄向神求告的心</div>
+          <div class="soul-body">即使在雙眼被剜、力量盡失、遭受極大羞辱的最低谷，他依然向神禱告求力量——這顯示即使他一生反覆失敗，他與神之間的關係，並未因此徹底斷絕，最終這份微弱卻真實的信靠，成就了他人生最後的勝利。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">衝動、直接，習慣用超凡的體力解決眼前的衝突</div>
+          <div class="soul-body">無論是撕裂獅子、擊殺三十人、還是拆毀城門，他處理問題的方式幾乎總是訴諸即時的、爆發性的力量展現，而非審慎的策略或長遠的規劃。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">對非利士女子的情慾反覆將他帶向危險與毀滅</div>
+          <div class="soul-body">亭拿的妻子、迦薩的妓女、梭烈谷的大利拉——這條情慾失控的軌跡貫穿他整個士師生涯，每一次都以慘痛的代價收場，卻始終未能真正被他自己或神所賜的力量所克制。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">力量的源頭從未在於頭髮本身，而在於拿細耳人所代表的分別為聖</div>
+          <div class="soul-body">頭髮只是拿細耳人誓約的外在記號，真正的力量源自神的靈——士師記明確記載「他卻不知道耶和華已經離開他了」，暗示力量的喪失，不是機械性地因為頭髮被剃，而是因為他長期的悖逆，已經使他與神所賜的靈漸行漸遠。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">參孫的故事最深刻的警示，或許藏在那句「他卻不知道耶和華已經離開他了」——這句話揭示了一種極其危險的靈性狀態：一個人可以在神的同在已經離開之後，仍然憑著慣性以為自己一如既往。他一生反覆勝過情慾誘惑的失敗，某種程度上正是因為他從未真正正視這份危險，總以為自己下一次依然能夠全身而退。然而他的故事並未以徹底的毀滅作結——在雙眼被剜、一切外在的力量與尊嚴都被剝奪殆盡的最低谷，他反而重新找回了向神求告的心，最終在死亡中成就了他一生中最大的一次勝利。這提醒我們，即使一個人的一生充滿了反覆的失敗與軟弱，神的呼召與力量，依然可能在生命最卑微、最破碎的時刻，重新被喚醒與使用。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ESTP</span>
+      <div class="mbti-name">企業家型 · 力大無窮卻情慾失控的士師</div>
+      <div class="mbti-slogan">「他撕得開獅子的下顎，拆得下城門的門框，卻始終掙不脫自己對情慾的沉溺——直到雙眼失明，才在黑暗中重新看見神。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Se · 外向實感</span>
+          <div class="mbti-fn-body">他對眼前具體的感官刺激有著極其強烈的即時反應——無論是被女子的美貌所吸引，還是在憤怒中立即以暴力回應，他的行動總是緊扣著當下最直接的感官與情緒衝動，鮮少經過深思熟慮的中介。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Ti · 內向思考</span>
+          <div class="mbti-fn-body">他偶爾展現出機智與策略性的一面——出謎語考驗非利士人、用計謀報復賭局的欺詐，這種能夠運用邏輯設計具體對抗手段的能力，顯示出一定程度的內向思考運作，只是這份智慧多用於報復性的衝突，而非長遠的自我約束。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Fe · 外向情感</span>
+          <div class="mbti-fn-body">他極度渴望在群體與衝突中證明自己、贏得認可與尊重，這種對外在肯定的強烈需求，某種程度上也驅使他持續投入這些充滿風險的情感與衝突關係之中。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">他最大的弱點，是難以預見自己行為模式的長遠後果與深層意義——他一再重複陷入與非利士女子的危險關係，卻始終未能真正洞察這個模式背後的致命性，直到付上失明的慘痛代價，才終於在黑暗與絕境中，被迫重新面對自己生命真正的意義與呼召。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最重要的關係，幾乎全部圍繞著他無法真正掙脫的情慾糾纏——直到失去一切之後，才重新尋回與神最根本的關係。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">耶</div>
+          <div class="relation-name">耶和華神</div>
+          <div class="relation-type-badge">從出生前就分別他為聖、卻在最後才被他真正倚靠的主</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">神在他出生前就已呼召他作拿細耳人，並多次以祂的靈感動他成就驚人的力量——然而參孫一生大多數時候，似乎更倚靠自己天生的力量，而非與神保持深刻的關係，直到雙眼被剜的絕境中，他才真正向神懇切求告，並在死亡中成就了他一生最大的勝利。</div>
+          <div class="relation-ref">士 13:24–25 · 士 16:28</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">大</div>
+          <div class="relation-name">大利拉</div>
+          <div class="relation-type-badge">最終導致他徹底崩潰的致命誘惑</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">她受非利士首領重金收買，持續逼問參孫力量的秘密，即使前三次都被欺瞞，仍不放棄，最終用情感的持續施壓，逼得參孫「心裡煩悶要死」而說出真情——這段關係展現出，即使一個人擁有超凡的力量，若持續留在明知危險的關係中，終將付上毀滅性的代價。</div>
+          <div class="relation-ref">士 16:4–20</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">非</div>
+          <div class="relation-name">非利士人</div>
+          <div class="relation-type-badge">他一生對抗、卻也數度陷於他們女子情慾之中的敵人</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">參孫的整個士師生涯，都圍繞著與非利士人的衝突與對抗展開，然而諷刺的是，正是他對非利士女子的情慾，一次又一次地使他陷入這個敵對民族設下的陷阱之中，最終也是在與非利士人同歸於盡的死亡中，成就了他一生最大的軍事勝利。</div>
+          <div class="relation-ref">士 15–16 章</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">瑪</div>
+          <div class="relation-name">瑪挪亞夫婦</div>
+          <div class="relation-type-badge">為他的出生禱告、卻也對他的選擇多有憂心的父母</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">瑪挪亞夫婦對參孫執意娶非利士女子表達了明確的憂慮——「在你弟兄的女兒中，或在本國的民中，豈沒有一個女子」，這段對話展現出，即使父母清楚看見兒子行為模式中的危險，往往也難以真正扭轉一個成年子女已然定意的選擇。</div>
+          <div class="relation-ref">士 14:1–4</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「他卻不知道耶和華已經離開他了」——這句令人心驚的話，提醒我們屬靈的力量,可能在渾然不覺中悄悄流失。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「大利拉說：「參孫哪，非利士人拿你來了！」參孫從睡中醒來，心裡說：「我要像前幾次出去活動身體。」他卻不知道耶和華已經離開他了。」</div>
+      <div class="verse-ref">士師記 16:20</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">נָזִיר</span>
+        <div class="word-transliteration">nazir · 拿細耳人 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「分別、分別為聖的人」，源自動詞נָזַר（分別、隔離），指按民數記第六章所規定，因特定誓願而自願分別出來、以特殊方式歸屬於神的人。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">拿細耳人的誓願包含三項具體規定——不喝酒、不剃頭、不接觸屍體，這些外在的規條，其核心意義在於「分別為聖」的內在心志。參孫的悲劇正在於，他持守了頭髮不被剃這一項外在記號（大部分時間），卻始終未能真正持守分別為聖這一內在心志——他頻繁與非利士女子交往、觸犯多項拿細耳人的規條（如吃蜂蜜可能涉及觸碰屍體），顯示他一生的問題，從來不在於外在儀式的違反，而在於內心從未真正被那份分別為聖的呼召所馴服。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">עֵינַיִם</span>
+        <div class="word-transliteration">einayim · 眼睛 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「眼睛」，這個字在參孫的故事中反覆出現且意義深刻——他因「她在我眼中看為美」而娶妻，最終卻被非利士人剜去雙眼。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這個字的重複出現，構成了整個故事極具張力的文學結構：他一生因放縱眼目的情慾而屢屢失控，最終也在雙眼被剜的處境中，才真正「看見」自己生命的真相並重新轉向神。這種「因眼睛犯罪，最終失去眼睛才得以真正看見」的敘事反諷，是舊約敘事文學中極具深意的一段記載。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">恩賜與品格的分離：一個持續的警示</div>
+      <div class="theology-insight-body">參孫的故事清楚展現出，屬靈的恩賜（神所賜的超凡力量）與個人的品格操守，可能長期並存卻不協調——一個人可以持續蒙神使用、展現驚人的能力，同時在品格上反覆失敗。這對此後理解「恩賜不等於成熟」這一重要屬靈原則，提供了極其鮮明的舊約案例。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">士師記循環模式的縮影</div>
+      <div class="theology-insight-body">參孫的一生，某種程度上是整卷士師記核心循環模式（悖逆、受欺壓、呼求、拯救）的個人化縮影——他個人生命中反覆的失敗與短暫的悔改，呼應著整個以色列民族在士師時代反覆悖逆與蒙拯救的歷史模式。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">軟弱中成就的最大勝利</div>
+      <div class="theology-insight-body">他一生最大的軍事勝利（殺死的非利士人比一生所殺的還多），發生在他雙眼失明、力量盡失、被公開羞辱的最軟弱時刻——這確立了聖經神學中一個重要的原則：神的大能，往往在人徹底承認自己軟弱、單單倚靠神的時刻，才得以最充分地彰顯。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">以掃因一時的飢餓，將長子的名分輕易賣給雅各，換取眼前一碗紅豆湯——這是舊約中「因眼前的慾望而犧牲長遠祝福」最經典的案例之一</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">參孫同樣一再因眼前情慾的滿足，而犧牲了他作為拿細耳人所承擔的神聖呼召與力量——兩人的故事共同警示著，被眼前慾望主導的決策，往往帶來難以挽回的長遠損失</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督在曠野受試探時，面對眼前立即滿足慾望的誘惑（將石頭變食物），選擇了完全順服神的話語，成就了亞當、以掃、參孫都未能持守的完全得勝（太 4:1–4）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">參孫向瞎眼、被囚、遭受羞辱的極致低谷中，依然向神求告「求你賜我這一次的力量」，並在死亡中成就了他一生最大的勝利</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這種「在極致的軟弱與絕望中，卻成就最大的勝利」的敘事模式，成為此後理解「神的能力在人的軟弱上顯得完全」這一新約核心教義的重要舊約先聲</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督在十字架上——那個世人眼中最軟弱、最羞辱的處境——卻成就了對死亡與罪惡權勢最徹底、最完全的勝利（林後 12:9 · 西 2:15）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">希伯來書將參孫列入信心偉人的名單之中——「又有時候因著信，制伏了敵國，行了公義，得了應許，堵了獅子的口……」</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">儘管參孫一生充滿了明顯的失敗與軟弱，希伯來書依然將他列入信心偉人榜，這顯示神看重的，不是一個人是否完美無瑕，而是他生命中真實存在過的、哪怕微小的信心印記</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督是那「信心創始成終的主」，祂的完全信實，補足了包括參孫在內一切不完全之信心偉人的欠缺（來 11:32, 12:2）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你正被某種你明知危險、卻始終無法真正掙脫的誘惑所困——這一頁是為你寫的。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">參孫命中的是一種極其真實、卻常被信仰群體迴避討論的處境：一個人可以擁有真實的屬靈恩賜、真實蒙神使用的經歷，卻同時在某個具體的軟弱領域反覆失控，即使一次又一次意識到危險，仍然無法真正掙脫。他的故事沒有輕描淡寫這種掙扎的嚴重性——代價是真實而慘痛的（雙眼失明、被奴役羞辱）。然而故事的結局也提醒我們，即使在最深的失敗與最徹底的破碎之中，重新向神求告、重新被神使用，依然是可能的——神從未因為一個人過去反覆的失敗，就徹底關上恩典的門。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你是否有某個明知危險、卻一次又一次陷入的模式或誘惑？參孫的故事中，哪一個細節最貼近你自己的掙扎？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">「他卻不知道耶和華已經離開他了」——你如何檢視自己此刻的屬靈狀態，是否也存在著「憑慣性以為一切如常，卻可能早已失去了那份最根本之同在」的風險？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">他在雙眼失明、失去一切外在力量與尊嚴的絕境中，才真正向神求告。你是否也曾經需要經歷某種「被剝奪殆盡」的低谷，才重新找回禱告與倚靠的心？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">希伯來書仍將他列入信心偉人榜，儘管他一生充滿了明顯的失敗。這對你理解「神如何看待一個充滿掙扎、卻仍有真實信心印記的生命」，帶來什麼樣的安慰或挑戰？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 參孫</span>
+        <div class="gen-title">應激劇本：被眼前的情慾與衝動主導，反覆陷入明知危險的關係</div>
+        <div class="gen-body">從堅持娶「眼中看為美」的女子，到明知大利拉危險卻仍持續留在她身邊，他一生反覆展現出一種無法真正抗拒眼前誘惑、即使一再付出代價也難以真正改變的模式。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 以色列民族（士師時代整體）</span>
+        <div class="gen-title">延續而非打斷：同樣的悖逆循環，在整個民族層面反覆重演</div>
+        <div class="gen-body">士師記整卷書所記載的循環模式——悖逆、受欺壓、呼求、蒙拯救、再度悖逆——某種程度上正是參孫個人生命模式的民族性放大版：一次又一次意識到問題，卻始終未能建立起持久的改變與持守。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">打斷發生在參孫生命最卑微、最徹底破碎的時刻——雙眼失明、被鎖鏈捆綁、在磨坊裡受人戲弄羞辱。正是在這個他一切外在的力量與驕傲都被剝奪殆盡的處境中，他終於重新向神懇切求告，而神也應允了這個祈求，使他成就了一生最大的勝利。這提醒我們，恩典打斷反覆失控循環的方式，有時候不是透過警告或教導，而是透過讓一個人徹底經歷失去一切的破碎，才終於在那份赤裸的軟弱中，重新尋回與神最根本的關係。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那個力大無窮卻栽在自己弱點裡的士師，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#恩賜跟品格是兩回事</span>
+      <span class="tag">#明知危險還是陷進去</span>
+      <span class="tag">#谷底才回頭</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>參孫是那種典型的「有天賦卻一直搞砸自己人生」的人物。他生下來就被神特別分別出來，力大無窮，赤手空拳能撕裂一頭獅子，一個人能打贏一千個敵人，還能扛著整座城門走上山頭。</p>
+      <p>問題是他有個死穴——女人，而且都是敵對陣營的女人。他非要娶一個非利士女子，理由很直白：因為她長得漂亮。後來又跑去找妓女，最後栽在大利拉手上。</p>
+      <p>大利拉這個角色很清楚地被收買了，目的就是要問出參孫力量的秘密。她問了三次，參孫都用假話唬弄過去，照理說他應該早就看穿她的意圖了。但他還是繼續跟她糾纏，最後被她「天天用話催逼，逼到他心裡煩悶要死」，才終於招了實話：我的力量在頭髮，因為我從小就是拿細耳人。</p>
+      <p>大利拉剃了他的頭髮，非利士人一擁而上把他抓了。士師記寫了一句超級扎心的話：參孫醒來還以為自己跟以前一樣，他卻不知道，耶和華已經離開他了。他被剜了雙眼，被鎖鏈綁著，在監獄裡推磨，供人取笑。</p>
+      <p>但故事沒有停在這裡。非利士人辦慶功宴，把他抓出來戲弄。參孫的頭髮這時候已經悄悄長回來了。他求那個牽他的小孩把他帶到房子的兩根柱子旁邊，然後禱告：神啊，求你再給我一次力量，讓我為我的眼睛報這個仇。他抱住柱子一推，整座房子倒塌，他跟裡面所有的非利士人同歸於盡——他一生殺死最多敵人的一次，發生在他瞎眼、被綁、最軟弱的時刻。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——而參孫這塊石頭，力氣大到能把敵人的城門扛在肩上，卻始終沒能扛住自己心裡那個弱點,直到失去一切,才終於低頭。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你身上也有某個「明知危險卻一再陷進去」的軟弱——先別對自己太苛刻。神給了參孫真實的恩賜,他也真實地反覆失控,而神並沒有因此徹底放棄他。</p>
+      <p style="margin-top:12px;">「他卻不知道耶和華已經離開他了」這句話值得你放在心裡：有時候，你以為一切如常，其實已經在不知不覺中，走遠了一段路。定期檢視自己與神的關係，比你想像的更重要。</p>
+      <p style="margin-top:12px;">如果你此刻正在人生的谷底，覺得自己已經失去了一切——參孫最大的勝利，發生在他最軟弱、最破碎的時候。谷底，不一定是終點，可能正是你重新轉向神的起點。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果你正陷在一個明知危險卻掙不脫的模式裡——先誠實地向神說出來，這是回頭的第一步。</p>
+    </div>
+
+    <div class="insight-box">在當代成癮心理學與行為模式改變的討論中，參孫反覆陷入明知危險之關係的模式，提供了一個具有高度共鳴性的古老案例——研究顯示，單靠意志力與『知道這樣不好』的認知，往往不足以打斷根深蒂固的行為循環，真正的改變，常常需要某種形式的『觸底』經歷，才能促成徹底的轉向。這對正在與某種成癮行為或反覆的關係模式掙扎的現代人，提供了重要的心理與屬靈框架：承認自己無法單靠意志力自救，可能正是通往真正改變的第一步。而希伯來書仍將他列入信心偉人榜的做法，也持續為當代面對『我這麼多失敗，還配得被神使用嗎』這一深刻疑問的信徒，提供了古老卻歷久彌新的安慰。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他留下的，不是一個完美的英雄故事，而是一則關於恩賜與品格如何可能長期分離、卻仍能在最軟弱處成就最大勝利的深刻警示與盼望。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">恩賜與品格分離的重要警示</div>
+          <div class="legacy-body">他的一生成為此後歷代教會理解「屬靈恩賜不等同於屬靈成熟」這一重要原則時，最鮮明、也最令人警醒的舊約案例，持續提醒著擁有天賦或恩賜的人，不可因此輕忽品格持守的重要性。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">「軟弱中成就大能」的神學先聲</div>
+          <div class="legacy-body">他在雙眼失明、力量盡失的絕境中成就一生最大的勝利，成為新約「神的能力在人的軟弱上顯得完全」這一核心教義的重要舊約先聲，持續安慰著在失敗與破碎中掙扎的信徒。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">希伯來書信心偉人榜的一員</div>
+          <div class="legacy-body">儘管他一生充滿明顯的失敗，卻仍被列入希伯來書十一章的信心偉人名單，這確立了聖經對「信心」的定義，不在於完美無瑕的表現，而在於生命中真實存在過的、對神的倚靠與呼求。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">士師時代循環模式的個人縮影</div>
+          <div class="legacy-body">他個人生命反覆悖逆與蒙拯救的模式，濃縮體現了整卷士師記所描繪的以色列民族循環，深刻呈現了「人若不真正回轉，同樣的失敗模式將反覆重演」這一持久的歷史與屬靈教訓。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「參孫說：「求你眷念我。神啊，求你賜我這一次的力量，使我在非利士人身上報那剜我雙眼的仇。」……參孫死時所殺的人比活著所殺的還多。」</div>
+      <div class="final-verse-ref">士師記 16:28, 30</div>
+    </div>
+
+    <div class="final-question">如果你此刻正處在人生某個因反覆失控而付上慘痛代價的低谷——你願不願意相信，就像參孫在磨坊的黑暗中一樣，即使一切外在的力量與尊嚴都已失去，你依然可以向神懇切求告，而祂依然願意應允？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 參孫 <span>שִׁמְשׁוֹן</span> · 拿細耳人 · 力大無窮卻情慾失控的士師</div>
+
+</body>
+</html>

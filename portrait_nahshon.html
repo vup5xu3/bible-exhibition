@@ -44,10 +44,12 @@
   .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
 
   /* ── NAV ── */
-  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; }
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
   .nav::-webkit-scrollbar { display: none; }
   .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
   .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
 
   /* ── LAYOUT ── */
   .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
@@ -231,6 +233,7 @@
      NAV · 導覽列
 ════════════════════════════════════════════ -->
 <nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
   <a href="#portrait">I · 人物素描</a>
   <a href="#timeline">II · 生命軌跡</a>
   <a href="#character">III · 性格剖析</a>

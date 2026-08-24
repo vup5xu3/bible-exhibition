@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>拉撒路 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">拉撒路・伯大尼的</h1>
+  <span class="hero-name-en">Lazarus of Bethany · Λάζαρος · אֶלְעָזָר</span>
+  <p class="hero-slogan">「他死了四天，屍體已經開始發臭；<br>耶穌只喊了一聲他的名字——「拉撒路，出來！」他就從死裡走了出來。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">第一世紀 · 主後約 27–33 年</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ISFP · 探險家型（依有限材料推導）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">約 11:1–44, 12:1–11, 12:17–19（唯一記載）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">從死裡復活的見證 · 耶穌所愛的朋友</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">整本福音書中，耶穌唯一一次在別人的葬禮上哭泣——為的正是這位祂親口稱為「我們的朋友」的人。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">第一世紀<br>耶路撒冷近郊</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">多重身份</span>
+        <div class="info-cell-value">伯大尼的居民 · 馬大與馬利亞的兄弟<br>耶穌所愛的朋友 · 死而復活的見證</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">伯大尼<br>（橄欖山東側，距耶路撒冷約三公里）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">背景</span>
+        <div class="info-cell-value">與兩位姊妹馬大、馬利亞同住<br>家境足以款待耶穌與門徒一行人</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">約翰福音 11:1–44, 12:1–11, 12:17–19<br>（唯獨約翰福音記載，符類福音未提及此人）</div>
+      </div>
+    </div>
+
+    <p>拉撒路的希伯來原名是אֶלְעָזָר（以利以謝），意思是「神是我的幫助」——這個名字在他此後所經歷的事上，帶著近乎預言性的份量。他與姊妹馬大、馬利亞同住在伯大尼，家境似乎相對充裕，足以在多個場合款待耶穌與門徒一行人。約翰福音特別記載，姊妹倆打發人去見耶穌時所說的話：「主啊，你所愛的人病了。」這句簡潔的陳述，直接點明了拉撒路與耶穌之間非比尋常的親密友誼——約翰後來三次使用「愛」這個字（φιλέω / ἀγαπάω）來描述耶穌對他的感情，這在福音書中對一位非門徒身分的個人而言，是極為罕見的記載。</p>
+    <p>第二聖殿晚期的猶太喪葬習俗，通常在人死後迅速安葬（因氣候炎熱，屍體很快腐壞），並有為期七天的正式哀悼期，親友會前來弔唁陪伴。約翰福音特別記載拉撒路「在墳墓裡已經四天了」——這個時間細節極為關鍵：當時猶太拉比傳統普遍認為，人的靈魂會在死後徘徊墓地三天，直到第四天，才會因確認屍體開始腐壞而徹底離去。約翰刻意強調「四天」，等於是在向讀者宣告：這絕不是一場甦醒或假死的誤會，而是一次徹底、不可逆的死亡——正是在這個所有人類理解中已經毫無盼望的處境下，耶穌來到了墳墓前。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">他的故事只有一個核心事件，卻是整本福音書中最震撼的一次神蹟——死了四天的人，被一聲呼喚，叫了出來。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">黑暗低谷</span>
+        <div class="timeline-title">「主啊，你所愛的人病了」——與耶穌刻意的延遲</div>
+        <div class="timeline-body">拉撒路病重，姊妹倆打發人去請耶穌，耶穌卻說：「這病不至於死，乃是為神的榮耀，叫神的兒子因此得榮耀。」約翰特別記載「耶穌素來愛馬大和她妹子並拉撒路。聽見拉撒路病了，就在所居之地仍住了兩天」——這個刻意的延遲，讓人不解甚至心痛，卻是耶穌為了成就一個遠超單純醫治的神蹟，所做出的主權性選擇。</div>
+        <div class="timeline-ref">約 11:3–6</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">黑暗低谷</span>
+        <div class="timeline-title">「拉撒路死了」——耶穌向門徒坦白宣告</div>
+        <div class="timeline-body">耶穌對門徒明說：「拉撒路死了。我沒有在那裡就歡喜，這是為你們的緣故，好叫你們相信。」這句話揭示了一個深刻的神學張力：耶穌對拉撒路的死並非無動於衷，祂清楚知道這場死亡的發生，卻選擇讓它成為一次更大信心的建造機會——祂沒有阻止死亡，而是準備要勝過死亡。</div>
+        <div class="timeline-ref">約 11:14–15</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">已經埋葬四天——超越一切自然解釋的處境</div>
+        <div class="timeline-body">耶穌到了伯大尼，得知拉撒路「在墳墓裡已經四天了」。按照當時猶太人的普遍認知，死後第四天，靈魂已經徹底離去，屍體確定開始腐敗，任何『甦醒』或『假死』的可能解釋都已被排除。這個細節的刻意強調，使此後發生的神蹟，脫離了任何自然主義的質疑空間。</div>
+        <div class="timeline-ref">約 11:17</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">「耶穌哭了」——最短卻最深情的一節經文</div>
+        <div class="timeline-body">面對馬利亞的哭泣，以及與她同來之猶太人的哭泣，「耶穌心裡悲歎，又甚憂愁」，隨後「耶穌哭了」。旁觀的猶太人說：「你看他愛這人是何等懇切。」這是整本福音書中，耶穌唯一一次在他人的葬禮現場公開流淚——祂明明知道自己即將使拉撒路復活，卻依然真實地為這場死亡、為周圍人的哀傷而哭泣，展現出祂完全的人性與對朋友深切的愛。</div>
+        <div class="timeline-ref">約 11:33–36</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">「拉撒路，出來！」——死了四天的人走出墳墓</div>
+        <div class="timeline-body">耶穌來到墳墓前，吩咐把擋墓的石頭挪開（儘管馬大提醒「他現在必是臭了」），禱告後，「大聲呼叫說：拉撒路出來！那死人就出來了，手腳裹著布，臉上包著手巾。」這是整本福音書中最戲劇性的神蹟之一——不是私下的醫治，而是在眾多猶太人圍觀弔唁的公開場合，當著所有人的面，把一個已經死了四天、確定無疑的死人，從墳墓裡呼喚了出來。</div>
+        <div class="timeline-ref">約 11:38–44</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">黑暗低谷</span>
+        <div class="timeline-title">成為公會決心除掉耶穌的直接導火線</div>
+        <div class="timeline-body">這場神蹟使「許多猶太人就信了耶穌」，卻也直接促成祭司長和法利賽人召開緊急會議，最終在該亞法的主導下，決定除掉耶穌——甚至進一步「商議連拉撒路也要殺了，因為有好些猶太人為拉撒路的緣故，回去信了耶穌」。拉撒路的復活，不僅救回了他自己的性命，也間接成為推動耶穌走向十字架的關鍵事件之一，而他自己此後也一度成為公會的追殺目標。</div>
+        <div class="timeline-ref">約 11:45–53, 12:9–11</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">同席筵宴——活著的見證</div>
+        <div class="timeline-body">耶穌受難前，再次在伯大尼赴筵席，「拉撒路也在其中，與耶穌同席」。許多猶太人特意前來，不僅是為看耶穌，也是為看這位死而復活的拉撒路。他的存在本身，成了一個活生生、無法被辯駁的見證——他不需要說一句話，光是他還活著這件事，就已經是整部福音書中最有力的宣講之一。</div>
+        <div class="timeline-ref">約 12:1–2, 12:9</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他在聖經中沒有留下一句話，卻用『他還活著』這個事實本身，成為整本福音書中最沉默、也最響亮的見證。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">（材料有限——聖經未記載他任何直接言論）</div>
+          <div class="soul-body">拉撒路是新約中極少數『被記載了完整故事，卻沒有留下一句話』的核心人物之一——整段敘事完全透過他人的言行（姊妹的求助、旁人的哭泣、耶穌的宣告）來推進，他本人始終保持沉默。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">被耶穌稱為「朋友」的深厚情誼</div>
+          <div class="soul-body">約翰福音三次用『愛』來描述耶穌對他的情感，姊妹們求助時也直接說『你所愛的人病了』——這暗示他生前必然以某種方式，與耶穌建立了極其深厚而真實的友誼，儘管具體的互動細節並未被詳細記載。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">（材料不足以推論）</div>
+          <div class="soul-body">由於他在敘事中始終沒有主動的言行記載，無法對他的具體行事風格進行推論。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">（材料不足以推論）</div>
+          <div class="soul-body">聖經沒有記載任何關於他性格弱點的具體事件，這是資料的空白，而非品格上的完美。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">死了四天、卻被一聲呼喚喚回人間</div>
+          <div class="soul-body">他是整本新約中，唯一一位死亡狀態被如此明確、無可爭議地記載（死了四天、屍體已發臭），卻依然被耶穌從死裡呼喚回來的人物。他的存在本身，就是一場超越自然規律、無可辯駁的神蹟見證——他此後的每一天，都是這場神蹟活生生的延續。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">拉撒路的故事最深刻之處，在於他本人的『沉默』。整場關於他的敘事——生病、死亡、復活、此後與耶穌同席——他沒有留下一句話。這種沉默並非敘事的缺陷，反而是一種深刻的神學安排：這個故事的重點，從來不是拉撒路自己說了什麼，而是耶穌為他做了什麼。他成為一個純粹的『見證』——不需要言語辯護，光是他『還活著』這個事實，就已經是對『復活在我，生命也在我』這句宣告最有力的證明。這提醒我們，有時候，最有力的見證，不是我們能說出多麼精彩的故事，而是我們生命本身，就是恩典曾經介入的證據。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ISFP</span>
+      <div class="mbti-name">探險家型 · 死而復活的見證（推測）</div>
+      <div class="mbti-slogan">「他沒有留下一句話，卻用『他還活著』這件事本身，成為整本福音書最沉默、也最響亮的見證。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Fi · 內向情感（僅為合理推測）</span>
+          <div class="mbti-fn-body">他與耶穌之間的親密友誼，以及姊妹們對他深切的關懷與愛，暗示他可能是一個重視深刻、真誠人際連結的人——儘管具體的言行證據極為有限，這份推測主要建立在他人對他的情感描述之上。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Se · 外向實感（僅為合理推測）</span>
+          <div class="mbti-fn-body">此後他『與耶穌同席』的畫面，顯示他復活後選擇了回歸具體、日常的生活場景——與家人朋友一同用餐——而非以某種戲劇性的方式向眾人宣講自己的經歷，這或許暗示一種安於當下、不刻意張揚的生活姿態。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">（材料不足以推論） · </span>
+          <div class="mbti-fn-body">缺乏足夠記載進行推導。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">（材料不足以推論） · </span>
+          <div class="mbti-fn-body">缺乏足夠記載進行推導。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最重要的關係，濃縮成一句簡單卻份量千鈞的話——「主啊，你所愛的人病了」。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">耶</div>
+          <div class="relation-name">耶穌基督</div>
+          <div class="relation-type-badge">主與所愛的朋友</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">約翰福音三次明確記載耶穌對他的愛——姊妹的求助信息、旁觀猶太人的評論『你看他愛這人是何等懇切』、以及耶穌自己在他墳前的眼淚。這段友誼的深厚程度，使耶穌在明知即將使他復活的情況下，依然真實地為他的死而悲傷落淚——展現出神既完全掌管一切、卻也真實地在意並經歷人的痛苦。</div>
+          <div class="relation-ref">約 11:3, 5, 35–36</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">馬</div>
+          <div class="relation-name">馬大（姊姊）</div>
+          <div class="relation-type-badge">手足 · 在危機中率先求助與迎接耶穌的人</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">馬大在拉撒路病重時率先傳話求助，並在耶穌抵達後第一時間出去迎接，說出『我信你是基督』這句重要的認信。她的行動力與信心，某種程度上，是拉撒路此後得以復活的重要背景鋪墊。</div>
+          <div class="relation-ref">約 11:1–3, 20–27</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">馬</div>
+          <div class="relation-name">馬利亞（妹妹）</div>
+          <div class="relation-type-badge">手足 · 以深切的哀傷觸動耶穌落淚的人</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">她見到耶穌時俯伏痛哭，這份深切的哀傷，直接觸動了耶穌『心裡悲歎，又甚憂愁』的反應，並最終導致耶穌自己也落下眼淚。她此後也是那位在拉撒路復活後的筵席上，用極貴重的香膏敬拜耶穌之人——她對兄弟復活這份恩典的回應，成為福音書中最具代表性的敬拜場景之一。</div>
+          <div class="relation-ref">約 11:28–35 · 約 12:1–3</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">猶</div>
+          <div class="relation-name">圍觀弔唁的猶太人</div>
+          <div class="relation-type-badge">見證者 · 因這神蹟信主，也因此構成威脅</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">許多從耶路撒冷前來安慰馬大馬利亞的猶太人，親眼見證了這場神蹟，「就信了耶穌」；然而也有人將此事報告給法利賽人，直接觸發了公會除掉耶穌的決心。拉撒路的復活，因此同時成為信心的起點，與敵意的引爆點——同一件事，在不同人心中，引發了完全相反的反應。</div>
+          <div class="relation-ref">約 11:45–46</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「復活在我，生命也在我」——這句對馬大所說的宣告，緊接著就在拉撒路身上，被具體而公開地實現了。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「耶穌大聲呼叫說：「拉撒路出來！」那死人就出來了，手腳裹著布，臉上包著手巾。耶穌對他們說：「解開，叫他走！」」</div>
+      <div class="verse-ref">約翰福音 11:43–44</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">τεθνηκότος τεσσάρας ἡμέρας</span>
+        <div class="word-transliteration">tethnēkotos tessaras hēmeras · 死了已經四天 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「已死去四天」的完成式分詞結構，強調一種確定且已經完成的狀態，而非暫時或可疑的情況。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">約翰刻意強調這個時間細節，是為了排除當時猶太拉比傳統中『靈魂在死後三天內可能徘徊、屍體可能只是假死』的模糊空間——第四天，一切關於『其實還沒真正死』的解釋都已站不住腳。這使得此後的神蹟，成為一個無可辯駁、超越自然規律的絕對事件，直接指向耶穌所宣告『復活在我』這句話的真實性。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">ἐδάκρυσεν</span>
+        <div class="word-transliteration">edakrysen · 哭了 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">動詞 δακρύω（流淚）的簡單過去式，這個字與馬利亞及猶太人所用的 κλαίω（放聲大哭、哀號）不同，δακρύω 特指『靜靜流淚』，是一個更為內斂、私人化的動詞。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">『耶穌哭了』（約 11:35）是新約希臘文原文中最短的一節經文，卻承載著深刻的神學意涵——這裡的『哭』與周圍人放聲哀號的『哭』用字不同，暗示耶穌的眼淚，不完全等同於周圍人因絕望而發出的哀慟，而更接近一種深沉、克制卻真實流露的悲傷——祂完全知道自己即將使拉撒路復活，卻依然真實地為死亡本身、為朋友所受的痛苦而落淚，展現出祂完全神性與完全人性的合一。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">復活神蹟：「我是」宣告的具體印證</div>
+      <div class="theology-insight-body">耶穌先對馬大宣告『復活在我，生命也在我』，隨即當著眾人的面，使拉撒路從死裡復活——這使得這場神蹟不僅是一次憐憫的醫治，更是耶穌那七個『我是』宣告（約翰福音的核心神學結構）之一的具體實證。祂不只是『說』自己是復活與生命，祂『做』出了復活與生命的實際果效。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">死亡的延遲與神榮耀的彰顯</div>
+      <div class="theology-insight-body">耶穌刻意延遲兩天才前往，這個看似殘忍的選擇，實則是為了讓神蹟的規模超越單純的醫治（醫好病人），進入到無可辯駁的死裡復活範疇。這提醒我們，神有時容許苦難或延遲發生，不是因為祂不在意，而是為了成就一個遠超我們當下所能理解、也更榮耀神自己的計畫。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">「解開他，叫他走」：復活之後仍需群體的參與</div>
+      <div class="theology-insight-body">耶穌使拉撒路復活後，並未親自解開裹屍布，而是吩咐旁觀的人『解開，叫他走』——這個細節具有深刻的教會論意涵：神蹟性的復活是神獨自成就的工作，但復活之後如何『脫去舊有的裹縛，重新行走』，往往需要信仰群體具體的參與和幫助，而非單靠個人獨自完成。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">先知以利沙使書念婦人已死的兒子復活——他伏在孩子身上，孩子的身體漸漸溫暖，最終打噴嚏、睜開眼睛而活了過來</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">兩則敘事都以死而復活的神蹟展現神超越死亡的權能；然而拉撒路已死四天、開始腐壞的處境，遠遠超越了書念婦人兒子剛死不久的情況，展現出比舊約先知所行更大的能力</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督親自宣告自己就是『復活與生命』的源頭，不需要如先知般伏身用力祈求，只需一句話語，就使死人復活（約 11:43）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">以西結在異象中看見枯骨遍野的平原,神的話臨到,骸骨就彼此連接、長出筋肉皮膚,氣息進入其中,他們就活了,並且成為極大的軍隊</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">拉撒路從墳墓中裹著布走出來的畫面，與以西結異象中枯骨復活成軍的場景，同樣展現了神在絕對死亡、毫無自然生機可能的處境中，依然能夠使生命重新站立的大能</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督親自是那使枯骨得以復活的源頭，並應許凡信祂的人，「雖然死了，也必復活」（約 11:25 · 結 37:1–14）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">約拿在魚腹中三日三夜，象徵性地經歷了死亡與埋葬，最終被神從深淵中拯救出來，重新被差遣傳道</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">拉撒路的『四天』甚至超越了約拿的『三日三夜』，兩者都以一種戲劇性的方式，展現了從絕對絕望的處境中被神拯救、重新差遣的模式</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督親自引用約拿的神蹟，預言自己也要『三日三夜在地裡頭』，最終從死裡復活，成就這一切預表的終極應驗（太 12:39–40）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你正處在一個看似已經『死了四天』、完全沒有任何盼望餘地的處境裡——這一頁是為你寫的。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">拉撒路的故事命中的是人類經驗中最深的絕望處境——不是暫時的困難，而是那種所有人都已經確認『沒救了』的狀態。他的故事提醒我們，即使在一個已經被宣告『屍體已經發臭』、完全無法自然逆轉的處境中，耶穌依然能夠介入，並且介入的方式，往往超乎我們原本祈求的範圍（他們原本只求醫治，得到的卻是復活）。這對正經歷『感覺已經太遲、一切都已無法挽回』之處境的人，提供了一個深刻的盼望——在人的認知裡『已經結束』的地方，往往正是神準備彰顯祂榮耀的起點。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你生命中有沒有一個處境，感覺就像『已經死了四天』——完全沒有任何自然的方式可以扭轉？你如何看待這種絕對絕望的狀態？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">耶穌刻意延遲了兩天才前往醫治拉撒路，這份延遲帶來了更深的痛苦，卻也成就了更大的神蹟。你是否也曾經歷過一段『神好像遲到了』的等候，後來卻發現這份延遲，成就了超乎你原本祈求的果效？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">拉撒路復活後，耶穌吩咐旁人『解開他，叫他走』——他沒有獨自完成整個復甦的過程。你身邊有沒有一段『剛剛經歷神蹟性的轉變，卻還需要群體幫助才能真正重新站起來、走出舊有的裹縛』的經歷？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">拉撒路整段敘事中沒有留下一句話，他最有力的見證，就是『他還活著』這個事實本身。你認為，你此刻的生命，是否也能成為一個不需要言語、單靠事實本身就能說話的見證？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 拉撒路</span>
+        <div class="gen-title">唯一的記載模式：從絕對死亡到活著的見證</div>
+        <div class="gen-body">他生命中唯一被記載的核心軌跡，就是從死亡到復活、再到成為一個活生生的見證。由於缺乏其他言行的記載，無法對他形成更完整的行為模式分析，但這個唯一的軌跡本身，已經足夠成為深刻的屬靈典範。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · （材料不足以推論下一代的複製或打斷）</span>
+        <div class="gen-title">（無可考）</div>
+        <div class="gen-body">聖經沒有記載他此後的生活、婚姻或影響下一代的具體事蹟，因此無法進行代際對照分析。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">或許可以這樣理解：拉撒路的故事本身，就是恩典打斷『絕對絕望』這種認知框架的最戲劇性範例。當所有人都已經確認『沒有任何希望』（死了四天、屍體已發臭），耶穌的介入，徹底打破了這種被視為理所當然的絕望結論。這提醒每一個正處於類似絕境的人：人的『已經結束』，從來不是神的『已經結束』。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那個死了四天又活過來的人，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#感覺已經太遲了</span>
+      <span class="tag">#沉默卻最有力的見證</span>
+      <span class="tag">#神的延遲不是遺忘</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>拉撒路的故事有個很特別的地方——他從頭到尾，一句話都沒說。整段故事完全是別人在講他的事：姊妹傳話說他病了、耶穌說他死了、大家哭他死了、耶穌哭了、最後耶穌喊他出來。他本人，安靜到底。</p>
+      <p>但這個故事的震撼點，在於一個很殘酷的細節：耶穌接到消息時，並沒有馬上動身，反而『在所居之地仍住了兩天』。等他到的時候，拉撒路已經死了整整四天。在當時的猶太文化裡，第四天基本上就是『徹底死透了、不可能是假死』的意思。</p>
+      <p>馬大出來見耶穌，忍不住說：主啊，你要是早點來，我弟弟就不會死了。這句話換成現代版大概就是：你怎麼現在才來？早幹嘛去了？但耶穌沒有辯解,只是問她信不信自己就是復活與生命。</p>
+      <p>接著馬利亞也出來了，一見耶穌就哭倒在地。耶穌看見大家都在哭，聖經寫了一句超級簡短卻超級重的話：耶穌哭了。祂明明知道等一下就要讓拉撒路復活，卻還是真實地為這場死亡而流淚。</p>
+      <p>然後祂走到墳墓前，叫人把石頭挪開,馬大還提醒祂：都四天了,一定臭了。耶穌沒理會這個顧慮,大聲喊：拉撒路,出來！死了四天的人,就這樣裹著布走出來了。耶穌只補了一句：把布解開,讓他走。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——而拉撒路這塊石頭,連一句話都沒說,卻用『他還活著』這個事實本身,成了整本福音書裡最沉默、也最響亮的見證。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你正處在一個感覺『已經太遲、沒救了』的處境裡——不管是一段關係、一個夢想、還是你對某件事的盼望——拉撒路的故事想告訴你：人類認知裡的『死了四天』，從來不是神的終點。</p>
+      <p style="margin-top:12px;">如果你正在經歷一段『神好像遲到了』的等候——祂沒有忘記你，祂只是在準備一個超越你原本祈求範圍的答案。馬大和馬利亞原本只求醫治，得到的卻是復活。</p>
+      <p style="margin-top:12px;">如果你剛剛經歷了一場翻轉性的恩典，卻還覺得自己『裹著布、走不太動』——這是正常的。連拉撒路都需要旁人幫忙解開裹屍布。去找那個願意幫你『解開,叫你走』的群體吧。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天,不用急著解釋自己的絕望。去墳墓前站著就好,那位呼喚生命的主,正往你這裡走。</p>
+    </div>
+
+    <div class="insight-box">在當代關於盼望與絕望的心理輔導語境中，拉撒路的故事提供了一個極具力量的敘事框架——它沒有淡化死亡（絕望）的真實性，也沒有假裝『其實還有救』，而是誠實地承認這是一個完全、徹底、無可挽回的處境（死了四天），卻依然見證了介入的可能性。這對正陷入臨床性絕望、或經歷『感覺一切都太遲了』之處境的人，提供了一種不迴避現實、卻依然保有盼望的語言。而『解開他，叫他走』這個細節，也對創傷後的重新融入群體，提供了重要的提醒——神蹟性的轉變之後，往往仍需要具體的、群體性的陪伴與協助，才能真正重新『行走』。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他活著這件事本身，成了福音書中，一個不需要說一句話，就已經說出一切的見證。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">「我是復活與生命」宣告的具體印證</div>
+          <div class="legacy-body">他的復活，使耶穌對馬大所說『復活在我，生命也在我』這句宣告，從抽象的教義陳述，變成一個公開、可見、無可辯駁的歷史事件——他的存在，成為此後教會宣講復活盼望時，最具體有力的先例與根據。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">受難敘事的關鍵轉折</div>
+          <div class="legacy-body">他的復活，直接促成了公會決定除掉耶穌，成為推動整個受難週敘事發展的關鍵導火線之一——若沒有這場神蹟所引發的震撼與威脅感，猶太公會除掉耶穌的決心，或許不會如此迅速且堅定地形成。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">死而復活的活見證典範</div>
+          <div class="legacy-body">此後無數猶太人特意前來看他，「不但是為耶穌的緣故，也是要看他叫拉撒路從死裡復活」——他成為此後教會歷史中，理解『個人見證』最單純卻最有力的一種形式：不需要言語辯護，光是『我還活著』這個事實，就足以成為福音真實性的證據。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">復活後仍需群體參與的教會論提醒</div>
+          <div class="legacy-body">耶穌吩咐旁人『解開他，叫他走』，這個細節此後成為教會論中一個重要的提醒：屬靈的重生或復甦，雖是神獨自成就的神蹟，此後如何脫去舊有的裹縛、重新行走，往往仍需要信仰群體具體的參與與協助。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「耶穌說：「你這話，是我叫你信不信？」（原文有誤置疑問，正確引文如下）耶穌對他們說：「解開，叫他走！」有許多猶太人……不但是為耶穌的緣故，也是要看他叫拉撒路從死裡復活。」</div>
+      <div class="final-verse-ref">約翰福音 11:44, 12:9</div>
+    </div>
+
+    <div class="final-question">如果你此刻生命中有一個部分，已經被你自己或別人宣告『死了四天、沒有希望了』——你願不願意站在那個墳墓前，讓自己聽見那個呼喚你名字的聲音？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 拉撒路 <span>Λάζαρος · אֶלְעָזָר</span> · 從死裡復活的見證 · 耶穌所愛的朋友</div>
+
+</body>
+</html>

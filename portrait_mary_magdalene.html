@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>馬利亞 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">馬利亞・抹大拉的</h1>
+  <span class="hero-name-en">Mary Magdalene · Μαρία ἡ Μαγδαληνή</span>
+  <p class="hero-slogan">「她曾經被七個鬼附著，誰見了都要繞道走；<br>復活的早晨，她卻是站在最靠近那扇空墳墓前的人——第一個。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">第一世紀 · 主後約 30 年代</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">INFJ · 提倡者型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">路 8:2 · 太 27–28<br>可 15–16 · 約 19–20</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">復活的第一位見證人</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">在一個女人的見證在法庭上不被採信的社會，復活的主選擇讓一個女人成為第一個宣告「祂還活著」的使者。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">第一世紀<br>羅馬治下的加利利與猶太</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">多重身份</span>
+        <div class="info-cell-value">曾被七鬼纏身、蒙醫治的婦女<br>供給耶穌事工的資助者 · 十字架下的見證人 · 復活第一見證人</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">抹大拉（加利利海西岸漁業城鎮）→<br>加利利、猶太 → 耶路撒冷</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">背景</span>
+        <div class="info-cell-value">以家鄉「抹大拉」為稱呼區分同名者<br>多次出現在耶穌事工核心圈周邊</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">路 8:1–3 · 太 27:55–61, 28:1–10<br>可 15:40–41, 16:1–11 · 約 19:25, 20:1–18</div>
+      </div>
+    </div>
+
+    <p>抹大拉的馬利亞出身抹大拉——加利利海西岸一座以醃魚業著稱的城鎮。路加福音以極簡潔卻極沉重的一句話介紹她的背景：她是「曾有七個鬼從她身上趕出來的」。這句話沒有交代具體病症或事件，但在第一世紀的猶太語境中，被鬼附代表著一種深度的失控與孤立——七這個數字更暗示著徹底而完全的纏繞。無論確切病狀為何,可以確定的是：耶穌醫治了她,而她隨即成為那群「用自己的財物供給耶穌和門徒」的婦女之一。</p>
+    <p>值得特別注意的是聖經對她描述方式的轉變：路加福音先介紹她過去被鬼附的背景，此後四卷福音書再提到她時，都只稱呼她「抹大拉的馬利亞」——不再附加她的過去。這種敘事上的處理本身就帶著神學意味：一個人的過去可以是真實存在的事實，卻不必永遠成為定義她身分的標籤。她此後出現在福音書敘事中的每一個關鍵時刻——十字架下、埋葬時、復活的清晨——都不再與『七個鬼』有任何關聯，而是與『在場、忠心、第一個見證』緊密相連。歷史上教會傳統長期(且錯誤地)將她與那位用眼淚洗耶穌腳的『罪婦』混淆，這個混淆在近代學術研究中已被普遍澄清——聖經文本本身並未將這兩位女子等同視之。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">她的故事有一個清晰的軌跡：從被七個鬼纏得無法自主，到成為第一個親口宣告「我已經看見了主」的人。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">被七個鬼纏身——與蒙醫治的轉捩點</div>
+        <div class="timeline-body">路加福音記載她「曾有七個鬼從她身上趕出來」，這是聖經中對她過去最直接的描述。此後她成為那群「用自己的財物供給耶穌和門徒」的婦女之一,與約亞拿、蘇撒拿等人同列。從深度的束縛,到自由地、慷慨地資助福音事工——這個轉變的幅度,幾乎與她此後在十字架與復活敘事中的忠心程度成正比。</div>
+        <div class="timeline-ref">路 8:1–3</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">跟隨的婦女——供給與同行的三年</div>
+        <div class="timeline-body">四福音書多次提及一群跟隨耶穌、用財物供給祂事工的婦女，抹大拉的馬利亞的名字幾乎總是排在這份名單的最前面——這在福音書慣常按重要性排序人名的敘事習慣中，暗示她在這群婦女中具有相對突出的角色與地位。</div>
+        <div class="timeline-ref">太 27:55–56 · 可 15:40–41</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">黑暗低谷</span>
+        <div class="timeline-title">十字架下——男門徒逃散時她仍在場</div>
+        <div class="timeline-body">耶穌被釘十字架時，多數男門徒都已四散逃離，福音書卻清楚記載抹大拉的馬利亞「站在耶穌的十字架旁邊」，與其他幾位婦女一同見證了這場處死的全過程。她的在場不是被動的旁觀,而是在極度危險與哀傷的處境中,選擇留下、不離開。</div>
+        <div class="timeline-ref">約 19:25 · 太 27:55–56</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">黑暗低谷</span>
+        <div class="timeline-title">埋葬時的見證——「看見安放他的地方」</div>
+        <div class="timeline-body">耶穌被安放在亞利馬太人約瑟的新墳墓裡時，馬可福音記載「抹大拉的馬利亞和約西的母親馬利亞都看見安放他的地方」。這個細節看似平凡，卻是復活敘事得以成立的關鍵前提——正因為她們清楚記得墳墓的確切位置，才有了三日後那趟決定性的清晨造訪。</div>
+        <div class="timeline-ref">可 15:47</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">復活的清晨——空墳墓與哭泣的守候</div>
+        <div class="timeline-body">七日的頭一日清早，天還黑，她就來到墳墓，發現石頭已從墳墓挪開。她跑去告訴彼得和約翰，兩人查看後便回去了，她卻留在墳墓外哭泣。這份不願離開的堅持，成為她此後遇見復活之主最直接的預備——當所有人都已經離開現場,她仍然選擇留下。</div>
+        <div class="timeline-ref">約 20:1–11</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">「馬利亞」——一聲呼喚中的相認</div>
+        <div class="timeline-body">她轉身看見一個人，誤以為是看園的，直到那人叫了一聲她的名字：「馬利亞。」她立刻認出，回應道：「拉波尼！」（意即夫子）。這個場景是整本福音書中最動人的相認時刻之一——不是靠外貌、不是靠證據，而是靠一聲熟悉的呼喚。約翰福音以此呼應耶穌自己所說的：「羊也聽他的聲音；他按著名叫自己的羊。」</div>
+        <div class="timeline-ref">約 20:14–16</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">「我已經看見了主」——第一位差往使徒的使者</div>
+        <div class="timeline-body">耶穌吩咐她：「你往我弟兄那裡去，告訴他們說：我要升到我的父，也是你們的父那裡去。」馬利亞就去告訴門徒說：「我已經看見了主。」她成為新約中第一個親口宣告基督復活、並奉命向使徒傳遞這個信息的人——這在一個女性見證通常不被法庭採信的社會裡,是一個極具顛覆性的安排,教會傳統因此常稱她為「使徒的使徒」。</div>
+        <div class="timeline-ref">約 20:17–18</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">她從一個被形容為「七個鬼纏身」的人，走到一個被差去宣告復活的人——中間只隔著一次醫治,和之後一貫的忠心。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">在場，即使所有人都已經離開</div>
+          <div class="soul-body">她的核心特質貫穿於一連串「留下」的場景：十字架下留到最後、墳墓前留到眾人都離開、清晨的哭泣中留到主親自出現。她似乎有一種不輕易放棄在場、不輕易退出的堅持,即使那意味著獨自承受巨大的哀傷。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">忠心不因處境的黑暗而動搖</div>
+          <div class="soul-body">當耶穌被釘、被埋葬,一切看似已成定局，她依然出現在墳墓前，帶著香膏預備繼續盡一份最後的敬意。這種在絕望處境中依然選擇行動、依然選擇靠近的忠心，是她最鮮明的美德。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">情感深摯，行動直接</div>
+          <div class="soul-body">發現空墳墓,她立刻奔跑去告訴彼得和約翰；認出復活的主，她立刻脫口而出「拉波尼」；領受差遣，她立刻去告訴門徒。她的反應模式一貫是直接、迅速、毫不遲疑地將內心的感受轉化為行動。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">深切的哀傷有時使她暫時認不出眼前的真相</div>
+          <div class="soul-body">在墳墓前，她兩次面對復活主的顯現（天使的詢問、耶穌本人的詢問）卻都未能立刻認出——她的回答滿是關於「他們把我主挪去了」的焦慮與尋找。極深的哀傷有時會蒙蔽人辨認眼前恩典的能力，直到一個熟悉的呼喚才能穿透。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">第一個聽見復活之主呼喚自己名字的人</div>
+          <div class="soul-body">在整個救贖歷史最關鍵的轉折點——復活——神選擇讓一個曾經被七個鬼纏身、社會地位邊緣的女性，成為第一個目擊者與第一個被差遣的使者。這個選擇本身,就是對整個世界關於「誰配得被神使用」之標準的徹底顛覆。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">抹大拉的馬利亞最深刻的意義,或許在於她生命敘事的『順序』：先是被七個鬼纏身的破碎，然後是蒙恩醫治,然後是持續多年安靜的供給與跟隨,然後是眾人逃散時的獨自堅守,最後是復活清晨那聲『馬利亞』的呼喚。這個順序告訴我們：一個人最深的破碎,從不會是神眼中對這個人最終的定義。她此後從未被福音書再提起『七個鬼』這件事,卻被反覆記載為那個『在場』、『看見』、『去告訴』的人。神翻轉一個人生命敘事的方式,常常不是抹去過去,而是用此後一連串忠心的選擇,重新書寫這個人真正的身分。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">INFJ</span>
+      <div class="mbti-name">提倡者型 · 第一個看見的人</div>
+      <div class="mbti-slogan">「她曾經被七個鬼纏得說不出話，最後卻成了第一個對著使徒說「我已經看見了主」的那個聲音。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">她似乎有一種對「當下真正重要的事」的深刻洞察力——在眾人都已離開墳墓時，她感覺自己還不能走；一聲呼喚,她立刻辨認出眼前的真相。這種洞悉核心意義、不受表面現象干擾的能力，在她認出復活主的那一刻表現得淋漓盡致。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Fe · 外向情感</span>
+          <div class="mbti-fn-body">她深切地在乎與耶穌之間的連結,這份情感驅動她在十字架下、埋葬時、復活清晨反覆選擇留下與靠近。她也毫不遲疑地將自己所經歷的事,傳遞給群體——「去告訴我弟兄們」的差遣，她立刻順服執行。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ti · 內向思考</span>
+          <div class="mbti-fn-body">面對空墳墓,她試圖理性地釐清狀況——反覆詢問「他們把我主挪去哪裡了」,顯示她在強烈情感之下,仍嘗試理出一個合理的解釋,而非單純地陷入情緒。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Se · 外向實感</span>
+          <div class="mbti-fn-body">巨大的哀傷讓她在墳墓前,一時無法準確辨識眼前具體的感官線索（誤以為復活的耶穌是看園的）。壓力下的劣勢 Se，常表現為對眼前具體現實的短暫失焦，直到一個更深層的連結（聲音、名字）重新喚醒她的知覺。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">她一生最重要的關係，濃縮在墳墓前那一聲呼喚——「馬利亞」，以及她隨即脫口而出的回答——「拉波尼」。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">耶</div>
+          <div class="relation-name">耶穌基督</div>
+          <div class="relation-type-badge">主與蒙醫治、後被差遣的見證人</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">祂從她身上趕出七個鬼，此後她成為跟隨並供給祂事工的一員；十字架下、墳墓前，她始終在場；復活的清晨，祂選擇第一個向她顯現，並親自差遣她去告訴使徒。這段關係示範了一種完整的救恩軌跡——從被醫治,到跟隨,到見證,到被差遣傳遞福音最核心的信息。</div>
+          <div class="relation-ref">路 8:2 · 約 20:14–18</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">彼</div>
+          <div class="relation-name">彼得與約翰</div>
+          <div class="relation-type-badge">同工 · 被她告知空墳墓消息的使徒</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">她發現空墳墓後，第一時間跑去告訴彼得和約翰，兩人隨即跑向墳墓查看。這個細節顯示她在初代門徒群體中具有一定的溝通樞紐地位——重要的消息,經由她傳遞給了核心的使徒圈。</div>
+          <div class="relation-ref">約 20:2–10</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">馬</div>
+          <div class="relation-name">其他跟隨的婦女</div>
+          <div class="relation-type-badge">同伴 · 一同供給與見證的群體</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">她與約亞拿、雅各的母親馬利亞、蘇撒拿等婦女，同屬那群「用自己的財物供給耶穌和門徒」的圈子。這群婦女在福音書中常常成群出現，一同經歷十字架的哀傷,也一同前往墳墓——她們彼此的同行,是初代信仰群體中一種深刻卻常被忽略的支持網絡。</div>
+          <div class="relation-ref">路 8:2–3 · 路 24:10</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">使</div>
+          <div class="relation-name">十一位使徒</div>
+          <div class="relation-type-badge">被她傳遞復活消息的對象</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">她奉主的差遣去告訴使徒「我已經看見了主」，路加福音記載使徒起初「以為是胡言，就不相信」。這段記載誠實地保留了初代教會對女性見證最初的懷疑,卻也讓馬利亞的忠心宣告顯得更加珍貴——即使不被立刻相信，她仍然完整地傳達了所領受的信息。</div>
+          <div class="relation-ref">路 24:9–11 · 約 20:18</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「我已經看見了主」——這是新約中第一句宣告復活的話語，出自一個女人的口。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「耶穌說：「馬利亞。」馬利亞就轉過來，用希伯來話對他說：「拉波尼！」（意思就是「夫子」。）」</div>
+      <div class="verse-ref">約翰福音 20:16</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">Ραββουνί</span>
+        <div class="word-transliteration">Rabbouni · 拉波尼 · 亞蘭文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「我的夫子」，是「拉比」的加強型、更為親密的稱呼形式，通常帶有更深的個人情感連結,而非單純的教師頭銜。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">約翰特別保留了這個亞蘭文原詞,而非直接翻譯,顯示這一聲呼喊承載著超越語言翻譯所能傳遞的親密與震撼。這是全新約中,唯一一次有人用這個加強形式稱呼耶穌——馬利亞的回應,不只是辨認出一位老師，而是在極度的哀傷瞬間翻轉為極度的喜悅之中，脫口而出的、最深層的情感表達。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">ἀπαγγέλλω</span>
+        <div class="word-transliteration">apangellō · 傳報、告訴 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「傳達消息、報告」，帶有正式宣告、鄭重傳遞信息的意涵，常用於使者傳遞重要訊息的場合。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">約翰福音用這個字描述馬利亞「去告訴門徒」的行動——她所做的，正是一個正式使者的職分：領受信息、準確傳遞。這也是教會傳統稱她為『使徒的使徒』（apostola apostolorum）的重要文本依據——她所執行的,正是『使徒』（被差遣者）這個詞最原初的功能。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">女性見證在復活敘事中的核心地位</div>
+      <div class="theology-insight-body">在第一世紀的猶太律法傳統中,女性的證詞通常不被法庭採納為有效證據。而四卷福音書卻一致記載,是女性——尤其是抹大拉的馬利亞——最先發現空墳墓、最先見到復活的主。若這段記載是初代教會虛構出來的護教材料，選擇女性作為第一見證人是極不利於說服力的策略；這個『反直覺』的細節,反而成為支持復活記載歷史真實性的重要內證。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">「使徒的使徒」：傳遞福音核心信息的先聲</div>
+      <div class="theology-insight-body">她被耶穌親自差遣去告訴使徒復活的消息,這使她在傳遞福音核心信息（基督已經復活）的鏈條上,佔據了第一環的位置。教會歷史上（尤其是東方教會傳統）因此尊稱她為『使徒的使徒』——不是因為她擁有使徒的職分,而是因為她親自履行了使徒最核心的功能：作為第一手的見證人,傳遞復活的信息。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">從破碎到差遣：救恩敘事的完整弧線</div>
+      <div class="theology-insight-body">她的故事完整呈現了一個從『被七個鬼纏身』到『被差遣宣告復活』的救恩軌跡。這個弧線本身就是一則神學宣告：神揀選並使用一個人的資格，從不建立在這個人過去的破碎程度上,而建立在祂親自施行的醫治與此後持續展現的忠心之上。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">雅歌中，新娘在夜間尋找她心裡所愛的，遍尋不著,哭泣著,直到終於找到,便拉住他,不肯放他走</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">馬利亞在墳墓前哭泣尋找『他們把我主挪去哪裡了』，正如新娘在夜色中尋找所愛之人；而復活主的回應『不要摸我』，暗示著一種新的、超越肉身層面的相認方式即將展開</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督是那位新郎，教會是祂的新婦，最終的尋見與相認,要在祂再來的時候完全成就（啟 19:7 · 弗 5:25–27）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">以賽亞書預言僕人要『被藐視，被人厭棄』，卻要『看見自己勞苦的功效，便心滿意足』</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">馬利亞曾是被社會邊緣化、被視為需要驅趕之異象纏身的人;而正是這樣一位曾經卑微的見證者,被高舉成為宣告復活榮耀的第一人</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督自己『取了奴僕的形像』，降卑至死,而神將他升為至高（腓 2:7–9）——揀選卑微者去見證至高的榮耀,是貫穿救贖歷史的一致模式</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">士師底波拉在以色列士師混亂的年代,以先知與士師的雙重身分帶領百姓得勝——一位女性在男性主導的敘事結構中,承擔了關鍵的屬靈領導角色</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">馬利亞在使徒們仍處於恐懼與懷疑的低谷時，成為那位率先宣告得勝消息、喚醒信心的聲音,呼應了底波拉在士師記中扮演的角色</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督親自成就了那終極的得勝——祂的復活，是整個救贖歷史中最重大的『得勝宣告』（林前 15:54–57）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你曾經被一段過去定義,而你渴望被人看見此後真實改變的你——這一頁是為你寫的。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">抹大拉的馬利亞命中的是一種深刻的身分掙扎：一段過去的破碎經歷,是否會永遠成為別人(甚至自己)定義你的方式？她的故事給出了一個清晰的答案——聖經記載了她曾經被七個鬼纏身的事實，卻從未讓這個標籤跟隨她進入此後的每一個場景。她此後被記載的,是忠心、在場、見證、被差遣。這對每一個渴望從過去的傷害、失敗或標籤中走出來的人,是極大的鼓勵：你過去的破碎是真實的,但它不必是你此後生命故事唯一的標題。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你有沒有一段過去，讓你擔心自己會永遠被那樣定義？如果神此刻要重新書寫你此後的故事,妳希望那個故事的關鍵詞是什麼？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">馬利亞在眾人都已離開的時候,選擇繼續留在墳墓前。你生命中有沒有一段『大家都走了，你卻還在』的經歷？那份堅持後來帶來了什麼？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">她在極度的哀傷中，一度認不出眼前的復活主，直到一聲熟悉的呼喚。你是否也曾在深切的痛苦中,一時看不清眼前正在發生的恩典？是什麼最終讓你重新認出來？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">她領受的第一個差遣,是把好消息告訴那些原本不相信她的人。你有沒有一段『說了卻不被相信』的經歷？你當時是如何處理那份不被信任的感受？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 抹大拉的馬利亞（蒙醫治前）</span>
+        <div class="gen-title">破碎的模式：被七個鬼纏身,失去自主</div>
+        <div class="gen-body">聖經對她過去的描述極為簡短卻沉重——被七個鬼纏身,這代表著一種深度的失控與孤立,無法憑自己的力量走出來。這不是一個道德性的失敗記載,而是一種需要神親自介入的深層束縛。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 抹大拉的馬利亞（蒙醫治後）</span>
+        <div class="gen-title">打斷而非延續：從被纏繞,到主動供給、主動見證</div>
+        <div class="gen-body">蒙醫治之後，她的生命軌跡與過去完全斷開——她不再是那個需要被醫治、被憐憫的對象,而成為那個主動用財物供給他人事工、主動留在十字架下、主動奔跑報信的行動者。這是一個徹底的角色翻轉：從被動承受纏繞,到主動選擇忠心。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">打斷發生在耶穌親自的醫治行動,以及此後她自己一連串的忠心回應中。神沒有僅僅移除她身上的束縛就停手，祂此後持續讓她參與到救贖歷史最核心的時刻——十字架、埋葬、復活。這個模式提醒我們：恩典的介入,不只是移除過去的傷害,更是主動地將被醫治者帶進一個全新的、充滿意義的角色之中。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那個曾經被七個鬼纏身、後來卻成為復活第一見證人的女子，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#過去不等於未來</span>
+      <span class="tag">#留到最後的人</span>
+      <span class="tag">#第一個相信的人先不被相信</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>抹大拉的馬利亞出場時，聖經只給了她一句沉重的背景介紹：曾經有七個鬼從她身上被趕出來。這句話沒有詳細解釋，但你大概能想像,一個被這樣描述的人,在當時的社會會是什麼處境——大概是那種街坊鄰居會刻意避開、指指點點的對象。</p>
+      <p>但她被醫治了。醫治之後，她做的第一件事不是低調躲起來,而是拿出自己的錢,加入供給耶穌和門徒的行列。從『需要被拯救的人』,變成『主動付出的人』——這個轉變,其實比任何神蹟描述都更能說明她心裡發生了什麼。</p>
+      <p>然後是十字架那天。所有男門徒基本上都跑光了,她卻站在那裡,一直看到最後。埋葬的時候她也在,還特別記住了墳墓的位置——這個細節很重要,因為三天後,天還沒亮,她就是第一個跑去墳墓的人。</p>
+      <p>發現墳墓空了，她跑去告訴彼得和約翰。兩個人來看了一眼,確認是空的,就回去了。她卻沒有走,一個人留在那裡哭。結果就是在這個時候,復活的耶穌出現在她面前,她卻沒認出來,以為是園丁。直到耶穌叫了一聲她的名字：馬利亞。她瞬間就認出來了,喊了一聲：拉波尼！</p>
+      <p>然後耶穌交給她一個任務：去告訴我的弟兄們。一個曾經被七個鬼纏身、社會地位邊緣到不行的女人,成了整本聖經裡第一個奉命宣告『耶穌復活了』的人。而且,路加福音很誠實地記下,使徒們一開始還不相信她,覺得是胡言亂語。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——而她這塊石頭,最初被形容成『需要被趕出七個鬼』的樣子,最後卻成了第一個喊出『我已經看見了主』的那個聲音。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你曾經有一段過去，讓你擔心自己會永遠被那樣定義——你不孤單。馬利亞的過去被寫進聖經裡,清楚而不迴避,但她此後被記住的,從來不是那段過去,而是她持續的忠心與在場。</p>
+      <p style="margin-top:12px;">如果你曾經在大家都已經放棄、都已經離開的時候,還選擇留下——你所做的,正是馬利亞在墳墓前做的事。而正是這份不肯離開的堅持,讓她成了第一個遇見復活之主的人。</p>
+      <p style="margin-top:12px;">如果你說了真話,卻暫時沒有人相信你——這也發生在馬利亞身上。她奉命去告訴使徒,得到的第一個反應是『不相信』。但她的宣告是真的，時間會證明這一點。你也一樣，不需要立刻被相信,才能繼續說真話。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">你的過去不是你的全部。今天,繼續留在那個你被呼召留下的地方就好。</p>
+    </div>
+
+    <div class="insight-box">在當代心理創傷與復原的討論中，抹大拉的馬利亞的故事提供了一種深具意義的敘事框架：療癒不是抹去過去發生過的事,而是不再讓那件事成為此後生命唯一的標籤。這對正在走出創傷、成癮、或被貼上標籤之處境的人,提供了一種盼望——聖經對她的記載,如實保留了她過去的破碎,卻用更長的篇幅,記錄了她此後一連串忠心的選擇。而她『第一個見證卻不被相信』的經歷,也對任何在群體中率先發聲、卻遭遇懷疑的人(尤其是社會地位相對邊緣的群體)提供了深刻的共鳴與肯定——真相的價值,不取決於它最初是否立刻被相信。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">她的名字,因著一聲呼喚與一句宣告，被永遠寫進了救贖歷史最核心的那個清晨。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">「使徒的使徒」——復活信息的第一位傳遞者</div>
+          <div class="legacy-body">她被耶穌親自差遣，成為第一個宣告復活消息的人。這個角色使她在教會傳統(尤其是東方教會)中被尊稱為『使徒的使徒』(apostola apostolorum)，象徵著她在傳遞福音核心信息這件事上,佔據著源頭般的地位。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">女性見證在正典中的核心地位</div>
+          <div class="legacy-body">四卷福音書一致把她列為復活的第一見證人，這在強調男性見證權威的第一世紀社會中極為反直覺,卻也因此成為支持福音書歷史可信度的重要內證——若是虛構,沒有理由選擇一個當時不具法律效力的見證身分作為核心敘事。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">從破碎到差遣的救恩範式</div>
+          <div class="legacy-body">她完整的生命弧線——從被七個鬼纏身,到蒙醫治、供給、見證、被差遣——成為後世無數曾經歷深度破碎(無論是屬靈的、心理的或社會處境上的邊緣化)之人,理解自己在神救贖計畫中仍有份的重要典範。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">持守到底的忠心典範</div>
+          <div class="legacy-body">當多數門徒因懼怕而逃散時,她始終在場——十字架下、埋葬時、復活的清晨。這種在最黑暗的處境中依然選擇不離開的忠心,成為歷代信徒面對苦難與逼迫時,反覆被引用的榜樣。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「抹大拉的馬利亞就去告訴門徒說：「我已經看見了主。」他又將主對她說的這話告訴他們。」</div>
+      <div class="final-verse-ref">約翰福音 20:18</div>
+    </div>
+
+    <div class="final-question">如果你曾經是那個「被七個鬼纏身」的人，而神此刻要差你去告訴別人一件關於祂的真實好消息——即使一開始沒有人相信你，你願意像她一樣，還是選擇說出口嗎？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 馬利亞 <span>Μαρία ἡ Μαγδαληνή</span> · 復活的第一位見證人 · 使徒的使徒</div>
+
+</body>
+</html>

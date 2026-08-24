@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>但以理 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">但以理</h1>
+  <span class="hero-name-en">Daniel · דָּנִיֵּאל</span>
+  <p class="hero-slogan">「禁令規定三十天內不可向神明祈求，違者丟進獅子坑——<br>但以理照舊「一日三次，雙膝跪在他神面前禱告感謝，與素常一樣」。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">主前約 605–536 年</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">INFJ · 提倡者型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">但以理書全書</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">被擄猶大貴族 · 巴比倫與波斯宮廷謀士</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他年少時被擄離家鄉、被迫改名、被迫接受異教教育——這一切他都無法選擇；他唯一能選擇的，是要不要讓自己的心也被擄去。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">主前約 605–536 年<br>猶大亡國、被擄巴比倫、波斯帝國興起</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">多重身份</span>
+        <div class="info-cell-value">猶大王室或貴族後裔 · 被擄少年<br>巴比倫與波斯宮廷的謀士與行政官</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">猶大 →<br>巴比倫（尼布甲尼撒宮廷）→ 波斯帝國宮廷</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">背景</span>
+        <div class="info-cell-value">尼布甲尼撒攻陷耶路撒冷後被擄的貴族少年之一<br>被改名為伯提沙撒，卻始終持守自己的信仰身分</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">但以理書全書<br>（前半敘事體，後半啟示異象體）</div>
+      </div>
+    </div>
+
+    <p>但以理是主前605年尼布甲尼撒第一次攻陷耶路撒冷後，被擄往巴比倫的猶大王室或貴族少年之一——經文特別記載，被選入宮的少年「要求他們是沒有殘疾、相貌俊美、通達各樣學問、知識聰明俱備、足能侍立在王宮裡的」，這意味著但以理與他的三位同伴（哈拿尼雅、米沙利、亞撒利雅）從一開始就是被精心挑選出來、要被系統性地「巴比倫化」的一群人——他們被賜與新的巴比倫名字（但以理改名伯提沙撒），要學習迦勒底的言語文字，要吃王所指定的膳食。</p>
+    <p>第六至五世紀之交的近東世界，正經歷著巨大的帝國更替——巴比倫帝國的興衰、波斯帝國的崛起，猶大人在這段動盪中經歷了亡國、被擄、以及此後波斯居魯士王允許歸回重建的完整歷程。但以理的一生幾乎完整地橫跨了這整段被擄與歸回的歷史，從少年到年邁，先後在尼布甲尼撒、伯沙撒、大流士、居魯士等多位君王治下擔任要職。他的故事之所以震撼人心，正在於他身處一個完全異教、且擁有絕對權力可以強制同化他的帝國體制之中，卻在飲食、禱告這些看似日常卻極其關鍵的細節上，一次又一次地選擇持守自己的信仰身分，而不是隨波逐流地融入。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">他的一生反覆面對同一個核心抉擇——在一個要求他徹底同化的體制裡，要不要在具體的小事上，依然選擇忠於自己所信的神。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">「立志不以王的膳和王所飲的酒玷污自己」</div>
+        <div class="timeline-body">被擄入宮受訓的但以理，「立志不以王的膳和王所飲的酒玷污自己」（可能涉及祭過偶像的食物或違反猶太潔淨條例），向管理太監的長官懇求改用素菜與水，經過十天試驗，「見他們的面貌比用王膳的一切少年人更加俊美肥胖」。這是他一生第一次、也是最具代表性的一次「在具體的小事上持守信仰立場」的抉擇。</div>
+        <div class="timeline-ref">但 1:8–16</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">解夢尼布甲尼撒——「天上有一位神能顯明奧祕的事」</div>
+        <div class="timeline-body">尼布甲尼撒做了一個令他心裡煩亂的夢，卻要求術士們不僅解夢，還要先說出他夢的內容，違者盡都殺死。但以理與同伴切切禱告，神在異象中將奧祕指示他，他隨即向王坦言：「這奧祕的事……並不是因我的智慧勝過一切活人，乃為使王知道夢的講解。」尼布甲尼撒因此俯伏敬拜，稱他的神「誠然是萬神之神，萬王之主」。</div>
+        <div class="timeline-ref">但 2 章</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">黑暗低谷</span>
+        <div class="timeline-title">三位友人的火窯——但以理不在場的信心考驗</div>
+        <div class="timeline-body">尼布甲尼撒立金像要求全國跪拜，但以理的三位同伴沙得拉、米煞、亞伯尼歌拒絕，被扔入烈火窯中卻毫髮無傷，「並沒有火燒的氣味」。這段記載中但以理本人並未出現（可能當時另有公務），卻清楚顯示這種「即使性命攸關也不妥協」的信心典範，是這群被擄少年群體共同持守的原則，而非但以理一人的孤例。</div>
+        <div class="timeline-ref">但 3 章</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">牆上的字——「你被稱在天平裡，顯出你的虧欠」</div>
+        <div class="timeline-body">伯沙撒王設大筵席，用擄自耶路撒冷聖殿的器皿飲酒褻瀆，忽然有指頭出現，在牆上寫字，滿朝惶恐無人能解，唯獨但以理被召來，直言不諱地指出王「已將自己高舉，above諸神」，並解讀「彌尼，彌尼，提客勒，烏法珥新」為神數算他的國、稱他的虧欠、將他的國分裂。當夜伯沙撒就被殺，波斯帝國取代巴比倫。</div>
+        <div class="timeline-ref">但 5 章</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">獅子坑——「一日三次，雙膝跪在他神面前禱告」</div>
+        <div class="timeline-body">大流士王治下，其他官員因嫉妒但以理的地位，設計慫恿王頒布三十天內不可向神明祈求的禁令，違者丟入獅子坑。但以理「知道這禁令蓋了玉璽，就到自己家裡（他樓上的窗戶開向耶路撒冷），一日三次，雙膝跪在他神面前，禱告感謝，與素常一樣」——他沒有改變自己的習慣，也沒有偷偷躲起來祈禱，而是照常在敞開的窗前禱告。他被扔入獅子坑，神差遣使者封住獅子的口，次日毫髮無傷地被救出。</div>
+        <div class="timeline-ref">但 6 章</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">四獸異象與人子的異象——末世啟示的領受者</div>
+        <div class="timeline-body">但以理書後半部記載他晚年所領受的一系列末世性異象——四獸代表興衰更替的帝國、以及「有一位像人子的，駕著天雲而來……得了權柄、榮耀、國度，使各方各國各族的人都事奉他。他的權柄是永遠的，不能廢去；他的國必不敗壞」。這段「人子」異象，成為此後新約中耶穌自稱最重要的稱號來源之一。</div>
+        <div class="timeline-ref">但 7 章</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">「你且去等候結局，因為你必安歇」</div>
+        <div class="timeline-body">但以理書結尾，天使對年邁的但以理說：「但以理啊，你只管去，因為這話已經隱藏封閉，直到末時……你且去等候結局，因為你必安歇，到了末期，你必起來，享受你的福分。」這位一生忠心的老人，得到了一個關於死後復活與永恆盼望的清晰應許，作為他漫長而忠心之一生的終章。</div>
+        <div class="timeline-ref">但 12:9, 13</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他一生所面對的，從來不是「要不要背叛信仰」這種戲劇性的大抉擇，而是一連串「這件小事，要不要照常持守」的日常選擇。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">在異教體制中，忠於神必須落實在具體的日常細節上</div>
+          <div class="soul-body">從飲食的選擇、到禱告習慣的持守，他一生反覆展現一種信念：信仰的忠誠不是抽象的內心堅持，而必須在最具體、最容易被忽略的日常細節中，被清楚地活出來。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">在極權處境中依然保持誠實而不諂媚的直言</div>
+          <div class="soul-body">面對尼布甲尼撒與伯沙撒，他從不因對方是掌握生殺大權的君王，就說討好的話——牆上的字，他直接了當地指出王的虧欠與即將到來的審判，毫不迴避。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">沉穩、有條理，擅長在壓力下清晰地解讀與表達</div>
+          <div class="soul-body">無論是解夢、解讀異象，還是向掌權者陳述神的旨意，他總能在極大的壓力與生命危險下，保持清晰的思路與有條理的表達，這種沉穩的特質貫穿他一生的公開場合表現。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">（材料有限——聖經對他的記載幾乎全是正面的忠心典範）</div>
+          <div class="soul-body">但以理書中的但以理，極少展現出明顯的性格弱點或失敗記錄——這使他在舊約人物中，成為少數幾乎沒有被記載重大過犯的角色之一，這是敘事焦點使然，而非暗示他毫無人性掙扎。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">被賜下解讀異夢異象的特殊恩賜，晚年更親自領受末世啟示</div>
+          <div class="soul-body">他一生反覆被神賜下解讀奧祕異夢的能力，晚年更親自成為領受重大末世性異象的先知——但以理書後半部的異象內容，深刻影響了此後猶太教與基督教末世論的發展，也是舊約中啟示文學最重要的代表作之一。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">但以理最深刻的智慧，或許在於他清楚分辨了「必須妥協的事」與「絕不能妥協的事」之間的界線。他學習迦勒底的言語文字、接受巴比倫的新名字、在異教宮廷中擔任要職——這些他都接受了，因為這些屬於文化與行政層面的適應，不觸及他信仰的核心。然而在飲食（可能涉及潔淨條例與偶像祭物）與禱告（對神獨一敬拜的具體實踐）這兩件事上，他卻堅持不肯讓步，即使代價可能是死亡。這種精準的分辨力，提醒我們：活在一個要求同化的處境中，並不代表必須在每一件事上都固守己見，也不代表可以在任何事上隨波逐流——真正的智慧，在於清楚看見哪些是可以彈性適應的外在形式，哪些是絕不能妥協的信仰核心。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">INFJ</span>
+      <div class="mbti-name">提倡者型 · 被擄之地的忠心者</div>
+      <div class="mbti-slogan">「他知道禁令已經蓋了玉璽，卻沒有換一種方式禱告——他只是照常打開那扇朝向耶路撒冷的窗戶。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">他反覆展現出對神奧祕啟示極其深刻的洞察與領受能力——解夢、解讀牆上的字、領受末世異象，這種能穿透表象、直達核心意義的洞察力，是他一生先知性恩賜最核心的展現。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Fe · 外向情感</span>
+          <div class="mbti-fn-body">他在異教宮廷中始終維持著得體而受人敬重的人際關係——「太監長既很喜愛但以理」，同時他對同伴（沙得拉、米煞、亞伯尼歌）與同胞的處境，也展現出深切的關懷與代求，這種對群體和諧與他人福祉的關注，貫穿他的服事生涯。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ti · 內向思考</span>
+          <div class="mbti-fn-body">他向掌權者陳述異象與解夢時，展現出清晰、有邏輯條理的分析與表達能力——牆上的字被他逐字拆解、精確解讀，顯示出相當程度的邏輯分析能力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Se · 外向實感</span>
+          <div class="mbti-fn-body">他不以當下具體的生存威脅（獅子坑、烈火窯）作為調整自己行為的依據——這種對眼前立即性危險相對「無感」、堅持既有原則的態度，某種程度上反映出劣勢外向實感者傾向於讓內在原則凌駕於當下具體處境的壓力之上。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最重要的關係，是與那位在異教宮廷中依然向他啟示奧祕、並差遣使者封住獅子之口的神。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">耶</div>
+          <div class="relation-name">耶和華神</div>
+          <div class="relation-type-badge">賜他智慧異象、並在獅子坑中親自搭救的主</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">神反覆透過但以理向掌權的君王彰顯自己的主權——解夢、解讀牆上的字、獅子坑中的搭救——每一次都在向這些自認掌握絕對權力的君王證明，真正掌管萬國命運的，是那位但以理所敬拜的神。這段關係展現出神如何透過一位忠心的僕人，在異教權力核心持續見證自己的主權。</div>
+          <div class="relation-ref">但 2:19–23, 6:22</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">沙</div>
+          <div class="relation-name">沙得拉、米煞、亞伯尼歌</div>
+          <div class="relation-type-badge">一同被擄、一同持守信仰立場的摯友</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">這三位同伴與但以理一同被擄、一同拒絕王的膳食、一同在異教宮廷中持守信仰立場——他們拒絕跪拜金像、在烈火窯中毫髮無傷的見證，與但以理在獅子坑中的經歷相互呼應，共同構成了「在極權處境中群體性堅守信仰」的完整典範。</div>
+          <div class="relation-ref">但 1:6–7, 3 章</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">尼</div>
+          <div class="relation-name">尼布甲尼撒</div>
+          <div class="relation-type-badge">他所服事、最終被他引導俯伏敬拜真神的君王</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">尼布甲尼撒起初威脅要殺盡所有解夢士，但以理卻使他親眼見證神的大能，最終「俯伏在地，向但以理下拜，並且吩咐人給他奉上供物和香品」，甚至在此後親身經歷被貶為獸類生活的審判後，「稱讚讚美尊敬活到永遠的神」——這段長期的互動，展現出一位驕傲的君王，如何逐步在但以理的見證下，認識並敬畏真神。</div>
+          <div class="relation-ref">但 2:46–47 · 但 4 章</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">大</div>
+          <div class="relation-name">大流士王</div>
+          <div class="relation-type-badge">深愛他、卻被小人所惑而簽下禁令的君王</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">大流士王極其看重但以理，甚至「想立他治理通國」，這正是引發其他官員嫉妒陷害的根源。但以理被扔入獅子坑後，大流士「終夜禁食，無人拿樂器到他面前，並且睡不著覺」，天一亮便急忙前往獅子坑查看——這段記載展現出這位君王對但以理發自內心的看重與掛念。</div>
+          <div class="relation-ref">但 6:1–3, 18–23</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「有一位像人子的，駕著天雲而來……得了權柄、榮耀、國度」——但以理所領受的這個異象，此後成為耶穌最重要的自我稱號的直接來源。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「我在夜間的異象中觀看，見有一位像人子的，駕著天雲而來，被領到亙古常在者面前，得了權柄、榮耀、國度，使各方各國各族的人都事奉他。他的權柄是永遠的，不能廢去；他的國必不敗壞。」</div>
+      <div class="verse-ref">但以理書 7:13–14</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">בַּר אֱנָשׁ</span>
+        <div class="word-transliteration">bar enash · 人子 · 亞蘭文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「人的兒子」，字面指一個具有人類形貌的存在，這個詞組在但以理書七章的異象中，用以描述一位與地上興衰更替的獸性帝國形成鮮明對比、被賦予永恆國度的天上人物。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">耶穌在福音書中最常用來稱呼自己的稱號，正是「人子」——這個稱號直接取自但以理書七章的異象，宣告祂自己就是那位要「駕著天雲而來」、領受永遠國度的那一位。這使得但以理書七章成為新約基督論中，理解耶穌自我認知與身分宣告最重要的舊約背景文本之一。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">מְנֵא מְנֵא תְּקֵל וּפַרְסִין</span>
+        <div class="word-transliteration">mene mene tekel u-parsin · 彌尼彌尼提客勒烏法珥新 · 亞蘭文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">字面涉及重量單位的雙關語——「彌尼」（彌拿，一種重量單位，也有「數算」之意）、「提客勒」（舍客勒，也有「稱重、衡量」之意）、「毗勒斯／烏法珥新」（半舍客勒，也有「分裂」之意）。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">但以理的解讀充分運用了這些字詞的雙關語意——神已經數算伯沙撒國度的年日、用天平稱他的份量顯出他的虧欠、他的國要分裂歸給瑪代人和波斯人。這段記載展現出，神的審判信息有時會以極其精巧、卻也極其直白的方式，向那些自恃掌握絕對權力的統治者發出警告。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">在異教體制中持守信仰身分的典範</div>
+      <div class="theology-insight-body">但以理的一生確立了聖經中一種重要的信仰實踐模式——不是透過公開反抗或退出體制，而是在體制內謹慎地分辨可以適應與不可妥協之處，並在具體的日常細節中持續實踐忠誠。這對此後歷代身處異教或世俗權力結構中的信徒，提供了極具操作性的信仰實踐指引。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">啟示文學：末世盼望的重要基石</div>
+      <div class="theology-insight-body">但以理書後半部的異象內容——四獸、人子、七十個七等——構成了舊約啟示文學最重要的代表作，深刻影響了此後兩約之間猶太教末世論的發展，也為新約啟示錄的寫作提供了大量的意象與神學框架。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">神的主權超越一切地上帝國的興衰</div>
+      <div class="theology-insight-body">但以理書反覆展現的核心神學主題，是地上一切強大的帝國（巴比倫、瑪代波斯）終將興衰更替，唯獨神所設立的國度「永不敗壞」——這對被擄、亡國、身處異族統治下的猶大人，提供了極其重要的盼望根基：眼前的權勢不是永恆的，真正掌權的是耶和華。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">約瑟同樣被擄到異邦（埃及），因解夢的恩賜受到法老的重用，最終成為僅次於法老的宰相，在異教宮廷中持守對神的忠誠</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">但以理與約瑟的經歷高度相似——同樣是被迫離開故土、同樣因解夢恩賜獲得掌權者的信任、同樣在異教權力核心中持守信仰立場，兩人共同構成舊約中『在異邦忠心事奉神』這一敘事母題最重要的兩位代表人物</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督親自成就了真正的「約瑟」與「但以理」——祂雖然「本有神的形像……反倒虛己，取了奴僕的形像」，降卑進入這個世界的權力結構之中，卻始終持守對父神完全的忠誠與順服（腓 2:6–8）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">沙得拉、米煞、亞伯尼歌被扔入烈火窯中卻毫髮無傷，「並沒有火燒的氣味」，甚至有「一位好像神子」的人與他們同在火中</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">但以理在獅子坑中同樣毫髮無傷、神差遣使者封住獅子的口——兩段記載都展現出，神的同在能夠使祂的僕人，在看似必死無疑的極端處境中，得到超乎尋常的保守</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督親自應許門徒「你們在世上有苦難，但你們可以放心，我已經勝了世界」，成就了對一切在患難中忠心之人的終極保護與得勝（約 16:33）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">但以理領受異象，見「一位像人子的，駕著天雲而來……得了權柄、榮耀、國度」，這個異象超越了地上一切興衰更替的帝國，指向一個永恆不敗壞的國度</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">耶穌在受審時，面對大祭司的質問，直接引用這段異象宣告自己的身分：「後來你們要看見人子坐在那權能者的右邊，駕著天上的雲降臨」——祂公開地將自己等同於但以理所見異象中的那一位</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督親自成就了但以理異象中「人子」的終極應驗，祂的國度確實「永不敗壞」，並要在末後的日子「駕著天雲」再來（太 26:64 · 啟 1:7）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你正身處一個要求你在信仰或價值觀上妥協的環境，卻不確定該在哪些事上堅持、哪些事上可以彈性——這一頁是為你寫的。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">但以理命中的是一種在當代社會極其普遍的處境：身處一個主流文化或體制的價值觀，與自己內在信念存在張力的環境中——職場、學校、甚至家庭——需要持續地分辨，哪些是可以適應的外在形式，哪些是絕不能讓步的核心信念。他的故事提醒我們，這種分辨不需要透過戲劇性的公開對抗來實踐，反而常常體現在最日常、最容易被忽略的具體選擇之中——一頓飯怎麼吃、一個習慣要不要因為外在壓力而改變。真正的忠誠，往往就藏在這些看似微小、卻持續累積的日常抉擇裡。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你目前身處的環境（職場、社群、文化氛圍），有沒有某種要求你逐漸同化、卻與你核心價值相衝突的壓力？你是如何分辨哪些可以適應、哪些絕不能妥協的？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">但以理在飲食這件小事上「立志」持守立場——你生活中有沒有一件看似微不足道、卻對你的信念持守具有象徵意義的具體習慣？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">面對禁令，他沒有偷偷改變禱告方式，而是「照常」打開窗戶禱告。你面對壓力時，傾向於低調地妥協退讓，還是像他一樣，坦然地持守原本的習慣？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">他在異教宮廷中，既適應了新的語言、新的名字，又堅持了信仰的核心。你如何看待「文化適應」與「信仰持守」之間，哪些是可以彈性、哪些是不能讓步的界線？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 但以理</span>
+        <div class="gen-title">示範劇本：在具體的日常細節中，持續而不張揚地堅守信仰核心</div>
+        <div class="gen-body">他一生的模式高度一致——不透過公開的對抗或戲劇性的反叛，而是在飲食、禱告這些具體而持續的日常實踐中，安靜卻堅定地持守自己的信仰身分，即使代價可能是生命危險。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 沙得拉、米煞、亞伯尼歌</span>
+        <div class="gen-title">同心而非孤立：同伴們延續並強化了這種群體性的堅守</div>
+        <div class="gen-body">但以理的三位同伴在他不在場的處境中（金像的考驗），同樣展現出毫不妥協的信仰堅持——這顯示但以理所展現的忠誠模式，不是他一人的孤例，而是整個被擄群體中，透過彼此的榜樣與陪伴，共同建立起的信仰持守文化。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在但以理的故事中，展現在神一次又一次在具體的危險處境中親自介入的保守——解夢的智慧、獅子坑中封住獅子之口、烈火窯中的同在。這提醒我們，恩典打斷『被迫同化』這種文化壓力的方式，不是要求信徒完全退出所處的環境，而是在信徒選擇於具體之處持守忠誠時，神親自介入並施行保護與印證，讓這份忠誠得以在異教處境中，持續發出見證的力量。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那個在異教宮廷裡，堅持吃素菜、堅持照常禱告的年輕人，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#在不友善的環境裡堅持信念</span>
+      <span class="tag">#小事上的堅持最重要</span>
+      <span class="tag">#分辨什麼能妥協什麼不能</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>但以理的故事，放到現代，大概就是一個被公司外派到完全陌生文化的年輕員工——換了新名字（公司要求的英文名），要學新的語言，接受完全不同的工作方式。這些他都接受了。</p>
+      <p>但公司餐廳提供的餐點，可能涉及他不願意吃的東西，他就主動提出：讓我改吃素食就好，給我十天試試，看看效果會不會比較差。結果十天後，他的狀態比吃『特餐』的同事還好。這是他第一次，在一件看似小事的地方，劃出了自己的底線。</p>
+      <p>後來他因為解夢的能力被國王賞識，一路做到高官。有次國王做了個噩夢，要求解夢師不但要解夢，還要先猜出他夢的內容，猜不出來就全部處死。但以理禱告後得到答案，準確說出了國王夢的內容與含義，國王當場對他下拜。</p>
+      <p>他晚年最有名的一段，是升官到快被立為總理的時候，同事嫉妒他，設計慫恿國王頒布一條法律：三十天內誰都不准向任何神祈求，違者丟進獅子坑。但以理知道這條法律已經生效，他沒有改變什麼——還是照常一天三次，跪在那扇朝向耶路撒冷的窗前禱告，門都沒關。</p>
+      <p>他被抓、被丟進獅子坑，國王整晚沒睡著。隔天一早衝去看，但以理毫髮無傷，說：我的神差遣使者封住了獅子的口。國王高興壞了，把陷害他的人全丟進坑裡餵獅子。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——而但以理這塊石頭，被放進一個什麼都要求你改變的環境裡，卻在最容易被忽略的小事上，一次又一次，選擇了不變。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你正處在一個需要不斷適應、甚至妥協的環境——先別急著全盤拒絕或全盤接受。但以理接受了新名字、新語言，卻在飲食跟禱告這兩件事上劃了線。找到那條屬於你的界線，可能比一味地對抗或一味地妥協都更需要智慧。</p>
+      <p style="margin-top:12px;">你堅持的方式，不一定要很戲劇化。但以理沒有公開抗議禁令，他只是照常打開窗戶禱告——不張揚，卻也不隱藏。有時候，最有力的堅持，就是這種不改變的日常。</p>
+      <p style="margin-top:12px;">還有，你的忠誠，可能正在被某個你完全不知道的人默默看著。國王整晚睡不著，天一亮就衝去看但以理有沒有事——你此刻默默堅持的某件事，可能正被一個你想不到的人記在心裡。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，去找到那一件你可以「照常」做的小事——不用張揚，只要不改變。</p>
+    </div>
+
+    <div class="insight-box">在當代跨文化適應與職場信仰實踐的討論中，但以理的模式提供了一個極具參考價值的框架——區分『文化性的適應』（語言、名稱、工作方式）與『核心價值的堅持』（道德底線、信仰實踐），並允許在前者上保持靈活，在後者上保持一致，這對正處於文化衝突或跨國職涯處境的現代人，提供了具體可操作的實踐智慧。組織心理學也指出，那些能清楚劃定『不可妥協底線』卻在其他方面展現彈性的個人，往往比全面對抗或全面順從者，更能在異質環境中長期維持心理健康與身分認同的穩定。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他留下的不只是一段忠心的見證，更是一整套末世啟示的異象，深刻影響了此後兩千多年猶太教與基督教對神主權與末後盼望的理解。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">在異教體制中持守信仰的典範</div>
+          <div class="legacy-body">他一生在具體日常細節中堅持信仰立場、卻不透過公開對抗的實踐模式，成為此後歷代身處異教或世俗權力結構下的信徒，理解如何在體制內持守核心信仰時，最重要的聖經典範。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">「人子」稱號的直接來源</div>
+          <div class="legacy-body">但以理書七章的異象，成為耶穌最常用來自稱的「人子」這一稱號最重要的舊約來源，深刻影響了新約基督論對耶穌身分與末後榮耀國度的理解與宣告。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">啟示文學的重要基石</div>
+          <div class="legacy-body">他晚年所領受的異象內容，構成舊約啟示文學最重要的代表作之一，為此後兩約之間猶太教末世論、以及新約啟示錄的寫作，提供了大量的意象與神學框架。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">神主權超越地上帝國的神學宣告</div>
+          <div class="legacy-body">但以理書反覆展現「地上帝國興衰更替、唯獨神的國永不敗壞」這一核心主題，為歷代身處強權統治、亡國或流離處境下的信徒，提供了持久而堅實的屬靈盼望根基。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">V</div>
+        <div>
+          <div class="legacy-title">禱告生活的堅持典範</div>
+          <div class="legacy-body">他「一日三次，雙膝跪在他神面前禱告感謝，與素常一樣」的記載，成為此後教會歷史中，理解「持續而規律的禱告生活，即使面對外在壓力威脅也不改變」這一屬靈紀律時，最鮮明的聖經範例。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「你且去等候結局，因為你必安歇。到了末期，你必起來，享受你的福分。」</div>
+      <div class="final-verse-ref">但以理書 12:13</div>
+    </div>
+
+    <div class="final-question">如果你此刻正身處一個要求你逐漸同化、放下核心信念的環境——你是否已經清楚分辨出，哪些是可以適應的外在形式，哪些是你即使代價再大，也要像但以理一樣，「照常」持守的核心？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 但以理 <span>דָּנִיֵּאל</span> · 被擄之地的忠心者 · 獅子坑中不變的禱告者</div>
+
+</body>
+</html>

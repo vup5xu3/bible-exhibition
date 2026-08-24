@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>亞拿尼亞與撒非喇 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">亞拿尼亞與撒非喇</h1>
+  <span class="hero-name-en">Ananias and Sapphira · Ἀνανίας καὶ Σάπφιρα</span>
+  <p class="hero-slogan">「他們不是被要求要獻上全部,他們是被自己「想要顯得比實際更慷慨」的念頭害死的——<br>彼得的問題直指核心：「你為什麼心裡起意欺哄聖靈呢？」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">第一世紀 · 主後約 33 年</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ESTJ · 總經理型（夫妻共同展現）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">使徒行傳 5:1–11（唯一記載）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">欺哄聖靈的夫妻 · 初代教會第一場內部審判</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">在一個「凡物公用、甘心奉獻」的美好群體氛圍中，這對夫妻選擇了一條看似無傷大雅、實則致命的捷徑——假裝比實際更慷慨。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">第一世紀初<br>耶路撒冷教會凡物公用的黃金時期</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">多重身份</span>
+        <div class="info-cell-value">耶路撒冷教會的信徒夫妻<br>擁有一份田產的中產階級信徒</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">（未載）→<br>耶路撒冷</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">背景</span>
+        <div class="info-cell-value">在教會『凡物公用』的氛圍中，賣了田產<br>私自留下幾分價銀，卻宣稱獻上全部</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">使徒行傳 5:1–11（唯一、也是完整的記載）</div>
+      </div>
+    </div>
+
+    <p>亞拿尼亞與撒非喇的故事，緊接在使徒行傳第四章末尾——巴拿巴賣了田產，把價銀全數放在使徒腳前的慷慨典範之後。這個敘事上的並置絕非偶然：路加特意將這兩個故事前後相連，形成一組鮮明的對照——一個是真誠、毫無保留的奉獻，一個是虛偽、精心算計的表演。第一世紀初的耶路撒冷教會，正處於一段極其特殊的『凡物公用』時期，「都是大家所有的」，信徒們出於自願、發自內心的愛，彼此供應——這不是一項強制性的律法規定，而是聖靈感動下自然湧現的慷慨。</p>
+    <p>亞拿尼亞和妻子撒非喇「賣了田產」，這個行動本身與其他信徒並無二致；問題出在接下來的選擇——他們「私自留下幾分」，卻在交出剩餘價銀時，讓使徒與眾人以為這就是全部的賣價。經文特別強調「他的妻子也知情」，顯示這不是一時衝動的個人失誤，而是夫妻二人事先商議、共同策劃的一場精心算計。值得注意的是，彼得後來明確指出，問題的核心從來不是他們是否奉獻了全部財產——「田地還沒有賣，不是你自己的嗎？既賣了，價銀不是你作主嗎？」——真正致命的，是他們選擇用謊言，換取一份他們並未真正付出的名聲與敬重。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">這是使徒行傳中節奏最快、也最令人震驚的一段記載——從說謊到仆倒斷氣，中間只隔了彼得的一句話。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">在慷慨奉獻的氛圍中，賣了田產</div>
+        <div class="timeline-body">承接著巴拿巴慷慨奉獻的典範，亞拿尼亞與撒非喇同樣「賣了田產」——這個行動本身，是他們對教會凡物公用之美好見證的一種回應與參與。截至此刻，他們的行為與其他信徒並無二致。</div>
+        <div class="timeline-ref">徒 5:1</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">黑暗低谷</span>
+        <div class="timeline-title">「他的妻子也知情，把價銀私自留下幾分」——共謀的欺瞞</div>
+        <div class="timeline-body">路加特別強調「他的妻子也知情」——這清楚指出兩人是共同商議、聯手策劃了這場欺瞞：私自留下部分價銀，卻讓使徒與眾人誤以為這是變賣田產的全部所得。這不是一時失察或誤會，而是一場經過雙方同意的、有預謀的表演。</div>
+        <div class="timeline-ref">徒 5:2</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">彼得的質問——「你為什麼心裡起意欺哄聖靈」</div>
+        <div class="timeline-body">彼得直接對亞拿尼亞說：「你為什麼心裡起意欺哄聖靈，把田地的價銀私自留下幾分呢？田地還沒有賣，不是你自己的嗎？既賣了，價銀不是你作主嗎？你怎麼心裡起這意念呢？你不是欺哄人，是欺哄神了。」這段話精準地指出了問題的核心：他們有完全的自由，可以奉獻全部、部分、或完全不奉獻，這都不是罪；真正的罪，是他們選擇用謊言，偽裝自己的奉獻程度。</div>
+        <div class="timeline-ref">徒 5:3–4</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">黑暗低谷</span>
+        <div class="timeline-title">亞拿尼亞仆倒斷氣——「聽見這話，就仆倒，斷了氣」</div>
+        <div class="timeline-body">「亞拿尼亞聽見這話，就仆倒，斷了氣；聽見的人都甚懼怕。有些少年人起來，把他包裹，抬出去埋葬了。」這是新約中極其罕見、也極具震撼力的一段記載——在初代教會建立的最初期，神以極其直接而嚴厲的方式，向整個信仰群體宣告了欺哄聖靈這件事的嚴重性。</div>
+        <div class="timeline-ref">徒 5:5–6</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">黑暗低谷</span>
+        <div class="timeline-title">撒非喇的重複謊言——「你們為什麼同心試探主的靈呢」</div>
+        <div class="timeline-body">約過了三小時，撒非喇進來，卻不知道丈夫已經發生的事。彼得問她賣田地的價銀是否就是這個數目，她仍然選擇「就是這些」的謊言，重複了與丈夫相同的欺騙。彼得說：「你們為什麼同心試探主的靈呢？埋葬你丈夫之人的腳已到門口，他們也要把你抬出去。」撒非喇「立刻仆倒在彼得腳前，斷了氣」。</div>
+        <div class="timeline-ref">徒 5:7–10</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">「全教會和聽見這事的人都甚懼怕」——事件的深遠影響</div>
+        <div class="timeline-body">「全教會和聽見這事的人都甚懼怕」——這是初代教會建立初期一次極其震撼的事件，直接向整個信仰群體確立了一個嚴肅的原則：教會的凡物公用與彼此相愛，建立在誠實與真誠之上，任何形式的虛偽表演，都是對聖靈同在之神聖臨在的嚴重輕慢。</div>
+        <div class="timeline-ref">徒 5:11</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他們的問題,從來不是不夠慷慨——是想要「看起來」比實際更慷慨，卻不願意付上那份慷慨真正的代價。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">在群體中維持特定形象的重要性，凌駕於誠實之上</div>
+          <div class="soul-body">他們選擇的路徑清楚顯示，他們渴望在教會群體中，享有如同巴拿巴那樣『全然奉獻』的美名與敬重，卻不願意付出與之相稱的真實代價——這種『要形象、不要真相』的核心動機，是整個事件最深層的問題所在。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">（材料有限——聖經未記載他們任何正面的美德）</div>
+          <div class="soul-body">路加的敘事焦點完全集中於這場欺瞞事件本身，沒有留下任何關於他們此前生活或品格的正面記載。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">共同商議、精心策劃的雙人合作</div>
+          <div class="soul-body">經文特別強調『他的妻子也知情』，顯示這不是單方面的衝動決定，而是夫妻二人事先溝通協調、共同執行的一項計畫——這種夫妻同心協力的模式，本可以成就極大的美善（如巴拿巴的單方奉獻），卻在這裡被用於一場精心設計的欺瞞。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">用宗教性的表演，掩蓋內心真實的算計</div>
+          <div class="soul-body">他們沒有選擇公開、誠實地說『我們只奉獻部分』——這原本完全是他們的自由與權利——而是選擇了一條更複雜、也更危險的路：偽裝成全然的奉獻，藉此換取他們原本沒有資格得到的名聲與敬重。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">他們的欺瞞被形容為「欺哄聖靈」而非單純的「欺哄人」</div>
+          <div class="soul-body">彼得明確指出「你不是欺哄人，是欺哄神了」——這句話揭示了一個深刻的屬靈原則：在聖靈同在、真實運行的信仰群體中，任何形式的虛偽與欺瞞，本質上都不只是對人的誤導，更是對神自己臨在的輕慢與試探。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">亞拿尼亞與撒非喇的故事，最容易被誤解的一點，是以為問題出在『他們沒有奉獻全部財產』——但彼得的話清楚駁斥了這個誤解：「田地還沒有賣，不是你自己的嗎？既賣了，價銀不是你作主嗎？」他們擁有完全的自由，可以選擇奉獻任何比例，甚至完全不奉獻，這都不構成任何罪。真正致命的，是他們選擇了『謊言』——想要不勞而獲地換取一份與巴拿巴同等的、全然奉獻者的美名。這個故事因此對每一個身處信仰群體、渴望被他人看重與敬佩的人，提出了一個尖銳的提醒：比起我們實際做了多少，我們更容易被試探的，往往是想要『看起來』做了多少。而神對這種虛偽表演的態度，遠比我們想像的更加嚴肅。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ESTJ</span>
+      <div class="mbti-name">總經理型 · 共謀欺瞞的夫妻</div>
+      <div class="mbti-slogan">「他們本可以誠實地說「這只是部分」，卻選擇了一條看起來更體面、實則致命的捷徑。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">他們展現出相當程度的規劃與執行能力——賣田產、商議留下部分價銀的具體金額、協調彼此的說詞——這整個過程需要清晰的組織與執行力，只是這份能力被用在了錯誤的方向上。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Si · 內向實感</span>
+          <div class="mbti-fn-body">他們高度關注在群體中既有的、可被具體衡量的形象與地位（如同巴拿巴那樣『全然奉獻』的美名），並試圖透過具體的行動（假裝的奉獻）來維持或提升這個形象。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ne · 外向直覺</span>
+          <div class="mbti-fn-body">他們設想了一種『可能可以蒙混過關』的可能性——透過部分事實（確實賣了田產、確實奉獻了一部分）來掩蓋整體的欺瞞，這種試圖利用模糊空間操作結果的思維，顯示了對可能性的某種（誤用的）運用。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">他們對自己內在真實動機（渴望被看重、卻不願付出相稱代價）的自我覺察似乎極為有限——若他們曾誠實地面對自己的內心，很可能會意識到這種欺瞞行為，與他們原本想要追求的『誠信』信仰形象，存在著根本性的矛盾。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他們唯一被記載的關係，就是彼此——一對用共謀的謊言，換來雙雙斷氣結局的夫妻。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">彼</div>
+          <div class="relation-name">彼得</div>
+          <div class="relation-type-badge">揭穿其欺瞞、宣告神審判的使徒</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">彼得憑著聖靈的啟示，直接看穿了亞拿尼亞與撒非喇的欺瞞，並清楚地向他們指出問題的核心不在於奉獻的多寡，而在於欺哄聖靈這件事本身。他的話語直接而不留餘地，反映出初代教會領袖在面對信仰群體內部之虛偽時，所展現出的嚴肅態度。</div>
+          <div class="relation-ref">徒 5:3–4, 8–9</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">巴</div>
+          <div class="relation-name">巴拿巴</div>
+          <div class="relation-type-badge">對照 · 真誠奉獻的典範</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">路加特意將巴拿巴毫無保留、真誠奉獻的記載，緊接放在這對夫妻欺瞞事件之前——這種敘事上的並置，形成了一組極其鮮明的對照：同樣是賣田產奉獻教會，一個是完全真誠的委身，一個是精心算計的表演，而神對這兩種行為的回應，截然不同。</div>
+          <div class="relation-ref">徒 4:36–37</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">教</div>
+          <div class="relation-name">耶路撒冷教會全體</div>
+          <div class="relation-type-badge">因這事件而深受震撼的信仰群體</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">「全教會和聽見這事的人都甚懼怕」——這場事件對整個初代教會產生了深遠的警示作用，確立了『在聖靈同在、真實運行的信仰群體中，誠實是不可妥協的底線』這一原則，深刻影響了此後教會對內部誠信議題的重視。</div>
+          <div class="relation-ref">徒 5:11</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「你不是欺哄人，是欺哄神了」——這句話，確立了教會論中一個持續至今的核心原則：教會不只是一群人的組織，更是聖靈真實同在的群體。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「彼得說：「亞拿尼亞！為什麼撒但充滿了你的心，叫你欺哄聖靈，把田地的價銀私自留下幾分呢？……你不是欺哄人，是欺哄神了。」」</div>
+      <div class="verse-ref">使徒行傳 5:3–4</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">ἐνοσφίσατο</span>
+        <div class="word-transliteration">enosphisato · 私自留下 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「私吞、私自扣留」，這個字在七十士譯本中，正是用來描述約書亞記中亞干私自留下當滅之物的行為（書7:1），是新約中極為罕見、卻帶有明確舊約典故連結的用字選擇。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">路加選用與亞干事件相同的動詞，暗示這兩段敘事之間存在著刻意的神學呼應——正如亞干的私自扣留，直接威脅了以色列全會眾在攻打艾城時的整體聖潔與蒙福，亞拿尼亞與撒非喇的私自留下，同樣威脅著初代教會作為聖靈同在之群體的整體純正性。這個字的選用，把新約的事件，穩固地連結進舊約『群體聖潔』這一持續的神學主題之中。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">πειράσαι</span>
+        <div class="word-transliteration">peirasai · 試探 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「試探、測試」，彼得質問撒非喇「你們為什麼同心試探主的靈呢」，這個字帶有『刻意測試、挑戰某個底線』的意涵。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">『試探主的靈』這個表述，將撒非喇夫妻的行為，定性為一種對聖靈之真實同在與鑑察能力的主動挑戰——彷彿是在測試『聖靈真的會知道嗎？教會真的會發現嗎？』這種試探的姿態，比單純的說謊更進一步，觸及了對神屬性本身的懷疑與不敬。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">自由奉獻與虛偽表演的根本差異</div>
+      <div class="theology-insight-body">彼得的話清楚確立了一個重要的神學原則：奉獻的多寡從來不是被要求或衡量的標準——「田地還沒有賣，不是你自己的嗎？」——真正的問題，是選擇欺騙來偽裝奉獻的程度。這對此後教會歷史中，關於什一奉獻、慈善捐輸等議題的討論，提供了重要的神學基礎：神看重的是誠實與甘心樂意的態度，而非機械式的比例要求。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">聖靈的位格性與教會的神聖性</div>
+      <div class="theology-insight-body">彼得將『欺哄聖靈』等同於『欺哄神』，這是新約中對聖靈位格性（即聖靈是神自己，而非單純的抽象力量）最直接的宣告之一。這也確立了教會論的核心原則：教會不僅是一群人的社會性組織，更是聖靈真實內住、運行的神聖群體，任何對這份神聖性的輕慢，都會帶來嚴肅的屬靈後果。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">初代教會建立初期的警示性典範</div>
+      <div class="theology-insight-body">這個事件發生在教會歷史最初期、凡物公用最美好的黃金時代，卻以如此嚴厲的方式呈現——這暗示著，神特別在教會建立的根基階段，透過這個事件，向整個信仰群體確立了『誠實與純正』這一不可妥協的基石，為此後教會的健康發展，樹立了清楚的底線。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">亞干在攻打耶利哥城後，違背神當滅之物的命令，私自留下金銀衣服，藏在自己的帳棚裡，導致以色列人在攻打艾城時遭遇挫敗，最終亞干與全家被石頭打死</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">路加刻意使用與亞干事件相同的動詞（私自留下），把亞拿尼亞與撒非喇的欺瞞，直接連結進這個舊約中『個人的隱密之罪，威脅整個群體聖潔』的經典敘事模式——兩段記載都展現了神對群體聖潔近乎嚴厲的看重</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督親自成就了那使人得以真正潔淨、無需靠隱瞞或表演來維持聖潔形象的救贖——「他被交給人，是為我們的過犯；復活，是為叫我們稱義」（羅 4:25）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">拿答與亞比戶（亞倫的兒子）在祭壇前獻上凡火，是耶和華沒有吩咐他們的，「就有火從耶和華面前出來，把他們燒滅」</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這兩起事件同樣發生在敬拜與奉獻的處境中，同樣涉及對神聖事物的不敬與僭越，也同樣以極其迅速而嚴厲的審判方式作結——兩段記載共同提醒信徒，接近神聖之事，需要懷抱真實而不虛偽的敬畏之心</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督親自成為那使人得以坦然無懼進入至聖所的中保，只要人以誠實的心親近，而非虛偽的表演（來 10:19–22）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你曾經在信仰群體中，做過某件事只是為了「看起來更屬靈」——這一頁是為你寫的。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">亞拿尼亞與撒非喇的故事命中的是一種在信仰群體中極其普遍、卻很少被公開承認的試探：想要在他人眼中，顯得比實際情況更慷慨、更委身、更屬靈。這種試探未必以如此戲劇性的方式呈現，卻可能以更細微的形式，出現在我們的禱告、見證分享、事奉投入的描述之中——我們有多常在無意中，稍微誇大自己的付出，或掩飾自己真實的掙扎，只為了維持某種期待中的形象？他們的故事，是一記嚴厲卻重要的警鐘：神更看重我們誠實的『部分』，勝過我們虛偽的『全部』。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你有沒有在信仰群體中，曾經稍微誇大自己的委身、奉獻、或屬靈經歷，只為了維持某種被期待的形象？那個動機是什麼？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">彼得明確指出，他們原本擁有完全的自由，可以奉獻任何比例，甚至完全不奉獻。你是否也曾經因為害怕『不夠慷慨會被論斷』，而選擇隱瞞自己真實能夠付出的程度？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">他們的欺瞞是夫妻二人共同商議、共同執行的。你身邊有沒有一段關係，你們曾經『同心』做過某件事後來想起來覺得不太誠實的決定？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">全教會因這事件『甚懼怕』。你認為，這種對神聖潔性質的敬畏，在今天的信仰生活中，是否還保有足夠的份量？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 亞拿尼亞與撒非喇</span>
+        <div class="gen-title">應激劇本：用虛偽的表演，換取未曾真正付出的名聲與敬重</div>
+        <div class="gen-body">他們的核心行為模式，是選擇『看起來慷慨』而非『真正誠實』——這反映出一種普遍存在於群體生活中的試探：當群體對某種美德（如全然奉獻）給予高度的敬重時，人很容易被誘惑去偽裝自己也達到了那個標準，而非誠實地承認自己實際的處境與選擇。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · （材料不足以推論下一代的複製或打斷——聖經未記載他們有子女或後續影響）</span>
+        <div class="gen-title">（無可考）</div>
+        <div class="gen-body">聖經沒有記載這對夫妻此後的家族或影響，因此無法進行代際對照分析。然而，這個事件本身，對整個初代教會產生了深遠的警示作用，某種程度上，『全教會和聽見這事的人』都成了這個教訓的承接者。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">這個故事罕見地沒有呈現恩典打斷罪性循環的過程,而是呈現神在教會建立之初,選擇以極其嚴厲的方式,一次性地確立了誠實不可妥協的原則。這提醒我們,恩典的另一面,是神對祂教會純正性的高度看重——祂願意在最初期,用最嚴厲的方式劃下底線,或許正是為了保護此後兩千年,教會得以在誠實與真實的根基上健康發展。這不是恩典的缺席,而是恩典透過審判,守護了一個更長遠的良善。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那對想要看起來比實際更慷慨的夫妻，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#裝慷慨裝過頭</span>
+      <span class="tag">#誠實比完美重要</span>
+      <span class="tag">#教會史上最嚴厲的一課</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>亞拿尼亞和撒非喇的故事，讀起來像是聖經裡少見的『恐怖故事』——說個謊，直接當場暴斃。但如果你仔細看，問題根本不是他們捐得不夠多。</p>
+      <p>當時教會流行一種風氣：大家把房子田產賣掉，把錢奉獻出來，彼此共享。前一段剛好記載了巴拿巴，把整塊田賣了，錢全部交出去。緊接著就是這對夫妻——他們也賣了田，但偷偷留了一部分，卻假裝這就是全部的賣價。</p>
+      <p>彼得一眼就看穿了，直接問亞拿尼亞：你田地沒賣之前是你自己的，賣了以後錢也是你自己決定要不要交出去，這些本來就沒人逼你。你為什麼要騙人，說這是全部？你不是騙人，你是在騙神。話還沒說完，亞拿尼亞當場倒地斷氣。</p>
+      <p>三個小時後，太太撒非喇進來，還不知道發生了什麼事。彼得問她：你們賣田的錢就是這個數目嗎？她還是說了同一個謊。彼得說：你們兩個怎麼串通好一起試探主的靈呢？埋你丈夫的人腳都還在門口，他們也要把你抬出去了。她當場也倒地斷氣。</p>
+      <p>整個故事最關鍵的一句話，是彼得說的：田地是你的，錢也是你的，你要捐多少都可以，這根本不是問題。問題出在，你們選擇了假裝。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——而這對夫妻,提醒我們有些石頭,不是被雕壞的,是自己選擇了一條看似捷徑、實則斷送自己的路。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你曾經在教會或任何群體裡，稍微誇大過自己的付出，或隱藏過自己真實的處境，只為了維持某個形象——先別自我懲罰過頭，但也請認真看待這個提醒：神更在意你的誠實，而不是你看起來有多完美。</p>
+      <p style="margin-top:12px;">你不需要奉獻到全部,才配得被神接納。彼得說得很清楚,那本來就是你的自由。真正的問題,從來不是『你給了多少』,而是『你有沒有誠實』。</p>
+      <p style="margin-top:12px;">如果你正處在一段需要『同心』做決定的關係裡——記得這對夫妻的教訓，兩個人一起做的決定，如果方向錯了，也會一起承擔後果。誠實,值得成為你們共同的底線。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果有一件事你一直在裝，試著誠實地說出真實的情況——哪怕那只是「一部分」。</p>
+    </div>
+
+    <div class="insight-box">在當代社群媒體高度發達、人人都在某種程度上『策展』自己形象的時代，亞拿尼亞與撒非喇的故事，對『表演性慷慨』(performative generosity)這一普遍現象，提供了一記深刻而尖銳的警醒——無論是在社群媒體上展示捐款、還是在信仰群體中誇大自己的委身程度，這種試探跨越時代持續存在。這對正在思考『如何在群體生活中保持真誠，而不被比較與形象的壓力所裹挾』的現代人，提供了重要的反思。而神對這起事件的嚴厲回應，也提醒教會與任何信仰社群：健康的群體文化，需要為誠實(即使是不完美的誠實)創造安全的空間,而非無形中鼓勵成員透過表演來換取認可與敬重。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他們的故事，成為教會歷史上，關於誠實與虛偽最嚴厲、也最令人難忘的一堂課。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">確立誠實作為教會群體不可妥協的底線</div>
+          <div class="legacy-body">這起事件在教會建立最初期發生，此後成為教會歷史中，理解『信仰群體必須建立在誠實而非表演之上』這一原則時，最具警示力量的聖經典範，深刻影響了教會對內部誠信文化的重視。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">澄清自由奉獻與虛偽宣稱的根本區別</div>
+          <div class="legacy-body">彼得對這對夫妻所說的話，成為此後教會歷史中，處理奉獻與捐輸相關教導時，最重要的神學澄清之一——神從不要求特定的比例，卻嚴厲對待任何形式的欺瞞與誇大。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">聖靈位格性的重要神學見證</div>
+          <div class="legacy-body">『欺哄聖靈』即『欺哄神』這句宣告，成為新約中確立聖靈完全神格與位格性最直接的經文依據之一，深刻影響了此後教會歷史中三位一體教義的發展與闡述。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">對表演性信仰的持續警示</div>
+          <div class="legacy-body">這個故事此後持續提醒著歷代教會，警惕任何形式的『屬靈表演』——無論是誇大見證、偽裝委身、或掩飾真實掙扎——這些行為的本質，都與亞拿尼亞和撒非喇當年的欺瞞，有著相同的核心問題。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「彼得說：「亞拿尼亞！……你不是欺哄人，是欺哄神了。」亞拿尼亞聽見這話，就仆倒，斷了氣；聽見的人都甚懼怕。」</div>
+      <div class="final-verse-ref">使徒行傳 5:3–5</div>
+    </div>
+
+    <div class="final-question">如果你此刻正在信仰或生活中的某個角落，維持著一個比真實情況更好看的形象——你願意像神在這起事件中所要求的一樣，選擇誠實的部分，而放下虛偽的全部嗎？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 亞拿尼亞與撒非喇 <span>Ἀνανίας καὶ Σάπφιρα</span> · 欺哄聖靈的夫妻 · 初代教會第一場審判</div>
+
+</body>
+</html>

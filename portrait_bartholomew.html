@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>巴多羅買 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">巴多羅買・拿但業</h1>
+  <span class="hero-name-en">Bartholomew (Nathanael) · Βαρθολομαῖος · נְתַנְאֵל</span>
+  <p class="hero-slogan">「他問「拿撒勒還能出什麼好的嗎」，<br>耶穌卻先替他說了一句：「這是個真以色列人，他心裡沒有詭詐。」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">第一世紀 · 主後約 1–70 年</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">INTP · 邏輯學家型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">約 1:45–51, 21:2<br>太 10:3 · 可 3:18 · 路 6:14</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">無詭詐的以色列人</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他幾乎肯定是同一個人被兩個名字記著——一個是姓氏式的「巴多羅買」，一個是本名「拿但業」。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">第一世紀<br>羅馬治下的加利利</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">多重身份</span>
+        <div class="info-cell-value">十二使徒之一 · 迦拿人<br>熟悉舊約的猶太人</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">迦拿 →<br>加利利、猶太 →（傳統）亞美尼亞、印度</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">背景</span>
+        <div class="info-cell-value">多買（Tolmai）之子（「巴多羅買」意為「多買之子」）<br>對彌賽亞應許有清楚的認識</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">約 1:45–51, 21:2<br>太 10:3 · 可 3:18 · 路 6:14 · 徒 1:13</div>
+      </div>
+    </div>
+
+    <p>「巴多羅買」（Βαρθολομαῖος）字面意思是「多買之子」，這是一個父稱而非本名——就像「巴多買」是姓氏、需要配一個名字一樣。三卷符類福音都把巴多羅買緊接排在腓力之後，而約翰福音從不提「巴多羅買」，卻詳細記載腓力如何找到「拿但業」；使徒行傳的名單裡也沒有拿但業，卻有巴多羅買。這種鏡像般的缺席與出現，是學者普遍認為兩者是同一人的主要依據——拿但業是本名，巴多羅買是加上父稱的正式稱呼，正如西門彼得又稱「巴約拿」（約拿之子）。</p>
+    <p>他出身迦拿——耶穌行第一個神蹟、把水變酒的地方，這或許不是巧合。他對彌賽亞的應許顯然有紮實的認識：腓力才說完「摩西在律法上所寫的和眾先知所記的那一位」，他立刻能提出質疑「拿撒勒還能出什麼好的嗎」——這句話帶著地域偏見（拿撒勒是個名不見經傳的小鎮），卻也顯示他不是隨口接受任何宣稱彌賽亞身分的人，他有自己的判斷標準。而正是這種帶著懷疑、卻願意親自查驗的特質，讓耶穌在他還沒開口自我介紹之前，就給了他一句罕見的稱許。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">他的故事濃縮在一次對話裡，卻是新約中認信速度最快的一次。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">「拿撒勒還能出什麼好的嗎？」</div>
+        <div class="timeline-body">腓力興奮地告訴他「摩西在律法上所寫的和眾先知所記的那一位，我們遇見了，就是……拿撒勒人耶穌」。拿但業的第一反應不是興奮，是質疑——拿撒勒是加利利一個沒有被舊約提及、名聲平平的小鎮。這句話暴露了他心裡真實的偏見，而福音書毫不掩飾地把它記了下來。他沒有假裝立刻相信。</div>
+        <div class="timeline-ref">約 1:45–46</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">「你來看」——他真的去了</div>
+        <div class="timeline-body">面對腓力簡短的回應「你來看」，他沒有繼續爭辯，也沒有拒絕——他去了。這個動作本身值得注意：一個對眼前的宣稱心存懷疑的人，願意親自去查驗，而不是停留在自己的判斷裡。懷疑沒有讓他封閉，反而推動他去確認。</div>
+        <div class="timeline-ref">約 1:46</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">「這是個真以色列人，他心裡沒有詭詐」</div>
+        <div class="timeline-body">耶穌看見他走近，在他還沒開口之前就說：「看哪，這是個真以色列人，他心裡沒有詭詐。」拿但業驚訝地問「你從哪裡知道我呢」，耶穌答：「腓力還沒有招呼你，你在無花果樹底下，我就看見你了。」這句看似平凡的話，對拿但業卻是精準到不可能是巧合的證據——很可能他曾在無花果樹下獨自默想或禱告過一段特別的內容，只有他自己知道。</div>
+        <div class="timeline-ref">約 1:47–48</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">「你是神的兒子，你是以色列的王」</div>
+        <div class="timeline-body">被這句精準的話擊中，他立刻說出全福音書中最快速形成的一句完整認信：「拉比，你是神的兒子，你是以色列的王！」幾分鐘前他還在質疑拿撒勒出不了什麼好的，此刻他說出的認信高度，超過了此後跟隨耶穌三年的多數門徒在同一時期所能達到的程度。耶穌隨即應許他將要看見「天開了，神的使者上去下來在人子身上」——呼應雅各在伯特利的異夢。</div>
+        <div class="timeline-ref">約 1:49–51</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">提比哩亞海邊——復活後的沉默見證</div>
+        <div class="timeline-body">他被列在復活後於提比哩亞海邊捕魚的門徒名單中，僅次於彼得、多馬。此後聖經沒有再記載他的任何一句話。他從一位以最快速度說出最高認信的人，變成一位再無記載言語的沉默使徒——正如許多門徒一樣，最劇烈的宣告之後，往往是漫長而安靜的跟隨。</div>
+        <div class="timeline-ref">約 21:2</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">使徒名單之後——傳統中最壯烈的殉道記載之一</div>
+        <div class="timeline-body">使徒行傳第一章的名單之後，聖經再無記載。教會傳統普遍記載他往亞美尼亞、印度一帶宣教，並在亞美尼亞被剝皮而殉道——這也是西方藝術史上（如米開朗基羅《最後的審判》）將他畫成手持自己皮膚的緣由。傳統記載的可信度雖難以確證，但那個曾因偏見而遲疑的人，最終走到了離家鄉最遠的地方。</div>
+        <div class="timeline-ref">徒 1:13</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他的偏見是真的，他的誠實也是真的——而後者最終戰勝了前者。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">真相值得親自查驗，不能只憑轉述接受</div>
+          <div class="soul-body">他沒有因為腓力的興奮宣告就照單全收，也沒有因為自己的懷疑就拒絕查證。這種「懷疑但仍去查驗」的組合，是他性格中最珍貴的部分——他把懷疑當成查證的理由，而非拒絕的藉口。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">沒有詭詐——內外一致</div>
+          <div class="soul-body">耶穌給他的評語極為罕見而具體：「心裡沒有詭詐」。他毫不掩飾自己的偏見（拿撒勒還能出什麼好的），也毫不遲疑地在被說服後立刻公開宣告。他不是那種表面附和、心裡另有盤算的人——他的懷疑和他的信服，都是同一種誠實的展現。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">獨自沉思，然後迅速下結論</div>
+          <div class="soul-body">無花果樹下的獨處場景暗示他習慣在私下、安靜的環境中思考或禱告。而一旦有了足夠的證據，他的反應極快——從懷疑到全然的認信，中間幾乎沒有猶豫的過渡期。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">以地域或表面條件預先論斷</div>
+          <div class="soul-body">「拿撒勒還能出什麼好的嗎」是一句典型的偏見發言——用出身背景預先否定一個人的可能性。這種思維模式若不被打斷，很容易讓一個誠實的人錯過眼前真正重要的事物。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">被主提前看見的那一刻</div>
+          <div class="soul-body">耶穌對他說「腓力還沒有招呼你，你在無花果樹底下，我就看見你了」，這句話精準到讓拿但業立刻放下所有防備。聖經沒有交代無花果樹下發生了什麼，但那顯然是一個只有他自己知道、卻被主完全知曉的私密時刻——這種「被看透卻不被定罪」的經歷，往往是最深信心的起點。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">拿但業的故事濃縮著一個深刻的悖論：他是被舊約應許喂養長大的人，對彌賽亞的認識足以讓他一眼看出拿撒勒不像是那個地方；然而正是這份紮實的知識，差點讓他錯過真正的彌賽亞——知識本身沒有讓他更謙卑，反而先讓他更武斷。真正扭轉局面的，不是更多的論證，而是一句證明主早已看透他私密時刻的話。這對每一個自認為「懂得夠多」的人是重要的提醒：知識可以是通往真理的橋樑，也可以變成拒絕真理的高牆，差別往往只在於一個人是否願意在被說服的證據面前，放下自己原有的預設。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">INTP</span>
+      <div class="mbti-name">邏輯學家型 · 誠實的懷疑者</div>
+      <div class="mbti-slogan">「他用一句嘲諷開場，卻用一句全福音書最快的認信收尾——因為他真的把證據看完了。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Ti · 內向思考</span>
+          <div class="mbti-fn-body">他對「拿撒勒能出什麼好的」立刻提出邏輯上的質疑，顯示他習慣先用內在的判準檢驗一切宣稱，不輕易被熱情或群體氣氛帶動。這種思考模式讓他不會盲從，卻也可能讓他過早下結論。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Ne · 外向直覺</span>
+          <div class="mbti-fn-body">當耶穌說出那句關於無花果樹下的話，他立刻能把零散的線索連結成一個完整而驚人的結論——「你是神的兒子，你是以色列的王」。這種快速跳躍到宏觀圖景的能力，是 Ne 在瞬間被證據點燃的表現。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Si · 內向實感</span>
+          <div class="mbti-fn-body">他對舊約應許有具體而扎實的認識，這種知識儲備成為他判斷是非的重要依據，也是他一開始質疑拿撒勒出身的資料庫來源。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Fe · 外向情感</span>
+          <div class="mbti-fn-body">他不擅長顧及言語對他人的影響——「拿撒勒還能出什麼好的嗎」這句話若被拿撒勒人聽見，顯然帶著傷害性。INTP 的劣勢 Fe 常表現為誠實有餘、體貼不足；然而正因如此，他的認信才顯得毫無修飾、格外真實。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他最重要的一段關係，是被一個朋友帶去見一個他原本嘲笑的人。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">耶</div>
+          <div class="relation-name">耶穌基督</div>
+          <div class="relation-type-badge">主與被提前看透的門徒</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">耶穌在他還沒開口自我介紹之前就給了他一句罕見的公開稱許——「心裡沒有詭詐」，並用一個只有他自己知道的私密細節（無花果樹下）證明自己早已看透他。這段關係的起點不是拿但業主動尋求，而是他被主先一步認識、先一步接納。這種「先被知道，才願意相信」的次序，貫穿整本約翰福音。</div>
+          <div class="relation-ref">約 1:47–48</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">腓</div>
+          <div class="relation-name">腓力</div>
+          <div class="relation-type-badge">同鄉 · 引介者</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">腓力用最簡單的方式回應他的質疑——不辯論，只邀請：你來看。這對朋友的互動示範了一種健康的信仰對話模式：面對懷疑，不必說服到底，只需提供親自查驗的機會。拿但業願意跟著去，也顯示他們之間有足夠的信任基礎。</div>
+          <div class="relation-ref">約 1:45–46</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">門</div>
+          <div class="relation-name">其餘門徒（尤其在提比哩亞海邊）</div>
+          <div class="relation-type-badge">同工 · 沉默的同行者</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">復活後他出現在海邊捕魚的名單中，緊隨彼得與多馬之後，此後再無記載言語。他的認信雖然來得又快又高，此後的服事卻幾乎完全隱沒在群體之中——這提醒我們，最響亮的宣告未必伴隨最多的記載，忠心的跟隨常常是安靜的。</div>
+          <div class="relation-ref">約 21:2</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">他被稱許「心裡沒有詭詐」的那一刻，正是雅各在伯特利那個「這地方何等可畏」的異夢，被重新應驗的時刻。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「耶穌看見拿但業來，就指著他說：「看哪，這是個真以色列人，他心裡沒有詭詐。」……又說：「我實實在在地告訴你們，你們將要看見天開了，神的使者上去下來在人子身上。」」</div>
+      <div class="verse-ref">約翰福音 1:47, 51</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">δόλος</span>
+        <div class="word-transliteration">dolos · 詭詐 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「欺騙、誘餌、心機」，字根本義與捕魚用的誘餌相關，引申為表裡不一的算計。耶穌說拿但業「心裡沒有」這個字，是一句極高的評價。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">舊約詩篇多次以「口中沒有詭詐」形容義人（詩 32:2「心裡沒有詭詐的，這人是有福的」），彼得前書也用同一個詞根描述基督自己：「他並沒有犯罪，口裡也沒有詭詐」（彼前 2:22）。拿但業被主用這個字稱許，是把他與詩篇中蒙福義人的形象、乃至基督自己的無罪，放在同一條語言脈絡裡——這不是隨口的讚美，是深植於舊約傳統的神學評語。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">Ἰσραηλίτης</span>
+        <div class="word-transliteration">Israēlitēs · 以色列人 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「以色列人」，而耶穌加了一個修飾語「真」（ἀληθῶς）——「真以色列人」。這暗示存在著「名義上的以色列人」與「真正的以色列人」之分。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">保羅後來在羅馬書明確闡述這個區分：「因為外面作猶太人的，不是真猶太人……惟有裡面作的，才是真猶太人」。耶穌對拿但業的評語，早在保羅寫成這段神學論述之前，就已經活生生地示範了它——真正屬神的子民,不是靠血統或身份的宣稱，是靠一顆誠實無偽的心。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">雅各的梯子重現在拿但業身上</div>
+      <div class="theology-insight-body">耶穌應許拿但業「將要看見天開了，神的使者上去下來在人子身上」，直接呼應創世記中雅各在伯特利夢見的天梯異象。雅各夢中看見的是天地相連的異象，而耶穌在此宣告：那座梯子，就是祂自己——人子是天與地真正相連的所在。這是一句對熟悉舊約的拿但業而言極具衝擊力的宣告。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">偏見與真理相遇時的兩種結局</div>
+      <div class="theology-insight-body">拿但業對拿撒勒的偏見是真實的，卻沒有讓他停在原地——他去查驗了。這與福音書中其他因偏見而拒絕相信的人（如許多法利賽人）形成對照。同一種偏見，可以導向拒絕，也可以導向查驗；差別在於一個人是否願意讓證據有機會說話。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">「被看見」先於「相信」</div>
+      <div class="theology-insight-body">整段敘事的轉捩點不是任何論證，而是耶穌一句「我就看見你了」。拿但業的信心不是被說服的結果，是被認識的結果——他發現自己在最私密的時刻已經被完全知曉，卻沒有被定罪。這正是恩典最基本的樣式：先被知道，然後才能真正相信。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">雅各在伯特利夢見一個梯子立在地上，梯子的頭頂著天，有神的使者在梯子上上去下來</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">耶穌直接把這個異象應許給拿但業，並將「人子」放在梯子的位置上——祂親自宣告自己就是天地相連的所在</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督是那位使人得以親近父神的中保，「藉著他，我們……可以進到父面前」（弗 2:18）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">撒母耳年幼在聖殿裡侍奉，耶和華在夜間呼喚他，他起初不認得那聲音，直到以利指點他才明白</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">拿但業起初也不認得眼前的這位就是應許中的那一位，需要一個具體、超乎常理的印證（無花果樹下）才恍然明白</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督親自呼喚人認識祂，正如祂對拿但業所行的——用只有當事人才懂的方式證明自己被完全知曉（約 10:3）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">詩篇宣告「心裡沒有詭詐」的人是有福的，因為耶和華不算他為有罪</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">拿但業被主親口賦予這個稱號，成為這句詩篇應許在新約中一個活生生的例證</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督自己「口裡也沒有詭詐」，是那唯一完全配得這個稱號的義者，卻甘願為詭詐的世人捨命（彼前 2:22–24）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你曾經因為一句刻板印象，差點錯過真正重要的事——這一頁是為你寫的。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">拿但業命中的是一種相當普遍的處境：我們對某些人、某些出身、某些標籤已有預設的判斷，而這份判斷有時是基於真實的觀察，有時只是未經檢驗的偏見。危險不在於有判斷——他確實有理由對「拿撒勒」抱持疑問——而在於是否讓那份判斷成為拒絕查驗的理由。他的故事給出一條清楚的路徑：懷疑不必是終點，它可以是通往查驗的起點。而更深的一層在於：真正打動他的，不是任何雄辯，是發現自己被完全看透卻仍被接納——這提醒我們，人心最深處渴望的不是被說服，是被知道。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你心裡有沒有一個「這種人／這種背景不可能有什麼好東西」的預設？那個預設是基於真實的經驗，還是只是聽來的印象？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">拿但業被邀請「你來看」時選擇去了。你上一次因為偏見而拒絕親自查驗一件事，是什麼時候？如果當時去查驗了，結果會不會不一樣？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">耶穌那句「你在無花果樹底下，我就看見你了」讓拿但業瞬間卸下防備。你有沒有經歷過類似「被完全知道卻沒有被定罪」的時刻？那個時刻如何改變了你？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">他認信的速度極快，此後卻幾乎沒有留下任何記載的言語。你是否也曾經歷過信心高峰之後，進入一段安靜、不再被人看見的服事期？你如何理解那段沉默？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 拿但業</span>
+        <div class="gen-title">應激劇本：用地域與出身預先論斷</div>
+        <div class="gen-body">「拿撒勒還能出什麼好的嗎」是一句典型的刻板印象發言——不需要認識具體的人，只需要知道出身,就能下結論。這種思維省力卻危險，因為它讓判斷發生在證據出現之前，而不是之後。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 此後被他引領或影響的人</span>
+        <div class="gen-title">打斷而非複製：懷疑沒有變成封閉</div>
+        <div class="gen-body">值得注意的是，拿但業的偏見並沒有演變成頑固的拒絕——它止步在「懷疑」的階段，並沒有進一步發展成「封閉」。他仍然去查驗了，仍然在證據面前改變了立場。這使他的故事沒有陷入偏見自我強化的循環，反而成為一個「偏見可以被真相打斷」的正面案例。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">打斷發生在耶穌那句精準到不可能是巧合的話裡——「你在無花果樹底下，我就看見你了」。恩典的介入方式不是駁倒他的偏見（耶穌從未直接反駁「拿撒勒還能出什麼好的」這句話），而是讓他看見自己早已被完全知曉。一個人一旦發現自己在最私密的時刻已經被看見、卻沒有被定罪，原本用來自我保護的偏見高牆，往往會在那一刻自然鬆動。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那個先嘲諷、後跪拜的人，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#刻板印象翻車現場</span>
+      <span class="tag">#被看穿卻沒被定罪</span>
+      <span class="tag">#懷疑到底也沒關係</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>拿但業出場的第一句話，放在現代大概就是一句地圖炮：「拿撒勒還能出什麼好的嗎？」他朋友腓力興沖沖跑來說找到彌賽亞了，就在拿撒勒，他直接翻白眼。</p>
+      <p>但腓力沒有跟他辯論，只說了一句：你來看嘛。拿但業也沒有堅持己見到底，他真的跟著去了——這一點其實蠻難得的，很多人有了立場之後根本懶得去查證。</p>
+      <p>然後翻車現場來了。耶穌一看到他走過來，直接開口：這是個真以色列人，心裡沒有詭詐。拿但業嚇一跳：你怎麼認識我？耶穌說：腓力還沒叫你之前，你在無花果樹底下，我就看見你了。</p>
+      <p>這句話有多重不知道，但拿但業當場整個人破防了。幾秒鐘前還在酸拿撒勒，現在直接跪了：祢是神的兒子，祢是以色列的王！這個轉折速度，全福音書大概找不到第二個。</p>
+      <p>很多人讀到這裡會覺得重點是那個「無花果樹底下」的細節有多神——但我覺得更值得注意的是耶穌怎麼稱呼他:心裡沒有詭詐。這人講話很衝、有偏見、心直口快到有點失禮，但他從頭到尾沒有一句是言不由衷的。他罵得真心，他跪得也真心。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——而有些石頭一開始就帶著稜角，那個稜角後來被證明，是誠實，不是缺陷。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你也是那種講話很直、容易對某些人事物先下判斷的人——別急著否定自己。拿但業的偏見是真的，但他的誠實也是真的，而耶穌選的是後面那個標籤：心裡沒有詭詐。</p>
+      <p style="margin-top:12px;">你可能也曾經因為某個標籤、某個出身、某句聽來的評語，差點錯過一件真正重要的事。拿但業的救贖不是他變得比較不武斷，是他願意在被邀請的時候，真的去看了一眼。</p>
+      <p style="margin-top:12px;">還有那句「你在無花果樹底下，我就看見你了」——你此刻心裡有沒有一個只有你自己知道的角落？神知道那裡，而祂沒有因此定你的罪。這可能才是整個故事真正想告訴你的事。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">先別急著下結論。去看一眼再說。</p>
+    </div>
+
+    <div class="insight-box">在當代跨文化與群體對話的語境中，拿但業提供了一個具體而樂觀的範例：偏見的存在不必然導致封閉的結局，關鍵在於是否保留「親自查驗」的空間。這對處理刻板印象的教育與溝通實踐深具啟發——與其急於糾正對方的判斷，不如像腓力一樣，提供一個直接體驗的機會。而在心理諮商與靈修傳統中，「被看見而不被定罪」的經驗（無花果樹下的細節）常被視為深度信任建立的關鍵時刻：人願意卸下防備，往往不是因為被說服了道理,而是因為感受到自己最私密的部分被完全知曉,卻依然被溫柔以待。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他只留下一段對話，卻留下了一句至今仍被引用的稱許——心裡沒有詭詐。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">「心裡沒有詭詐」的品格典範</div>
+          <div class="legacy-body">這句耶穌親口的評語，成為後世教會描述真誠信仰者的經典用語，並與詩篇及彼得前書中對「無詭詐」之人的描述遙相呼應，形成一條貫穿舊約到新約的品格神學脈絡。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">偏見可以被打斷的正面案例</div>
+          <div class="legacy-body">他的故事證明了懷疑與偏見不必然導致拒絕——只要有查驗的意願存在，真相仍有機會被看見。這為後世信仰對話中「先邀請查驗、再論證」的模式提供了聖經根據。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">雅各天梯異象的基督論應驗</div>
+          <div class="legacy-body">耶穌藉他的認信場景，宣告自己就是雅各夢中那座連接天地的梯子。這是新約中最早、也最直接的一次將舊約族長異象應用在基督位格上的宣告，成為後世基督論發展的重要文本。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">殉道傳統中最壯烈的敘事之一</div>
+          <div class="legacy-body">儘管歷史細節難以確證，教會傳統普遍記載他在亞美尼亞被剝皮殉道，此後在西方藝術（如米開朗基羅的畫作）中留下深刻的視覺印記。這個傳統提醒後人：那個曾因偏見而遲疑的人，最終走到了最遠、也付上最重代價的地方。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「拿但業說：「拉比，你是神的兒子，你是以色列的王！」耶穌對他說：「因為我說『在無花果樹底下看見你』，你就信嗎？你將要看見比這更大的事。」」</div>
+      <div class="final-verse-ref">約翰福音 1:49–50</div>
+    </div>
+
+    <div class="final-question">你心裡那句「這種人／這種地方能出什麼好的」的預設判斷，如果有一天被邀請「你來看」——你願不願意先放下結論，去查驗一次？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 巴多羅買 <span>Βαρθολομαῖος · נְתַנְאֵל</span> · 無詭詐的以色列人</div>
+
+</body>
+</html>

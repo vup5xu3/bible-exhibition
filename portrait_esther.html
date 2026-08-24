@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>以斯帖 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">以斯帖</h1>
+  <span class="hero-name-en">Esther · אֶסְתֵּר · הֲדַסָּה</span>
+  <p class="hero-slogan">「波斯律法規定，未蒙召見擅入內院者一律處死——<br>以斯帖卻穿上朝服，走向王座，只留下一句話：「我若死就死吧。」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">主前約 486–465 年（亞哈隨魯王治下）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ISFJ · 守護者型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">以斯帖記全書</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">波斯王后 · 猶太民族的拯救者</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">整卷以斯帖記，是聖經中唯一一卷從未明確提及神的名字的書——然而神的護理，卻透過一連串看似巧合的事件，隱藏卻確實地貫穿全書。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">主前約 486–465 年<br>波斯帝國亞哈隨魯王（薛西斯一世）治下</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">多重身份</span>
+        <div class="info-cell-value">猶太孤女（本名哈大沙） · 末底改的堂妹兼養女<br>波斯帝國王后</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">書珊城（波斯帝國冬宮所在地）<br>波斯帝國宮廷</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">背景</span>
+        <div class="info-cell-value">父母雙亡，由堂兄末底改撫養長大<br>猶太人被擄至波斯的離散群體一員</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">以斯帖記全書<br>（聖經中唯一未直接提及神之名的正典書卷）</div>
+      </div>
+    </div>
+
+    <p>以斯帖本名哈大沙，是猶太人在波斯被擄群體中的一位孤女，父母雙亡後由堂兄末底改收養撫養長大。她所處的時代，正是波斯帝國國力鼎盛、統治疆域「從印度直到古實，共一百二十七省」的亞哈隨魯王（歷史學家多認定即薛西斯一世）在位期間。當王后瓦實提因拒絕王的命令而被廢黜，帝國隨即展開全國性的選妃，以斯帖因容貌俊美被選入宮，並在末底改的叮囑下，「以斯帖未曾將籍貫宗族告訴人，因為末底改囑咐她不可叫人知道」——她的猶太身分，因此在很長一段時間裡，被刻意隱藏。</p>
+    <p>第五世紀的波斯帝國，猶太人是散居各省、人數龐大卻政治地位脆弱的少數族群。故事的轉折點，是宰相哈曼因末底改拒絕向他下拜，懷恨在心，進而說服王頒布一道滅絕全國猶太人的詔書，並鑄成通國皆知的律法——這使得整個猶太民族，一夕之間面臨滅族的危機。以斯帖記全書最引人深思之處，正在於它是聖經正典中唯一一卷從頭到尾未曾明確提及神之名的書卷——然而細讀之下，一連串環環相扣、看似純屬巧合的事件（末底改恰好聽見謀害王的陰謀、王恰好在某夜失眠而翻閱記錄、哈曼恰好在最不湊巧的時機求情），共同構成了一幅「神的護理隱藏卻真實運作於歷史細節之中」的深刻圖像。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">她的一生從隱藏身分求生，到公開身分冒死進諫——中間只隔著末底改那句「焉知你得了王后的位分，不是為現今的機會嗎」。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">被選入宮——隱藏猶太身分</div>
+        <div class="timeline-body">瓦實提被廢後，帝國展開全國選妃，以斯帖因容貌俊美被選入宮，「末底改囑咐她不可叫人知道」自己的猶太身分。她在後宮的訓練期間「凡看見以斯帖的都喜悅她」，最終「王愛以斯帖過於愛眾女，她在王眼前蒙寵愛比眾處女更甚」，被立為王后。</div>
+        <div class="timeline-ref">斯 2:1–17</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">末底改揭發謀害王的陰謀——被記錄卻未被獎賞</div>
+        <div class="timeline-body">末底改坐在朝門時，聽見兩個太監商議要下手害王，便告訴以斯帖，以斯帖奏告王，「這事……寫在王面前的歷史上」——這個看似不起眼的細節，此後在關鍵時刻成為扭轉整個故事命運的伏筆。</div>
+        <div class="timeline-ref">斯 2:21–23</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">黑暗低谷</span>
+        <div class="timeline-title">哈曼的滅族詔書——「要殺戮剪除滅絕猶大人」</div>
+        <div class="timeline-body">宰相哈曼因末底改不肯向他跪拜，惱恨異常，說服王頒布詔書，要在一日之內「殺戮剪除滅絕所有猶大人，無論老少婦女孩子，並要奪他們的財為掠物」，並抽籤定下行刑之日。末底改得知後「撕裂衣服，穿麻衣，蒙灰塵，在城中行走，痛哭哀號」——整個猶太民族，一夕之間面臨滅族的存亡危機。</div>
+        <div class="timeline-ref">斯 3 章</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">末底改的挑戰——「焉知你得了王后的位分，不是為現今的機會嗎」</div>
+        <div class="timeline-body">末底改懇求以斯帖為本族向王求情，以斯帖起初以「凡不蒙召、擅入內院見王的，無論男女必被治死」為由推辭。末底改回覆了聖經中最著名的一段挑戰之一：「你莫想在王宮裡強過一切猶大人，得免這禍。你若在這時候閉口不言，猶大人必從別處得解脫，蒙拯救，你和你父家必致滅亡。焉知你得了王后的位分，不是為現今的機會嗎？」</div>
+        <div class="timeline-ref">斯 4:8–14</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">「我若死就死吧」——禁食三日後的冒死進諫</div>
+        <div class="timeline-body">以斯帖回覆：「你當去招聚書珊城所有的猶大人，為我禁食三晝三夜，不吃不喝；我和我的宮女也要這樣禁食。然後我違例進去見王，我若死就死吧！」她沒有立即行動，而是先帶領全城的猶太人一同禁食祈求，才在第三天穿上朝服，未蒙召見便走向王的內院——這是全書信心與勇氣的最高峰。</div>
+        <div class="timeline-ref">斯 4:15–17, 5:1–2</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">王向她伸出金杖——蒙悅納並精心設計的兩場筵席</div>
+        <div class="timeline-body">王見以斯帖，就施恩於她，向她伸出手中的金杖，以斯帖便摸杖頭，性命得保。她沒有立即說出自己的請求，反而邀請王與哈曼赴筵席，並在筵席上再次邀請他們赴第二場筵席——這種延遲揭露、精心鋪陳時機的智慧，最終讓真相在最恰當的時刻爆發出最大的震撼力。</div>
+        <div class="timeline-ref">斯 5:1–8</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">揭發哈曼——「這行惡的敵人，就是這惡人哈曼」</div>
+        <div class="timeline-body">在第二場筵席上，以斯帖終於向王揭露：「我和我的本族被賣了，要剪除殺戮滅絕我們……這行惡的敵人，就是這惡人哈曼！」王大怒，哈曼最終被吊死在他自己為末底改所預備的木架上。王隨即准許猶太人自衛反擊，並頒布新詔書扭轉局勢——一場滅族的危機，最終在以斯帖的冒死進諫下徹底逆轉。此後普珥節被設立，成為猶太民族此後世世代代紀念這場拯救的重要節期。</div>
+        <div class="timeline-ref">斯 7 章, 9:20–32</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">她不是天生就無所畏懼——她明確地表達了自己的恐懼與遲疑，卻在被提醒更大的責任之後，選擇了信心的行動。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">個人的安全，不能凌駕於整個群體存亡的責任之上</div>
+          <div class="soul-body">她起初的猶豫是真實的——「凡不蒙召、擅入內院見王的，必被治死」，這不是誇大的恐懼。然而當末底改指出她的沉默同樣可能招致滅亡，她清楚地選擇了承擔起超越個人安危的群體責任。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">審慎的智慧與精確的時機掌握</div>
+          <div class="soul-body">她沒有在第一時間就衝動地揭露哈曼的惡行，而是先禁食三日、再精心安排兩場筵席，逐步鋪陳，直到最恰當的時機才揭露真相。這種結合勇氣與審慎智慧的行動策略，是她能夠成功扭轉危局的關鍵。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">在服從與主動之間取得精準的平衡</div>
+          <div class="soul-body">她長期聽從末底改的指示（隱藏身分、如何應對王的召見），卻也在關鍵時刻主動承擔起只有她能做的決定——這種既尊重既有的指導與智慧、又能在必要時刻獨立承擔重任的平衡，貫穿她整個故事。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">起初傾向於用隱藏身分來換取安全</div>
+          <div class="soul-body">她在末底改的囑咐下，多年隱藏自己的猶太身分——這種為求生存而選擇隱匿真實自我的模式，直到滅族危機逼近，才被迫、也主動地被打破。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">在一卷從未提及神名的書卷中，成為神隱藏護理最鮮明的彰顯</div>
+          <div class="soul-body">以斯帖記全書刻意不提神的名字，卻透過一連串環環相扣的「巧合」——她恰好被選為王后、末底改恰好聽見謀害的陰謀、王恰好在關鍵之夜失眠——共同編織出神在歷史細節中隱藏卻真實運作的深刻圖像，以斯帖的存在與抉擇，正是這幅圖像的核心。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">以斯帖的故事最深刻之處，或許在於它展現了信心的行動，不總是需要伴隨著清晰可見的神蹟或神的直接顯現。整卷書從未記載神向以斯帖說話、也從未提及祂的名字，然而她依然選擇了禁食、冒死進諫、承擔起超越個人安危的責任——這種在「看不見神」的處境中依然選擇信心行動的勇氣，某種程度上比那些伴隨著清楚異象與神蹟的信心敘事，更貼近多數現代信徒的真實處境。末底改那句「焉知你得了王后的位分，不是為現今的機會嗎」，也提出了一個持久而深刻的問題：我們生命中看似偶然的處境與位置，是否也可能是為了某個更大的、我們此刻尚未完全明白的目的而預備的？</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ISFJ</span>
+      <div class="mbti-name">守護者型 · 為時而生的王后</div>
+      <div class="mbti-slogan">「她說「我若死就死吧」，然後沒有立刻行動，而是先禁食三天——勇氣與審慎，在她身上從不互相排斥。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Si · 內向實感</span>
+          <div class="mbti-fn-body">她長期謹慎地遵循末底改具體、明確的指示——隱藏身分、如何在宮中應對——這種對既有指導與具體細節的忠實遵循，是她多年在宮廷中安然生存的重要基礎。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Fe · 外向情感</span>
+          <div class="mbti-fn-body">她對整個猶太民族的存亡懷抱著深切的責任感，並在末底改的提醒下，願意為了群體的福祉承擔起個人的巨大風險。她精心安排的兩場筵席，也顯示出她對人際互動時機與氛圍極其細膩的掌握。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ti · 內向思考</span>
+          <div class="mbti-fn-body">她在做出冒死進諫的決定後，展現出清晰而策略性的行動規劃——先禁食禱告凝聚群體，再透過筵席逐步鋪陳、掌握最佳的揭露時機，而非衝動行事。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Ne · 外向直覺</span>
+          <div class="mbti-fn-body">她起初面對危機時，傾向於堅守既有的安全策略（不擅自見王），較難立即看見「這正是我被安置在此位置的原因」這種更宏觀的可能性——直到末底改明確點出這個視角，她才被引導向這個更大的圖景敞開。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">她一生最重要的一段關係，是與那位撫養她長大、並在最關鍵的時刻，用一句話喚醒她使命感的堂兄。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">末</div>
+          <div class="relation-name">末底改</div>
+          <div class="relation-type-badge">養父兼堂兄 · 喚醒她使命感的人</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">末底改自幼撫養以斯帖長大，在她入宮後持續在朝門關注她的處境，並在滅族危機爆發時，用那句「焉知你得了王后的位分，不是為現今的機會嗎」，喚醒她承擔起超越個人安危的群體責任。這段關係展現出，一位智慧的長輩如何在關鍵時刻，幫助年輕人看見自己生命處境背後更深的意義。</div>
+          <div class="relation-ref">斯 2:7, 11 · 斯 4:13–14</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">亞</div>
+          <div class="relation-name">亞哈隨魯王</div>
+          <div class="relation-type-badge">她所嫁、卻也掌握她生死大權的丈夫</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">王「愛以斯帖過於愛眾女」，立她為后，卻也是那位可以依律法將擅自求見者處死的絕對君主。以斯帖在這段權力極不對等的婚姻關係中，展現出高度的智慧——既贏得王真實的喜愛，又在關鍵時刻，透過精心安排的筵席，讓王自願地扭轉了滅族的詔令。</div>
+          <div class="relation-ref">斯 2:17 · 斯 5–7 章</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">哈</div>
+          <div class="relation-name">哈曼</div>
+          <div class="relation-type-badge">策劃滅絕她全族的敵人</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">哈曼因末底改不肯向他下拜，設計說服王頒布滅絕猶太人的詔書——這段敵對關係，最終在以斯帖的揭發下徹底逆轉，哈曼被吊死在他為末底改所預備的木架上，成為聖經中「惡人自食惡果」最戲劇性的一段記載。</div>
+          <div class="relation-ref">斯 3 章, 7:9–10</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">猶</div>
+          <div class="relation-name">書珊城與全國的猶太人</div>
+          <div class="relation-type-badge">她所拯救、也與她一同禁食禱告的同胞</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">以斯帖進諫王之前，先招聚書珊城所有猶太人一同禁食三晝三夜——這顯示她的冒險不是孤軍奮戰，而是整個猶太群體共同懇求神施行拯救的集體行動。此後她所拯救的整個民族，設立普珥節，世世代代紀念這場逆轉性的拯救。</div>
+          <div class="relation-ref">斯 4:16 · 斯 9:20–32</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">以斯帖記全書從未提及神的名字，卻透過一連串精密交織的「巧合」，成為聖經中對神隱藏護理最深刻的文學見證。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「你莫想在王宮裡強過一切猶大人，得免這禍。你若在這時候閉口不言，猶大人必從別處得解脫，蒙拯救，你和你父家必致滅亡。焉知你得了王后的位分，不是為現今的機會嗎？」</div>
+      <div class="verse-ref">以斯帖記 4:13–14</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">פּוּר</span>
+        <div class="word-transliteration">pur · 普珥（籤） · 波斯文（借入希伯來文）</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「籤」，哈曼用抽籤的方式決定滅絕猶太人的日期，此後這場拯救事件所設立的紀念節期，正是以「普珥」（複數形 Purim）命名。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">哈曼透過看似隨機的「抽籤」來決定命運的日期，最終卻反過來成為神隱藏護理如何逆轉惡謀、成就拯救的具體記號——那個原本用來決定滅族之日的抽籤，最終成了紀念拯救的節期名稱。這個字的選用本身，就承載著一種深刻的神學諷刺：人所謂的「隨機」，在神的護理之下，從來不是真正的隨機。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">הַשְׁלִיךְ</span>
+        <div class="word-transliteration">hashlik（衍生自「以斯帖」的字根探討） · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">以斯帖的希伯來文名字有時被學者認為與波斯文中「星辰」（如星宿女神 Ishtar）有關，而她的希伯來原名「哈大沙」（הֲדַסָּה）則意為「桃金孃」，是一種常綠植物，象徵持久與生命力。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">她同時擁有一個希伯來名字（哈大沙）與一個波斯宮廷名字（以斯帖）——這種雙重命名的處境，某種程度上具體化了她一生所面對的核心張力：如何在異邦文化中生活，卻始終不忘自己真實的身分與根源。她最終選擇公開自己的猶太身分，正是這場張力最深刻的解決。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">神隱藏卻真實的護理</div>
+      <div class="theology-insight-body">以斯帖記是聖經正典中唯一一卷未曾明確提及神之名的書卷，這個獨特的文學特徵本身就是深刻的神學宣告——神的作為，未必總是以神蹟或直接啟示的方式彰顯，祂同樣可以透過一連串看似平凡、甚至純屬巧合的歷史事件，隱藏卻確實地成就祂的拯救計畫。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">「為現今的機會」：個人處境背後的更大目的</div>
+      <div class="theology-insight-body">末底改的挑戰確立了聖經中一個重要的神學命題：一個人此刻所處的具體位置與處境（無論是王后之位，還是任何看似平凡的角色），都可能蘊含著超越個人安逸的更大呼召與責任，等待在關鍵時刻被承擔起來。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">普珥節：民族性拯救記憶的持續紀念</div>
+      <div class="theology-insight-body">以斯帖記結尾所設立的普珥節，此後成為猶太曆法中重要的節期，透過世世代代反覆誦讀以斯帖記、慶祝這場逆轉性的拯救，持續提醒猶太民族：即使身處異邦、面臨滅族的威脅，神的護理與拯救依然真實可靠。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">約瑟被賣到埃及為奴，卻在神的護理下逐步升至宰相之位，最終在饑荒中拯救了整個家族——他對兄長們說「這是神差我在你們以先來，為要保全生命」</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">以斯帖同樣是被安置在一個看似偶然、卻蘊含更大目的的位置（王后），並在關鍵時刻運用這個位置，拯救了整個民族——兩段敘事都展現出神如何透過一個人看似平凡的生命際遇，成就民族性的拯救</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督親自成就了那終極的拯救者角色——祂「取了奴僕的形像」，降卑進入人類的處境，最終成就了超越單一民族、及於全人類的救恩（腓 2:6–8）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">哈曼設計滅絕猶太人的計謀，最終反倒使他自己被吊死在為末底改所預備的木架上——這是舊約中「惡人自陷己網」母題最戲劇性的展現之一</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">詩篇多處描述惡人「挖陷坑，卻自己掉在其中」，哈曼的結局正是這個古老智慧命題最具體的歷史應驗，展現出神的公義，即使不藉由神蹟性的直接介入，也能在歷史的具體發展中彰顯出來</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督在十字架上，同樣經歷了世人眼中「惡人得勝、義者受害」的表象，最終卻在復活中，讓那看似的失敗，成為擊敗死亡與罪惡權勢的終極勝利（西 2:14–15）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">以斯帖冒著生命危險、未蒙召見便進到王面前代求，最終為全體猶太人贏得赦免與拯救——她的行動具有明確的代求與中保色彩</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">她願意以自己的生命為代價，為整個瀕臨滅絕的民族向掌權者求情，這種捨己代求的姿態，是舊約中「一人為眾人承擔風險以求拯救」這一母題的重要展現</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督親自成就了終極的中保代求——祂不僅冒著生命危險進到審判者面前，更親自付上生命的代價，為全人類贏得赦免與永恆的拯救（來 7:25 · 提前 2:5）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你正處在一個看似平凡的位置上，卻隱約感覺到自己可能被安置在此，是為了一個超越自己安逸的更大目的——這一頁是為你寫的。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">以斯帖命中的是每一個曾經思考過『我此刻的處境，是否有更深的意義』的人。她原本可以繼續隱藏自己的身分，安全地在宮廷中度過一生——這並非不可能的選擇。然而末底改的那句挑戰，逼迫她正視一個更深的問題：她的位置，或許不只是為了她個人的安逸，而是為了某個她此刻尚未完全明白、卻即將來到的關鍵時刻而預備的。她的故事提醒我們，即使在神看似沉默、不直接顯現的處境中，信心的行動依然是可能的，也依然是被呼召的。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你此刻所處的位置或角色，有沒有可能，不只是為了你個人的舒適與安逸，而是為了某個你此刻尚未完全明白的更大目的而預備的？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">以斯帖起初傾向於用隱藏身分來換取安全，直到危機逼近才被迫、也主動地公開。你生活中是否也有某個部分的真實自我，是你因為害怕風險而一直隱藏著的？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">她沒有立即行動，而是先禁食三日、凝聚群體的力量，才展開行動。你面對重大的抉擇時，是傾向於立即衝動行事，還是懂得先尋求群體的支持與更深的預備？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">整卷以斯帖記從未提及神的名字，卻處處可見祂護理的痕跡。你此刻的生活中，是否也能回顧出一些看似巧合、卻可能是神隱藏護理的具體事件？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 以斯帖（隱藏身分階段）</span>
+        <div class="gen-title">應激劇本：用隱藏真實身分來換取安全與生存</div>
+        <div class="gen-body">在末底改的囑咐下，她多年隱藏自己的猶太身分，這是一種在異邦處境中求生存的合理策略——不公開暴露自己屬於一個可能遭受歧視或危險的少數群體。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 以斯帖（公開身分、冒死進諫階段）</span>
+        <div class="gen-title">打斷而非延續：從隱藏轉為主動公開，承擔起群體性的責任</div>
+        <div class="gen-body">當滅族的危機逼近，她沒有繼續選擇隱藏以求自保，而是主動公開自己的身分、承擔起代表整個民族向王求情的風險。這個轉變不是外力強迫的，而是在末底改的提醒下，她自己主動做出的信心抉擇。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">打斷發生在末底改那句直指核心的提醒——「焉知你得了王后的位分，不是為現今的機會嗎」。這句話沒有責備她過去的隱藏策略，而是邀請她用一個更宏觀的視角，重新理解自己此刻的處境。恩典打斷『為求安全而持續隱藏』這種循環的方式，往往正是透過這樣一句及時的提醒——幫助人看見，自己此刻所處的位置，或許正是為了承擔一個超越個人安逸的更大使命而預備的。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那個「我若死就死吧」、卻先冷靜安排了兩場筵席的王后，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#隱藏的身分到公開的使命</span>
+      <span class="tag">#勇氣加審慎</span>
+      <span class="tag">#神在幕後的巧合</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>以斯帖的故事有點像一部精心編排的宮廷劇——一個猶太孤女，因為長得漂亮被選進波斯後宮，因為堂哥的叮囑，一直沒讓人知道自己是猶太人，就這樣一路當上了王后。</p>
+      <p>轉折點是宰相哈曼，因為她堂哥末底改不肯跪拜他，氣到說服國王頒布一條法律：全國的猶太人，不分老少婦孺，指定一天全部殺光。這下整個猶太民族的命運，忽然就懸在了一線之間。</p>
+      <p>末底改找上以斯帖，要她去跟國王求情。以斯帖第一反應是猶豫：法律規定，沒被召見就闖進國王面前，會被處死，我已經三十天沒被王召見了。末底改回她一句話，成了整卷書最有名的台詞：你以為你在王宮裡就能躲過這場災難嗎？你要是這時候閉口不說，猶太人還是會有別的出路，但你和你的家族就要滅亡了——你當上王后，說不定就是為了這一刻。</p>
+      <p>以斯帖沒有立刻衝去見王，她先叫全城的猶太人跟她一起禁食三天，然後才穿上朝服走向王座，留下一句：我若死就死吧。</p>
+      <p>更妙的是，她被王接見後，也沒有馬上說出真正的目的，反而先請王跟哈曼來吃頓飯，吃完再約第二頓——鋪陳到剛剛好的時機，才一次爆發：這個要滅我全族的惡人，就是哈曼！結果哈曼被吊死在他自己準備要吊死末底改的架子上。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——而以斯帖這塊石頭，被放進了一個她沒有選擇的位置，卻在那個位置上，選擇了她自己的答案。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你此刻正處在一個看起來很普通、甚至有點『莫名其妙就到了這裡』的位置——別急著覺得那沒有意義。以斯帖也是這樣走進宮裡的，她自己一開始也不知道，這個位置，是為了什麼時刻預備的。</p>
+      <p style="margin-top:12px;">你可能也有一部分的自己，因為害怕而一直藏著。以斯帖藏了很多年，直到危機逼近，才選擇公開。你不需要覺得自己以前的隱藏是懦弱，那可能只是那個階段合理的生存方式——重點是，當關鍵時刻到來，你願不願意選擇不再隱藏。</p>
+      <p style="margin-top:12px;">還有，勇氣不等於衝動。以斯帖說了「我若死就死吧」之後，做的第一件事是禁食三天，然後精心安排時機。真正的勇敢，往往帶著這種審慎的智慧。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果你正猶豫要不要站出來——先別急著衝，也別急著躲。想想，這會不會，就是你被放在這裡的原因。</p>
+    </div>
+
+    <div class="insight-box">在當代關於『找到人生使命與意義』的討論中，以斯帖記提供了一個獨特而深刻的視角——她的使命不是透過異象或神蹟被清楚揭示的，而是在具體的危機處境中，透過一位智者（末底改）的提醒，逐漸被辨識出來的。這對正在尋找『我的位置到底有什麼意義』的現代人，提供了一種務實而深刻的思考框架：意義未必需要透過戲劇性的啟示才能確認，有時候，正是在具體的、甚至充滿風險的處境中，一個人此刻所處的位置，才顯明出它真正的重量。而她『先禁食凝聚群體、再精心安排時機』的行動模式，也對當代倡導『衝動式勇氣』的文化，提供了重要的修正——真正有效的勇氣，往往需要與審慎的策略性思考並行。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">她拯救的不只是自己的性命，更是整個瀕臨滅絕的猶太民族——而這場拯救，至今仍在普珥節的慶祝中，被世世代代紀念。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">普珥節的設立</div>
+          <div class="legacy-body">她所促成的這場逆轉性拯救，成為猶太曆法中普珥節（Purim）的直接由來，此後三千年來，猶太人透過誦讀以斯帖記、慶祝這個節期，持續紀念神如何在最黑暗的滅族威脅中，成就意想不到的拯救。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">神隱藏護理的文學典範</div>
+          <div class="legacy-body">以斯帖記作為聖經中唯一未提及神名的書卷，此後成為神學與文學研究中，理解「神的護理如何透過看似平凡的歷史事件隱藏運作」這一主題時，最重要也最獨特的正典文本。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">「為現今的機會」的信心典範</div>
+          <div class="legacy-body">末底改那句挑戰性的提問，此後成為無數世代信徒，在面對重大抉擇、思考自己生命處境的深層意義時，最常被引用、也最發人深省的一句經文。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">勇氣與審慎並存的行動典範</div>
+          <div class="legacy-body">她「我若死就死吧」的宣告與此後精心安排的兩場筵席，共同構成了聖經中，理解「真正的勇氣不等於衝動、而是與智慧並行」這一原則時，最具體而生動的敘事範例。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「於是猶大人受了末底改所寫與所自定的規條，永為定例……凡猶大人的家家戶戶，世世代代，各省各城，都紀念遵守這兩日，永遠不廢。」</div>
+      <div class="final-verse-ref">以斯帖記 9:27–28</div>
+    </div>
+
+    <div class="final-question">如果你此刻所處的位置，看似平凡甚至偶然，卻可能正是為了某個尚未到來的關鍵時刻而預備的——你願不願意，像以斯帖一樣，在那個時刻來臨時，選擇不再隱藏，勇敢地站出來？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 以斯帖 <span>אֶסְתֵּר · הֲדַסָּה</span> · 為時而生的王后 · 拯救全族的女子</div>
+
+</body>
+</html>

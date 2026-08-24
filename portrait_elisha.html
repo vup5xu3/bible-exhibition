@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>以利沙 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">以利沙</h1>
+  <span class="hero-name-en">Elisha · אֱלִישָׁע</span>
+  <p class="hero-slogan">「以利亞問他「我未曾被接去離開你，你要我為你做什麼，只管求我」，<br>他沒有求財富或地位，只求：「願感動你的靈加倍地感動我。」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">主前約 848–797 年</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ESFJ · 執政官型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">列王紀上 19 章<br>列王紀下 2–13 章</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">以利亞的接班人 · 北國以色列先知</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他是在田裡犁地時被呼召的——十二對牛在他前頭，外衣搭在他身上的那一刻，他就撇下了自己原本安穩的農耕生活。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">主前約 852–797 年<br>北國以色列亞哈王朝末期至耶戶王朝</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">多重身份</span>
+        <div class="info-cell-value">沙法的兒子 · 富裕的農家子弟<br>以利亞的接班人與貼身跟隨者</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">亞伯米何拉 →<br>跟隨以利亞遍歷各地 → 撒瑪利亞</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">背景</span>
+        <div class="info-cell-value">「正耕地，在他前頭有十二對牛」，暗示家境相對富裕<br>被以利亞用外衣召選，此後長期貼身跟隨</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">王上 19:16, 19–21<br>王下 2–9, 13 章</div>
+      </div>
+    </div>
+
+    <p>以利沙首次登場，是以利亞在何烈山經歷曠野崩潰、被神重新恢復之後，奉命去膏立的三個人之一——「你回去，從曠野往大馬士革去……又要膏沙法的兒子以利沙接續你作先知」。經文特別記載，以利亞找到以利沙時，他「正耕地，在他前頭有十二對牛，自己趕著第十二對」——十二對牛意味著這是一個相當富裕的農戶，以利沙的家境顯然不差，他撇下的不是貧困潦倒的生活，而是一份安穩、甚至頗有資產的產業。</p>
+    <p>以利亞「將自己的外衣搭在他身上」，以利沙就「撇下牛，跑到以利亞那裡」，請求先去與父母親嘴道別，隨後「宰了一對牛，用套牛的器具煮肉給民吃，隨後就起身跟隨以利亞，服事他」——這個焚燒耕具、宰殺耕牛的動作極具象徵意義：他徹底斷絕了退路，宣告自己不會再回到犁地的舊生活。第九世紀的北國以色列，仍籠罩在亞哈王朝巴力崇拜的陰影下，此後又經歷耶戶血腥的政變與王朝更替，以利沙的先知職事橫跨這整段動盪的政局，成為此後數十年間，北國以色列百姓與君王最重要的屬靈依靠。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">他從撇下十二對牛跟隨以利亞的那一刻起，就再也沒有真正離開過——即使師傅升天，他所承接的職事，反而讓神蹟的密度變得更加頻繁。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">被外衣召選——撇下十二對牛跟隨以利亞</div>
+        <div class="timeline-body">以利亞把外衣搭在正在犁地的以利沙身上，以利沙隨即撇下產業，宰牛焚具，徹底斷絕退路，起身跟隨以利亞、服事他。這是他一生服事的起點，也展現出他一旦領受呼召，便毫不猶豫、徹底委身的性格特質。</div>
+        <div class="timeline-ref">王上 19:19–21</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">「我不離開你」——三次拒絕先行離去的堅持</div>
+        <div class="timeline-body">以利亞升天前，三次對以利沙說「你可以在這裡等候……耶和華差遣我往……去」，以利沙三次都堅定回答：「我指著永生的耶和華，又指著你的性命起誓，我必不離開你。」這種堅持不肯與師傅分離的忠誠，最終使他成為唯一親眼見證以利亞升天的人。</div>
+        <div class="timeline-ref">王下 2:1–8</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">「願感動你的靈加倍地感動我」——承接雙倍的長子名分</div>
+        <div class="timeline-body">以利亞問他臨去之前有什麼請求，以利沙回答：「願感動你的靈加倍地感動我。」以利亞說這是「難得的」，但若他能親眼看見以利亞被接去，就必得著所求的。這個請求源自申命記中長子承受雙分產業的傳統——以利沙求的不是超越師傅的能力，而是作為屬靈長子、正式承接先知職分的印記。</div>
+        <div class="timeline-ref">王下 2:9–10</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">拾起外衣——親眼見證升天並承接職分</div>
+        <div class="timeline-body">「忽有火車火馬將二人隔開，以利亞就乘旋風升天去了」，以利沙見狀撕裂自己的衣服，拾起以利亞掉下來的外衣，回到約旦河邊，用外衣擊打河水，水就左右分開——「先知的門徒從耶利哥遙望，說：感動以利亞的靈感動以利沙了。」這個場景，正式而清楚地印證了他所承接的職分。</div>
+        <div class="timeline-ref">王下 2:11–15</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">密集的神蹟服事——醫治、供應與復活</div>
+        <div class="timeline-body">此後數十年，以利沙行了一連串貼近百姓日常需要的神蹟——使書念婦人的兒子復活、使乃縵的大痲瘋得潔淨、使窮寡婦的油倒不完得以還債、在饑荒中使有毒的野瓜羹變無毒、使浮起沉入水中的斧頭。相較於以利亞多以震撼性的公開對抗展現神蹟，以利沙的神蹟更多聚焦於個別百姓具體而細膩的生活需要。</div>
+        <div class="timeline-ref">王下 4–6 章</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">黑暗低谷</span>
+        <div class="timeline-title">亞蘭圍困撒瑪利亞——極度饑荒中的信心考驗</div>
+        <div class="timeline-body">亞蘭王圍困撒瑪利亞，城內饑荒嚴重到「驢頭值銀八十舍客勒」，甚至有婦人相約烹煮自己的兒子充飢。以利沙在這極度絕望的處境中，向懷疑他的王宣告：「明日約到這時候，在撒瑪利亞城門口，一細亞細麵要賣銀一舍客勒，二細亞大麥也要賣銀一舍客勒。」次日果然應驗，圍城因亞蘭軍隊聽見神蹟性的聲響而潰逃。</div>
+        <div class="timeline-ref">王下 6:24–7:20</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">臨終遺言——「以色列的戰車馬兵啊」</div>
+        <div class="timeline-body">以利沙年老病重將死，以色列王約阿施前來哭泣，稱他「我父啊！我父啊！以色列的戰車馬兵啊」——這正是他自己當年在以利亞升天時所喊的同一句話，顯示這句尊稱已然轉移到他身上。他吩咐王射箭、擊打地面，象徵此後擊敗亞蘭的次數。經文更記載，他死後埋葬多年，有人被扔進他的墳墓，「一挨以利沙的骸骨，死人就復活站起來」——他一生的神蹟性職事，甚至延續到了他死後。</div>
+        <div class="timeline-ref">王下 13:14–21</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他的神蹟不像師傅那樣震撼全國，卻更貼近每一個平凡百姓具體而微小的生活困境——一鍋有毒的湯、一個借來的斧頭、一個寡婦的欠債。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">承接屬靈傳承需要徹底而不留退路的委身</div>
+          <div class="soul-body">撇下十二對牛、宰牛焚具、堅持不肯提前離開師傅——他一生的行動模式反覆展現出一種不留後路、徹底委身的信念，這與他求「加倍的靈」這個屬於長子繼承權的請求，形成一致的內在邏輯。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">對受苦百姓具體需要的細膩體貼</div>
+          <div class="soul-body">他的神蹟多聚焦於個別家庭、個別百姓的具體困境——寡婦的欠債、婦人不孕的渴望、痲瘋病人的絕望、借用器具的窘迫。這種對平凡人日常苦難的細膩關注與回應，是他一生服事最溫暖的一面。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">務實、貼近人群，善於處理具體而複雜的行政與軍事局勢</div>
+          <div class="soul-body">他不僅行神蹟，也多次涉入國家層級的軍事與外交事務——指點以色列軍隊躲避亞蘭的埋伏、在饑荒圍城中給出具體的應對預言。這種能將屬靈洞見轉化為具體實際建議的能力，貫穿他整個先知職事。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">面對輕慢戲弄時展現出的嚴厲反應</div>
+          <div class="soul-body">他從伯特利上去時，「有些童子從城裡出來，戲笑他說：禿頭的上去吧！禿頭的上去吧！」以利沙咒詛他們，隨即有兩隻母熊撕裂了其中四十二個孩童——這段記載展現出他性格中不容輕慢褻瀆之嚴厲的一面，也是舊約中極具爭議、常被討論的一段記載。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">死後骸骨仍能使死人復活的神蹟延續性</div>
+          <div class="soul-body">他一生的神蹟性職事，甚至延續到死後——一具屍體挨著他的骸骨就復活了。這種超越死亡界限的神蹟延續性，在整本聖經中極為罕見，暗示他所承接的「加倍的靈」，其果效之深遠，超越了他個人生命的時限。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">以利沙求「加倍的靈」這個請求，常被誤解為渴望超越師傅、或求取雙倍的神蹟能力，然而細讀申命記的長子繼承傳統會發現，這其實是一個關於忠實傳承、而非超越前任的請求——長子所得的雙分產業，不是因為他比其他兒子更優秀，而是因為他承擔著延續家業、照顧家族的長子責任。以利沙一生所行的神蹟數量確實多過以利亞的記載，但他所行的神蹟性質，更多是延續並落實以利亞所開創的先知傳統，聚焦於百姓具體而微小的日常需要，而非另闢一套全新的服事模式。這提醒我們，真正忠實的傳承，往往不是要創造出比前人更耀眼的成就，而是願意承擔起持續、細水長流地把前人所開創的服事，落實到每一個平凡百姓的具體生活之中。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ESFJ</span>
+      <div class="mbti-name">執政官型 · 加倍的靈的承接者</div>
+      <div class="mbti-slogan">「他求的不是超越師傅的能力，是長子那份「加倍」的責任——此後數十年，他把這份責任，落實在一個又一個平凡百姓的具體需要裡。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Fe · 外向情感</span>
+          <div class="mbti-fn-body">他對周遭百姓具體的困境有著極其敏銳的關注與回應——寡婦的欠債、婦人渴望有孩子的心願、痲瘋病人的絕望，他總能貼近這些個人化、具體而微的需要，並主動施予幫助。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Si · 內向實感</span>
+          <div class="mbti-fn-body">他對具體的傳承與延續有著極強的重視——堅持不離開師傅、求取象徵傳承的「加倍的靈」、忠實地延續以利亞所開創的先知服事模式，這種對既有傳統與具體延續性的珍視，貫穿他整個服事生涯。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ne · 外向直覺</span>
+          <div class="mbti-fn-body">他能在複雜的軍事政治局勢中，洞察出具體可行的應對策略——指點以色列王躲避亞蘭的埋伏、預言饑荒將在一日之內逆轉，這種將屬靈洞見轉化為具體策略建議的能力，顯示第三功能的作用。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Ti · 內向思考</span>
+          <div class="mbti-fn-body">面對被戲弄輕慢時，他的反應是直接而強烈的情緒性咒詛，而非冷靜抽離的邏輯應對——這種在受到冒犯時，情感反應直接主導行動、而非經過理性抽離考量的模式，顯示出劣勢內向思考的特徵。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最重要的關係，是與那位在他犁地時把外衣搭在他身上、此後他堅持不肯與之分離的師傅。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">以</div>
+          <div class="relation-name">以利亞</div>
+          <div class="relation-type-badge">呼召他、傳承職分給他的屬靈師傅</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">以利亞用外衣召選他，他此後長期貼身跟隨、服事，並在師傅升天前，堅持三次拒絕離開，最終親眼見證升天並拾起外衣承接職分。這段師徒關係，是舊約中先知職分傳承最完整、最深刻的範例之一。</div>
+          <div class="relation-ref">王上 19:19–21 · 王下 2:1–15</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">書</div>
+          <div class="relation-name">書念婦人</div>
+          <div class="relation-type-badge">款待他、也親眼見證兒子復活的信心婦人</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">書念婦人為以利沙預備一間樓房作為固定的落腳處，以利沙也應許她必得一子——此後這孩子夭折，她鎮定地去尋求以利沙，以利沙使孩子復活。這段關係展現出以利沙的服事，多深入平凡百姓的日常生活與家庭。</div>
+          <div class="relation-ref">王下 4:8–37</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">乃</div>
+          <div class="relation-name">乃縵</div>
+          <div class="relation-type-badge">被他醫治痲瘋、卻先心生不悅的亞蘭元帥</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">乃縵因大痲瘋來求醫治，以利沙卻不親自出面，只差人傳話要他在約旦河中沐浴七次——乃縵起初憤怒離去，最終順服照做而得潔淨。這段記載展現出以利沙的服事方式，有時刻意不迎合掌權者的期待，而是要求人謙卑順服神的具體吩咐。</div>
+          <div class="relation-ref">王下 5 章</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">基</div>
+          <div class="relation-name">基哈西</div>
+          <div class="relation-type-badge">貪心欺瞞、最終承受痲瘋審判的僕人</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">以利沙的僕人基哈西趁乃縵離去後，私自追去索取財物並撒謊掩飾，以利沙洞察此事，宣告乃縵的大痲瘋必沾染基哈西與他的後裔——這段記載展現出以利沙對身邊人不誠實行為的嚴厲審視，即使對象是自己最親近的僕人。</div>
+          <div class="relation-ref">王下 5:20–27</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「感動以利亞的靈感動以利沙了」——先知門徒的這句確認，標誌著舊約先知傳承中，最完整而清晰的一次職分交接。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「以利沙說：「求你使感動你的靈加倍地感動我。」以利亞說：「你所求的難得。雖然如此，我被接去離開你的時候，你若看見我，就必得著；不然，必得不著了。」」</div>
+      <div class="verse-ref">列王紀下 2:9–10</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">פִּי־שְׁנַיִם</span>
+        <div class="word-transliteration">pi-shnayim · 雙倍的分 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">字面意為「兩份」，這個詞組直接引用申命記21:17中關於長子繼承權的規定——「長子……應得產業比眾子加倍」。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">以利沙的請求，使用的正是舊約律法中長子繼承權的專門術語——這清楚表明，他所求的不是超越以利亞的能力，而是渴望被正式確立為以利亞屬靈上的「長子」，承擔起延續並落實先知職事的責任與名分。這個字義的精確使用，糾正了常見的誤解：他求的是傳承的忠實性，而非能力的超越性。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">רֶכֶב יִשְׂרָאֵל וּפָרָשָׁיו</span>
+        <div class="word-transliteration">rekhev yisrael u-pharashav · 以色列的戰車馬兵 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「以色列的戰車和馬兵」，這是古代近東描述國家軍事防禦核心力量的常用意象。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">以利沙在以利亞升天時喊出這句話，此後在他自己臨終時，以色列王約阿施同樣用這句話稱呼他——這個意象的重複使用，宣告先知的屬靈職事，其對國家安危的實際重要性，等同於、甚至超越了實際的軍事防禦力量。這確立了舊約神學中一個重要的原則：真正保護一個民族的，往往不是可見的軍事力量，而是隱藏卻真實的屬靈同在與代求。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">先知傳承的完整典範</div>
+      <div class="theology-insight-body">以利亞到以利沙的職分交接——外衣的召選、長期的跟隨、堅持不分離的忠誠、公開的印證（先知門徒的確認）——構成舊約中對「屬靈傳承」描寫最完整、最具體的敘事範例，深刻影響了此後猶太教與基督教對師徒制度與屬靈傳承的理解。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">神蹟的日常化：從震撼性彰顯到具體生活介入</div>
+      <div class="theology-insight-body">相較於以利亞多以公開、震撼性的方式彰顯神蹟（迦密山天火），以利沙的神蹟更多貼近個別百姓具體而微小的生活困境——這種神學上的轉變，展現出神的介入方式同樣可以是細膩、貼近日常生活的，而非總是需要戲劇性的公開展示。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">屬靈能力的死後延續性</div>
+      <div class="theology-insight-body">以利沙死後骸骨仍能使死人復活，這段記載雖然簡短，卻蘊含深刻的神學意涵——神的大能不受限於祂僕人肉身生命的界限，一個人一生忠心的服事，其果效可能延續到超越個人生命終結之後，成為神持續施恩的印記。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">以利亞乘旋風升天，以利沙拾起他掉下的外衣，用外衣擊打約旦河水，水就分開，正式承接了先知的職分</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這段記載直接呼應摩西到約書亞的職分交接（約旦河水分開讓百姓過河），也預表了此後屬靈權柄需要透過具體、公開的方式正式確立與傳承的模式</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督升天前，同樣鄭重地將使命交託給門徒，並應許差下聖靈，使他們得著能力，成為祂在地上職事的延續（徒 1:8–9）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">以利沙使窮寡婦僅有的一點油，倒進她所借來的每一個器皿裡都不斷流出，直到器皿都滿了才停止，使她得以還清債務並存活</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這段神蹟展現出神供應的豐富程度，取決於人預備了多少空間去承接——器皿越多，油就倒得越多；這個原則此後也體現在五餅二魚等新約神蹟中</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督是那使五餅二魚增添、餵飽五千人的主，祂的供應同樣豐盛到「拾起剩下的零碎，裝滿了十二個籃子」（可 6:41–44）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">以利沙使書念婦人已死的兒子復活——他伏在孩子身上，口對口、眼對眼、手對手，孩子的身體漸漸溫暖，最終打噴嚏睜開眼睛</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這是舊約中少數幾個死人復活的神蹟之一，展現出神的大能能夠勝過死亡最終極的權勢，也預表了此後拉撒路復活等新約神蹟</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督親自宣告「復活在我，生命也在我」，並在自己的復活中，成就了對死亡權勢最終極、最完全的勝過（約 11:25 · 王下 4:32–35）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你正承接著某個前人開創的事業或使命，卻不確定自己該如何找到屬於自己的服事方式——這一頁是為你寫的。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">以利沙命中的是每一位接續前人事業或呼召的人，都會面對的核心問題：如何忠實地延續前人的核心精神，同時發展出屬於自己的、貼近當下處境的具體實踐？他沒有試圖複製以利亞那種震撼性的公開對抗，而是把同一份先知職事，落實到寡婦的債務、婦人的不孕、痲瘋病人的絕望這些更貼近日常生活的具體需要之中。這提醒我們，忠實的傳承，不等於形式上的複製，而在於精神核心的延續，同時允許表現方式隨著處境與個人特質而有所不同。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你是否正承接著某個前人（家業、事工、傳統）所開創的使命？你如何在忠實延續核心精神的同時，找到屬於自己的具體實踐方式？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">以利沙求的是「加倍的靈」，即長子承擔家業的名分，而非超越師傅的能力。你追求成長或進步時，是出於想要超越他人的競爭心態，還是出於想要忠實承擔責任的心志？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">他三次堅持不肯離開以利亞，即使師傅要他留下。你身邊有沒有一段你堅持不願提前結束、因為深知這段陪伴的珍貴的關係或階段？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">他的神蹟多聚焦於個別百姓具體而微小的困境。你目前的服事或工作，是更傾向於處理宏大的議題，還是願意花時間關注身邊人具體而微小的實際需要？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 以利亞</span>
+        <div class="gen-title">示範劇本：透過長期陪伴與公開印證，正式傳承先知職分</div>
+        <div class="gen-body">以利亞沒有草率地交接職分，而是讓以利沙長期跟隨、服事，並在升天前給予機會讓他親眼見證這個神聖的交接時刻——這種長期陪伴、逐步預備、最終公開印證的模式，成為一個完整而健康的傳承典範。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 以利沙</span>
+        <div class="gen-title">延續而非打斷：忠實地承接並落實以利亞所開創的先知服事</div>
+        <div class="gen-body">他沒有另起爐灶、建立一套與以利亞完全不同的服事模式，而是忠實地延續先知對抗偶像崇拜、倚靠耶和華的核心精神，同時發展出更貼近百姓日常生活需要的具體神蹟服事——這是一種既忠於根源、又能與時俱進的健康傳承。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在這段傳承中的運作方式，展現在以利亞願意毫無保留地將職分交託給以利沙、並讓神親自印證這份傳承（先知門徒確認「感動以利亞的靈感動以利沙了」）。這提醒我們，真正健康的傳承，不需要靠人為的競爭或比較來確立，而是靠神自己在恰當的時候，親自印證與確認。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那個撇下十二對牛、堅持不肯離開師傅半步的接班人，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#接手前人的事業</span>
+      <span class="tag">#求傳承不求超越</span>
+      <span class="tag">#神蹟貼近日常生活</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>以利沙出場的方式很樸實——他正在自家田裡犁地,而且不是小家庭，是有十二對牛可以同時耕作的規模，家境相當不錯。以利亞走過來，什麼都沒說，就把自己的外衣搭在他身上，然後繼續走。</p>
+      <p>以利沙立刻懂了這個動作的意思，追上去說：讓我先回去跟父母親吻別，再跟你走。然後他做了一件挺絕的事——把耕田的牛宰了，用套牛的工具當柴火煮肉分給大家吃，等於是把回頭路直接燒掉，然後才跟著以利亞走。</p>
+      <p>接下來幾十年，他幾乎沒有離開過以利亞身邊。到了以利亞快要升天的日子，師傅三次叫他留下，他三次都拒絕：我指著永生的神起誓，我不會離開你。這種堅持，讓他成為唯一親眼看見以利亞升天的人。</p>
+      <p>臨走前，以利亞問他想要什麼，他說：讓感動你的靈加倍感動我。這句話常常被理解成「我要比你更厲害」，但其實這是舊約長子繼承的專門用語——長子拿雙倍遺產，不是因為他比較優秀，是因為他要扛起整個家族的責任。以利沙求的，是正式承接這份先知職分的名分。</p>
+      <p>他此後行的神蹟，跟以利亞很不一樣。以利亞求天火、跟四百五十人對決，很戲劇性；以利沙的神蹟，多半是幫寡婦還債、讓婦人生孩子、治好一個痲瘋病人、找回一把借來的斧頭——很生活化，很貼近一般人的日常煩惱。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——而以利沙這塊石頭，接手了師傅留下的那塊料，沒有想著要雕得更大更炫，只是把它，穩穩地用在每一個需要的地方。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你正在接手某個前人建立的事業或使命——你不需要想著要「超越」他，你可以像以利沙一樣，求一份忠實承擔的心，而非壓過前人的野心。</p>
+      <p style="margin-top:12px;">你的服事或貢獻，不需要總是很戲劇化才算數。以利沙大多數的神蹟，都是解決一個普通人一個具體的煩惱——這種貼近日常生活的付出，同樣有它的重量。</p>
+      <p style="margin-top:12px;">還有，如果你正在一段你捨不得結束的陪伴裡——像以利沙那樣，堅持留到最後，去親眼見證那個重要的時刻，是值得的。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，去做一件很不起眼、卻能實際解決某人具體困難的小事。</p>
+    </div>
+
+    <div class="insight-box">在當代組織與家族企業傳承的討論中，以利沙的模式提供了一個重要的參照——健康的接班不是要求接班人複製前任的每一個風格與手法，而是忠實延續核心使命，同時允許在具體實踐上，發展出更貼合當下處境與接班人自身特質的表現方式。這對正在思考『如何在傳承家業或事工時，既尊重傳統又發展出自己的路』的現代人，提供了具體的參照框架。而他神蹟中對日常生活困境的細膩關注，也對當代服事與慈善事工，提供了重要的提醒——真正貼近人心的服事，往往不在於規模的宏大，而在於是否願意關注個體具體而微小的真實需要。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他把師傅開創的先知傳統，帶進了每一個平凡百姓的廚房、田地與病榻旁——先知的職事，從此不再只是與君王對抗的宏大敘事，也是貼近日常生活的具體恩典。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">先知傳承的完整典範</div>
+          <div class="legacy-body">以利亞到以利沙的職分交接，成為舊約中對「屬靈傳承」描寫最完整的敘事範例，深刻影響了此後對師徒制度與屬靈傳承過程的理解與實踐。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">神蹟服事的日常化拓展</div>
+          <div class="legacy-body">他將先知的神蹟性服事，從公開對抗的宏大場面，拓展到寡婦的欠債、婦人的不孕、病人的醫治這些貼近日常生活的具體領域，深刻影響了此後對「神的介入可以是細膩而貼近生活」的理解。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">跨越死亡的服事延續性</div>
+          <div class="legacy-body">他死後骸骨仍能使死人復活的記載，成為聖經中對「忠心服事的果效可能延續超越個人生命限制」這一主題，最獨特而深刻的見證。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">「以色列的戰車馬兵」的先知定位</div>
+          <div class="legacy-body">他一生數十年在動盪的政局中，多次以先知的洞見協助以色列在軍事與外交上化險為夷，確立了先知職事對一個民族安危具有實質而重要影響力的典範地位。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「有人正葬死人，忽然看見一群人，就把死人拋在以利沙的墳墓裡，一挨以利沙的骸骨，死人就復活，站起來了。」</div>
+      <div class="final-verse-ref">列王紀下 13:21</div>
+    </div>
+
+    <div class="final-question">如果你正承接著某個前人留下的使命或期待——你會像以利沙一樣，求一份忠實承擔的責任感，還是不自覺地陷入想要證明自己「更厲害」的比較心態？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 以利沙 <span>אֱלִישָׁע</span> · 接過外衣的先知 · 加倍的靈的承接者</div>
+
+</body>
+</html>

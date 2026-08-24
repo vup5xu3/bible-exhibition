@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>喇合 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">喇合</h1>
+  <span class="hero-name-en">Rahab · רָחָב</span>
+  <p class="hero-slogan">「耶利哥全城都因以色列人的到來而膽戰心驚，唯獨這個妓女說：<br>「我知道耶和華已經把這地賜給你們……因為耶和華你們的神本是上天下地的神。」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">主前約 1406 年（約書亞征服迦南時期）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ESTP · 企業家型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">約書亞記 2, 6 章<br>來 11:31 · 雅 2:25 · 太 1:5</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">耶利哥的妓女 · 波阿斯之母</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">她的職業，是那個時代最被鄙視的行業之一；她的城市，是神親自宣告要毀滅的罪惡之城——而她，卻成為整本聖經中，因信而蒙拯救最戲劇性的例證之一。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">主前約 1406 年<br>以色列人征服迦南初期</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">多重身份</span>
+        <div class="info-cell-value">耶利哥城的妓女 · 客店經營者<br>此後成為撒門之妻，波阿斯之母</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">耶利哥城（約旦河西岸，迦南地第一座被攻取的城市）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">背景</span>
+        <div class="info-cell-value">迦南人，屬於神明令要被以色列人剪除的罪惡之城<br>因隱藏探子、宣告對耶和華的信心而得存活</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">書 2, 6 章<br>來 11:31（信心偉人榜）· 雅 2:25（因行為稱義的例證）· 太 1:5（彌賽亞家譜）</div>
+      </div>
+    </div>
+
+    <p>喇合出現在約書亞記中，身分被明確標記為「妓女」（זוֹנָה）——她的家似乎兼營客店，位於耶利哥城牆之上，這個地理位置此後在她協助探子逃脫時，發揮了關鍵的實際作用。約書亞差派兩個探子窺探耶利哥，他們投宿在喇合家中，此舉很快被耶利哥王發覺，差人來要喇合交出這兩人。她卻選擇了隱藏他們，並用假話搪塞追捕的人，讓探子得以安全逃脫——這個決定，意味著她背叛了自己的城市與同胞，站到了即將前來毀滅這座城的敵人那一邊。</p>
+    <p>第十四世紀末的迦南地，正處在以色列人結束曠野漂流、即將展開征服行動的關鍵時刻。喇合對兩位探子所說的話，展現出她對周遭局勢有著極其清楚的認知：「我知道耶和華已經把這地賜給你們，並且因你們的緣故我們都驚慌了……我們聽見這事，心就消化了，因你們的緣故，並無一人有膽氣。耶和華你們的神本是上天下地的神。」這段告白極具神學份量——她不只是懼怕以色列人的軍事實力，更清楚地承認耶和華才是「上天下地的神」，這種信仰認信，出自一位理應對耶和華一無所知的迦南妓女之口，格外令人震撼。她因此要求兩位探子起誓，日後攻城時要保全她與全家的性命——這個交易，成為她此後命運徹底翻轉的起點。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">她的故事從一次冒著生命危險的隱藏開始，最終走向了整座耶利哥城中唯一存活的家庭，並意外地被寫進了彌賽亞的家譜。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">隱藏探子——「我知道耶和華已經把這地賜給你們」</div>
+        <div class="timeline-body">約書亞差遣的兩個探子投宿喇合家，耶利哥王差人來要她交出這兩人，喇合卻已將他們藏在房頂的麻稭中，回覆追捕者「這二人往哪裡去了，我卻不知道」。她隨後對探子表明自己對耶和華的認信，並要求他們起誓保全她與全家。</div>
+        <div class="timeline-ref">書 2:1–14</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">紅繩為記——「你要把這條線繩繫在窗戶上」</div>
+        <div class="timeline-body">探子應允她的請求，條件是她必須將所有家人聚集在自己家中，並「把這條朱紅線繩繫在縋你們下去的窗戶上」作為記號，使日後攻城的以色列軍隊得以識別並保全這棟房屋。喇合用繩子將二人從窗戶縋下城牆外，因她的房屋「是在城牆邊上，她也住在城牆上」——這個具體的地理位置細節，成為整個拯救計畫得以實現的關鍵。</div>
+        <div class="timeline-ref">書 2:15–21</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">耶利哥城牆倒塌——「唯有妓女喇合……她和她父家都得存活」</div>
+        <div class="timeline-body">以色列人繞城七日，第七日繞城七次，眾民大聲呼喊，城牆就塌陷。約書亞遵守探子的誓言，吩咐兩位探子進去，「將那女人和她的父母、弟兄，並她所有的，都帶出來，安置在以色列的營外」——整座耶利哥城被毀滅殆盡，唯獨喇合一家因著這份信心的交易，得以在這場神所命定的審判中存活下來。</div>
+        <div class="timeline-ref">書 6:20–25</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">融入以色列——「她住在以色列中，直到今日」</div>
+        <div class="timeline-body">約書亞記記載「喇合……她住在以色列中，直到今日」——這句話顯示她此後徹底融入了以色列群體，而非僅僅是被暫時收留。馬太福音的家譜更揭示了她此後的命運：她嫁給撒門，生子波阿斯，而波阿斯正是路得的丈夫、大衛王的曾祖父——這位曾經的耶利哥妓女，最終成為彌賽亞家譜中不可或缺的一環。</div>
+        <div class="timeline-ref">書 6:25 · 太 1:5</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">她所擁有的，只是敵人陣營中一個妓女微不足道的資訊與判斷，卻做出了整座城中唯一一次正確的抉擇。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">耶和華的主權，超越她自己城邦與同胞的立場</div>
+          <div class="soul-body">她在整座即將淪陷的城市中，是唯一一個清楚承認「耶和華你們的神本是上天下地的神」的人——這份認信，讓她甘願背叛自己的城邦與同胞，選擇站在她認定為真正掌權者的那一邊。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">在極端風險中果斷而具體的行動力</div>
+          <div class="soul-body">她沒有僅僅停留在內心的信念，而是立即採取具體、需要極大勇氣的行動——隱藏探子、對追捕者說謊、安排逃脫路線、要求保全全家的誓約。雅各書特別稱許她「接待使者，又放他們從別的路上出去，不是因行為稱義嗎」。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">務實、機智，善於在危急處境中迅速做出關鍵判斷</div>
+          <div class="soul-body">從隱藏探子的即興應變，到繫紅繩作記號的具體安排，她展現出一種極高的臨場應變能力與務實的行動策略，這種特質使她能在極短的時間內，扭轉自己與全家原本注定滅亡的命運。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">（材料有限——聖經未詳述她此前的具體過犯或掙扎）</div>
+          <div class="soul-body">她的職業身分本身，在當時的社會與宗教語境中帶著明顯的污名，然而聖經對她個人道德處境的記載相對簡略，敘事焦點集中於她信心與行動的轉折，而非對她過去生活的批判。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">從被咒詛之城的妓女，到被列入信心偉人榜與彌賽亞家譜</div>
+          <div class="soul-body">她的身分轉變幅度，是聖經中最劇烈的例證之一——從一座神親自宣告要毀滅之城市中最受鄙視的職業，到被希伯來書列入信心偉人榜、被馬太福音列入彌賽亞家譜，這種身分的巨大跨越，是恩典超越一切社會與道德標籤最鮮明的見證。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">喇合的故事最深刻之處，在於聖經用兩種看似不同、卻互相補充的角度來評價她——希伯來書強調「妓女喇合因著信，……就不至和那些不順從的人一同滅亡」，雅各書則強調「妓女喇合接待使者……豈不是因行為稱義嗎」。這兩段經文並非彼此矛盾，而是共同揭示了真實信心的完整樣貌：真正的信心，從來不只是內心的認信，也必然帶出具體的行動；而真正蒙神悅納的行為，也絕非憑空而生，而是源自對神主權真實的信靠。喇合沒有漫長的信仰培育過程，她只有一次機會、一個當下的抉擇——而她把握住了。這提醒我們，信心的深度，不總是取決於認識神的時間長短，而在於一個人願不願意在關鍵的抉擇時刻，把自己完全交託給那位她所確信配得信靠的神。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ESTP</span>
+      <div class="mbti-name">企業家型 · 耶利哥的妓女</div>
+      <div class="mbti-slogan">「她只有一次機會可以做出正確的抉擇——而她把握住了，並用一條紅繩，把自己的命運，繫上了以色列的未來。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Se · 外向實感</span>
+          <div class="mbti-fn-body">她對眼前的具體處境有著極高的敏銳度與即時應變能力——面對追捕者的逼問，她能迅速編出可信的說詞；面對探子逃脫的實際需要，她能立即想出用繩子縋下城牆這個具體可行的方法。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">她對耶和華的信心宣告，帶著極其真誠、發自內心的個人確信——這不是表面的算計或投機，而是她基於自己所聽聞的一切，對這位神的主權所做出的真實內在判斷與委身。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">她展現出清晰的目標導向思維——不僅為自己求生路，更主動要求保全全家的性命，並具體約定紅繩為記的操作方式，這種務實地規劃並落實具體保障措施的能力，顯示第三功能的作用。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Ni · 外向直覺</span>
+          <div class="mbti-fn-body">她的決策高度聚焦於眼前具體而立即的處境應對，而非展現出對更長遠、更抽象之未來圖景的深思——這種決策模式的即時性與具體性，反映出劣勢內向直覺的特徵，儘管她最終的抉擇，確實通向了一個她自己完全無法預見的深遠未來。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">她一生最重要的關係，始於兩位她從未謀面、卻願意冒死保護的以色列探子。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">探</div>
+          <div class="relation-name">兩位以色列探子</div>
+          <div class="relation-type-badge">她冒死隱藏、並與之立約的關鍵人物</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">她隱藏這兩位探子、幫助他們逃脫，並與他們立下保全全家性命的誓約——這段短暫卻關鍵的相遇，成為她此後整個人生軌跡徹底翻轉的起點，她的果斷與智慧，也直接促成了以色列人此後成功征服耶利哥的行動。</div>
+          <div class="relation-ref">書 2 章</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">約</div>
+          <div class="relation-name">約書亞</div>
+          <div class="relation-type-badge">履行探子誓約、保全她全家的元帥</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">約書亞遵守探子所立的誓約，在耶利哥城陷落之際，特別差人將喇合一家帶出，安置在以色列的營外，使她與全家得以在整座城市的毀滅中倖存——這段記載展現出以色列領袖對誓約的忠實持守，即使對象是一位外邦妓女。</div>
+          <div class="relation-ref">書 6:22–25</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">撒</div>
+          <div class="relation-name">撒門</div>
+          <div class="relation-type-badge">此後娶她為妻的以色列人</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">馬太福音的家譜記載，喇合此後嫁給撒門，生下波阿斯——這段婚姻使她完全融入了以色列群體，並直接開啟了通向大衛王、乃至彌賽亞的家族血脈。</div>
+          <div class="relation-ref">太 1:5</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">波</div>
+          <div class="relation-name">波阿斯</div>
+          <div class="relation-type-badge">她所生、此後迎娶路得的兒子</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">她的兒子波阿斯，此後成為路得記中那位敬虔慷慨的地主，並娶了同樣身為外邦女子的路得為妻——喇合與路得，這兩位背景截然不同卻同樣因信心被接納的外邦女性，透過這段母子關係，被緊密地編織進了同一個彌賽亞家譜之中。</div>
+          <div class="relation-ref">太 1:5 · 路得記全書</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「因著信，妓女喇合……不至和那些不順從的人一同滅亡」——她的故事，成為聖經中信心如何跨越一切道德與族群標籤的最鮮明見證。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「妓女喇合怎樣接待使者，又放他們從別的路上出去，不是一樣因行為稱義嗎？原來身體沒有靈魂是死的，信心沒有行為也是死的。」</div>
+      <div class="verse-ref">雅各書 2:25–26</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">זוֹנָה</span>
+        <div class="word-transliteration">zonah · 妓女 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「妓女、行淫的婦人」，這是聖經對她身分最直接、毫不隱諱的稱呼，希伯來原文與希臘文（πόρνη）都清楚地保留了這個帶有強烈污名的職業標記。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">聖經沒有為喇合的過去美化或迴避——她被明確稱為「妓女」，這個字在此後每一次提及她的經文中（約書亞記、希伯來書、雅各書）都被保留下來。這種毫不掩飾的誠實，恰恰凸顯了恩典的徹底性：神接納她，不是因為她的過去被抹去或淡化，而是因為祂主權性的恩典，能夠完全跨越一個人最深的社會污名與道德標籤。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">אֵל עֶלְיוֹן / אֱלֹהִים בַּשָּׁמַיִם וּבָאָרֶץ</span>
+        <div class="word-transliteration">Elohim bashamayim u-va'aretz · 上天下地的神 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「在天上和地上的神」，這句宣告涵蓋了對神主權範圍最全面性的確認——不只是某個地區或民族的地方神明，而是統管整個天地的至高神。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">喇合作為一位理應對耶和華一無所知的迦南人，卻能說出這句涵蓋神完全主權的宣告，這顯示她對周遭發生之事——以色列人出埃及、過紅海、擊敗約旦河東兩位亞摩利王——有著清晰而深刻的觀察與理解，並據此做出了正確的神學結論。這句認信的深度，甚至超過了當時許多以色列百姓自己對神的信靠程度。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">信心與行為並存的完整見證</div>
+      <div class="theology-insight-body">希伯來書從「信心」的角度稱許喇合（「因著信……不至滅亡」），雅各書則從「行為」的角度稱許她（「因行為稱義」）——這兩段經文並列閱讀，共同確立了新約神學中一個重要的原則：真實的信心必然帶出具體的行為，而蒙神悅納的行為，也必然源自對神真實的信靠，兩者從不互相排斥，而是同一枚硬幣的兩面。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">恩典超越道德與族群標籤的徹底性</div>
+      <div class="theology-insight-body">她作為一位迦南妓女，本屬於神明令要被剪除的群體，卻因著信心被完全接納，甚至被寫進彌賽亞的家譜——這確立了聖經救贖神學中一個持續而重要的主題：神的恩典，能夠徹底跨越任何人為劃定的道德、族群、或社會地位的界限。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">彌賽亞家譜中的恩典見證</div>
+      <div class="theology-insight-body">她與路得、他瑪、拔示巴一同被馬太福音特意列入耶穌的家譜，這四位背景各異、卻都帶著某種醜聞或外邦身分的女性，共同宣告了救恩的血脈，本身就充滿了恩典勝過人性軟弱與社會偏見的深刻見證。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">逾越節時，以色列人將羔羊的血塗在門楣上，使滅命的天使越過那家，這是舊約中最核心的代贖與拯救記號之一</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">喇合所繫的朱紅線繩，同樣是一個懸掛在門窗上、用以標記「此家蒙拯救」的血色記號——這個意象與逾越節的血記在色彩與功能上都有著深刻的呼應，成為此後教會傳統中常被引用的預表</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督的寶血，成為信靠祂之人真正、永恆的拯救記號，使凡「蒙血遮蓋」的人，得以脫離最終的審判（來 9:12–14）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">喇合作為城中唯一因信心而存活的人，她的家在整座即將被毀滅的城市中，成為唯一的安全之處</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這預表了此後基督教神學中「唯獨在基督裡才有真正的安全與拯救」這一核心信念——正如喇合一家因與蒙揀選的記號連結而得救，信徒也因與基督連結而脫離審判</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督親自宣告「我就是道路、真理、生命；若不藉著我，沒有人能到父那裡去」，成為那唯一真正安全的避難所（約 14:6）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">喇合從一座被咒詛、注定毀滅的城市，被接納進入蒙福的以色列群體，並成為大衛王室血脈的直接先祖</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">她身分的巨大逆轉——從被咒詛之地的居民，到蒙福家族的成員——預表了外邦人得以透過信心，被接枝進入神救贖計畫核心的普世性應許</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督使猶太人和外邦人「都藉著他被一個聖靈所感，得以進到父面前」，成就了喇合故事所預表的普世性救恩（弗 2:18 · 羅 11:17）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你曾經因為自己的過去、職業、或社會標籤，而懷疑自己是否配得神的恩典與使用——這一頁是為你寫的。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">喇合命中的是每一個曾經因為自己的過去、身分、或社會眼光中的污名，而懷疑自己是否有資格被神接納、甚至被神使用的人。她的職業，在當時的社會中是最受鄙視的身分之一，她所屬的城市，是神親自宣告要毀滅的罪惡之地——然而正是這樣一個人，因著一次真實的信心抉擇，不僅得以存活，更被寫進了希伯來書的信心偉人榜，被寫進了彌賽亞的家譜。她的故事提醒我們，一個人的過去或身分背景，從來不能定義神能否使用這個人，真正決定性的，是這個人在關鍵時刻，是否願意把自己交託給那位配得信靠的神。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你是否曾經因為自己的過去、職業、或某種社會標籤，而覺得自己「不夠格」被神接納或使用？喇合的故事，對這種想法帶來什麼樣的挑戰？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">她只有一次機會、一個當下的抉擇，就選擇了信靠耶和華。你此刻是否也面臨著某個需要當機立斷、卻可能徹底改變你人生方向的抉擇時刻？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">希伯來書與雅各書分別從『信心』與『行為』的角度稱許她。你認為，在你自己的信仰生活中，內心的信靠與具體的行動，目前是否保持著健康的一致？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">她從一座被咒詛之城的居民，成為彌賽亞家譜中的一員。你是否也曾經歷過，或渴望經歷，一種身分被恩典徹底翻轉的經歷？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 喇合</span>
+        <div class="gen-title">示範劇本：在生死交關的一次機會中，果斷選擇信靠與行動</div>
+        <div class="gen-body">她的故事幾乎濃縮在一次極短的抉擇窗口中——沒有漫長的信仰培育過程，只有一次隱藏探子、宣告信心、要求立約的具體行動，而她把握住了這個唯一的機會。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 波阿斯（她的兒子）</span>
+        <div class="gen-title">延續：從母親的信心，到兒子對外邦寡婦路得的慈愛接納</div>
+        <div class="gen-body">喇合的兒子波阿斯，此後同樣展現出對外邦女子（路得）超越常規的慷慨與接納——這種對『外邦身分不構成拒絕理由』的態度，某種程度上，正是承襲自母親自己曾經作為外邦人、卻被以色列群體接納的親身經歷。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在喇合的故事中，展現在神願意透過一次簡短卻真實的信心宣告，徹底翻轉一個人被社會與宗教體制所定義的命運。這提醒我們，恩典打斷『身分決定命運』這種思維的方式，正是透過像喇合這樣具體而戲劇性的例子，向所有世代宣告：無論你的過去或標籤是什麼，一次真實的信心抉擇，都可能成為神徹底改寫你生命故事的起點。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那個耶利哥城裡的妓女，最後卻被寫進耶穌家譜的女人，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#過去不能定義你</span>
+      <span class="tag">#一次抉擇改變一生</span>
+      <span class="tag">#外人也能被寫進家譜</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>喇合的職業，聖經寫得很直白——妓女。她住在耶利哥城牆上，開了間類似客棧的地方。以色列人快打過來了，約書亞派了兩個探子去打探情況，剛好投宿在她家。</p>
+      <p>耶利哥王發現了，派人來要她交出這兩個人。喇合的反應很乾脆——她把兩人藏在屋頂的麻稭堆裡，然後跟追來的人說：他們是有來過，但已經走了，你們現在追還來得及。等追兵一走，她跑上去跟兩位探子說了一段話：我知道耶和華已經把這塊地給你們了，我們全城的人聽到你們的事蹟，早就嚇得魂飛魄散——你們的神，是掌管天地的神。</p>
+      <p>這段話出自一個異教城市裡最沒有社會地位的人之口，格外震撼。她接著提出一個交換條件：饒我全家一命。探子答應了，要她在窗戶上綁一條紅繩子作記號，並把所有家人都聚集到自己家裡，攻城那天，只有這棟房子會被保留。</p>
+      <p>七天後，耶利哥城牆真的塌了，整座城被毀滅殆盡——除了喇合一家。約書亞遵守承諾，把他們帶出來安置好。聖經寫了一句話：她從此就住在以色列中間，直到今日。</p>
+      <p>更驚人的是後續。馬太福音的家譜告訴我們，喇合後來嫁給了一個叫撒門的以色列人，生了一個兒子叫波阿斯——就是後來娶路得的那個波阿斯。也就是說，一個耶利哥的妓女，最後成了大衛王的曾曾祖母，直接被寫進了耶穌的家譜裡。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——而喇合這塊石頭，本來被丟在一座注定被毀滅的城裡，卻在最後一刻，被鑲進了通往救主的那條血脈。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你正因為自己的過去、職業、或別人給你貼的標籤，覺得自己配不上任何美好的事——喇合的故事想直接告訴你：不是這樣的。聖經沒有幫她的過去美化,卻毫不猶豫地把她寫進了信心偉人榜、寫進了耶穌的家譜。</p>
+      <p style="margin-top:12px;">她只有一次機會，一個當下的判斷,就徹底改寫了自己的命運。你此刻可能也正站在一個類似的十字路口——不需要完美的過去，只需要一個真實的抉擇。</p>
+      <p style="margin-top:12px;">還有，她的身分曾經是「外人」中的「外人」——外邦人，還是妓女。而她最後成了「自己人」中最重要的一分子。你的身分，從來不是神能不能使用你的限制。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果你正懷疑自己的過去會不會拖累你的未來——記得喇合，然後，做出那個對的抉擇。</p>
+    </div>
+
+    <div class="insight-box">在當代關於『污名與身分重塑』的討論中，喇合的故事提供了一個極具力量的聖經範例——她的職業標籤（妓女）從未被聖經文本抹去或淡化，卻也從未成為她此後被信心群體完全接納、乃至被寫入救贖歷史核心敘事的阻礙。這對正在經歷社會污名、或因過去經歷而自我否定的現代人，提供了重要的心理與屬靈資源：真實的轉變不需要靠掩蓋過去，而可以透過誠實面對過去、同時做出全新的信心抉擇來實現。而她『因信亦因行為』被雙重稱許的記載，也持續為當代神學討論『信心與行為的關係』，提供了最生動具體的聖經案例。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">她從耶利哥城牆邊一個被鄙視的職業，走到了彌賽亞家譜之中——她的故事，是恩典徹底跨越一切人為標籤最有力的見證。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">信心偉人榜中唯一的外邦妓女</div>
+          <div class="legacy-body">希伯來書十一章的信心偉人榜中，她是少數幾位被明確點名的女性之一，也是唯一一位帶著如此鮮明社會污名身分的人物，這確立了她在聖經正典中，作為「信心可以徹底翻轉命運」最戲劇性見證的獨特地位。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">「因信亦因行為」神學的重要例證</div>
+          <div class="legacy-body">希伯來書與雅各書分別從信心與行為的角度稱許她，這使她的故事成為新約神學中，理解「真實信心必然帶出具體行為」這一原則時，最常被引用的雙重見證文本。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">彌賽亞家譜中恩典典範的重要一環</div>
+          <div class="legacy-body">她與路得、他瑪、拔示巴一同被列入耶穌的家譜，共同宣告救恩血脈本身所承載的、超越族群與道德標籤的深刻恩典見證。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">紅繩記號的預表性意義</div>
+          <div class="legacy-body">她所繫的朱紅線繩，此後在教會歷史的釋經傳統中，常被視為呼應逾越節血記與基督寶血的重要預表意象，持續啟發著關於「拯救記號」這一主題的神學反思。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「因著信，妓女喇合和那些不順從的人同滅亡，因為她曾和和平平地接待探子。」</div>
+      <div class="final-verse-ref">希伯來書 11:31</div>
+    </div>
+
+    <div class="final-question">如果你此刻正因為自己的過去或某個標籤，而懷疑自己是否配得神的恩典——你願不願意相信，就像喇合一樣，一次真實的信心抉擇，足以讓你的名字，被寫進一個你此刻完全無法想像的故事之中？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 喇合 <span>רָחָב</span> · 耶利哥的妓女 · 因信而被接納的外邦女子</div>
+
+</body>
+</html>

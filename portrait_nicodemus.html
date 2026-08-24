@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>尼哥底母 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">尼哥底母</h1>
+  <span class="hero-name-en">Nicodemus · Νικόδημος</span>
+  <p class="hero-slogan">「他第一次來，是趁夜；<br>他最後一次來,是帶著一百斤的沒藥和沉香,在眾目睽睽下,為一個被釘死的「罪犯」送葬。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">第一世紀 · 主後約 1–70 年</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">INTP · 邏輯學家型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">約 3:1–21, 7:50–52, 19:38–42</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">夜訪的法利賽人 · 遲來卻堅定的門徒</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他是猶太公會裡的教師之師，卻被耶穌一句「你是以色列人的先生，還不明白這事嗎」問得啞口無言。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">第一世紀<br>羅馬治下的猶太行省</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">多重身份</span>
+        <div class="info-cell-value">法利賽人 · 猶太公會議員<br>「以色列人的先生」（教師的教師）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">（未載，推測耶路撒冷一帶）→<br>耶路撒冷</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">背景</span>
+        <div class="info-cell-value">猶太宗教與政治菁英階層<br>有相當的社會地位與財富（獻上百斤香料）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">約 3:1–21, 7:50–52, 19:38–42<br>（唯獨約翰福音記載，符類福音未提及）</div>
+      </div>
+    </div>
+
+    <p>尼哥底母屬於猶太社會最頂端的宗教與政治菁英階層：他是法利賽人（律法最嚴謹的守護者），也是公會（猶太最高的宗教與司法機構，成員約七十人）的議員。耶穌稱他為「以色列人的先生」——這個帶著定冠詞的稱呼暗示他很可能是當時最具權威的律法教師之一，一位教導其他教師的人。這樣的身分,使他此後夜訪耶穌這件事,顯得格外意味深長：一個站在猶太宗教體制最高處的人，願意放下身段，去向一位來自加利利、沒有正式拉比學歷的年輕教師求教。</p>
+    <p>他選擇「夜裡」來見耶穌，約翰福音特別記下這個時間細節，且此後兩次提及他時都刻意重複「就是先前夜裡去見耶穌的」這個標記——這不只是敘事上的巧合，而是約翰福音「光與暗」神學主題的具體展現：尼哥底母代表著一種站在光明邊緣、卻還無法完全走出黑暗的信心狀態。第二聖殿晚期的猶太公會,對於這位加利利教師的態度日趨敵對,一位公會議員若公開與耶穌交往,很可能面臨同儕的排擠甚至職位的威脅——他選擇在夜色的掩護下前來，某種程度上正反映了那個時代體制內菁英若想認真面對耶穌，所必須承受的真實社會風險。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">他三次出現在約翰福音裡，一次比一次更靠近光——從夜裡求問，到公會中的猶疑辯護，到光天化日下的公開安葬。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">夜訪——「你是從神那裡來作師傅的」</div>
+        <div class="timeline-body">他夜裡來見耶穌，開場白帶著謹慎的敬意：「拉比，我們知道你是由神那裡來作師傅的；因為你所行的神蹟，若沒有神同在，無人能行。」耶穌沒有順著這個開場繼續寒暄，直接切入核心：「人若不重生，就不能見神的國。」尼哥底母的回應顯露出他理解的困境：「人已經老了，如何能重生呢？豈能再進母腹生出來嗎？」他用了字面、生理性的理解方式,去回應一個屬靈層次的宣告。</div>
+        <div class="timeline-ref">約 3:1–4</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">「你是以色列人的先生，還不明白這事嗎？」</div>
+        <div class="timeline-body">耶穌進一步解釋「從水和聖靈生」的道理，並引用摩西在曠野舉銅蛇的典故——這是一位飽讀舊約律法的教師理應能夠連結的意象。耶穌的提問帶著溫和卻直接的挑戰意味：一個教導別人律法與屬靈真理的人，此刻卻在最核心的重生真理面前顯得如此陌生。這段對話沒有記載尼哥底母的任何回應——他似乎是在沉默中，被留下了許多需要繼續思想的問題。</div>
+        <div class="timeline-ref">約 3:9–15</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">公會中的猶疑辯護——「不先聽本人的口供，豈可定他的罪嗎？」</div>
+        <div class="timeline-body">祭司長和法利賽人差人去捉拿耶穌未果,聚集商議時,尼哥底母——約翰特別註明「就是從前去見耶穌的，是他們（公會議員）中間的一個」——挺身而出，質問同僚：「不先聽本人的口供，不知道他所做的事，難道我們的律法還定他的罪嗎？」這不是一句公開的信仰宣告,而是一個謹守法律程序正義的技術性抗辯,卻立刻招來同僚的嘲諷：「你也是出於加利利嗎？」他在這一刻仍未能完全公開地站在耶穌那一邊,卻已經冒著一定的風險,發出了不同的聲音。</div>
+        <div class="timeline-ref">約 7:45–52</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">光天化日下的安葬——一百斤沒藥沉香</div>
+        <div class="timeline-body">耶穌被釘死後，亞利馬太人約瑟去求彼拉多討取耶穌的身體，尼哥底母也來了，「帶著沒藥和沉香約有一百斤前來」。這是他第三次、也是最後一次出現，卻是他生命中最公開、最不容置疑的一次行動——在眾目睽睽之下,為一位被官方定罪、被群眾唾棄的「罪犯」收殮遺體,並用了遠超一般葬禮規格的貴重香料。從夜裡的謹慎求問,到白日下毫不掩飾的公開行動,他走過了一條漫長卻真實的路。</div>
+        <div class="timeline-ref">約 19:38–42</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他不是一個立刻做出戲劇性決斷的人,他是一個花了很長時間,終於把疑問走成行動的人。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">真理值得認真求問,即使代價是承受不解與風險</div>
+          <div class="soul-body">他放下猶太教師的身段,主動去向一位地位遠低於自己的加利利教師請教，這需要相當的謙卑與求真的誠意。他沒有假裝自己已經懂了,而是誠實地說出自己的困惑——「人已經老了，如何能重生呢？」</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">在群體壓力下仍然堅持程序正義與公平</div>
+          <div class="soul-body">當公會的同僚已經打定主意要定耶穌的罪,他仍然站出來提出一個基本卻尖銳的問題：不先聽本人的口供,怎能定罪？這種在群體一面倒的氛圍中,仍然堅持基本公義原則的勇氣,即使代價是被嘲諷「你也是加利利人嗎」，也值得被看見。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">謹慎、理性、循序漸進</div>
+          <div class="soul-body">他不是一次就做出徹底的公開表態,而是分成三個階段——夜裡私下求問、公開場合中謹慎地抗辯、最後才在眾人面前公開行動。這種循序漸進的模式,反映出一種深思熟慮、不輕易衝動、卻也不輕易放棄的性格。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">曾經因懼怕人的眼光而選擇夜裡求問</div>
+          <div class="soul-body">他第一次來見耶穌,選擇了夜色的掩護,這暗示著一種對自己社會地位與同儕看法的顧慮。約翰福音刻意重複「就是先前夜裡去見耶穌的」這個標記,某種程度上,是在溫和地指出他這份猶疑曾經存在過。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">從理性提問走向具體行動的漫長轉化</div>
+          <div class="soul-body">他沒有留下任何一句明確宣告「我信了」的話語，聖經卻用他最後那個動作——帶著一百斤沒藥沉香公開安葬耶穌——讓讀者自己去看見他信心的真實重量。有時候，最深的信心宣告,不是說出來的,是做出來的。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">尼哥底母的故事最動人之處,在於它拒絕給出一個乾淨俐落的「悔改時刻」。約翰福音沒有記載他何時、如何從那個在夜裡困惑發問的教師,轉變成那個在白日公開安葬耶穌的門徒——這段轉化的過程,聖經選擇留白。這對每一個信心之旅並非一夜之間戲劇性轉變、而是經過長期掙扎與反覆思想才漸漸堅定的人,是極大的安慰。他三次出場,一次比一次更靠近光,卻沒有一次是完全戲劇化的宣告——這暗示著,真實的信心成長,有時候就是這樣安靜、緩慢,卻終究抵達了一個無法回頭的地方。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">INTP</span>
+      <div class="mbti-name">邏輯學家型 · 夜裡的求問者</div>
+      <div class="mbti-slogan">「他花了很長時間才把一個生理學式的疑問，走成一個用一百斤香料完成的公開宣告。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Ti · 內向思考</span>
+          <div class="mbti-fn-body">面對耶穌「重生」的宣告，他立刻用邏輯拆解其字面上的矛盾：「人已經老了，如何能重生呢？豈能再進母腹生出來嗎？」這種先用嚴謹邏輯檢視命題可行性的反應,是內向思考典型的處理方式——他需要先在理性層面理清脈絡，才能真正接受。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Ne · 外向直覺</span>
+          <div class="mbti-fn-body">在公會的辯論中，他能跳出當下群體一面倒的氛圍，提出一個更宏觀的程序正義問題——不先聽口供,怎能定罪？這種跳脫框架、看見其他可能性的能力，正是外向直覺的展現。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Si · 內向實感</span>
+          <div class="mbti-fn-body">他最終選擇用一種極其具體、傳統、合乎禮儀規格的方式（一百斤沒藥沉香，符合猶太安葬禮俗）來表達自己的委身——這種透過具體、合乎傳統儀式的行動來承載深刻意義的方式，顯示出內向實感在他行為模式中的作用。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Fe · 外向情感</span>
+          <div class="mbti-fn-body">他不擅長,也似乎不急於在群體面前公開表達自己的情感立場——他選擇夜訪、選擇在公會中謹慎地以程序問題而非直接的信仰宣告來表態。劣勢的外向情感,使他在公開場合中,傾向於用理性論證代替情感表白，直到最後那個安葬的行動,才讓他的情感委身以具體行動的方式徹底顯明。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他與耶穌之間唯一被記載的深度對話，成了整本新約中最著名的一段教導；而他最後的行動，是用一百斤香料寫成的無聲告白。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">耶</div>
+          <div class="relation-name">耶穌基督</div>
+          <div class="relation-type-badge">主與求問的教師</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">耶穌沒有因尼哥底母趁夜而來而輕視他，反而用最深刻的教導回應他——「神愛世人，甚至將他的獨生子賜給他們，叫一切信他的，不至滅亡，反得永生」正是在這段對話中說出的。這段關係展現了耶穌對待每一個誠實求問者的態度：即使對方帶著疑惑、甚至帶著世俗地位的重量前來，祂仍然給出最深刻、最完整的真理。</div>
+          <div class="relation-ref">約 3:1–21</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">約</div>
+          <div class="relation-name">亞利馬太人約瑟</div>
+          <div class="relation-type-badge">同工 · 一同安葬耶穌的公會議員</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">兩人同為公會議員,同樣是暗中的門徒(約瑟因怕猶太人而暗暗地作門徒)，在耶穌死後,共同承擔了安葬的責任——約瑟提供了自己的新墳墓，尼哥底母帶來大量香料。兩位原本謹慎、隱藏身分的體制內人物,在耶穌死後那個最危險、最沒有希望的時刻,選擇了公開行動。</div>
+          <div class="relation-ref">約 19:38–40</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">公</div>
+          <div class="relation-name">公會的同僚</div>
+          <div class="relation-type-badge">群體 · 質疑他立場的同儕</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">當他在公會中提出程序正義的質疑時，同僚的回應帶著明顯的嘲諷：「你也是出於加利利嗎？你且去查考，就可知道加利利沒有出過先知。」這句話揭示了公會內部對耶穌與加利利地區根深蒂固的偏見，也顯示尼哥底母此時已經開始承受因同情耶穌而來的社會壓力。</div>
+          <div class="relation-ref">約 7:52</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「神愛世人」這句被無數人背誦的經文，最初的聽眾,是一個在夜裡帶著困惑而來的猶太教師。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「神愛世人，甚至將他的獨生子賜給他們，叫一切信他的，不至滅亡，反得永生。」</div>
+      <div class="verse-ref">約翰福音 3:16</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">ἄνωθεν</span>
+        <div class="word-transliteration">anōthen · 重生 / 從上頭 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">這個字同時可以翻譯為「重新」或「從上頭（從天上）」，具有雙重含義。尼哥底母顯然理解成前者（「重新」，因而困惑於如何再次進入母腹），而耶穌真正的意思是後者——一種從神而來、從上頭賜下的全新生命。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這個雙關語正是整段對話誤解與澄清的核心。尼哥底母的困惑不是愚蠢的,而是這個詞語本身在字面上就存在合理的歧義——他用了最直接的理解方式去面對一個需要屬靈洞察力才能明白的真理。耶穌沒有嘲笑這個誤解,而是耐心地展開解釋,這示範了真理的教導,常常需要穿越字面理解的表層,進入屬靈的深意。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">σμύρνα</span>
+        <div class="word-transliteration">smyrna · 沒藥 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">一種源自阿拉伯與非洲的芳香樹脂，在古代常用於安葬防腐,也是敬拜與獻祭中的貴重香料（東方博士獻給嬰孩耶穌的禮物之一,也是沒藥）。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">尼哥底母帶來的『一百斤』沒藥與沉香，遠遠超過一般平民安葬所需的規格——這是王者等級的葬禮用量。他用這份極度貴重、幾乎奢侈的獻禮，無聲地宣告了他對這位被官方定罪、被群眾拋棄之人的真實信念：即使全世界都稱祂為罪犯，他仍然用對待君王的規格,為祂送行。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">重生：救恩論的核心宣告</div>
+      <div class="theology-insight-body">耶穌對尼哥底母所說的「人若不重生，就不能見神的國」，成為此後基督教救恩論最核心的教義之一——救恩不是靠人努力改善自己的道德表現,而是一次徹底的、從神而來的新生命賜予。這段對話因此成為整本新約中,關於救恩本質最直接、最濃縮的教導之一。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">銅蛇的預表：被舉起帶來的生命</div>
+      <div class="theology-insight-body">耶穌在對話中引用民數記中摩西舉銅蛇的典故：「摩西在曠野怎樣舉蛇，人子也必照樣被舉起來，叫一切信他的都得永生。」這是耶穌自己對十字架死亡最早、最直接的預表性解釋之一,而聽眾正是一位理應熟悉這段舊約典故的律法教師。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">信心旅程的多樣性</div>
+      <div class="theology-insight-body">尼哥底母的故事沒有一個明確的『信主時刻』，卻用一連串漸進的行動——求問、辯護、安葬——描繪出一種真實而緩慢的信心成長軌跡。這對教會理解「什麼才算得救的憑據」提供了重要的提醒：不是每個人的信心旅程,都必須以一個戲劇性的宣告時刻為標記。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">摩西在曠野照耶和華的吩咐,舉起一條銅蛇,凡被火蛇咬的人,一望這銅蛇就活了</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">耶穌親口向尼哥底母解釋，祂自己的被舉起（十字架）,正是這個古老預表的終極應驗——這段對話是新約中最早、最明確的十字架預言之一</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督被舉起在十字架上，凡仰望信靠祂的人，就必不至滅亡，反得永生（約 3:14–15）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">以西結書預言神要賜給以色列一顆新心、將靈放在人裡面，使人能夠遵行祂的律例</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">耶穌對尼哥底母所說『從水和聖靈生』，直接呼應以西結書中神應許要用水潔淨、用靈更新的異象——這是舊約盟約更新應許在新約中的具體實現</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督親自差下聖靈,成就這個新心新靈的應許,使信靠祂的人得以真正活出神的律例（結 36:25–27 · 約 7:37–39）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">約瑟(雅各之子)被弟兄出賣,最終卻用埃及的資源,厚葬了自己的父親雅各,以極高規格的儀式送他歸回應許之地</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">兩位以尊貴規格安葬他人的人物,都在極度哀傷與看似失敗的處境中,選擇用最隆重的方式表達對逝者的敬意與愛,而非隨意打發</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督的安葬雖然隆重卻只是暫時的——祂三日後復活，證明了死亡與墳墓都無法真正困住祂（可 16:6）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你的信心成長,從來不是一夜之間的戲劇性轉變,而是一段漫長、謹慎、逐步靠近的過程——這一頁是為你寫的。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">尼哥底母命中的是一種極普遍、卻常被信仰群體忽視的信心樣式：不是所有人的信心旅程,都會有一個清楚、戲劇性的『轉捩點』。許多人像他一樣,先帶著困惑私下求問,然後在群體壓力中謹慎地表達一點點不同的立場,最後才在某個關鍵時刻,用具體的行動公開表明自己的委身。這種漸進式的信心成長,常常因為缺乏『戲劇性的見證故事』而讓當事人懷疑自己是否『信得不夠真』——而尼哥底母的故事清楚地告訴我們,這樣的信心旅程,同樣真實,同樣被神看重。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你的信心成長過程,更像是一次戲劇性的轉變,還是像尼哥底母那樣,經過長期、漸進的求問與掙扎？你如何看待自己這種成長的方式？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">他第一次求問時選擇了夜裡的掩護。你有沒有一段『因為怕人怎麼看,而選擇隱藏自己真實信念』的經歷？是什麼讓你後來願意更公開地表態？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">在公會的辯論中,他只用了一個關於程序正義的技術性問題,就已經承受了同僚的嘲諷。你是否曾經因為在群體中提出一個小小的、看似中立的異議,就已經感受到明顯的壓力？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">他最後用一百斤香料,無聲地表達了自己最深的委身。你生命中,有沒有哪一個具體的行動,比任何言語宣告都更能說明你真正相信的是什麼？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 尼哥底母（夜訪時）</span>
+        <div class="gen-title">應激劇本：因懼怕同儕眼光而選擇隱藏求問</div>
+        <div class="gen-body">他第一次來見耶穌時,選擇了夜色作為掩護——這反映出一種對自己社會地位與同僚看法的深切顧慮。身處猶太宗教體制最高處的他,若公開與這位受爭議的加利利教師往來,很可能面臨相當的職業與社會風險。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 尼哥底母（安葬耶穌時）</span>
+        <div class="gen-title">打斷而非延續：從夜裡的隱藏,到白日的公開</div>
+        <div class="gen-body">值得注意的是，這不是一個『代際』對照，而是同一個人自己生命裡的自我打斷——他沒有一直停留在夜裡求問的謹慎狀態，而是經過公會辯護的中間階段,最終走到了在眾目睽睽之下公開安葬耶穌這個無法迴避的行動。他打斷了自己原本因懼怕而隱藏的模式。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">打斷的關鍵，或許正在於耶穌那段深刻卻不帶責備的教導本身——祂沒有因尼哥底母的困惑或謹慎而拒絕他,反而給了他整本新約中最深刻的真理之一。這種『被認真對待,而非被輕視』的經歷,很可能正是讓一個原本謹慎、甚至有些懼怕的教師,最終有勇氣走向公開行動的關鍵養分。恩典常常不是用逼迫,而是用被認真接納的經歷,慢慢鬆開一個人原本緊抓的懼怕。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那個趁夜而來、最後卻在光天化日下送葬的教師，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#偷偷摸摸的信仰</span>
+      <span class="tag">#從私下到公開</span>
+      <span class="tag">#花很久才敢表態</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>尼哥底母是猶太教育體制裡的大咖——公會議員、法利賽人、耶穌還特別稱他「以色列人的先生」，等於是老師的老師。這樣一個人,第一次去見耶穌,選擇的時間是晚上。</p>
+      <p>他不是不敢問問題,他是不敢被人看見自己在問這個問題。開場白他還很客氣：拉比,我們知道你是神那裡來的。結果耶穌直接跳過寒暄：人若不重生,就不能見神的國。尼哥底母整個人愣住,問了一個超級字面的問題：人都老了,難道要再爬回媽媽肚子裡一次嗎？</p>
+      <p>這段對話裡,耶穌沒有笑他問得蠢,反而講出了整本聖經最有名的一句話：神愛世人,甚至將他的獨生子賜給他們,叫一切信他的,不至滅亡,反得永生。這句話,最早的聽眾,就是這個晚上偷偷來、一頭霧水的老師。</p>
+      <p>後來公會要抓耶穌,大家一面倒地要定罪,尼哥底母站出來說了一句：不先聽當事人怎麼說,怎麼可以定罪呢？結果馬上被同事酸：你也是加利利人喔？他沒有正面槓上去,但這句話已經讓他跟主流立場劃出了一點距離。</p>
+      <p>最後一次出現,是耶穌死了以後。所有人都覺得這件事已經蓋棺論定,耶穌被官方判了死刑,群眾也棄祂而去。尼哥底母卻在這個時候,大搖大擺地帶著一百斤沒藥沉香出現——那是給王級人物準備的葬禮規格。他不再躲了。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——而有些石頭花了很久才被磨亮，但它最終被磨亮的方式,是在眾人都已離場的時刻,仍然選擇留下、公開站出來。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你的信仰現在還處於『晚上才敢問問題』的階段——沒關係。尼哥底母也是這樣開始的,而耶穌沒有因此輕視他,反而給了他最深刻的真理。你不需要一開始就準備好公開表態,才有資格靠近神。</p>
+      <p style="margin-top:12px;">如果你曾經因為顧慮別人的眼光,而在群體裡選擇沉默或只敢說一句模糊的話——那也是一個開始,不是失敗。尼哥底母在公會裡也只敢提一個技術性的程序問題,而不是直接的信仰宣告,但那已經是他當時能給出的、真實的一步。</p>
+      <p style="margin-top:12px;">重點是,你有沒有持續往前走。尼哥底母最後那一步,走得又大又公開——一百斤的香料,不是隨便可以假裝出來的委身。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">現在還在夜裡也沒關係。你不需要今天就走到白天,持續往前就好。</p>
+    </div>
+
+    <div class="insight-box">在當代信仰群體中，尼哥底母的故事對『信心成長沒有戲劇性見證故事』的人,提供了極為重要的正典依據——教會文化有時會不自覺地把『瞬間戲劇性的悔改經歷』當作信心真實與否的唯一標準,而尼哥底母證明了漸進式、經過長期思想與掙扎的信心旅程,同樣被聖經正典所肯定與紀念。在職場與專業倫理的討論中,他在公會中謹慎卻堅定地提出程序正義問題的舉動,也提供了一種模式：即使無法立刻公開站到某個爭議立場的一方，仍然可以在自己所處的位置上,提出一個微小卻真實的異議,而這往往是邁向更公開委身的重要中繼站。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他留下的不是一句宣告信仰的話語，而是一段最深刻的對話，和一百斤足以說明一切的香料。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">「神愛世人」——史上最廣為人知的一句經文的誕生現場</div>
+          <div class="legacy-body">約翰福音 3:16 這句常被稱為『福音的縮影』的經文，正是在耶穌回應尼哥底母困惑的這段對話中說出的。若沒有這位夜裡求問的教師,這段深刻的教導或許不會以這樣的形式被保留下來。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">漸進式信心旅程的正典見證</div>
+          <div class="legacy-body">他三次出場,呈現出一條沒有戲劇性宣告時刻、卻真實可信的信心成長軌跡,為後世每一個信心之路走得緩慢、謹慎、需要時間消化的信徒,保留了一個被聖經正面記載的位置。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">體制內誠實求真者的典範</div>
+          <div class="legacy-body">身處猶太宗教體制最高階層,他沒有選擇盲目跟隨群體的敵意立場,而是願意親自求問、親自查驗——即使那意味著必須承受同僚的嘲諷與懷疑。這對任何身處建制內、卻願意誠實面對真理的人,提供了一個具體的先例。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">用行動勝過言語的委身宣告</div>
+          <div class="legacy-body">他從未在福音書中留下一句明確的『我信了』，卻用一百斤沒藥沉香的具體行動,完成了整本新約中最有力的無聲告白之一。這提醒後世,信心的真實性,不總是需要靠言語來證明。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「又有尼哥底母，就是先前夜裡去見耶穌的，帶著沒藥和沉香約有一百斤前來。二人就照猶太人殯葬的規矩，把耶穌的身體用細麻布加上香料裹好了。」</div>
+      <div class="final-verse-ref">約翰福音 19:39–40</div>
+    </div>
+
+    <div class="final-question">你此刻的信仰,是不是也還處在『夜裡求問』的階段？如果神此刻正等著看你何時願意帶著那份委身,走到光天化日之下——你還需要多久？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 尼哥底母 <span>Νικόδημος</span> · 夜訪的法利賽人 · 遲來卻堅定的門徒</div>
+
+</body>
+</html>

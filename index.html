@@ -10,8 +10,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📜</text></svg>">
 
-<!-- 引入 Supabase 官方 JavaScript SDK -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<!-- 靜態人物資料（由 _build/make_static_data.py 產生，見該檔說明如何新增/修改人物） -->
+<script src="data.js"></script>
 
 <style>
   :root {
@@ -44,10 +44,6 @@
   .tab-btn:hover { color: var(--gold-light); }
   .tab-btn.active { color: var(--gold-light); border-bottom-color: var(--gold); }
   .tab-btn .tab-n { font-family: 'IM Fell English', serif; font-size: 10px; opacity: 0.55; margin-left: 5px; }
-
-  .nav-login-btn { background: rgba(184, 150, 46, 0.15); border: 1px solid var(--gold); color: var(--gold-light); font-size: 11px; padding: 4px 12px; border-radius: 4px; cursor: pointer; font-family: 'Noto Sans TC', sans-serif; transition: all 0.2s; white-space: nowrap; }
-  .nav-login-btn:hover { background: var(--gold); color: var(--ink); }
-  .nav-login-btn.logged-in { background: var(--danger); border-color: rgba(255,255,255,0.2); color: #fff; }
 
   /* ── SUB FILTER BAR ── */
   .subfilter-wrap { background: #2D271B; border-top: 1px solid rgba(184,150,46,0.12); position: sticky; top: 43px; z-index: 99; }
@@ -132,39 +128,6 @@
   .char-tag { font-size: 10px; letter-spacing: 0.1em; padding: 2px 9px; border-radius: 20px; border: 1px solid rgba(184,150,46,0.25); color: var(--gold); background: var(--gold-faint); }
   .char-tag.mbti { background: rgba(26,74,62,0.07); border-color: rgba(26,74,62,0.25); color: var(--teal-deep); font-family: 'IM Fell English', serif; letter-spacing: 0.05em; }
 
-  /* 醒目卡片編輯按鈕 */
-  .admin-card-action { background: var(--gold-faint); border-top: 1px dashed var(--border); padding: 10px 14px; display: flex; justify-content: flex-end; align-items: center; }
-  .edit-badge-btn { background: #fff; color: var(--ink); border: 1px solid var(--gold); padding: 4px 12px; font-size: 12px; font-weight: 500; border-radius: 4px; cursor: pointer; transition: all 0.2s; }
-  .edit-badge-btn:hover { background: var(--gold); color: #fff; transform: scale(1.05); }
-
-  /* 後台頂部控制列 */
-  .admin-bar { background: #fff; border-bottom: 2px solid var(--gold); padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; gap: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); flex-wrap: wrap; }
-  .admin-btn { background: var(--teal-deep); color: #fff; border: none; padding: 6px 14px; border-radius: 4px; cursor: pointer; font-weight: 400; }
-  .admin-btn.gold-btn { background: var(--gold); }
-  .admin-btn:hover { opacity: 0.9; }
-
-  /* 排序視窗樣式 */
-  .sort-item { display: flex; align-items: center; justify-content: space-between; padding: 10px; background: #fff; border: 1px solid var(--border); margin-bottom: 6px; border-radius: 6px; gap: 8px; }
-  .sort-arrows { display: flex; gap: 5px; flex-shrink: 0; }
-  .arrow-btn { background: var(--parchment-dark); border: 1px solid var(--ink-pale); padding: 2px 8px; font-size: 12px; cursor: pointer; border-radius: 4px; }
-  .sort-hint { font-size: 12px; color: var(--ink-soft); background: var(--gold-faint); border: 1px solid var(--border); border-radius: 6px; padding: 8px 12px; margin-bottom: 12px; line-height: 1.7; }
-
-  /* ── MODAL DIALOG ── */
-  .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 1000; align-items: center; justify-content: center; padding: 20px; }
-  .modal.visible { display: flex; }
-  .modal-content { background: var(--parchment); border: 2px solid var(--gold); border-radius: 12px; width: 100%; max-width: 550px; max-height: 90vh; overflow-y: auto; padding: 28px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-  .modal-title { font-family: 'Noto Serif TC', serif; font-size: 20px; color: var(--ink); margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
-  .form-group { margin-bottom: 16px; }
-  .form-group label { display: block; font-size: 13px; font-weight: 500; color: var(--ink-mid); margin-bottom: 4px; }
-  .form-group label span.req { color: var(--danger); }
-  .form-hint { font-size: 11px; color: var(--ink-pale); font-weight: 300; }
-  .form-control { width: 100%; padding: 8px 12px; border: 1px solid var(--border-strong); background: #fff; border-radius: 6px; font-family: inherit; font-size: 14px; }
-  .checkbox-group { display: flex; gap: 16px; flex-wrap: wrap; padding-top: 4px; }
-  .checkbox-label { display: flex; align-items: center; gap: 6px; font-size: 13px; cursor: pointer; }
-  .modal-actions { display: flex; justify-content: space-between; margin-top: 24px; border-top: 1px solid var(--border); padding-top: 16px; }
-  .btn-secondary { background: #ccc; color: #333; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; }
-  .btn-danger { background: var(--danger); color: #fff; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; }
-
   .empty-state { text-align: center; padding: 80px 20px; color: var(--ink-pale); display: none; }
   .empty-state.visible { display: block; }
   .empty-state-icon { font-family: 'IM Fell English', serif; font-size: 48px; color: var(--border-strong); display: block; margin-bottom: 16px; }
@@ -174,7 +137,6 @@
   .tab-notice p { font-size: 14px; color: var(--sand); opacity: 0.8; line-height: 1.9; }
   .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 11px; letter-spacing: 0.12em; }
   .footer span { color: var(--gold); }
-  .loading-mask { position: fixed; inset: 0; background: rgba(247,242,232,0.8); z-index: 2000; display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--ink-soft); }
 
   @media (max-width: 640px) {
     .subfilter-wrap { position: static; }
@@ -183,17 +145,6 @@
 </style>
 </head>
 <body>
-
-<div id="loading" class="loading-mask">典籍編纂中，請稍候...</div>
-
-<!-- 管理模式控制列 -->
-<div id="admin-bar" class="admin-bar" style="display: none;">
-  <div>模式：<strong>聖經人物後台管理系統</strong> (經 Google 實名驗證：vup5xu3@gmail.com)</div>
-  <div style="display: flex; gap: 10px;">
-    <button class="admin-btn gold-btn" onclick="openOrderModal()">↕ 調整卡片順序</button>
-    <button class="admin-btn" onclick="openModalForAdd()">＋ 新增聖經人物</button>
-  </div>
-</div>
 
 <!-- HERO -->
 <div class="hero">
@@ -212,7 +163,6 @@
 <!-- PRIMARY TABS -->
 <div class="filter-wrap">
   <div class="filter-primary" id="filter-primary"></div>
-  <button id="nav-auth-btn" class="nav-login-btn" onclick="handleAuthClick()">🔒 Google 登入管理</button>
 </div>
 
 <!-- SUB FILTER BAR -->
@@ -258,100 +208,21 @@
   </div>
 </main>
 
-<!-- 表單彈窗：新增/編輯人物資料 -->
-<div id="charModal" class="modal">
-  <div class="modal-content">
-    <h3 class="modal-title" id="modalTitle">編輯聖經人物</h3>
-    <form id="charForm" onsubmit="handleFormSubmit(event)">
-      <input type="hidden" id="form-mode" value="add">
-      <div class="form-group">
-        <label for="char-id">唯一識別碼 (id) <span class="req">*</span> <span class="form-hint">＝檔名去掉 portrait_ 前綴，如 james_zebedee</span></label>
-        <input type="text" id="char-id" class="form-control" required pattern="^[a-z0-9_]+$">
-      </div>
-      <div class="form-group">
-        <label for="char-name">中文姓名 (name) <span class="req">*</span></label>
-        <input type="text" id="char-name" class="form-control" required placeholder="如：雅各">
-      </div>
-      <div class="form-group">
-        <label for="char-epithet">中文辨識副標 (epithet) <span class="form-hint">同名者必填，如：西庇太之子</span></label>
-        <input type="text" id="char-epithet" class="form-control" placeholder="如：西庇太之子">
-      </div>
-      <div class="form-group">
-        <label for="char-nameEn">英文姓名 (nameEn) <span class="req">*</span></label>
-        <input type="text" id="char-nameEn" class="form-control" required placeholder="如：James, son of Zebedee">
-      </div>
-      <div class="form-group">
-        <label for="char-avatar">顯示頭像字元 (avatar) <span class="req">*</span> (限1~2字)</label>
-        <input type="text" id="char-avatar" class="form-control" required maxlength="2" placeholder="如：雅">
-      </div>
-      <div class="form-group">
-        <label for="char-desc">短介紹描述 (desc) <span class="req">*</span></label>
-        <textarea id="char-desc" class="form-control" rows="3" required placeholder="請輸入簡短生命描述..."></textarea>
-      </div>
-      <div class="form-group">
-        <label for="char-mbti">MBTI 類型 (mbti) <span class="form-hint">填了就會自動出現在 MBTI 人格圖譜</span></label>
-        <select id="char-mbti" class="form-control">
-          <option value="">請選擇...</option>
-          <option value="INTJ">INTJ</option><option value="INTP">INTP</option><option value="ENTJ">ENTJ</option><option value="ENTP">ENTP</option><option value="INFJ">INFJ</option><option value="INFP">INFP</option><option value="ENFJ">ENFJ</option><option value="ENFP">ENFP</option><option value="ISTJ">ISTJ</option><option value="ISFJ">ISFJ</option><option value="ESTJ">ESTJ</option><option value="ESFJ">ESFJ</option><option value="ISTP">ISTP</option><option value="ISFP">ISFP</option><option value="ESTP">ESTP</option><option value="ESFP">ESFP</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="char-tier">重要度 (tier) <span class="req">*</span> <span class="form-hint">決定是否出現在「★ 重要人物」篩選</span></label>
-        <select id="char-tier" class="form-control">
-          <option value="normal">一般人物</option>
-          <option value="major">★ 重要人物</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="char-file">對應 HTML 網頁名稱 (file) <span class="req">*</span></label>
-        <input type="text" id="char-file" class="form-control" required placeholder="如：portrait_james_zebedee.html">
-      </div>
-      <div class="form-group">
-        <label>選擇所屬類別項目 (categories) <span class="req">*</span> (可複選)</label>
-        <div class="checkbox-group" id="category-boxes"></div>
-      </div>
-      <div class="form-group">
-        <label for="char-tags">額外標籤 (tags) (以英文半形逗號隔開)</label>
-        <input type="text" id="char-tags" class="form-control" placeholder="如：應許之子, 立約承繼者">
-      </div>
-      <div class="modal-actions">
-        <button type="button" id="btn-delete" class="btn-danger" style="display:none;" onclick="handleDelete()">刪除此人物</button>
-        <div style="margin-left: auto; display: flex; gap: 10px;">
-          <button type="button" class="btn-secondary" onclick="closeModal('charModal')">取消</button>
-          <button type="submit" class="admin-btn">確認儲存並同步雲端</button>
-        </div>
-      </div>
-    </form>
-  </div>
-</div>
-
-<!-- 彈出視窗：排序面板 -->
-<div id="orderModal" class="modal">
-  <div class="modal-content">
-    <h3 class="modal-title">調整卡片排序順序</h3>
-    <div class="sort-hint" id="sort-hint"></div>
-    <div id="sort-list-container" style="max-height: 50vh; overflow-y: auto; margin-bottom: 20px;"></div>
-    <div class="modal-actions" style="justify-content: flex-end;">
-      <button type="button" class="btn-secondary" onclick="closeModal('orderModal')">完成調整</button>
-    </div>
-  </div>
-</div>
-
 <div class="footer">PORTRAIT 聖經人物深度研究 · <span>透過人物，理解聖經大敘事</span></div>
 
 <script>
 // ══════════════════════════════════════════
-// Supabase 專案設定
+// 人物資料：來自 data.js 內定義的 window.BIBLE_CHARACTERS（靜態陣列，無需網路請求）。
+// 要新增／修改人物，請見 _build/make_static_data.py 的說明。
 // ══════════════════════════════════════════
-const SUPABASE_URL = "https://lhnviqsadfxpvwwmsubz.supabase.co";
-const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxobnZpcXNhZGZ4cHZ3d21zdWJ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkzNDQwMjYsImV4cCI6MjA5NDkyMDAyNn0.xzUOev3w-IxFB3Z5fjatYJef2VUWqJLMI8RUJT98OzM";
-const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const CHARACTERS = (window.BIBLE_CHARACTERS || []).map(d => ({
+  id: d.id, name: d.name, nameEn: d.name_en, avatar: d.avatar,
+  desc: d.description, mbti: d.mbti, file: d.file_name,
+  categories: d.categories || [], tags: d.tags || [], sort_order: d.sort_order,
+  epithet: d.epithet || "", tier: d.tier || "normal"
+}));
 
-const ADMIN_EMAIL = "vup5xu3@gmail.com";
-let isAdminMode = false;
-let CHARACTERS = [];
-
-// ── 分類定義（單一資料來源：頁籤與表單核取方塊皆由此產生）──
+// ── 分類定義（單一資料來源：頁籤由此產生）──
 const TABS = [
   { key: "all",       label: "全部人物",              people: true, notice: null },
   { key: "ot",        label: "舊約人物",              people: true, notice: null },
@@ -367,8 +238,6 @@ const TABS = [
               b: "所有已完成人格推導的人物皆自動收錄於此。<br>用上方「人格篩選」先挑維度（想看 I 人、想看 J 人），或直接點選十六型細分。" } },
   { key: "study",     label: "專題研究",              people: false, notice: null },
 ];
-// 可人工指派的分類（all 與 mbti 為自動計算，不需勾選）
-const ASSIGNABLE = ["ot", "nt", "apostle", "genealogy", "study"];
 
 const AXES = [
   { key: "EI", label: "傾向", opts: [["I", "內向"], ["E", "外向"]] },
@@ -388,10 +257,9 @@ let currentTier = "all";
 let searchTerm = "";
 let mbtiFilter = { EI: null, NS: null, TF: null, JP: null };
 
-window.addEventListener("DOMContentLoaded", async () => {
-  buildTabs(); buildCategoryBoxes(); buildMbtiPanel(); bindControls();
-  await checkUserSession();
-  await loadDataFromSupabase();
+window.addEventListener("DOMContentLoaded", () => {
+  buildTabs(); buildMbtiPanel(); bindControls();
+  renderCards();
 });
 
 // ── 動態建構 UI 骨架 ──
@@ -407,13 +275,6 @@ function buildTabs() {
       renderCards();
     });
   });
-}
-
-function buildCategoryBoxes() {
-  document.getElementById("category-boxes").innerHTML = ASSIGNABLE.map(k => {
-    const t = TABS.find(x => x.key === k);
-    return `<label class="checkbox-label"><input type="checkbox" name="category" value="${k}"> ${t.label} (${k})</label>`;
-  }).join("");
 }
 
 function buildMbtiPanel() {
@@ -504,53 +365,6 @@ function matchesAxes(type) {
   return AXES.every((ax, i) => !mbtiFilter[ax.key] || type[i] === mbtiFilter[ax.key]);
 }
 
-// 驗證當前使用者是否已透過 Google OAuth 登入
-async function checkUserSession() {
-  const { data: { user } } = await _supabase.auth.getUser();
-  if (user && user.email.toLowerCase() === ADMIN_EMAIL.toLowerCase()) {
-    isAdminMode = true;
-    document.getElementById("admin-bar").style.display = "flex";
-    const btn = document.getElementById("nav-auth-btn");
-    btn.textContent = "🚪 登出管理者系統"; btn.classList.add("logged-in");
-  } else {
-    isAdminMode = false;
-    document.getElementById("admin-bar").style.display = "none";
-    const btn = document.getElementById("nav-auth-btn");
-    btn.textContent = "🔒 Google 登入管理"; btn.classList.remove("logged-in");
-  }
-}
-
-async function handleAuthClick() {
-  if (isAdminMode) {
-    if (confirm("是否確定登出管理後台？")) { await _supabase.auth.signOut(); window.location.reload(); }
-    return;
-  }
-  document.getElementById("loading").style.display = "flex";
-  const { error } = await _supabase.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: window.location.href } });
-  if (error) { alert("Google 登入重定向失敗: " + error.message); document.getElementById("loading").style.display = "none"; }
-}
-
-// 讀取雲端資料庫
-async function loadDataFromSupabase() {
-  document.getElementById("loading").style.display = "flex";
-  const { data, error } = await _supabase
-    .from('bible_characters').select('*').order('sort_order', { ascending: true });
-
-  if (error) {
-    alert("讀取 Supabase 資料庫失敗: " + error.message);
-  } else {
-    CHARACTERS = data.map(d => ({
-      id: d.id, name: d.name, nameEn: d.name_en, avatar: d.avatar,
-      desc: d.description, mbti: d.mbti, file: d.file_name,
-      categories: d.categories || [], tags: d.tags || [], sort_order: d.sort_order,
-      // 下列兩欄若資料庫尚未新增，會回傳 undefined，此處給予安全預設值
-      epithet: d.epithet || "", tier: d.tier || "normal"
-    }));
-    renderCards();
-  }
-  document.getElementById("loading").style.display = "none";
-}
-
 // ── 篩選核心 ──
 function inTab(c, tab) {
   if (tab === "all")  return !c.categories.includes("study");
@@ -630,15 +444,6 @@ function renderCards() {
       <div class="char-desc">${esc(c.desc)}</div>
       <div class="char-tags">${tagsHTML}${mbtiTag}</div>`;
     wrap.appendChild(card);
-
-    if (isAdminMode) {
-      const actionArea = document.createElement("div");
-      actionArea.className = "admin-card-action";
-      const editBtn = document.createElement("button");
-      editBtn.className = "edit-badge-btn"; editBtn.innerHTML = "✍ 編輯此人物";
-      editBtn.onclick = (e) => { e.preventDefault(); e.stopPropagation(); openModalForEdit(c.id); };
-      actionArea.appendChild(editBtn); wrap.appendChild(actionArea);
-    }
     grid.appendChild(wrap);
   });
 }
@@ -689,129 +494,6 @@ function removeChip(key) {
   else if (key === "mbti") { resetMbti(); return; }
   else if (key.indexOf("axis:") === 0) { mbtiFilter[key.slice(5)] = null; syncMbtiUI(); }
   renderCards();
-}
-
-// ── 表單處理 ──
-const modal = document.getElementById("charModal");
-const form  = document.getElementById("charForm");
-
-function openModalForAdd() {
-  form.reset();
-  document.getElementById("modalTitle").textContent = "新增聖經人物";
-  document.getElementById("form-mode").value = "add";
-  document.getElementById("char-id").disabled = false;
-  document.getElementById("btn-delete").style.display = "none";
-  modal.classList.add("visible");
-}
-
-function openModalForEdit(id) {
-  form.reset();
-  const c = CHARACTERS.find(item => item.id === id);
-  if (!c) return;
-  document.getElementById("modalTitle").textContent = "編輯人物：" + c.name;
-  document.getElementById("form-mode").value = "edit";
-  document.getElementById("char-id").value = c.id; document.getElementById("char-id").disabled = true;
-  document.getElementById("char-name").value = c.name;
-  document.getElementById("char-epithet").value = c.epithet || "";
-  document.getElementById("char-nameEn").value = c.nameEn;
-  document.getElementById("char-avatar").value = c.avatar;
-  document.getElementById("char-desc").value = c.desc;
-  document.getElementById("char-mbti").value = c.mbti || "";
-  document.getElementById("char-tier").value = c.tier || "normal";
-  document.getElementById("char-file").value = c.file;
-  document.getElementById("char-tags").value = (c.tags || []).join(", ");
-  document.querySelectorAll('input[name="category"]').forEach(cb => { cb.checked = c.categories.includes(cb.value); });
-  document.getElementById("btn-delete").style.display = "block";
-  modal.classList.add("visible");
-}
-
-function closeModal(id) { document.getElementById(id).classList.remove("visible"); }
-
-async function handleFormSubmit(e) {
-  e.preventDefault();
-  const checkedBoxes = document.querySelectorAll('input[name="category"]:checked');
-  if (checkedBoxes.length === 0) { alert("請至少選擇一個所屬類別項目！"); return; }
-
-  document.getElementById("loading").style.display = "flex";
-  closeModal('charModal');
-
-  const mode = document.getElementById("form-mode").value;
-  const targetId = document.getElementById("char-id").value.trim();
-
-  const payload = {
-    id: targetId,
-    name: document.getElementById("char-name").value.trim(),
-    epithet: document.getElementById("char-epithet").value.trim() || null,
-    name_en: document.getElementById("char-nameEn").value.trim(),
-    avatar: document.getElementById("char-avatar").value.trim(),
-    description: document.getElementById("char-desc").value.trim(),
-    mbti: document.getElementById("char-mbti").value || null,
-    tier: document.getElementById("char-tier").value,
-    file_name: document.getElementById("char-file").value.trim(),
-    categories: Array.from(checkedBoxes).map(cb => cb.value),
-    tags: document.getElementById("char-tags").value.split(",").map(t => t.trim()).filter(t => t)
-  };
-
-  let resError;
-  if (mode === "add") {
-    const { error } = await _supabase.from('bible_characters').insert([payload]); resError = error;
-  } else {
-    const { error } = await _supabase.from('bible_characters').update(payload).eq('id', targetId); resError = error;
-  }
-  if (resError) alert("雲端儲存失敗，請檢查權限政策或是否 ID 重複: " + resError.message);
-  await loadDataFromSupabase();
-}
-
-async function handleDelete() {
-  const id = document.getElementById("char-id").value;
-  if (confirm("確定要將此人物從雲端資料庫徹底刪除嗎？")) {
-    document.getElementById("loading").style.display = "flex";
-    closeModal('charModal');
-    const { error } = await _supabase.from('bible_characters').delete().eq('id', id);
-    if (error) alert("刪除失敗: " + error.message);
-    await loadDataFromSupabase();
-  }
-}
-
-// ── 雲端排序（僅列出目前頁籤的人物，人數變多後才不會難以操作）──
-function openOrderModal() { renderSortList(); document.getElementById("orderModal").classList.add("visible"); }
-
-function renderSortList() {
-  const container = document.getElementById("sort-list-container"); container.innerHTML = "";
-  const tabDef = TABS.find(t => t.key === currentTab);
-  const list = CHARACTERS.filter(c => inTab(c, currentTab));
-  document.getElementById("sort-hint").innerHTML =
-    "目前調整範圍：<strong>" + esc(tabDef.label) + "</strong>（" + list.length +
-    " 人）。上下移動會與同分類中相鄰者交換全域順序，其他分類的相對次序不受影響。";
-
-  list.forEach((c, index) => {
-    const item = document.createElement("div"); item.className = "sort-item";
-    item.innerHTML =
-      '<span style="font-size:14px; font-weight:500;">' + (index + 1) + ". " + esc(c.name) +
-      (c.epithet ? "・" + esc(c.epithet) : "") +
-      ' <span style="color:#9C8E72;font-size:12px;">(' + esc(c.nameEn) + ')</span></span>' +
-      '<div class="sort-arrows">' +
-        '<button class="arrow-btn" onclick="swapCloudOrder(' + index + ', -1)">▲ 上移</button>' +
-        '<button class="arrow-btn" onclick="swapCloudOrder(' + index + ', 1)">▼ 下移</button>' +
-      '</div>';
-    container.appendChild(item);
-  });
-}
-
-async function swapCloudOrder(index, direction) {
-  const list = CHARACTERS.filter(c => inTab(c, currentTab));
-  const targetIndex = index + direction;
-  if (targetIndex < 0 || targetIndex >= list.length) return;
-
-  document.getElementById("loading").style.display = "flex";
-  const currentItem = list[index], targetItem = list[targetIndex];
-
-  const updateA = _supabase.from('bible_characters').update({ sort_order: targetItem.sort_order }).eq('id', currentItem.id);
-  const updateB = _supabase.from('bible_characters').update({ sort_order: currentItem.sort_order }).eq('id', targetItem.id);
-
-  await Promise.all([updateA, updateB]);
-  await loadDataFromSupabase();
-  renderSortList();
 }
 </script>
 </body>

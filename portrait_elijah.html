@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>以利亞 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">以利亞</h1>
+  <span class="hero-name-en">Elijah · אֵלִיָּהוּ</span>
+  <p class="hero-slogan">「他在迦密山上求下天火，讓全以色列俯伏喊「耶和華是神」；<br>第二天，一個女人的威脅，就讓這個剛剛得勝的先知，逃進曠野求死。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">主前約 875–848 年</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">INFJ · 提倡者型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">列王紀上 17–19, 21 章<br>列王紀下 1–2 章</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">提斯比的先知 · 亞哈王朝的對抗者</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他登場時毫無鋪陳——沒有家譜、沒有蒙召敘事——聖經只說「基列寄居的提斯比人以利亞對亞哈說」，一位先知就這樣，直接闖進了歷史。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">主前約 875–848 年<br>北國以色列亞哈王朝時期</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">多重身份</span>
+        <div class="info-cell-value">提斯比人 · 先知<br>基列的寄居者</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">基列的提斯比 →<br>基立溪 → 撒勒法 → 迦密山 → 何烈山</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">背景</span>
+        <div class="info-cell-value">登場毫無家譜記載，直接以先知身分出現<br>與繼任者以利沙有明確的師徒傳承關係</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">列王紀上 17–19, 21 章<br>列王紀下 1–2 章</div>
+      </div>
+    </div>
+
+    <p>以利亞的出場方式，在整本舊約中極為罕見——沒有家譜、沒有出生敘事、沒有蒙召的詳細記載，聖經只用一句話就把他推上舞台：「基列寄居的提斯比人以利亞對亞哈說：我指著所事奉永生耶和華以色列的神起誓，這幾年若不是憑我的話，必不降露不下雨。」這種毫無鋪陳的登場方式，本身就在宣告一件事：這個故事的重點，不在於以利亞這個人，而在於他所事奉的那位「永生耶和華」。</p>
+    <p>他所處的時代，是北國以色列歷史上信仰最黑暗的時期之一。亞哈王娶了西頓公主耶洗別為妻，耶洗別是巴力（迦南地的風暴與生殖之神）的狂熱信奉者，在她的影響下，「亞哈行耶和華眼中看為惡的事，比他以前的列王更甚」，並在撒瑪利亞為巴力建廟立壇。耶洗別更展開系統性地剷除耶和華的先知——以利亞正是在這樣的處境中，孤身一人站出來，向整個以色列宣告耶和華才是真神。他的名字「以利亞」（אֵלִיָּהוּ）意為「耶和華是我的神」，這個名字本身，就是他一生要對抗巴力崇拜、宣告耶和華獨一無二地位的使命宣言。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">他的一生在最高的信心巔峰與最深的絕望低谷之間劇烈擺盪——迦密山上的得勝，緊接著就是曠野裡求死的崩潰。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">宣告旱災——「這幾年若不是憑我的話，必不降露不下雨」</div>
+        <div class="timeline-body">以利亞毫無預警地向亞哈王宣告，以色列將進入一段由他的話語所決定的旱災——這是對巴力（被認為掌管雨水與豐產的神祇）的直接挑戰，宣告真正掌管天上雨露的，是耶和華，而非巴力。</div>
+        <div class="timeline-ref">王上 17:1</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">基立溪與撒勒法——被烏鴉餵養，靠寡婦的一把麵</div>
+        <div class="timeline-body">神吩咐以利亞躲在基立溪旁，「烏鴉早晚給他叼餅和肉來」，溪水乾了之後，神又差他到西頓的撒勒法，靠一位瀕臨餓死的寡婦僅剩的一點麵粉與油存活——這段旱災中的供應，展現出神在極度匱乏的環境中，依然以超乎尋常的方式，親自看顧祂的僕人。他也在此使寡婦已死的兒子復活，成為舊約中最早的死人復活神蹟之一。</div>
+        <div class="timeline-ref">王上 17:2–24</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">迦密山對決——「求你今日使人知道你是神」</div>
+        <div class="timeline-body">以利亞召聚亞哈與全以色列，向四百五十個巴力先知提出對決：各自築壇獻祭，不點火，看哪位神能降火燒盡祭物。巴力先知從早到晚呼求、跳舞、甚至用刀槍自割，毫無回應。以利亞築壇、挖溝、澆水三次浸透祭物與柴，禱告「求你今日使人知道你是以色列的神」，耶和華的火降下，「燒盡燔祭、木柴、石頭、塵土，又燒乾溝裡的水」，眾民俯伏說：「耶和華是神！耶和華是神！」</div>
+        <div class="timeline-ref">王上 18:20–39</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">黑暗低谷</span>
+        <div class="timeline-title">耶洗別的威脅——「我要叫你的性命……」</div>
+        <div class="timeline-body">迦密山大勝的隔天，耶洗別聽聞四百五十個巴力先知被殺，打發人對以利亞說：「明日約在這時候，我若不使你的性命像那些人的性命一樣，願神明重重地降罰與我。」剛剛在迦密山上求下天火、擊敗四百五十個異教先知的以利亞，一句威脅，就讓他「起來逃命」，一路逃到別是巴，把僕人留下，自己又往前走了一天的路程。</div>
+        <div class="timeline-ref">王上 19:1–4</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">黑暗低谷</span>
+        <div class="timeline-title">羅騰樹下求死——「耶和華啊，罷了！求你取我的性命」</div>
+        <div class="timeline-body">他在曠野的羅騰樹下坐下，求死說：「耶和華啊，罷了！求你取我的性命，因為我不勝於我的列祖。」這是舊約中對屬靈領袖徹底崩潰最誠實的一段記載——剛剛經歷神蹟性大勝的先知，此刻卻陷入極度的孤獨、恐懼與求死的絕望。神的回應不是責備，而是先讓天使兩次拿餅和水給他吃，讓他睡覺、恢復體力。</div>
+        <div class="timeline-ref">王上 19:4–8</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">何烈山的微小聲音——「你在這裡做什麼？」</div>
+        <div class="timeline-body">以利亞走了四十晝夜到何烈山，神問他：「你在這裡做什麼？」他訴說自己「獨自剩下，他們還要尋索我的命」。神吩咐他出來站在山上，強風、地震、烈火接連而過，「耶和華都不在其中」，此後有「微小的聲音」，以利亞就用外衣蒙上臉出來——神在他最深的絕望中，沒有用震撼人心的方式向他顯現，而是用一種安靜、細微、卻同樣真實的方式。神更糾正他「獨自剩下」的錯覺：「我在以色列人中為自己留下七千人，是未曾向巴力屈膝的。」</div>
+        <div class="timeline-ref">王上 19:9–18</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">拿伯的葡萄園——為公義發聲，對抗王室的貪婪</div>
+        <div class="timeline-body">亞哈因貪圖拿伯的葡萄園，在耶洗別策劃下誣告拿伯褻瀆神與王，將他用石頭打死並奪取葡萄園。以利亞奉神差遣，直接面對亞哈宣告審判：「你殺了人，又得他的產業嗎？……狗在何處舔拿伯的血，也必在何處舔你的血。」這顯示即使經歷過何烈山的軟弱與恢復，他此後依然持續承擔著向掌權者宣告公義審判的先知職分。</div>
+        <div class="timeline-ref">王上 21 章</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">旋風升天——「以利亞乘旋風升天去了」</div>
+        <div class="timeline-body">以利亞生命的最後時刻，與以利沙同行，「忽有火車火馬將二人隔開，以利亞就乘旋風升天去了」——他是舊約中唯二（另一位是以諾）沒有經歷肉身死亡、直接被神接去的人物。以利沙見狀撕裂自己的衣服，拾起以利亞掉下來的外衣，承接了他的先知職分與加倍的靈。</div>
+        <div class="timeline-ref">王下 2:1–15</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他能在眾人面前對抗四百五十個異教先知毫不畏懼，卻在一個女人私下的威脅面前徹底崩潰——這不是矛盾，是同一種深度熱情性格的兩種面貌。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">耶和華是獨一的真神，容不下任何妥協的空間</div>
+          <div class="soul-body">從宣告旱災、到迦密山對決、到向亞哈宣告拿伯血案的審判，他一生反覆展現的核心信念，就是耶和華的獨一性與聖潔不容妥協——他無法容忍以色列人「心持兩意，不知信從耶和華是神，是巴力是神」的搖擺立場。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">在孤立無援時依然願意單獨挺身而出</div>
+          <div class="soul-body">面對四百五十個巴力先知，他一人挺身應戰；面對亞哈王的貪婪與不義，他毫不畏懼地直接宣告審判。這種即使深知自己勢單力薄、依然選擇站出來的勇氣，是他一生最鮮明的美德。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">戲劇化、直接、擅長創造具震撼力的公開對抗場面</div>
+          <div class="soul-body">無論是挖溝澆水三次的迦密山對決，還是直接闖進亞哈的葡萄園宣告審判，他的行事風格總是帶著強烈的戲劇張力與公開性——他似乎深知，某些真理需要用震撼人心的方式，才能真正打破一個世代的麻木。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">巨大成功之後容易陷入極端的情緒崩潰與孤獨感</div>
+          <div class="soul-body">迦密山的大勝與羅騰樹下的求死，相隔不過一天——這揭示了一種深刻的性格陰影：極度投入、高張力的公開對抗之後，內在的能量儲備可能瞬間耗盡，導致情緒的劇烈反轉，甚至陷入「我不勝於我的列祖」這種誇大的絕望與自我否定之中。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">被烏鴉餵養、乘旋風升天，一生充滿超越常理的神蹟</div>
+          <div class="soul-body">他一生的記載密集地充滿超自然事件——烏鴉叼餅、寡婦的麵油不減、天火降下、死人復活、最終乘旋風升天而非經歷死亡。這種高密度的神蹟性經歷，使他在此後的猶太與基督教傳統中，成為末世將要再來之先知的重要象徵人物。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">以利亞的故事最深刻的教訓，或許藏在何烈山那句神的提問裡：「你在這裡做什麼？」——這句問話沒有指責，卻精準地指出了以利亞此刻的處境有多麼不合常理：一個剛剛見證神蹟性大勝的先知，此刻卻蜷縮在曠野求死。神沒有用另一場神蹟來回應他的絕望，而是先給他食物與睡眠——最基本、最生理性的照顧，然後才用「微小的聲音」向他說話。這揭示了一個深刻的屬靈原則：屬靈的巨大付出之後，人需要的往往不是更多的神蹟或責備，而是最基本的照顧與安靜的陪伴。而神糾正他「我獨自剩下」的錯覺——「我在以色列人中為自己留下七千人」——也提醒我們，最深的孤獨感，有時候並非事實，而是絕望為我們扭曲的認知。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">INFJ</span>
+      <div class="mbti-name">提倡者型 · 迦密山上的孤軍</div>
+      <div class="mbti-slogan">「他一個人對抗四百五十人毫無懼色，卻在一句私下的威脅前徹底崩潰——高張力的堅持之後，往往是同樣深度的耗竭。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">他對以色列信仰混亂的核心問題有著極其清晰而深刻的洞察——「你們心持兩意要到幾時呢」，並能看穿巴力崇拜的空洞本質。這種對屬靈處境本質的深刻洞察力，是他一生先知職分最核心的能力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Fe · 外向情感</span>
+          <div class="mbti-fn-body">他極度在意整個以色列群體的屬靈狀態，並願意為此承受巨大的個人風險（宣告旱災、對抗王室）。他對群體命運的深切關懷，驅動著他一次又一次挺身而出，即使代價可能是自己的性命。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ti · 內向思考</span>
+          <div class="mbti-fn-body">迦密山對決的設計極具邏輯性與說服力——雙方在完全相同的條件下獻祭，讓神蹟本身成為無可辯駁的證據。這種設計具震撼力卻邏輯嚴謹之公開對抗場景的能力，顯示第三功能的作用。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Se · 外向實感</span>
+          <div class="mbti-fn-body">在極度的壓力與威脅面前（耶洗別的威脅），他的劣勢外向實感表現為對當下處境的災難化反應與立即的肉身逃離——顧不得任何策略性思考，只是本能地「起來逃命」。這種在具體、立即的生存威脅前的失控反應，正是劣勢外向實感在高壓下的典型樣態。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最重要的兩段關係，一段是與那位在烈火與微聲中向他說話的神，一段是與那位最終接過他外衣的門徒。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">耶</div>
+          <div class="relation-name">耶和華神</div>
+          <div class="relation-type-badge">呼召他、供應他、也在他崩潰時溫柔以待的主</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">神透過烏鴉、寡婦供應他的需要，在迦密山降下天火印證他的宣告，也在他最深的絕望中，用食物、睡眠與「微小的聲音」溫柔地恢復他。這段關係展現了神對待祂僕人的方式，既有震撼人心的大能彰顯，也有極其細膩、貼近人性軟弱的體恤照顧。</div>
+          <div class="relation-ref">王上 17:4–6, 18:38 · 王上 19:5–13</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">亞</div>
+          <div class="relation-name">亞哈王</div>
+          <div class="relation-type-badge">他一生反覆對抗的統治者</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">亞哈稱以利亞為「使以色列遭災的人」，以利亞則直斥「使以色列遭災的不是我，乃是你和你父家」——兩人的關係貫穿整卷列王紀上的核心敘事，代表著先知職分對王權濫用與偶像崇拜最直接的制衡與挑戰。</div>
+          <div class="relation-ref">王上 18:17–18 · 王上 21:20</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">耶</div>
+          <div class="relation-name">耶洗別</div>
+          <div class="relation-type-badge">他最深懼怕的敵對者</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">耶洗別系統性地剷除耶和華的先知，並在迦密山事件後直接威脅要取以利亞的性命——正是她私下的一句威脅，讓剛剛經歷公開大勝的以利亞徹底崩潰逃亡。這段關係展現出，公開的神蹟性勝利，未必能消除私人威脅所帶來的真實恐懼。</div>
+          <div class="relation-ref">王上 18:4, 19:1–3</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">以</div>
+          <div class="relation-name">以利沙</div>
+          <div class="relation-type-badge">他親自呼召、傳承職分的接班人</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">以利亞在何烈山之後奉神吩咐膏立以利沙接續他作先知，「將自己的外衣搭在他身上」。此後以利沙一路跟隨他，直到以利亞乘旋風升天，以利沙求得「感動你的靈加倍地感動我」，並拾起以利亞掉下的外衣，正式承接了這份先知職分。</div>
+          <div class="relation-ref">王上 19:19–21 · 王下 2:1–15</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「耶和華不在其中……在火後有微小的聲音」——這段記載，重新定義了神顯現的方式，不總是震撼人心的大能，也可以是安靜的同在。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「耶和華並不在風中；風後地震，耶和華也不在其中；地震後有火，耶和華也不在火中；火後有微小的聲音。」</div>
+      <div class="verse-ref">列王紀上 19:11–12</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">קוֹל דְּמָמָה דַקָּה</span>
+        <div class="word-transliteration">qol demamah daqqah · 微小的聲音 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">字面可譯為「輕柔寂靜的聲音」或「一片寂靜之聲」，這是一個充滿張力的悖論式表達——「聲音」與「寂靜」並置，暗示一種超越言語所能精確描述的神聖同在方式。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">在強風、地震、烈火這些傳統上被認為是神顯現時常伴隨的壯觀現象之後（如西奈山的火與雷轟），神卻特意選擇不在其中彰顯自己，而是用這種近乎寂靜的方式向以利亞說話。這確立了聖經神學中一個重要而常被忽略的原則：神的同在不總是以震撼人心的方式顯明，安靜、細微、甚至幾乎難以察覺的方式，同樣是真實而有效的神聖顯現。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">אֵלִיָּהוּ</span>
+        <div class="word-transliteration">Eliyahu · 以利亞 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">由 אֵלִי（我的神）與 יָהוּ（耶和華聖名的縮寫）組成，意為「耶和華是我的神」。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這個名字本身就是一句神學宣告，也精準地概括了他一生的核心使命——在一個巴力崇拜氾濫、以色列人「心持兩意」的時代，堅持宣告耶和華才是真正配得敬拜的神。瑪拉基書末了預言「耶和華大而可畏之日未到以前，我必差遣先知以利亞到你們那裡去」，這使他的名字，此後與末世彌賽亞盼望緊密相連。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">先知職分：向掌權者宣告真理的持續責任</div>
+      <div class="theology-insight-body">以利亞一生反覆向亞哈王直接宣告神的審判與旨意——無論是旱災的宣告，還是拿伯血案的譴責——確立了舊約先知傳統中「先知必須向掌權者說真話，即使代價巨大」這一核心職分，此後施洗約翰、乃至歷代殉道者都延續著這個傳統。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">高峰後的低谷：屬靈領袖需要被理解的軟弱</div>
+      <div class="theology-insight-body">迦密山大勝與羅騰樹下求死之間的劇烈反轉，成為聖經中對「屬靈耗竭」（spiritual burnout）描寫最真實、最具同理心的文本之一——神沒有責備他的軟弱，而是先滿足他最基本的生理需要，這確立了教會歷史中理解與牧養屬靈耗竭者的重要神學基礎。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">以利亞的再來：末世盼望的重要象徵</div>
+      <div class="theology-insight-body">瑪拉基書末了預言以利亞將在耶和華大日之前再來，這個預言直接塑造了第二聖殿晚期猶太人對彌賽亞先聲的期待——新約中，天使向撒迦利亞宣告施洗約翰要「有以利亞的心志能力」，耶穌也親自肯定施洗約翰就是這個預言的應驗。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">摩西在何烈山（西奈山）領受十誡與神的啟示，經歷了神藉雷轟、閃電、密雲、角聲的震撼性顯現</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">以利亞同樣來到何烈山，卻經歷了截然不同的神顯現方式——不是震撼人心的大能，而是微小的聲音，兩段記載共同展現神顯現方式的豐富多樣性，也預示著新約時代神將以更貼近、更溫柔的方式（道成肉身）向人顯現</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督親自成就了神顯現方式的終極轉化——「道成了肉身，住在我們中間」，以最貼近人性的方式彰顯神的同在，而非僅僅透過震撼人心的異象（約 1:14）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">以利亞乘旋風升天，而非經歷一般人的死亡，成為舊約中極少數（與以諾並列）未曾嘗死味而被神接去的人物</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">他這種超越常規死亡的升天經歷，與此後基督升天的敘事在意象上有著深刻的呼應——同樣是被接到天上，同樣有見證人在場（以利沙見證以利亞升天，門徒見證基督升天）</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督親自「被取上升，有一朵雲彩把他接去，便看不見他了」，成就了那終極、完全的升天，並應許還要以同樣的方式再來（徒 1:9–11）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">瑪拉基書預言：「看哪，耶和華大而可畏之日未到以前，我必差遣先知以利亞到你們那裡去。他必使父親的心轉向兒女，兒女的心轉向父親」</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這段預言在登山變像時得到極具象徵意義的呈現——摩西與以利亞一同向耶穌顯現，代表著律法與先知共同見證基督的身分</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">耶穌明確教導門徒，施洗約翰就是這個預言所指、「將要來的以利亞」——先鋒的角色，在基督降臨之前已然成就（太 17:1–13, 11:14）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你剛剛經歷了一場巨大的屬靈或情感高峰，卻在事後陷入了意想不到的低谷與崩潰——這一頁是為你寫的。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">以利亞命中的是一種常被信仰群體忽視、卻極其真實的處境：巨大的付出與公開的勝利之後，緊隨而來的往往不是持續的高昂，而是意想不到的耗竭與崩潰。他在迦密山上展現出的信心與勇氣是真實的，而他此後在羅騰樹下的絕望求死同樣真實——聖經沒有把這兩者對立起來，也沒有因後者而否定前者的真實性。他的故事提醒我們，屬靈上的巨大付出，需要相稱的休息與照顧，而神對待這種耗竭的方式，不是責備，而是先滿足最基本的需要，再用溫柔的方式重新對話。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你有沒有經歷過一次巨大的付出或「勝利」之後，緊接著陷入意想不到的情緒低谷或耗竭？你當時是如何理解這種反差的？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">神對以利亞崩潰的回應，先是食物與睡眠，而非立即的責備或另一場神蹟。你面對自己或他人的耗竭時，是否也懂得先從最基本的照顧開始，而非急著給出屬靈的教導或激勵？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">神糾正以利亞「我獨自剩下」的錯覺，指出還有七千人未曾向巴力屈膝。你此刻是否也有某種「只剩下我一個人在堅持」的孤獨感？這份感覺，有多少是事實，又有多少是絕望為你扭曲的認知？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">神在「微小的聲音」中向以利亞說話，而非強風、地震、烈火。你此刻的生活中，是否也需要重新學習在安靜、細微之處，聆聽神的同在，而非只期待戲劇性的介入？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 以利亞</span>
+        <div class="gen-title">示範劇本：高強度的公開對抗之後，陷入極端的情緒崩潰</div>
+        <div class="gen-body">他一生的模式清晰可見——投入極大能量進行公開、震撼性的屬靈對抗（迦密山），事後卻因為單一的威脅而徹底崩潰、逃避、甚至求死。這種「高張力付出後的劇烈反轉」，是一種需要被理解、而非被簡化評判的真實人性反應。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 以利沙</span>
+        <div class="gen-title">打斷而非延續：接受同樣的呼召，卻展現出更為穩定持續的服事型態</div>
+        <div class="gen-body">以利沙承接以利亞的先知職分後，雖然同樣行了許多神蹟，卻沒有記載類似以利亞這樣戲劇性的崩潰經歷——這或許暗示，以利沙從以利亞的軟弱中，學會了一種更為持續、更懂得節制能量分配的服事節奏，而非否定以利亞當年的付出。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">打斷（或者說扶持）發生在神對待以利亞崩潰的方式之中——祂沒有要求他立刻振作、繼續戰鬥，而是先讓天使兩次拿食物給他、讓他好好睡覺，之後才用溫柔的「微小的聲音」與他對話，並糾正他錯誤的孤獨感知。這提醒我們，恩典打斷耗竭循環的方式，往往始於對最基本生理與心理需要的照顧，而非立即的屬靈激勵——身體與心靈的休息，本身就是神恩典具體的展現。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那個求下天火、隔天卻躲進曠野求死的先知，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#巔峰後的崩潰</span>
+      <span class="tag">#以為自己孤軍奮戰</span>
+      <span class="tag">#微小的聲音</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>以利亞出場的方式很酷——沒有鋪陳，直接對著北國的王撂下一句話：這幾年不下雨了，除非我說可以下。這人一登場，氣勢就拉滿。</p>
+      <p>接下來的迦密山對決，堪稱舊約最有畫面感的一幕：以利亞一個人，對上四百五十個巴力先知。對方從早求到晚，又跳又叫，甚至拿刀割自己都沒反應。以利亞不但自己上場，還故意把水澆濕祭壇三次，增加難度。結果一禱告，天火直接降下來，把祭物、木柴、連石頭都燒了。全場民眾當場跪下喊：耶和華才是神！</p>
+      <p>這是他人生的最高峰。結果呢？隔天，王后耶洗別派人傳話：明天這個時候，你就跟那些死掉的先知一樣。以利亞——那個剛剛贏了四百五十人的以利亞——聽到這句話，直接逃命，一路跑到曠野，坐在一棵樹下，跟神說：夠了，把我的命拿走吧，我不比我的祖先強。</p>
+      <p>這個反差大到讓人措手不及。剛贏了最大的一場仗，馬上就崩潰到想死。但神的反應也很有意思——沒有罵他沒出息，是先讓天使給他送吃的，讓他睡覺，睡醒再吃，然後才讓他走到何烈山。</p>
+      <p>在山上，神問他：你在這裡做什麼？以利亞說：我一個人孤軍奮戰，他們還想殺我。神沒有直接反駁，而是先讓風、地震、火依序經過，卻都不在裡面顯現，最後用一個微小的聲音跟他說話。神還糾正了他：你以為只剩你一個？我留了七千人沒有向巴力下跪。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——而以利亞這塊石頭，最耀眼的時候剛好燒得最亮，也最快就顯出了裂痕，而神修補它的方式，是先給它吃飽睡好。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你最近剛完成一件很消耗心力的大事——不管是成功還是失敗——事後感到莫名的低落或崩潰，這不代表你不夠堅強。以利亞剛贏了一場超級戰役，隔天就崩潰到想死，這是真實的人性反應，不是信心不足。</p>
+      <p style="margin-top:12px;">神處理他崩潰的方式，值得記住：先讓他吃飽、睡好，才開始對話。如果你正在陪伴一個正在耗竭的人（或你自己正在耗竭），先別急著給建議或激勵，先確保基本的照顧到位。</p>
+      <p style="margin-top:12px;">還有，你覺得「只剩我一個人在撐」的時候，很可能不是事實。神告訴以利亞還有七千人。你身邊，可能也有你還沒看見的同伴。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果你正在耗竭邊緣，先去吃頓好的、睡個好覺——這也是一種屬靈的順服。</p>
+    </div>
+
+    <div class="insight-box">在當代關於『屬靈或職業耗竭』（burnout）的討論中，以利亞的故事提供了聖經中最完整、最具同理心的案例研究——它清楚展現了高強度的公開表現與付出之後，緊隨而來的耗竭並非信心軟弱的證據，而是一種需要被理解、被具體照顧的真實生理與心理狀態。神優先滿足以利亞基本生理需要（食物、睡眠）而非立即進行屬靈對話的處理順序，也為當代教會與助人工作者提供了重要的牧養範式：陪伴耗竭者，身體層面的照顧往往需要先於言語上的鼓勵或糾正。而『微小的聲音』這個意象，也持續啟發著當代靈修傳統對『安靜默想』（相對於戲劇性屬靈經歷）之價值的重新肯定。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他沒有經歷死亡，就被提升天——而他留下的，不只是迦密山的震撼，更是一份關於軟弱與恢復同樣真實的完整記錄。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">對抗偶像崇拜的先知典範</div>
+          <div class="legacy-body">他一生對巴力崇拜毫不妥協的對抗，成為舊約先知傳統中，捍衛耶和華獨一性最鮮明、最具戲劇張力的典範，深刻影響了此後歷代先知面對偶像崇拜與宗教混合主義時的立場。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">末世彌賽亞盼望的重要象徵</div>
+          <div class="legacy-body">瑪拉基書預言他將在耶和華大日之前再來，這使他的名字與末世盼望緊密相連，並在新約中透過施洗約翰得到具體的應驗與延續。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">登山變像中與摩西並列的見證者</div>
+          <div class="legacy-body">他與摩西一同在登山變像時向耶穌顯現，象徵著律法與先知共同見證基督的彌賽亞身分，這是新約中對他先知地位最崇高的肯定之一。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">屬靈耗竭與恢復的真實見證</div>
+          <div class="legacy-body">羅騰樹下求死與何烈山恢復的完整記載，成為此後教會歷史中，理解並牧養屬靈領袖耗竭處境時，最重要、也最具同理心的聖經文本，持續安慰著無數在高強度服事後陷入低谷的信徒。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">V</div>
+        <div>
+          <div class="legacy-title">先知傳承的典範——外衣的交接</div>
+          <div class="legacy-body">他將外衣搭在以利沙身上、此後掉落外衣被以利沙拾起的傳承場景，成為舊約中先知職分交接最具象徵意義的畫面，深刻影響了此後對屬靈傳承儀式與意義的理解。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「以利亞就乘旋風升天去了。以利沙看見，就呼叫說：「我父啊！我父啊！以色列的戰車馬兵啊！」以後不再見他了。」</div>
+      <div class="final-verse-ref">列王紀下 2:11–12</div>
+    </div>
+
+    <div class="final-question">如果你剛剛經歷了一場屬靈或人生的巨大勝利，卻在此刻感到意外的疲憊與空虛——你願不願意先容許自己休息，相信神會用「微小的聲音」，而非另一場震撼，來重新對你說話？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 以利亞 <span>אֵלִיָּהוּ</span> · 提斯比的先知 · 迦密山上的孤軍</div>
+
+</body>
+</html>

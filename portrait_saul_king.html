@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>掃羅 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">掃羅</h1>
+  <span class="hero-name-en">Saul · שָׁאוּל</span>
+  <p class="hero-slogan">「掃羅王在利提馬追趕大衛的時候……眾人問說：「這是怎麼了，基士的兒子告訴你們什麼呢？」……因此有句俗語說：「掃羅也列在先知中麼？」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">約主前1050–1010年在位（以色列首任君王，在位約四十年）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ISFP · 探險家型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">撒母耳記上 9–31 章</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">以色列首任君王 · 約拿單之父 · 大衛的岳父兼追殺者</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他登基之初，是那個謙卑到『藏在器具中』不肯讓人立自己為王的少年；他生命的終局，卻是一位在嫉妒與精神折磨中，親手追殺自己女婿、甚至求問死去先知亡魂的悲劇君王。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">約主前1050–1010年在位，以色列首任君王</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">便雅憫支派人，基士之子，以色列首任受膏立的君王</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">便雅憫地的基比亞</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">父基士；子約拿單、亞比拿達、麥基舒亞、伊施波設；女米甲（此後嫁大衛）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">撒上 9–31 章 · 代上 10 章</div>
+      </div>
+    </div>
+
+    <p>掃羅出場時，聖經特別描述他『又健壯又俊美，在以色列人中沒有一個能比他的；身體比眾民高過一頭』——這樣一位外表出眾的少年，卻在被撒母耳膏立為王的那一刻，展現出格外謙卑的姿態：當眾人抽籤選出掃羅、卻遍尋不著他時，才發現他『藏在器具中』，直到被人尋出，才『站在百姓中間，身體比眾民高過一頭』。這種近乎閃躲的謙卑，加上他此後在被人藐視時選擇『裝作不聽見』的寬容態度，塑造出一位深具潛力的君王形象——掃羅登基初期，也確實展現出軍事上的果敢，成功帶領以色列擊敗亞捫人，解救基列雅比城的危機。</p>
+    <p>然而掃羅王位的穩固，卻逐漸伴隨著他信仰生命的偏移。他在對亞瑪力人的戰事中，違背耶和華透過撒母耳所吩咐『滅盡所有』的命令，擅自留下上好的牛羊與亞甲王，撒母耳因此宣告『耶和華厭棄你作王』——這個判決，成為掃羅此後心理狀態逐漸崩壞的重要轉捩點。當大衛擊殺歌利亞後聲名鵲起，婦女歌唱『掃羅殺死千千，大衛殺死萬萬』，掃羅『就甚發怒，不喜悅這話』，自此『掃羅就從那日起，怒目看大衛』——這份嫉妒此後演變成長達多年、幾近偏執的追殺行動，掃羅甚至在生命的最後，違背自己先前所立的律法，喬裝求問隱多珥的交鬼婦人，召出已故的撒母耳亡魂，只為得知即將來臨的戰事結局。掃羅最終在與非利士人的基利波山之戰中，眼見兒子們陣亡、自己身受重傷，選擇伏在自己的刀上自盡，結束了這位以色列首任君王充滿悲劇色彩的一生。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從躲在器具中的謙卑受膏，到違背命令招致棄絕，再到嫉妒偏執下長年追殺大衛，最終在戰場上自盡身亡——掃羅的一生，是聖經中對『權力如何逐漸侵蝕謙卑之心』刻畫得最完整的悲劇敘事之一。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">謙卑受膏——「掃羅卻藏在器具中」</div>
+        <div class="timeline-body">撒母耳依神的指示膏立掃羅為以色列首任君王，正式公開抽籤選立時，眾人遍尋不著掃羅，才發現他因謙卑或膽怯而『藏在器具中』——這個細節，勾勒出他早年謙遜、甚至略帶退縮的性格底色。</div>
+        <div class="timeline-ref">撒上 10:20–24</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">解救基列雅比——「掃羅的怒氣大發」</div>
+        <div class="timeline-body">亞捫王拿轄威脅要剜出基列雅比城眾人的右眼，掃羅聞訊後大發熱心，迅速召集以色列全軍前往解救，大獲全勝——這場勝利，鞏固了掃羅作為君王的威信與百姓的擁戴。</div>
+        <div class="timeline-ref">撒上 11 章</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">違命被棄——「耶和華厭棄你作王」</div>
+        <div class="timeline-body">掃羅在對亞瑪力人的戰事中，違背耶和華透過撒母耳所吩咐『滅盡所有』的命令，擅自留下上好的牛羊與亞甲王，聲稱是要用以獻祭——撒母耳嚴厲指出『聽命勝於獻祭』，並宣告耶和華已厭棄他作王，這個判決成為掃羅此後心理與信仰逐漸崩壞的關鍵轉捩點。</div>
+        <div class="timeline-ref">撒上 15 章</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">嫉妒與追殺——「掃羅就從那日起，怒目看大衛」</div>
+        <div class="timeline-body">大衛擊殺歌利亞後聲名大噪，婦女歌唱『掃羅殺死千千，大衛殺死萬萬』，掃羅因此心生嫉妒，此後多次試圖用槍刺殺大衛、設計謀害他，並展開長達多年、動用全國兵力的追殺行動，即使大衛數次放過取他性命的機會，掃羅的嫉妒與偏執依然未能真正止息。</div>
+        <div class="timeline-ref">撒上 18–26 章</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">求問亡魂與基利波山之死——「掃羅就伏在自己的刀上死了」</div>
+        <div class="timeline-body">掃羅晚年面對非利士人大軍壓境，因得不到耶和華的回應而心中懼怕，竟違背自己先前所立的律法，喬裝求問隱多珥的交鬼婦人，召出已故先知撒母耳的亡魂，卻只得知次日自己與兒子們都將陣亡的預言。基利波山一役，掃羅眼見兒子們相繼陣亡，自己也身受重傷，最終選擇伏在自己的刀上自盡。</div>
+        <div class="timeline-ref">撒上 28, 31 章</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他的一生，是一則關於權力如何逐漸侵蝕原本謙卑之心的悲劇敘事——從躲在器具中的少年，到被嫉妒與偏執徹底吞噬的君王，這種轉變的幅度，在整本聖經中極為罕見而深刻。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">早年謙卑順服，晚年卻逐漸被嫉妒與自我保護的心態所主導</div>
+          <div class="soul-body">掃羅早年展現出真實的謙卑（藏在器具中）與寬容（對藐視者裝作不聽見），然而隨著王位的鞏固與大衛聲望的崛起，這份謙卑逐漸被強烈的嫉妒與對自身地位的不安全感所取代。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">早年展現出的軍事果敢與拯救百姓的熱心</div>
+          <div class="soul-body">掃羅在解救基列雅比城的行動中，展現出真實的義憤與果斷的領導力，這場勝利也確立了他作為君王早期的正面形象。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">面對危機時傾向依賴自己的判斷而非完全順服神的吩咐</div>
+          <div class="soul-body">無論是在對亞瑪力人的戰事中擅自留下戰利品，或是在等候撒母耳獻祭時因等不及而擅自越權獻祭，掃羅屢次展現出在關鍵時刻，選擇依自己的判斷行事，而非完全順服神明確吩咐的傾向。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">嫉妒逐漸演變為長達多年、耗盡舉國之力的偏執追殺</div>
+          <div class="soul-body">掃羅對大衛的嫉妒，並未停留在一時的情緒反應，而是發展成動用全國軍力、持續多年的追殺行動，這種被嫉妒徹底主導、甚至不惜危害國家安全的偏執，是他性格中最令人痛心的墮落。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">晚年違背自己所立的律法，求問交鬼婦人召出亡魂</div>
+          <div class="soul-body">掃羅曾親自在國中『驅逐交鬼的和行巫術的』，晚年卻在絕望中親自喬裝求問交鬼婦人——這種對自己過往原則的徹底背棄，具體展現出他晚年精神與信仰狀態的全面崩潰。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">掃羅的故事，是聖經中對『權力如何逐漸侵蝕一個人原本謙卑之心』刻畫得最完整、也最令人警醒的悲劇敘事。他登基之初的謙卑與寬容，與他晚年被嫉妒與偏執徹底吞噬的狀態，形成了整本聖經人物敘事中最劇烈的性格反差之一。這個轉變的關鍵轉捩點，或許正是撒母耳宣告『耶和華厭棄你作王』的那一刻——從那時起，掃羅似乎將自己此後所有的精力與判斷，都聚焦在如何保住自己的地位與權力之上，而非持續順服神的心意。當大衛的聲望日漸崛起，掃羅將這視為對自己地位最直接的威脅，這份不安全感，最終演變成耗盡舉國之力、持續多年的偏執追殺，甚至不惜違背自己過往堅持的信仰原則。掃羅的故事提醒我們，一個人若將自身的地位與安全感，建立在『擊敗或消滅任何被視為威脅的對象』之上，而非建立在對神旨意的持續順服，這條道路終將導向自我毀滅——他悲劇性的結局，是聖經對這個屬靈原則最深刻、也最沉痛的警示。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ISFP</span>
+      <div class="mbti-name">探險家型 · 從謙卑少年到偏執君王</div>
+      <div class="mbti-slogan">「他曾經謙卑到躲進器具裡，不肯讓人看見自己被立為王——後來，他卻花了半輩子的力氣，只為了不讓另一個人取代自己。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">他對自身地位與尊嚴的內在情感反應極其強烈——無論是早年謙卑不願受矚目，或是晚年因嫉妒而幾近瘋狂的情緒波動，都顯示出強烈而深刻的內在情感主導著他的行為。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Se · 外向實感</span>
+          <div class="mbti-fn-body">他在解救基列雅比城時展現出的迅速果斷行動，以及此後追殺大衛時動用具體的軍事行動與策略，顯示出對眼前具體處境快速反應的傾向。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">他晚年求問交鬼婦人以窺探未來戰事的結局，顯示出對未知未來的強烈焦慮與探求欲望，然而這種探求已脫離健康的屬靈根基，成為絕望中的病態嘗試。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">他屢次未能理性、客觀地評估局勢（例如未能認清大衛對他的效忠、卻執意將其視為威脅），這種在關鍵決策上缺乏冷靜邏輯判斷的傾向，反映出劣勢外向思考的特徵。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最深刻的關係轉折，發生在那位他親手拔擢、卻此後傾盡全力追殺的年輕人身上——大衛。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">撒</div>
+          <div class="relation-name">撒母耳</div>
+          <div class="relation-type-badge">膏立他為王、此後宣告他被棄絕的先知</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">撒母耳依神的指示膏立掃羅為以色列首任君王，卻在掃羅違命之後，親口宣告耶和華已厭棄他作王——這段關係從最初的扶持，走向此後充滿張力與失望的疏離。</div>
+          <div class="relation-ref">撒上 10, 15 章</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">大</div>
+          <div class="relation-name">大衛</div>
+          <div class="relation-type-badge">他起初倚重、後來卻嫉妒追殺的女婿</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">大衛起初以彈琴驅趕掃羅心中的惡魔、並擊殺歌利亞而深受掃羅賞識，甚至娶掃羅之女米甲為妻，然而隨著大衛聲望日增，掃羅對他的態度徹底轉變為嫉妒與追殺，這段關係的劇烈反差，是掃羅一生悲劇最核心的具體展現。</div>
+          <div class="relation-ref">撒上 16–26 章</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">約</div>
+          <div class="relation-name">約拿單</div>
+          <div class="relation-type-badge">他的兒子，卻與大衛結為生死之交</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">約拿單身為掃羅的兒子與王位的合法繼承人，卻與大衛建立起深厚的友誼，甚至多次冒著觸怒父親的風險保護大衛——這段父子關係，因掃羅對大衛的偏執仇恨，蒙上了深刻的裂痕。</div>
+          <div class="relation-ref">撒上 18–20 章</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">米</div>
+          <div class="relation-name">米甲</div>
+          <div class="relation-type-badge">他嫁給大衛的女兒</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">掃羅將女兒米甲嫁給大衛，此後卻多次利用她試圖加害大衛、或作為政治籌碼——這段父女關係，同樣被掃羅對大衛的偏執仇恨所扭曲。</div>
+          <div class="relation-ref">撒上 18:20–29, 19:11–17</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「聽命勝於獻祭，順從勝於公羊的脂油」——撒母耳對掃羅的這句責備，成為聖經中對『真正的敬虔在於順服而非儀式性的補償』最經典的宣告之一。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「撒母耳說：「耶和華喜悅燔祭和平安祭，豈如喜悅人聽從他的話呢？聽命勝於獻祭，順從勝於公羊的脂油。」」</div>
+      <div class="verse-ref">撒母耳記上 15:22</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">מָאַס</span>
+        <div class="word-transliteration">ma'as · 厭棄 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「厭棄、拒絕、棄絕」，這個字帶有徹底、決絕的否定意涵。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">撒母耳向掃羅宣告『耶和華厭棄你作王』，這個字的強烈程度，標誌著掃羅與神之間關係決定性的破裂——此後掃羅的一生，某種程度上都籠罩在這則判決所帶來的陰影與絕望之中。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">קִנְאָה</span>
+        <div class="word-transliteration">qin'ah · 嫉妒 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「嫉妒、妒忌、強烈的佔有慾」，這個字精確地描述了掃羅對大衛日漸崛起的聲望所產生的核心情緒反應。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">掃羅對大衛的嫉妒，成為他此後一切偏執行為的根源，這個字提醒我們，未經處理的嫉妒之心，可能逐漸吞噬一個人原本健康的判斷力，甚至導致自我毀滅性的後果。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">真正的順服不容許選擇性的妥協</div>
+      <div class="theology-insight-body">掃羅在對亞瑪力人的戰事中『部分』遵行神的命令，卻自行決定保留他認為有價值的部分——這提醒我們，神所要求的順服，是完全的順服，而非依自己的判斷選擇性地執行。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">未經處理的嫉妒可能導致徹底的自我毀滅</div>
+      <div class="theology-insight-body">掃羅對大衛的嫉妒，從最初的情緒反應，逐漸演變為耗盡舉國之力的偏執追殺，最終導致自己與兒子們的死亡——這具體印證了箴言『嫉妒是骨中的朽爛』這一警示的真實性。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">地位的失去若未能坦然接受，可能導致靈性的全面崩潰</div>
+      <div class="theology-insight-body">掃羅始終未能真正接受自己已被神厭棄、大衛才是神所揀選之新王這一事實，這種持續的抗拒與不甘，最終導致他晚年精神與信仰狀態的徹底崩潰。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">掃羅因無法接受自己被神厭棄、大衛才是蒙揀選之新王的事實，選擇了持續多年、耗盡舉國之力的嫉妒追殺，最終導致自我毀滅的悲劇結局</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這種『因無法接受神主權的揀選而心生嫉妒與敵意』的模式，某種程度上預表了此後猶太宗教領袖對耶穌基督的敵視與逼迫——他們同樣因無法接受神所揀選、卻挑戰自己既有地位的那一位，而選擇了敵對與加害</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">猶太公會的領袖們因嫉妒耶穌所展現的權柄與百姓的擁戴，將祂交給彼拉多釘十字架，這正呼應著掃羅式嫉妒所帶來之毀滅性後果的悲劇模式（可 15:10）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正感受到某種因他人的成就或崛起，而在心裡悄悄滋生的嫉妒與不安——掃羅的故事，是一則鄭重卻誠實的警示。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">掃羅的故事命中的是每一個此刻正經歷因他人的成就、地位、或聲望的崛起，而在心裡悄悄滋生嫉妒與不安全感的人。他的悲劇提醒我們，未經正視與處理的嫉妒，若任其在心中持續發酵，可能逐漸主導一個人的判斷與行為，甚至導致耗盡自己所有的精力與資源，只為了打壓或消滅那個被視為威脅的對象——而這條道路，最終只會導向自我毀滅。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你此刻是否也對某個人的成就、地位、或聲望，心裡悄悄滋生著嫉妒或不安？掃羅的故事，對你此刻的這份情緒，帶來什麼樣的警示？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">掃羅在對亞瑪力人的戰事中，選擇性地遵行神的吩咐，卻自認這樣的『部分順服』已經足夠。你的生活中，是否也存在某種『選擇性順服』的模式？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">他始終未能真正接受自己已經失去某個地位或角色的事實，這種不甘與抗拒，最終導致他精神狀態的全面崩潰。你是否也曾在某個失落的處境中，遲遲無法真正放手接受？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">約拿單身為掃羅的兒子，卻選擇忠於友誼與神的心意，而非盲目效忠父親的偏執。你是否也曾面臨『忠於某個關係』與『忠於是非對錯』之間的艱難抉擇？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 掃羅</span>
+        <div class="gen-title">示範劇本：從謙卑受膏到被嫉妒徹底吞噬的悲劇君王</div>
+        <div class="gen-body">他早年展現出謙卑與果敢的正面特質，卻在違命被棄絕之後，逐漸被對大衛的嫉妒與偏執所主導，最終在追殺與絕望中，走向自我毀滅的悲劇結局。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 約拿單（他的兒子）</span>
+        <div class="gen-title">延續：在父親的偏執中，依然選擇忠於神的心意與真摯的友誼</div>
+        <div class="gen-body">約拿單身為掃羅之子，本應是王位的合法繼承人，卻選擇忠於與大衛的友誼、以及神揀選大衛的心意，多次冒險保護大衛，展現出與父親截然不同的品格典範。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在掃羅的故事中，展現在神即使面對他一再的悖逆與偏執，仍然透過先知撒母耳、透過大衛的多次饒恕（大衛曾兩次有機會殺掃羅卻選擇放過），持續向他發出提醒與挽回的機會。這提醒我們，即使一個人的生命軌跡最終走向悲劇，神恩慈的提醒之聲，從未在過程中完全止息。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位曾經謙卑到躲進器具裡、後來卻花了半輩子追殺女婿的王，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#嫉妒是會吃人的</span>
+      <span class="tag">#地位的失去要學會接受</span>
+      <span class="tag">#選擇性順服不是真順服</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>掃羅被立為王的那天，發生了一件很有意思的事——眾人抽籤選出他，卻找不到人。後來才發現，他躲在一堆器具中間。這個又高又帥、被形容為『以色列人中沒有一個能比他』的男人，登基那天，選擇的是躲起來。</p>
+      <p>他早期表現不錯——亞捫人威脅要挖掉基列雅比城百姓的眼睛，掃羅立刻召集大軍去解救，打了勝仗，聲望大漲。</p>
+      <p>轉折點出現在跟亞瑪力人的那場戰爭。神明確吩咐要滅盡一切，掃羅卻自己決定留下最好的牛羊，還留了亞瑪力王的命，理由是要拿去獻祭。撒母耳當場戳破：聽命勝於獻祭。然後宣告：耶和華厭棄你作王了。</p>
+      <p>從那之後，掃羅整個人變了。大衛出現以後，靠著擊殺歌利亞聲名大噪，婦女們唱歌說：掃羅殺死千千，大衛殺死萬萬。掃羅一聽，臉都綠了。從那天起，他看大衛的眼神就不一樣了。</p>
+      <p>接下來的十幾年，掃羅幾乎把所有的精力，都花在追殺大衛這一件事上——動用全國軍隊、設計陷阱、甚至親自拿槍刺過去。大衛明明有兩次機會可以殺掉他，都選擇放過。掃羅晚年，走投無路到違背自己立下的律法，喬裝去找一個交鬼的婦人，召出撒母耳的亡魂，只為了知道自己的下場。結果聽到的，是他和兒子們都要死。第二天，戰場上，他真的伏劍自盡。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——掃羅這塊石頭，一開始被雕得端正謙遜，後來卻被自己的嫉妒，一刀一刀，鑿成了另一個完全不同的形狀。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你此刻對某個人的成就或崛起，心裡有一絲不舒服的感覺——正視它，別讓它像掃羅的嫉妒一樣，悄悄長成一件會吃掉你半輩子精力的怪物。</p>
+      <p style="margin-top:12px;">掃羅『選擇性順服』的教訓值得記住——神說滅盡所有，他自己決定留一部分，還覺得自己有理由。留意你是不是也在對神的吩咐，做著類似的『打折扣』。</p>
+      <p style="margin-top:12px;">還有，學會接受失去。掃羅一輩子沒能真正接受自己已經不再是那個唯一被神揀選的人，這份不甘，把他拖進了自我毀滅的深淵。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果你心裡正對誰有一絲嫉妒——正視它，然後選擇不讓它主導你。</p>
+    </div>
+
+    <div class="insight-box">掃羅『嫉妒導致自我毀滅』的故事，持續是當代心理學與領導力研究中，探討『不安全感如何驅動破壞性行為』這一課題時，最常被引用的古典敘事案例之一——他的生命軌跡，為理解『地位焦慮如何逐步侵蝕一個人的判斷力乃至整體人格』，提供了極其具體而深刻的參照。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他從躲在器具中的謙卑少年，走向被嫉妒徹底吞噬的悲劇君王，留下了聖經中對『權力與嫉妒如何侵蝕人心』刻畫得最深刻的警示敘事。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">以色列首任君王的歷史開創者</div>
+          <div class="legacy-body">作為以色列從士師制度過渡到君主制度後的首任君王，他的統治開啟了此後延續數百年的以色列君主歷史。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">『聽命勝於獻祭』神學原則的重要來源</div>
+          <div class="legacy-body">撒母耳對他的責備，此後成為聖經神學中，闡明『真正的敬虔在於完全順服而非儀式性補償』這一原則時，被引用頻率最高的經文之一。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">『嫉妒導致自我毀滅』最完整的聖經警示敘事</div>
+          <div class="legacy-body">他從謙卑到偏執的完整生命軌跡，持續為後世提供了『未經處理的嫉妒可能徹底吞噬一個人的判斷與人格』這一屬靈原則，最具體而深刻的歷史例證。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">大衛崛起歷史敘事中不可或缺的對照角色</div>
+          <div class="legacy-body">掃羅的悲劇與大衛此後的信心典範形成鮮明對照，這種並置的敘事安排，深化了讀者對『倚靠自己的地位』與『倚靠神的揀選』這兩種生命路徑之根本差異的理解。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「這樣，掃羅和他三個兒子，與拿他兵器的人，以及跟隨他的人，都一同死亡。」</div>
+      <div class="final-verse-ref">撒母耳記上 31:6</div>
+    </div>
+
+    <div class="final-question">如果你此刻心裡正因為某個人的崛起或成就，悄悄滋生著嫉妒與不安——你願不願意正視這份情緒，而非任由它像掃羅的嫉妒一樣，逐漸主導你此後的判斷與行為？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 掃羅 <span>שָׁאוּל</span> · 以色列首任君王 · 從謙卑到嫉妒偏執的悲劇之王</div>
+
+</body>
+</html>

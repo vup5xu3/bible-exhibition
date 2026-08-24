@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>提多 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">提多</h1>
+  <span class="hero-name-en">Titus · Τίτος</span>
+  <p class="hero-slogan">「保羅帶著他上耶路撒冷，讓所有人親眼看見一位「沒有受割禮」的外邦信徒——<br>提多的身體，成了整場割禮爭議中，最直接、最無可辯駁的一份見證。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">第一世紀 · 主後約 20–90 年後（推測）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ESTJ · 總經理型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">加 2:1–3 · 林後 2:13, 7:6–15, 8:6, 8:16–23<br>多 1:4–5 · 提後 4:10</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">保羅信任的難題處理者 · 革哩底教會的組織者</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他從未出現在使徒行傳的敘事中，卻反覆出現在保羅最私密、最坦誠的書信裡——一位被信任到可以處理教會最棘手危機的外邦同工。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">第一世紀<br>羅馬帝國治下的地中海世界</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">多重身份</span>
+        <div class="info-cell-value">外邦人（希臘人） · 保羅的同工<br>革哩底教會的組織者 · 哥林多教會的危機處理者</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">（未載，推測為外邦人聚居地）→<br>耶路撒冷 → 哥林多 → 革哩底 → 撻馬太</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">背景</span>
+        <div class="info-cell-value">保羅明確指出他「是希利尼人，卻沒有勉強他受割禮」<br>擅長處理複雜的人際與教會危機</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">加拉太書 2:1–3<br>哥林多後書多處 · 提多書（全卷寫給他）· 提後 4:10</div>
+      </div>
+    </div>
+
+    <p>提多是一位極其特殊的新約人物——他的名字完全沒有出現在使徒行傳中，卻在保羅書信裡反覆被提及，且份量極重。學者對此有多種推測，其中一種相對流行的假說認為，路加（使徒行傳作者）可能與提多有親屬關係，因此在撰寫使徒行傳時，刻意迴避提及自己的親人（正如路加福音也極少提及自己），但這只是一種推測。無論確切原因為何，提多在保羅的私人書信網絡中，扮演著極其核心而信任的角色。</p>
+    <p>保羅在加拉太書中，特別強調了一個關鍵的歷史事件：他帶著提多一同上耶路撒冷，「只是與我同去的提多，雖是希利尼人，也沒有勉強他受割禮」——這句話的重量極大。當時教會內部正激烈爭論外邦信徒是否必須先受割禮、遵守摩西律法才能得救，而保羅刻意帶著這位『未受割禮』的希臘信徒，親自到耶路撒冷這個猶太基督教的核心重鎮，讓所有人親眼看見：一位完全的外邦人，不需要透過猶太教的儀式性標記，就能完全被神接納、完全屬於基督的身體。提多的身體本身，成了這場神學爭議中最直接的物證。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從耶路撒冷會議上那個沒有受割禮的見證，到哥林多教會危機中被信任的處理者，再到革哩底那個尚待建立秩序的新興教會——提多始終出現在保羅最需要可靠同工的時刻。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">耶路撒冷會議——「也沒有勉強他受割禮」</div>
+        <div class="timeline-body">保羅特別帶著提多一同上耶路撒冷，面對割禮派信徒的壓力，堅持不讓提多受割禮——「因為有偷著引進來的假弟兄，私下窺探我們在基督耶穌裡的自由，要叫我們作奴僕。我們就是一刻的工夫也沒有容讓順服他們，為要叫福音的真理仍存在你們中間。」提多因此成為保羅捍衛『因信稱義、不靠律法』這一核心神學立場最直接的人證。</div>
+        <div class="timeline-ref">加 2:1–5</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">黑暗低谷</span>
+        <div class="timeline-title">被差往哥林多——處理極其棘手的教會危機</div>
+        <div class="timeline-body">哥林多教會與保羅之間曾發生嚴重的信任危機（保羅提到自己曾『多多的痛哭、萬分的傷痛』寫過一封『嚴厲的信』），保羅差派提多前去處理這個極其敏感而困難的局面。保羅坦承自己在等候提多消息期間，「我從前為這事憂愁，並不後悔，因我知道，那憂愁是暫時的」，甚至因為在特羅亞找不到提多而『心裡不安』，寧可放棄一個開放的傳道機會，也要往馬其頓去尋找他。</div>
+        <div class="timeline-ref">林後 2:12–13, 7:5–7</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">帶回好消息——「因提多來到，就受了安慰」</div>
+        <div class="timeline-body">提多最終帶著哥林多教會真心悔改的好消息回到保羅身邊——「神安慰那喪氣的人，就用提多來安慰了我們；不但用他來，也用他從你們所得的安慰，安慰了我們；因他把你們的想念、哀慟，和向我的熱心，都告訴了我，使我更加歡喜。」提多在這場危機中，展現出高超的危機處理與人際協調能力，成功修復了保羅與哥林多教會之間破裂的信任。</div>
+        <div class="timeline-ref">林後 7:6–7, 13–15</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">負責耶路撒冷教會的捐項——「勸提多照這慈惠的事，在你們中間辦成」</div>
+        <div class="timeline-body">保羅委託提多負責組織、監督哥林多教會為耶路撒冷貧困信徒所籌募的捐項——「他是我的同伴，一同幫助你們的；他是我們的弟兄，是眾教會的使者，是基督的榮耀。」保羅特別讚許提多「因我對他信得過，就是這樣，也是出於自己的熱心」，顯示提多在財務與具體事務管理上的可靠聲譽。</div>
+        <div class="timeline-ref">林後 8:6, 16–23</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">受託在革哩底「設立長老」——建立教會秩序的重責</div>
+        <div class="timeline-body">保羅寫給提多的書信中，明確交代任務：「我從前留你在革哩底，是要你將那沒有辦完的事都辦整齊了，又照我所吩咐你的，在各城設立長老。」革哩底當地的社會風氣以懶惰、貪食著稱（保羅甚至引用當地詩人的話：『革哩底人常說謊話，乃是惡獸，又饞又懶』），提多被交付了在這樣充滿挑戰的處境中，建立教會治理架構的艱鉅任務。</div>
+        <div class="timeline-ref">多 1:5, 12</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">「提多往撻馬太去了」——晚年持續的服事</div>
+        <div class="timeline-body">保羅在生命最後、寫給提摩太的書信中提到「提多往撻馬太去了」——這顯示直到保羅生命的最後階段，提多依然活躍地在不同地區持續著他的服事事工，而非中途離棄或退出。此後教會傳統記載他此後回到革哩底，長期在當地牧養教會，直至年邁去世。</div>
+        <div class="timeline-ref">提後 4:10</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他不是那種需要被反覆鼓勵的人——保羅託付給他的，往往是連保羅自己都感到棘手、憂心的難題。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">困難的處境，值得用智慧與耐心去化解，而非迴避</div>
+          <div class="soul-body">他被反覆委以處理最棘手的教會危機（哥林多的信任裂痕、革哩底混亂的教會秩序）——這顯示他具備一種罕見的特質：不因處境艱難而退卻，反而能在複雜的人際與治理難題中，找到有效的解決之道。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">值得信賴到讓保羅可以毫無保留地放手交託</div>
+          <div class="soul-body">保羅明確說「我對他信得過」，並在多處書信中，將極其重要且敏感的任務（財務監督、危機協調、教會治理）交給他，卻幾乎不需要額外的叮囑或監督——這種高度的信任，反映出提多長期累積下來、值得信賴的品格與能力。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">務實、擅長組織與危機協調，重視具體成效</div>
+          <div class="soul-body">無論是修復哥林多教會的信任危機、監督捐項的收集，還是在革哩底建立長老治理制度，他所承擔的任務，都需要高度的組織能力、人際協調技巧，以及對具體成果的持續追蹤。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">（材料有限——聖經未記載他任何明確的性格弱點）</div>
+          <div class="soul-body">提多在新約中的形象幾乎全部正面——值得信賴、能力出眾、忠心服事。這種近乎完全正面的描繪，某種程度上反映了保羅書信對他的高度肯定，卻也使我們對他個人可能的軟弱面，缺乏具體的了解。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">作為外邦人身體本身所承載的神學見證</div>
+          <div class="soul-body">他『未受割禮的希臘人』這個身分，在耶路撒冷會議的爭議中，成為超越言語論證、更加直接有力的一種見證方式——他的存在本身，就是神學真理最具體的展現。這使他在新約歷史中，扮演著一種罕見的『用身分本身作見證』的獨特角色。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">提多的獨特之處，在於他一直是保羅『難題清單』上的首選人物——每當保羅面對最棘手、最需要智慧與耐心的處境（哥林多的裂痕、革哩底的混亂），提多總是被差派前往處理。這與那些需要被反覆鼓勵、被賦予相對單純任務的同工（如提摩太，保羅需要反覆提醒他不要膽怯）形成了有趣的對照。這提醒我們，神在教會中使用不同性情的人，成就不同性質的服事——有人需要被溫柔扶持才能站立，有人天生就適合承擔最艱難的協調與化解任務。提多的價值，不在於他從不需要幫助，而在於他被賦予了一種特殊的恩賜：在混亂與衝突之中，帶來秩序與和解。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ESTJ</span>
+      <div class="mbti-name">總經理型 · 難題托付者的首選</div>
+      <div class="mbti-slogan">「每當保羅遇到最棘手的教會危機，他第一個想到要差派去處理的人，就是提多。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">他被反覆委以組織性、執行性極強的任務——監督捐項收集、建立長老治理制度、處理教會內部糾紛——這些工作都需要高度的邏輯條理與有效執行力，顯示外向思考在他行事風格中的主導地位。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Si · 內向實感</span>
+          <div class="mbti-fn-body">他在處理哥林多教會危機時，展現出對具體細節（信徒的真實悔改態度、實際行動的落實）的高度重視——保羅特別提到提多向他詳細轉述了哥林多信徒『想念、哀慟，和向我的熱心』的具體情況，顯示他善於掌握並傳達具體而真實的情況。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ne · 外向直覺</span>
+          <div class="mbti-fn-body">面對革哩底這樣風氣混亂、充滿挑戰的處境，他能夠找到合適的策略與方法，逐步建立起有效的教會治理架構——這種在複雜處境中發展出可行方案的能力，顯示一定程度的外向直覺運作。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">他在處理危機時，展現出高度的任務導向與效率性，相對而言，聖經記載中較少呈現他個人內在情感掙扎的細節——這與 ESTJ 相對較弱的內向情感特質一致，更擅長以具體的行動與成果，而非情感表達，來承載他對服事的委身。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最重要的一段關係，是與那位一再把最艱難任務交給他、卻也因找不到他而『心裡不安』的使徒。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">保</div>
+          <div class="relation-name">保羅</div>
+          <div class="relation-type-badge">屬靈父親與最信任的同工</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">保羅稱他『因我共同信仰作真兒子的提多』，並在多處書信中展現出對他極深的信任與依賴——甚至坦承自己曾因找不到提多而『心裡不安』。這段關係展現了保羅對提多能力與品格的高度肯定，遠超一般的上下級同工關係，更接近一種並肩作戰的深厚情誼。</div>
+          <div class="relation-ref">多 1:4 · 林後 2:13, 7:6</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">哥</div>
+          <div class="relation-name">哥林多教會</div>
+          <div class="relation-type-badge">他成功修復信任裂痕的信仰群體</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">他被差派處理保羅與哥林多教會之間嚴重的信任危機，最終成功帶回教會真心悔改的消息，並持續協助監督當地為耶路撒冷貧困信徒所籌募的捐項——這段服事，展現出他在處理複雜人際與教會危機上的卓越能力。</div>
+          <div class="relation-ref">林後 7:6–16, 8:6</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">革</div>
+          <div class="relation-name">革哩底教會</div>
+          <div class="relation-type-badge">他受託建立治理秩序的新興教會</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">保羅留他在革哩底，「將那沒有辦完的事都辦整齊了」，並「在各城設立長老」——面對當地充滿挑戰的社會風氣，提多承擔起在這片相對艱難的土地上，建立起穩固教會治理架構的重任。</div>
+          <div class="relation-ref">多 1:5</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">割</div>
+          <div class="relation-name">耶路撒冷的割禮派信徒</div>
+          <div class="relation-type-badge">他以身分本身所對抗的神學立場</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">在耶路撒冷會議前後，保羅刻意帶著他這位未受割禮的希臘人，正面對抗那些堅持外邦信徒必須先受割禮才能得救的『假弟兄』——提多的存在本身，成為保羅捍衛因信稱義這一核心神學立場最直接、最有力的見證。</div>
+          <div class="relation-ref">加 2:3–5</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「與我同去的提多，雖是希利尼人，也沒有勉強他受割禮」——這句話，用一個人的身體，宣告了因信稱義的神學勝利。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「只是與我同去的提多，雖是希利尼人，也沒有勉強他受割禮；因為有偷著引進來的假弟兄……我們就是一刻的工夫也沒有容讓順服他們，為要叫福音的真理仍存在你們中間。」</div>
+      <div class="verse-ref">加拉太書 2:3, 5</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">ἠναγκάσθη</span>
+        <div class="word-transliteration">ēnankasthē · 被勉強 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">動詞 ἀναγκάζω（強迫、勉強）的被動語態過去式，保羅明確使用否定句「οὐδὲ ἠναγκάσθη」（也沒有被勉強）來描述提多的處境。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這個否定句式極具法律與神學上的精確性——保羅不是說『提多剛好沒有受割禮』，而是明確強調『提多沒有被強迫受割禮』，這清楚顯示這是一場有意識的神學堅持與對抗，而非偶然的疏漏。這句話成為新約中，對抗『靠律法稱義』這一立場最直接、最具體的歷史見證之一。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">ψευδάδελφοι</span>
+        <div class="word-transliteration">pseudadelphoi · 假弟兄 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">由 ψευδής（虛假的）與 ἀδελφός（弟兄）組成的複合詞，指那些表面上以信徒身分出現、實則試圖破壞福音真理的人。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">保羅用這個字，來形容那些主張外邦信徒必須受割禮的人——這顯示他將『堅持因信稱義、反對律法主義』這件事，視為關乎福音核心真理存亡的關鍵爭戰，而非單純的教會內部意見分歧。提多的身分，因此成為這場關乎福音本質之爭戰中，一份無可辯駁的具體見證。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">身體作為神學見證的具體展現</div>
+      <div class="theology-insight-body">提多未受割禮的身體，在耶路撒冷會議的處境中，發揮了遠超任何言語論證的說服力——這提醒我們，神學真理有時候不只需要透過辯論來確立，更可以透過具體的、活生生的見證來彰顯。保羅刻意安排這次會面，展現出他深刻理解『具體見證』在神學爭議中的獨特力量。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">教牧智慧：託付適合的人處理適合的難題</div>
+      <div class="theology-insight-body">保羅對提多與提摩太所託付的任務性質截然不同——提摩太需要被反覆鼓勵才能站穩牧養以弗所教會的崗位，提多卻被信任處理最棘手的教會危機與治理難題。這確立了教會論中一個重要的實踐智慧：認識並善用不同同工各自的恩賜與性情，讓合適的人，處理合適的任務。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">長老制度建立的具體實踐典範</div>
+      <div class="theology-insight-body">提多書中關於設立長老資格的具體教導（品格端正、善於教導、不好酒、不打人等），成為新約中與提摩太前書並列、最重要的教會治理實踐指南之一，深刻影響了此後兩千年教會建立監督與長老制度的具體實踐。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">路得作為一位外邦摩押女子，被接納進入以色列群體，成為大衛家譜的先祖——她的存在本身，就是神救贖計畫向外邦人敞開的具體見證</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">提多同樣是一位外邦人，其身分本身，成為神救贖計畫不因血統或律法儀式而設限的具體見證——兩人都以自己的存在，而非單純的言語，證明了神接納的普世性</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督親自「拆毀了中間隔斷的牆」，使猶太人和外邦人「藉這十字架使兩下歸為一體，與神和好了」（弗 2:14, 16）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">約書亞受摩西差派，在建立以色列進入應許之地的過程中，承擔起具體組織、分配土地、設立秩序的重責大任</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">提多同樣受保羅差派，在革哩底這片相對混亂的土地上，承擔起建立教會治理秩序、設立長老的具體組織性任務——兩人都展現了在前人奠基工作之後，負責落實與鞏固具體秩序的關鍵角色</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督親自差下聖靈，持續引導並建立祂的教會，成為一切屬靈秩序真正的根基與帶領者（弗 4:11–13）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你經常是那個被交託處理最棘手難題、卻很少被公開讚揚的人——這一頁是為你寫的。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">提多命中的是一種在服事與職場中都很常見的角色：那個因為值得信賴、能力出眾，而總是被交付最困難任務的人。這種角色未必總是站在鎂光燈下，卻承擔著維繫整個團隊或群體正常運作極其關鍵的功能。他的故事提醒我們，這種『被信任處理難題』的角色，本身就是一種極高的肯定與價值——不是每個人都適合、也不是每個人都能勝任這樣的任務。如果你也是這樣的人，或許可以從提多的故事中，得到一種被理解與被看重的安慰。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你是否也常常是那個被交託處理最棘手、最需要智慧與耐心之難題的人？你如何看待這個角色帶給你的壓力與價值感？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">提多的身分（未受割禮的外邦人）本身，就成為一種神學見證。你的某種身分或處境，是否也曾在不經意間，成為某個更大真理的具體見證？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">保羅坦承自己曾因找不到提多而『心裡不安』。你身邊有沒有一位讓你如此信賴、以至於他/她的缺席會讓你格外不安的同工或夥伴？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">他在革哩底面對的是相對艱難、甚至帶著負面刻板印象的處境。你目前是否也身處某個充滿挑戰、卻需要你耐心建立秩序與信任的環境？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 提多</span>
+        <div class="gen-title">示範劇本：在最艱難的處境中，以穩健的行動帶來秩序與和解</div>
+        <div class="gen-body">他一貫的行為模式，是在混亂、衝突、或治理真空的處境中，透過扎實而有智慧的具體行動，逐步建立起秩序與信任——無論是修復哥林多教會的信任危機，還是在革哩底建立長老制度，都展現出這種一致的服事型態。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 革哩底教會（及此後承接其治理模式的教會）</span>
+        <div class="gen-title">延續而非打斷：因他所建立的長老制度，教會得以持續穩健運作</div>
+        <div class="gen-body">提多在革哩底所建立的教會治理架構，此後成為當地教會得以持續、穩健運作的重要基礎——他所示範的『設立品格端正、善於教導之長老』這一模式，深刻影響了此後教會歷史中，關於教會治理制度建立的持續實踐。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">提多的故事，展現了恩典如何透過『合適的人被放在合適的位置上』來運作——保羅沒有要求每一位同工都用相同的方式服事，而是敏銳地辨識出提多獨特的恩賜（處理危機、建立秩序），並將相應的任務交託給他。這提醒我們，神使用人的方式，是根據每個人獨特的性情與恩賜，而非單一的標準模式——這本身，就是恩典多元運作的一種美好展現。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那個總是被交付最棘手難題的人，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#身分本身就是見證</span>
+      <span class="tag">#專門處理危機的人</span>
+      <span class="tag">#難搞地區的建設者</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>提多這個人很有意思——他一次都沒有出現在使徒行傳裡，卻在保羅的私人書信裡反覆被提到，而且每次出場，都是去處理最麻煩的事情。</p>
+      <p>他第一次登場，是在割禮爭議正激烈的時候。保羅特意帶著他——一位完全沒受割禮的希臘人——上耶路撒冷，讓所有人親眼看見：這個人，什麼儀式都沒做，照樣完全屬於基督。他的存在本身，就是一份無可辯駁的證據。</p>
+      <p>後來哥林多教會跟保羅之間鬧得很僵，保羅寫了一封『含淚的信』過去，然後派提多去處理善後。保羅在信裡老實承認，自己因為在特羅亞找不到提多，急得『心裡不安』，寧可放棄一個傳福音的好機會，也要跑去馬其頓找他。等提多終於帶著好消息回來，保羅整個人都鬆了一口氣。</p>
+      <p>接著保羅又把一個更棘手的任務丟給他——去革哩底建立教會秩序。保羅自己都吐槽當地人『說謊話、又饞又懶』，卻放心把這個爛攤子交給提多，要他去設立長老、把事情辦整齊。</p>
+      <p>這人大概就是那種公司裡『出事了就找他』的角色。不搶鏡頭，不出現在檯面上的功勞簿裡，但每次真正的危機來了，都是他在第一線把事情處理好。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——而提多這塊石頭,從來沒有站上舞台中央,卻總是被放在最需要它的地方,撐住那些快要垮掉的角落。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你經常是那個被交付最棘手任務的人，卻覺得自己好像沒有得到相對應的關注或掌聲——提多的故事想告訴你：這種被信任的角色，本身就是一種極高的肯定。不是每個人都能承擔這種工作。</p>
+      <p style="margin-top:12px;">你的某種身分或處境，可能正在無形中，成為某個更大真理的見證——就像提多的希臘人身分，成了因信稱義最有力的證明。你不需要說一句話，光是你的存在，可能就已經在說些什麼。</p>
+      <p style="margin-top:12px;">如果你正在一個充滿挑戰、甚至風評不太好的環境裡努力建立秩序——別灰心。革哩底不是一個容易的地方，但提多還是去了，而且真的把事情辦成了。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果有一件棘手的事需要有人去處理——如果那個人是你，去吧，你被信任是有原因的。</p>
+    </div>
+
+    <div class="insight-box">在當代組織管理與『危機處理人才』(fixer/troubleshooter)的討論中，提多的角色提供了一個極具參考價值的範例——他展現出一種特定而稀缺的能力：在高度衝突或治理真空的處境中，透過穩健的行動迅速建立秩序與信任。這類人才在組織中往往極其寶貴，卻也容易因為工作性質較少涉及公開的成就展示，而在績效認可上被相對低估。這對正在思考『如何辨識並適當獎勵組織中的隱性關鍵貢獻者』的管理者，提供了重要的反思。而他身分本身（未受割禮）所承載的神學見證意義，也提醒當代信仰群體：有時候，最有力的見證不是言語，而是一個人真實的存在本身。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他用自己未受割禮的身體，為因信稱義這個核心真理，留下了新約中最直接、最無可辯駁的一份見證。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">因信稱義最直接的人證</div>
+          <div class="legacy-body">他未受割禮卻完全被接納為基督身體一員的身分本身，成為耶路撒冷會議前後，捍衛因信稱義、反對律法主義這一核心神學立場最有力的具體見證，深刻影響了此後基督教救恩論的確立。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">教牧書信中長老制度建立的重要指南</div>
+          <div class="legacy-body">提多書中關於設立長老資格的具體教導，與提摩太前書並列，成為新約正典中，教會治理制度建立最重要的實踐指南之一，持續影響著此後兩千年教會的體制發展。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">危機處理與關係修復的服事典範</div>
+          <div class="legacy-body">他成功修復保羅與哥林多教會之間嚴重信任裂痕的服事經歷，成為教會歷史中，理解『如何在衝突之後重建信任與和解』這一課題時，重要的實踐參照案例。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">「難題托付者」角色的正典肯定</div>
+          <div class="legacy-body">他被反覆委以最艱難任務、卻始終忠心完成的服事模式，為教會歷史中，那些擅長處理危機、卻鮮少站在聚光燈下的服事者，提供了重要的正典肯定與典範。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「他是我的同伴，一同幫助你們的；他是我們的弟兄，是眾教會的使者，是基督的榮耀。」</div>
+      <div class="final-verse-ref">哥林多後書 8:23</div>
+    </div>
+
+    <div class="final-question">如果你正是那位總被交付最棘手難題、卻很少被公開稱讚的人——你願意像提多一樣，繼續忠心地承擔這份角色，相信神看得見你所付出的每一份努力嗎？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 提多 <span>Τίτος</span> · 未受割禮的外邦見證 · 難處理之事的托付者</div>
+
+</body>
+</html>

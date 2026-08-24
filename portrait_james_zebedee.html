@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>雅各 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">雅各・西庇太之子</h1>
+  <span class="hero-name-en">James, son of Zebedee · Ἰάκωβος · יַעֲקֹב</span>
+  <p class="hero-slogan">「他問的是能不能坐在最好的位子上，<br>主答的是能不能喝下那個杯。<br>後來他喝了，卻沒有人記得那個座位。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">第一世紀 · 約主後 44 年殉道</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ESTJ · 總經理型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">四福音 · 徒 12:1–2</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">核心三人組 · 首位殉道使徒</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他是十二使徒中最早死的一位，也是四福音裡最常被排在第一個念到的那個名字。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">第一世紀<br>羅馬治下的加利利與猶太</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">多重身份</span>
+        <div class="info-cell-value">加利利漁業經營者 · 十二使徒之一<br>核心三人組成員 · 首位殉道使徒</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">加利利海一帶 →<br>耶路撒冷</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">背景</span>
+        <div class="info-cell-value">西庇太之子 · 約翰之兄<br>母親撒羅米 · 家中可雇工人</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">太 4:21, 17:1, 20:20–23<br>可 3:17, 5:37, 10:35–40 · 徒 12:1–2</div>
+      </div>
+    </div>
+
+    <p>雅各是西庇太的長子、使徒約翰的哥哥。馬可福音記下他們蒙召時「把父親西庇太和雇工人留在船上」——這個家族雇得起工人，屬於加利利漁業中較有規模的一戶。母親撒羅米後來也在跟隨並供給耶穌的婦女之列，而馬太福音記載她曾親自出面為兩個兒子求國度中的位子。這是一個資源充足、企圖心也充足的家庭。在四福音的使徒名單中，他的名字幾乎總是排在弟弟之前，顯示他是兄長，也可能是兩人中較具主導性的那一位。</p>
+    <p>耶穌給這對兄弟取的外號是「半尼其」（Βοανηργές），馬可直接翻譯為「雷子」。福音書為此提供了具體註腳：撒瑪利亞村莊不接待耶穌，兄弟倆的即刻反應是請求從天降火燒滅整村。這是一種不加掩飾、界線分明、以行動解決問題的性情。而神揀選這樣的人進入核心三人組——與彼得、約翰一同見證睚魯女兒復活、登山變像、客西馬尼禱告——三個最私密的場景，全都有他在場。他是那種被放在最靠近的位置上，卻要花時間才學會那個位置真正意味著什麼的人。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">他的一生像一句被縮短的話：開頭很響，結尾很快，中間全是主的雕刻。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">撇下船與父親——立刻的跟隨</div>
+        <div class="timeline-body">耶穌沿加利利海行走，看見他和弟弟約翰在船上補網，就召他們。「他們立刻捨了船，別了父親，跟從了耶穌。」他不只離開一份工作，是離開一個有雇工、有船隊的家業，也把父親留在船上。對一個長子而言，這在當時的家族結構中是相當重的一次決裂。</div>
+        <div class="timeline-ref">太 4:21–22 · 可 1:19–20</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">核心三人組——三個最私密的現場</div>
+        <div class="timeline-body">有三個場合耶穌只帶了彼得、雅各、約翰：睚魯的女兒被叫醒、山上變像顯出榮光、客西馬尼園的極度憂傷。這三個場景分別讓他看見了主勝過死亡的權柄、主的神性榮耀、以及主的人性掙扎。很少有人被允許看見這麼完整的一面。而這份特權後來也成了對他的要求。</div>
+        <div class="timeline-ref">可 5:37 · 太 17:1–2 · 太 26:37</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">黑暗低谷</span>
+        <div class="timeline-title">「吩咐火從天上降下來」——雷子的火</div>
+        <div class="timeline-body">撒瑪利亞的一個村莊不接待耶穌，因為祂面向耶路撒冷去。兄弟倆立刻請求降火燒滅全村。耶穌轉身責備他們。這件事揭露了一種特定的危險：他們的動機是為主抱不平，行為卻與主的性情完全相反。最難察覺的偏差，往往發生在忠誠與殘忍之間那道很細的界線上。</div>
+        <div class="timeline-ref">路 9:51–56</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">黑暗低谷</span>
+        <div class="timeline-title">求座位——「你們不知道所求的是什麼」</div>
+        <div class="timeline-body">他與弟弟（透過母親）請求在榮耀裡坐主的左右兩邊。其餘十人聽見就惱怒。耶穌沒有直接拒絕，只問了一句：「我所喝的杯，你們能喝嗎？」他們答「我們能」——很可能根本不知道那是什麼意思。主的回應意味深長：「我所喝的杯，你們必要喝。」祂沒有應許座位，祂應許了杯。</div>
+        <div class="timeline-ref">太 20:20–23 · 可 10:35–40</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">希律的刀——第一個喝下那杯的人</div>
+        <div class="timeline-body">使徒行傳用一句話記完他的死：「希律王下手苦害教會中幾個人，用刀殺了約翰的哥哥雅各。」沒有臨終遺言、沒有講道、沒有辯護詞——整段記載短得近乎冷酷。他是十二使徒中第一個殉道的，也是唯一一位死亡被寫進聖經的使徒。十四年前他說「我們能」，那時他不知道自己在說什麼；十四年後，他做到了。</div>
+        <div class="timeline-ref">徒 12:1–2</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他是那種你會希望在危機時站在你旁邊的人——只要你不是他認定的敵人。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">對的事就該立刻執行，不該拖延</div>
+          <div class="soul-body">他的每一次出場都是行動導向的：立刻撇下船、立刻提議降火、直接開口要位子。他沒有中間的猶豫層。這種果決在跟隨的起點極其可貴——十二個人裡，他和弟弟是最沒有討價還價的兩位。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">說到做到</div>
+          <div class="soul-body">他回答「我們能」的時候，很可能並不明白那杯是什麼。但十四年後希律的刀落下時，他沒有退。聖經對他之死的記載短到只有一句，沒有任何掙扎或動搖的描述。一個當年隨口誇下的口，最後真的兌現了。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">直接、階層分明、訴諸權威</div>
+          <div class="soul-body">他求位子的方式很說明問題：他要的是明確的職位排序，而且動用了母親出面。這是一種把關係與組織結構看得很具體的心智——不含糊、不暗示，直接把要求說出來，也直接承擔其餘十人的惱怒。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">把忠誠變成排他的暴力</div>
+          <div class="soul-body">降火那一次是他最赤裸的一面：他的憤怒完全是為了主，而他的提議是滅掉一整村人。這種偏差在任何時代都極具破壞性——當一個人確信自己站在對的一邊，殘忍會偽裝成義憤。主的責備正落在這裡：你們的心如何，你們並不知道。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">被允許看見最多的那三個人之一</div>
+          <div class="soul-body">他見過死人被叫醒、見過主的臉發光如日頭、見過主在園中汗如血點。這三種場景幾乎涵蓋了基督位格的全幅——權柄、榮耀、受苦。而他是十二人中僅有的三位見證者之一，卻在正典中沒有留下一個字的記述。他所知道的，全部隨他一起死在希律的刀下。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">雅各的一生被兩句話夾住：「我們能」和「用刀殺了」。中間的十四年沒有任何記載——沒有講道、沒有書信、沒有神蹟。這是聖經處理他的方式，也可能正是他生命的意義所在。他求的是可見的位子，得到的是不可見的杯；而他真正被記住的，不是他曾經站在多靠近的地方，是他最後付出了什麼。他與弟弟約翰的對照更加尖銳：同一個家庭、同一種火、同樣求過位子，一個在四十四年就被刀殺，一個活到將近一百歲寫下五卷書。聖經沒有解釋為什麼，只是把兩個結局並排放著——這本身就是一種神學：忠心不保證等長的年日，也不決定被記得的篇幅。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ESTJ</span>
+      <div class="mbti-name">總經理型 · 直行的長子</div>
+      <div class="mbti-slogan">「他要的是編制表上的位置，而主給他的是一個沒有頭銜的杯。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">他的反應總是可執行的方案：不接待就燒掉、要榮耀就先確認座位、要跟隨就立刻撇下船。Te 使他直接把想法轉為行動指令，中間不經過太多內部辯證——這讓他極具行動力，也讓他的錯誤同樣直接。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Si · 內向實感</span>
+          <div class="mbti-fn-body">他對既定秩序與位階有清楚的認知，也因此會用「左邊右邊」這種具體的空間語言來理解國度。他是家中的長子，被雇工與船隊的結構養大——秩序對他而言是理解世界的方式。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ne · 外向直覺</span>
+          <div class="mbti-fn-body">他能設想一個榮耀的未來場景並為之提前佈局（求座位正是這個功能的產物），但這種設想仍高度受限於既有框架——他想像得出榮耀，卻想像不出榮耀要經過十字架。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">他不擅長辨識自己行為底下的真實動機。降火的提議在他自己看來是忠誠，主卻指出那不是。ESTJ 的劣勢 Fi 使他在盛怒中無法區分「為主」與「為自己的受辱感」。而他生命最後的沉默——沒有辯護、沒有遺言——或許正是這個功能終於成熟後的樣子：不再需要說明什麼。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他的名字幾乎從不單獨出現——總是「雅各和約翰」，或「彼得、雅各、約翰」。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">耶</div>
+          <div class="relation-name">耶穌基督</div>
+          <div class="relation-type-badge">主與核心門徒</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">主給了他兩樣東西：一個嚴厲的外號，和三個最私密的現場。祂責備他的火，卻沒有把他移出核心圈；祂拒絕給他座位，卻應許給他杯。這段關係示範了一種罕見的帶領方式——不因性格的破口而降低託付，也不因親近而放寬標準。</div>
+          <div class="relation-ref">可 3:17 · 路 9:55 · 太 20:23</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">約</div>
+          <div class="relation-name">約翰</div>
+          <div class="relation-type-badge">手足 · 同一種火，不同的結局</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">兩人同被稱為雷子、同求座位、同要降火。而結局是新約中最強烈的一組對照：哥哥在主後四十四年被希律用刀殺了，弟弟活到將近一百歲，寫下五卷書、牧養以弗所、看見啟示錄的異象。聖經沒有為這個落差提供任何解釋，只是把它記下來。</div>
+          <div class="relation-ref">可 3:17 · 徒 12:2 · 啟 1:9</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">撒</div>
+          <div class="relation-name">撒羅米</div>
+          <div class="relation-type-badge">母親 · 代為求位的人</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">馬太記載是母親出面替兩個兒子求座位，馬可則記為兄弟倆自己求。無論如何，這位母親一路跟隨、供給、並在十字架旁與其他婦女一同站著。她的愛是真的，她的企圖心也是真的——而她親眼看著自己求了榮耀座位的兒子，成為第一個死在刀下的使徒。</div>
+          <div class="relation-ref">太 20:20–21 · 可 15:40 · 太 27:56</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">彼</div>
+          <div class="relation-name">彼得與核心三人組</div>
+          <div class="relation-type-badge">同儕 · 共同的見證者</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">三人一同見證了睚魯女兒的復活、登山變像、客西馬尼的憂傷。這是一個被主刻意分別出來的小圈子，也是十二人中張力最大的一組——他們同時是最被信任的，也是最會爭論誰為大的。特權與競爭幾乎總是同時出現。</div>
+          <div class="relation-ref">可 5:37 · 可 9:2 · 可 14:33 · 路 22:24</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">希</div>
+          <div class="relation-name">希律亞基帕一世</div>
+          <div class="relation-type-badge">處死他的人</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">使徒行傳說希律下手是為了苦害教會，並在看見「猶太人喜歡這事」之後，又去捉拿彼得。他的死因赤裸而政治：這位王發現殺使徒能討好群眾。而神的介入沒有臨到雅各，卻在幾節之後臨到獄中的彼得——天使開了門。同一章裡，一個被刀殺，一個被救出。聖經把這兩件事寫在一起，不加解釋。</div>
+          <div class="relation-ref">徒 12:1–11</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">他的死只佔了半節經文，卻定義了此後兩千年基督徒對「杯」的理解。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「耶穌說：「我所喝的杯，你們必要喝……只是坐在我的左右，不是我可以賜的，乃是我父為誰預備的，就賜給誰。」」</div>
+      <div class="verse-ref">馬太福音 20:23</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">ποτήριον</span>
+        <div class="word-transliteration">potērion · 杯 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「杯、飲器」。在舊約中，「杯」是命運與神所量定之分的隱喻——既可指神忿怒的杯（賽 51:17、耶 25:15），也可指福分的杯（詩 23:5）。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">耶穌在客西馬尼求「叫這杯離開我」，用的是同一個字。因此當祂問雅各「我所喝的杯，你們能喝嗎」，祂問的是：你能否有份於我所領受的那一份命運？雅各答「我能」時並不明白，而十四年後他明白了。這個字把門徒職分從一份榮耀的委任，重新定義為一份共享的命運。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">Βοανηργές</span>
+        <div class="word-transliteration">Boanērges · 半尼其 · 亞蘭文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">馬可直接譯為「雷子」（υἱοὶ βροντῆς）。可能源自亞蘭文 בְּנֵי רְגַשׁ（喧鬧、騷動之子）。這是耶穌親自給的外號，如同祂給西門取名彼得。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">值得注意的是主從未收回這個外號。祂責備他們降火的提議，卻沒有要求他們變成別的性情。這暗示了恩典處理性格的方式：不是替換，是重新定向。那份雷霆般的強度，最後沒有燒掉一座村莊，而是承受了一把刀。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">杯先於座位：門徒職分的次序</div>
+      <div class="theology-insight-body">十二使徒中最常出現的爭論是「誰為大」，而主的回應始終一致：把問題從位階轉向代價。祂沒有否認國度中有座位，只是宣告那不是可以爭取的東西，並把可以爭取的東西——杯——擺在他們面前。這重新排列了整個基督教領導觀的優先順序。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">殉道作為見證</div>
+      <div class="theology-insight-body">希臘文 μάρτυς（見證人）後來直接演變為「殉道者」（martyr）一詞，而雅各是使徒中第一個使這兩個意義重合的人。他沒有留下任何著作，他的見證就是他的死。這確立了教會史上一個持續至今的認知：有些證詞只能用生命簽名。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">同一章裡的兩種結局</div>
+      <div class="theology-insight-body">使徒行傳十二章記下雅各被刀殺，緊接著記下彼得被天使救出監牢。同一位神、同一場逼迫、同一個王，兩種截然不同的結果，而經文對此毫無解釋。這段記載使聖經無法被讀成一份「忠心必蒙拯救」的保證書；它保證的是神的同在，不是特定的結局。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">亞伯獻上頭生的羊為祭，蒙神悅納，卻成為聖經中第一個因信而死的人</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">兩人都是各自世代中最早付上性命的見證者；希伯來書說亞伯「雖然死了，卻因這信仍舊說話」，正如雅各未留一字卻仍在說話</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督的血「所說的比亞伯的血所說的更美」——祂的死不是控訴，是赦免（來 12:24）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">以利亞求火從天降下，火燒盡了燔祭，也降下燒滅五十夫長與他的五十人</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">雅各兄弟要求降火時，很可能正是以此為據；而主的責備等於宣告新約的次序已經改變——人子來不是要滅人的性命，是要救人的性命</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督在五旬節降下的是聖靈的火，落在人頭上而不燒滅（徒 2:3）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">詩篇二十三篇「你用油膏了我的頭，使我的福杯滿溢」——杯是神量給人的分</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">雅各所領受的杯不是福分而是苦難，然而在新約的邏輯中兩者已經合一：有份於基督的苦難，就是有份於祂的榮耀</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督在最後晚餐舉起杯說「這是我立約的血」，把那杯變成了新約本身（太 26:27–28）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你曾經求過某個位子，後來才發現自己真正需要的是別的東西——這一頁是為你寫的。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">雅各命中的是一種相當普遍的錯位：我們花很多力氣去爭取一個可見的位置——職稱、名次、被認可的排序——而生命真正要求我們的，往往是一個沒有頭銜的承擔。他問的是座位，主答的是杯。更值得注意的是主沒有羞辱他這個提問，也沒有把他調離核心圈；主只是把問題換掉了。多數人不需要被責備自己的企圖心，只需要有人把真正的問題重新問一次。而他的結局提出另一件事：他做到了他當年並不明白的承諾。有時候我們許下的願，會在多年後才知道代價，而那時我們已經是有能力付的人了。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你目前最想爭取的那個「位子」是什麼？如果拿掉它的名稱，只留下它實際要你每天做的事，你還想要嗎？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">雅各說「我們能」的時候並不知道那是什麼。你有沒有許過一個當時不懂、後來才知道代價的承諾？你付了嗎？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">他為主抱不平的方式是提議燒掉一整村人。你有沒有哪一次「為了對的事」而變得很不像自己？當時是什麼讓你覺得那是合理的？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">同一章裡，雅各被殺，彼得被救。如果神對你的答案是前者而不是後者，你的信仰能不能站得住？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 西庇太一家</span>
+        <div class="gen-title">應激劇本：用位置確認被愛的程度</div>
+        <div class="gen-body">這個家族的模式相當清晰：母親出面替兒子求國度中的左右座位，兩兄弟自己也再求了一次。他們的委身毫無疑問——撇下船隊、撇下父親、一路跟隨。但那份委身內建了一個交換期待：我付出了這麼多，所以我應該被排在前面。這在高投入的家庭中極為常見。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 十二使徒群體</span>
+        <div class="gen-title">精確複製：一路延續到最後的晚餐</div>
+        <div class="gen-body">「誰為大」的爭論在福音書中反覆出現，甚至在最後的晚餐上還發生了一次——就在主設立聖餐、預告自己被賣的同一個晚上。西庇太家的焦慮不是特例，是整個門徒群體共有的病灶。而主每一次的處理方式都一樣：不是禁止他們渴望偉大，是重新定義偉大。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">打斷發生在那個提問裡：「我所喝的杯，你們能喝嗎？」主沒有斥責他的野心，也沒有答應他的請求，祂換掉了衡量的單位——從位置改成代價。而恩典最終的介入方式極為安靜：十四年後，這個曾經爭座位的人在希律的刀下沒有留下一句辯護。聖經只用半節經文記下他的死，沒有頌詞、沒有排名。他終於得到了一個不需要被排序的位置。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那個第一個死的人，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#爭位子的人</span>
+      <span class="tag">#說到做到</span>
+      <span class="tag">#為什麼是他不是我</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>雅各是十二使徒裡第一個死的。聖經記他的死只用了半句話：「用刀殺了約翰的哥哥雅各。」連個逗號的餘裕都沒有。</p>
+      <p>他生前最有名的一件事，其實有點難堪：他跟弟弟去問耶穌，能不能在國度裡一個坐右邊、一個坐左邊。有一卷福音書說是他們自己去問的，另一卷說是他們媽出面問的——兩種說法都不太好看。其他十個門徒聽到，氣炸了。</p>
+      <p>耶穌的回答很妙。祂沒有罵他們貪心，也沒有說「不可以有企圖心」。祂只問了一句：我要喝的那個杯，你們能喝嗎？他們立刻說：我們能。他們那時候根本不知道那是什麼意思。</p>
+      <p>十四年後他們知道了。希律王發現殺使徒可以討好群眾，就先拿雅各開刀。他成了第一個真的把那杯喝下去的人。他沒有留下講道、沒有留下書信、沒有留下任何一句話。</p>
+      <p>而最讓人說不出話的是接下來那幾節。同一章裡，希律接著去抓彼得，結果天使半夜開了監門把彼得帶出去。同一位神、同一場逼迫、同一個王——一個死了，一個活了。聖經沒有解釋，一個字都沒有。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——而有些石頭被雕得很快，快到我們來不及看清楚，只知道它最後真的撐住了。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你正在為某個位子、某個名次、某個「我到底有沒有被看見」的問題折騰——先注意耶穌怎麼處理雅各的：祂沒有說你不該想要。祂只是把問題換成另一個。多數人需要的不是被糾正野心，是有人把真正的問題重新問一次。</p>
+      <p style="margin-top:12px;">如果你正在面對一個「為什麼是我不是他」的處境——雅各死了，彼得被救了，就在同一章裡。聖經完全沒有幫這件事找理由。它不保證你會被救出來，它保證的是那位在客西馬尼也求過那杯離開祂的主，知道你在說什麼。</p>
+      <p style="margin-top:12px;">還有一件事：他當年隨口說的「我能」，後來真的做到了。你許過的那些你以為自己撐不住的承諾——你可能會發現，到了要付的那一天，你已經不是當年那個人了。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天不用回答那個大問題。今天只要不放下手上這一件就好。</p>
+    </div>
+
+    <div class="insight-box">在當代組織與生涯發展的語境中，雅各提出一個少見卻精準的問題：我們是否把「職位」誤認為「呼召」？現代職涯焦慮的核心，多半不是缺乏能力，而是把可見的排序當成價值的唯一計量單位——而主的回應提供了另一個座標軸：不是你在哪個位置，是你願意承擔什麼。而在苦難神學層面，使徒行傳十二章的並列敘事（雅各被殺、彼得獲救）是聖經對「為什麼有人被救有人沒有」最誠實的處理：它拒絕給出公式。這對當代信仰群體是一項重要的節制——面對他人的苦難，最不該做的就是替神提供解釋。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他沒有寫下一個字，卻是第一個用整條命簽名的人。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">首位殉道的使徒</div>
+          <div class="legacy-body">他是十二使徒中第一個殉道者，也是唯一一位死亡被明確記載於聖經的使徒。教會此後兩千年在逼迫中所建立的殉道傳統，起點就是使徒行傳十二章那半節經文。他確立了一件事：跟隨的代價不是理論。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">「杯」的神學傳承</div>
+          <div class="legacy-body">「我所喝的杯，你們必要喝」——這句話因他而不再是修辭。此後基督徒理解苦難的方式，從「不幸的遭遇」轉為「有份於基督的那一份」。這個轉換是新約受苦觀的核心，也是彼得前書、腓立比書等書卷持續發展的主題。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">核心三人組的見證</div>
+          <div class="legacy-body">他是僅有的三位見證睚魯女兒復活、登山變像與客西馬尼禱告的人之一。雖然他自己未留下記述，這三個場景經由彼得與約翰進入正典。他的在場本身，是這些記載具備多重見證的一部分。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">聖雅各之路</div>
+          <div class="legacy-body">中世紀以來，西班牙的聖地牙哥－德孔波斯特拉被認為是他的埋骨之地，通往該地的朝聖路（Camino de Santiago）成為歐洲最重要的朝聖路線之一，至今每年仍有數十萬人徒步前往。一個死得最快、話說得最少的使徒，最後留下了一條要用腳走很久的路。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">V</div>
+        <div>
+          <div class="legacy-title">對「快速的結局」保留了正典位置</div>
+          <div class="legacy-body">他的一生沒有累積出可見的成果——沒有著作、沒有建立的教會、沒有可傳頌的講章。聖經仍然把他列在核心圈裡。這使得後世每一個生命被中途截斷、來不及完成什麼的信徒，都能在正典中找到自己的位置。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「那時，希律王下手苦害教會中幾個人，用刀殺了約翰的哥哥雅各。」</div>
+      <div class="final-verse-ref">使徒行傳 12:1–2</div>
+    </div>
+
+    <div class="final-question">如果你的一生最後只會被寫成半句話，那半句話裡，你希望留下的是你得到了什麼，還是你付出了什麼？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 雅各 <span>Ἰάκωβος · יַעֲקֹב</span> · 核心三人組 · 首位殉道使徒</div>
+
+</body>
+</html>

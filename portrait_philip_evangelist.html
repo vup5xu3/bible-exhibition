@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>腓利 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">腓利・傳福音的</h1>
+  <span class="hero-name-en">Philip the Evangelist · Φίλιππος</span>
+  <p class="hero-slogan">「聖靈說「你去追上那車」，他沒有問為什麼、去哪裡、追上了要說什麼，<br>他就跑到了車前——然後，福音第一次傳到了非洲。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">第一世紀 · 主後約 33–60 年後（推測）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ESFP · 表演者型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">徒 6:5, 8:5–40, 21:8–9<br>（唯獨使徒行傳記載）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">七執事之一 · 撒瑪利亞與曠野的傳道人</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他從一位被指派分飯的執事，到一位主動出擊、隨聖靈引導奔跑於城市與曠野之間的傳道人——他的一生，展現了福音如何從耶路撒冷的核心，一路擴展到地極。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">第一世紀初<br>司提反殉道後大逼迫的年代</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">多重身份</span>
+        <div class="info-cell-value">初代教會七執事之一 · 傳道人<br>此後定居該撒利亞、育有四個「說預言」的女兒</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">耶路撒冷 →<br>撒瑪利亞 → 曠野的迦薩路 → 亞鎖都 → 該撒利亞</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">背景</span>
+        <div class="info-cell-value">與司提反同為七執事之一<br>能行神蹟（醫病、趕鬼），受聖靈直接引導</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">使徒行傳 6:5, 8:5–40, 21:8–9<br>（唯獨路加所寫的使徒行傳有完整記載）</div>
+      </div>
+    </div>
+
+    <p>腓利與司提反同為使徒行傳第六章所選立的七位執事之一——這是初代教會為解決希臘化猶太寡婦供給糾紛所設立的職分，原本著重於行政與服事性質的工作。然而正如司提反很快就展現出遠超單純行政職務的講道恩賜，腓利在司提反殉道、教會遭遇大逼迫、信徒分散各處之後，同樣展現出超越原本職分的傳道能力——「那些分散的人往各處去傳道」，而腓利正是其中最具代表性的一位：他「下撒瑪利亞城去，宣講基督」。</p>
+    <p>第二聖殿晚期，撒瑪利亞人與猶太人之間存在著長達數百年的深刻敵意（正如耶穌與撒瑪利亞婦人相遇一段所反映的背景），而腓利卻選擇了往這個猶太人普遍避而不入的地區傳道——這本身就是一次相當大膽的跨越。此後他又在聖靈的引導下，前往「往耶路撒冷下迦薩的路上，這路是曠野」，與一位衣索匹亞的太監相遇——衣索匹亞（古實）在當時的地理認知中，被視為世界的極南之處，這場相遇因此象徵著福音「直到地極」這個大使命的具體實現，遠遠早於保羅展開對外邦世界更大規模的宣教之前。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">他從被按立為執事，到在撒瑪利亞城掀起復興，再到曠野裡一場只有聖靈能安排的相遇——他的腳步，始終追隨著聖靈的引導。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">被選立為七執事之一</div>
+        <div class="timeline-body">與司提反等六人一同，因教會內部希臘化猶太人與希伯來猶太人之間關於供給寡婦的糾紛，被選立為執事，「經使徒禱告，按手在他們頭上」。他起初的職分是行政性的服事工作，卻在此後的發展中，展現出遠超這個職分範圍的傳道恩賜。</div>
+        <div class="timeline-ref">徒 6:1–6</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">黑暗低谷</span>
+        <div class="timeline-title">大逼迫中的分散——「往各處去傳道」</div>
+        <div class="timeline-body">司提反殉道後，「從這日起，耶路撒冷的教會大遭逼迫……門徒都分散在猶太和撒瑪利亞各處」，路加特別記載「那些分散的人往各處去傳道」，而腓利正是這波逼迫中，主動把苦難轉化為宣教契機的具體範例——他「下撒瑪利亞城去，宣講基督」。</div>
+        <div class="timeline-ref">徒 8:1, 4–5</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">撒瑪利亞城的復興——「合城的人就都歡喜了」</div>
+        <div class="timeline-body">腓利在撒瑪利亞城傳講基督，「又行神蹟，醫治病人」，經文記載「城裡有污鬼的，那些鬼大聲呼叫，從他們身上出來；還有許多癱瘓的、瘸腿的，都得了醫治。在那城裡，就大有歡喜。」這場復興規模浩大到促使耶路撒冷差派彼得與約翰前來，親自為這些新信徒按手，使他們領受聖靈——這是福音第一次大規模跨越猶太與撒瑪利亞之間根深蒂固的敵意藩籬。</div>
+        <div class="timeline-ref">徒 8:5–8, 14–17</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">「有主的一個使者對腓利說：起來！」——被差往曠野</div>
+        <div class="timeline-body">正當撒瑪利亞的服事如火如荼展開之際，「主的使者對腓利說：起來！向南走，往那從耶路撒冷下迦薩的路上去。那路是曠野。」這是一個看似極不合常理的指示——放棄一場正在蓬勃發展的城市性復興，轉往一條荒涼曠野的道路。腓利沒有質疑，「他就起身去了」。</div>
+        <div class="timeline-ref">徒 8:26–27</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">「聖靈對腓利說：你去追上那車」——與衣索匹亞太監的相遇</div>
+        <div class="timeline-body">他遇見一位衣索匹亞的太監，是衣索匹亞女王的重要官員，正坐在車上讀以賽亞書卻不明白其意。聖靈指示腓利：「你去追上那車。」腓利便跑到車前，聽見他念以賽亞書，就問：「你所念的，你明白嗎？」太監說：「沒有人指教我，怎能明白呢？」於是請腓利上車，與他同坐。腓利就『從這經上起，對他傳講耶穌』。</div>
+        <div class="timeline-ref">徒 8:29–35</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">曠野中的洗禮——「看哪，這裡有水」</div>
+        <div class="timeline-body">二人正往前走，到了有水的地方，太監說：「看哪，這裡有水，我受洗有什麼妨礙呢？」於是吩咐車站住，兩人一同下水，腓利就給他施洗。「從水裡上來，主的靈把腓利提了去，太監也不再見他，就歡歡喜喜地走路。」這場在荒涼曠野中發生的相遇與洗禮，成為福音史上極具象徵意義的一刻——第一位有記載的非洲信徒，就此誕生。</div>
+        <div class="timeline-ref">徒 8:36–39</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">定居該撒利亞——「有四個女兒，都是處女，是說預言的」</div>
+        <div class="timeline-body">此後聖經記載「腓利後來到了亞鎖都，走遍那地方，在各城宣傳福音，直到凱撒利亞」，並似乎自此定居於該撒利亞。多年後保羅一行人在前往耶路撒冷途中，特別記載「進了傳福音的腓利家裡，和他同住；他是那七個執事裡的一個。他有四個女兒，都是處女，是說預言的」——顯示腓利此後建立了一個充滿屬靈恩賜、且持續服事教會的家庭。</div>
+        <div class="timeline-ref">徒 8:40 · 徒 21:8–9</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他總是願意立刻回應聖靈的指示——即使那個指示，聽起來完全不合常理，甚至像是要放棄一場正在成功的事工。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">順服聖靈的引導，勝過堅持既有的成功模式</div>
+          <div class="soul-body">他正在撒瑪利亞經歷一場規模浩大的復興，卻毫不猶豫地回應『起來，向南走』這個看似要中斷成功事工的指示。這種不緊抓自己已經建立的果效、而是持續向聖靈開放的心態，是他最鮮明的核心信念。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">主動而迅速的行動力</div>
+          <div class="soul-body">『他就起身去了』『腓利就跑到太監車前』——這些簡短的敘事動詞，共同勾勒出一位反應迅速、不拖延、樂於主動出擊的傳道人形象。他不是那種需要長時間思考才敢行動的人。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">靈活、隨機應變，善於在陌生處境中迅速建立連結</div>
+          <div class="soul-body">無論是在撒瑪利亞城的公開傳道，還是在曠野裡與一位陌生外邦官員的私下對話，他都展現出極高的適應力與親和力——能夠迅速判斷處境、找到切入點（『你所念的，你明白嗎？』），並有效地傳達信息。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">（材料有限——聖經未記載他任何明確的性格弱點）</div>
+          <div class="soul-body">他在使徒行傳中的形象幾乎全部正面——順服、行動力強、樂於服事。這是敘事篇幅集中於他正面事蹟所致的自然結果。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">「主的靈把腓利提了去」——超自然的瞬間移動</div>
+          <div class="soul-body">太監受洗後，經文記載『主的靈把腓利提了去，太監也不再見他』，此後『有人在亞鎖都遇見腓利』——這暗示了一種超乎尋常、近乎超自然瞬間移動的神蹟性經歷，是新約中極為罕見的記載，顯示神在這次曠野相遇中的介入方式，格外具有戲劇性與神蹟色彩。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">腓利的故事最動人之處，在於他展現了一種罕見卻極其寶貴的屬靈特質：不執著於自己正在經歷的成功。當他在撒瑪利亞城的服事如日中天、『合城的人就都歡喜了』之時，一個看似完全不合邏輯的指示傳來——放棄這一切，走向一條荒涼的曠野道路。多數人在事工蓬勃發展之際，很難毫不遲疑地轉身離開；而腓利卻立刻回應了這個呼召，最終促成了福音史上極具象徵意義的一刻——衣索匹亞太監的歸信。這提醒我們，真正的順服，有時候意味著願意放下我們自己認定『正在成功、不該中斷』的事，去回應那個看似『不合理』卻來自神的引導。神的計畫，往往比我們自己所能規劃的成功藍圖，更加宏大而精準。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ESFP</span>
+      <div class="mbti-name">表演者型 · 追上馬車的傳道人</div>
+      <div class="mbti-slogan">「他正在城裡經歷一場眾人歡喜的大復興，卻在聖靈一句「起來，向南走」之後，毫不猶豫地轉身走進了曠野。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Se · 外向實感</span>
+          <div class="mbti-fn-body">他對眼前具體的處境有極高的敏銳度與即時反應能力——聽見聖靈指示就立刻起身、看見馬車經過就立刻追上去、聽見太監誦讀經文就立刻抓住機會發問。這種對當下處境的迅速掌握與行動，貫穿他整個服事歷程。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">他對傳講福音這件事，展現出發自內心、毫不動搖的熱忱與委身——無論對象是撒瑪利亞城的群眾，還是曠野中一位素不相識的外邦官員，他都全心投入地分享所信的真理，展現出深刻的個人真誠。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Te · 內向思考</span>
+          <div class="mbti-fn-body">他能有效地組織並執行具體的服事行動——無論是在城市中展開大規模的公開傳道與醫治，還是在曠野裡精準地從太監正在誦讀的經文切入講解，都顯示出相當的邏輯條理與執行效率。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">他似乎不太需要（也不太執著於）事先規劃長遠的策略藍圖，而是傾向於在每一個當下，立即回應聖靈給出的具體指示——這種對『活在當下、隨時回應』的高度信任，正是 ESFP 相對較弱的內向直覺特質的展現：不預先設想長期計畫，而是專注於眼前這一步的忠心回應。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最重要的一段關係，發生在曠野裡一輛正在行駛的馬車上，只維持了短短一段路程,卻改變了一整個地區的信仰歷史。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">聖</div>
+          <div class="relation-name">聖靈</div>
+          <div class="relation-type-badge">直接引導、多次明確指示他行動方向的主導者</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">無論是『主的使者』的指示（往迦薩曠野去），還是『聖靈對腓利說』的直接指令（追上那車），腓利的整個服事軌跡，都展現出對聖靈引導極高的敏銳度與順服度。他的一生，某種程度上就是一部『被聖靈直接帶領』的宣教實錄。</div>
+          <div class="relation-ref">徒 8:26, 29</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">太</div>
+          <div class="relation-name">衣索匹亞的太監</div>
+          <div class="relation-type-badge">他所遇見、並引領歸信受洗的外邦官員</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">這位衣索匹亞女王甘大基的重要官員，正在曠野的路上誦讀以賽亞書卻不明白其意，腓利『從這經上起，對他傳講耶穌』，並在他主動要求下為他施洗。這場相遇，象徵著福音跨越種族、地域、身分（太監在猶太律法中原本被排除於會眾之外）的界限，抵達了當時世界觀中『地極』的具體實現。</div>
+          <div class="relation-ref">徒 8:27–39</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">撒</div>
+          <div class="relation-name">撒瑪利亞城的居民</div>
+          <div class="relation-type-badge">他所引領、經歷大復興的群體</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">他在撒瑪利亞城的傳道，帶來了大規模的醫治神蹟與歸信——『城裡有污鬼的……都得了醫治……那城裡就大有歡喜』。這場復興的規模與影響，促使耶路撒冷差派彼得與約翰前來親自確認並按手，顯示這是初代教會歷史上，福音正式跨越猶太—撒瑪利亞敵對藩籬的關鍵事件。</div>
+          <div class="relation-ref">徒 8:5–17</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">保</div>
+          <div class="relation-name">保羅（晚年造訪）</div>
+          <div class="relation-type-badge">此後在他家中作客的使徒</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">多年後保羅前往耶路撒冷途中，特別在該撒利亞『進了傳福音的腓利家裡，和他同住』——這顯示腓利此後在該撒利亞持續建立起穩固而受人敬重的服事根基，甚至成為保羅這樣重要使徒信任並選擇造訪停留的接待之家。</div>
+          <div class="relation-ref">徒 21:8</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">四</div>
+          <div class="relation-name">四個說預言的女兒</div>
+          <div class="relation-type-badge">他家庭中同樣領受屬靈恩賜的下一代</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">使徒行傳特別記載他『有四個女兒，都是處女，是說預言的』——這是新約中極少數明確記載女性領受先知恩賜、並在教會中具有服事角色的家庭記載之一，顯示腓利的家庭，此後持續成為初代教會屬靈恩賜運作的重要場域。</div>
+          <div class="relation-ref">徒 21:9</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「從這經上起，對他傳講耶穌」——腓利示範了初代教會如何從舊約經文出發，向一個素不相識的陌生人，講清楚福音的核心。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「腓利就開口從以賽亞這段經上起，對他傳講耶穌……太監說：「看哪，這裡有水，我受洗有什麼妨礙呢？」……於是二人同下水裡去，腓利就給他施洗。」</div>
+      <div class="verse-ref">使徒行傳 8:35–38</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">εὐαγγελιστής</span>
+        <div class="word-transliteration">euangelistēs · 傳福音的 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「傳講好消息的人」，由 εὐ（好）與 ἄγγελος（使者、消息）組成，這個稱謂在新約中僅出現三次（此處、弗4:11、提後4:5），是一個相對正式、指涉特定服事恩賜的職稱。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">使徒行傳21:8特別稱他『傳福音的腓利』，以區別於十二使徒中的腓力（Philip the Apostle）——這個稱謂的正式使用，顯示初代教會已經開始辨識並命名『傳福音』這種特定的屬靈恩賜與職分，與使徒、先知、教師等其他恩賜性職分並列（弗4:11），確立了教會多元恩賜彼此配搭的重要神學基礎。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">εὐνοῦχος</span>
+        <div class="word-transliteration">eunouchos · 太監 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「宦官、閹人」，在古代近東與地中海世界的宮廷體制中，太監常擔任財務、行政等重要職務，享有相當的權力與信任，卻因身體的缺陷，在猶太律法傳統中被排除於會眾與聖殿敬拜的完整參與之外（申23:1）。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">以賽亞書56:3–5恰恰預言了太監此後將不再被排除，反要在神的家中『得名號，比有兒女的更美』——腓利引領這位太監歸信受洗的場景，因此成為以賽亞書這段先知性應許最直接、最戲劇性的應驗，象徵著福音打破一切社會性、身體性排他標準的普世性大能。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">福音跨越種族與敵意藩籬的具體實現</div>
+      <div class="theology-insight-body">腓利在撒瑪利亞的服事，以及此後與衣索匹亞太監的相遇，共同構成了使徒行傳1:8『從耶路撒冷、猶太全地、撒瑪利亞，直到地極』這個宣教藍圖最早、也最具體的實現——福音的普世性，在腓利的服事中，遠早於保羅展開對外邦世界更大規模宣教之前，就已經具體地展開。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">聖靈直接引導個人宣教行動的模式</div>
+      <div class="theology-insight-body">腓利的整個曠野相遇事件，是新約中極少數詳細記載聖靈如何具體、直接地引導單一信徒進行個人佈道行動的敘事——這為此後教會歷史中，理解『個人被聖靈引導接觸特定對象』這種宣教模式，提供了重要的聖經依據與範例。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">福音打破身分排他性的具體展現</div>
+      <div class="theology-insight-body">衣索匹亞太監原本因身體的缺陷，在猶太律法傳統中被排除於完整的敬拜參與之外，而福音卻毫無保留地接納了他——這確立了新約救恩神學一個核心的宣告：在基督裡，過去任何律法性、身分性的排除標準，都不再構成領受救恩的障礙。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">以利亞在何烈山的曠野中領受神的啟示與差遣，此後被提升天，乘旋風而去</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">腓利同樣在曠野中經歷了神直接的引導與差遣，並在服事完成後，經歷了『主的靈把腓利提了去』這種超自然的瞬間移動，兩段記載都展現了神在曠野中特別介入、超越常理運作的模式</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督親自應許『我就常與你們同在，直到世界的末了』，成為一切被聖靈引導、差遣之服事最終極的保證與同在（太 28:20）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">以賽亞書預言太監不再被排除於神的家，反要『在我殿中，在我牆內，得名號，比有兒女的更美』</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">腓利所遇見的這位衣索匹亞太監，正在誦讀以賽亞書卻不明白其意，而他自己此後歸信受洗的經歷，恰恰成為這段先知性預言最直接、最具體的歷史應驗</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督親自成就了一切先知所預言、關於神的家向萬民敞開的應許——『因我的殿必稱為萬民禱告的殿』（可 11:17 · 賽 56:7）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">路得作為一位外邦摩押女子，本被排除在以色列會眾的完整參與之外，卻因著信心與忠誠，被接納進入以色列，甚至成為大衛家譜的先祖</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">衣索匹亞太監同樣是一位在猶太律法傳統下被邊緣化的外邦人（且身體有缺陷），卻在福音中被毫無保留地接納——兩段敘事都展現了神的救贖計畫，如何持續地打破人所設立的排他性界限</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督使『凡求告主名的，就必得救』，這個應許『不分猶太人、希臘人……都在基督耶穌裡成為一了』（羅 10:13 · 加 3:28）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你正經歷一場看似順利的服事或事業，卻感覺到某種要你轉向的呼召——這一頁是為你寫的。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">腓利命中的是一種常見卻極其困難的抉擇：當你正處在某件事業或服事的高峰期，一個看似不合邏輯、甚至要求你放下既有成功的呼召出現時，你會如何回應？他的故事提醒我們，真正的順服，有時候意味著願意放下我們自己認定『正在成功、理應繼續』的軌道，去回應一個當下看不清全貌、卻來自更高處的引導。而他在曠野中隨時待命、迅速回應的姿態，也提醒我們，重大的屬靈突破，往往發生在我們願意對『不合常理的指示』保持開放與敏銳的時刻。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你有沒有經歷過，在某件事正順利發展之時，卻感覺到某種要你轉向、甚至放下的呼召？你當時是如何回應的？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">腓利對聖靈的指示反應極快——『他就起身去了』『就跑到那車前』。你面對可能來自神的引導時，通常需要多久才會採取行動？是什麼讓你猶豫或遲疑？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">他在曠野中主動向太監發問『你所念的，你明白嗎？』，找到了切入分享信仰的契機。你是否也曾經在日常生活中，主動尋找過類似的、可以自然分享信仰的切入點？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">衣索匹亞太監因為身體的缺陷曾被排除在外，卻在福音中被完全接納。你身邊有沒有因為某種『不符合標準』的處境，而感覺自己被排除在群體之外的人？你可以如何向他們傳遞接納的信息？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 腓利</span>
+        <div class="gen-title">示範劇本：無論身處城市的復興高峰或曠野的孤獨小徑，都同樣迅速回應聖靈的引導</div>
+        <div class="gen-body">他的服事軌跡展現出高度的一致性——不執著於特定的服事場域或已經建立的成功模式，而是持續地、迅速地回應每一個當下的呼召，無論那個呼召是要他留在正興旺的城市事工，還是要他轉往一條荒涼的曠野道路。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 衣索匹亞的太監（及此後可能延伸的衣索匹亞教會傳統）</span>
+        <div class="gen-title">延續而非打斷：因一次曠野中的相遇，福音的種子在遙遠之地生根</div>
+        <div class="gen-body">這位太監『歡歡喜喜地走路』回到自己的國家，教會傳統普遍認為，他此後很可能成為福音在衣索匹亞地區傳播的重要起點——一次看似偶然、卻是聖靈精心安排的曠野相遇，最終可能催化了一整個地區此後數百年的信仰發展。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在這裡的運作方式，展現在神精確而看似『不合常理』的引導之中——祂要腓利放下正在興旺的撒瑪利亞事工，轉往一條荒涼的曠野道路，只為了與一位太監有限的相遇時間。這提醒我們，神對『重要性』與『時機』的判斷，經常超越我們自己所能規劃的邏輯——祂能在人看似浪費、不合效益的轉向中，成就遠超預期的深遠果效。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那個城裡復興搞得如火如荼、卻立刻轉身走進曠野的傳道人，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#說走就走的順服</span>
+      <span class="tag">#曠野裡追車的傳道人</span>
+      <span class="tag">#福音第一次傳到非洲</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>腓利本來的工作只是分飯——教會裡人手不夠，選了七個人專門處理供給寡婦的行政事務，他是其中一位。結果司提反被害之後，教會大逼迫，大家四散逃難，腓利卻沒有躲起來，反而跑到撒瑪利亞城去傳道。</p>
+      <p>撒瑪利亞跟猶太人是世仇，正常猶太人根本不會主動去。腓利去了，而且效果驚人——他一邊講道，一邊醫病趕鬼，整座城的人都『大有歡喜』。這種規模的復興，換作現在，大概就是一個城市級別的宣教突破。</p>
+      <p>就在這個時候，天使跟他說：起來，往南走，走那條通往迦薩的路，那條路是曠野。放在現實情境，這句話幾乎等於是叫他放棄一場正在爆紅的活動，跑去一個什麼都沒有的荒郊野外。腓利沒有多問，直接起身走了。</p>
+      <p>他在曠野裡遇到一輛馬車，車上坐著一位衣索匹亞女王的大官，正在讀以賽亞書，卻讀不懂。聖靈跟腓利說：去追上那輛車。腓利就跑過去，問他：你讀得懂嗎？對方說：沒人教我，怎麼可能懂？兩人就這樣坐在馬車上，從那段經文開始，一路聊到耶穌。</p>
+      <p>太監聽懂了，馬上就問：這裡有水，我可以受洗嗎？兩人就下車受洗。洗完，聖經寫了一句超級戲劇性的話：主的靈把腓利提走了，太監再也沒見過他，就自己歡歡喜喜地上路了。福音，就這樣第一次傳到了非洲。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——而腓利這塊石頭，被放在城裡最風光的時刻，卻選擇轉身走進了一條沒有觀眾的荒涼小路。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你正在做的一件事很順利、很成功，卻忽然感覺到一種說不清的『該轉向了』的感動——不要覺得那一定是自己在瞎想。腓利放下的，是一場正在轟動全城的大復興。</p>
+      <p style="margin-top:12px;">你不需要完全搞懂『為什麼要去曠野』，才願意動身。腓利沒有問天使『為什麼』，他就起身去了。有些呼召，理解會在順服之後才慢慢明白。</p>
+      <p style="margin-top:12px;">還有，別小看那些看起來『繞路』、『浪費時間』的相遇。一段曠野裡的短暫對話，可能就是神精心安排、要影響一整個地區、一整個世代的起點。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果心裡有個「該去追上那個人」的感動——去追吧,別想太多。</p>
+    </div>
+
+    <div class="insight-box">在當代宣教學與『機會導向』(opportunity-driven)服事模式的討論中，腓利的故事提供了一個極具啟發性的範例——與需要長期策略規劃的宣教模式不同,他的服事展現了一種對『此刻、此地』之聖靈引導的高度敏銳與快速回應能力,這對正在思考『如何在忙碌生活中,仍保持對突發服事機會的開放性』的現代信徒,提供了具體的行動範式。他願意放下正在興旺的城市事工、轉向看似不合效益的曠野相遇,也對當代高度重視『可衡量成效』的事工評估文化,提供了一種重要的反思——有些最深遠的影響,可能發生在我們自己完全無法預先計算或規劃的相遇之中。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他從一位分飯的執事，到一位追著馬車跑的傳道人——他的一生，是福音如何跨越所有人為藩籬、抵達地極的具體縮影。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">福音跨越猶太—撒瑪利亞藩籬的關鍵推手</div>
+          <div class="legacy-body">他在撒瑪利亞城的服事，是新約中福音正式、大規模跨越猶太人與撒瑪利亞人之間長期敵意藩籬的第一個具體歷史事件，深刻影響了此後初代教會對『誰能領受福音』這個問題的理解與實踐。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">福音初次傳入非洲大陸的起點</div>
+          <div class="legacy-body">他與衣索匹亞太監的相遇與此後的洗禮，被廣泛視為福音正式傳入非洲大陸的最早記載之一，對此後衣索匹亞教會(現存最古老的基督教群體之一)的歷史淵源，具有重要的象徵與歷史意義。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">「傳福音的」這一恩賜職分的正式確立</div>
+          <div class="legacy-body">他是新約中被明確稱為『傳福音的』（euangelistēs）的具體人物，這個稱謂此後被保羅正式列入教會多元恩賜職分之一（弗4:11），確立了『傳福音』作為一種特定屬靈恩賜的神學地位。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">聖靈直接引導個人宣教行動的經典範例</div>
+          <div class="legacy-body">他在曠野中被聖靈直接引導、精確地與一位特定對象相遇的敘事，此後成為教會歷史中，理解『個人蒙聖靈引導進行針對性佈道』這一模式時，最常被引用的聖經範例之一。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「聖靈對腓利說：「你去追上那車。」腓利就跑到跟前，聽見他念先知以賽亞的書，便問他說：「你所念的，你明白嗎？」」</div>
+      <div class="final-verse-ref">使徒行傳 8:29–30</div>
+    </div>
+
+    <div class="final-question">如果聖靈此刻對你說「去追上那輛車」——一個看似毫無邏輯、卻可能改變一個人一生的相遇機會——你願意像腓利一樣，立刻起身，追上去嗎？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 腓利 <span>Φίλιππος</span> · 七執事之一 · 追上馬車的傳道人</div>
+
+</body>
+</html>

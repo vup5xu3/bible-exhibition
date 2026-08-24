@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>撒瑪利亞婦人 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">撒瑪利亞婦人</h1>
+  <span class="hero-name-en">The Samaritan Woman at the Well · ἡ γυνὴ ἡ Σαμαρῖτις</span>
+  <p class="hero-slogan">「她躲開所有人來打水，卻在井旁遇見了一位<br>把她一生的秘密全都說盡、卻依然願意與她說話的人。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">第一世紀 · 主後約 27–30 年</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ENFP · 競選者型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">約 4:1–42（唯一記載）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">井旁的求道者 · 城裡的第一位傳道人</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">猶太人與撒瑪利亞人互不相往來,男人與陌生女子不會單獨交談,而耶穌把兩條規矩同時打破,只為了跟一個人說話。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">第一世紀<br>猶太與撒瑪利亞交界的敘加城</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">多重身份</span>
+        <div class="info-cell-value">撒瑪利亞婦人 · 曾五次結婚<br>此後城中第一位向眾人見證耶穌的人</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">撒瑪利亞的敘加城<br>（鄰近雅各井，靠近示劍古城遺址）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">背景</span>
+        <div class="info-cell-value">撒瑪利亞人（猶太人視為血統與信仰不純正的族群）<br>婚姻經歷複雜，社會處境邊緣</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">約翰福音 4:1–42（整卷福音書中最長的一段個人對話）</div>
+      </div>
+    </div>
+
+    <p>撒瑪利亞人與猶太人之間存在著長達數百年的深刻敵意——這場分裂可追溯至主前八世紀北國以色列被亞述擄掠後，當地留下的居民與外族通婚,形成了血統與宗教信仰皆與猶太正統有所差異的撒瑪利亞族群，此後雙方在敬拜地點（基利心山 vs 耶路撒冷聖殿）、聖經正典範圍（撒瑪利亞人只承認摩西五經）等議題上長期對立,甚至互不往來、互相輕蔑。約翰福音特別註明「原來猶太人和撒瑪利亞人沒有來往」，這句看似平淡的旁白，實則點出了這段對話發生的巨大文化張力。</p>
+    <p>而經文更細膩地標記了時間——「約在午正」，即正午時分。當時的婦女通常在清晨涼爽時分結伴前往水井打水，這既是日常勞務,也是重要的社交時刻。這位婦人選擇在最炎熱、最少人出門的正午獨自前來，這個時間選擇本身,幾乎可以確定是為了避開其他婦女的眼光與議論——耶穌後來揭露的婚姻狀況（五次婚姻，現在的同居關係並非合法婚姻），足以說明她在自己的族群中,同樣承受著相當程度的社會排斥與異樣眼光。她是一個在兩個層面都被邊緣化的人：作為撒瑪利亞人被猶太人排斥,又因個人的婚姻處境而被自己的族人議論。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">一場井邊的對話,從一句要水喝的請求開始,最後演變成整座城市的信心覺醒。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">「請你給我水喝」——一個猶太拉比向撒瑪利亞婦人開口</div>
+        <div class="timeline-body">耶穌因旅途疲乏坐在雅各井旁，門徒進城買食物去了。祂主動向前來打水的婦人開口：「請你給我水喝。」婦人立刻感到驚訝：「你既是猶太人，怎麼向我一個撒瑪利亞婦人要水喝呢？」約翰特別加註「原來猶太人和撒瑪利亞人沒有來往」——耶穌這個看似簡單的請求,實際上同時跨越了民族、宗教、性別三重當時社會嚴格劃分的界線。</div>
+        <div class="timeline-ref">約 4:6–9</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">「活水」——一場關於水的雙關對話</div>
+        <div class="timeline-body">耶穌回答：「你若知道神的恩賜,和對你說『給我水喝』的是誰,你必早求他,他也必早給了你活水。」婦人一開始仍停留在字面理解，質疑祂連打水的器具都沒有,怎麼能給活水,甚至反問耶穌「難道你比我們的祖宗雅各還大嗎」——這段對話與耶穌和尼哥底母的對話結構驚人地相似,都是從一個字面的誤解出發,逐步被引向屬靈的深意。</div>
+        <div class="timeline-ref">約 4:10–15</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">黑暗低谷</span>
+        <div class="timeline-title">「你已經有五個丈夫……你現在有的並不是你的丈夫」</div>
+        <div class="timeline-body">耶穌突然轉向她的私生活：「你去叫你丈夫也到這裡來。」婦人答「我沒有丈夫」，耶穌卻精準地揭露：「你說沒有丈夫，是不錯的；因為你已經有五個丈夫，你現在有的並不是你的丈夫。」這個揭露沒有帶著責備的語氣,卻精準到讓婦人立刻承認：「先生，我看出你是先知。」她一生最隱密、最可能被論斷的部分,被一個素不相識的人當面說出,而她的反應不是憤怒地離開,而是繼續留下對話。</div>
+        <div class="timeline-ref">約 4:16–19</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">敬拜地點的爭論——與耶穌關於「心靈誠實」的教導</div>
+        <div class="timeline-body">被揭穿隱私後，她迅速把話題轉向一個長期爭議的神學問題：「我們的祖宗在這山上敬拜，你們倒說，應當敬拜的地方是在耶路撒冷。」耶穌沒有迴避這個問題,卻給出了超越地理爭議的答案：「時候將到，如今就是了，那真正拜父的，要用心靈和誠實拜他。」這是耶穌對敬拜本質最深刻的教導之一,而聽眾是一位普通的撒瑪利亞婦人。</div>
+        <div class="timeline-ref">約 4:20–24</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">「這和你說話的就是他」——最直接的自我啟示之一</div>
+        <div class="timeline-body">婦人說：「我知道彌賽亞（就是那稱為基督的）要來；他來了，必將一切的事都告訴我們。」耶穌回答：「這和你說話的就是他！」這是約翰福音中耶穌最直接、最不含糊地公開宣告自己彌賽亞身分的時刻之一——而祂選擇向一個撒瑪利亞婦人,而非任何猶太宗教領袖,說出這句話。</div>
+        <div class="timeline-ref">約 4:25–26</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">撇下水罐——「豈不是基督嗎？」</div>
+        <div class="timeline-body">門徒回來,對耶穌與這位婦人交談感到詫異,卻沒有人詢問原因。婦人「就留下水罐子，往城裡去，對眾人說：『你們來看！有一個人將我素來所行的一切事都給我說出來了，莫非這就是基督嗎？』」她撇下了原本此行的目的（打水），立刻跑回城裡分享這個經歷,而且是向一整座城市的人公開宣講——她此前因隱私而躲避人群，此刻卻主動走向人群,宣講一個關於自己隱私被揭露、卻依然被接納的經歷。</div>
+        <div class="timeline-ref">約 4:27–30</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">「因這婦人的話信他的人也多」——城市性的信心運動</div>
+        <div class="timeline-body">許多撒瑪利亞人因這婦人的見證信了耶穌，並邀請祂在城裡住了兩天。經文記載：「因耶穌的話信的人就更多了；便對婦人說：『現在我們信，不是因為你的話，是我們親自聽見了，知道這真是救世主。』」她的見證成為了整座撒瑪利亞城信心覺醒的起點——一個曾經因隱私躲避眾人的女子，成了帶領整座城市歸信的第一人。</div>
+        <div class="timeline-ref">約 4:39–42</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">她躲了很久,不是因為她軟弱，是因為她太清楚別人怎麼看她——直到有一個人,把她看得比她自己看自己更清楚,卻依然願意跟她說話。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">渴望被真正認識,即使那意味著暴露最隱私的部分</div>
+          <div class="soul-body">當耶穌揭露她五次婚姻的過去時，她沒有轉身逃離,也沒有否認辯解，反而繼續深入對話,甚至進一步提出神學性的問題。這顯示出一種深層的渴望：與其被表面地接受,她更渴望被真正地、完整地認識。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">一旦相信,立刻毫無保留地分享</div>
+          <div class="soul-body">得知眼前的人可能是彌賽亞，她沒有猶豫,沒有先確認自己的社會地位是否適合作見證人,立刻撇下水罐,跑回城裡向眾人宣告。這種不計算個人得失、立即分享好消息的衝動與熱忱,是她最鮮明的美德。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">直接、健談、樂於深入對話與辯論</div>
+          <div class="soul-body">整段記載是約翰福音中耶穌與任何人物對話篇幅最長的一段，婦人在其中展現出相當活躍的思辨能力——從字面的質疑到神學性的敬拜地點爭論,她並非被動聆聽,而是主動地投入、追問、辯駁。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">長期活在躲避他人眼光的處境中</div>
+          <div class="soul-body">她選擇在正午烈日下獨自打水,而非清晨與其他婦女同行,這個細節暗示了她在自己的社群中,可能因複雜的婚姻經歷而承受著長期的議論與排斥,導致她習慣性地避開群體與人群。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">被耶穌選為打破多重社會界線的第一位對話者</div>
+          <div class="soul-body">耶穌選擇向她——一個撒瑪利亞人、一個女性、一個婚姻複雜的人——說出自己是彌賽亞這件事,而不是先向任何猶太宗教領袖或男性門徒揭露。這個選擇本身,充滿了對當時社會階級與潔淨觀念的顛覆性宣告。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">撒瑪利亞婦人的故事最深刻之處，在於耶穌對待她隱私的方式。祂沒有用她的過去羞辱她,也沒有要求她先懺悔才繼續對話,只是平靜、精確地說出事實,然後繼續與她討論更深的屬靈真理。這種『被完全看穿,卻沒有被定罪』的經歷,正是她此後毫無保留地向全城見證的真正原因——她所傳講的第一句話不是『信耶穌』,而是『有一個人將我素來所行的一切事都給我說出來了』。真正打動人心、催生見證動力的,往往不是道德說教,而是一種被徹底知曉卻依然被溫柔對待的震撼經歷。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ENFP</span>
+      <div class="mbti-name">競選者型 · 井旁的求道者</div>
+      <div class="mbti-slogan">「她本想安靜地打完水就走,卻在一場對話裡,被翻出了整段人生,然後她做的第一件事,是跑去告訴全世界。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Ne · 外向直覺</span>
+          <div class="mbti-fn-body">她能迅速地在對話中跳躍連結不同的概念——從實際的打水器具,到活水的屬靈意涵,再到雅各井的歷史淵源,再到敬拜地點的神學爭論。這種快速聯想、樂於探索多重可能性的思維方式,貫穿她整段對話。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">面對隱私被揭露的時刻，她沒有用邏輯辯駁,而是立刻用一種深刻而個人化的方式回應——「先生，我看出你是先知」，隨即誠實地探問更深層的信仰問題。她對真理的追尋帶著強烈的個人真誠,而非純粹的理性辯論。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">她最終行動時展現出清楚的目標導向——撇下水罐、進城、召集眾人、陳述具體的經歷。這種把內在的震撼迅速轉化為具體、有效之公開行動的能力,顯示出外向思考在她性格中同樣扮演重要角色。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Si · 內向實感</span>
+          <div class="mbti-fn-body">她原本習慣用一種迴避、隱藏的方式處理自己的過去與傳統的細節認知（例如對雅各井歷史的引用帶著防衛性的語氣：『難道你比我們的祖宗雅各還大嗎』）。壓力較低、被真正接納之後，她才能鬆開這種防衛性的姿態，坦然地面對並公開分享自己完整的過去。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">她與耶穌之間那場史上最長的個人對話,改寫了她與整座城市的關係。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">耶</div>
+          <div class="relation-name">耶穌基督</div>
+          <div class="relation-type-badge">主與被揭露卻不被定罪的求道者</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">耶穌主動跨越民族與性別的雙重界線與她對話，精準揭露她的私生活卻不帶責備,並向她做出約翰福音中最直接的彌賽亞自我啟示之一。這段關係示範了一種罕見的組合：完全的真實(揭露她的過去)與完全的接納(繼續與她深入對話、教導她敬拜的真義)可以同時發生,而不互相排斥。</div>
+          <div class="relation-ref">約 4:16–26</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">門</div>
+          <div class="relation-name">耶穌的門徒</div>
+          <div class="relation-type-badge">旁觀者 · 詫異卻不敢多問</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">門徒買食物回來，「詫異耶穌和一個婦人說話，只是沒有人說『你是要什麼？』或說『你為什麼和她說話？』」。這個細節顯示,即使是耶穌最親近的跟隨者,也承襲著當時社會對「男性拉比不應與陌生女子單獨交談」的規範性顧慮,而耶穌的行動,正是對這種社會規範的直接示範性突破。</div>
+          <div class="relation-ref">約 4:27</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">城</div>
+          <div class="relation-name">敘加城的居民</div>
+          <div class="relation-type-badge">群體 · 因她的見證而信主的人</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">她的見證——「有一個人將我素來所行的一切事都給我說出來了」——引來許多撒瑪利亞人前來查看,並邀請耶穌在城裡住了兩天。最終「因耶穌的話信的人就更多了」，這段記載清楚顯示,她的個人見證是這整場城市性信心運動的起點,即使後續的信心是建立在眾人親自的經歷上。</div>
+          <div class="relation-ref">約 4:39–42</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「用心靈和誠實拜他」——這句話，是耶穌對一個異族、異教背景的婦人,所做出關於敬拜本質最深刻的教導。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「耶穌說：「時候將到，如今就是了，那真正拜父的，要用心靈和誠實拜他，因為父要這樣的人拜他。神是個靈，所以拜他的必須用心靈和誠實拜他。」」</div>
+      <div class="verse-ref">約翰福音 4:23–24</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">ὕδωρ ζῶν</span>
+        <div class="word-transliteration">hydōr zōn · 活水 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">字面指「流動的、活的水」（相對於靜止的井水或蓄水池），在猶太人的日常語境中，這是實際存在的水源分類（如泉水、河水）；耶穌卻用它來指向一種屬靈的、永不枯竭的生命供應。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">耶穌用她日常生活中極熟悉的具體意象——打水，來引導她進入一個更深的屬靈真理：「人若喝我所賜的水，就永遠不渴，我所賜的水要在他裡頭成為泉源，直湧到永生。」這個教導的方式,與祂對尼哥底母講『重生』的手法相似——都是從對方熟悉的日常經驗出發,層層引導進入屬靈的深意。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">πνεῦμα καὶ ἀλήθεια</span>
+        <div class="word-transliteration">pneuma kai alētheia · 心靈和誠實 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「靈」與「真理／誠實」的並列。這個表達超越了敬拜的地理位置(基利心山 vs 耶路撒冷)之爭,指向敬拜本質上內在、真誠的向度。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">耶穌這句話標誌著敬拜神學一個劃時代的轉折——舊約時代敬拜與特定聖所、特定地理位置緊密相連，而耶穌宣告『時候將到，如今就是了』，意味著隨著祂自己(道成肉身的聖殿)的到來,真正的敬拜不再受限於任何特定地點,而是取決於敬拜者內心的真實與誠意。這也為此後福音向撒瑪利亞、向外邦世界擴展,預備了神學上的基礎。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">跨越三重界線的福音先聲</div>
+      <div class="theology-insight-body">耶穌與這位婦人的對話，同時跨越了猶太人與撒瑪利亞人的民族界線、男性拉比與陌生女子的性別界線、以及宗教潔淨與不潔淨的道德界線。這段記載預示了此後使徒行傳中福音要「從耶路撒冷、猶太全地、和撒瑪利亞，直到地極」擴展的軌跡——撒瑪利亞正是福音跨出猶太世界的第一站,而這第一步,正是從這口井邊開始的。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">被知道而不被定罪：恩典的核心運作方式</div>
+      <div class="theology-insight-body">耶穌揭露她的婚姻歷史,卻沒有附上任何道德譴責的語句,只是陳述事實,並繼續與她進行更深的對話。這種『完全的知道』與『完全的接納』並存的模式,成為後世理解神恩典本質的重要範例——神對人的認識遠比人對自己的認識更完整、更深入,而祂選擇用這份深刻的認識,來邀請人進入更深的關係,而非用來定罪。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">第一位跨文化的見證人</div>
+      <div class="theology-insight-body">在使徒還未真正理解福音要向外邦人展開之前(這要到使徒行傳第十章哥尼流事件才真正突破)，這位撒瑪利亞婦人已經率先成為那個把耶穌介紹給自己整個族群的人。她的角色,某種程度上預演了此後保羅所開展的外邦宣教工作。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">利百加在井旁遇見亞伯拉罕的僕人，因著慷慨的款待被選為以撒的妻子，成為蒙福應許之約的承接者</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">舊約中好幾段重要的相遇都發生在井旁（利百加、拉結、西坡拉），這位撒瑪利亞婦人的相遇延續了這個『井邊相遇改變命運』的敘事母題,只是這次相遇通向的,是屬靈生命的活水,而非婚姻之約</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督是那真正的新郎，祂親自到井旁尋找祂的新婦——教會，並賜下活水,叫她永不再渴（啟 22:17 · 弗 5:25–27）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">以利亞在羅騰樹下求死後，神差天使兩次供應餅和水，使他重新得力，能夠繼續走完前往何烈山的路程</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">耶穌對這位婦人所應許的『活水』，同樣是在對方感到疲乏、乾渴、甚至帶著長期羞愧感的處境中賜下——神供應生命所需,常常正發生在人最軟弱、最感缺乏的時刻</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督親自宣告『人若渴了，可以到我這裡來喝』(約 7:37)，成為那真正使人不再乾渴的活水源頭</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">何西阿娶淫婦歌篾為妻，即使她多次不忠,仍持續尋回她、愛她，以此演出神對背約之以色列不撤回的愛</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這位婦人複雜的婚姻歷史(五次婚姻及非婚同居關係)，與何西阿書中歌篾的處境有相似之處；而耶穌對她所展現的接納與追尋,同樣呼應著何西阿書中神那份不計算過去、持續尋回的愛</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督親自成為教會的新郎，即使教會屢屢不忠,祂仍捨命愛她、聖化她(弗 5:25–26)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你正因為過去的某段感情或婚姻,而習慣性地躲避人群的眼光——這一頁是為你寫的。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">撒瑪利亞婦人命中的是一種相當普遍的處境：因為過去的感情經歷、婚姻狀況,或任何容易被論斷的個人歷史,而養成了迴避人群、選擇在『沒有人的時候』才出現的生活模式。她的故事給出了一種深刻的翻轉：真正改變她生命方向的,不是刻意隱藏被發現後的恐慌,而是被完全知道之後,依然被溫柔以待的震撼經歷。這提醒每一個因過去而習慣性躲藏的人：你所懼怕被人知道的那部分,或許正是神願意親自靠近、親自對話的起點,而非拒絕你的理由。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你有沒有一段因為害怕被論斷,而選擇獨自面對、避開群體的經歷？那份躲藏,為你帶來了安全感,還是更深的孤立？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">耶穌揭露她的過去卻沒有定罪,只是繼續與她深入對話。你身邊的人,是否也曾經用類似的方式對待你的過去？那種經歷,對你造成了怎樣的影響？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">她一旦相信,立刻撇下水罐、跑去向全城見證——即使她自己曾經是那個被城裡人議論的對象。你是否也曾經因為過去的處境,而遲疑自己是否『有資格』向別人分享信仰？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">耶穌對她說『用心靈和誠實拜他』——超越了地理與形式的爭論。你目前的信仰生活,更多是在意外在的形式與正確性,還是內心真實的誠意？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 撒瑪利亞婦人（相遇前）</span>
+        <div class="gen-title">應激劇本：用躲避人群來管理羞恥感</div>
+        <div class="gen-body">她選擇正午獨自打水,而非清晨與其他婦女同行——這個生活習慣本身,就是長期承受議論與排斥後所發展出的應對策略。躲避,成了她保護自己免於再次受傷的方式,卻也讓她一直活在孤立之中。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 撒瑪利亞婦人（相遇後）</span>
+        <div class="gen-title">打斷而非延續：從躲避人群到主動走向人群</div>
+        <div class="gen-body">遇見耶穌之後，她的行為模式出現了戲劇性的翻轉——不再躲避,反而主動、公開地走進城裡,向那些原本可能議論她的人宣講自己的經歷。她甚至以自己被揭露的過去作為見證的核心內容,而不是隱藏它。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">打斷發生在耶穌對待她隱私的方式——祂知道一切,卻沒有用這份知識來羞辱她,反而繼續與她深入對話,並向她啟示自己就是彌賽亞。這種『被完全知道,卻不被定罪』的經歷,徹底瓦解了她原本用來保護自己的羞恥感與躲避機制。恩典打斷循環的方式,往往正是如此——不是強迫人面對羞恥,而是先給予一份深刻而真實的接納,讓羞恥本身失去了原有的力量。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那個中午頂著大太陽獨自打水的女人,翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#躲人群躲到中午打水</span>
+      <span class="tag">#被看穿卻沒被罵</span>
+      <span class="tag">#見證不用等到完美</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>這位撒瑪利亞婦人有個很寫實的生活細節：她選擇中午最熱的時候一個人去打水,而不是跟其他婦女一起在清晨去。這種安排,通常代表一件事——她不太想在人多的時候出現,因為出現就會被議論。</p>
+      <p>耶穌那天剛好坐在井邊休息,主動跟她要水喝。她第一反應是驚訝：你是猶太人,怎麼會找我一個撒瑪利亞人要水？這在當時等於是兩個互不理睬的族群,忽然有人主動打招呼。</p>
+      <p>接下來的對話越聊越深,耶穌開始講什麼「活水」,她一開始還在認真討論打水的器具問題,完全沒跟上耶穌在講什麼層次的東西。然後畫風忽然一轉,耶穌說：去叫妳丈夫來。她說：我沒有丈夫。耶穌接話：妳說得對,妳已經有五個丈夫了,現在這個也不是妳的丈夫。</p>
+      <p>如果是一般人,被陌生人當面戳破這種私事,大概當場翻臉走人。她沒有。她說：先生,我看出你是先知。然後繼續跟耶穌聊下去,聊到最後,耶穌直接跟她說：我就是彌賽亞。</p>
+      <p>她整個人反應過來以後做的第一件事,是水都不打了,直接跑回城裡,見人就說：你們快來看,有個人把我這輩子做過的事都說出來了,他該不會就是基督吧？一個原本躲著大家的人,變成第一個跑去告訴全城的人。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——而她這塊石頭,是被人看穿的那一刻,才終於知道自己不需要再躲了。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你也有那種『中午才敢出門打水』的處境——某段感情、某個過去,讓你習慣性地躲開人群的眼光——先看看耶穌是怎麼對待她的：祂把她的事全都說出來了,卻沒有一句責備。祂繼續跟她聊,還把最重要的秘密告訴了她。</p>
+      <p style="margin-top:12px;">你可能也曾經覺得,自己這種經歷,大概沒資格跟別人分享信仰。她也是這樣一個人——一個被自己族人議論的女子,結果卻成了帶動全城信主的第一人。神揀選見證人的標準,從來不是誰的紀錄最乾淨。</p>
+      <p style="margin-top:12px;">重點是：你不需要先把自己整理好、把過去藏起來,才能去告訴別人。她連水罐都沒拿,就衝出去了。有時候,最真實的見證,就是「他把我這輩子做的事都說出來了」這句話本身。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">不用等中午沒人的時候才出門。今天,就走進人群裡吧。</p>
+    </div>
+
+    <div class="insight-box">在當代羞恥感與自我揭露的心理學討論中,撒瑪利亞婦人的故事提供了一個極具說服力的範例：真正促成一個人願意脫離長期躲藏、自我隔離狀態的,往往不是被迫的公開曝光或懲罰,而是一次被完整地看見、卻依然被溫柔對待的經歷。這種『被知道而不被定罪』的體驗,是心理治療中『修復性經歷』(corrective experience)的核心機制之一。而她隨即成為見證人的行動,也對『誰有資格分享信仰』這個常見的信仰群體迷思提出挑戰——她的見證力量,恰恰來自她毫不掩飾自己被揭露的過去,而非來自一份無可挑剔的個人紀錄。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">她沒有留下名字，卻留下了福音史上第一次跨越族群藩籬的相遇。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">福音跨出猶太世界的第一步</div>
+          <div class="legacy-body">她的見證使整座撒瑪利亞城的居民信主,這是福音書中福音信息首次大規模地跨越猶太民族界線、傳向異族群體的記載,預示了使徒行傳中『從耶路撒冷、猶太全地、撒瑪利亞，直到地極』的擴展軌跡。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">「用心靈和誠實」的敬拜神學</div>
+          <div class="legacy-body">耶穌對她所講述關於敬拜本質的教導,成為此後基督教敬拜神學的重要基石——敬拜的核心從特定的地理位置與外在形式,轉向內在的真實與誠意,這個轉變影響了此後兩千年教會對敬拜場所與形式的理解。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">「活水」意象的深遠影響</div>
+          <div class="legacy-body">耶穌以活水比喻自己所賜的生命，這個意象此後被無數詩歌、講道、屬靈文學反覆引用,成為基督教靈修傳統中,描述屬靈渴慕得到滿足最經典的意象之一。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">被揭露卻不被定罪的見證典範</div>
+          <div class="legacy-body">她的故事成為後世教會理解『真實的見證,往往源自被恩典觸碰的軟弱之處』這個原則的重要參照——見證的力量,不在於掩飾過去的破碎,而在於誠實地見證那份破碎如何被溫柔地接住。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「那城裡有好些撒瑪利亞人信了耶穌，因為那婦人作見證說：「他將我素來所行的一切事都給我說出來了。」……便對婦人說：「現在我們信，不是因為你的話，是我們親自聽見了，知道這真是救世主。」」</div>
+      <div class="final-verse-ref">約翰福音 4:39, 42</div>
+    </div>
+
+    <div class="final-question">你心裡那件最不想被人知道的事——如果有一天它被完全看穿,而對方卻依然願意與你深談、繼續愛你,你的餘生會因此走向哪裡？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 撒瑪利亞婦人 <span>ἡ γυνὴ ἡ Σαμαρῖτις</span> · 井旁的求道者 · 城裡的第一位傳道人</div>
+
+</body>
+</html>

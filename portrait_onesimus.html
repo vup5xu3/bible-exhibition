@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>阿尼西母 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">阿尼西母</h1>
+  <span class="hero-name-en">Onesimus · Ὀνήσιμος</span>
+  <p class="hero-slogan">「他的名字叫「有益處」，卻活成了名副其實的「無益處」——<br>保羅寫道：「他從前於你沒有益處，但如今於你我都有益處。」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">第一世紀 · 主後約 60 年代</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ISFP · 探險家型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">腓利門書全卷 · 西 4:9（唯一記載）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">逃跑的奴隸 · 保羅獄中的屬靈兒子</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他大概是新約中最不起眼的人物之一——一個逃跑的奴隸——卻讓保羅為他寫下了整本新約中最溫柔、也最具革命性的一封短信。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">第一世紀<br>羅馬帝國奴隸制度盛行的年代</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">多重身份</span>
+        <div class="info-cell-value">腓利門家中的奴隸 · 逃跑者<br>保羅獄中悔改的屬靈兒子</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">歌羅西（推測，因腓利門居住當地）→<br>羅馬（逃亡並與保羅相遇）→ 歌羅西（被差回）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">背景</span>
+        <div class="info-cell-value">名字ὈνήσιμοςOnesimus 意為「有益處的」<br>逃離主人腓利門，此後在監獄中遇見保羅並信主</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">腓利門書（保羅為他所寫的整卷書信）<br>歌羅西書 4:9（提及他與推基古一同被差回歌羅西）</div>
+      </div>
+    </div>
+
+    <p>阿尼西母是腓利門家中的奴隸——腓利門是歌羅西教會的一位信徒（很可能是這個家庭教會的帶領者之一），保羅稱他為「同工」。第一世紀羅馬帝國的奴隸制度極其普遍，估計帝國內約有三分之一到四分之一的人口是奴隸，逃跑的奴隸若被抓回，可能面臨極其嚴厲的懲罰——鞭打、烙印，甚至處死，這取決於主人的意願與當地法律。阿尼西母逃離了腓利門，這個行動本身，就是在極大的風險之中做出的選擇。</p>
+    <p>他此後如何、為何來到保羅身邊，聖經沒有詳細記載——一種常見的推測是，他逃到羅馬（當時帝國最大的城市，逃奴容易隱匿其中），或許因為某種機緣而接觸到被囚禁中的保羅，並在獄中真正認識了基督。保羅在信中用了一個極其溫暖的意象來形容這段相遇：「我在捆鎖中所生的兒子阿尼西母求你」——這個『所生』的動詞，正是保羅在其他地方描述自己屬靈父子關係時所用的字眼（如提摩太），顯示這場相遇，對阿尼西母而言，是一場徹底的生命重生。而更引人深思的是，保羅寫這封信的目的，是要把這位剛剛尋回的、對自己極其有益處的同工，重新差回他原本的主人腓利門那裡——這個決定，本身就充滿了張力與代價。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">他的故事只有一封信的篇幅，卻完整呈現了一段從逃離、悔改、到願意承擔後果重新面對過去的完整信心軌跡。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">黑暗低谷</span>
+        <div class="timeline-title">逃離腓利門——一個充滿風險的抉擇</div>
+        <div class="timeline-body">阿尼西母選擇逃離主人腓利門的家——這個決定的具體原因，聖經沒有明確記載（可能是不堪苦待，也可能是單純渴望自由，甚或如保羅信中隱約暗示的，可能帶著某種虧欠或損失潛逃）。無論原因為何，在第一世紀的羅馬法律體系下，這是一個承受著極大風險的抉擇——逃奴一旦被捕，往往面臨嚴厲的懲罰。</div>
+        <div class="timeline-ref">門 15（隱含的背景）</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">「我在捆鎖中所生的兒子阿尼西母」——監獄中的重生</div>
+        <div class="timeline-body">阿尼西母此後與被囚禁的保羅相遇，並在獄中真正認識了基督，經歷了徹底的生命轉變。保羅用『所生』這個極具份量的詞彙，來形容這段屬靈上的父子關係——這暗示阿尼西母的悔改與重生，很可能正是透過保羅親自的教導與陪伴而促成的，這段獄中的相遇，成為他生命徹底翻轉的起點。</div>
+        <div class="timeline-ref">門 10</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">「他於你我都有益處」——保羅對他的高度肯定</div>
+        <div class="timeline-body">保羅這樣描述阿尼西母此後的轉變：「他從前於你沒有益處，但如今於你我都有益處。」這句話巧妙地運用了阿尼西母名字（意為『有益處』）的雙關語意——他此前的逃亡與可能的虧欠，使他名不符實；而信主之後的他，卻真正活出了自己名字所代表的意義。保羅甚至說「我本來有意將他留下，在我為福音所受的捆鎖中替你伺候我」，顯示阿尼西母此後在保羅身邊，提供了極其具體而寶貴的服事與陪伴。</div>
+        <div class="timeline-ref">門 11, 13</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">黑暗低谷</span>
+        <div class="timeline-title">被差回腓利門——一個充滿風險的差遣</div>
+        <div class="timeline-body">儘管保羅極其看重阿尼西母的陪伴，他仍然選擇將他差回原本的主人腓利門那裡——「我原不願意不知道你的意見，就叫他和我同住，等於勉強你行善，不是出於情願」。這個決定意味著阿尼西母必須主動回到那個他曾經逃離的處境，承擔起面對過去、可能面臨懲罰的真實風險——這是一場需要極大信心與勇氣的回歸。</div>
+        <div class="timeline-ref">門 13–14</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">保羅親自代求——「不再是奴僕，乃是高過奴僕，是親愛的兄弟」</div>
+        <div class="timeline-body">保羅為阿尼西母寫下了整卷腓利門書，懇切地為他向腓利門代求：「不再是奴僕，乃是高過奴僕，是親愛的兄弟……你若以我為同伴，就收納他，如同收納我一樣。他若虧負你，或欠你什麼，都歸在我的帳上。」保羅甚至以自己的名譽與威信作擔保，主動承擔阿尼西母可能虧欠的任何債務——這是新約中對『饒恕』與『和解』最具體、最實際的一次示範。</div>
+        <div class="timeline-ref">門 16–19</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">「同著阿尼西母，你們的信主又忠心親愛的兄弟」——與推基古同行</div>
+        <div class="timeline-body">歌羅西書中，保羅提到「同著阿尼西母，你們的信主又忠心親愛的兄弟；他也是你們那裡的人」，顯示阿尼西母此後與推基古一同被差回歌羅西——這句話中，保羅直接稱他為『信主又忠心親愛的兄弟』，這個稱謂與腓利門書中所懇求的完全一致，暗示這封信最終確實達成了它的目的：阿尼西母被重新接納，不再是奴僕，而是真正的弟兄。教會傳統（雖無法確證）甚至認為，此後有一位名叫阿尼西母的以弗所主教，可能就是這位曾經的逃奴。</div>
+        <div class="timeline-ref">西 4:9</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他曾是那個名不符實的「有益處」，卻在監獄裡真正找到了讓自己的名字終於變得真實的那把鑰匙。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">願意承擔面對過去的風險，也不逃避該做的事</div>
+          <div class="soul-body">在保羅的鼓勵下，他選擇回到腓利門那裡，而非繼續躲藏或逃離——這需要極大的勇氣，因為他清楚知道，這意味著要主動面對自己過去逃離、可能帶著虧欠的責任，即使結果未必如願。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">在監獄的患難處境中，展現出真實而具體的服事熱忱</div>
+          <div class="soul-body">保羅提到他『在我為福音所受的捆鎖中替你伺候我』——這顯示他此後真心投入、樂於在艱難處境中付出具體的照顧與陪伴，而非僅僅是被動地接受庇護。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">（材料有限——聖經未記載他任何獨立的具體言行）</div>
+          <div class="soul-body">阿尼西母全程沒有留下任何直接被記載的話語，我們對他性格的理解，主要來自保羅對他的描述與期許，而非他自己的直接表達。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">曾經選擇逃避責任，甚至可能帶著虧欠潛逃</div>
+          <div class="soul-body">保羅信中『他若虧負你，或欠你什麼』這句話，暗示阿尼西母離開時，很可能帶著某種未清償的虧欠或損失——這顯示他過去確實做出過逃避責任、甚至可能傷害他人利益的選擇。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">名字的雙關，成為整封信最核心的神學隱喻</div>
+          <div class="soul-body">他的名字ὈνήσιμοςOnesimus 意為『有益處的』，而他過去『無益』的行為與此後『真正有益』的轉變，構成了保羅整封信最精巧、也最溫柔的文字遊戲——這暗示著，一個人的名字所代表的意義，可以在恩典中，被重新活出來。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">阿尼西母的故事最深刻之處，在於它示範了福音如何徹底翻轉一段原本充滿權力不對等、甚至可能帶著傷害的關係。保羅沒有簡單地要求腓利門『原諒他就好』，而是提出了一個遠遠超越單純饒恕的呼籲——把這位曾經的奴隸，當作『親愛的兄弟』來接納，甚至暗示『高過奴僕』的身分轉變。這封信雖然沒有明確要求腓利門立刻釋放阿尼西母（這在當時的社會結構中，可能是一個過於激進、難以立即實現的要求），卻在神學與人格尊嚴的層面，徹底顛覆了『奴隸』與『主人』之間的傳統界限——在基督裡，這種世俗的階級關係，被一種全新的『弟兄』關係所取代。這顆微小的種子，此後在教會歷史中，持續發酵、生長，成為推動廢除奴隸制度等社會正義運動的重要神學根源之一。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ISFP</span>
+      <div class="mbti-name">探險家型 · 從無益到有益的見證（依有限材料推測）</div>
+      <div class="mbti-slogan">「他的名字叫「有益處」，卻活成了「無益處」——直到監獄裡的一場相遇，讓他終於配得上自己的名字。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Fi · 內向情感（僅為合理推測）</span>
+          <div class="mbti-fn-body">他此後在保羅身邊真心付出的具體服事，以及最終願意冒險回到腓利門那裡承擔責任，都顯示出一種深植於內心、真誠而堅定的價值信念——即使這些選擇伴隨著真實的風險與不確定性。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Se · 外向實感（僅為合理推測）</span>
+          <div class="mbti-fn-body">他過去逃離的行動，以及此後在保羅身邊具體、實際的服事（『伺候我』），都顯示出他傾向於用具體的行動來回應當下的處境，而非停留在抽象的思考或計畫層面。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">（材料不足以推論） · </span>
+          <div class="mbti-fn-body">缺乏足夠的直接記載進行推導。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">（材料不足以推論） · </span>
+          <div class="mbti-fn-body">缺乏足夠的直接記載進行推導。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最重要的兩段關係，一段是他選擇逃離的，一段是他在監獄裡意外尋回的。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">腓</div>
+          <div class="relation-name">腓利門</div>
+          <div class="relation-type-badge">他原本的主人，也是保羅為他代求和解的對象</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">他逃離了腓利門，此後又在保羅的鼓勵與代求下，選擇冒險回到這位原本的主人身邊。保羅為他所寫的整卷腓利門書，正是懇求腓利門『不再是奴僕，乃是高過奴僕，是親愛的兄弟』地接納他——這段關係的最終走向，雖然聖經沒有明確記載結果，卻承載著新約中對饒恕與人性尊嚴最深刻的期許。</div>
+          <div class="relation-ref">腓利門書全卷</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">保</div>
+          <div class="relation-name">保羅</div>
+          <div class="relation-type-badge">在監獄中帶領他重生的屬靈父親</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">保羅稱他為『我在捆鎖中所生的兒子』，顯示這段相遇對阿尼西母生命的徹底轉變具有決定性的意義。保羅不僅在信仰上帶領他，更以自己的名譽與財務作擔保，親自為他向腓利門代求和解——這種毫無保留的代求與擔保，展現出保羅對這位『屬靈兒子』極深的疼愛與信任。</div>
+          <div class="relation-ref">門 10, 18–19</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">推</div>
+          <div class="relation-name">推基古</div>
+          <div class="relation-type-badge">與他一同被差回歌羅西的同伴</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">歌羅西書記載他與推基古一同被差往歌羅西——這顯示他此後不是獨自一人承擔回歸的風險，而是與一位受保羅信任的同工結伴同行，某種程度上，這也是保羅為他所安排的一種實際的支持與陪伴。</div>
+          <div class="relation-ref">西 4:7–9</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「不再是奴僕，乃是高過奴僕，是親愛的兄弟」——這句話，在福音的光照下，悄悄埋下了顛覆整個奴隸制度的神學種子。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「他暫時離開你，或者是叫你永遠得著他，不再是奴僕，乃是高過奴僕，是親愛的兄弟。在我實在是如此，何況在你，不拘是按肉體說，是按主說，更是如此呢！」</div>
+      <div class="verse-ref">腓利門書 15–16</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">ἀδελφὸν ἀγαπητόν</span>
+        <div class="word-transliteration">adelphon agapēton · 親愛的兄弟 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「親愛的、蒙愛的兄弟」，這是新約中信徒之間最核心、最親密的稱謂之一。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">保羅要求腓利門用這個稱謂，來重新定義他與阿尼西母之間的關係——這在第一世紀奴隸制度盛行的社會結構中，是一個極具革命性的宣告。奴隸與主人之間，本是徹底不對等的財產關係，保羅卻要求把這段關係，重新框定為在基督裡完全平等的『弟兄』關係，這句話因此成為新約中，對抗奴隸制度非人道本質最早、也最深刻的神學種子之一。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">ἐλλόγα</span>
+        <div class="word-transliteration">elloga · 歸在……帳上 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「記在帳上、算入賬目」，這是一個會計與商業用語，保羅用來表達自己願意承擔阿尼西母所虧欠腓利門的一切債務。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">保羅寫道「他若虧負你，或欠你什麼，都歸在我的帳上」——這句話直接呼應了基督替代性贖罪的神學意象：一個無辜、有能力償還的人，主動承擔起另一個人的虧欠與責任。保羅在這裡，親身示範了他所宣講的救恩教義——基督如何替我們承擔了我們無法償還的罪債。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">福音對社會結構的顛覆性挑戰</div>
+      <div class="theology-insight-body">腓利門書雖然沒有直接要求廢除奴隸制度（這在當時的社會處境下，可能是一個難以立即實現的激進要求），卻在神學原則的層面，徹底顛覆了奴隸制度賴以存在的『主人與奴隸本質不平等』這一預設——保羅堅持，在基督裡，這種世俗的階級關係，必須被重新理解為弟兄關係。這顆神學種子，此後在教會歷史中持續發酵，成為推動廢奴運動的重要思想資源之一。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">代求與擔保：救恩論的具體實踐</div>
+      <div class="theology-insight-body">保羅主動提出『他若虧負你……都歸在我的帳上』，這是新約中對『代求』（intercession）與『代贖』（substitution）這兩個核心救恩論概念，最具體、最貼近日常生活情境的實踐示範——保羅不只是講述基督如何為人承擔罪債，他自己也親身活出了這個原則，為阿尼西母承擔可能的虧欠。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">個人書信中蘊含的普世神學意義</div>
+      <div class="theology-insight-body">腓利門書是保羅書信中篇幅最短、也最私人化的一封，處理的是一件看似微小的個人事務（一位逃奴的回歸），卻蘊含著關於人性尊嚴、饒恕、與社會結構轉化的深遠神學意義——這提醒我們，最私密、最個人化的處境，往往也是神學真理最貼近生活、最具體展現的場域。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">約瑟被弟兄賣為奴，在埃及經歷了從奴隸到宰相的巨大身分翻轉，最終選擇饒恕曾經傷害他的兄弟，供養他們全家</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">阿尼西母同樣經歷了身分的徹底翻轉——從逃亡的奴隸，到保羅眼中『親愛的兄弟』；而保羅為他所做的代求與擔保，也呼應了約瑟饒恕、供養曾經虧待他之人的慷慨精神</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督親自「取了奴僕的形像」，降卑成為人的樣式，親身承擔了人本無法償還的罪債，使人得以從奴僕的身分，被提升為神的兒女（腓 2:7 · 加 4:7）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">浪子回頭的比喻中，小兒子在外耗盡一切、淪落到餵豬的卑微處境，最終決定冒險回到父親家中，承擔可能被拒絕的風險，卻換來父親毫無保留的接納與宴席慶祝</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">阿尼西母同樣經歷了『離開、耗盡、決定冒險回歸』的完整歷程——他選擇回到腓利門那裡，正如浪子選擇回到父親身邊，兩人都承擔著可能被拒絕、卻依然選擇面對的真實風險</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督親自成就了那位永遠敞開雙臂、不計算過去、只等候浪子歸回的父親形象所預表的救恩——凡回轉歸向祂的人，必得著全然的接納（路 15:20–24）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">利未記中，禧年的律法規定每五十年，被賣為奴的以色列人要得著自由，重新歸回自己的產業與家族——這是舊約中對奴隸制度設下的重要制衡與終點性規範</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">保羅要求腓利門把阿尼西母當作『高過奴僕』的弟兄接納，某種程度上，是在福音的光照下，超越了禧年律法所設定的『階段性釋放』，直接指向一種更徹底、更根本的身分平等</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督親自宣告『主的靈在我身上……差遣我報告被擄的得釋放』，成就了那終極、永不撤回的自由與釋放（路 4:18）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你曾經逃避過一個必須面對的責任，而此刻正在思考「我該不該回去把它處理好」——這一頁是為你寫的。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">阿尼西母命中的是每一個曾經逃避責任、卻在某個時刻必須決定是否要冒險回頭面對的人。他的處境提醒我們，真正的悔改，有時候不只是內心的態度轉變，更需要具體的行動——回到那個你曾經逃離的處境，誠實地面對可能的後果。這是一條需要勇氣的路，卻也是他生命故事中最動人的部分：他沒有選擇繼續躲藏，而是在保羅的鼓勵下，選擇了那條更艱難、卻更真實的回歸之路。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你有沒有一段曾經逃避、甚至可能虧欠他人的關係或責任？你現在對「回去面對它」這件事，抱持著怎樣的心情？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">阿尼西母選擇回到腓利門那裡，承擔可能被懲罰的風險。是什麼樣的信任或盼望，能讓一個人願意冒著這樣的風險，去做對的事？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">保羅主動提出「他若虧負你，都歸在我的帳上」，願意承擔阿尼西母的責任。你是否曾經有過這樣的經歷——有人願意為你的虧欠承擔代價？或者，你是否也曾為別人做過這樣的事？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">保羅要求把一位奴隸，重新定義為「親愛的兄弟」。在你的生活或群體中，有沒有一段因著地位、身分而顯得不對等的關係，你認為需要被重新用「弟兄」的眼光來看待？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 阿尼西母（逃離時）</span>
+        <div class="gen-title">應激劇本：用逃避而非面對來處理困境</div>
+        <div class="gen-body">他最初選擇的方式，是逃離——無論具體的原因是什麼，這都反映出一種在困境中選擇迴避、而非正面處理的模式。這種模式若未經打斷，很可能持續延續下去，讓他終其一生活在躲避與隱藏之中。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 阿尼西母（回歸時）</span>
+        <div class="gen-title">打斷而非延續：從逃避轉為主動面對，承擔責任</div>
+        <div class="gen-body">在監獄中經歷重生之後，他做出了一個與過去截然相反的選擇——不再逃避，而是願意冒險回到他曾經逃離的處境，主動面對可能的後果。這個轉變，展現出福音真實而具體的改變力量，不只停留在內心的信念層面，更落實在生活的具體抉擇之中。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">打斷發生在監獄中那場與保羅的相遇——保羅所生的這個屬靈兒子，因著真實認識了基督，得以從『逃避責任』的模式中被釋放出來，轉而擁有面對過去、承擔責任的勇氣。而保羅親自為他代求、擔保虧欠的行動，更具體示範了恩典如何運作：不是要求人先解決一切問題才能被接納,而是先給予毫無保留的擔保與陪伴,讓人得以帶著這份支持,勇敢地面對原本不敢面對的處境。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那個逃跑的奴隸、後來卻選擇回頭面對的人，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#逃避到面對</span>
+      <span class="tag">#名字與現實不符</span>
+      <span class="tag">#有人願意幫你扛債</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>阿尼西母的名字意思是『有益處的』，但他做的第一件被記載下來的事，是逃跑——從主人腓利門家裡逃走，這在當時的羅馬帝國，是一件風險極大的事，逃奴被抓回去，下場通常很慘。</p>
+      <p>他逃到哪裡去、怎麼認識保羅的，聖經沒有詳細寫，只知道他最後跟被關在監獄裡的保羅相遇了，而且在那裡真正信了主。保羅形容這件事，用的詞是『我在捆鎖中所生的兒子』——這句話的份量很重，等於是說：這個人的新生命，是我在監獄裡親手帶出來的。</p>
+      <p>接下來的劇情，才是真正精彩的地方。保羅明明很需要阿尼西母在身邊幫忙（他自己都說『他在我為福音所受的捆鎖中替你伺候我』），卻做了一個看起來『很不划算』的決定：把他送回原本的主人腓利門那裡去。</p>
+      <p>而且保羅還幫他打了包票。他寫信給腓利門說：這個人現在不是奴僕了，是你我共同的兄弟。他如果欠你什麼、虧負你什麼,都算在我頭上,我來還。這等於是保羅拿自己的信用做擔保,幫一個逃跑的奴隸,買了一張回家的安全票。</p>
+      <p>後來歌羅西書裡，保羅又提到阿尼西母，直接稱他是『信主又忠心親愛的兄弟』——這代表這封信的目的達成了,阿尼西母真的被腓利門接納了,而且是以『兄弟』的身分,不再是奴隸。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——而阿尼西母這塊石頭,曾經逃得遠遠的,最後卻靠著有人願意替他扛債,鼓起勇氣走回了原本不敢面對的地方。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你正逃避著某個你知道遲早得面對的責任或關係——阿尼西母的故事沒有說『逃避是可以的』，但它想告訴你：即使你曾經選擇逃避，回頭的路依然存在，而且不需要你獨自走。</p>
+      <p style="margin-top:12px;">你可能覺得自己「名不符實」——名字或身分暗示著一種美好，你卻活得完全相反。阿尼西母也是這樣，但他最後活出了自己名字真正的意義。改變，永遠不嫌晚。</p>
+      <p style="margin-top:12px;">如果你正在猶豫要不要為某個人的虧欠承擔一點責任、幫他一把——保羅的做法很直接：都算在我頭上。有時候，最有力的代求，就是願意具體地替對方扛一點東西。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果有一件你一直逃避的事，想想：有沒有人可以陪你一起走回去面對？</p>
+    </div>
+
+    <div class="insight-box">在當代關於『修復式正義』(restorative justice)與『社會身分重構』的討論中，腓利門書與阿尼西母的故事提供了一個歷久彌新的範例——與單純的懲罰性正義不同，保羅所倡導的路徑，是透過具體的代求、擔保與關係的重新定義（從『奴僕』到『兄弟』），來促成真正的和解與修復，而非僅止於形式上的原諒。這對正在思考『如何在權力不對等的關係中促成真實和解』的當代組織與社群，提供了深具啟發性的思路。而保羅這封書信中所埋下的『在基督裡沒有奴隸與自由人之分』的神學種子，也持續被視為近代廢奴運動與人權思想發展中，重要的基督教思想資源之一。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他只是一位不起眼的逃奴，卻讓保羅為他寫下了一封徹底挑戰整個奴隸制度神學基礎的短信。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">顛覆奴隸制度神學基礎的重要文本</div>
+          <div class="legacy-body">腓利門書雖然沒有直接要求廢除奴隸制度，卻在神學原則上，徹底挑戰了『奴隸本質上低人一等』這一預設——這封信，此後成為近代廢奴運動的重要思想資源之一，被威伯福斯等廢奴運動領袖多次引用。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">代求與代贖神學的生活化實踐</div>
+          <div class="legacy-body">保羅為他所做的具體代求與擔保（『歸在我的帳上』），成為新約中，將『基督代替人承擔罪債』這一抽象救恩論教義，落實為具體生活實踐的最動人範例之一。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">「弟兄」關係取代階級關係的神學典範</div>
+          <div class="legacy-body">保羅要求把一位奴隸重新定義為『親愛的兄弟』，這確立了新約教會論中一個持久的原則：在基督裡，一切世俗的階級、身分、地位的區隔，都應當被弟兄姊妹之愛所超越與重新定義。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">回歸與面對責任的信心典範</div>
+          <div class="legacy-body">他在悔改後，選擇冒險回到原本逃離的處境、主動面對責任的抉擇，成為此後教會歷史中，理解『真實的悔改需要具體行動、而非僅止於內心態度轉變』這一原則時，極具說服力的聖經典範。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「他暫時離開你，或者是叫你永遠得著他，不再是奴僕，乃是高過奴僕，是親愛的兄弟。」</div>
+      <div class="final-verse-ref">腓利門書 15–16</div>
+    </div>
+
+    <div class="final-question">如果你此刻的名字或身分，與你真實活出的樣子並不相符——你願不願意相信，就像阿尼西母一樣，一場真實的相遇，能讓你終於活出那個名字原本應許的意義？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 阿尼西母 <span>Ὀνήσιμος</span> · 逃跑的奴隸 · 從無用到有益的見證</div>
+
+</body>
+</html>

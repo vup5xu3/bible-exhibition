@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>提摩太 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">提摩太</h1>
+  <span class="hero-name-en">Timothy · Τιμόθεος</span>
+  <p class="hero-slogan">「保羅寫給他的最後一封信，開頭是「因信作我真兒子的提摩太」，<br>結尾是「你要竭力……趕緊到我這裡來」——一位老邁的使徒，最想見的是這個年輕人。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">第一世紀 · 主後約 17–97 年（傳統推測）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ISFJ · 守護者型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">徒 16:1–3 · 提前後書<br>羅 16:21 · 林前 4:17 · 腓 2:19–22</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">保羅的屬靈兒子 · 以弗所教會的牧者</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他從小信仰紮根，長大後被保羅親自帶在身邊，卻是新約中被提醒「不要膽怯」次數最多的一位同工。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">第一世紀<br>羅馬帝國治下的小亞細亞</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">多重身份</span>
+        <div class="info-cell-value">混血背景（猶太母親、希臘父親）<br>保羅的同工與屬靈兒子 · 以弗所教會的牧者</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">路司得（或特庇）→<br>與保羅同行小亞細亞、希臘各地 → 以弗所</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">背景</span>
+        <div class="info-cell-value">外祖母羅以、母親友尼基皆為虔誠信徒<br>身體軟弱（腸胃常患病）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">徒 16:1–3, 17:14–15, 18:5, 19:22, 20:4<br>羅 16:21 · 林前 4:17 · 腓 2:19–22 · 提前後書</div>
+      </div>
+    </div>
+
+    <p>提摩太出身路司得，母親是猶太人友尼基，父親是希臘人——這種跨族裔婚姻在當時的猶太律法傳統中並不被完全接納，也意味著他成長過程中，可能長期處在一種身分認同的張力之中：既不完全是猶太人（因未受割禮），也不完全融入希臘文化。保羅後來稱讚他「從小明白聖經，這聖經能使你因信基督耶穌，有得救的智慧」——這份信仰的紮根，直接歸功於他的外祖母羅以與母親友尼基「無偽之信」的言傳身教，這在提摩太後書中被保羅特別點名紀念。</p>
+    <p>保羅第二次宣教旅程重返路司得時，「那裡的弟兄都稱讚他」，保羅便決定帶他同去，並「因那些地方的猶太人，都知道他父親是希利尼人，就給他行了割禮」——這個決定看似矛盾（保羅在別處堅決反對強迫外邦信徒受割禮），實則是務實的宣教策略：讓提摩太在猶太會堂中更容易被接納，減少不必要的爭議。第一世紀的小亞細亞正處於猶太教與希臘化文化激烈碰撞的地帶，提摩太這種混血又受過割禮的身分，某種程度上使他成為一個能同時跨越兩個世界的獨特橋樑——儘管這座橋樑本身，終其一生似乎都承受著相當程度的內在壓力與外在質疑。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">他的一生幾乎完全與保羅交織在一起——從被選召同行，到被留下牧會，到被反覆提醒不要膽怯，再到保羅臨終前最想見的那個人。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">被保羅選召同行——「保羅要帶他同去」</div>
+        <div class="timeline-body">保羅第二次宣教旅程經過路司得，聽聞提摩太「在路司得、以哥念兩處的弟兄中，是有好名聲的」，便選定他同行，並為了猶太人的緣故給他行了割禮。這是提摩太人生的重大轉折點——他從一位地方教會中受人稱讚的年輕信徒，一躍成為保羅宣教團隊的核心成員，此後跟隨保羅走遍小亞細亞與希臘各地。</div>
+        <div class="timeline-ref">徒 16:1–3</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">被留下、被差派——反覆往返各教會之間的信使</div>
+        <div class="timeline-body">使徒行傳與保羅書信多處記載，提摩太經常被保羅留在某個教會繼續牧養，或被差派前往另一處教會處理具體事務——他在庇哩亞、帖撒羅尼迦、哥林多、腓立比等教會之間往返奔波，成為保羅與各地教會之間最重要的聯繫人與信使之一。保羅稱他「作神執事的同工」，並說「除了他沒有人與我同心」。</div>
+        <div class="timeline-ref">徒 17:14–15 · 徒 18:5 · 帖前 3:2 · 腓 2:19–22</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">黑暗低谷</span>
+        <div class="timeline-title">「不要叫人小看你年輕」——被反覆提醒不要膽怯</div>
+        <div class="timeline-body">保羅在提摩太前書中直接勸勉：「不可叫人小看你年輕，只要在言語、行為、愛心、信心、清潔上，都作信徒的榜樣。」在提摩太後書中更進一步說：「神賜給我們，不是膽怯的心，乃是剛強、仁愛、謹守的心。」這些反覆的提醒，暗示提摩太的性格中，確實存在著某種程度的膽怯或不夠自信的傾向——而保羅選擇用溫柔卻堅定的方式，一次又一次地鼓勵他站立得穩。</div>
+        <div class="timeline-ref">提前 4:12 · 提後 1:7</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">受託牧養以弗所——面對假教師與教會治理的重擔</div>
+        <div class="timeline-body">保羅將提摩太留在以弗所，囑咐他「你在那裡好囑咐那幾個人，不可傳異教」，並在提摩太前書中詳細教導他關於教會治理、監督與執事資格、寡婦的照顧、以及如何應對假教師的具體指引。這是一項極其沉重的責任——一位相對年輕的同工，被託付管理當時小亞細亞地區最重要的教會之一，並要獨自面對複雜的教義爭端與治理難題。</div>
+        <div class="timeline-ref">提前 1:3–4</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">「因你胃口不清，屢次患病，可以稍微用點酒」</div>
+        <div class="timeline-body">保羅在信中特別叮囑：「因你胃口不清，屢次患病，再不要照常喝水，可以稍微用點酒。」這個極其私人化、甚至帶著父親般關懷的細節，展現出保羅與提摩太之間超越單純同工關係的深厚情誼——保羅不僅關心他的事工，也真切地在意他的身體健康與日常生活。</div>
+        <div class="timeline-ref">提前 5:23</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">黑暗低谷</span>
+        <div class="timeline-title">「記念你的眼淚，晝夜切切地想要見你」</div>
+        <div class="timeline-body">保羅在獄中所寫的提摩太後書，語氣格外深情而迫切：「記念你的眼淚，晝夜切切地想要見你，好叫我滿心快樂。」並囑咐他「你要竭力……趕緊到我這裡來」，還特別提到「離冬天以前你要趕緊來」——這封信瀰漫著一位即將殉道之人，對自己最信任、最想念的屬靈兒子最後的呼喚與牽掛，也暗示提摩太自己當時可能正承受著相當程度的壓力與孤單（保羅安慰他不要以自己的軟弱為恥）。</div>
+        <div class="timeline-ref">提後 1:4, 4:9, 4:21</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">「你要傳道，無論得時不得時」——接過使徒的託付</div>
+        <div class="timeline-body">保羅在最後一封信的核心囑咐：「我在神面前，並在將來審判活人死人的基督耶穌面前，憑著他的顯現和他的國度囑咐你：務要傳道……你卻要凡事謹慎，忍受苦難，做傳道的工夫，盡你的職分。」這是使徒行傳整個宣教故事的一個象徵性交棒時刻——保羅即將殉道，而福音的火炬，正式傳遞到了這位曾被反覆提醒不要膽怯的年輕人手中。希伯來書的作者甚至提到「我們的兄弟提摩太已經釋放了」，顯示他此後也曾為福音的緣故遭遇監禁。</div>
+        <div class="timeline-ref">提後 4:1–2 · 來 13:23</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他不是一個天生剛強的人——而正是這一點，讓他成為新約中，對每一個覺得自己不夠格的人，最溫柔也最真實的鼓勵。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">傳承而非原創的信心根基</div>
+          <div class="soul-body">他的信仰不是靠自己開創出來的，而是『先在你外祖母羅以和你母親友尼基的心裡，我深信也在你的心裡』——這種紮根於家族傳承的『無偽之信』，是他生命最深的根基，也是他此後能夠承受重大託付的內在基礎。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">在軟弱與膽怯中依然選擇忠心到底</div>
+          <div class="soul-body">儘管保羅多次提醒他不要膽怯、不要以福音為恥，提摩太始終沒有因此退出服事——他持續牧養以弗所教會、持續往返各地傳遞信息，甚至為福音的緣故一度入獄。這種『帶著軟弱卻依然堅持忠心』的品格，比表面上毫無畏懼的勇敢，更貼近多數信徒的真實處境。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">溫和、細膩、擅長作為連結各方的信使</div>
+          <div class="soul-body">他多次被保羅差派往返各教會之間，處理具體而細膩的牧養事務——這種角色需要相當的圓融與細心，而非直接對抗式的強勢作風。他更像是一位穩健的協調者與陪伴者，而非站在最前線衝鋒陷陣的領袖。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">容易因年輕、身體軟弱而缺乏自信</div>
+          <div class="soul-body">保羅反覆提醒他『不可叫人小看你年輕』『神賜給我們不是膽怯的心』，以及特別叮囑他因『屢次患病』而調整飲食——這些細節共同勾勒出一位可能因年紀、健康、或性格特質，而在面對重大責任時容易心生畏懼與自我懷疑的年輕牧者形象。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">被按手所賜下、卻需要不斷被『挑旺』的恩賜</div>
+          <div class="soul-body">保羅提醒他：『我提醒你，使你將神藉我按手所給你的恩賜，再如火挑旺起來。』這句話暗示提摩太確實領受了真實而具體的屬靈恩賜與呼召，卻也需要持續地被提醒與激勵，才能讓這份恩賜保持在應有的火熱狀態中——這是一種恩賜與人性軟弱並存的真實寫照。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">提摩太的故事，最深刻之處在於它徹底顛覆了『偉大的屬靈領袖必須天生剛強無畏』這個常見的迷思。保羅寫給他的兩封書信，充滿了對他軟弱面的直接提及——年輕、膽怯、身體不好、容易被人小看——然而正是這樣一位帶著諸多限制的年輕人，被託付了保羅在世上最看重的一批教會之一。這提醒我們，神使用人的方式，從來不是先要求人變得完美無瑕，而是在人真實的軟弱之中，賜下恩賜、並透過持續的鼓勵與陪伴，幫助這份恩賜『如火挑旺』。提摩太教會我們：膽怯的心，不是被恩召資格的否定，而是需要被持續牧養與扶持的真實處境。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ISFJ</span>
+      <div class="mbti-name">守護者型 · 被反覆挑旺的年輕牧者</div>
+      <div class="mbti-slogan">「他常常需要被提醒『不要膽怯』，卻用一生的忠心守護，證明了忠誠從來不需要天生的無畏才能成立。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Si · 內向實感</span>
+          <div class="mbti-fn-body">他的信仰根基牢牢建立在家族傳承下來的具體記憶與教導之上——『從小明白聖經』，這種倚重既有、被驗證過的傳統與具體經歷的思維方式，是他信心穩固卻表現形式相對內斂的重要原因。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Fe · 外向情感</span>
+          <div class="mbti-fn-body">他長期擔任保羅與各教會之間的聯繫人與信使角色，需要細膩地照顧不同群體的處境與感受——這種善於維繫關係、體察他人需要的傾向，貫穿他作為協調者與牧者的整個服事型態。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ti · 內向思考</span>
+          <div class="mbti-fn-body">保羅將教會治理、教義辨明等相對複雜的邏輯性工作託付給他（如提摩太前書中大量關於監督執事資格、應對異端的具體指引），顯示他具備一定程度的分析與判斷能力，能夠處理這些需要清晰思辨的牧養議題。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Ne · 外向直覺</span>
+          <div class="mbti-fn-body">他似乎較難獨立地展望與開拓全新的可能性或大膽行動——需要保羅反覆的提醒、鼓勵、甚至具體的指示，才能在面對挑戰時保持信心。這種對於開創性、冒險性行動的相對遲疑，正是劣勢外向直覺常見的表現方式。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最重要的一段關係，是被一位老邁的使徒，稱為『因信作我真兒子』的那份父子般的深情。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">保</div>
+          <div class="relation-name">保羅</div>
+          <div class="relation-type-badge">屬靈父親 · 選召與栽培他的使徒</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">保羅稱他『因信作我真兒子』『我親愛的兒子』，兩人的關係遠超一般同工——保羅在信中流露出對他毫不掩飾的思念、關懷、與深切的信任（『除了他沒有人與我同心』）。這段關係展現了新約中最深刻的屬靈師徒典範之一：既有嚴格的教導與託付，也有溫暖的陪伴與父親般的疼惜。</div>
+          <div class="relation-ref">提前 1:2 · 腓 2:20–22</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">羅</div>
+          <div class="relation-name">外祖母羅以與母親友尼基</div>
+          <div class="relation-type-badge">信仰傳承的根基</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">保羅特別在提摩太後書中紀念這兩位女性：『我想到你心裡無偽之信，這信是先在你外祖母羅以和你母親友尼基的心裡，我深信也在你的心裡。』提摩太的信仰根基，直接來自這兩代女性的言傳身教——這是新約中極少數明確肯定女性在家庭信仰傳承中核心角色的記載之一。</div>
+          <div class="relation-ref">提後 1:5</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">以</div>
+          <div class="relation-name">以弗所教會</div>
+          <div class="relation-type-badge">他所牧養、卻充滿挑戰的群體</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">他被保羅留在以弗所處理教會治理與應對假教師的重責，這是一項極其沉重的託付——當時小亞細亞地區教義爭端頻繁，教會內部也存在著各種治理上的挑戰。提摩太前書大部分的具體教導，正是為了幫助他在這個充滿張力的處境中，能夠有清楚的原則可以依循。</div>
+          <div class="relation-ref">提前 1:3–4</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">各</div>
+          <div class="relation-name">各地教會（庇哩亞、帖撒羅尼迦、哥林多、腓立比）</div>
+          <div class="relation-type-badge">他反覆奔波往返、傳遞消息的對象</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">保羅多次差派他前往不同教會處理具體事務或傳遞問候與教導——這使他成為初代教會網絡中極其重要的聯繫樞紐，雖然不總是站在最耀眼的位置，卻是維繫各地教會與保羅之間信任與溝通的關鍵人物。</div>
+          <div class="relation-ref">徒 19:22 · 帖前 3:2 · 林前 4:17</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「神賜給我們，不是膽怯的心，乃是剛強、仁愛、謹守的心」——這句對提摩太所說的話，成為此後兩千年，安慰每一個覺得自己不夠格之信徒的核心經文。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「為此我提醒你，使你將神藉我按手所給你的恩賜，再如火挑旺起來。因為神賜給我們，不是膽怯的心，乃是剛強、仁愛、謹守的心。」</div>
+      <div class="verse-ref">提摩太後書 1:6–7</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">ἀναζωπυρέω</span>
+        <div class="word-transliteration">anazōpyreō · 挑旺 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「重新點燃、使火重新燃燒起來」，字面帶有『把幾乎熄滅的火重新搧旺』的意象。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">保羅選用這個生動的意象，暗示提摩太所領受的恩賜，並非已經完全消失，而是可能因為膽怯、疲憊或外在壓力而逐漸微弱、幾近熄滅——需要被『重新挑旺』。這給了每一個感覺自己屬靈恩賜或熱情正在冷卻的信徒一個重要的提醒：恩賜的減弱不代表恩賜的喪失，它可以被重新點燃。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">δειλία</span>
+        <div class="word-transliteration">deilia · 膽怯 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「懦弱、畏縮、退卻的心理狀態」，這個字在新約中僅出現一次，正是在提後1:7這裡，帶有強烈的負面情感色彩。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">保羅明確地說，這種膽怯不是『神賜給』的——這句話同時具有安慰與挑戰的雙重意涵：安慰在於，膽怯不是提摩太與生俱來、無法改變的宿命；挑戰在於，既然這不是神所賜的，就不應該讓它繼續主導提摩太的服事姿態。這節經文因此成為新約中，處理『服事中的恐懼與自我懷疑』最核心也最常被引用的經文。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">家庭信仰傳承的神學典範</div>
+      <div class="theology-insight-body">提摩太的信心『先在外祖母、母親心裡』，這確立了聖經對家庭作為信仰傳承核心場域的高度肯定——不是透過正式的神學教育機構，而是透過三代之間日常生活中真實的信仰見證與教導，一個深刻而持久的信心根基得以建立。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">恩賜與呼召不因軟弱而被收回</div>
+      <div class="theology-insight-body">保羅對提摩太的教導清楚顯示，一個人即使帶著膽怯、年輕、健康不佳等真實的限制，依然可能領受並持守一份真實而重大的屬靈恩賜與呼召——這對抗了『只有天生剛強無畏的人才配得重要屬靈託付』這種常見卻錯誤的觀念。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">牧養書信的教牧神學典範</div>
+      <div class="theology-insight-body">提摩太前後書作為『教牧書信』的核心文本，為此後兩千年教會建立教會治理架構（監督、執事的資格）、應對異端教義、以及牧者個人品格的塑造，提供了最具體、最實用的聖經依據，深刻影響了教會論與牧養神學的發展。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">約書亞在摩西臨終前被按手、被神親自吩咐『你當剛強壯膽，因為你必使這百姓承受那地為業』，並反覆被提醒不要懼怕</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">提摩太同樣是在一位屬靈前輩即將離世（保羅）之際，領受了按手的恩賜與剛強壯膽的囑咐——兩人都面臨著接續一位偉大領袖遺志的沉重壓力，也都被同樣的話語——不要懼怕——反覆鼓勵</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督親自差遣門徒，並應許『我就常與你們同在，直到世界的末了』——這是所有蒙召者剛強壯膽最終極的依據（太 28:20）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">撒母耳自幼年起就在祭司以利的照顧下事奉耶和華，年幼時就聽見神的呼召，此後成為連結士師時代與君王時代的關鍵先知</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">提摩太同樣自幼年起就浸潤在信仰的傳承中，並在相對年輕之時，就被賦予了連結、延續保羅使徒工作的重大職分——兩人都展現了『年少蒙召、承接重任』的信心典範</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督自己在十二歲時就展現出對父的事『必須以此為念』的清楚認知，成為一切年少蒙召者最終極的榜樣（路 2:49）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">以利亞在被提升天之前，把自己的外衣搭在以利沙身上，將先知的職分與雙倍的靈傳承下去</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">保羅在殉道之前，同樣把自己畢生的使徒工作與教會治理的重擔，透過書信鄭重地交託給提摩太，這種『臨終前的傳承』模式，在兩段敘事中都清晰可見</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督升天前應許差下保惠師聖靈，使門徒『必得著能力』，成為一切屬靈傳承真正的源頭與保證（徒 1:8）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你曾經因為覺得自己太年輕、太軟弱、不夠資格，而在重要的責任前退縮——這一頁是為你寫的。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">提摩太命中的是一種極其普遍、卻常被信仰群體忽視的處境：那些真正被賦予重要責任、卻始終覺得自己『不夠格』的人。他不是那種天生自信滿滿、渾身散發領袖魅力的人物——他年輕、身體不好、需要被反覆提醒不要膽怯。而正是這樣一個人，被託付了初代教會最重要的教會之一。他的故事提醒我們，感受到膽怯與自我懷疑，從來不是被神使用的障礙；重要的不是你有沒有恐懼，而是你是否願意在恐懼中，依然選擇忠心地承擔起被交託的責任。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你有沒有一個責任或呼召，是你覺得自己『還不夠格』卻依然被交託的？你是如何處理這份自我懷疑與實際承擔之間的張力？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">提摩太的信心根基，來自外祖母與母親兩代人的傳承。在你的生命中，是誰為你奠定了信仰或價值觀最初的根基？你是否曾特意向他們表達過感謝？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">保羅提醒他『神賜給我們不是膽怯的心』。你目前生活中，有沒有哪個領域，你發現自己正被一種『不是出於神』的膽怯所轄制？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">他常常在各教會之間往返奔波，扮演連結、傳遞消息的角色，而非站在最前線的領袖。你是否也曾經扮演過這種『幕後聯繫人』的角色？你如何看待這種角色的重要性？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 羅以與友尼基（外祖母、母親）</span>
+        <div class="gen-title">示範劇本：用日常生活中真實的信仰見證，傳承無偽之信</div>
+        <div class="gen-body">這兩代女性沒有留下任何具體的言論或事蹟記載，卻被保羅特別紀念，因為她們把一份『無偽之信』傳給了提摩太。這種安靜卻扎實的信仰傳承模式，貫穿了整個家族——不靠戲劇性的宣講，而靠日常生活中持續、真實的言傳身教。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 提摩太</span>
+        <div class="gen-title">延續而非打斷：接過信心的根基，並帶著軟弱依然忠心持守</div>
+        <div class="gen-body">提摩太完整地承接了這份家族傳下來的信心根基，並在此基礎上，進一步承擔起保羅所託付的、遠超家庭範圍的教會牧養重任。他沒有因為自己性格中的膽怯而放棄這份傳承，反而在持續的鼓勵與扶持中，逐步將這份根基轉化為具體的服事果效。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">打斷（或者更準確地說，是『扶持』）發生在保羅持續不斷的鼓勵與具體教導中——『不要叫人小看你年輕』『神賜給我們不是膽怯的心』『把恩賜再如火挑旺起來』。恩典介入的方式，不是一次性地消除提摩太的膽怯，而是透過一位屬靈父親長期、耐心、反覆的陪伴與提醒，讓他即使帶著軟弱，依然能夠持續地站立、持續地服事。這提醒我們，恩典打斷『自我懷疑』循環的方式，很多時候不是瞬間的轉變，而是長期陪伴中累積而成的堅固。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那個常常被鼓勵『別怕、別怕』的年輕人，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#菜鳥被託付重任</span>
+      <span class="tag">#身體不好也能被神用</span>
+      <span class="tag">#被反覆鼓勵才敢往前走</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>提摩太大概是新約裡最『真實』的年輕同工代表——不是那種一出場就自帶主角光環、天不怕地不怕的人物。保羅寫給他的信裡，反覆出現一句話的變體：不要膽怯、不要叫人小看你年輕、神給你的不是懦弱的心。</p>
+      <p>換句話說，這人可能真的容易緊張、容易自我懷疑。保羅甚至還特別叮囑他：你腸胃不好，別老喝水了，加點酒吧。這種細節，根本就是老闆兼師父在照顧一個身體虛弱又容易焦慮的下屬。</p>
+      <p>但就是這樣一個人，被保羅留在以弗所——當時整個小亞細亞最重要的教會之一——去處理教義爭端、教會治理、各種棘手的人事問題。換成現代情境，大概就是一個剛畢業沒多久、身體還不太好的新人，被空降去管理一個問題重重的分公司。</p>
+      <p>保羅怎麼幫他？不是一次性訓話讓他『振作起來』，是持續地寫信鼓勵他、提醒他、告訴他神給他的恩賜要『像火一樣重新搧旺』。這個意象很有畫面感——不是重新點一把新的火，是原本就有火，只是快熄了，需要有人一直在旁邊搧風。</p>
+      <p>保羅臨死前寫給他的最後一封信，語氣特別急切：我想你想到流淚，趕緊在冬天之前來見我。一位快要殉道的使徒，臨終前最想見的，是這個常常需要被鼓勵的年輕人。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——而提摩太這塊石頭，一直沒有變得特別堅硬，卻在一次次被搧旺的過程裡，穩穩地撐住了一整間教會。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你現在正被交託一個讓你覺得『我真的準備好了嗎』的責任——先知道，提摩太當年也是這樣。保羅沒有等他變得剛強才託付他，是先託付他，然後一路陪他變剛強。</p>
+      <p style="margin-top:12px;">如果你正因為身體、年紀、或某種說不清的自我懷疑，覺得自己配不上手上的任務——保羅提醒提摩太的話，此刻也可以是提醒你的話：神給你的，不是膽怯的心。</p>
+      <p style="margin-top:12px;">如果你的恩賜或熱情，最近感覺快要熄滅了——別擔心，那不代表它消失了，只是需要被重新搧旺。去找一個像保羅一樣，願意持續為你搧風的人吧，或者，成為那個為別人搧風的人。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，不用假裝自己很勇敢。帶著那份膽怯，繼續往前走一步就好。</p>
+    </div>
+
+    <div class="insight-box">在當代職場與領導力發展的討論中，提摩太的故事提供了一個對『冒牌者症候群』（imposter syndrome）極具安慰性的聖經對照——那種『我覺得自己不夠格承擔這個責任』的普遍心理狀態，早在兩千年前就已經被誠實地記載，並被溫柔地回應。保羅處理提摩太膽怯的方式——不是一次性的激勵演說，而是持續、具體、帶著真實關懷的陪伴與鼓勵——為現代導師制（mentorship）提供了一個深刻的範本：真正的栽培，往往不在於消除對方的所有恐懼，而在於陪伴對方學會帶著恐懼依然向前行走。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他留下的，不是自己的著作或神蹟，而是兩封被寫給他、卻此後餵養了整個教會歷史的書信。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">教牧書信的核心接收者</div>
+          <div class="legacy-body">提摩太前後書成為新約『教牧書信』的核心文本，為此後兩千年教會建立監督與執事制度、應對異端、以及塑造牧者品格，提供了最具體、最實用的聖經依據——這兩封信雖是私人書信，卻因其牧養智慧的深度，成為普世教會共同的屬靈財產。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">「不是膽怯的心」成為信徒面對恐懼的核心經文</div>
+          <div class="legacy-body">提摩太後書1:7此後兩千年被無數在服事或人生重大關口感到畏懼、自我懷疑的信徒反覆引用——這句最初是保羅私下對一個年輕人的鼓勵，最終成為普世教會共同的屬靈裝備與安慰。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">家庭信仰傳承的典範見證</div>
+          <div class="legacy-body">外祖母羅以與母親友尼基的『無偽之信』，成為此後基督教家庭教育與信仰傳承神學中，最常被引用的正面典範——他們證明了信仰的紮根，未必需要顯赫的地位或戲劇性的事蹟，日常生活中真實的見證，就足以塑造出一位深刻影響教會歷史的牧者。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">跨越族裔與文化張力的橋樑角色</div>
+          <div class="legacy-body">他混血的身分背景與此後跨越猶太、希臘兩個世界的服事經歷，為此後教會歷史中，無數處於文化夾縫或身分認同張力中的信徒與傳道人，提供了一個重要的先例與鼓勵。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「務要傳道，無論得時不得時，總要專心；並用百般的忍耐、各樣的教訓，責備人，警戒人，勸勉人。」</div>
+      <div class="final-verse-ref">提摩太後書 4:2</div>
+    </div>
+
+    <div class="final-question">如果你此刻正被交託一項讓你感到膽怯、覺得自己還沒準備好的責任——你願不願意相信，神給你的不是懦弱的心，而是可以被持續挑旺的恩賜？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 提摩太 <span>Τιμόθεος</span> · 保羅的屬靈兒子 · 膽怯卻忠心的年輕牧者</div>
+
+</body>
+</html>

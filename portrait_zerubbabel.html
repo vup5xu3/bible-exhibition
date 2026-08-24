@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>所羅巴伯 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">所羅巴伯</h1>
+  <span class="hero-name-en">Zerubbabel · זְרֻבָּבֶל</span>
+  <p class="hero-slogan">「萬軍之耶和華對所羅巴伯說：<br>「不是倚靠勢力，不是倚靠才能，乃是倚靠我的靈方能成事。……所羅巴伯的手立了這殿的根基，他的手也必完成這工。」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">主前約 538–515 年（被擄歸回初期，猶大省長）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ISTJ · 物流師型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">拉 1–6 章 · 該 1–2 章 · 亞 4 章</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">撒拉鐵之子（或撒拉鐵之姪）· 猶大省長 · 第二聖殿重建的領導者</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他帶領的，不是一支凱旋的軍隊，而是一群剛從七十年被擄之地歸回、面對滿目瓦礫廢墟的疲憊百姓——而他，選擇在這片廢墟上，重新立起聖殿的根基。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">主前約 538–515 年，波斯居魯士王允准歸回之後</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">猶大省長，大衛家系後裔，與大祭司約書亞同工</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">巴比倫 → 歸回耶路撒冷</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">父撒拉鐵（或按代下 3:19 為毗大雅之子，撒拉鐵之姪）；子亞比玉/利沙</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">拉 1–6 章 · 該 1–2 章 · 亞 4 章 · 太 1:12–13</div>
+      </div>
+    </div>
+
+    <p>所羅巴伯是波斯王居魯士允准猶大人歸回耶路撒冷之後，率領第一批被擄之民返鄉的關鍵領袖之一，他與大祭司約書亞（耶書亞）共同承擔起這場歸回重建工程的雙重領導責任——所羅巴伯作為大衛家系的後裔，承接政治與行政的省長職分；約書亞則作為亞倫的後裔，承接宗教與祭司的職分。以斯拉記記載，歸回之民抵達耶路撒冷後，首先重新築起祭壇、恢復獻祭，此後便在所羅巴伯與約書亞的帶領下，立了聖殿的根基——這是繼所羅門聖殿被巴比倫毀滅之後，猶大信仰生活重建最關鍵的第一步。</p>
+    <p>然而重建的過程充滿了外部的攔阻與內部的灰心。撒瑪利亞一帶的仇敵先是假意請求參與建殿，遭拒絕後便轉而向波斯朝廷控告、賄賂謀士敗壞猶大人的計謀，導致聖殿重建工程一度中斷長達十餘年之久。正是在這段停滯的歲月中，先知哈該與撒迦利亞先後興起，向所羅巴伯與百姓發出重新開工的呼籲——哈該質問百姓為何住在『天花板的房屋』，卻任由『這殿荒涼』；撒迦利亞則向所羅巴伯宣告了那句此後成為教會歷史中被反覆引用的應許：『不是倚靠勢力，不是倚靠才能，乃是倚靠我的靈方能成事。』在這兩位先知的鼓勵下，所羅巴伯重新帶領百姓恢復建殿工程，最終在主前 515 年完工，這座聖殿此後被稱為『第二聖殿』，一直延續至此後希律王擴建、耶穌傳道時期的聖殿建築。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從率眾歸回、重立祭壇根基，到面對外部攔阻與內部灰心而工程中斷，再到先知激勵下重新開工並最終完工——所羅巴伯的一生，是一部『在廢墟中堅持到底』的重建史詩。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">率眾歸回，重立祭壇——「他們……在原有的根基上築壇」</div>
+        <div class="timeline-body">波斯王居魯士允准猶大人歸回，所羅巴伯率領第一批歸回之民（約五萬人）返回耶路撒冷，眾人首先在原有的根基上重新築起祭壇，恢復每日的燔祭與各節期的獻祭，此後又立了聖殿的根基。</div>
+        <div class="timeline-ref">拉 1–3 章</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">外邦仇敵的攔阻——「使他們的手發軟，擾亂他們，不使他們建造」</div>
+        <div class="timeline-body">撒瑪利亞一帶的居民先是假意請求參與建殿遭拒，隨即轉為公開的敵對——賄賂謀士敗壞猶大人的計謀、向波斯朝廷上本控告，使建殿工程被迫中斷，長達十餘年停滯不前。</div>
+        <div class="timeline-ref">拉 4 章</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">先知的激勵與重新開工——「不是倚靠勢力，不是倚靠才能，乃是倚靠我的靈」</div>
+        <div class="timeline-body">先知哈該與撒迦利亞先後興起，責備百姓因顧念自己的房屋而任由聖殿荒涼，並鼓勵所羅巴伯與約書亞重新展開建殿工程。撒迦利亞更向所羅巴伯宣告了那句此後廣為傳頌的應許，鼓勵他不憑己力、而憑神的靈完成這項工程。</div>
+        <div class="timeline-ref">該 1–2 章 · 亞 4 章</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">第二聖殿完工——「聖殿全完，就都歡樂」</div>
+        <div class="timeline-body">在先知激勵、以及波斯王大利烏重新核准的支持下，所羅巴伯帶領百姓完成了聖殿的重建工程，於主前 515 年完工，猶大人歡然守獻殿節與逾越節——這座『第二聖殿』此後延續使用數百年，直至希律王時期擴建，並成為耶穌傳道時期猶太信仰生活的核心場所。</div>
+        <div class="timeline-ref">拉 6:13–22</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他所帶領的，不是一場光榮的凱旋，而是一場在廢墟、攔阻與灰心中，靠著神的靈而非自己的勢力才能，堅持到底的重建工程。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">在極度有限的資源與強大的外部攔阻中，選擇持續倚靠神的靈而非自己的勢力</div>
+          <div class="soul-body">先知撒迦利亞特別向他宣告『不是倚靠勢力，不是倚靠才能，乃是倚靠我的靈』，這番話語之所以被賜下，正是因為所羅巴伯所面對的處境，客觀上確實極度缺乏足以完成這項艱鉅工程的勢力與資源。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">在工程中斷多年後，仍願意重新開工、堅持到底的韌性</div>
+          <div class="soul-body">面對長達十餘年的外部攔阻與工程停滯，所羅巴伯沒有選擇徹底放棄，而是在先知的激勵下，重新召集百姓、恢復建殿，這種歷經挫折仍堅持完成使命的韌性，是他性格中最動人的部分。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">與大祭司約書亞緊密合作，共同承擔政治與宗教的雙重領導責任</div>
+          <div class="soul-body">他沒有試圖獨攬所有的領導權責，而是與約書亞分工合作——他承擔省長的行政責任，約書亞承擔祭司的宗教職分，這種謙遜而清晰的分工合作模式，是他治理風格的重要特徵。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">（材料有限——聖經未明確記載他個人的具體過犯或掙扎）</div>
+          <div class="soul-body">所羅巴伯的敘事整體呈現正面，聖經未如記載大衛或所羅門那樣，具體揭露他個人的軟弱或罪過，其形象主要透過重建工程的堅持與先知的鼓勵話語呈現。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">被先知稱為『我的僕人』與『印』，帶有超乎個人份量的象徵意義</div>
+          <div class="soul-body">先知哈該稱他為『我的僕人所羅巴伯』，並宣告神要使他『如印』一般（該 2:23）——這種印記般的稱謂，在古代近東文化中象徵著神親自的揀選與權柄的授予，賦予所羅巴伯的角色一種超越單純省長職分的深刻象徵意義。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">所羅巴伯的故事，是聖經中對『如何在資源極度匱乏、外部持續攔阻的處境中，完成一項看似不可能的使命』描寫得最具體的敘事之一。他所帶領的百姓，是剛從七十年異鄉為奴生活中歸回的疲憊之民，面對的是滿目瓦礫的耶路撒冷、強大而心懷惡意的鄰邦、以及長達十餘年因外部攔阻而中斷的工程進度——在人的眼光看來，這項重建大業幾乎注定失敗。然而先知撒迦利亞向他宣告的那句話，卻精準地點出了這項工程得以最終完成的真正關鍵：『不是倚靠勢力，不是倚靠才能，乃是倚靠我的靈方能成事。』所羅巴伯的偉大，不在於他擁有超乎常人的資源或才能，而在於他願意在極度有限的處境中，持續倚靠神的靈、並在先知的激勵下重新振作、堅持到底。他的故事提醒我們，許多看似不可能完成的使命，其成就的關鍵，往往不在於我們自身勢力或才能的多寡，而在於我們是否願意持續倚靠那位真正能成就萬事的靈。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ISTJ</span>
+      <div class="mbti-name">物流師型 · 廢墟中的建造者</div>
+      <div class="mbti-slogan">「他面對的是七十年被擄後的滿目瓦礫，卻在先知的鼓勵下，一磚一瓦，重新立起了聖殿的根基。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Si · 內向感覺</span>
+          <div class="mbti-fn-body">他致力於在原有的根基上，忠實地重建聖殿與敬拜體系，這種對既有傳統與歷史根基的忠誠依循與具體落實，正是主導內向感覺的典型展現。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">他有效地組織歸回之民、與約書亞分工合作、依循波斯朝廷的行政程序推動重建工程，展現出務實而有條理的組織執行能力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">他在先知哈該、撒迦利亞的激勵下，願意重新振作、堅持完成建殿的使命，這種內在信念的堅持與委身，顯示第三功能的作用。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Ne · 外向直覺</span>
+          <div class="mbti-fn-body">面對外部持續的攔阻與內部的灰心，他似乎更依賴具體、按部就班的重建步驟，而非展現出開創性、另闢蹊徑的策略構想，這反映出劣勢外向直覺的特徵——他的力量，更多來自堅持既定的委身，而非靈活多變的策略創新。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最重要的同工，是那位與他分擔政治與宗教雙重領導責任的大祭司約書亞，以及那兩位在工程停滯時，重新點燃百姓信心的先知。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">約書</div>
+          <div class="relation-name">大祭司約書亞（耶書亞）</div>
+          <div class="relation-type-badge">與他共同領導歸回重建的祭司</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">約書亞作為亞倫的後裔，與所羅巴伯分工合作——所羅巴伯承擔省長的行政責任，約書亞承擔祭司的宗教職分，兩人共同帶領歸回之民重建祭壇、恢復獻祭、重立聖殿根基。</div>
+          <div class="relation-ref">拉 3:2, 8 · 該 1:1</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">哈</div>
+          <div class="relation-name">先知哈該</div>
+          <div class="relation-type-badge">呼籲他重新開工建殿的先知</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">哈該責備百姓因顧念自己的房屋而任由聖殿荒涼，並直接向所羅巴伯與約書亞發出重新開工的呼籲，成為建殿工程得以重新展開的關鍵推動力量。</div>
+          <div class="relation-ref">該 1:1–15</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">亞</div>
+          <div class="relation-name">先知撒迦利亞</div>
+          <div class="relation-type-badge">向他宣告『不是倚靠勢力』應許的先知</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">撒迦利亞透過異象向所羅巴伯宣告『不是倚靠勢力，不是倚靠才能，乃是倚靠我的靈方能成事』，並應許他親手立的根基，也必由他親手完成，這番話語成為此後教會歷史中，鼓勵在艱難處境中堅持屬靈使命最常被引用的經文之一。</div>
+          <div class="relation-ref">亞 4:1–10</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「不是倚靠勢力，不是倚靠才能，乃是倚靠我的靈方能成事」——這句對所羅巴伯所說的話，此後成為教會歷史中，激勵無數面對艱鉅使命之人最重要的經文之一。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「不是倚靠勢力，不是倚靠才能，乃是倚靠我的靈方能成事。這是萬軍之耶和華說的。」</div>
+      <div class="verse-ref">撒迦利亞書 4:6</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">רוּחַ</span>
+        <div class="word-transliteration">ruach · 靈 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「靈、氣息、風」，這個字同時可以指神的靈，也可以指風或氣息，帶有一種看不見卻真實運行之大能的意象。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">撒迦利亞特別用『我的靈』與『勢力』『才能』相對照，強調所羅巴伯得以完成建殿大業的關鍵，不在於外在可見、可量化的資源或能力，而在於一種看不見、卻真實運行的屬靈大能——這個對照，成為聖經神學中理解『事奉當倚靠什麼』最核心的教導之一。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">חֹתָם</span>
+        <div class="word-transliteration">chotam · 印 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「印章、印記」，古代近東用以蓋印確認權柄與所有權的重要器物。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">哈該宣告神要使所羅巴伯『如印』一般，這個意象象徵著神親自的揀選、認證與權柄的授予——考慮到先前約雅斤（他的祖父或先祖）曾被耶利米宣告『雖是我右手上帶印的戒指，我憑我的永生起誓，也必將你從其上摘下來』（耶 22:24），所羅巴伯被稱為『印』的這番話，某種程度上，象徵著神透過他，重新恢復並確認了大衛家系的尊榮與地位。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">屬靈使命的成就終究倚靠神的靈而非人的資源</div>
+      <div class="theology-insight-body">撒迦利亞對所羅巴伯所說的話，確立了聖經神學中一個核心原則：任何屬靈事工的真正成就，不在於執行者所擁有的勢力或才能多寡，而在於是否真實地倚靠神的靈。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">先知的話語具有重新點燃灰心群體之信心與行動力的具體果效</div>
+      <div class="theology-insight-body">哈該與撒迦利亞的宣講，直接促成了停滯十餘年的建殿工程重新展開並最終完工——這具體印證了神的話語，具有喚醒灰心群體、重新凝聚行動力的實際大能。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">聖殿的重建承載著大衛家系尊榮得以恢復的象徵意義</div>
+      <div class="theology-insight-body">所羅巴伯身為大衛家系後裔，帶領重建聖殿並被稱為『印』，這使整個重建工程，同時承載著恢復敬拜體系與確認大衛家系應許延續的雙重神學意涵。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">所羅巴伯在資源匱乏、外部持續攔阻的處境中，靠著神的靈而非自己的勢力才能，重新立起聖殿的根基並最終完成整座聖殿的重建</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這個『倚靠靈而非勢力才能成事』的模式，預表了新約教會建造的核心屬靈原則——教會的建立與擴展，同樣不倚靠人的勢力或才能，而倚靠聖靈的大能</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">使徒行傳記載，教會在五旬節聖靈降臨後才真正被建立並迅速擴展，印證了『不是倚靠勢力才能，乃是倚靠我的靈』這一原則在新約教會歷史中的延續（徒 1:8, 2:1–4）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">所羅巴伯所立根基、最終完成的第二聖殿，此後歷經希律王擴建，成為耶穌傳道與受死復活時期猶太信仰生活的核心場所</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這座由所羅巴伯所奠基的聖殿建築，其存在本身，成為連接被擄歸回歷史與新約時代猶太信仰生活最具體的物質見證</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">耶穌在這座承接所羅巴伯所立根基的聖殿中教導、潔淨聖殿，並宣告『拆毀這殿，我三日內要再建立起來』，指向祂自己的身體才是真正永存的聖殿（約 2:19–21）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正面對一項看似遠超自己能力所及、且已經因種種攔阻而停滯的使命——所羅巴伯的故事，以及那句『不是倚靠勢力才能』的應許，正是為你而寫。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">所羅巴伯的故事命中的是每一個此刻正面對某項看似遠超自己能力所及、且可能已經因種種內外攔阻而停滯多時的使命或計畫的人。他所面對的處境——資源匱乏的歸回之民、強大而心懷惡意的外部勢力、長達十餘年的工程停滯——在人的眼光看來幾乎注定失敗，然而他最終選擇在先知的激勵下重新振作、持續倚靠神的靈，而非自己有限的勢力才能，最終完成了這項看似不可能的大業。他的故事提醒我們，許多使命的完成，關鍵不在於我們擁有多少資源，而在於我們是否願意持續倚靠那位真正能成事的靈。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你此刻是否正面對某項因資源匱乏、或外部攔阻而已經停滯多時的使命或計畫？撒迦利亞對所羅巴伯所說的『不是倚靠勢力才能，乃是倚靠我的靈』，對你此刻的處境，帶來什麼樣的提醒？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">所羅巴伯在先知的激勵下，願意重新振作、恢復停滯的工程。你生命中是否也有某個因灰心而擱置的使命，此刻需要一次『重新開工』的決心？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">他與約書亞清楚分工、彼此合作，而非試圖獨自承擔所有責任。你目前面對的使命中，是否也需要學習尋找合適的同工、清楚分工合作？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">這座由所羅巴伯所奠基的聖殿，最終成為耶穌傳道時期信仰生活的核心場所。這對你理解『你此刻看似微小的委身，可能為未來留下遠超你想像之深遠影響』，帶來什麼樣的啟發？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 所羅巴伯</span>
+        <div class="gen-title">示範劇本：在資源匱乏與外部攔阻中，倚靠神的靈完成看似不可能的重建大業</div>
+        <div class="gen-body">他帶領剛從被擄之地歸回的疲憊百姓，在強大外部勢力的攔阻與長期工程停滯的處境中，靠著先知的激勵與神的靈，最終完成了第二聖殿的重建。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 此後數百年在聖殿中敬拜的猶大百姓</span>
+        <div class="gen-title">延續：所羅巴伯所立的根基，成為此後數百年信仰生活的核心</div>
+        <div class="gen-body">所羅巴伯所奠基完成的第二聖殿，此後延續使用數百年，歷經希律王擴建，成為耶穌傳道時期猶太信仰生活最核心的場所，其影響遠超所羅巴伯自己當初所能想像。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在所羅巴伯的故事中，展現在神差派先知哈該與撒迦利亞，在工程停滯灰心之際，重新點燃百姓的信心與行動力；也展現在神應許所羅巴伯『親手立的根基，也必由他親手完成』——這提醒我們，神不僅呼召我們展開屬靈的使命，也應許要親自參與並成就這項使命的完成。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位在廢墟裡重新立起聖殿根基的省長，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#倚靠靈而非倚靠實力</span>
+      <span class="tag">#停滯的計畫可以重新開工</span>
+      <span class="tag">#小小的根基能撐起未來</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>所羅巴伯帶領的，是一群剛結束七十年異鄉為奴生活、拖著疲憊身心回到家鄉的百姓。回到耶路撒冷，看到的是什麼？滿目瓦礫的廢墟，曾經輝煌的聖殿，只剩斷垣殘壁。</p>
+      <p>他們先重新築起祭壇，恢復每天的獻祭，然後開始立聖殿的根基。工程剛起步，麻煩就來了——附近的撒瑪利亞人先是假意要求一起蓋，被拒絕後翻臉，開始賄賂官員、向波斯朝廷告狀，硬生生把工程卡住，一停就是十幾年。</p>
+      <p>十幾年是什麼概念？夠讓一整代人的熱情，徹底冷卻。百姓開始顧著蓋自己家的房子，聖殿的事，沒人再提。</p>
+      <p>就在這個時候，兩位先知站出來了。哈該直接質問百姓：你們自己住在裝了天花板的好房子裡，卻讓神的殿荒涼著，這樣對嗎？撒迦利亞則對所羅巴伯說了一句流傳至今的話：不是倚靠勢力，不是倚靠才能，乃是倚靠我的靈方能成事。</p>
+      <p>所羅巴伯聽進去了。他重新召集百姓，把停滯十幾年的工程，一磚一瓦地重新啟動，最後真的把聖殿蓋完了。這座聖殿，後來一直用了幾百年，甚至是耶穌後來進去教導、潔淨的那座聖殿的前身。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——所羅巴伯這塊石頭，被放在最貧瘠的廢墟上，卻靠著一句『不是倚靠勢力』，撐起了幾百年後仍屹立的根基。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你手上有一個已經停滯很久的計畫或夢想——一個因為資源不夠、或遇到攔阻而擱置的事——所羅巴伯的故事想告訴你：先知的一句話，就能讓十幾年的停滯重新啟動。</p>
+      <p style="margin-top:12px;">『不是倚靠勢力，不是倚靠才能，乃是倚靠我的靈』——這句話值得你抄下來，貼在你正卡關的地方。</p>
+      <p style="margin-top:12px;">還有，別小看你此刻正在立的『根基』。所羅巴伯當年立的根基，撐起的聖殿，一路用到了耶穌的時代。你現在做的小小的事，可能比你想像的走得更遠。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果有個計畫已經停了很久——不是倚靠勢力才能，重新開工吧，靠著那看不見卻真實的靈。</p>
+    </div>
+
+    <div class="insight-box">所羅巴伯與『不是倚靠勢力才能』這句經文，持續是當代教會事工、社會創業、與個人使命探索領域中，被引用頻率最高的聖經文本之一——它提醒任何面對資源有限、卻懷抱重大使命的人，成就的關鍵，終究不在於資源的多寡，而在於是否持續倚靠一種超乎自身能力的更大力量。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他在滿目瓦礫的廢墟上，重新立起了聖殿的根基，這座根基，此後撐起了數百年猶大信仰生活的核心。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">第二聖殿的奠基與完成者</div>
+          <div class="legacy-body">他帶領歸回之民重建的聖殿，此後延續使用數百年，歷經希律王擴建，成為耶穌傳道與受死復活時期，猶太信仰生活最核心的場所。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">『倚靠靈而非勢力才能』神學原則的具體歷史見證</div>
+          <div class="legacy-body">撒迦利亞對他所說的話，此後成為教會歷史中，闡明『屬靈使命的成就終究倚靠神的靈』這一核心原則時，被引用頻率最高的經文之一。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">彌賽亞家譜中承接被擄前後兩個時代的關鍵環節</div>
+          <div class="legacy-body">作為大衛家系的後裔，他的存在，成為馬太福音家譜中，連接被擄前猶大列王歷史與此後通向約瑟、耶穌之家系傳承不可或缺的一環。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">先知激勵促成群體行動力重燃的具體歷史範例</div>
+          <div class="legacy-body">他的重建工程在先知哈該、撒迦利亞的宣講下重新展開並最終完成，成為聖經中『神的話語具有重新點燃灰心群體行動力』這一果效最具體的歷史例證。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「所羅巴伯的手立了這殿的根基，他的手也必完成這工，你就知道萬軍之耶和華差遣我到你們這裡來了。」</div>
+      <div class="final-verse-ref">撒迦利亞書 4:9</div>
+    </div>
+
+    <div class="final-question">如果你此刻正面對一項因資源有限或外部攔阻而停滯多時的使命——你願不願意相信，就像所羅巴伯一樣，不是倚靠勢力才能，乃是倚靠那看不見卻真實運行的靈，方能成事？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 所羅巴伯 <span>זְרֻבָּבֶל</span> · 被擄歸回的猶大省長 · 第二聖殿的重建者</div>
+
+</body>
+</html>

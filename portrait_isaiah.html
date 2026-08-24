@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>以賽亞 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">以賽亞</h1>
+  <span class="hero-name-en">Isaiah · יְשַׁעְיָהוּ</span>
+  <p class="hero-slogan">「神說「我可以差遣誰呢？誰肯為我們去呢？」<br>沒有人強迫他，以賽亞卻自己說：「我在這裡，請差遣我。」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">主前約 740–681 年</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">INFJ · 提倡者型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">以賽亞書全書<br>（傳統歸於他，含後世編修的可能性）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">猶大先知 · 大先知書之首</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他所服事的四位猶大王，橫跨了近乎一個世紀的動盪——亞述帝國的擴張、猶大的興衰、聖殿的存續，而他在這一切之上，看見了一幅遠超眼前政局的救贖藍圖。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">主前約 740–681 年<br>烏西雅、約坦、亞哈斯、希西家四王在位期間</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">多重身份</span>
+        <div class="info-cell-value">猶大貴族或祭司背景的先知 · 宮廷顧問<br>大先知書之首的作者</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">耶路撒冷 →<br>猶大王國宮廷與聖殿</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">背景</span>
+        <div class="info-cell-value">傳統認為出身貴族或與王室有關係的家庭<br>婚姻與子女的命名皆帶有預言性的象徵意義</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">以賽亞書全書（66章）<br>王下 19–20 章亦有交叉記載</div>
+      </div>
+    </div>
+
+    <p>以賽亞的先知職事，經文明確標記橫跨「猶大王烏西雅、約坦、亞哈斯、希西家在位的時候」——這段時期長達近一個世紀，正是猶大王國面對亞述帝國崛起、外交政策劇烈搖擺、以及信仰持守與妥協反覆拉鋸的關鍵時代。他很可能出身猶大貴族或與王室有密切關係的家庭，這使他得以直接進入宮廷，成為包括希西家王在內多位君王的重要顧問與先知代言人。</p>
+    <p>他蒙召的異象，發生在「烏西雅王崩的那年」——這個時間標記本身就帶著深意：一位在位長達五十二年、國力強盛的君王去世，整個猶大陷入不確定的政局過渡期，而正是在這個充滿變數的時刻，以賽亞在聖殿中看見了那位「坐在高高的寶座上」、真正掌管萬有的君王。第八世紀的近東世界，亞述帝國正以前所未有的軍事擴張席捲整個區域，北國以色列在以賽亞事奉期間被亞述所滅，猶大也數度面臨被吞併的危機——以賽亞的先知職事，正是在這樣真實而迫切的政治軍事壓力下，反覆呼籲百姓與君王「不要懼怕」，並將目光從眼前的政治聯盟，轉向那位真正掌管萬國命運的耶和華。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">他的一生從聖殿中震撼性的異象開始，此後數十年，反覆在動盪的政局中，向君王與百姓宣告一位遠超眼前局勢的救主將要來臨。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">聖殿異象——「我看見主坐在高高的寶座上」</div>
+        <div class="timeline-body">「當烏西雅王崩的那年，我見主坐在高高的寶座上……撒拉弗侍立在他以上……彼此呼喊說：聖哉！聖哉！聖哉！萬軍之耶和華」。以賽亞立即的反應是深切的自覺不配：「禍哉，我滅亡了！因為我是嘴唇不潔的人……又親眼看見大君王萬軍之耶和華。」一位撒拉弗用火炭潔淨他的嘴唇，宣告他的罪孽已經除掉。</div>
+        <div class="timeline-ref">賽 6:1–7</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">「我在這裡，請差遣我」——毫不猶豫的回應</div>
+        <div class="timeline-body">神問：「我可以差遣誰呢？誰肯為我們去呢？」以賽亞立刻回答：「我在這裡，請差遣我！」這句回應沒有任何猶豫或推辭——與摩西何烈山前一連串的推辭理由形成鮮明對照，展現出以賽亞在經歷潔淨之後，內心對呼召毫無保留的回應。神隨即告訴他，這份差遣的內容將是艱難的：百姓「聽是要聽見，卻不明白」。</div>
+        <div class="timeline-ref">賽 6:8–13</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">黑暗低谷</span>
+        <div class="timeline-title">亞哈斯王的不信——「你為何試探我呢」</div>
+        <div class="timeline-body">亞蘭與以色列聯軍威脅猶大，亞哈斯王心中恐懼，以賽亞奉命帶著兒子前去安慰他，宣告神必護庇，並邀請他求一個兆頭以堅固信心。亞哈斯卻虛偽地推辭：「我不求，我不試探耶和華。」以賽亞因此宣告那個著名的預言：「必有童女懷孕生子，給他起名叫以馬內利。」而亞哈斯此後選擇向亞述求救而非倚靠神，招致此後猶大長期受亞述轄制的後果。</div>
+        <div class="timeline-ref">賽 7 章</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">赤身露體行走三年——極端的象徵性先知行動</div>
+        <div class="timeline-body">神吩咐以賽亞「脫去腰間麻布，穿脫你腳上的鞋」，赤身露體行走三年，作為亞述將要擄掠埃及與古實的預兆，警告猶大不可倚靠這些終將淪陷的外邦強權。這種極端的、以自己身體作為活生生預言標記的先知行動，展現出他所承擔的先知職分，遠超單純的言語宣講。</div>
+        <div class="timeline-ref">賽 20 章</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">希西家的信心與亞述的威脅——「求你救我們脫離他的手」</div>
+        <div class="timeline-body">亞述王西拿基立大軍圍困耶路撒冷，派將軍辱罵褻瀆耶和華，希西家撕裂衣服進入聖殿禱告，並差人求問以賽亞。以賽亞傳達神的應許：「他必不得來到這城……因我為自己的緣故，又為我僕人大衛的緣故，必保護拯救這城。」當夜耶和華的使者擊殺亞述營中十八萬五千人，西拿基立撤兵——這是猶大歷史上最戲劇性的一次軍事拯救，直接印證了以賽亞一貫「倚靠耶和華而非外邦勢力」的核心信息。</div>
+        <div class="timeline-ref">賽 36–37 章</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">希西家的病與延壽——眼淚蒙神垂聽</div>
+        <div class="timeline-body">希西家病重將死，以賽亞奉命告訴他「你必死不能活了」，希西家轉臉向牆痛哭禱告，神隨即差以賽亞回去告訴他：「我已聽見你的禱告，看見你的眼淚，我必加增你十五年的壽數。」以賽亞並吩咐人用無花果餅敷在王的患處使他痊癒——這段記載展現出即使是已經宣告的審判性信息，依然可能因懇切的禱告而被神憐憫地扭轉。</div>
+        <div class="timeline-ref">賽 38 章</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">受苦僕人的預言——「他被藐視，被人厭棄」</div>
+        <div class="timeline-body">以賽亞書後半部（尤其52–53章）記載了舊約中對彌賽亞受苦最詳盡、最震撼人心的預言：「他被藐視，被人厭棄；多受痛苦，常經憂患……他誠然擔當我們的憂患，背負我們的痛苦……因他受的鞭傷，我們得醫治。」這段預言精準到近乎逐字應驗在耶穌基督的受難上，成為整本舊約彌賽亞預言中，最核心、也最深刻的一段文本。傳統認為以賽亞晚年在瑪拿西王治下殉道（被鋸成兩段），儘管聖經正典本身未明確記載他的死亡方式。</div>
+        <div class="timeline-ref">賽 52:13–53:12</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他一開口回應呼召，就是毫不猶豫的「我在這裡，請差遣我」——這種即刻的回應，貫穿他一生對神話語的傳講與持守。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">耶和華的聖潔與主權，超越一切眼前的政治局勢</div>
+          <div class="soul-body">從聖殿異象中對神聖潔的深切震撼，到反覆勸告君王不要倚靠外邦勢力而要單單倚靠耶和華，他一生的核心信念始終如一：眼前的政治聯盟與軍事威脅，都不能與那位「坐在高高寶座上」的真神相提並論。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">在蒙潔淨之後毫不猶豫地回應呼召</div>
+          <div class="soul-body">「我在這裡，請差遣我」——這句話沒有任何條件或猶豫，展現出他在經歷神聖潔淨的震撼之後，內心對服事神呼召的完全降服與渴望，這種即刻回應的品格，是他一生先知職事最動人的起點。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">詩意而富有文學張力的表達，善用極具震撼力的象徵性行動</div>
+          <div class="soul-body">以賽亞書的文學成就在舊約先知書中極為突出——豐富的意象、詩意的平行結構、震撼人心的宣告；他也不惜用赤身露體行走三年這種極端的象徵行動，來傳達神的信息，展現出他將真理傳達得深入人心的強烈意圖。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">（材料有限——聖經對他個人的軟弱或失敗記載極少）</div>
+          <div class="soul-body">以賽亞書中的以賽亞，主要以先知宣告者的身分出現，個人性的掙扎或失敗記載相對稀少，這使他在舊約先知中，成為一位形象相對「純粹」的傳信者，儘管這更可能是敘事焦點使然。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">看見寶座異象，並精準預言彌賽亞受苦細節的先知恩賜</div>
+          <div class="soul-body">他在聖殿中所見的異象，是舊約中對神聖潔榮耀描寫最震撼的文本之一；而他對彌賽亞受苦僕人的預言，精確到近乎逐字應驗在數百年後耶穌基督的受難經歷上，這種跨越數百年時間、卻精準對應的先知性洞見，是他一生最神秘也最深刻的恩賜展現。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">以賽亞蒙召的整個過程，揭示了一個深刻的屬靈次序：真正的服事熱忱，必須先經過對神聖潔的震撼性認識，以及隨之而來對自身不潔的誠實承認。他不是先熱心地說「我在這裡，請差遣我」，而是先喊出「禍哉，我滅亡了」——這句自覺不配的呼喊，先於他此後毫不猶豫的回應。這提醒我們，真正持久而深刻的服事熱情，往往不是源自對自己能力的自信，而是源自對神聖潔的深刻認識、以及在這份認識中被潔淨與赦免的真實經歷。若沒有先經過「禍哉，我滅亡了」的震撼與潔淨，「我在這裡，請差遣我」很可能只是一時的熱血衝動，而非能夠支撐數十年艱難先知職事的堅實根基。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">INFJ</span>
+      <div class="mbti-name">提倡者型 · 寶座異象的宣告者</div>
+      <div class="mbti-slogan">「他看見了神的聖潔，先喊出「我滅亡了」，然後才說出「請差遣我」——真正的服事，總是先從誠實的自覺不配開始。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">他能夠洞察遠超眼前政治局勢的深層屬靈實相——無論是看穿倚靠外邦勢力的虛妄，還是預見數百年後彌賽亞受苦的具體細節，這種穿透表象、直達核心意義與未來圖景的洞察力，是他先知職事最核心的能力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Fe · 外向情感</span>
+          <div class="mbti-fn-body">他對整個猶大民族的屬靈與政治命運懷抱深切的關懷，反覆勸勉君王與百姓回轉、倚靠神——這種對群體福祉的高度投入與關切，驅動著他數十年如一日地在艱難的政治處境中持續發聲。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ti · 內向思考</span>
+          <div class="mbti-fn-body">以賽亞書展現出高度精密的文學與神學結構——審判與拯救交織的宏大架構、精確的預言細節，這種能夠將深邃的屬靈洞見，組織成邏輯清晰、結構嚴謹之文本的能力，顯示第三功能的作用。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Se · 外向實感</span>
+          <div class="mbti-fn-body">他需要透過極端、震撼性的具體象徵行動（赤身露體行走三年）才能有效地傳達某些信息——這種傾向於用戲劇化的肢體行動來補足言語傳達之不足的方式，某種程度上反映出劣勢外向實感在面對「如何讓抽象真理具體可感」這一挑戰時的特殊表現方式。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最重要的關係，始於聖殿中那場讓他喊出「我滅亡了」的異象，此後貫穿他與四位猶大君王之間複雜而深刻的互動。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">耶</div>
+          <div class="relation-name">耶和華神</div>
+          <div class="relation-type-badge">以震撼異象呼召他、並持續啟示未來的主</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">聖殿中的異象，是以賽亞一生蒙召與委身最核心的根基——神的聖潔震撼了他，也潔淨了他，此後持續透過他向猶大君王與百姓傳達審判與拯救的信息，並在他身上啟示了跨越數百年的彌賽亞預言。</div>
+          <div class="relation-ref">賽 6 章</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">亞</div>
+          <div class="relation-name">亞哈斯王</div>
+          <div class="relation-type-badge">他勸諫卻未能說服的不信之王</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">亞哈斯王面對外敵威脅時，拒絕以賽亞邀請他求兆頭以堅固信心的提議，反而選擇倚靠亞述——這段互動展現出即使是最清楚的先知宣告，也未必能扭轉一位掌權者已然定意的不信抉擇。</div>
+          <div class="relation-ref">賽 7 章</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">希</div>
+          <div class="relation-name">希西家王</div>
+          <div class="relation-type-badge">他所服事、多次共同經歷神拯救的信心之王</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">與亞哈斯形成鮮明對照，希西家王在亞述威脅與自己病重之際，都選擇懇切禱告、倚靠神，並多次差人求問以賽亞——兩人之間展現出一種先知與君王彼此信任、共同見證神拯救大能的深刻互動關係。</div>
+          <div class="relation-ref">賽 37–38 章</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">猶</div>
+          <div class="relation-name">猶大百姓</div>
+          <div class="relation-type-badge">他所服事、卻被神預告「聽是要聽見卻不明白」的群體</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">神在呼召以賽亞時，就已預告他的信息將面臨百姓「心蒙脂油、耳朵發沉、眼睛昏迷」的抗拒與不解——這使他一生的先知職事，某種程度上注定要在不被完全理解與接受的處境中持續進行。</div>
+          <div class="relation-ref">賽 6:9–10</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「他被藐視，被人厭棄……他誠然擔當我們的憂患」——以賽亞書53章，是整本舊約對基督受死意義預言最深刻、也最精確的一段文本。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「他被藐視，被人厭棄；多受痛苦，常經憂患……他誠然擔當我們的憂患，背負我們的痛苦……哪知他為我們的過犯受害，為我們的罪孽壓傷。因他受的刑罰，我們得平安；因他受的鞭傷，我們得醫治。」</div>
+      <div class="verse-ref">以賽亞書 53:3–5</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">קָדוֹשׁ קָדוֹשׁ קָדוֹשׁ</span>
+        <div class="word-transliteration">qadosh qadosh qadosh · 聖哉聖哉聖哉 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「聖潔的、聖潔的、聖潔的」，希伯來文透過三次重複來表達最高級的強調——沒有比這更聖潔的了。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">撒拉弗在以賽亞異象中所呼喊的這句三重讚美，此後成為猶太教與基督教敬拜傳統中最核心的頌讚詞之一（此後被納入啟示錄4:8「聖哉、聖哉、聖哉，主神是昔在、今在、以後永在的全能者」）。這種三重疊用的表達方式，此後也被視為對三位一體神聖屬性的一種預表性暗示，深刻影響了教會歷史中對神聖潔屬性的敬拜語言。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">עֶבֶד יְהוָה</span>
+        <div class="word-transliteration">eved YHWH · 耶和華的僕人 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「耶和華的僕人」，以賽亞書中多次出現這個稱謂，有時指以色列全體，有時指向一位特定、承擔代贖使命的個人性人物。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">以賽亞書中的「僕人之歌」（尤其42、49、50、52–53章）所描繪的這位受苦僕人，其受苦的性質——「他誠然擔當我們的憂患」——超越了單純的以色列民族性受苦，指向一位承擔他人罪孽、代替性受死的個人性彌賽亞人物。這段經文成為新約作者理解耶穌受死意義最重要的舊約文本依據，被引用的次數遠超其他任何舊約經文段落。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">以馬內利：神與人同在的應許</div>
+      <div class="theology-insight-body">以賽亞在亞哈斯王前所宣告的「必有童女懷孕生子，給他起名叫以馬內利」，此後成為馬太福音明確引用、宣告耶穌降生應驗的重要預言（太1:23）——「以馬內利」（神與我們同在）這個名字本身，濃縮了整本聖經救贖歷史最核心的應許。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">受苦僕人：舊約彌賽亞預言的巔峰</div>
+      <div class="theology-insight-body">以賽亞書52至53章對受苦僕人的描寫，被學者公認是整本舊約中，對彌賽亞受死意義預言最詳盡、最精確的文本——從「像羊被牽到宰殺之地」的沉默受苦，到「他為我們的罪孽壓傷」的代贖性質，幾乎逐字對應了此後耶穌受難的具體經歷。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">聖潔與差遣的神學次序</div>
+      <div class="theology-insight-body">以賽亞蒙召的敘事確立了一個重要的神學次序：真正的服事熱忱，必須建立在對神聖潔的深刻認識、以及隨之而來的自我潔淨之上——「禍哉，我滅亡了」必須先於「我在這裡，請差遣我」，這對此後教會理解「呼召與差遣」的正確次序，提供了核心的神學典範。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">摩西在何烈山遇見焚而不燬的荊棘，脫鞋敬拜，領受呼召去拯救以色列脫離埃及的奴役</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">以賽亞在聖殿中同樣經歷了一場震撼性的呼召異象，兩人都在深切的敬畏與自覺不配中，領受了一項將要改變整個民族命運的先知或拯救者使命</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督親自成就了先知傳統所預表的終極拯救者角色，祂「取了奴僕的形像」，成就了摩西與以賽亞所預表、卻未能完全成就的救贖（腓 2:6–8）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">逾越節的羔羊被宰殺，牠的血塗在門楣上，使以色列人得以免於滅命之災，這是舊約中代贖性拯救最早、最核心的圖像</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">以賽亞書53章描寫受苦僕人「像羊被牽到宰殺之地」，直接呼應逾越節羔羊的意象，將這位個人性的受苦僕人，與整個舊約代贖神學的核心圖像緊密相連</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督被施洗約翰稱為「神的羔羊，除去世人罪孽的」，親身成就了以賽亞所預言、逾越節羔羊所預表的終極代贖（約 1:29 · 林前 5:7）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">以賽亞宣告「必有一嬰孩為我們而生，有一子賜給我們……他名稱為奇妙策士、全能的神、永在的父、和平的君」，這是舊約中對彌賽亞身分最崇高的宣告之一</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這段預言將這位將要降生的嬰孩，直接稱為「全能的神」——這在嚴格一神論的舊約語境中，是極其大膽而震撼的宣告，直接指向彌賽亞的神性</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督降生應驗了這段預言，祂正是那位「道成了肉身」、既完全是人、又完全是神的救主（約 1:1, 14 · 賽 9:6）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你曾經在深刻認識到自己的不完美之後，反而更清楚地感受到被呼召去服事——這一頁是為你寫的。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">以賽亞命中的是一種常被誤解的屬靈次序：許多人以為，要先感覺自己「夠格」，才能回應神的呼召；但以賽亞的經歷恰恰相反——他先在神的聖潔面前徹底崩潰，喊出「我滅亡了」，正是在這場徹底的自覺不配之後，他才能毫無保留地說出「我在這裡，請差遣我」。這提醒我們，真正持久的服事熱忱，不是源自對自己能力的自信，而是源自對神聖潔的敬畏、以及在這份敬畏中經歷被潔淨與赦免的真實恩典。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你有沒有一次深刻經歷到自己的不完美或不配，卻在那之後，反而更清楚地感受到被呼召去做某件事的經歷？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">以賽亞的回應是「我在這裡，請差遣我」，沒有任何附加條件。你回應呼召的方式，通常是像他這樣毫不猶豫，還是像摩西那樣列出一串推辭的理由？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">神告訴以賽亞，他的信息會被百姓「聽是要聽見，卻不明白」。你是否曾經在忠心傳講某個真理時，經歷過對方聽不進去、甚至誤解的挫折感？你如何持續在這種處境中堅持下去？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">受苦僕人的預言告訴我們，最深的拯救，往往透過最深的受苦而來。你此刻是否也在經歷某種讓你困惑的苦難，而這苦難，是否可能正在成就某個超越你眼前理解的更大意義？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 以賽亞</span>
+        <div class="gen-title">示範劇本：先徹底承認自己的不配，才能毫無保留地回應呼召</div>
+        <div class="gen-body">他的蒙召經歷展現出一個清晰的順序——先是「禍哉，我滅亡了」的自覺不配，經過潔淨之後，才是「我在這裡，請差遣我」的毫不猶豫。這個順序，成為他此後數十年先知職事最堅實的根基。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 此後領受並宣講其預言的歷代先知與使徒</span>
+        <div class="gen-title">延續而非打斷：以賽亞的異象與預言，持續被此後的信仰群體引用與應驗</div>
+        <div class="gen-body">他所見的異象（「聖哉聖哉聖哉」）與所宣告的受苦僕人預言，此後被新約作者反覆引用，成為理解基督位格與救贖工作最重要的舊約依據——他一人的忠心傳講，持續透過數百年的時間，滋養著無數世代的信仰群體。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">打斷（或說是奠基）發生在撒拉弗用火炭潔淨他嘴唇的那一刻——神沒有因他自覺不配而拒絕使用他，反而先施行潔淨，才賦予他差遣。這提醒我們，恩典從不要求人先自己變得完美才能被使用，而是先施行潔淨與赦免，讓人得以在被恩典觸摸之後，毫無保留地回應那個呼召。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那個看見神的聖潔就崩潰、卻又毫不猶豫舉手說「我去」的先知，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#先崩潰後回應</span>
+      <span class="tag">#被聽見卻不被理解也要堅持</span>
+      <span class="tag">#預言精準到嚇人</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>以賽亞蒙召的那一幕，畫面感十足——他在聖殿裡，忽然看見神坐在高高的寶座上，天使繞著喊：聖哉、聖哉、聖哉！整個殿的根基都因呼喊的聲音震動。</p>
+      <p>他的第一反應不是興奮，是崩潰：完了，我死定了，我是個嘴唇不潔淨的人，卻親眼看見了大君王！這反應很真實——真正近距離見識到神的聖潔，第一個浮現的往往不是「好激動」，是「我根本不夠格站在這裡」。</p>
+      <p>然後一個天使拿炭火碰他的嘴，說：你的罪孽已經除掉了。緊接著，神問了一句：我可以差遣誰呢？誰願意為我們去？以賽亞想都沒想，直接舉手：我在這裡，請差遣我！</p>
+      <p>這個反應速度，跟摩西當年在荊棘火前一路找理由推辭，完全是兩個極端。神接下來告訴他的內容，其實不太討喜——你去傳的信息，百姓會聽卻聽不懂，看卻看不明白。換句話說：你這輩子很可能講到嘴破，還是有一堆人不信你。以賽亞沒有因此打退堂鼓，他還是去了。</p>
+      <p>他這輩子講過最有名的一段話，出現在整卷書的後半段——描述一位「受苦的僕人」，被藐視、被厭棄、被鞭打、代替別人承擔罪過。這段話寫在耶穌出生前七百年，卻精準到像是逐字描述了耶穌被釘十字架的過程。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——而以賽亞這塊石頭，是先被神聖潔的光震得粉碎，才在那份碎裂裡，聽見了自己真正的呼召。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你最近深刻感受到自己有多麼不完美、多麼不夠格——先別急著沮喪。以賽亞也是先喊完「我死定了」，才說出「請差遣我」。這種順序，可能正是通往真正服事的必經之路。</p>
+      <p style="margin-top:12px;">如果你正忠心地做一件事，卻常常覺得沒有人聽得懂、沒有人領情——以賽亞早就被預告過這種結果，他還是選擇繼續講。你的忠心，不需要以「立刻被理解」作為條件。</p>
+      <p style="margin-top:12px;">還有，如果你正在經歷一段看似毫無意義的苦難——受苦僕人的預言告訴我們，有時候最深的拯救，恰恰是從最深的受苦中生出來的。你此刻的苦，可能不是白白受的。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，不用等到自己覺得「夠格」才敢說「我願意」——先讓那份不配感，把你帶到願意的那一步。</p>
+    </div>
+
+    <div class="insight-box">在當代呼召神學與屬靈委身的討論中，以賽亞的蒙召經歷提供了一個對抗『先自我肯定、才能服事』這種常見迷思的重要典範——真正持久的委身，往往源自對自己有限性的誠實承認，而非虛假的自信建構。這對正在思考『我是否夠格去做某件事』的現代信徒，提供了重要的心理與屬靈框架：不配感不必然是拒絕呼召的理由，反而可能是回應呼召最真實的起點。而受苦僕人的預言，也持續為當代面對苦難意義的神學反思，提供了核心的參照——苦難本身雖然痛苦，卻可能承載著超越當事人所能理解的救贖性意義。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他留下的，是整本舊約中對彌賽亞身分與使命描寫最豐富、最精確的一卷先知書，被稱為「舊約中的福音書」。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">「舊約中的福音書」</div>
+          <div class="legacy-body">以賽亞書因其對彌賽亞降生（以馬內利、奇妙策士）、受苦（受苦僕人）、以及末後榮耀國度的豐富預言，被歷代教會稱為「舊約中的福音書」，是新約作者引用次數最多的舊約書卷之一。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">受苦僕人神學的巔峰文本</div>
+          <div class="legacy-body">以賽亞書52至53章對受苦僕人的描寫，成為理解基督代贖性受死最核心的舊約依據，深刻影響了此後兩千年基督教救贖神學的發展與表述。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">「聖哉聖哉聖哉」敬拜傳統的源頭</div>
+          <div class="legacy-body">撒拉弗在聖殿異象中的三重呼喊，此後成為猶太教與基督教敬拜傳統中最核心的頌讚詞之一，並在啟示錄中被再次確認，持續形塑著教會歷代的敬拜語言。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">蒙召與差遣的神學典範</div>
+          <div class="legacy-body">「我在這裡，請差遣我」這句毫不猶豫的回應，此後成為無數世代信徒回應神呼召時，最常引用、也最深植人心的一句話語，確立了「先蒙潔淨、才能差遣」這一重要的屬靈次序。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">V</div>
+        <div>
+          <div class="legacy-title">對政治局勢中信心持守的持續提醒</div>
+          <div class="legacy-body">他一生反覆呼籲君王與百姓不要倚靠外邦勢力、而要單單倚靠耶和華，這個核心信息此後持續提醒著歷代信徒，在面對眼前的政治或現實壓力時，如何將終極的信靠，安放在超越眼前局勢的神的主權之上。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「他誠然擔當我們的憂患，背負我們的痛苦；我們卻以為他受責罰，被神擊打苦待了。哪知他為我們的過犯受害，為我們的罪孽壓傷；因他受的刑罰，我們得平安；因他受的鞭傷，我們得醫治。」</div>
+      <div class="final-verse-ref">以賽亞書 53:4–5</div>
+    </div>
+
+    <div class="final-question">如果神此刻問「我可以差遣誰呢？誰肯為我們去呢？」——你會像摩西一樣先列出理由推辭，還是願意像以賽亞一樣，在經歷過神聖潔的震撼與潔淨之後，毫不猶豫地說：「我在這裡，請差遣我」？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 以賽亞 <span>יְשַׁעְיָהוּ</span> · 看見寶座異象的先知 · 受苦僕人的宣告者</div>
+
+</body>
+</html>

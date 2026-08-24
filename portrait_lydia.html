@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>呂底亞 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">呂底亞</h1>
+  <span class="hero-name-en">Lydia · Λυδία</span>
+  <p class="hero-slogan">「聖經只用一句話介紹她的身分：賣紫色布的呂底亞。<br>而她信主後說的第一句話，是「請到我家裡來住」——歐洲教會的第一顆種子，種在她的客廳裡。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">第一世紀 · 主後約 50 年</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ESTJ · 總經理型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">使徒行傳 16:11–15, 40（唯一記載）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">歐洲第一位信徒 · 腓立比教會的接待者</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">保羅在馬其頓異象中看見一個人呼求「請你過來幫助我們」，而神差他去見的第一個人，是一位在河邊敬拜的女商人。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">第一世紀<br>羅馬帝國治下的馬其頓行省</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">多重身份</span>
+        <div class="info-cell-value">推雅推喇人 · 賣紫色布的商人<br>敬畏神的人（尚未完全歸信猶太教的外邦人）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">推雅推喇（小亞細亞呂底亞地區，以染布業著稱）→<br>腓立比（馬其頓的羅馬殖民城市）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">背景</span>
+        <div class="info-cell-value">獨立經營紫色布匹貿易的女性商人<br>擁有足以接待保羅一行人的住所與家業</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">使徒行傳 16:11–15, 40（保羅第二次宣教旅程進入歐洲的首站記載）</div>
+      </div>
+    </div>
+
+    <p>呂底亞出身推雅推喇——小亞細亞呂底亞地區的一座城市，以其染布業聞名（考古發現當地確實存在染工同業公會的碑文記載）。她的名字「呂底亞」實際上正是她故鄉地區的名稱，這在古代並不罕見，暗示她可能是以原籍地作為代稱，而非本名。她此時卻在遠離家鄉的腓立比——馬其頓行省的一座重要羅馬殖民城市——經營紫色布匹的貿易生意。紫色染料在古代極為珍貴（多從骨螺中提取，工序繁複，價格昂貴），通常與皇室、貴族、或富裕階層的服飾相關，經營這門生意，意味著呂底亞在當時具有相當的經濟實力與社會地位。</p>
+    <p>路加特別記載她是「敬拜神的」（σεβομένη τὸν θεόν）——這是使徒行傳中用來描述那些被猶太信仰吸引、遵守部分猶太教誨與敬拜方式、卻尚未完全成為猶太教徒（未受割禮）的外邦人的專門術語（哥尼流也是這類人）。腓立比當時猶太人口稀少，甚至沒有正式的會堂——按猶太傳統，若一座城市中猶太成年男子不足十人，便無法組成正式會堂，只能在城外的河邊或空曠處聚集禱告。這正是保羅一行人在安息日出城，來到河邊「有人在那裡聚會禱告」之處，遇見呂底亞的具體歷史背景。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">她的故事濃縮在幾節經文裡，卻標誌著福音第一次正式跨入歐洲大陸的歷史時刻。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">馬其頓的異象——「請你過來幫助我們」</div>
+        <div class="timeline-body">保羅在特羅亞夜間看見異象，有一個馬其頓人站著求他說：「請你過來，幫助我們。」保羅便立刻決定前往馬其頓——這是福音第一次有明確記載，跨越愛琴海，正式進入歐洲大陸的關鍵時刻。而神所預備、要迎接這第一批宣教士的，正是呂底亞。</div>
+        <div class="timeline-ref">徒 16:9–10</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">河邊的禱告會——「有幾個婦女在那裡聚會」</div>
+        <div class="timeline-body">保羅一行人來到腓立比，「當安息日，我們出城門，到了河邊，知道那裡有一個禱告的地方，我們就坐下對那聚會的婦女講道」。這個場景本身就充滿了值得留意的細節——腓立比缺乏正式的猶太會堂，聚集敬拜的只有幾位婦女，而福音在歐洲的第一場正式宣講，正是對著這樣一群看似邊緣、不起眼的聽眾展開的。</div>
+        <div class="timeline-ref">徒 16:13</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">「主就開導她的心，叫她留心聽保羅所講的話」</div>
+        <div class="timeline-body">路加特別記載：「有一個賣紫色布匹的婦人，名叫呂底亞，是推雅推喇城的人，素來敬拜神。她聽見了，主就開導她的心，叫她留心聽保羅所講的話。」這句話清楚地把她信主的過程，歸功於神主動的介入與開導，而非單純保羅講道技巧的說服——她的歸信，是一場神聖啟示與人的預備心志相遇的結果。</div>
+        <div class="timeline-ref">徒 16:14</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">全家受洗——並主動邀請保羅一行人住進她家</div>
+        <div class="timeline-body">呂底亞和她一家既領了洗，就求保羅等人說：「你們若以為我是真信主的，便請到我家裡來住。」並且「強留他們」。這個動作極具份量——她不是被動地接受信仰，而是立刻、主動、甚至帶著幾分堅持地，把自己的家與資源，開放出來服事這幾位剛認識的傳道人，展現出信主後立即湧現的慷慨與行動力。</div>
+        <div class="timeline-ref">徒 16:15</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">「就到呂底亞家裡去」——她的家成為教會的起點</div>
+        <div class="timeline-body">保羅和西拉在腓立比監獄經歷了神蹟性的釋放後，「出了監，往呂底亞家裡去；見了弟兄們，勸慰他們一番，就走了」。這個細節顯示，她的家此後成為腓立比初代信徒固定聚集之處——歐洲第一間教會，很可能就是從呂底亞家的客廳開始的。此後保羅寫給腓立比教會的書信，語氣格外溫暖親密（『我每逢想念你們，就感謝我的神』），這座教會的起點，正是這位女商人毫不猶豫地敞開的家門。</div>
+        <div class="timeline-ref">徒 16:40</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">她信主的方式很安靜——只是留心聽；但她信主後的反應卻極其果斷——立刻把家獻出來，而且「強留」對方接受。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">信仰必須立刻轉化為具體的款待與行動</div>
+          <div class="soul-body">從主開導她的心、留心聽道，到全家受洗、主動邀請保羅一行人住進她家，整個過程進展得極快——她似乎不習慣讓信心停留在單純的內在感受上，而是本能地想要立刻用具體的行動（提供住所、款待）來回應與承載這份信心。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">毫不遲疑、甚至帶著堅持的慷慨</div>
+          <div class="soul-body">經文用『強留』來描述她邀請保羅一行人住進她家的態度——這不是一句客套的邀約，而是帶著相當程度的堅持與誠意。她的慷慨不是被動的提供，而是主動、甚至略帶強勢地爭取服事機會。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">務實、獨立、擅長經營與待人接物</div>
+          <div class="soul-body">作為一位獨立經營紫色布匹貿易的女商人，她必然具備相當的商業頭腦、人際手腕與獨立自主的行事能力——這種特質延續到她信主後的行動模式：迅速、果斷、且善於運用自己既有的資源（住所、家業）來服事新的信仰群體。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">（材料有限——聖經未記載她任何明確的性格弱點）</div>
+          <div class="soul-body">她在聖經中的形象幾乎全部是正面的——留心聽道、慷慨款待、持續接待教會。這是敘事篇幅有限所致的自然空白，而非刻意的美化，但也提醒我們，對她性格陰影的推論，材料相對薄弱。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">「主開導她的心」——一場只有神能成就的內在轉化</div>
+          <div class="soul-body">路加特別強調是『主』開導了她的心，而非單純描述她自己主動決定信主——這暗示了在她專注聆聽保羅講道的表象之下，正在發生一場超越人力所能促成的屬靈開啟。這句話成為新約中，少數明確描述『信心從何而來』之神學過程的經文之一。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">呂底亞的故事最動人之處，在於信心與行動之間幾乎沒有任何延遲——她聽道、被主開導、受洗、然後立刻獻上自己的家。這種毫無保留的即刻回應，與許多聖經人物需要長時間掙扎、猶豫才能全然委身的軌跡形成鮮明對照。這提醒我們，真實的信心，往往會自然而然地尋求具體的出口——不是因為律法要求她這樣做，而是因為信心本身，就渴望被轉化為看得見的行動與款待。而她作為一位獨立、能幹的女商人，選擇用自己最實際的資產（家與住所）來服事福音的擴展，也展現了一種深刻的真理：神使用一個人信主前既有的能力與資源，成為此後服事祂國度最直接有效的工具，而不需要她先放下原本的身分才能被使用。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ESTJ</span>
+      <div class="mbti-name">總經理型 · 強留使徒的女商人</div>
+      <div class="mbti-slogan">「她聽完道、受了洗，做的第一件事不是感嘆，是立刻把家門打開,說：你們一定要住我家。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">她能獨立經營一門需要相當商業頭腦的貿易生意（紫色布匹），並在信主後迅速、果斷地將這份組織與執行能力，轉化為具體的服事行動——邀請、堅持、款待保羅一行人。這種高效、目標導向的行動力，貫穿她信主前後的整個生命樣態。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Si · 內向實感</span>
+          <div class="mbti-fn-body">她重視具體、可靠的承諾與關係——『強留』這個動作顯示她不滿足於表面客套的邀約，而是希望確保這份款待真實地被接受與實現。她也持續、穩定地讓自己的家作為教會聚集的固定場所，展現出對承諾之具體落實的重視。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">她信主的整個過程，帶著深刻的個人真誠——『主就開導她的心』暗示這不是表面的社交性接納，而是內心深處真實的觸動與轉化，她此後毫不保留的慷慨，正是這份真誠信念的自然流露。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Ne · 外向直覺</span>
+          <div class="mbti-fn-body">聖經沒有記載她對信仰進行任何抽象、開放式的哲學思辨或探索過程——她的信主是直接、具體、聚焦於當下處境的回應，而非經過長期理論性思考才達成的結論。這與她務實、行動導向的整體性格一致。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">她與保羅一行人的關係，從一場河邊的禱告會開始，最終演變成整間腓立比教會最初的家。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">保</div>
+          <div class="relation-name">保羅</div>
+          <div class="relation-type-badge">為她講道、並成為她長期款待對象的使徒</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">保羅在河邊向她與其他婦女講道，成為她信主的直接契機。此後她堅持款待保羅一行人，並持續讓自己的家成為腓立比教會的聚集地——這段關係從一次偶然的相遇，發展成長期而穩固的服事夥伴關係。保羅後來寫給腓立比教會的書信，情感格外溫暖親密，這很可能與呂底亞這樣慷慨接待的信徒所建立的深厚情誼密切相關。</div>
+          <div class="relation-ref">徒 16:13–15, 40</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">神</div>
+          <div class="relation-name">神（主動開導她心的那一位）</div>
+          <div class="relation-type-badge">在她聆聽的過程中親自介入者</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">路加特別強調『主就開導她的心』——這段記載清楚地把信心的根本來源，歸給神主動的作為，而非單純的人為說服。這提醒我們，即使在最平凡的日常場景（一場河邊的禱告聚會）中，神依然可以親自介入，在一個人心裡動工。</div>
+          <div class="relation-ref">徒 16:14</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">家</div>
+          <div class="relation-name">她的家人（全家）</div>
+          <div class="relation-type-badge">與她一同受洗、一同接待的家庭</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">經文記載『她和她一家既領了洗』，顯示她的信主帶動了整個家庭一同歸信——這與哥尼流、腓立比獄卒等記載中『全家信主』的模式一致，展現了初代教會擴展過程中，家庭作為信仰傳遞核心單位的重要性。</div>
+          <div class="relation-ref">徒 16:15</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">腓</div>
+          <div class="relation-name">腓立比教會的弟兄們</div>
+          <div class="relation-type-badge">此後持續聚集在她家中的信仰群體</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">保羅和西拉出獄後『往呂底亞家裡去；見了弟兄們，勸慰他們一番』——這顯示呂底亞家已然成為腓立比信徒固定聚集的場所，她的家從一次款待的起點，發展成整間教會實際運作的核心據點。</div>
+          <div class="relation-ref">徒 16:40</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「主就開導她的心」——這短短一句話，成為新約中對「信心從何而來」最直接的神學宣告之一。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「有一個賣紫色布匹的婦人，名叫呂底亞，是推雅推喇城的人，素來敬拜神。她聽見了，主就開導她的心，叫她留心聽保羅所講的話。」</div>
+      <div class="verse-ref">使徒行傳 16:14</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">διήνοιξεν</span>
+        <div class="word-transliteration">diēnoixen · 開導 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">動詞 διανοίγω（打開、開啟）的簡單過去式，字面帶有『徹底打開、使暢通無阻』的意象——這個字也用於路加福音描述復活後的耶穌『開他們的心竅，使他們能明白聖經』。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">路加特意使用同一個動詞，來描述以馬忤斯路上門徒心竅被打開的經歷，以及呂底亞心被開導的經歷——這暗示了一種一致的神學理解：真正的信心，不是單靠人的理性說服就能達成的，而是需要神主動的介入，『打開』一顆原本封閉或蒙蔽的心，才能真正領受並回應福音的信息。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">παρεβιάσατο</span>
+        <div class="word-transliteration">parebiasato · 強留 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「強力勸說、堅持說服」，帶有一種不容拒絕的懇切態度，這個字根與『施加壓力』有關，顯示她的邀請不是隨口一提，而是帶著相當的堅持與誠意。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">同一個動詞後來也用於描述以馬忤斯路上的兩位門徒『強留』耶穌與他們同住（路 24:29）——路加似乎有意在這兩個場景之間建立呼應：真正被恩典觸動的心，會自然而然地產生一種『無法不款待』的迫切渴望，這種堅持款待的態度，成為初代教會待客之道的重要精神典範。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">歐洲宣教的起點：從邊緣處開始</div>
+      <div class="theology-insight-body">福音進入歐洲的第一站，不是在城市的權力中心或正式的猶太會堂，而是在城外河邊一場由幾位婦女組成的簡樸禱告會——這確立了使徒行傳貫穿全書的一個重要主題：神的工作，經常從社會邊緣、不起眼之處展開，而非從眾所矚目的權力核心。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">信心先於理解的神學次序</div>
+      <div class="theology-insight-body">『主就開導她的心，叫她留心聽保羅所講的話』——這個記載的次序值得留意：是心先被開導，然後才『留心聽』。這暗示了一種重要的神學理解：真正的理解與領受，往往需要先有一顆被神打開的心作為前提，而非純粹依靠理性論證的順序達成。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">家庭作為教會最初的載體</div>
+      <div class="theology-insight-body">呂底亞的家成為腓立比教會最初、也是最核心的聚集場所——這確立了新約教會論一個重要的實踐模式：在正式的教會建築與制度尚未成形之前，信徒的家，是福音得以生根、教會得以建立最自然也最有效的載體。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">路得作為一位外邦寡婦，向婆婆拿俄米宣告『你的國就是我的國，你的神就是我的神』，此後在波阿斯的禾場上，經歷了一段被接納、被祝福的旅程，成為大衛家譜的先祖</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">呂底亞同樣是一位在外邦文化背景中、卻被以色列之神所吸引的女性，她的信心經歷雖然發生在截然不同的時代與地域，卻同樣展現了外邦女性如何被神主動的恩典吸引、進而全然委身的模式</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督親自成就了『萬民都要因你得福』的應許，使一切被神開導心竅的外邦人，都能進入祂國度的豐盛（加 3:8, 14）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">亞伯拉罕接待三位客旅（實為耶和華與兩位天使）到帳棚裡，殷勤款待，不知不覺中接待了神自己</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">呂底亞同樣以毫不遲疑、甚至帶著堅持的款待，接待了保羅一行人——這種殷勤好客的美德，跨越了新舊約，成為信徒回應神恩典時最自然流露的行動之一</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督親自教導『因為我餓了，你們給我吃……我作客旅，你們留我住』，把對客旅的款待，直接等同於對祂自己的服事（太 25:35）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你剛剛經歷了一次真實的信心觸動，正在想「我能做點什麼來回應」——這一頁是為你寫的。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">呂底亞命中的是一種極其寶貴、卻常被低估的信心回應模式：不是透過激昂的言語宣告或戲劇性的公開見證，而是安靜地聆聽、被神開導心竅，然後立刻用最實際的方式——敞開自己的資源與空間——來承載這份剛萌芽的信心。她的故事提醒我們，信心的果效，不一定要以宏大或引人矚目的方式展現；有時候，最深刻的信心回應，就是在自己既有的能力與資源範圍內，毫不保留、甚至帶著堅持地款待與服事。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你有沒有一次經歷到『主開導我的心』的時刻——不是靠自己的努力想通，而是忽然被一種超越理性的方式觸動？那次經歷，此後如何影響了你的生活？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">呂底亞信主後的第一個具體行動，是敞開自己的家。你現在擁有的資源（時間、空間、專業能力、財務），有沒有哪一項，是你可以像她一樣，主動、甚至帶著堅持地拿出來服事他人的？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">她的信心經歷發生在一場邊緣、不起眼的河邊禱告會，而非顯赫的宗教場所。你是否也曾經在一個看似平凡、甚至不起眼的處境中，經歷過重要的屬靈時刻？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">她『強留』保羅一行人住下——這是一種帶著堅持、不容輕易拒絕的款待。你在款待他人時，通常是點到為止的客套，還是像她這樣，會真心地堅持希望對方留下？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 呂底亞</span>
+        <div class="gen-title">示範劇本：信心一旦被觸動，立刻轉化為具體而堅持的行動</div>
+        <div class="gen-body">她的整個信主過程進展得極快——聽道、被開導、受洗、邀請、強留——幾乎沒有猶豫或延遲的痕跡。這種將內在信心迅速轉化為外在具體行動的模式，是她生命中最鮮明的特質，也成為她留給後世教會最重要的精神遺產。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 腓立比教會</span>
+        <div class="gen-title">延續而非打斷：從一個人的家，成長為一整間教會</div>
+        <div class="gen-body">呂底亞開放自己家庭所展現的慷慨與行動力，直接塑造了腓立比教會此後的整體氣質——保羅寫給腓立比教會的書信，充滿了對這間教會慷慨供應（『你們既是知道……在患難之中，能與我通同患難的教會，只有你們』腓4:15）與深厚情誼的讚賞，這與呂底亞當初毫不保留的款待精神，有著清晰可見的傳承脈絡。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在這裡的作用方式，展現在『主開導她的心』這句話本身——這提醒我們，真正的信心與隨之而來的慷慨行動，其根源從來不是單靠人的意志力或道德決心，而是神主動介入、開啟人心的結果。呂底亞的故事因此成為一個持續的鼓勵：當你發現自己的心被神以某種方式開導、觸動，那份隨之而來想要回應、想要付出的衝動，本身就是恩典正在你生命中運作的證據。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那個聽完道、立刻把家獻出來的女商人，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#信了就立刻行動</span>
+      <span class="tag">#把家打開的第一步</span>
+      <span class="tag">#女強人的信心</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>呂底亞的職業放到現在，大概就是做進口精品布料生意的女老闆——紫色布在古代是天花板等級的奢侈品，能經營這門生意，代表她絕對不是普通人，是個真正有本事、有資源的女性創業者。</p>
+      <p>她信主的過程，聖經寫得很平靜：保羅在河邊對著幾個婦女講道，她剛好在裡面，聖經只說「主開導她的心，叫她留心聽」。沒有戲劇性的異象，沒有雷電交加，就只是一場普通的講道聚會,她的心被打開了。</p>
+      <p>但接下來的反應，超級乾脆。她跟全家一起受洗,然後立刻說：你們如果真的認為我是信主的人,那就到我家裡住吧。而且聖經用了一個很有意思的動詞——「強留」，就是那種你想拒絕都拒絕不了的熱情堅持。</p>
+      <p>這件事看起來只是一個小小的接待動作，實際上意義非常大。福音第一次正式進入歐洲，第一個信主的人是她，而她的家，後來就成了整個腓立比教會聚會的地方。保羅後來被抓進監獄,神蹟性地被救出來以後,第一個去的地方,就是呂底亞家。</p>
+      <p>她沒有講過一句道，沒有寫過一封信,聖經也沒再提她做過什麼特別的事。但如果沒有她那句「請到我家裡來住」,還有她那份不容拒絕的堅持,歐洲教會的故事,可能會是完全不一樣的開頭。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——而呂底亞這塊石頭,沒有花很多篇幅雕刻,卻穩穩地,成了一整間教會的地基。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你最近經歷了一次真實的信心觸動——不管是安靜地被感動，還是忽然想通了什麼——別小看那份感覺。呂底亞的信心開始得很安靜，卻立刻變成了行動。</p>
+      <p style="margin-top:12px;">如果你正在想「我能為神做點什麼」，卻覺得自己沒有講道的恩賜、沒有戲劇性的見證可以分享——看看呂底亞，她做的就是把自己已經擁有的東西（一個家）拿出來用。你現有的資源，可能就是神現在要用的工具。</p>
+      <p style="margin-top:12px;">還有，別怕你的邀請太『強勢』。呂底亞是「強留」保羅他們住下的，不是輕輕鬆鬆隨口說說。真心的款待,本來就可以帶著一點不容拒絕的堅持。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，去做一件把你擁有的東西拿出來款待別人的事——不用等到你覺得自己準備好了。</p>
+    </div>
+
+    <div class="insight-box">在當代教會植堂與門徒訓練的討論中，呂底亞的故事提供了一個歷久彌新的範式：家庭空間作為信仰群體最自然、最有機的孕育場所，這一原則至今仍在全球許多地區的家庭教會運動中被實踐與驗證。她作為一位獨立經營事業的女性商人，在信主後直接將自己既有的社會與經濟資源投入服事，也對當代職場專業人士如何將自己的技能與資源『不轉行』地直接投入信仰服事，提供了具體而振奮人心的先例——不需要先放棄原本的身分或事業，神能直接使用一個人既有的能力與資產，成就祂國度的擴展。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">她可能從未想過，自己在河邊的一次留心聆聽，會成為整個歐洲教會歷史的起點。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">歐洲第一位有記載的信徒</div>
+          <div class="legacy-body">呂底亞是使徒行傳明確記載中，福音正式進入歐洲大陸後的第一位歸信者——這使她在教會歷史的地理擴展敘事中，佔據著一個獨特而重要的象徵性位置：西方基督教文明的起點，繫於一位女性商人在河邊的一次留心聆聽。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">家庭教會模式的早期典範</div>
+          <div class="legacy-body">她的家成為腓立比教會最初、最核心的聚集場所，為此後兩千年教會歷史中反覆出現的『家庭教會』模式，提供了新約中最早、也最具體的實踐先例。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">職場專業人士服事典範</div>
+          <div class="legacy-body">她沒有放棄自己的商業身分才投入服事，而是直接運用既有的資源（住所、家業）來服事福音的擴展——這為此後歷代在職場中忙碌卻渴望以自己的方式服事神的信徒，提供了一個深具鼓舞性的聖經典範。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">「強留」款待精神的教會傳統</div>
+          <div class="legacy-body">她那種帶著堅持、毫不保留的待客之道，深刻影響了腓立比教會此後與保羅之間慷慨供應的深厚情誼，並成為初代教會『客旅款待』（hospitality）這一重要美德的具體示範。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「她和她一家既領了洗，便求我們說：「你們若以為我是真信主的，便請到我家裡來住。」於是強留我們。」</div>
+      <div class="final-verse-ref">使徒行傳 16:15</div>
+    </div>
+
+    <div class="final-question">如果神此刻打開了你的心，讓你真實地被祂觸動——你手邊有什麼樣的資源，可以像呂底亞一樣，立刻、毫不保留地獻上來款待祂正在做的工作？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 呂底亞 <span>Λυδία</span> · 歐洲第一位信徒 · 賣紫色布的女商人</div>
+
+</body>
+</html>

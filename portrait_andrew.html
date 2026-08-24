@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>安得烈 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">安得烈</h1>
+  <span class="hero-name-en">Andrew · Ἀνδρέας</span>
+  <p class="hero-slogan">「聖經記載他三次開口，三次都是介紹別人給耶穌。<br>他一生沒有一句名言，卻站在教會史上第一塊骨牌的位置。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">第一世紀 · 主後約 5–70 年</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ISFJ · 守護者型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">四福音 · 徒 1:13</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">首位被召的門徒 · 引路者</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">有些人的呼召是站在台上，有些人的呼召是把別人送上台——後者從不缺席，只是很少被記住。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">第一世紀<br>羅馬治下的加利利</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">多重身份</span>
+        <div class="info-cell-value">加利利漁夫 · 施洗約翰的門徒<br>十二使徒之一 · 彼得的弟弟</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">伯賽大 → 迦百農 →<br>約旦河外 → 耶路撒冷</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">背景</span>
+        <div class="info-cell-value">加利利猶太人 · 約拿之子<br>名字為希臘文（意為「有男子氣概的」）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">約 1:35–42, 6:8–9, 12:20–22<br>可 1:16–18, 13:3 · 徒 1:13</div>
+      </div>
+    </div>
+
+    <p>安得烈與哥哥西門同出伯賽大，一個加利利海北岸的漁村。值得注意的是他的名字是純希臘文——Ἀνδρέας，意為「有男子氣概的」——這反映了加利利地區深受希臘化影響的社會現實。這個細節後來有了具體用途：當幾個希臘人想見耶穌時，他們找的是腓力，而腓力去找的是安得烈，兩人一同去回稟耶穌。在一群加利利漁夫中，他顯然是那個外邦人比較敢接近的人。</p>
+    <p>他登場時已經是施洗約翰的門徒，這意味著他不是一個隨波逐流的人——他早已在尋找，早已離開常規生活去曠野聽一個先知講悔改。當施洗約翰指著耶穌說「看哪，神的羔羊」，他立刻跟了上去，在耶穌住處待了整個下午。約翰福音把時間都記下來了：「那時約有申正了。」那是一段沒有記錄內容的對話，但它改變了一切——因為那天傍晚，他做了他一生最重要的一件事：「他先找著自己的哥哥西門。」</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">他的一生只有幾個鏡頭，而每一個鏡頭裡他都在把人往前推。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">申正時分——第一個跟上去的人</div>
+        <div class="timeline-body">他站在施洗約翰身旁，聽見那句「看哪，神的羔羊」，就跟著耶穌走。耶穌轉身問「你們要什麼」，他答的是一個奇特的問題：「拉比，你住在哪裡？」他要的不是神蹟或答案，是想知道這個人怎麼過日子。耶穌說「你們來看」，他們就同住了一天。教會傳統因此稱他為「首召者」（Πρωτόκλητος）——整個門徒群體的第一塊骨牌。</div>
+        <div class="timeline-ref">約 1:35–39</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">他先找著自己的哥哥</div>
+        <div class="timeline-body">約翰福音用了一個極精確的副詞：「他先找著自己的哥哥西門。」在做任何其他事之前，先去找哥哥。而他帶去的那個人，後來成了使徒之首、五旬節講道三千人歸主、寫下兩卷書信、教會的磐石。安得烈永遠不會知道這件事的完整規模——多數把人帶到主面前的人都不會知道。他只知道那天下午他找到了彌賽亞，而他不想一個人知道。</div>
+        <div class="timeline-ref">約 1:40–42</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">湖邊的第二次呼召——撇下網</div>
+        <div class="timeline-body">初遇之後他仍回去打魚。直到耶穌沿加利利海行走，看見他們撒網，說「來跟從我，我要叫你們得人如得魚」，他們才「立刻捨了網」。跟隨常常不是一次決斷，而是層層加深的委身——先認識、再回到日常、然後被再一次呼召，這一次是全職的。</div>
+        <div class="timeline-ref">太 4:18–20 · 可 1:16–18</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">五餅二魚——注意到那個小孩的人</div>
+        <div class="timeline-body">五千人待哺，腓力算出「就是二十兩銀子的餅也不夠」。而安得烈的反應完全不同：「在這裡有一個孩童，帶著五個大麥餅、兩條魚，只是分給這許多人還算什麼呢？」他不擅長算術，但他注意到了人群裡那一個小孩。他把資源帶到主面前時，自己顯然不相信會有用——他還是帶了。神蹟就發生在那個「還算什麼呢」之後。</div>
+        <div class="timeline-ref">約 6:5–13</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">希臘人求見——外邦世界的第一次叩門</div>
+        <div class="timeline-body">上耶路撒冷過節的希臘人對腓力說「先生，我們願意見耶穌」。腓力沒有直接處理，先去告訴安得烈，兩人一同去回稟。而耶穌的回應極其重大：「人子得榮耀的時候到了……一粒麥子不落在地裡死了，仍舊是一粒。」外邦人的求見，觸發了耶穌對自己受死的宣告。安得烈又一次站在門口，替人開門。</div>
+        <div class="timeline-ref">約 12:20–24</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">橄欖山上的提問——與此後的沉默</div>
+        <div class="timeline-body">他最後一次在福音書中開口，是與彼得、雅各、約翰一同在橄欖山私下問耶穌「這些事什麼時候有呢」——引出了整段橄欖山講論。此後聖經只在使徒行傳的名單中提到他一次。教會傳統記載他往黑海一帶傳道，最終在希臘的帕特雷殉道，被綁在 X 形十字架上（後世稱為「聖安得烈十字」）。</div>
+        <div class="timeline-ref">可 13:3–4 · 徒 1:13</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他從來不是房間裡最大聲的人，但他總是那個負責開門的人。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">好東西不能一個人知道</div>
+          <div class="soul-body">他的行為模式驚人地一致：一找到彌賽亞，先去找哥哥；一看到孩童的午餐，就帶到主面前；一有希臘人想見耶穌，就去回稟。他從不囤積，也從不篩選對象——他的預設反應是「帶過去」。這是一種罕見的、不帶競爭意識的慷慨。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">看見那個沒有人在看的人</div>
+          <div class="soul-body">五千人的場面裡，他注意到一個帶著午餐的小孩；門徒忙著應付群眾時，他處理幾個外邦訪客的請求。他的注意力天然地落在邊緣與個體上。這在一個資源與時間都極度緊繃的團隊裡，是一種容易被視為浪費的品質——直到那五個餅被擘開。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">牽線，然後退開</div>
+          <div class="soul-body">他從不主導對話，只負責把兩方接上。介紹完彼得，敘事的焦點立刻轉向彼得；帶了孩童來，餅在耶穌手中；回稟了希臘人，講話的是耶穌。他的存在方式是接口而非中心，而他顯然對此毫無不甘。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">永遠站在光環的旁邊</div>
+          <div class="soul-body">他一生的處境有一個殘酷的形狀：他是先跟隨的那個，卻永遠被稱為「西門彼得的兄弟」；他帶進門的人領受了鑰匙，他自己在核心三人組之外。福音書從未記錄他抱怨，但這個位置的重量是真實的。ISFJ 最深的試探從不是野心，是那種長期不被看見所積累的、說不出口的委屈。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">在關鍵時刻總是恰好在門口</div>
+          <div class="soul-body">無論是門徒群體的起點、五餅二魚的神蹟、還是外邦人第一次求見基督——這三個節點他都在場，而且都扮演引介者。這不像巧合，更像是一種被安排的職分：神似乎特意在每一道門檻上，都放了一個願意替人開門的人。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">安得烈的一生提出一個非常不舒服的問題：如果你確定自己所做的事有永恆的價值，但你永遠不會被記得，你還做嗎？他把彼得帶進門，而彼得成了磐石；聖經沒有記錄他對此有任何感受。這種毫無競爭意識的引介，在心理學上其實極為罕見——多數人的慷慨裡都藏著一份希望被歸功的期待。安得烈的自由，很可能來自那個下午：他問耶穌「你住在哪裡」，然後在那裡待了一整天。一個真正知道對方住處的人，不需要靠成就來確認關係。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ISFJ</span>
+      <div class="mbti-name">守護者型 · 沉默的引介者</div>
+      <div class="mbti-slogan">「他把最好的都給出去了，包括那個後來比他有名一百倍的哥哥。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Si · 內向實感</span>
+          <div class="mbti-fn-body">他對具體的人、地、時間有極深的記憶錨點。約翰福音記下「那時約有申正了」——這個時刻的細節被保存下來，很可能正是來自他的敘述。Si 讓他不追逐新奇，而是深深記住那些真正發生過的事，並在往後的一生中反覆回到那個下午。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Fe · 外向情感</span>
+          <div class="mbti-fn-body">他天然地感知他人的需要並主動回應：哥哥需要知道彌賽亞來了、孩童的午餐可以派上用場、希臘人想見耶穌卻不得其門而入。Fe 使他成為群體裡的橋樑——不是靠魅力，是靠持續注意別人需要什麼。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ti · 內向思考</span>
+          <div class="mbti-fn-body">在五餅二魚的場面裡，他清楚知道「分給這許多人還算什麼呢」——他的邏輯評估是準確的。但他沒有讓那個評估攔住他的行動。Ti 給了他清醒，卻沒有壓過 Fe 的行動衝動，這個組合正是他最動人之處。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Ne · 外向直覺</span>
+          <div class="mbti-fn-body">他難以預見自己所做之事的長遠規模。他帶哥哥去見耶穌時，不可能想像到五旬節；他帶孩童來時，明說自己不覺得有用。壓力下劣勢 Ne 會轉為對可能性的悲觀——「還算什麼呢」正是它的聲音。而他的偉大在於：他在悲觀的同時，仍然把餅遞了過去。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他的關係網絡有一個共同特徵——他總是站在別人與耶穌之間，然後讓開。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">耶</div>
+          <div class="relation-name">耶穌基督</div>
+          <div class="relation-type-badge">主與首召的門徒</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">他們的第一次對話是他問「你住在哪裡」，耶穌答「你們來看」。這段關係從一開始就不是任務導向的，是同住式的。他從未在福音書中領受任何特別的職分或稱號，也從未被公開稱讚或責備——他是那種安靜地待在對的位置上、不需要被特別處理的門徒。</div>
+          <div class="relation-ref">約 1:38–39</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">彼</div>
+          <div class="relation-name">彼得</div>
+          <div class="relation-type-badge">手足 · 被他帶進門的人</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">他是弟弟，卻是先信的那一個；他把哥哥帶進門，然後看著哥哥成為十二使徒的首領、進入核心三人組、領受天國的鑰匙。福音書從未記錄他對此有任何反應。整本聖經最安靜的一種偉大，就藏在這個沒有記錄的空白裡。</div>
+          <div class="relation-ref">約 1:41–42 · 太 4:18</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">施</div>
+          <div class="relation-name">施洗約翰</div>
+          <div class="relation-type-badge">屬靈導師 · 交棒者</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">他原是施洗約翰的門徒。而施洗約翰做了一件極不尋常的事：他指著耶穌，讓自己的門徒轉去跟隨別人，並說「他必興旺，我必衰微」。安得烈一生「把人帶到耶穌面前然後退開」的模式，很可能就是從這位老師身上學來的——第一課，就是看著老師示範放手。</div>
+          <div class="relation-ref">約 1:35–37 · 約 3:30</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">腓</div>
+          <div class="relation-name">腓力</div>
+          <div class="relation-type-badge">同鄉 · 搭檔</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">兩人同出伯賽大，在福音書中三次成對出現，且都與「外邦人」和「資源不足」的處境有關。希臘人先找腓力，腓力去找安得烈；五餅二魚的場面裡兩人一同發言。腓力負責評估與計算，安得烈負責帶人過來——一個相當典型、也相當有效的搭檔結構。</div>
+          <div class="relation-ref">約 1:43–44 · 約 6:5–8 · 約 12:21–22</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">童</div>
+          <div class="relation-name">獻上五餅二魚的孩童</div>
+          <div class="relation-type-badge">被看見的無名者</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">在五千人中，只有他注意到這個孩子。這個沒有名字的孩童後來成為整本新約中最著名的畫面之一——而使他被看見的，是一個習慣注意邊緣的人。這段關係示範了引介者職分的完整循環：安得烈把孩童帶到主面前，正如當年施洗約翰把他帶到主面前。</div>
+          <div class="relation-ref">約 6:8–9</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">福音的傳播史，不是由講台構成的，是由一個個「他先找著自己的哥哥」構成的。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「他先找著自己的哥哥西門，對他說：「我們遇見彌賽亞了。」……於是領他去見耶穌。」</div>
+      <div class="verse-ref">約翰福音 1:41–42</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">πρῶτον</span>
+        <div class="word-transliteration">prōton · 先 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「首先、在其他一切之前」。約翰福音 1:41 用這個字描述安得烈的動作順序：在做任何別的事之前，他先去找哥哥。部分抄本作 πρῶτος（他是第一個找到的人），但主流讀法強調的是次序而非競爭。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這個字為門徒職分定了一個優先順序：認識基督之後的第一個動作，是去找一個具體的人。不是先建立組織、先受訓練、先確認自己神學正確——先去找那一個你最想告訴的人。整本使徒行傳的擴張，結構上就是這個字的無限重複。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">ἤγαγεν</span>
+        <div class="word-transliteration">ēgagen · 領去 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">動詞 ἄγω 的過去式，意為「帶領、引導、把某人帶到某處」。這個字強調的是陪同前往，而非遠距指路——安得烈不是告訴彼得地址，他把人帶過去。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">新約用同一個字根描述聖靈引導人（羅 8:14 「被神的靈引導」）。人的引介與聖靈的引導在用字上重疊，暗示了一種合作結構：神使用願意親自陪人走一段路的人。而這個字在安得烈身上出現的方式，決定了此後兩千年宣教的基本形狀——不是廣播，是帶路。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">首召者：恩典的起點總是安靜的</div>
+      <div class="theology-insight-body">教會傳統稱他為 Πρωτόκλητος（首先被召者）。整個十二使徒群體、乃至此後兩千年的教會，在敘事上都始於一個站在約旦河邊、聽見一句話就跟上去的人。神開始一件巨大的事時，很少從壯觀處開始——祂從一個下午、兩個人、一句「你住在哪裡」開始。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">帶人來見主：福音傳播的最小單位</div>
+      <div class="theology-insight-body">安得烈三次出場都在做同一件事，而這三次的對象涵蓋了福音將要抵達的三個圈層：家人（彼得）、孩童與弱小者（獻餅的孩子）、外邦人（求見的希臘人）。新約的宣教藍圖，在他一個人身上就演練完了。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">無名者的正典位置</div>
+      <div class="theology-insight-body">聖經沒有記錄他的任何一篇講道、任何一封書信、任何一次神蹟。他留下的全部言語加起來不到三句。然而正典仍然把他列進十二使徒的名單，並三次specifically記下他的引介。這本身就是一個神學宣告：職分的價值不由可見的產出衡量。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">以利亞在何烈山之後被差去膏以利沙，把自己的外衣搭在他身上，然後繼續前行</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">兩人都是把繼任者帶進呼召、然後讓出舞台的角色；安得烈把彼得帶到主面前，正如以利亞把以利沙拉進先知的行列</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督親自呼召並差遣門徒，且應許「我去是與你們有益的」——最終的讓位，是主自己完成的（約 16:7）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">摩西的岳父葉忒羅看見摩西獨自審判百姓，主動獻上組織的建議，然後回本地去了</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">都是在關鍵時刻提供決定性協助、卻不留在敘事中心的人；安得烈提供了那五個餅，然後畫面轉向耶穌的手</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督是那位「拿起餅來祝謝」的主——人所帶來的永遠只是材料，擘開與加增在祂手中（約 6:11）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">曠野中的少年撒母耳，因老祭司以利指點才認出呼喚他的是耶和華</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">認出神的聲音幾乎總是需要一個引路人；施洗約翰之於安得烈、安得烈之於彼得，都在重複這個結構</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督是好牧人，「羊也聽他的聲音」——最終認出，是主親自使人認出（約 10:3–4）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你一直是那個把別人推上去、自己站在旁邊的人——這一頁是為你寫的。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">安得烈命中的是一種當代少被談論的處境：長期在關鍵位置上做關鍵的事，卻從不出現在成果的署名裡。副手、幕僚、介紹人、那個把兩邊接上線的人、把新人帶進門的資深同事、在孩子背後的父母。這種位置最深的消耗不是辛苦，是意義感的稀薄——因為所有可見的果效都掛在別人名下。安得烈的答案不是「不在乎」，而是別的東西：他在被呼召的第一天就問了「你住在哪裡」，並在那裡待了一整天。他的安全感不是從功勞裡長出來的，是從那個下午長出來的。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你曾經把某個機會、某個資源、某段人脈給了別人，然後看著他們走得比你遠嗎？那件事現在想起來，是溫暖多一點，還是酸多一點？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">安得烈明知道「這些分給許多人還算什麼呢」，還是把餅帶過去了。你最近有沒有因為「反正也不夠」「反正沒用」而沒有把某樣東西交出去？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">在你的人生裡，是誰做了那個「先找著你」的人？你有沒有讓他們知道那件事對你的意義？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">如果你的貢獻永遠只會被記在別人的名字下面，你還願意做嗎？——如果答案是猶豫，那個猶豫想告訴你什麼？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 施洗約翰</span>
+        <div class="gen-title">示範劇本：主動把自己的門徒讓出去</div>
+        <div class="gen-body">施洗約翰做了一件在任何師徒體系裡都近乎違反本能的事：他指著另一個人對自己的門徒說「看哪，神的羔羊」，然後看著他們離開自己去跟隨。當門徒向他抱怨「眾人都往他那裡去了」，他的回答是「他必興旺，我必衰微」。這個劇本被完整地示範了一次。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 安得烈</span>
+        <div class="gen-title">精確複製：這一次是主動的</div>
+        <div class="gen-body">安得烈幾乎立刻做了同一件事，而且做得更徹底：他把自己的親哥哥帶到耶穌面前，而那個哥哥從此成為十二使徒之首、進入他自己未能進入的核心三人組。他複製的不是失敗，是一種罕見的、健康的讓位模式——這是聖經中少數「代際傳遞的是美德而非破口」的案例。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">這一組的特別之處在於：需要被打斷的不是循環，而是我們對「成功」的定義。神在這對師徒身上示範的，是一個與世界完全相反的價值排序——衰微不是失敗，讓位不是損失。而恩典的介入方式極為安靜：祂讓安得烈在跟隨的第一天就先住進了主的住處，而不是先領受一項任務。一個知道自己被接納的人，才給得出這種不求回報的引介。所有「不甘心」的解藥，從來不是更努力，是先確認自己已經在裡面了。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那個一輩子站在鎂光燈邊緣的人，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#永遠的二號人物</span>
+      <span class="tag">#把好東西讓出去</span>
+      <span class="tag">#沒有人記得但很重要</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>安得烈大概是十二使徒裡最容易被跳過的一位。你可以隨口說出彼得、約翰、猶大做了什麼，但安得烈？他好像沒幹過什麼大事。</p>
+      <p>可是把時間軸拉開來看就不一樣了。他是第一個跟上耶穌的人——比彼得早。而他做的第一件事是什麼？回頭去把哥哥找來。那個哥哥後來成了彼得：五旬節一場講道三千人信主、寫進聖經的兩封信、教會的磐石。整條線的起點，是一個弟弟那天下午決定不要一個人知道。</p>
+      <p>聖經記載他開口講話總共三次，三次都是在介紹別人給耶穌。第二次是五千人要吃飯，他說：這裡有個小孩帶了五個餅兩條魚——然後他自己補了一句「只是分給這許多人還算什麼呢」。他不覺得有用，但他還是帶過去了。這句話很動人：他不是有信心才行動的，他是在覺得沒用的情況下還是把東西遞了出去。</p>
+      <p>而他的處境有一個很現實的形狀：他先信，但他哥哥當領袖；他是十二個人之一，但核心圈是彼得、雅各、約翰——沒有他。他被介紹的方式，永遠是「西門彼得的兄弟安得烈」。聖經完全沒有記錄他對這件事有什麼感覺，一個字都沒有。</p>
+      <p>所以我們也只能猜。但我猜關鍵在最開頭：他第一次見到耶穌時，問的不是「你要我做什麼」，是「你住在哪裡」。然後他就在那裡待了一整天。約翰福音甚至把時間記下來——那時約有申正了，下午四點。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——而有些石頭，是被雕成門框的：它們自己不是風景，它們讓人得以走進去。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你長期是那個「幫別人搭橋、然後看他們走過去」的人，先說一件事：那種偶爾湧上來的酸，不是你不夠屬靈。那是人之常情。安得烈很可能也有過，聖經只是沒寫。</p>
+      <p style="margin-top:12px;">但注意他的順序。他不是先立志要當一個無私的人，然後咬牙去做。他是先在耶穌住的地方待了一整天——他先確認了自己在裡面，然後才有辦法把別人帶進來。順序反過來的話，讓位就會變成消耗。</p>
+      <p style="margin-top:12px;">還有那五個餅。他親口說了「還算什麼呢」，然後還是帶過去了。你不需要先相信它夠用才交出去。你只需要交出去。夠不夠用，從來不是你這一端的工作。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天不必做大事。去找那一個你最想告訴的人，就夠了。</p>
+    </div>
+
+    <div class="insight-box">在現代組織語境中，安得烈是「連結者」（connector）角色的原型——社會網絡分析早已指出，組織中真正決定資訊與機會流動的，往往不是位階最高的人，而是那些跨越不同群體的橋接節點。這類人的貢獻極難被績效制度衡量，也因此最容易在評鑑中消失。他的故事對當代管理提出一個具體的問題：我們的認可機制，是否只看得見結案的人，看不見牽線的人？在個人層面，他也示範了利他行為得以持久的唯一條件——不是更高的道德意志，而是穩固的歸屬感：先知道自己被接納，才給得出不求回報的東西。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他沒有留下一句名言，卻留下了整個門徒群體的第一塊骨牌。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">首召者的地位</div>
+          <div class="legacy-body">東方教會傳統稱他為 Πρωτόκλητος——首先被召者，並將這個稱號視為一項榮譽而非時間註記。君士坦丁堡普世牧首區奉他為主保聖人，這使他在東西方教會分立的歷史中，成為東方傳統自我理解的象徵性起點。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">「帶人來見耶穌」的門徒範式</div>
+          <div class="legacy-body">他三次出場、三次引介，形成新約中最清晰的個人佈道模型：不是說服，不是辯論，是「你來看」。這個模式後來成為兩千年來絕大多數人信主的實際路徑——多數人不是因為聽了一場精彩的講道，是因為某個認識的人帶他去了一趟。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">五餅二魚的共同記憶</div>
+          <div class="legacy-body">他把那個孩童帶到主面前的舉動，成就了四卷福音書唯一都記載的神蹟。而這個神蹟此後成為教會論資源與供應時最常引用的圖像：你手上的不夠，但你手上的可以被交出去。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">聖安得烈十字</div>
+          <div class="legacy-body">傳統記載他在希臘帕特雷被綁在 X 形十字架上殉道，自認不配與主同樣的死法。這個 X 形因此成為他的標誌，後來被納入蘇格蘭國旗，並經由蘇格蘭進入英國國旗（Union Jack）——一個一生站在畫面外的人，最後把記號留在了兩面國旗上。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">V</div>
+        <div>
+          <div class="legacy-title">為無名的忠心留下正典位置</div>
+          <div class="legacy-body">他在正典中的存在本身就是一項遺產：一個沒有講道、沒有書信、沒有神蹟記錄的人，被列入十二使徒。這使得後世每一個在幕後長期擺上卻無人知曉的信徒，都能在聖經裡找到一個屬於自己的名字。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「腓力來告訴安得烈，安得烈同腓力去告訴耶穌。耶穌說：「人子得榮耀的時候到了。」」</div>
+      <div class="final-verse-ref">約翰福音 12:22–23</div>
+    </div>
+
+    <div class="final-question">你這一生真正重要的貢獻，可能永遠不會掛上你的名字——如果現在就確定是這樣，你今天還會不會去找那個你最想告訴的人？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 安得烈 <span>Ἀνδρέας</span> · 首位被召的門徒 · 引路者</div>
+
+</body>
+</html>

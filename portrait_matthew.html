@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>馬太 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">馬太・利未</h1>
+  <span class="hero-name-en">Matthew · Μαθθαῖος · מַתִּתְיָהוּ</span>
+  <p class="hero-slogan">「他坐在稅關上，是全鎮最被恨的人。<br>耶穌走過去只說了兩個字：跟從我。<br>他起來，把帳本換了。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">第一世紀 · 主後約 5–70 年</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ISTJ · 物流師型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">馬太福音<br>太 9:9 · 可 2:14 · 路 5:27</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">稅吏使徒 · 福音書作者</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">神要一個人把彌賽亞的家譜精確地數清楚，就找了一個一輩子在數錢的人。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">第一世紀<br>希律安提帕治下的加利利</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">多重身份</span>
+        <div class="info-cell-value">羅馬包稅制稅吏 · 十二使徒之一<br>第一卷福音書作者</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">迦百農稅關 →<br>加利利、耶路撒冷 →（傳統）衣索比亞</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">背景</span>
+        <div class="info-cell-value">猶太人 · 亞勒腓之子<br>又名利未 · 通希臘文與亞蘭文</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">馬太福音全書<br>太 9:9–13, 10:3 · 可 2:14–17 · 路 5:27–32</div>
+      </div>
+    </div>
+
+    <p>馬太（又名利未）在迦百農的稅關上任職。迦百農位於大馬士革大道上，是加利利與腓力分封地的邊界關口，商隊與漁獲都必須在此繳稅——這是一個油水極豐的位置。羅馬採包稅制：稅吏先向政府標下額度，超收的部分歸自己，制度本身就內建了勒索的誘因。因此稅吏在猶太社會的地位極為特殊：他們富有，卻被列在「稅吏和罪人」「稅吏和娼妓」的同一句話裡，被禁止在會堂作證，甚至被視為儀式上不潔。他們的罪不只是貪財，是通敵——替佔領者向自己的同胞抽血。</p>
+    <p>而神在這裡下手的方式極具挑釁性。耶穌不是先要求他悔改再接納他，是直接走到稅關前說「你跟從我來」。緊接著馬太在家中大擺筵席，請來的是一大群稅吏和罪人——法利賽人立刻質問「你們的先生為什麼和稅吏並罪人一同吃飯呢」。耶穌的回答成為整卷馬太福音的主題句：「我來本不是召義人，乃是召罪人。」而馬太自己在寫這一段時做了一件耐人尋味的事：馬可與路加都只說「利未」，唯獨他在自己的福音書中，堅持在自己的名字後面加上「稅吏」兩個字。他沒有洗掉自己的履歷。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">他的人生只有一次轉身，但那一轉，帳本就再也沒有翻回去。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">稅關上的日子——富有而被憎恨</div>
+        <div class="timeline-body">他每天坐在迦百農的關口，向漁獲、商隊、過路人課稅。他懂數字、懂記錄、懂希臘文與亞蘭文——這是一份需要精準與冷靜的工作。他大概也很清楚自己在鎮上的名聲：沒有人願意和他同席，會堂不接受他的證詞，連他的錢都被視為不潔。這是一個把自己活成孤島的人，用財富換取了整個社群的排斥。</div>
+        <div class="timeline-ref">太 9:9 · 可 2:14 · 路 5:27</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">「你跟從我來」——他就起來跟從了</div>
+        <div class="timeline-body">三卷福音書都用了同一種極簡的敘事節奏：耶穌看見他，說「跟從我來」，他就起來跟從了。沒有對話，沒有討價還價，沒有考慮期。這個決斷的代價比漁夫更高——彼得可以回去打魚，稅關的位子一旦離開就永遠沒有了，那是標下來的專營權。他不是暫時請假，他是燒掉了退路。</div>
+        <div class="timeline-ref">太 9:9 · 路 5:28</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">家中的大筵席——把整個舊圈子帶過來</div>
+        <div class="timeline-body">蒙召之後他做的第一件事不是離群索居，是在家裡大擺筵席，把他所有的稅吏朋友和「罪人」都請來與耶穌同坐。路加特別寫「有許多稅吏和別人與他們一同坐席」。他不知道怎麼講道，但他知道怎麼辦一桌飯。法利賽人的抗議也正是在這一刻爆發，逼出了那句「我來本不是召義人，乃是召罪人」。</div>
+        <div class="timeline-ref">路 5:29–32 · 可 2:15–17</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">使徒名單上的自我標註</div>
+        <div class="timeline-body">在十二使徒的名單中，只有馬太福音在他的名字後面加註「稅吏馬太」——馬可與路加都沒有這樣寫。他也把自己排在腓力與多馬之後，而馬可與路加把他排得更前面。一個把自己的名次往後挪、卻把自己最難堪的職業標註上去的人，這兩個編輯決定加在一起，說明了很多事。</div>
+        <div class="timeline-ref">太 10:3 · 可 3:18 · 路 6:15</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">寫下第一卷福音書——十四代、十四代、十四代</div>
+        <div class="timeline-body">他把畢生的記帳能力用在一件全新的事上：把耶穌的教訓編成五大段講論（呼應摩西五經），用超過六十處舊約引用證明應驗，並把家譜精確地整理成三組各十四代的結構。他還做了一件當時無人敢做的事——在彌賽亞的家譜裡列入四個女人，而且全都帶著醜聞：他瑪、喇合、路得、拔示巴。一個曾被視為不潔的人，特意在王的族譜裡替不該在那裡的人留了位子。</div>
+        <div class="timeline-ref">太 1:1–17 · 太 5–7, 10, 13, 18, 24–25</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">使徒名單之後的沉默</div>
+        <div class="timeline-body">使徒行傳第一章的名單之後，聖經再沒有提到他。教會傳統對他的去向記載分歧：有的說衣索比亞，有的說波斯或帕提亞，殉道方式的說法也不一致。可以確定的是他留下了什麼——那卷被放在整本新約最前面的書，兩千年來是絕大多數人翻開新約時讀到的第一頁。</div>
+        <div class="timeline-ref">徒 1:13</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他不是一個會講話的人，他是一個會記錄的人——而教會需要後者的程度，遠超過我們以為的。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">應許必須被兌現，而兌現必須可以被查核</div>
+          <div class="soul-body">他寫福音書的方式像在結算一筆延宕已久的帳：這件事應驗了哪一段預言、那件事應驗了哪一段。「這是要應驗主藉先知所說的話」在他筆下反覆出現十多次。他對神的信任不是情感式的，是核帳式的——神說過的每一句，他要一條一條對上。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">不掩飾自己的過去</div>
+          <div class="soul-body">他大可以只寫「利未」，像馬可和路加那樣。他偏偏在自己的名字旁邊寫上「稅吏」。這不是自我羞辱，是一種刻意的見證：他要讓每個讀者知道，寫這卷書的人曾經是被整個社群唾棄的那一個。他的履歷不是需要被掩蓋的污點，是恩典的計量單位。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">分類、編排、建立結構</div>
+          <div class="soul-body">他不按時間順序流水記事，而是把材料重組成五大講論、七個天國比喻、一組組對照。他的心智天然地把混沌整理成可檢索的系統。這使馬太福音成為早期教會最常用於教導與禮儀的一卷——因為它好查、好背、好教。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">曾經用制度的正當性替自己開脫</div>
+          <div class="soul-body">包稅制是合法的。他每天做的每一件事都在法律的保護之內——這正是這種罪最難察覺的地方。一個靠著「我沒有違法」活了很多年的人，最深的危險是良知被程序馴化。他離開稅關的那一刻，等於承認了合法與正確之間有一道他長期假裝看不見的鴻溝。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">在王的族譜裡替罪人留位子</div>
+          <div class="soul-body">在一個女性不入家譜的文化中，他放進了四個女人，而且刻意選了處境最難堪的四位：假扮妓女的他瑪、耶利哥的妓女喇合、摩押女子路得、被大衛奪走的拔示巴。這不是疏忽，是神學宣告。只有一個知道自己不配出現在名單上的人，才會這樣編家譜。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">馬太的一生繞著同一個問題轉：誰有資格被列在名單上。他曾經是那個被所有名單排除的人——不能在會堂作證、不能與人同席、名字後面永遠跟著「罪人」。然後耶穌把他列進十二使徒。而他做的第一件事，是把他所有同樣被排除的朋友請到同一張桌子上；他做的最後一件事，是編一份彌賽亞的族譜，並且在裡面替四個不該在那裡的女人留了位置。他從未講過一篇道，但他用一生在論證同一件事：這份名單，比你以為的長。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ISTJ</span>
+      <div class="mbti-name">物流師型 · 忠實的記錄者</div>
+      <div class="mbti-slogan">「他把數錢的精準，原封不動地拿去數神守約的次數。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Si · 內向實感</span>
+          <div class="mbti-fn-body">他的心智錨定在既有的記錄與傳統上。他寫福音書時最主要的動作是「回去查」——查先知書、查家譜、查律法。全書超過六十處舊約引用，密度為四福音之最。Si 讓他成為那個確保新事物與舊應許不脫節的人。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">他把材料組織成可操作的結構：五大講論、三組十四代、七個比喻。這種編排不是文學趣味，是為了教學與傳遞的效率。Te 使馬太福音成為早期教會的教材首選——它被設計成可以被背誦、被引用、被檢索。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">他很少表達情緒，但在少數幾處露出極深的個人立場：堅持在自己名字後寫上「稅吏」、把四個蒙羞的女人放進家譜、記下「我喜愛憐恤，不喜愛祭祀」這句耶穌兩次引用的話。Fi 是他沉默的價值核心——他關心誰被算在裡面。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Ne · 外向直覺</span>
+          <div class="mbti-fn-body">他不擅長開放式的可能性，這使他在稅關上多年安於一個合法但敗壞的系統——他能把工作做到最好，卻難以想像離開它的人生。而蒙召那一刻的驚人之處正在於此：一個劣勢 Ne 的人被要求在毫無規劃的情況下起身離開，這對他而言的難度，遠高於漁夫撇下網。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最重要的幾段關係，都發生在一張桌子旁邊。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">耶</div>
+          <div class="relation-name">耶穌基督</div>
+          <div class="relation-type-badge">主與被召的稅吏</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">整段呼召只有兩個字：跟從我。耶穌沒有先要求他退還贓款、沒有要他公開悔改、沒有設任何前置條件。而祂接著做的事更具挑釁性——祂去他家吃飯，與一整屋子的稅吏同席，公開承受「這人和罪人一同吃飯」的指控。馬太整卷福音書的核心命題，就是從自己被接納的那一天長出來的。</div>
+          <div class="relation-ref">太 9:9–13 · 路 5:27–32</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">稅</div>
+          <div class="relation-name">他的稅吏同業</div>
+          <div class="relation-type-badge">舊圈子 · 被他帶到桌前的人</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">他蒙召後的第一個動作不是切斷過去，是在家裡辦一場大筵席，把整個舊圈子請來見耶穌。他沒有等自己「先變好」才去傳福音，也沒有把過去的關係當成必須清理的污染。他做了他唯一會做的事：訂一張夠大的桌子。</div>
+          <div class="relation-ref">路 5:29 · 可 2:15</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">法</div>
+          <div class="relation-name">法利賽人</div>
+          <div class="relation-type-badge">對立 · 兩種潔淨觀的衝突</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">他們的抗議不是無理取鬧——按當時的潔淨規範，與稅吏同席確實使人不潔。衝突的核心是方向問題：他們認為不潔會污染潔淨，所以必須隔離；耶穌的行動宣告潔淨會轉化不潔，所以可以靠近。馬太在自己的福音書中兩次引用何西阿書「我喜愛憐恤，不喜愛祭祀」——那是他一生的答辯狀。</div>
+          <div class="relation-ref">太 9:11–13 · 太 12:7 · 何 6:6</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">他</div>
+          <div class="relation-name">他瑪、喇合、路得、拔示巴</div>
+          <div class="relation-type-badge">他放進家譜的四個女人</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">在一份不列女性的族譜裡，他放進四位處境全都不堪的女性：假扮妓女的兒媳、耶利哥的妓女、摩押的外邦寡婦、被奪走的人妻。這四筆記錄破壞了族譜的體面，卻建立了整卷書的神學：彌賽亞的血脈裡本來就有醜聞、外邦人與被排除者。這是一個被排除過的人，替別人做的編輯決定。</div>
+          <div class="relation-ref">太 1:3, 1:5, 1:6</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">讀</div>
+          <div class="relation-name">他所寫給的猶太讀者</div>
+          <div class="relation-type-badge">牧養對象 · 需要被說服的同胞</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">他的福音書明顯是寫給熟悉舊約的猶太群體：從亞伯拉罕起筆而非從創世起筆、大量應驗公式、用「天國」避諱神的名。他要向那些懷疑「一個被釘死的人怎麼可能是彌賽亞」的同胞證明——這一切都在預言之內。一個曾被視為叛徒的人，最後成了向自己民族辯護彌賽亞身分的那一位。</div>
+          <div class="relation-ref">太 1:1 · 太 1:22 · 太 2:15</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">他花了一整卷書證明一件事：神從來沒有跳票，而且名單上有你想不到的人。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「我來本不是召義人，乃是召罪人。經上說：「我喜愛憐恤，不喜愛祭祀。」這句話的意思，你們且去揣摩。」</div>
+      <div class="verse-ref">馬太福音 9:13</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">τελώνης</span>
+        <div class="word-transliteration">telōnēs · 稅吏 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">包稅制下的徵稅承包人。在羅馬體制中，稅吏先向政府標下一區的稅額並預先繳清，之後所徵收的超額部分即為個人所得——制度本身就是勒索的合法化。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">在猶太語境中，這個字幾乎等同於「叛徒」與「不潔」的複合體：既通敵，又因接觸外邦錢幣與異族而在儀式上受污。福音書中它固定與「罪人」並列。因此當馬太堅持在自己名字後保留這個字時，他是在正典裡永久保存一個標記——不是為了自貶，是為了讓「我來召罪人」這句話有一個具名的證人。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">ἔλεος</span>
+        <div class="word-transliteration">eleos · 憐恤 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">七十士譯本用以翻譯希伯來文 חֶסֶד（chesed）——盟約中不離不棄的信實之愛。它不是憐憫弱者的情緒，是立約者對盟約對象不撤回的忠誠。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">馬太福音兩次引用何西阿書 6:6「我喜愛憐恤，不喜愛祭祀」，兩次都用來回應宗教人士對「不潔者」的排斥。這句話把整套潔淨體系的優先順序重新排列：祭祀是維持界線的，chesed 是跨越界線的；當兩者衝突時，神要的是後者。這是馬太整卷書的倫理軸心。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">家譜作為神學宣告</div>
+      <div class="theology-insight-body">他把家譜編成三組各十四代——「大衛」（דוד）的希伯來字母數值總和正是十四，這種數字編排在猶太釋經傳統中稱為 gematria。整份名單因此本身就在重複宣告「大衛、大衛、大衛」。而在這個高度設計的結構裡，他刻意放進四個不合體例的女人。形式極度嚴謹，內容極度破格——這正是他的簽名。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">新摩西：五大講論的結構</div>
+      <div class="theology-insight-body">他把耶穌的教訓編成五大段（登山寶訓、差遣講論、比喻講論、教會講論、末世講論），每段以「耶穌說完了這些話」作結，明顯對應摩西五經。他要說的是：這位是那位「像我一樣的先知」，而祂在山上頒布的，是新約的律法。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">以馬內利：全書的首尾框架</div>
+      <div class="theology-insight-body">全書開頭引用以賽亞書：「他的名要稱為以馬內利，就是神與我們同在。」全書最後一句是：「我就常與你們同在，直到世界的末了。」馬太用這兩句把整卷書框起來——神與人同住的應許，在開頭被宣告，在結尾被兌現。一個記帳的人，用了最工整的方式結清了這筆帳。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">摩西在西奈山上領受律法，並在山上向百姓頒布神的誡命</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">馬太刻意把耶穌最重要的教訓安排在山上，並編成五大段對應五經；他要讀者看見一位新的、更大的立法者</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督在山上宣告「你們聽見有話說……只是我告訴你們」，以自身權柄成全律法（太 5:17–48）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">以色列被召出埃及，經過紅海與曠野四十年的試探，卻在曠野失敗</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">馬太記下嬰孩耶穌下埃及又被召出來、受洗過水、在曠野受試探四十晝夜——每一步都在重演以色列的歷程，而每一步祂都通過了</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督是真以色列，成就了舊以色列所未能成就的順服（太 2:15 引何 11:1）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">利未支派被分別出來事奉，不得產業，因為耶和華是他們的產業</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">利未（馬太的另一個名字）撇下了稅關的產業去跟從主——一個以歛財為業的利未人，最終走上了利未支派原初的呼召</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督使信徒成為「有君尊的祭司」，以神自己為產業（彼前 2:9）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">何西阿娶淫婦為妻，以自己的婚姻演出神對背約之民不撤回的 chesed</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">馬太兩次引用何西阿書 6:6，把「憐恤勝於祭祀」立為判準；而他自己的人生正是那句話的展示——一個不潔的人被納入內圈</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督與罪人同席，並以自己的血立新約，成就那不撤回的盟約之愛（太 26:28）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你的過去是那種說出來會讓對話停下來的過去——這一頁是為你寫的。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">馬太命中的是一種很具體的羞恥：不是做過什麼違法的事，而是曾經在一個合法的位置上，做著自己心裡知道不對的事。用制度的正當性替自己開脫，是現代最普遍的一種良知麻醉——我只是照規定辦、大家都這樣做、這是我的工作。馬太離開稅關那一刻，等於承認了「合法」與「正確」之間有一道他長期假裝看不見的鴻溝。而他後來的選擇更值得注意：他沒有把那段過去洗掉，他把它寫進了自己的署名裡。有些過去不需要被刪除，它需要被重新標註用途。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你現在有沒有一件事，是完全合乎規定、卻讓你心裡不太舒服的？你通常用哪句話讓那個不舒服安靜下來？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">馬太蒙召後的第一件事是把舊朋友請來吃飯，而不是切斷他們。你信了以後，有沒有默默把某些人從生活裡刪掉？當時真正的理由是什麼？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">他在自己的名字後面留下「稅吏」兩個字。你的履歷裡有哪一段是你希望沒有人提起的？如果那一段其實是你最能理解某些人的原因，會改變什麼嗎？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">他在王的家譜裡替四個不該在那裡的女人留了位子。在你心裡那份「什麼樣的人算自己人」的名單上，最近一次被你劃掉的是誰？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 馬太（利未）</span>
+        <div class="gen-title">應激劇本：用制度的合法性換取良知的安寧</div>
+        <div class="gen-body">包稅制是合法的，他的每一筆超收都在法律保護之內。這使他能在整個社群的憎恨中持續工作許多年——不是因為他麻木，是因為他有一套說得通的說法。這種模式的危險不在於它站不住腳，恰恰在於它站得住腳：一個永遠不必面對自己的人，也永遠不會被改變。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 他所帶到桌前的稅吏群體</span>
+        <div class="gen-title">打斷而非複製：整桌人被一起請進來</div>
+        <div class="gen-body">按常理，一個離開行業的人會與舊同業斷得乾乾淨淨——那是最省事的自我證明方式。馬太做了相反的事：他辦了一場筵席，把整個舊圈子帶到耶穌面前。他沒有要求他們先變好，正如沒有人要求他先變好。他把自己所領受的待遇，原樣轉給了下一群人。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">打斷發生在稅關前那兩個字上。耶穌沒有說「你先把錢還了再來跟我」，祂說「跟從我來」——恩典先於改變，而不是改變的獎賞。這個順序徹底拆掉了馬太原有的交易性世界觀：在包稅制裡，一切都是先付出再取得；而在這裡，接納是免費發出的。他此後一生的所有作為——那場筵席、那份家譜、那句反覆引用的「我喜愛憐恤」——都是同一個順序的重複。人只有在被無條件收下之後，才給得出不設條件的桌子。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那個全鎮最被討厭的人，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#合法但不對</span>
+      <span class="tag">#不刪除過去</span>
+      <span class="tag">#誰算在名單裡</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>馬太的工作在當時大概等同於「替佔領軍向自己人收錢，還可以合法超收」。他很有錢，也沒有朋友。會堂不收他的證詞，沒有人跟他同桌吃飯。</p>
+      <p>然後耶穌走過他的攤位，說了兩個字：跟從我。他就起來走了。三卷福音書寫這件事都一樣簡短，短到有點不真實。但你想想他放棄了什麼——彼得撇下網還可以回去打魚，稅關的位子是標下來的專營權，走了就永遠沒了。他是真的把橋燒了。</p>
+      <p>他做的第一件事很有意思。不是去禁食禱告，不是去神學院，是在家裡辦了一場大的，把他所有的稅吏朋友、還有一堆被歸類為「罪人」的人統統請來，讓他們跟耶穌同桌。他不會講道，他會訂桌。</p>
+      <p>更值得注意的是他後來寫福音書的時候。列使徒名單，馬可寫「馬太」，路加寫「馬太」，只有他自己寫「稅吏馬太」。他還把自己的排名往後挪了一位。他大可以把那兩個字拿掉，沒有人會知道。</p>
+      <p>然後是那份家譜。開頭那一長串誰生誰，很多人跳過不讀。但他在裡面塞了四個女人，而且是最難堪的四個：假扮妓女的他瑪、妓女喇合、外邦來的路得、被大衛搶走的拔示巴。在一份連正常女性都不列的族譜裡，他放了這四個。一個記帳記了一輩子的人，在王的帳本上，替不該在裡面的人留了位子。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——而有些石頭上的裂痕沒有被磨掉，因為那道裂痕就是光進來的地方。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你身上有一段「說出來對話就會停下來」的過去，先看馬太怎麼處理的：他沒有刪掉，他把它寫進了署名裡。不是因為他不以為恥，是因為他發現那兩個字現在的用途不一樣了——它們現在是「我來召罪人」這句話的物證。</p>
+      <p style="margin-top:12px;">還有那個順序，很重要。耶穌沒有說「你先把錢還一還再來找我」。祂說跟從我，就這樣。改變是後來的事，接納是當下的事。如果你一直卡在「我得先變好一點才敢回去」，那個順序是反的，而且會讓你永遠出發不了。</p>
+      <p style="margin-top:12px;">至於那些你信了以後默默疏遠的舊朋友——馬太的做法是辦一桌飯把他們全部請來。你不需要先確定自己夠格帶人，你只需要有一張夠大的桌子。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">不用先變成別人。今天就訂張桌子，把那個人約出來。</p>
+    </div>
+
+    <div class="insight-box">在當代職業倫理的討論中，馬太是「合法性不等於正當性」最清晰的聖經案例——包稅制的關鍵危險不在於它違法，而在於它把剝削寫進了合規流程，使從業者得以在良知上長期免責。這正是現代組織中最難處理的一類道德風險：沒有人違規，但所有人都知道不對。在個人層面，他的敘事提供了羞恥處理的另一種路徑：不是遮蔽、也不是自我懲罰，而是重新標註——把過去的身分從「必須隱藏的污點」轉為「服事特定群體的資格」。而他那場筵席，則對當代信仰群體提出一個具體的檢驗：我們的桌子，究竟是用來區別內外，還是用來邀請的？</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他寫的那卷書被放在新約第一頁——兩千年來，多數人翻開新約讀到的第一句話，出自一個稅吏之手。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">新約正典的開卷之書</div>
+          <div class="legacy-body">馬太福音在早期教會被置於四福音之首，並非因為成書最早（多數學者認為馬可在先），而是因為它的家譜與應驗結構最能銜接舊約。這個編排讓整本聖經在結構上首尾相連：舊約以家譜與應許結束的地方，新約以家譜與應驗開始。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">登山寶訓</div>
+          <div class="legacy-body">第五至七章是人類歷史上被引用最多的一段講論之一，其影響遠遠溢出教會——甘地隨身攜帶、金恩博士的非暴力抗爭以之為據、無數非基督徒也能背出「八福」與「愛你們的仇敵」。而收錄它的人，曾經是那個沒有人願意愛的仇敵。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">大使命</div>
+          <div class="legacy-body">「所以你們要去，使萬民作我的門徒。」教會兩千年來的宣教運動幾乎都以這段經文為法理基礎。而它出自一位向自己同胞辯護彌賽亞身分的猶太作者之手——最終把門開向了萬民。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">家譜中的四個女人</div>
+          <div class="legacy-body">他在彌賽亞的族譜裡列入他瑪、喇合、路得、拔示巴，永久地把外邦人、性醜聞與被侵害者寫進了基督的血統。這使得此後任何以血統、族裔或道德紀錄劃分「誰配進入神家」的主張，都必須先面對新約的第一頁。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">V</div>
+        <div>
+          <div class="legacy-title">「以馬內利」的首尾框架</div>
+          <div class="legacy-body">全書以「神與我們同在」開篇，以「我就常與你們同在，直到世界的末了」收筆。這個框架成為基督教信仰最核心的安慰之一——不是神在遠處施行拯救，是神搬進來住下。一個一輩子被排除在同席之外的人，最後寫下了整本聖經關於「同在」最完整的一份記錄。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「凡我所吩咐你們的，都教訓他們遵守，我就常與你們同在，直到世界的末了。」</div>
+      <div class="final-verse-ref">馬太福音 28:20</div>
+    </div>
+
+    <div class="final-question">你心裡那份「誰算自己人」的名單，最後一次修改是什麼時候？而如果照著馬太的編法，第一個該被加回去的人，會是誰？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 馬太 <span>Μαθθαῖος · מַתִּתְיָהוּ</span> · 稅吏使徒 · 第一卷福音書作者</div>
+
+</body>
+</html>

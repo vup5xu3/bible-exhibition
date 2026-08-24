@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>亞波羅 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">亞波羅</h1>
+  <span class="hero-name-en">Apollos · Ἀπολλώς</span>
+  <p class="hero-slogan">「他講道講得極好，卻講得不完整——<br>而他面對這個事實的方式，是謙遜地接受私下的指正,然後,講得更好了。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">第一世紀 · 主後約 25–80 年後（推測）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ENTP · 辯論家型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">徒 18:24–28, 19:1<br>林前 1–4, 16:12 · 多 3:13</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">有學問的傳道人 · 亞該亞教會的重要牧者</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他來自古代世界最負盛名的學術重鎮，帶著滿腹學問來到以弗所講道——卻願意謙卑地承認，自己還有需要補全的地方。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">第一世紀<br>羅馬帝國治下的地中海世界</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">多重身份</span>
+        <div class="info-cell-value">亞歷山太的猶太人 · 「有學問」的雄辯家<br>初期只曉得約翰洗禮的傳道人 · 此後成為重要牧者</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">亞歷山太（埃及，古代學術與圖書中心）→<br>以弗所 → 亞該亞（哥林多）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">背景</span>
+        <div class="info-cell-value">「最能講解聖經」（徒18:24）<br>「已經在主的道上受了教訓，心裡火熱」</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">徒 18:24–28, 19:1<br>林前 1:12, 3:4–6, 3:22, 4:6, 16:12 · 多 3:13</div>
+      </div>
+    </div>
+
+    <p>亞波羅出身亞歷山太——這座由亞歷山大大帝建立的埃及城市，在第一世紀是地中海世界最負盛名的學術與文化中心，擁有古代世界最大的圖書館，以及龐大而學問淵博的猶太離散社群（哲學家斐羅正是這個社群最著名的代表人物）。路加特別用了三個形容詞來介紹他：「有學問」（λόγιος，可指口才雄辯或學識淵博，兩種意涵在此可能兼具）、「最能講解聖經」、以及「心裡火熱」——這幅畫像描繪出一位極具天賦、熱情洋溢，且深諳猶太經典的傳道人形象。</p>
+    <p>然而路加緊接著記載了一個關鍵的限制：「只是他單曉得約翰的洗禮」——這意味著他對耶穌的認識，很可能還停留在施洗約翰所預告的「悔改的洗」層次，尚未完整理解基督受死復活、以及聖靈降臨所帶來的新約救恩全貌。第一世紀的地中海世界，福音的傳播並非透過單一、統一的管道進行，不同地區、不同群體所接觸到的信息完整程度，可能存在相當的落差——亞波羅的處境，正反映了這種初代教會擴展過程中，信息傳遞尚未完全一致的真實歷史情境。他從亞歷山太一路來到以弗所，在會堂中「放膽講道」，顯示他對自己所領受的（雖不完整的）信息，抱有極大的信心與熱忱。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">他的故事只有短短幾節經文，卻完整地示範了一個人如何從『很厲害但不完整』，成長為『真正被神大用』的傳道人。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">「放膽講道」——帶著熱忱卻不完整的信息來到以弗所</div>
+        <div class="timeline-body">亞波羅來到以弗所，在會堂裡「放膽講道」。路加特別記載他「已經在主的道上受了教訓，心裡火熱，將耶穌的事詳細講論教訓人，只是他單曉得約翰的洗禮」——他不是一個信仰冷淡或不認真的人，恰恰相反，他極具熱忱且勤於教導，只是他所領受的信息，尚未涵蓋整全的福音真理。</div>
+        <div class="timeline-ref">徒 18:24–25</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">被接到家中——「將神的道給他講解更加詳細」</div>
+        <div class="timeline-body">百基拉與亞居拉聽見他的講道，「就接他來，將神的道給他講解更加詳細」。這是亞波羅生命中極其關鍵的一刻——他沒有因為自己在會堂中已相當受人矚目的地位，而拒絕接受這對相對「無名」的織帳棚夫妻私下的教導，反而願意謙卑地跟隨他們回家，接受補全信仰理解的過程。</div>
+        <div class="timeline-ref">徒 18:26</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">前往亞該亞——弟兄們寫信「請門徒接待他」</div>
+        <div class="timeline-body">亞波羅有意往亞該亞（哥林多所在的行省）去，以弗所的弟兄們便寫信，「請門徒接待他」。這封推薦信顯示，經過百基拉與亞居拉的教導後，教會對他此後前往新的地區服事，已抱有充分的信任與支持——他從一位信仰理解尚待補全的傳道人，迅速轉變為被教會正式差派、值得推薦的同工。</div>
+        <div class="timeline-ref">徒 18:27</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">「多幫助那藉恩已信的人；因為他在眾人面前極有能力，駁倒猶太人」</div>
+        <div class="timeline-body">到了亞該亞，經文記載他「多幫助那藉恩已信的人；因為他在眾人面前極有能力，駁倒猶太人，引聖經證明耶穌是基督」。補全信仰理解後的亞波羅，發揮出他原本就具備的雄辯與學問恩賜，在公開的神學辯論中，成為極具說服力、極有果效的護教者與傳道人——這印證了百基拉夫婦當初的私下教導，不僅沒有削弱他的恩賜，反而讓這份恩賜得以在正確而完整的信仰基礎上，發揮出更大的果效。</div>
+        <div class="timeline-ref">徒 18:27–28</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">黑暗低谷</span>
+        <div class="timeline-title">哥林多教會的分黨之爭——「我是屬亞波羅的」</div>
+        <div class="timeline-body">亞波羅在哥林多深受歡迎，甚至到了引發教會分黨的地步——「我是屬保羅的；我是屬亞波羅的；我是屬磯法的；我是屬基督的」。保羅在哥林多前書中嚴厲地處理這個問題，指出「亞波羅算什麼？保羅算什麼？無非是執事，照主所賜給他們各人的，引導你們相信」——這場風波顯示，亞波羅的口才與魅力雖然帶來了果效，卻也在不經意間，成為信徒偏離對基督本身之委身、轉而崇拜個別傳道人的誘因，儘管沒有證據顯示這是亞波羅本人主動造成或樂見的。</div>
+        <div class="timeline-ref">林前 1:12, 3:4–6</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">「我再三地求他同弟兄們往你們那裡去；但這時他決不願意去」</div>
+        <div class="timeline-body">保羅在哥林多前書中提到，自己曾再三邀請亞波羅與其他弟兄一同前往哥林多，「但這時他決不願意去，等到有機會他必去」。這個細節透露出，或許正是因為意識到自己在哥林多所引發的個人崇拜爭議，亞波羅選擇暫時保持距離，避免讓自己的存在進一步加劇教會的分裂——這展現出他相當程度的自覺與謙遜，不願讓自己的個人魅力，繼續成為教會合一的絆腳石。</div>
+        <div class="timeline-ref">林前 16:12</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">此後的服事——保羅囑咐要「殷勤送他往前行」</div>
+        <div class="timeline-body">提多書中保羅囑咐提多：「你要殷勤地送律師西納和亞波羅前行，叫他們沒有缺乏。」這顯示直到保羅晚年，亞波羅仍持續活躍於教會的服事網絡中，且被保羅視為值得全力支持、資助的重要同工。教會歷史傳統（部分學者亦有推測）甚至認為，亞波羅可能是希伯來書的作者之一——雖然這個說法缺乏確鑿的證據，但反映出後世教會對他學識與口才的高度評價與想像。</div>
+        <div class="timeline-ref">多 3:13</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他最了不起的地方，不是他的口才多好、學問多深，而是他願意在自己已經相當有成就的處境下，依然謙卑地承認自己還不完整。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">真理值得用最好的口才與學識去傳講</div>
+          <div class="soul-body">他『放膽講道』『心裡火熱』『極有能力』——這些形容詞共同勾勒出一位深信真理值得被清晰、有力地傳講出去的人。他沒有因為信息不完整就有所保留，反而全力以赴地投入教導。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">面對指正時展現出的謙遜與開放</div>
+          <div class="soul-body">這是他生命中最動人的美德——一位已經『放膽講道』、在會堂中相當受矚目的傳道人，願意跟隨兩位相對『無名』的織帳棚夫妻回家，接受信仰理解上的補全。這種不因既有的成就與地位而拒絕成長的謙遜，是極其難得的品格。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">雄辯、學術性強，善於公開的神學辯論</div>
+          <div class="soul-body">他『在眾人面前極有能力，駁倒猶太人，引聖經證明耶穌是基督』——這種善於在公開場合運用學識與邏輯，說服甚至駁倒持異議者的能力，是他最鮮明的行事風格與恩賜特質。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">個人魅力容易在不經意間造成教會的分裂</div>
+          <div class="soul-body">儘管沒有證據顯示他主動鼓動個人崇拜，他的口才與學問確實吸引了大批追隨者，甚至形成『我是屬亞波羅的』這樣的派系標籤。這提醒我們，即使動機純正，過於突出的個人魅力，仍可能在群體中無意間造成分裂的風險。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">接受糾正後，恩賜反而發揮出更大的果效</div>
+          <div class="soul-body">百基拉與亞居拉的教導，並沒有削弱或改變他原有的雄辯恩賜，反而讓這份恩賜在正確而完整的信仰基礎上，發揮出更具說服力、更有果效的作用——這揭示了一個深刻的屬靈原則：恩賜若能與完整的真理相結合，往往能發揮出遠超原本潛力的果效。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">亞波羅的故事之所以珍貴，正在於它所呈現的『謙遜』並不是那種缺乏自信、消極退縮式的謙遜，而是一種帶著實力、卻依然願意承認自己有所不足的成熟謙遜。他不是一個平庸、需要被糾正才能勉強站立的傳道人——他早已『放膽講道』『心裡火熱』，具備真實而顯著的恩賜。正因如此，他願意接受私下指正這件事，才格外令人敬佩：越是有能力、有地位的人，往往越難承認自己的不足，也越容易因被指正而心生防衛或惱怒。亞波羅卻選擇了相反的路——他讓自己的恩賜服在真理之下，而非讓自己的地位凌駕於真理之上。此後他在哥林多引發的個人崇拜風波，以及他刻意迴避前往哥林多的選擇，進一步顯示他持續地在『發揮恩賜』與『避免恩賜成為絆腳石』之間，維持著審慎的自覺。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ENTP</span>
+      <div class="mbti-name">辯論家型 · 願意被糾正的雄辯家</div>
+      <div class="mbti-slogan">「他的口才厲害到能『駁倒猶太人』，卻願意先讓兩位無名的匠人夫妻，把他自己的信仰補完整。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Ne · 外向直覺</span>
+          <div class="mbti-fn-body">他極擅長從聖經文本中連結、推演出有力的論證，並能在公開辯論中靈活地運用各種角度說服對手（『引聖經證明耶穌是基督』）。這種對可能性與論證角度的敏銳掌握，是他雄辯能力的核心來源。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Ti · 內向思考</span>
+          <div class="mbti-fn-body">他『最能講解聖經』，顯示他具備嚴謹、系統性梳理經文邏輯的分析能力，能夠把複雜的神學論述，整理成有說服力、站得住腳的論證架構，而不僅僅是情感性的宣講。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Fe · 外向情感</span>
+          <div class="mbti-fn-body">他『心裡火熱』的特質，以及此後在哥林多受到廣泛歡迎、甚至形成追隨者派系的現象，顯示他具備相當的個人魅力與感染力，能夠在群體中喚起熱烈的共鳴與情感連結。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Si · 內向實感</span>
+          <div class="mbti-fn-body">他起初『只曉得約翰的洗禮』，顯示他在吸收與整合既有、完整的傳統教導方面，可能存在一定的落差——這與 ENTP 相對較弱的內向實感傾向一致：更擅長開創性的論述與連結，卻較容易在既定、細節性的傳統知識傳承上出現缺口，需要他人耐心地補足。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最重要的一段關係，是願意讓兩位比自己『不起眼』的匠人夫妻，把自己還不完整的信仰補齊。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">百</div>
+          <div class="relation-name">百基拉與亞居拉</div>
+          <div class="relation-type-badge">私下教導、補全他信仰理解的夫妻</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">這對織帳棚的夫妻聽見他講道後，主動邀請他到家中，『將神的道給他講解更加詳細』。這段關係展現了一種極具智慧與謙遜的師徒典範——教導者選擇私下、溫和的方式進行糾正，而被教導者（儘管在公開場合已相當有成就）也願意謙卑地接受這份指正，兩者的態度共同成就了這場美好的成長經歷。</div>
+          <div class="relation-ref">徒 18:26</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">保</div>
+          <div class="relation-name">保羅</div>
+          <div class="relation-type-badge">同工、卻也被信徒拿來與他比較的使徒</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">保羅在哥林多前書中，直接處理了信徒因崇拜亞波羅或保羅而形成的派系之爭，並明確指出『我栽種了，亞波羅澆灌了，惟有神叫他生長』——這句話清楚地把兩人的角色，定位為在神的工作中彼此配合、缺一不可的同工，而非互相競爭的對手。保羅晚年仍在提多書中，殷勤囑咐要資助他此後的服事，顯示兩人之間的關係，經過那場風波後，依然保持著真實的同工情誼。</div>
+          <div class="relation-ref">林前 3:6 · 多 3:13</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">哥</div>
+          <div class="relation-name">哥林多教會的信徒</div>
+          <div class="relation-type-badge">因過度推崇他而引發分黨之爭的群體</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">他在哥林多的服事極受歡迎，甚至到了信徒公開宣稱『我是屬亞波羅的』的地步——這場分黨之爭，成為保羅在哥林多前書開篇就嚴厲處理的核心議題之一。這段記載提醒我們，即使是出於良善動機的服事與恩賜展現，若信徒的焦點錯置在傳道人個人身上，仍可能對教會的合一造成傷害。</div>
+          <div class="relation-ref">林前 1:10–13</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「我栽種了，亞波羅澆灌了，惟有神叫他生長」——保羅用這句話，把亞波羅的服事，安置在整個救恩工程中恰如其分的位置上。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「我栽種了，亞波羅澆灌了，惟有神叫他生長。可見栽種的，算不得什麼，澆灌的，也算不得什麼；只在那叫他生長的神。」</div>
+      <div class="verse-ref">哥林多前書 3:6–7</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">λόγιος</span>
+        <div class="word-transliteration">logios · 有學問 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「善於言辭的、有學問的、雄辯的」，這個字在古希臘文中，可同時指涉『擅長修辭表達』與『學識淵博』兩種意涵，路加用它來形容亞波羅，可能兼具這兩層意思。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這個詞的雙重意涵，恰好精準地捕捉了亞波羅這個人物的核心特質——他既有淵博的聖經知識，又有極具說服力的表達能力。而正是這樣一位『有學問』的人，願意謙卑地接受相對缺乏正式學術背景的匠人夫妻的教導，這種對比，使得他謙遜的品格顯得格外珍貴。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">ζέων τῷ πνεύματι</span>
+        <div class="word-transliteration">zeōn tō pneumati · 心裡火熱 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「靈裡沸騰、火熱」，動詞 ζέω 字面指液體『沸騰』的狀態，用來形容一種極其熱切、充滿活力的內在狀態。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">路加選用這個生動的意象，來形容亞波羅雖信息不完整、卻絲毫不減損的熱忱——這確立了一個重要的神學提醒：一個人信仰理解上的不完整，並不等同於他缺乏真誠的委身或屬靈的熱情。亞波羅的『心裡火熱』，是即使在信息尚未完整之時，就已經真實存在的美好特質，而百基拉夫婦的教導，不是要澆熄這把火，而是要幫助它燒得更準確、更有方向。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">恩賜與真理需要彼此校準</div>
+      <div class="theology-insight-body">亞波羅原有的雄辯恩賜是真實的，卻需要與完整的真理相結合，才能發揮出最大的果效——這確立了一個重要的屬靈原則：恩賜本身不等同於成熟或完整，天賦異稟的人，同樣需要持續被真理校準與塑造。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">教會中的『栽種』與『澆灌』：多元角色的合一</div>
+      <div class="theology-insight-body">保羅在處理哥林多教會的分黨之爭時，沒有貶低亞波羅的貢獻，反而肯定『栽種』與『澆灌』兩者都是神工作中不可或缺的環節——這為教會論中『不同恩賜、不同角色如何在合一中彼此配搭，而非彼此競爭』提供了核心的神學依據。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">個人魅力的雙面性</div>
+      <div class="theology-insight-body">亞波羅在哥林多所引發的個人崇拜風波，揭示了一個持續存在於教會歷史中的張力：卓越的恩賜與個人魅力，既能大大造就教會，也可能在信徒焦點錯置時，成為分裂教會的隱患。這提醒每一位擁有顯著恩賜的服事者，需要持續謹慎地引導群體的目光回到基督身上，而非停留在自己身上。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">摩西在何烈山遇見神之前，已擁有埃及宮廷完整的學識教育（『摩西學了埃及人一切的學問』），卻仍需要在曠野四十年的預備，以及與神親自的相遇，才真正被裝備成為以色列的領袖</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">亞波羅同樣擁有極高的學識與口才根基（可能源自亞歷山太深厚的學術傳統），卻仍需要百基拉夫婦的私下教導，才能將這份既有的才幹，轉化為對完整真理的準確傳講</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督是那位『道路、真理、生命』的源頭，一切人的學識與恩賜，唯有連結於祂，才能真正發揮永恆的果效（約 14:6）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">所羅門在登基之初，向神求智慧治理百姓，神不僅賜給他智慧，還加添了他未曾求的財富與尊榮——顯示恩賜的真正發揮，需要與正確的求告和謙卑的起點相連結</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">亞波羅原有的恩賜（口才、學問）在他謙卑接受補全教導之後，得以在亞該亞的服事中發揮出更大的果效（『極有能力，駁倒猶太人』），印證了謙遜與恩賜相互成就的屬靈原則</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督是那『在他裡面藏著一切智慧知識的寶藏』的源頭，一切真正的智慧與恩賜，最終都指向並成全於祂（西 2:3）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你在某個領域已經相當有成就，卻被人指出還有需要成長的地方——這一頁是為你寫的。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">亞波羅命中的是一種對於「已經有成就的人」而言格外艱難的處境：當你在某個領域已經頗有建樹、備受肯定，卻被相對『不那麼顯眼』的人指出你其實還有所不足——你會如何回應？是防衛、迴避，還是像亞波羅一樣，謙卑地接受、並讓這份指正把你帶向更完整的成熟？他的故事提醒我們，真正的成長，往往不在於你已經多麼優秀，而在於你是否始終保持一顆願意被繼續塑造的心，無論你已經走了多遠。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你有沒有在某個領域已經相當有自信、甚至受人稱讚，卻被指出其實還有需要補全之處的經歷？你當時的反應是什麼？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">亞波羅選擇跟隨兩位相對『無名』的匠人夫妻接受教導，而不是堅持自己原有的地位與講台。你是否也曾經願意，讓一個看似『地位不如你』的人，教導或糾正你？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">他此後選擇暫時不去哥林多，避免自己的個人魅力進一步加劇教會的分裂。你身邊有沒有一個你需要「刻意保持距離」，才能避免造成不必要影響力的處境？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">保羅說『我栽種了，亞波羅澆灌了，惟有神叫他生長』。在你目前所參與的服事或工作中，你是否能坦然接受自己只是眾多環節中的一環，而非全部的功勞？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 亞波羅（接受教導前）</span>
+        <div class="gen-title">應激劇本：憑藉既有的學識與口才，充滿信心地公開講道</div>
+        <div class="gen-body">他帶著在亞歷山太所受的深厚學術訓練，以及對聖經的熟稔，充滿熱忱地在會堂中放膽講道——這種模式展現出高度的自信與行動力，卻也存在著一個潛在的風險：若沒有及時的檢視與補全，這份自信可能會固化在一個不完整的理解框架之中，而不自知。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 亞波羅（接受教導後）</span>
+        <div class="gen-title">打斷而非延續：從自信講道到謙遜受教，再到更有果效的服事</div>
+        <div class="gen-body">接受百基拉夫婦的教導後，他沒有因此失去原有的熱忱與恩賜，反而在亞該亞展現出『極有能力，駁倒猶太人』的更大果效。這個轉變顯示，他成功地打斷了『憑藉既有成就而拒絕繼續成長』的潛在模式，選擇讓自己的才幹，服在更完整的真理之下。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">打斷發生在百基拉與亞居拉願意主動、卻又溫和地介入他的服事之中——而恩典的關鍵，在於亞波羅自己回應的方式：他沒有因為自己已有的地位與成就而心生抗拒，反而選擇謙卑地接受。這提醒我們，恩典雖然常常透過他人的介入而臨到，最終仍需要當事人自己願意打開心門去回應——亞波羅的謙遜，正是這份恩典得以真正發揮效用的關鍵鑰匙。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那個很厲害卻願意被兩個『素人』糾正的傳道人，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#很厲害卻願意被糾正</span>
+      <span class="tag">#半桶水響叮噹也能被神用</span>
+      <span class="tag">#個人魅力的雙面刃</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>亞波羅出身亞歷山太——放在現代，大概就是頂尖名校畢業，學識背景硬到不行的那種人。他來到以弗所，在會堂裡講道，講得又有熱情又有內容，聖經形容他『心裡火熱』『放膽講道』，聽起來就是那種很有魅力、講起話來讓人聽得入迷的傳道人。</p>
+      <p>但他有個盲點：他對耶穌的認識，只停留在施洗約翰那個階段，還沒完整接觸到耶穌死而復活、聖靈降臨這些核心信息。換句話說，他講得很好，但講的不是最完整的版本。</p>
+      <p>這時候出現了百基拉和亞居拉——一對織帳棚維生的普通夫妻，沒有顯赫的學術背景，卻聽出了亞波羅講道裡的缺口。他們沒有在會堂裡當場打斷他、公開反駁，而是私下把他請到家裡，慢慢地把神的道『講解更加詳細』給他聽。</p>
+      <p>換作是你，如果你已經是某個領域公認很厲害的人，卻被兩個『素人』請去家裡上課，你的第一反應會是什麼？可能會有點尷尬，甚至有點不服氣吧。但亞波羅接受了。而且接受之後，他沒有變得比較沒自信，反而更厲害了——後來到了哥林多，『極有能力，駁倒猶太人』。</p>
+      <p>唯一的插曲是，他實在太受歡迎了，結果哥林多教會的人開始搞小圈子：我是保羅派的，我是亞波羅派的。保羅在信裡直接開罵：亞波羅算什麼？保羅算什麼？我們都只是僕人而已。亞波羅自己似乎也意識到這個問題，後來保羅想找他一起去哥林多，他還特地不去，大概是想避免火上加油。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——而亞波羅這塊石頭，已經拋光得很漂亮了，卻還是願意讓兩個手上有繭的匠人，再細細打磨一次。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你在某個領域已經頗有成就，卻被一個看起來『不如你』的人指出你的不足——先別急著防衛。亞波羅的故事告訴我們，越是有實力的人，願意接受指正,往往能走得更遠。</p>
+      <p style="margin-top:12px;">你不需要覺得『被糾正』代表你之前很差勁。亞波羅原本就『心裡火熱』，教導只是幫他把已經很好的東西，變得更完整而已。</p>
+      <p style="margin-top:12px;">如果你發現自己很受歡迎，甚至開始有人『只認你不認別人』——記得亞波羅後來的選擇。適時地退一步、保持距離，有時候反而是在保護你所服事的群體。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果有人願意好意提醒你哪裡可以做得更好，試著先聽完，再決定要不要反駁。</p>
+    </div>
+
+    <div class="insight-box">在當代職場與專業發展的語境中，亞波羅的故事對『已經有成就的人如何面對回饋與指正』這個常見的心理挑戰，提供了一個極具說服力的正面範例——研究顯示，越是在某領域取得成功的專業人士，往往越容易產生『成就防衛』心理，難以接受來自資歷較淺者的建議。亞波羅打破了這個常見的心理慣性，展現出真正的專業成熟：能力與謙遜並不互斥。而他此後在哥林多引發個人崇拜、並主動選擇迴避的處理方式，也對當代『個人品牌』與『團隊合一』之間的張力，提供了一個值得深思的案例——具備影響力的人，需要對自己的魅力可能帶來的副作用，保持高度的自覺與節制。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他從一位講道『不夠完整』的年輕傳道人，成長為保羅晚年仍殷勤託付、資助的重要同工——他的故事，是謙遜如何成就恩賜的最佳範例。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">「栽種與澆灌」教會論的重要範例</div>
+          <div class="legacy-body">保羅用『我栽種了，亞波羅澆灌了，惟有神叫他生長』這句話，確立了教會歷史中理解不同服事角色如何彼此配搭、共同成就神工作的核心神學框架——這句話至今仍是教會論與事工合作中被廣泛引用的經典表述。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">謙遜接受指正的典範</div>
+          <div class="legacy-body">他願意讓百基拉與亞居拉私下教導自己的選擇，成為此後教會歷史中，鼓勵已有成就者依然保持受教之心的重要聖經範例——真正的智慧與能力，不排斥繼續被塑造的空間。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">恩賜與真理結合後果效倍增的見證</div>
+          <div class="legacy-body">他接受教導後在亞該亞『極有能力』的服事表現，證明了個人恩賜若與完整正確的真理相結合，能夠發揮出遠超原本潛力的果效——這對每一位擁有天賦卻信仰理解尚待成熟的人，都是深刻的鼓勵與提醒。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">個人魅力與教會合一之張力的警示</div>
+          <div class="legacy-body">他在哥林多所引發的分黨爭議，此後成為教會歷史中處理『傳道人個人魅力與群體合一』這一持續張力時，最常被引用的警示性案例，提醒每一代教會領袖對此保持謹慎的自覺。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「我栽種了，亞波羅澆灌了，惟有神叫他生長。可見栽種的，算不得什麼，澆灌的，也算不得什麼；只在那叫他生長的神。」</div>
+      <div class="final-verse-ref">哥林多前書 3:6–7</div>
+    </div>
+
+    <div class="final-question">如果你此刻在某個領域已經相當有成就，卻有人願意溫和地指出你還有需要補全的地方——你會像亞波羅一樣，選擇謙卑地接受，讓自己的恩賜因此發揮出更大的果效嗎？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 亞波羅 <span>Ἀπολλώς</span> · 有學問的傳道人 · 願意被私下糾正的雄辯家</div>
+
+</body>
+</html>

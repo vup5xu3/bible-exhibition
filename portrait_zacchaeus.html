@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>撒該 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">撒該</h1>
+  <span class="hero-name-en">Zacchaeus · Ζακχαῖος · זַכַּי</span>
+  <p class="hero-slogan">「他個子矮小，人品在眾人眼中更矮小——直到耶穌抬起頭，<br>對著樹上那個誰都不想理的稅吏長說：「今天我必住在你家裡。」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">第一世紀 · 主後約 30 年</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ESTP · 企業家型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">路 19:1–10（唯一記載）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">悔改的富人 · 稅吏長</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他名叫「潔淨」，卻做著猶太人眼中最污穢的工作——直到耶穌走進他家，讓名字與人終於對上了號。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">第一世紀<br>羅馬治下的耶利哥</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">多重身份</span>
+        <div class="info-cell-value">稅吏長（羅馬包稅制的地區主管）<br>耶利哥的富人</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">（未載）→<br>耶利哥（約旦河谷的貿易與農產重鎮）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">背景</span>
+        <div class="info-cell-value">猶太人 · 為羅馬工作的稅務體系高層<br>「身量矮小」（路加特別記載的外貌細節）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">路 19:1–10（唯一記載此人事蹟的經文）</div>
+      </div>
+    </div>
+
+    <p>路加特別稱他為「稅吏長」（ἀρχιτελώνης）——這是新約中唯一一次使用這個詞，意味著他不只是個別收稅的稅吏，而是管理整個地區稅務體系的高階官員，底下可能還有其他稅吏向他匯報。耶利哥當時是約旦河谷重要的貿易與香脂產業中心,稅收極為豐厚,經文特別提到他「是個財主」。這個身分,使他在猶太社會中承受著雙重的鄙視：既因為稅吏這個職業本身被視為叛徒（替異族政權剝削同胞），又因為身居高位、財富驚人而更被視為壓迫階層的代表。</p>
+    <p>路加還特別記下一個看似不起眼卻極關鍵的細節：「他身量矮小」。這個外貌描述並非閒筆——正是因為身材矮小，加上眾人對他的厭惡使他無法擠到人群前方，他才做出了那個充滿戲劇性的舉動：跑到前頭，爬上一棵桑樹，只為了看一眼經過的耶穌。一個地位崇高、財富驚人的稅吏長，願意在眾目睽睽之下,做出這種在當時社會顯得極不體面、近乎孩子氣的動作,本身就透露出一種強烈到不顧顏面的渴望。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">他的故事濃縮在一天之內——一次攀爬、一句呼喚、一頓飯，和一個徹底翻轉的人生方向。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">全城厭惡的稅吏長</div>
+        <div class="timeline-body">作為耶利哥稅務體系的高層,他大概每天都活在一種矛盾的處境裡——擁有財富與權力,卻在會堂裡沒有發言權,在鄰里間沒有真正的朋友。猶太社會視稅吏為不潔淨、通敵的叛徒,即使他身居高位,這種社會性的排斥從未因此減輕，反而可能因層級更高而更加深刻。</div>
+        <div class="timeline-ref">路 19:2</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">「他就跑到前頭，爬上桑樹」</div>
+        <div class="timeline-body">耶穌經過耶利哥，撒該想要看看祂是怎樣的人，卻因人多、自己身量矮小而看不見。他做出了一個地位相稱的人絕不會做的事：跑到前面，爬上一棵桑樹。這個動作充滿了赤裸的渴望與不顧顏面的決心——一個稅吏長,願意在眾人面前像個孩子一樣爬樹,只為了看清楚一個人的臉。</div>
+        <div class="timeline-ref">路 19:3–4</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">「撒該，快下來！今天我必住在你家裡」</div>
+        <div class="timeline-body">耶穌走到那棵樹下，抬頭一看，直接叫出他的名字：「撒該，快下來！今天我必住在你家裡。」在整個福音書的敘事裡，耶穌罕見地主動邀請自己住進一個人的家——而且是在眾目睽睽之下，選擇了全城最不受歡迎的人。撒該「就急忙下來，歡歡喜喜地接待耶穌」。</div>
+        <div class="timeline-ref">路 19:5–6</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">黑暗低谷</span>
+        <div class="timeline-title">眾人的私語——「他竟到罪人家裡去住宿」</div>
+        <div class="timeline-body">耶穌選擇住進撒該家的舉動，立刻引來旁觀者的議論：「他竟到罪人家裡去住宿。」這句話反映了當時社會對稅吏根深蒂固的定罪——即使撒該尚未說出任何悔改的話,眾人已經根據他的職業與過去,提前為他判了刑。而耶穌的行動,正是對這種提前定罪的直接挑戰。</div>
+        <div class="timeline-ref">路 19:7</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">「我若訛詐了誰，就還他四倍」——當場的悔改宣告</div>
+        <div class="timeline-body">撒該站起來,對主說：「主啊，我把所有的一半給窮人；我若訛詐了誰，就還他四倍。」這個宣告遠遠超過摩西律法對詐欺的一般要求（利未記僅要求加五分之一賠償，出埃及記對偷竊牲畜才要求四倍或五倍賠償）——他主動選擇了律法中最嚴厲的賠償標準，而且是在還沒被任何人指控、沒有任何審計的情況下,主動、公開地做出這個承諾。</div>
+        <div class="timeline-ref">路 19:8</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">「今天救恩到了這家」——被重新承認為亞伯拉罕的子孫</div>
+        <div class="timeline-body">耶穌回應：「今天救恩到了這家，因為他也是亞伯拉罕的子孫。人子來，為要尋找、拯救失喪的人。」這句話極具份量——耶穌公開地、當著所有質疑者的面，把這個被社會邊緣化、被視為叛徒的稅吏長，重新接納為「亞伯拉罕的子孫」，恢復了他在信仰群體中原本的身分與尊嚴。此後聖經沒有再記載他的事蹟，但這一天的轉變已經足夠說明一切。</div>
+        <div class="timeline-ref">路 19:9–10</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他用財富買到了社會地位，卻買不到一絲被人接納的溫暖——直到有人願意主動走進他家。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">渴望被真正看見,即使要付上顏面的代價</div>
+          <div class="soul-body">他爬上桑樹這個動作,充滿了對「被看見」的赤裸渴望——不是要耶穌看見他的財富或地位,只是單純想親眼看一眼這個人。這種願意放下身段、承受眾人側目的行動力,是他性格中最鮮明的特質。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">當場、公開、超出要求地承擔責任</div>
+          <div class="soul-body">他的悔改沒有拖延、沒有討價還價、沒有私下處理——他當眾站起來,主動宣告要把一半財產給窮人,並用律法中最高的賠償標準償還任何不義之財。這種毫不保留、立即行動的悔改方式,展現出極高的誠意與決斷力。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">直接、果斷、不畏懼社會眼光</div>
+          <div class="soul-body">從爬樹看耶穌,到當眾宣告悔改的具體行動,他的每一步都是直接而果斷的——不透過中間人、不等待私下場合、不做半調子的承諾。這種不畏社會觀感、直接付諸行動的風格,貫穿他整個故事。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">過去很可能靠不正當手段累積了財富</div>
+          <div class="soul-body">他的悔改宣告本身暗示了過去的問題——「我若訛詐了誰」這句話並非假設語氣的謙辭,而是對自己過去行為的坦誠承認。作為稅吏長,他很可能利用職權向百姓額外索取,累積了不義之財。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">被耶穌主動指名、主動選擇的那一位</div>
+          <div class="soul-body">在整個耶利哥城的群眾之中，耶穌沒有隨機挑選一個受人尊敬的宗教領袖,而是抬頭看見樹上那個全城最被鄙視的人，直呼他的名字,主動要求住進他家。這個選擇本身,是對「誰配得神的眷顧」這個問題最有力的顛覆性回答。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">撒該的故事最深刻之處，不在於他悔改的具體金額多麼慷慨,而在於整個事件發生的順序：耶穌先無條件地說「我必住在你家裡」,然後撒該才回應以具體的悔改行動。恩典先於行為,接納先於改變——這個順序,正是整本福音書救恩論的核心結構。許多人以為必須先讓自己配得,才能被神接納；撒該的故事卻示範了相反的次序：正是因為先被毫無保留地接納,才生出了那樣徹底、超出要求的悔改行動。真正的道德轉變，很少是靠外在的壓力或審判達成的,而是在被真正看見、被溫暖接納之後,才從內心自然湧現。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ESTP</span>
+      <div class="mbti-name">企業家型 · 爬樹的稅吏長</div>
+      <div class="mbti-slogan">「他用一輩子精明的算計換來財富，卻在遇見耶穌的那一刻,把算盤全部推翻,選擇了最不精明、卻最真實的一條路。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Se · 外向實感</span>
+          <div class="mbti-fn-body">他對眼前的處境有極高的敏感度與應變能力——發現看不到耶穌,立刻找到解決方法（爬樹），毫不猶豫地付諸行動。這種即刻回應當下處境、不拖延不猶豫的特質,貫穿他整個故事，從爬樹到當場宣告悔改皆是如此。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Ti · 內向思考</span>
+          <div class="mbti-fn-body">作為稅務體系的管理者,他必然具備精準計算與分析的能力——這份能力此刻用在了計算他要償還的具體倍數（四倍）與比例（一半財產）上,顯示他即使在情感衝擊之下,仍保有清晰、具體的邏輯運算能力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Fe · 外向情感</span>
+          <div class="mbti-fn-body">他的悔改是公開的、面向群體的——不是私下的懊悔,而是當眾宣告,直接回應了周圍人對他的議論與定罪。這種需要在群體面前公開表態、修復關係的傾向,顯示出外向情感在此刻被強烈激發。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">作為一個長期活在具體、當下、可量化的財務世界裡的人,他原本可能較少花時間思考生命更深層的意義或方向。而耶穌的到來,恰恰是那個打破他原有框架、引導他看見自己生命更深層意義的契機——這正是劣勢功能被恩典觸動、帶來突破性轉變的典型時刻。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最重要的一段關係，發生在一棵桑樹下,持續不到一天,卻徹底重寫了他的餘生。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">耶</div>
+          <div class="relation-name">耶穌基督</div>
+          <div class="relation-type-badge">主與主動被尋找的稅吏長</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">耶穌主動抬頭看見他、主動叫出他的名字、主動要求住進他家——整段互動幾乎全是耶穌主動發起的。耶穌明確地說：「人子來，為要尋找、拯救失喪的人。」這段關係精準地示範了救恩的主動性：不是撒該找到了耶穌，而是耶穌先找到了他,並且在眾人的質疑聲中,依然選擇公開地與他同席。</div>
+          <div class="relation-ref">路 19:5, 10</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">眾</div>
+          <div class="relation-name">耶利哥的群眾</div>
+          <div class="relation-type-badge">對立 · 質疑耶穌選擇的旁觀者</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">當耶穌選擇住進撒該家時，「眾人看見，都私下議論說：『他竟到罪人家裡去住宿。』」這群人代表著社會對稅吏根深蒂固的定罪與排斥——他們的私語,提前為撒該判了刑,卻沒有給他任何悔改與被接納的機會。耶穌的行動,正是對這種提前定罪之群體心態的公開挑戰。</div>
+          <div class="relation-ref">路 19:7</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">貧</div>
+          <div class="relation-name">他所虧待的人與窮人</div>
+          <div class="relation-type-badge">被他的悔改具體祝福的對象</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">撒該的悔改不是抽象的情感懊悔,而是指向具體對象的行動——「我把所有的一半給窮人；我若訛詐了誰，就還他四倍。」他過去很可能透過職權虧待了許多人,而這次的悔改承諾,意味著他此後必須親自去找出那些人,並償還超出原有損失數倍的金額——這是一項需要時間與勇氣才能完成的具體工程。</div>
+          <div class="relation-ref">路 19:8</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「人子來，為要尋找、拯救失喪的人」——這句話為整本路加福音的核心使命下了最清楚的註腳。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「耶穌說：「今天救恩到了這家，因為他也是亞伯拉罕的子孫。人子來，為要尋找、拯救失喪的人。」」</div>
+      <div class="verse-ref">路加福音 19:9–10</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">ἀρχιτελώνης</span>
+        <div class="word-transliteration">architelōnēs · 稅吏長 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">由 ἀρχι-（首領、頭目）與 τελώνης（收稅人）組成的複合詞，全新約僅在此處出現一次,意指管理整個地區稅收系統的高階官員。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">路加特意使用這個獨特而罕見的詞,強調撒該在稅務體系中的地位遠高於一般稅吏——他很可能是那個時代猶太社會中,受人鄙視程度最高的一批人之一。耶穌選擇這樣一個人作為公開接納的對象,把福音『尋找失喪之人』的宣告,推到了社會排斥光譜的最極端處。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">σήμερον</span>
+        <div class="word-transliteration">sēmeron · 今天 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「今天、此刻」。耶穌在這段記載中連續兩次使用這個字——「今天我必住在你家裡」（19:5）與「今天救恩到了這家」（19:9），強調事件發生的即時性與當下性。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">路加福音特別喜歡使用『今天』這個字來標記救恩臨到的關鍵時刻（如路 2:11 天使報信、路 4:21 耶穌在拿撒勒會堂的宣告、路 23:43 對十字架上的強盜所說的話）。救恩不是一個遙遠、抽象、未來才會發生的應許,而是在具體的『今天』就已經臨到——撒該不需要等待長期的觀察期或試用期,救恩在耶穌開口的那一刻,就已經到了他家。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">恩典先於行為的救恩次序</div>
+      <div class="theology-insight-body">耶穌先無條件宣告要住進撒該家，撒該才回應以具體的悔改行動——這個順序,是整部路加福音（乃至整本新約）救恩論的核心結構：不是人先努力配得,神才施恩,而是神先施恩,人才回應以真實的悔改與行為的轉變。撒該的故事,是這個神學次序最生動、最具體的敘事範例之一。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">「亞伯拉罕的子孫」：身分的恢復而非賜予</div>
+      <div class="theology-insight-body">耶穌說撒該「也是亞伯拉罕的子孫」，這不是賜給他一個新身分，而是恢復並重新承認一個他原本就擁有、卻被社會排斥所遮蔽的身分。這提醒我們，福音的工作有時不是給人添加什麼,而是把被罪與被人的定罪所奪去的原有尊嚴,重新歸還給當事人。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">路加福音「尋找失喪」主題的高峰</div>
+      <div class="theology-insight-body">撒該的故事緊接在路加福音第十五章「失羊、失錢、浪子」三個比喻之後，成為這個主題最具體、最真實的敘事實現——「人子來，為要尋找、拯救失喪的人」這句宣告,可以視為整部路加福音對耶穌使命最精煉的總結。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">利未（馬太）同樣身為稅吏，被耶穌呼召跟從,隨即在家中擺設筵席,邀請眾多稅吏與罪人與耶穌同席</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">兩位稅吏都在耶穌主動的呼召下,經歷了身分與方向的徹底翻轉；一位撇下錢財跟從主,一位在原地把財富拿出來償還與分享</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督親自宣告『我來本不是召義人，乃是召罪人』(太 9:13)，祂對稅吏的接納,正是這句話最具體的行動示範</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">浪子回頭的比喻中,父親遠遠看見兒子,就動了慈心,跑去抱著他的頸項,連連與他親嘴——在兒子還沒有完整說完悔改的話語之前</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">耶穌對撒該的接納，同樣發生在他還沒有說出任何悔改宣告之前——是先被無條件地接納,才生出後續具體的悔改行動,與浪子比喻中父親主動的愛完全一致</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督親自成就了這位『天父』在比喻中所預表的接納——『我們還作罪人的時候，基督就為我們死』(羅 5:8)</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">以西結書預言神要親自尋找分散的羊，將失喪的尋回，將被逐的領回</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">耶穌對撒該所說『人子來，為要尋找、拯救失喪的人』，直接呼應了這段舊約中神親自作牧人、主動尋找失喪之羊的應許</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督是那位好牧人，親自為羊捨命，並應許沒有一隻真心尋求祂的羊會失落（約 10:11, 27–28 · 結 34:11–16）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你曾經因為過去的職業、名聲或錯誤，被貼上一個難以撕掉的標籤——這一頁是為你寫的。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">撒該命中的是一種深刻的現代處境：一個人即使擁有財富、地位與能力,若被貼上道德或社會性的負面標籤,依然可能長期活在被排斥、不被真正接納的孤立感中。他的故事給出了一個具體而有力的答案：真正的轉變,往往不是從外在的懲罰或羞辱而來,而是從一次毫無保留的接納開始。耶穌沒有先要求撒該證明自己已經悔改,才願意與他同席;祂先選擇進入他的家,而正是這份主動的接納,催生了那個超出所有律法要求的悔改行動。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你有沒有一個因為過去的行為或職業,而被貼上難以撕掉之標籤的處境？那個標籤,是否也讓你自己開始這樣看待自己？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">撒該爬上桑樹,不顧身分地位地做出這個「不體面」的動作,只為了想看清楚耶穌。你有沒有為了靠近某個你真正渴望的事,願意放下面子、承受旁人側目？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">他的悔改是當場、公開、且超出要求的——「我若訛詐了誰，就還他四倍」。你是否曾經在被真正接納之後,自發地想要以某種具體行動回應那份接納,而非被迫或勉強？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">眾人在耶穌還沒開口之前,就已經對撒該提前判了刑：「他竟到罪人家裡去住宿。」你是否也曾經對某個人,在他還沒有機會證明自己之前,就先在心裡給他貼上了標籤？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 撒該（悔改前）</span>
+        <div class="gen-title">應激劇本：用財富與地位彌補被排斥的孤立感</div>
+        <div class="gen-body">作為稅吏長,他很可能是在猶太社會的排斥中,選擇了另一條路——既然無法被社群真正接納,不如在財富與權力上尋求某種替代性的價值感與安全感。這種用外在成就填補內在孤立的模式,在許多長期被邊緣化的人身上都可以看見。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 撒該（悔改後）</span>
+        <div class="gen-title">打斷而非延續：從累積財富到主動分散財富</div>
+        <div class="gen-body">悔改之後,他的行動模式出現了徹底的翻轉——不再是累積與囤積,而是主動、超額地分散財富。這個轉變不是被迫的贖罪,而是在真正被接納之後,內心價值排序的自然調整：當一個人不再需要靠財富證明自己的價值時,財富才能真正被用來祝福他人。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">打斷發生在耶穌那句主動的宣告——「今天我必住在你家裡」。這句話的力量在於它的無條件性：耶穌沒有等撒該先證明自己,沒有要求任何預備動作,就直接選擇了與他同住。正是這份毫無保留的接納,打斷了撒該原本用財富與地位填補孤立感的循環,讓他終於得以卸下防衛,做出那個超出律法要求的悔改回應。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那個爬上樹只為了看一眼的矮個子有錢人，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#爬樹看熱鬧翻車</span>
+      <span class="tag">#先被接納才會改變</span>
+      <span class="tag">#有錢也買不到被喜歡</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>撒該是那種你在職場上會遠遠看到、卻不會想主動打招呼的人——位高權重,錢很多,但風評不太好。他的工作是幫羅馬收稅,而且是那種大頭目等級的收稅官,油水撈得比一般小稅吏更狠,大家對他的討厭程度自然也更深一層。</p>
+      <p>有一天耶穌經過他住的城,他很好奇,想去看看這個到底是何方神聖。結果人太多了,加上他個子矮,怎麼擠都擠不到前面。換作一般有頭有臉的人,大概就放棄了——身分擺在那裡,總不能真的去爬樹吧？他偏偏就去爬了。一個稅吏長,在大馬路上,像個小孩一樣，爬上一棵桑樹。</p>
+      <p>耶穌走到樹下，抬頭一看，直接叫他的名字：撒該，快下來,我今天要住你家。整條街的人應該都愣住了——這位老師,居然要去住那個大家最討厭的人家裡？旁邊立刻有人開始碎嘴：他居然跑去罪人家裡住宿。</p>
+      <p>但撒該整個人都不一樣了。他當場站起來說：主啊,我把一半的財產分給窮人;我如果坑過誰的錢,就還他四倍。這個賠償標準,已經超過猶太律法規定的最高標準了——沒有人要求他這樣做,他自己主動開的。</p>
+      <p>耶穌的回答很簡單：今天救恩到了這家,因為他也是亞伯拉罕的子孫。等於是當著所有看不起他的人的面,把他原本被排除在外的身分,重新還給了他。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——而有些石頭,一輩子都在被人嫌棄,直到有人願意主動走進它、住進它,它才終於找到了自己原本的形狀。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你正被某個標籤困住——不管是過去的錯誤、職業、或別人對你的一貫看法——撒該的故事想告訴你：耶穌沒有先要求你證明自己配得,才願意靠近你。祂先選擇了住進你家,而改變,是在那之後才發生的。</p>
+      <p style="margin-top:12px;">你有沒有為了想更靠近某個你真正渴望的東西,願意做一件『不太符合身分』的事？不用覺得丟臉。撒該的故事裡,那個看起來最狼狽的動作——爬樹——恰恰是他這一天最重要的決定。</p>
+      <p style="margin-top:12px;">如果你已經被真正地接納了,而你心裡湧出想要回應、想要補償、想要付出的衝動——去做吧。不需要別人要求你,那份自發的慷慨,本身就是恩典已經在你裡面工作的證據。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">不用等到配得。今天,就下樹,接待那份已經臨到你的恩典。</p>
+    </div>
+
+    <div class="insight-box">在當代社會標籤化與污名化的討論中,撒該的故事提供了一個重要而具體的範例：真正促成道德與行為轉變的,往往不是懲罰或公開羞辱,而是無條件的接納與被真正看見的經歷。這對處理成癮、犯罪矯正、或長期被邊緣化群體之相關工作,提供了一種值得參考的思路——先建立真實的關係與接納,道德的自我修正,往往會自然地隨之而來,而非本末倒置地要求先改變才給予接納。在個人心理層面,他的故事也對『用外在成就填補內在孤立感』這種普遍的現代處境,提供了一面清晰的鏡子與一條具體的出路。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他沒有留下任何書卷、任何講道,卻留下了一個關於恩典次序最經典的敘事範本。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">恩典先於行為的敘事典範</div>
+          <div class="legacy-body">撒該的故事成為此後兩千年教會講解「稱義先於成聖」這個救恩論核心次序時,最常被引用的具體敘事——耶穌先無條件接納,悔改才隨之而來,這個順序被反覆用來對抗各種以行為換取救恩的錯誤觀念。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">「今天」神學的具體展現</div>
+          <div class="legacy-body">路加福音特有的『今天救恩到了』這個主題，在撒該身上得到了最鮮明的示範——救恩不是遙遠的應許,而是在具體的當下、在一次真實的相遇中就已經臨到,不需要漫長的觀察期或試煉期。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">「尋找失喪的人」使命的活教材</div>
+          <div class="legacy-body">他的故事常被視為耶穌整個服事核心宣告——「人子來，為要尋找、拯救失喪的人」——最生動、最具體的實例。此後教會歷史中,無數關於接觸社會邊緣人、被排斥者的服事事工,都以撒該的故事作為神學根據與行動範本。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">超出律法要求之悔改的具體標準</div>
+          <div class="legacy-body">他主動選擇律法中最高的賠償標準(四倍),而非僅止於最低要求,成為此後教會理解「真實悔改」應當帶著怎樣的具體行動與慷慨程度的重要參照案例。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「耶穌說：「今天救恩到了這家，因為他也是亞伯拉罕的子孫。人子來，為要尋找、拯救失喪的人。」」</div>
+      <div class="final-verse-ref">路加福音 19:9–10</div>
+    </div>
+
+    <div class="final-question">如果你此刻正站在人群外圍，被自己過去的某件事困在原地——你願不願意,像撒該一樣,做一件不太體面卻誠實的事,只為了離那份恩典再近一點？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 撒該 <span>Ζακχαῖος · זַכַּי</span> · 爬樹的稅吏長 · 悔改的富人</div>
+
+</body>
+</html>

@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>路得 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">路得</h1>
+  <span class="hero-name-en">Ruth · רוּת</span>
+  <p class="hero-slogan">「拿俄米三次勸她回娘家改嫁，她三次都拒絕——<br>「你往哪裡去，我也往那裡去；你的國就是我的國，你的神就是我的神。」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">士師時代末期（傳統推測）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ISFJ · 守護者型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">路得記全書</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">摩押寡婦 · 大衛王的曾祖母</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">她是一個沒有任何法律義務、也沒有任何血緣責任的外邦寡婦，卻做出了整本聖經中，對婆婆最徹底的忠誠宣告。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">士師時代末期<br>「當士師秉政的時候，國中遭遇饑荒」</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">多重身份</span>
+        <div class="info-cell-value">摩押女子 · 以利米勒之子瑪倫的妻子<br>拿俄米的兒媳 · 波阿斯之妻 · 大衛的曾祖母</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">摩押地 →<br>伯利恆</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">背景</span>
+        <div class="info-cell-value">摩押人（以色列傳統中被視為外邦、甚至帶有敵意歷史的族群）<br>丈夫早逝，選擇跟隨婆婆歸回猶大</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">路得記全書<br>（唯一以女性命名的舊約書卷之一，與以斯帖記並列）</div>
+      </div>
+    </div>
+
+    <p>路得記開篇於一場饑荒：伯利恆人以利米勒帶著妻子拿俄米與兩個兒子，遷居到摩押地躲避饑荒，兩個兒子在當地娶了摩押女子俄珥巴與路得為妻。然而此後以利米勒與兩個兒子相繼去世，留下拿俄米與兩位兒媳，三個寡婦，在一個女性幾乎完全依附於丈夫或男性親屬才能生存的古代社會中，這是極其脆弱而危險的處境。摩押人在以色列的歷史記憶中，並非一個受歡迎的民族——申命記明確記載「亞捫人或摩押人不可入耶和華的會」，這使路得作為摩押女子的身分，在她此後選擇歸回猶大的決定中，帶著額外沉重的社會與宗教障礙。</p>
+    <p>拿俄米決定返回猶大地時，勸兩個兒媳各自回娘家改嫁，「願耶和華恩待你們，如同你們恩待已死的人與我一樣」。俄珥巴哭著與婆婆親嘴道別，選擇了理性而合乎常理的路——回到自己的家鄉、自己的神明、重新開始生活。路得卻「捨不得拿俄米」，說出了整本聖經中最動人的忠誠宣告之一：「你往哪裡去，我也往那裡去；你在哪裡住宿，我也在那裡住宿；你的國就是我的國，你的神就是我的神。」這個決定，意味著她要放棄自己的家鄉、自己的族群認同、自己此後改嫁的可能性，跟隨一位年邁、一無所有、且要前往一個對摩押人並不友善之國度的婆婆——這是一個純粹出於愛與忠誠、而非任何理性計算的選擇。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">她的故事從一場毫無保留的忠誠宣告開始，經過在麥田裡卑微的拾穗，最終走向一場改變以色列救贖歷史的婚姻。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">「你的國就是我的國，你的神就是我的神」</div>
+        <div class="timeline-body">拿俄米勸兩個兒媳返回摩押改嫁，俄珥巴選擇離開，路得卻堅定回應：「不要催我回去不跟隨你。你往哪裡去，我也往那裡去；你在哪裡住宿，我也在那裡住宿；你的國就是我的國，你的神就是我的神。你在哪裡死，我也在那裡死，也葬在那裡。除非死能使你我相離，不然，願耶和華重重地降罰與我。」拿俄米見她「定意要跟隨自己，就不再勸她了」。</div>
+        <div class="timeline-ref">路得記 1:16–18</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">黑暗低谷</span>
+        <div class="timeline-title">「不要叫我拿俄米，要叫我瑪拉」——歸回時的貧困與絕望</div>
+        <div class="timeline-body">拿俄米與路得歸回伯利恆時，正值動麥收的季節，全城的人都因拿俄米的歸來而驚訝，拿俄米卻說：「不要叫我拿俄米（意為『甜』），要叫我瑪拉（意為『苦』），因為全能者使我受了大苦。我滿滿地出去，耶和華使我空空地回來。」兩個寡婦，一無所有，只能倚靠摩西律法中「拾取遺落麥穗」的貧困救濟條例維生。</div>
+        <div class="timeline-ref">路得記 1:19–22</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">在波阿斯的田裡拾穗——「願你在耶和華以色列神的翅膀下」</div>
+        <div class="timeline-body">路得主動前往田間拾取麥穗謀生，「恰巧」來到波阿斯的田裡——波阿斯是以利米勒的親屬，一位敬虔而慷慨的地主。他聽聞路得對婆婆的忠誠，對她說：「願耶和華照你所行的賞賜你；你來投靠耶和華以色列神的翅膀下，願你滿得他的賞賜。」並特意吩咐工人「不可欺負她」，甚至「從捆裡抽出些來，留在地下任她拾取」。</div>
+        <div class="timeline-ref">路得記 2 章</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">禾場之夜——「求你用你的衣襟遮蓋我」</div>
+        <div class="timeline-body">拿俄米指點路得，在波阿斯夜間在禾場睡覺時，前去掀開他腳上的被、躺臥在那裡——這是古代近東文化中，正式提出婚姻請求的一種象徵性行動。波阿斯半夜驚醒，路得對他說：「我是你的婢女路得；求你用你的衣襟遮蓋我，因為你是我一個至近的親屬。」波阿斯稱許她「末後的恩比先前更大，因為少年人無論貧富，你都沒有跟從」，並應許要盡至近親屬的責任。</div>
+        <div class="timeline-ref">路得記 3 章</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">城門口的贖回——波阿斯正式娶她為妻</div>
+        <div class="timeline-body">波阿斯在城門口，當著十位長老與更近的親屬面前，依照律法程序，正式取得贖回以利米勒產業與娶路得為妻的權利，並宣告：「你們今日作見證，凡屬以利米勒和基連、瑪倫的，我都從拿俄米手中置買了；又娶了瑪倫的妻摩押女子路得為妻，好在死人的產業上存留他的名，免得他的名在本族本鄉滅沒。」眾人祝福這段婚姻，願她的家「像法勒斯的家一樣」——這是舊約中極少數詳盡記載古代律法婚姻贖回程序的重要文本。</div>
+        <div class="timeline-ref">路得記 4:1–12</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">俄備得的出生——「有一個兒子給拿俄米生了」</div>
+        <div class="timeline-body">路得生了一個兒子，取名俄備得。婦女們對拿俄米說：「應當稱頌耶和華，因為今日沒有撇下你，使你無至近的親屬；愛慕你的兒婦，就是生這孩子的，比有七個兒子還好，她已經生了他。」路得記結尾附上家譜：「俄備得生耶西，耶西生大衛」——這位曾經一無所有、被視為外邦人的摩押寡婦，最終成為大衛王，乃至此後彌賽亞家譜中的重要一環。</div>
+        <div class="timeline-ref">路得記 4:13–22</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">她做出的每一個抉擇，都選擇了忠誠而非安逸、選擇了未知而非熟悉的舒適圈——這種一致性，貫穿她整個故事。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">忠誠的委身，值得付上放棄一切熟悉安全感的代價</div>
+          <div class="soul-body">她放棄了自己的家鄉、族群、以及此後改嫁的正常可能性，只為了不撇下年邁而一無所有的婆婆——這種不計算個人利益得失、純粹出於愛與忠誠的委身，是她一生最核心的性格特質。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">在卑微的處境中依然勤懇而不失尊嚴地勞動</div>
+          <div class="soul-body">身為一無所有的外邦寡婦，她主動選擇最卑微的拾穗工作謀生，波阿斯的工人見證「她從早晨到如今，除了在屋子少歇一會兒，常在這裡」——這種在困境中不抱怨、勤懇工作的品格，贏得了整個伯利恆城的敬重。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">順服長輩的智慧指引，卻也在關鍵時刻展現主動的勇氣</div>
+          <div class="soul-body">她多數時候順從拿俄米的指引行事，卻也在禾場之夜這個關鍵時刻，主動而清楚地向波阿斯表達自己的請求——這種既尊重智慧引導、又能在必要時主動承擔的平衡，貫穿她整個故事。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">（材料有限——聖經對她個人的軟弱或掙扎記載極少）</div>
+          <div class="soul-body">路得記中的路得，形象幾乎全部正面——忠誠、勤懇、順服而不失勇氣。這是敘事篇幅集中於她美好品格所致的自然結果，而非暗示她毫無人性掙扎。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">一位外邦女子，卻被寫進彌賽亞的家譜</div>
+          <div class="soul-body">作為一位按律法本不應被納入以色列會眾的摩押人，她卻透過忠誠與信心，成為大衛王、乃至此後耶穌基督家譜中，被馬太福音特意提及的四位女性之一——這種身分的巨大跨越，展現出神救贖計畫如何超越血統與族群的限制。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">路得的故事最動人之處，在於它展現了忠誠如何能夠超越血緣、族群、乃至理性計算的利益權衡。她對拿俄米的忠誠宣告——「你的國就是我的國，你的神就是我的神」——不是出於任何法律義務或社會期待，而是純粹出於對這段關係的珍視與委身。而正是這份看似「不理智」的忠誠，最終將她帶向了一段超越她自己想像的救贖歷史地位——透過波阿斯的贖回，她成為大衛王的曾祖母，並被列名於彌賽亞的家譜之中。這提醒我們，忠誠與委身，看似是一種「犧牲」或「損失」，卻可能正是神用來成就祂更宏大計畫的重要途徑——我們此刻看似不合常理的堅持，或許正在被編織進一個遠超我們個人視野的救贖故事之中。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ISFJ</span>
+      <div class="mbti-name">守護者型 · 忠誠的摩押女子</div>
+      <div class="mbti-slogan">「她本可以像俄珥巴一樣，理性地回頭改嫁——她卻選擇了一條看不見盡頭、卻忠於所愛的路。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Si · 內向實感</span>
+          <div class="mbti-fn-body">她展現出對既有關係與承諾極其忠實的持守——一旦做出跟隨拿俄米的決定，便一貫、持續地履行這份承諾，從拾穗到婚姻，每一步都展現出對既定委身的忠實延續。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Fe · 外向情感</span>
+          <div class="mbti-fn-body">她對拿俄米的處境懷抱深切的關懷，並願意主動承擔照顧年邁婆婆的責任——這種以他人福祉為念、願意犧牲個人利益成全他人需要的特質，貫穿她整個故事。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ti · 內向思考</span>
+          <div class="mbti-fn-body">禾場之夜，她清楚而準確地依照拿俄米的指引、並結合當時的律法習俗，向波阿斯提出具體而合宜的請求——這種能夠將抽象的忠誠心意，轉化為符合具體處境與規範之明確行動的能力，顯示第三功能的作用。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Ne · 外向直覺</span>
+          <div class="mbti-fn-body">她的決策模式較少展現對多重可能性的探索或開放式思考，而是傾向於在確立一個核心的委身方向後，便一貫而穩定地朝那個方向前進——這種相對聚焦而非發散的行動模式，反映出劣勢外向直覺的特徵。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">她一生最重要的一段關係，是與一位她本無血緣義務、卻選擇至死不渝跟隨的婆婆。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">拿</div>
+          <div class="relation-name">拿俄米</div>
+          <div class="relation-type-badge">婆婆，也是她選擇至死不渝跟隨的對象</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">路得對拿俄米的忠誠宣告，是整本聖經中對非血緣關係最徹底的委身典範之一——她放棄了改嫁與回鄉的可能性，選擇跟隨這位年邁、一無所有的婆婆前往異鄉。此後拿俄米也以智慧指引路得如何在伯利恆謀求生存與婚姻的出路，兩人的關係展現出一種跨越血緣、卻同樣深厚的相互扶持。</div>
+          <div class="relation-ref">路得記 1:16–18, 3:1–4</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">波</div>
+          <div class="relation-name">波阿斯</div>
+          <div class="relation-type-badge">至近的親屬，此後成為她的丈夫</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">波阿斯因聽聞路得對拿俄米的忠誠而心生敬重，主動照顧她在田間拾穗的安全與所得，此後依照律法程序正式贖回產業並娶她為妻——這段婚姻不僅解決了兩位寡婦的生存危機，更成為此後大衛王室血脈的直接起點。</div>
+          <div class="relation-ref">路得記 2–4 章</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">俄</div>
+          <div class="relation-name">俄珥巴</div>
+          <div class="relation-type-badge">同為摩押寡婦，卻選擇了不同道路的姑嫂</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">俄珥巴同樣是拿俄米的兒媳，面對相同的處境，她選擇了理性而合乎常理的道路——返回娘家改嫁。聖經沒有譴責她的選擇，卻透過與路得的對照，凸顯出路得那份超越常理計算的忠誠有多麼獨特。</div>
+          <div class="relation-ref">路得記 1:14</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">俄</div>
+          <div class="relation-name">俄備得</div>
+          <div class="relation-type-badge">她所生、承接大衛家譜的兒子</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">路得所生的兒子俄備得，成為耶西的父親、大衛王的祖父——這位曾經一無所有的摩押寡婦，其血脈最終直接匯入了以色列最重要的王室家譜，並延伸至此後彌賽亞的家譜之中。</div>
+          <div class="relation-ref">路得記 4:17, 21–22</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">一位本不應進入以色列會眾的摩押女子，卻因著忠誠與信心，被寫進了大衛與彌賽亞的家譜——這是舊約中恩典超越律法界限最動人的見證之一。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「路得說：「不要催我回去不跟隨你。你往哪裡去，我也往那裡去；你在哪裡住宿，我也在那裡住宿；你的國就是我的國，你的神就是我的神。」」</div>
+      <div class="verse-ref">路得記 1:16</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">חֶסֶד</span>
+        <div class="word-transliteration">chesed · 慈愛（忠誠之愛） · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「忠誠不變的愛、盟約性的慈愛」，這是舊約神學中最重要的字詞之一，用以描述神對祂子民不離不棄的信實之愛，也用來描述人與人之間超越法律義務的忠誠委身。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">路得記中，波阿斯的工人與波阿斯本人都用這個字來形容路得對拿俄米所行的——她的忠誠，被視為對神自己之慈愛的具體人性化展現。這確立了一個重要的神學原則：人與人之間看似平凡的忠誠與委身，可以成為神那超越血緣與律法之慈愛的具體見證與延伸。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">גֹּאֵל</span>
+        <div class="word-transliteration">go'el · 至近的親屬（贖回者） · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「贖回者、有責任贖回產業或親屬的至近親人」，摩西律法規定，家族中的至近親屬有義務贖回已故親人的產業、並娶其遺孀以延續其名分（利未拉特婚姻）。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">波阿斯作為以利米勒的至近親屬，履行了這份「至近親屬」的贖回責任——這個角色與職分，此後成為新約神學中理解基督作為信徒之「贖罪者」（redeemer）最重要的舊約意象來源之一。基督親自成就了那終極的贖回，「用自己的血」買贖了屬祂的百姓（啟5:9）。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">恩典超越律法的界限</div>
+      <div class="theology-insight-body">申命記明確規定「摩押人不可入耶和華的會，直到十世」，然而路得——一位摩押女子——卻因著她的忠誠與信心，不僅被接納進入以色列群體，更被寫進大衛王與彌賽亞的家譜之中。這確立了舊約神學中一個重要卻常被忽略的原則：律法所劃定的界限，並不能限制神主權性恩典的運作範圍。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">至近親屬的贖回神學</div>
+      <div class="theology-insight-body">波阿斯履行「至近親屬」職分、贖回產業並娶路得為妻的整個過程，成為理解舊約救贖神學最具體、最生動的敘事範例——一位有能力、也甘心樂意的親屬，主動承擔起贖回瀕臨滅絕之家業與人的責任，這正是此後基督作為信徒救贖主之角色的重要預表。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">彌賽亞家譜中的外邦女性</div>
+      <div class="theology-insight-body">馬太福音在耶穌的家譜中，特意提及他瑪、喇合、路得、拔示巴這四位帶著外邦身分或醜聞背景的女性——路得的存在，正是這個刻意編排中重要的一環，宣告救恩的血脈本身，早已預示了福音要跨越猶太與外邦的界限，向普世敞開。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">喇合作為耶利哥城中的外邦妓女，因對以色列之神的信心而被拯救，最終被接納進入以色列群體，並同樣被列入彌賽亞的家譜</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">路得與喇合是舊約中兩位因信心而被接納、並被寫進彌賽亞家譜的外邦女性——兩人的故事共同展現出，神救贖計畫的血脈本身，早已超越單一民族的血統界限，向普世敞開</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督親自成就了「凡求告主名的，就必得救」這一應許，使猶太人和希臘人、為奴的和自主的，都能在祂裡面成為一（羅 10:13 · 加 3:28）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">波阿斯作為以利米勒的至近親屬，主動贖回產業、娶路得為妻，使瀕臨滅絕的家族名分得以延續存留</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這個「至近親屬贖回」的律法程序，成為理解基督救贖工作最重要的舊約意象——一位有血緣關係、有能力、也甘心樂意的贖回者，主動承擔起拯救瀕臨滅亡之家業與人的責任</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督親自「取了奴僕的形像，成為人的樣式」，成為那唯一有資格、也甘心樂意贖回全人類的至近親屬與救贖主（來 2:14–17）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">路得從一無所有的外邦寡婦，透過忠誠與委身，最終成為大衛王的曾祖母——她的血脈直接匯入了以色列最重要的王室家譜</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">她卑微的出身與此後尊貴的地位，形成了舊約中「神揀選卑微者、使之承接尊貴地位」這一持續主題最動人的見證之一</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督自己降生於卑微的馬槽，卻成就了萬王之王的尊貴地位——「他本是神，……反倒虛己……所以神將他升為至高」（腓 2:6–9）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你正面臨一個選擇——選擇合乎常理的安全，還是選擇忠於一段你所珍視的關係，即使代價是未知與不確定——這一頁是為你寫的。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">路得命中的是每一個曾經面對「理性的安全選擇」與「忠於情感委身的選擇」之間拉扯的人。俄珥巴的選擇不是錯的——回家改嫁，確實是更合乎常理、更安全的路；而路得的選擇，展現出另一種同樣真實、卻更難以量化的價值：對一段關係的忠誠，有時候值得我們放下對安全與確定性的執著。她的故事提醒我們，那些看似「不划算」的忠誠與委身，可能正在被編織進一個我們此刻完全無法預見的、更宏大的生命故事之中。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你有沒有一次面臨「選擇合乎常理的安全」與「忠於一段情感委身」之間的抉擇？你當時是如何決定的？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">路得放棄了自己的族群認同與家鄉，只為了不撇下拿俄米。你是否曾經為了一段你珍視的關係，放棄過某些看似重要的個人利益或身分認同？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">她在卑微的拾穗工作中，依然勤懇而不失尊嚴地勞動。你目前若正處在一個不如意、甚至有些卑微的處境中，你如何看待自己在其中所付出的努力？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">她一位外邦女子，卻被寫進彌賽亞的家譜。你是否曾經覺得自己因為某種身分背景，而「不夠格」被神使用？路得的故事，對這種想法會有什麼樣的挑戰？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 路得</span>
+        <div class="gen-title">示範劇本：以忠誠而非計算利益，作為人生重大決策的核心依據</div>
+        <div class="gen-body">她一生的抉擇模式高度一致——無論是跟隨拿俄米、在田間拾穗、還是在禾場向波阿斯提出請求，她都展現出一種以忠誠與委身為核心、而非精打細算個人利益的行動模式。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 大衛（她的曾孫）</span>
+        <div class="gen-title">延續：血脈中承接了忠誠與信心的傳承</div>
+        <div class="gen-body">路得的曾孫大衛，此後成為以色列歷史上最重要的君王之一，他一生對神的忠誠——即使在逃亡與磨難中依然持守信靠——某種程度上延續了曾祖母路得那份不計代價的忠誠特質，儘管兩人所處的處境截然不同。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在路得的故事中，展現在神如何超越律法所劃定的族群界限（摩押人不可入會），主動將這位忠誠的外邦女子，接納進入祂救贖歷史最核心的家譜之中。這提醒我們，恩典打斷『血統或身分決定資格』這種思維的方式，正是透過像路得這樣一個真實而具體的例子，向所有世代宣告：忠誠與信心，能夠超越任何人為劃定的界限，被神親自看重與使用。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那個放棄改嫁機會、選擇跟婆婆一起吃苦的外邦女子，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#忠誠比理性安全更重要</span>
+      <span class="tag">#卑微處境也要活得有尊嚴</span>
+      <span class="tag">#外邦人也能被寫進家譜</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>路得的故事，開頭其實蠻慘的。三個女人——拿俄米跟她兩個媳婦——先後死了丈夫，變成三個寡婦，在那個年代，等於是失去了所有的經濟與社會依靠。</p>
+      <p>拿俄米勸兩個媳婦回娘家，趁還年輕改嫁去。這個建議完全合理，換作誰都會這樣建議。大媳婦俄珥巴哭了一場，還是回去了，這也完全可以理解。</p>
+      <p>路得沒有走。她說了一段後來被無數人引用的話：你去哪裡我就去哪裡，你住哪裡我就住哪裡，你的民族就是我的民族，你的神就是我的神，除非死才能把我們分開。這不是一時衝動，拿俄米看她「定意」，就沒有再勸了。</p>
+      <p>回到伯利恆之後，兩個女人一無所有，路得只能靠著撿麥穗維生——這是給窮人的一種救濟方式，撿收割後掉在地上的麥穗。她撿麥穗撿到一個叫波阿斯的地主的田裡，這人剛好是她公公的親戚，聽說了她對婆婆的忠誠，特別關照她。</p>
+      <p>後來透過一套古代的法律程序（有點像遠親優先贖回產業的規定），波阿斯正式娶了路得。他們生的兒子，後來成了大衛王的爺爺。一個曾經一無所有、身分還被視為外人的摩押寡婦，她的名字，最後被寫進了以色列最重要的王室家譜裡。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——而路得這塊石頭，本來被歸類在「外人」那一堆，卻因為一份不肯放手的忠誠，被鑲進了最核心的那條項鍊裡。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你正在「合理放棄」跟「堅持一段關係」之間猶豫——路得的故事不是要你永遠選後者，是要提醒你，那份看起來不划算的忠誠，有時候比你想像的更有份量。</p>
+      <p style="margin-top:12px;">如果你此刻正處在一個很卑微、很辛苦的處境裡——像路得撿麥穗那樣——別小看你在那裡的努力與尊嚴。有人正在看見你的付出，就算你以為沒有人注意。</p>
+      <p style="margin-top:12px;">如果你覺得自己因為某種身分或背景，永遠是「外人」——路得曾經也是。她的名字，最後卻被寫進了最重要的家譜裡。你的身分，從來不是神使用你的限制。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果你正在忠誠與安全之間拉扯——別急著只選安全的那條路。</p>
+    </div>
+
+    <div class="insight-box">在當代跨文化融入與少數族群認同的討論中，路得的故事提供了一個深具啟發性的範例——她沒有被要求先完全放棄自己的摩押身分才能被接納，而是透過具體的忠誠與委身行動，逐漸贏得群體的敬重與接納。這對正處於文化適應、身分認同拉扯的現代人，提供了重要的參照：真正的融入，往往不是靠切割過去的自己，而是靠一致而真誠的品格展現。而她「選擇忠誠而非理性計算」的抉擇，也對當代高度強調『理性決策』與『個人利益最大化』的文化，提供了一種重要的價值提醒——有些看似不划算的委身，可能正在成就遠超我們此刻所能理解的深遠意義。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">她從一個一無所有的外邦寡婦，成為大衛王的曾祖母、彌賽亞家譜中的重要一環——她的忠誠，最終被編織進了整部救贖歷史。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">彌賽亞家譜中的外邦女性典範</div>
+          <div class="legacy-body">她與他瑪、喇合、拔示巴一同被馬太福音特意列入耶穌的家譜，成為救恩超越猶太與外邦界限、恩典超越律法所劃界限這一神學主題最具體的見證。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">「忠誠」（chesed）神學的人性化典範</div>
+          <div class="legacy-body">她對拿俄米的忠誠，被視為神自己盟約性慈愛在人身上的具體展現，此後成為教會歷史中，理解「人際關係中之忠誠委身如何反映神性之愛」時，最動人的聖經典範。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">至近親屬贖回神學的敘事範例</div>
+          <div class="legacy-body">波阿斯依律法程序贖回產業並娶她為妻的完整記載，成為理解舊約救贖神學、以及此後基督作為信徒救贖主角色時，最生動具體的敘事文本。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">大衛王室血脈的直接起點</div>
+          <div class="legacy-body">她與波阿斯所生的俄備得，直接開啟了通向大衛王的家族血脈——這使她的忠誠抉擇，不僅改變了她個人的命運，更深遠地影響了整個以色列此後的君王歷史。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「耶西生大衛王。……俄備得生耶西，耶西生大衛。」</div>
+      <div class="final-verse-ref">路得記 4:22（另見馬太福音 1:5–6，將此家譜延伸至基督）</div>
+    </div>
+
+    <div class="final-question">如果你此刻正站在一個「合乎常理的安全」與「忠於一段你所珍視之關係」的十字路口——你願不願意相信，就像路得一樣，那份看似不划算的忠誠，可能正在被神編織進一個遠超你此刻所能想像的故事之中？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 路得 <span>רוּת</span> · 忠誠的摩押女子 · 大衛的曾祖母</div>
+
+</body>
+</html>
