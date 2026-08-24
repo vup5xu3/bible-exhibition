@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>大利拉 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">大利拉</h1>
+  <span class="hero-name-en">Delilah · דְּלִילָה</span>
+  <p class="hero-slogan">「大利拉見他把心中所藏的都告訴了她，就打發人將非利士人的首領們召來，說：「他已經把心中所藏的都告訴我了，請你們再上來一次。」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">約主前十一世紀（士師時代）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ESTJ · 總經理型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">士師記 16:4–20</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">梭烈谷的女子 · 受非利士首領收買、探出參孫力量秘密者</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">非利士人的首領找上她，開出了極其優渥的價碼——每人給她一千一百舍客勒銀子，只求她一件事：探出參孫這位以色列士師大力氣的秘密，好制伏他。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">約主前十一世紀，士師時代</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">梭烈谷的女子（民族背景聖經未明確記載）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">梭烈谷（以色列與非利士交界地帶）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">聖經未記載其家庭成員</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">士 16:4–20</div>
+      </div>
+    </div>
+
+    <p>大利拉的登場，聖經直接點明了她此後一切行動的驅動力：『非利士人的首領上去見那婦人，對她說：求你誆哄參孫，探探他因何有這麼大的力氣……我們就每人給你一千一百舍客勒銀子。』這是一筆極其龐大的財富，顯示非利士人對制伏參孫這位長期困擾他們的以色列士師，抱持著何等迫切的渴望，也顯示大利拉在這場交易中，所扮演的角色，是被明確收買、以完成一項具體任務的執行者。她此後展開了一連串鍥而不捨的追問——先問參孫，若用七條未乾的青繩捆綁他，是否能使他軟弱如常人；此後又問若用新繩、或將他頭上的七條髮綹編織，是否能奏效——參孫每一次都給出了不實的答案，大利拉每一次也都依言試驗，卻都以失敗告終，甚至埋伏的非利士人一再撲上前去，卻都無法制伏參孫。</p>
+    <p>大利拉在屢次被欺哄之後，並未放棄，反而選擇了更具情感操縱意味的策略：『你既不與我同心，怎麼說你愛我呢？你這三次欺哄我，沒有告訴我，你因何有這麼大的力氣。』聖經記載，她『天天用話催逼他，甚至他心裡厭煩要死』——這種持續而執著的情感施壓，最終奏效。參孫終於將自己一生的秘密和盤托出：『向來人沒有用剃頭刀剃我的頭，因為我自出母胎就歸神作拿細耳人；若剃了我的頭髮，我的力氣就離開我，我便軟弱像別人一樣了。』大利拉一聽，便知道『他把心中所藏的都告訴了她』，立即打發人請非利士首領再次前來，並趁參孫熟睡在她膝上時，叫人剃除他的七條髮綹——參孫的力氣果然離開了他，非利士人這才終於將這位困擾他們多年的士師擒拿，剜了他的眼睛，帶下迦薩，鎖以銅鍊，使他在監裡推磨。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從被非利士首領重金收買、展開一連串追問的女子，到最終探出參孫力量秘密、促成他被擒拿的執行者——大利拉的故事，是士師記中對『參孫個人軟弱如何被外部的算計徹底利用』刻畫得最直接的敘事之一。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">受非利士首領收買——「每人給你一千一百舍客勒銀子」</div>
+        <div class="timeline-body">非利士人的首領找上大利拉，開出極其優渥的價碼，要求她探出參孫大力氣的秘密——大利拉接受了這項任務，展開此後一連串針對參孫的追問與試探。</div>
+        <div class="timeline-ref">士 16:4–5</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">三次追問，三次被騙——「參孫回答說……」</div>
+        <div class="timeline-body">大利拉先後以青繩、新繩、編織髮綹三種方式追問並試驗參孫力量的秘密，參孫每一次都給出不實的答案，大利拉依言試驗，卻都以失敗告終。</div>
+        <div class="timeline-ref">士 16:6–14</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">以情感施壓催逼——「天天用話催逼他，甚至他心裡厭煩要死」</div>
+        <div class="timeline-body">大利拉轉而以『你不愛我』的情感指控持續施壓，日復一日地催逼參孫，最終使他心裡厭煩到極點，終於將自己作拿細耳人、力量根源於頭髮的秘密和盤托出。</div>
+        <div class="timeline-ref">士 16:15–17</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">剃除髮綹，參孫被擒——「他的力氣果然離開他」</div>
+        <div class="timeline-body">大利拉確認參孫已將秘密盡數告知，便召來非利士首領，趁參孫熟睡在她膝上時剃除他的髮綹，參孫的力氣離開了他，非利士人終於將他擒拿，剜去雙眼，囚禁於獄中推磨。</div>
+        <div class="timeline-ref">士 16:18–21</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">她是士師記中對『被明確金錢利益驅動、且展現出極其精準之心理操縱策略』刻畫得最直接的人物之一——她的每一步行動，都緊扣著完成任務這一具體目標。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">以完成非利士首領所託付的具體任務（探出參孫力量的秘密）為明確而堅定的行動目標</div>
+          <div class="soul-body">從故事開始到結束，大利拉的每一步行動，都清楚地服務於這個具體的任務目標，這種目標導向的一貫性，是她性格中最鮮明的特質。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">（材料呈現複雜面貌——聖經未特別稱許她的品格，她的敘事聚焦於其精準而執著的策略執行）</div>
+          <div class="soul-body">士師記對大利拉的記載，主要聚焦於她如何一步步達成非利士首領交付的任務，未見聖經對她個人品德給予正面的稱許。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">在多次失敗後，依然堅持不懈地調整策略，最終找到最有效的施壓方式</div>
+          <div class="soul-body">大利拉在前三次追問都以失敗告終後，並未放棄，而是調整策略，轉而運用情感指控與持續的催逼，這種鍥而不捨、善於調整策略以達成目標的行事風格，是她最鮮明的特質。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">為了金錢利益，運用情感操縱的手段，利用參孫對她的情感依附，促成他被擒拿的悲劇結局</div>
+          <div class="soul-body">大利拉『你既不與我同心，怎麼說你愛我呢』這句話，展現出她精準地運用參孫對她的情感依戀作為施壓工具，這種將親密關係中的情感聯繫，轉化為達成個人利益之工具的行為，是她性格中最受爭議的部分。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">她的名字『大利拉』與『參孫』的希伯來原文都與『力量』或『太陽』等意象有著微妙的關聯，此後成為西方文化中『致命女性』意象最重要的原型之一</div>
+          <div class="soul-body">大利拉的故事，此後在西方文學、藝術、乃至流行文化中，反覆被引用與重新詮釋，成為描繪『因情感依戀而導致致命後果』這一敘事母題最具代表性的來源之一。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">大利拉的故事，若單獨閱讀，很容易被簡化為一則『邪惡女子誘騙英雄』的敘事，然而若將她與參孫的整體故事並置閱讀，便能發現一個更為複雜的圖景——這段敘事真正的核心焦點，其實在於參孫自己一再重複的軟弱模式：他一次又一次地允許自己深陷於與非利士女子的情感糾葛（早年的亭拿女子、此後迦薩的妓女、此後的大利拉），一次又一次地在明知危險的處境中，依然選擇留在誘惑的核心地帶，甚至在三次被大利拉的追問所欺哄、也親眼見證非利士人埋伏意圖加害自己之後，依然沒有選擇離開或提高警覺，反而繼續留在這段顯然充滿風險的關係之中。大利拉的角色，某種程度上，正是這場士師記悲劇敘事中，外部誘惑與利益算計的具體化身，然而真正導致參孫失敗的核心原因，始終是他自己一再未能節制自身情慾、未能真正看重並持守自己拿細耳人的分別為聖身份。大利拉的故事提醒我們，當我們檢視自己生命中可能導致跌倒的處境時，與其僅僅將問題歸咎於外部的誘惑或算計者，更需要誠實地省察，自己是否也如參孫一般，一再地選擇留在明知危險、卻難以割捨的處境之中。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ESTJ</span>
+      <div class="mbti-name">總經理型 · 受重金收買的探秘者</div>
+      <div class="mbti-slogan">「她問了三次，被騙了三次，卻沒有放棄——直到參孫終於厭煩到把秘密和盤托出。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">她清楚而有條理地執行非利士首領所交付的具體任務，並在多次失敗後系統性地調整策略，這種目標導向、有效率地達成任務的方式，正是主導外向思考的典型展現。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Si · 內向感覺</span>
+          <div class="mbti-fn-body">她精確地記住並重複執行之前參孫所給予的每一個（不實的）答案，並依此逐一具體試驗，顯示出對具體細節的謹慎依循。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Fe · 外向情感</span>
+          <div class="mbti-fn-body">她精準地運用『你不愛我』這種情感訴求，來影響並操縱參孫的行為反應，顯示出對人際情感動力的敏銳掌握（儘管是用於操縱目的）。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">（材料有限——聖經對她在更深層、長遠意義層面的思考著墨較少，她的行動聚焦於眼前具體任務的完成，而非對更宏大意義的探求）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">她一生最重要的關係，是與那位受她天天催逼、最終在她膝上熟睡並失去頭髮與力量的參孫——這段關係的結局，直接促成了非利士人多年來渴望的勝利。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">參</div>
+          <div class="relation-name">參孫</div>
+          <div class="relation-type-badge">她受託探出其力量秘密、此後促成其被擒拿的以色列士師</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">參孫深陷於與大利拉的情感糾葛之中，即使多次被她的追問所欺哄、也親眼見證非利士人的埋伏，依然沒有選擇離開，最終在她天天的催逼下，說出了自己力量的秘密，導致自己被擒拿、剜去雙眼。</div>
+          <div class="relation-ref">士 16:6–21</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">非</div>
+          <div class="relation-name">非利士人的首領</div>
+          <div class="relation-type-badge">重金收買她、委託其完成任務的雇主</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">非利士首領開出極其優渥的價碼，要求大利拉探出參孫力量的秘密，並在她成功完成任務後，親自前來擒拿參孫，完成了他們期盼已久的勝利。</div>
+          <div class="relation-ref">士 16:5, 18</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「他的力氣果然離開他」——這句話所描述的，不僅是參孫頭髮被剃除的物理後果，更深刻地指向他長期忽視自己分別為聖之身份所帶來的屬靈後果。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「大利拉見他把心中所藏的都告訴了她，就打發人將非利士人的首領們召來，說：「他已經把心中所藏的都告訴我了，請你們再上來一次。」」</div>
+      <div class="verse-ref">士師記 16:18</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">פָּתָה</span>
+        <div class="word-transliteration">patah · 誆哄 / 引誘 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「勸誘、哄騙、引誘」，非利士首領要求大利拉對參孫所做的事，正是這個字所描述的行動。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這個字精確地描述了大利拉此後一連串行動的性質——透過情感與言語的持續施壓，逐步引誘參孫吐露他本應嚴守的秘密，這個字也提醒我們，誘惑的力量，往往不在於單次強烈的攻擊，而在於持續而漸進的施壓。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">נָזִיר</span>
+        <div class="word-transliteration">nazir · 拿細耳人 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「分別為聖的人」，指依照民數記六章條例向神許願、分別自己為聖的人，其中一項具體的要求，正是終身不剃頭髮。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">參孫作為自出母胎便歸神為拿細耳人的士師，他的力量，本質上源自於他對這份分別為聖之身份的持守（象徵性地體現在未剪的頭髮上），而非頭髮本身具有魔法般的力量——大利拉促成他頭髮被剃除的行動，本質上，正是促成他徹底放棄了這份神聖分別的身份。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">持續而漸進的施壓可能比單次強烈的誘惑更具破壞力</div>
+      <div class="theology-insight-body">大利拉『天天用話催逼他』的策略，最終比三次直接的追問更為有效，這提醒我們，警惕生命中持續而漸進的壓力與誘惑，往往比單次明顯的試探更需要謹慎防範。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">真正的力量源自對分別為聖之身份的持守而非外在的象徵物本身</div>
+      <div class="theology-insight-body">參孫力量的真正根源，在於他對拿細耳人身份的持守，而非頭髮這個外在的象徵——這提醒我們，屬靈的力量與蒙福，最終根植於對神所賦予之身份與呼召的忠實持守，而非表面的宗教儀式或象徵。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">外部的誘惑與算計往往依附於一個人自身早已存在的軟弱與疏於警覺</div>
+      <div class="theology-insight-body">大利拉之所以能夠成功，很大程度上依附於參孫自己一再重複、未曾真正悔改的軟弱模式——這提醒我們，防範外部的誘惑，同樣需要誠實面對並處理自己內在早已存在的軟弱。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">參孫因持續而漸進的情感施壓，最終放棄了自己分別為聖的身份與力量的根源，導致自己被擒拿、失去視力，陷入極深的悲劇</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這個敘事此後成為聖經智慧文學中，反覆強調『當謹守自己的心，勝過保守一切』這一警示教導的重要具體案例</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">箴言教導「你要保守你心，勝過保守一切，因為一生的果效是由心發出」，參孫因未能謹守自己的心（在與大利拉的關係中一再妥協退讓），最終導致了力量與尊嚴的徹底喪失，正呼應著這句智慧箴言的警示（箴 4:23）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正身處某段持續而漸進施壓、要求你放棄某個重要原則或秘密之防線的關係或處境——大利拉與參孫的故事，是一則鄭重的警示。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">大利拉與參孫的故事，命中的是每一個此刻正身處某段持續而漸進施壓、要求自己放棄某個重要原則、界線、或秘密防線之關係或處境的人。這則故事提醒我們，警惕持續而漸進的壓力，往往比單次明顯的誘惑更具破壞力；同時，這則故事也提醒我們，與其僅僅將問題歸咎於外部施壓的來源，更需要誠實地省察，自己是否也如參孫一般，一再地選擇留在明知危險、卻難以割捨的處境之中。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你此刻是否正身處某段持續而漸進施壓、要求你放棄某個重要原則或界線的關係或處境？大利拉『天天用話催逼』的策略，對你此刻的處境，帶來什麼樣的警示？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">參孫多次被欺哄、也親眼見證非利士人的埋伏，卻依然沒有選擇離開這段關係。你是否也曾發現自己身處某個明知危險、卻難以割捨的處境？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">參孫力量的真正根源，在於他對拿細耳人身份的持守。你生命中，是否也有某個核心的屬靈身份或呼召，是你此刻需要更謹慎持守、不容輕易妥協的？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 大利拉</span>
+        <div class="gen-title">示範劇本：受具體利益驅動，運用持續而精準的心理施壓，最終達成探出參孫力量秘密的目標</div>
+        <div class="gen-body">她受非利士首領重金收買，透過三次追問與此後持續的情感施壓，最終促成參孫吐露自己力量的秘密，導致他被擒拿、失去視力，陷入極深的悲劇。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 參孫</span>
+        <div class="gen-title">延續：他此後在監獄中悔改，最終在死時擊殺的非利士人比一生所殺的還多</div>
+        <div class="gen-body">參孫失去力量與視力後，被囚禁於獄中推磨，然而他的頭髮此後又漸漸長起來，他也在生命最後的時刻，向神懇求恢復力量，最終在推倒非利士神廟的行動中，與眾多非利士人同歸於盡——這段結局，展現出即使經歷了大利拉所促成的悲劇性跌倒，神依然容許參孫在生命的最後，完成了他此生最重要的使命。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在這段敘事中，展現在神即使容許參孫因自己一再的軟弱而經歷跌倒與羞辱，卻依然在他悔改懇求之際，恢復了他的力量，使他得以在生命最後的時刻，完成神託付給他一生最重要的使命。這提醒我們，即使我們曾因自己的軟弱、或他人的算計而經歷深刻的跌倒，神的恩典，依然可能在我們真誠悔改之際，賜下重新被使用的機會。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位受重金收買、天天催逼參孫直到他厭煩說出秘密的女子，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#持續的施壓比單次誘惑更危險</span>
+      <span class="tag">#別忽視自己一再重複的軟弱模式</span>
+      <span class="tag">#謹守你心中最重要的秘密防線</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>非利士人的首領找上大利拉，開出了一個天文數字的價碼——每人給她一千一百舍客勒銀子，只求她一件事：查出參孫這位讓非利士人吃盡苦頭的士師，他的大力氣到底是怎麼來的。</p>
+      <p>大利拉開始問。參孫給了她一個假答案：用七條沒乾的青繩捆我，我就沒力氣了。大利拉真的試了，非利士人也埋伏著，結果參孫輕輕鬆鬆掙脫。第二次、第三次，同樣的戲碼重演，參孫每次都編個假理由，每次都輕鬆掙脫。</p>
+      <p>如果是一般人，大概早就放棄了。但大利拉沒有，她換了個更有效的招數——她開始說：你根本不愛我，不然怎麼會一直騙我？聖經寫了一句很生動的話：她天天用話催逼他，逼到參孫心裡厭煩到想死。</p>
+      <p>終於，參孫撐不住了，把真正的秘密說了出來：他從出生就是拿細耳人，頭髮從沒剪過，如果剪了，力氣就會離開他。大利拉一聽就知道，這次是真的了。她讓參孫在自己膝上睡著，叫人剃光了他的頭髮。參孫的力氣，真的離開了他。非利士人終於把他抓住，剜了他的眼睛，關進監牢裡推磨。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——這個故事真正的裂痕，不在大利拉的算計裡，而在參孫一次又一次，明知危險卻不肯離開的軟弱裡。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你此刻正身處某段持續施壓、要你一步步放下重要防線的關係——留意這種『天天催逼』的模式，它往往比一次強烈的攻擊更容易讓人瓦解。</p>
+      <p style="margin-top:12px;">與其只怪罪外面的誘惑，不如誠實地問自己：我是不是也像參孫一樣，明知這個處境危險，卻一直捨不得離開？</p>
+      <p style="margin-top:12px;">想想你生命中那個『頭髮』——那個代表你最核心身份、最不該被剪掉的東西——你有沒有謹慎地守護它？</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，留意那些持續而溫柔的施壓——它可能比你想的更危險。</p>
+    </div>
+
+    <div class="insight-box">大利拉與參孫的故事，持續為當代討論『漸進式的心理操縱』與『識別並離開有害關係模式』這類議題，提供了聖經中最經典而具警示意味的參照案例。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">她受非利士首領重金收買，透過持續而精準的施壓，成功探出參孫力量的秘密，成為士師記中『外部算計如何利用一個人已存在之軟弱』最直接的敘事見證。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">西方文化中『致命誘惑』意象的重要原型</div>
+          <div class="legacy-body">她的故事此後在西方文學、藝術、乃至流行文化中反覆被重新詮釋，成為描繪情感操縱與致命誘惑這一敘事母題最具代表性的來源之一。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">『持續施壓比單次誘惑更具破壞力』的重要警示案例</div>
+          <div class="legacy-body">她『天天用話催逼』參孫的策略最終奏效，持續為後世提供了『警惕漸進式的持續施壓』這一課題最具體的聖經例證。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">參孫悲劇性跌倒的直接促成者</div>
+          <div class="legacy-body">她的行動直接導致參孫失去力量、視力、與尊嚴，成為士師記中這位以色列士師悲劇性結局最關鍵的敘事推手。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「非利士人上來拿住他，剜了他的眼睛，帶他下到迦薩，用銅鍊拘索他；他就在監裡推磨。」</div>
+      <div class="final-verse-ref">士師記 16:21</div>
+    </div>
+
+    <div class="final-question">如果你此刻正身處某段持續而漸進施壓、要求你放棄重要原則或界線的關係——你願不願意誠實地省察，自己是否也如參孫一般，一再地選擇留在明知危險卻難以割捨的處境之中？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 大利拉 <span>דְּלִילָה</span> · 受非利士首領收買的女子 · 三次追問參孫力量之秘而終得逞者</div>
+
+</body>
+</html>

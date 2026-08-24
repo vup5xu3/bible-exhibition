@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>迦瑪列 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">迦瑪列</h1>
+  <span class="hero-name-en">Gamaliel · Γαμαλιήλ</span>
+  <p class="hero-slogan">「現在，我勸你們不要管這些人，任憑他們吧！他們所謀的、所行的，若是出於人，必要敗壞；若是出於神，你們就不能敗壞他們，恐怕你們倒是攻擊神了。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">約主後30年代（初代教會宣教初期）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">INTJ · 建築師型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">使徒行傳 5:33–40, 22:3</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">法利賽教法師 · 猶太公會議士 · 保羅少年時的老師</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他是『眾百姓所敬重的教法師』，也是使徒保羅少年時代坐在門下受教的老師——當公會眾人因使徒們持續傳講耶穌而惱怒到想要殺人時，正是他站了出來，發出一段冷靜而深具智慧的勸言。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">約主後30年代，初代教會宣教初期</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">法利賽人，通曉律法的教法師，猶太公會議士</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">耶路撒冷</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">聖經未詳細記載其家庭成員（猶太傳統認為他是希列拉比之孫）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">徒 5:33–40, 22:3</div>
+      </div>
+    </div>
+
+    <p>迦瑪列在使徒行傳中的登場，正值猶太公會因使徒們不顧禁令繼續在聖殿與各處教訓百姓、傳講耶穌復活的信息，而『極其惱怒，想要殺他們』的緊張時刻。就在這場情緒高漲、幾乎要釀成流血衝突的公會會議中，聖經介紹了迦瑪列的身分：『但有一個法利賽人，名叫迦瑪列，是眾百姓所敬重的教法師，在公會中站起來，吩咐人把使徒暫且帶到外面去。』這句『眾百姓所敬重』的評語，顯示出迦瑪列在當時猶太社會與宗教體制中，享有極高的聲望與影響力，這也使他此後所發出的勸言，格外具有份量與說服力。</p>
+    <p>迦瑪列的發言，展現出一種極其冷靜而富含歷史智慧的思考方式——他先引用了兩個此前曾經興起、卻最終失敗消散的猶太人叛亂領袖（丟大、猶大）作為歷史類比，指出這些運動『後來都散了，歸於無有』，藉此提醒公會眾人，不必過度恐慌或急於採取激烈手段對付這群使徒。他隨即說出了此後被廣泛引用的結論：『現在，我勸你們不要管這些人，任憑他們吧！他們所謀的、所行的，若是出於人，必要敗壞；若是出於神，你們就不能敗壞他們，恐怕你們倒是攻擊神了。』這段話展現出一種深具智慧的『觀望原則』——與其倉促以人的手段強行壓制或消滅一個尚無法確定其來源的運動，不如透過時間的沉澱，讓歷史本身來驗證這件事究竟是出於人的謀劃，還是出於神的作為。公會眾人聽從了他的勸言，這才使使徒們免於當場被殺害的命運，僅是被鞭打之後釋放。使徒行傳此後在記載保羅（掃羅）的自述中，補充了另一個重要的資訊——保羅曾『在迦瑪列門下，按著我們祖宗嚴緊的律法受教』，這意味著，那位曾經逼迫教會、此後卻成為外邦人使徒的保羅，正是迦瑪列的學生。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從公會會議中挺身勸阻眾人殺害使徒的教法師，到此後被揭示為保羅少年時期的老師——迦瑪列雖然僅在聖經中留下簡短的記載，卻在兩個關鍵的歷史時刻，發揮了深遠的影響。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">公會會議中的冷靜勸言——「你們不要管這些人，任憑他們吧」</div>
+        <div class="timeline-body">公會眾人因使徒們不顧禁令繼續傳講耶穌而惱怒到想要殺害他們，迦瑪列在此時挺身而出，以歷史類比與『若出於神就不能敗壞』的智慧論證，勸阻眾人不要輕舉妄動，公會最終聽從了他的勸言，僅將使徒鞭打後釋放。</div>
+        <div class="timeline-ref">徒 5:33–40</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">保羅曾在他門下受教——「在迦瑪列門下，按著我們祖宗嚴緊的律法受教」</div>
+        <div class="timeline-body">使徒行傳此後記載保羅（掃羅）在耶路撒冷公會前自述時，提及自己曾在迦瑪列門下按律法受教——這揭示出，這位對初代教會發出深具智慧之勸言的教法師，同時也是此後成為外邦人使徒之保羅少年時期的老師。</div>
+        <div class="timeline-ref">徒 22:3</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他是聖經中對『在群情激憤的處境中依然保持冷靜的歷史智慧與審慎判斷』刻畫得最具體的敘事人物之一——他的一段發言，直接挽救了使徒們免於當場被殺害的命運。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">堅信人的謀劃與神的作為終將在時間中顯明各自真實的本質與結局</div>
+          <div class="soul-body">迦瑪列的核心論證，建立在『出於人的必要敗壞，出於神的不能被敗壞』這一深刻的歷史與屬靈信念之上，展現出他對神主權超越人一切謀算的堅定信心。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">在群情激憤、幾乎要釀成暴力的處境中，依然展現出冷靜審慎的判斷與勸誡的智慧</div>
+          <div class="soul-body">面對公會眾人因惱怒而想要殺害使徒的激烈情緒，迦瑪列沒有隨之附和或沉默旁觀，而是挺身而出，以冷靜的歷史類比與深刻的屬靈論證，成功地緩解了這場一觸即發的危機。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">善於運用具體的歷史先例與邏輯清晰的論證，說服群體採取更審慎而非衝動的行動</div>
+          <div class="soul-body">他引用丟大、猶大這兩個此前失敗的叛亂運動作為具體的歷史類比，並據此推導出『不必急於採取激烈手段』的結論，這種善於運用歷史智慧進行論證的方式，是他行事風格中最鮮明的特質。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">（材料有限——聖經對迦瑪列個人的過犯或掙扎著墨極少，他的記載聚焦於這段關鍵性的智慧勸言）</div>
+          <div class="soul-body">使徒行傳對迦瑪列的記載相對簡短，主要聚焦於他這段極具智慧與影響力的勸言，未見任何負面的性格描寫。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">他所勸誡的公會，此後卻仍然處死了司提反、逼迫教會，甚至他自己的學生保羅一度成為逼迫教會最激烈的人物之一</div>
+          <div class="soul-body">儘管迦瑪列的勸言暫時挽救了使徒們的性命，公會此後仍然容許司提反被石頭打死，並持續逼迫初代教會，甚至他自己的學生掃羅（保羅），此後一度成為逼迫教會最為激烈的人物之一——這種歷史發展的複雜性，某種程度上，也印證了迦瑪列自己所言『若是出於神，你們就不能敗壞他們』這一預言的深刻真實性，教會終究在此後的逼迫中持續成長茁壯。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">迦瑪列的故事，是聖經中對『在群情激憤的處境中，依然保持冷靜的歷史智慧與審慎判斷』刻畫得最具體的敘事典範之一。他所發出的『若是出於人，必要敗壞；若是出於神，你們就不能敗壞他們』這句話，此後被廣泛稱為『迦瑪列原則』，成為理解如何審慎評估一個新興運動或現象之真實性質時，最常被引用的智慧原則之一——這個原則的核心，不在於消極的縱容或不作為，而在於一種深刻的屬靈謙卑：承認人自己有限的判斷力，未必總能立即、準確地分辨一件事究竟是出於人的謀劃，還是出於神的作為，因此需要透過時間的沉澱與歷史的驗證，讓真相自然顯明。這種審慎而不急躁的智慧，在迦瑪列所處那個群情激憤、幾乎要釀成暴力衝突的具體處境中，發揮了極其關鍵的緩解作用，使使徒們得以免於當場被殺害的命運。然而迦瑪列的故事同樣提醒我們，即使是最具智慧的歷史洞察，也未必能完全阻止此後歷史的複雜發展——公會此後仍然容許了司提反的殉道與教會的持續逼迫，甚至迦瑪列自己的學生掃羅，一度成為這場逼迫中最激烈的人物之一。這種歷史發展的複雜性，某種程度上，也從另一個角度印證了迦瑪列自己所言的深刻真實——即使歷經逼迫與試煉，教會終究在神的作為中，持續成長茁壯，正如他所預言的『不能被敗壞』。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">INTJ</span>
+      <div class="mbti-name">建築師型 · 冷靜勸言的教法師</div>
+      <div class="mbti-slogan">「眾人氣得要殺人，他卻站起來，用一段冷靜的歷史類比，救了幾條人命。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">他能在群情激憤的當下，透過歷史類比，洞察到這場衝突背後更深層、更長遠的意義與可能走向，這種對深層意義與未來趨勢的洞察力，正是主導內向直覺的典型展現。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">他運用清晰而有邏輯的論證方式，引用具體的歷史先例，有條理地說服公會眾人採取更審慎的行動，展現出強大的邏輯組織與說服能力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">他在群情激憤的處境中，依然堅持依循自己內在對是非公正的判斷，而非隨波逐流地附和眾人的憤怒情緒。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Se · 外向實感</span>
+          <div class="mbti-fn-body">（材料有限——聖經對他在具體現實行動層面的性格特質著墨較少，他的貢獻主要體現在言語上的智慧勸誡，而非具體的行動介入）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最重要的兩重關係——挽救使徒性命的公會發言，以及作為保羅少年時代的老師——共同展現出他在初代教會歷史中，扮演著看似間接卻極其關鍵的角色。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">使</div>
+          <div class="relation-name">被囚禁的使徒們</div>
+          <div class="relation-type-badge">因他的勸言而免於被殺害的門徒</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">迦瑪列的勸言，直接挽救了使徒們免於在公會盛怒之下被當場殺害的命運，儘管他們此後仍受到鞭打，卻得以繼續存活並持續傳講福音。</div>
+          <div class="relation-ref">徒 5:40</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">保</div>
+          <div class="relation-name">保羅（掃羅）</div>
+          <div class="relation-type-badge">曾在他門下按律法受教的學生</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">保羅在耶路撒冷公會前自述時，提及自己曾在迦瑪列門下受教——這意味著，這位教導出對初代教會發出智慧勸言之教法師的門下，同時也培養出此後成為外邦人使徒、對基督教會發展影響最深遠的保羅。</div>
+          <div class="relation-ref">徒 22:3</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「若是出於神，你們就不能敗壞他們」——迦瑪列這句話，此後被稱為『迦瑪列原則』，成為理解如何審慎判斷一項運動或現象之真實屬靈本質的重要智慧準則。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「他們所謀的、所行的，若是出於人，必要敗壞；若是出於神，你們就不能敗壞他們，恐怕你們倒是攻擊神了。」</div>
+      <div class="verse-ref">使徒行傳 5:38–39</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">καταλυθήσεται</span>
+        <div class="word-transliteration">katalythesetai · 必要敗壞 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「將被拆毀、將被廢除」，這個字用以描述凡是出於人自己謀劃的運動，最終將面臨的結局。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">迦瑪列用這個字，精確地表達了他對『人的謀劃終將顯露其有限性』這一歷史智慧的深刻信念——這與此後歷史上教會歷經逼迫卻持續成長的發展，形成了鮮明而具說服力的對照。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">θεομάχοι</span>
+        <div class="word-transliteration">theomachoi · 攻擊神的人 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「與神爭戰的人」，由『神』（theos）與『爭戰』（machomai）組合而成。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">迦瑪列以這個嚴重的警示詞彙作結，提醒公會眾人，若他們試圖以人的手段消滅一項實際上出於神的作為，這無異於直接與神為敵——這句警示，此後對理解教會歷史中逼迫與神主權之間的張力，提供了重要的神學視角。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">審慎評估一項新興運動或現象需要時間的沉澱與歷史的驗證</div>
+      <div class="theology-insight-body">『迦瑪列原則』提醒我們，人自己有限的判斷力，未必總能立即、準確地分辨一件事究竟是出於人的謀劃，還是出於神的作為，因此在面對不確定的新興現象時，保持審慎而非急躁的判斷態度，往往更為明智。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">神的作為終究不能被人的謀算所真正阻擋或消滅</div>
+      <div class="theology-insight-body">迦瑪列的預言，此後在教會歷史的發展中得到具體的印證——儘管歷經逼迫、殉道、乃至保羅本人此前的迫害，初代教會依然持續成長茁壯，這具體展現出『出於神的不能被敗壞』這一深刻的屬靈真理。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">同一位教師的教導可能同時孕育出截然不同的歷史結果</div>
+      <div class="theology-insight-body">迦瑪列教導出的學生保羅，此前一度成為逼迫教會最激烈的人物，此後卻成為對基督教會發展影響最深遠的使徒——這提醒我們，教育與傳承的果效，往往超越教師自身當下所能預見或掌控的範圍。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">迦瑪列在群情激憤、公會眾人想要殺害使徒的緊張時刻，以冷靜的歷史智慧發出勸言，成功挽救了使徒們的性命，使福音得以繼續傳揚</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這種『在關鍵時刻以智慧的言語緩解危機、保全神所使用之器皿』的模式，某種程度上，呼應了此後箴言智慧文學中，反覆強調『一句話說得合宜，就如金蘋果在銀網子裡』這一智慧言語所能發揮的深遠影響力</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">箴言宣告「一句話說得合宜，就如金蘋果在銀網子裡」，迦瑪列這句冷靜而富含智慧的勸言，正是這種合宜言語如何能夠在關鍵時刻扭轉危機、保全生命的具體歷史例證（箴 25:11）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正身處某個群情激憤、大家都急著採取激烈行動的處境之中——迦瑪列的故事，示範了冷靜而審慎的智慧，能夠帶來何等關鍵的緩解作用。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">迦瑪列的故事命中的是每一個此刻正身處某個群情激憤、周遭的人都急於採取激烈行動或做出倉促論斷的處境之中的人。他的故事示範了，在這樣的時刻，一個人若能保持冷靜審慎的判斷，並運用智慧的言語與歷史的視角，往往能夠發揮扭轉危機、避免不可挽回之後果的關鍵作用。他的『若是出於神，你們就不能敗壞他們』這句話，也提醒我們，面對不確定的新興現象或運動，保持審慎而非急躁論斷的態度，往往是更合乎屬靈智慧的選擇。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你此刻是否正身處某個群情激憤、周遭的人都急於採取激烈行動的處境之中？迦瑪列冷靜而審慎的勸言，對你此刻的處境，帶來什麼樣的啟發？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">面對一個你尚無法完全確定其真實性質的新興現象或人事物，你通常傾向立即論斷，還是願意像迦瑪列一樣，給予時間讓真相自然顯明？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">迦瑪列教導出的學生保羅，此前一度逼迫教會，此後卻成為最重要的使徒之一。你是否也曾對某個人（或自己）此刻的處境，過早地下了定論，卻可能忽略了此後發展的深遠可能性？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 迦瑪列</span>
+        <div class="gen-title">示範劇本：在群情激憤的處境中，以冷靜的歷史智慧發出勸言，挽救使徒的性命</div>
+        <div class="gen-body">他在公會眾人想要殺害使徒的緊張時刻，挺身而出，以歷史類比與深刻的屬靈論證，成功緩解了這場危機，使使徒們得以繼續存活並傳講福音。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 保羅（他的學生）</span>
+        <div class="gen-title">延續：從迦瑪列門下的學生，到對教會歷史影響最深遠的使徒</div>
+        <div class="gen-body">保羅曾在迦瑪列門下按律法受教，此後一度成為逼迫教會最激烈的人物，卻在大馬士革的路上經歷戲劇性的悔改，成為此後對基督教會發展影響最深遠的使徒之一——這段歷程，某種程度上，也印證了迦瑪列自己所言『若是出於神，你們就不能敗壞他們』這一預言的深刻真實性。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在迦瑪列的故事中，展現在神使用他這位受人敬重的教法師，在關鍵的時刻發出冷靜的智慧勸言，保全了使徒們的性命，使福音得以繼續傳揚；也展現在，神此後使用他所教導的學生保羅，儘管這位學生曾經一度逼迫教會，最終卻成為對整個教會歷史影響最深遠的使徒之一。這提醒我們，神的恩典與計畫，能夠透過看似間接、甚至充滿張力的途徑，成就祂救贖歷史中深遠而美好的工作。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位在眾人氣得要殺人時、站出來說「等等，先冷靜」的教法師，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#群情激憤時保持冷靜</span>
+      <span class="tag">#給時間讓真相顯明</span>
+      <span class="tag">#教育的果效超乎自己的預期</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>使徒們不顧公會的禁令，繼續在聖殿裡教訓百姓、傳講耶穌復活的信息。公會的人氣壞了，氣到想要直接殺了他們。</p>
+      <p>就在這個一觸即發的時刻，一個叫迦瑪列的法利賽人站了起來。他是眾百姓非常敬重的教法師，這種身分，讓他的話有足夠的份量被聽進去。他先讓人把使徒帶到外面，然後開始講理——他舉了兩個之前失敗的叛亂運動當例子，說：你們看，那些運動最後都自己散了，沒成什麼氣候。</p>
+      <p>接著，他說了一段流傳至今的話：現在，我勸你們不要管這些人，任憑他們吧！他們所做的事，如果是出於人的謀劃，自然會自己敗壞；但如果是出於神的，你們根本無法毀滅他們，反而是在跟神作對。</p>
+      <p>公會聽了他的話，決定不殺使徒，只是把他們鞭打一頓就放了。</p>
+      <p>更有意思的是，使徒行傳後面補了一句——保羅（那時還叫掃羅）曾經在迦瑪列門下學律法。也就是說，這位救了使徒一命的老師，教出來的學生，後來一度成了逼迫教會最兇的人，再後來，卻又成了對教會影響最深遠的使徒。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——迦瑪列這塊石頭，用一句冷靜的話，在最危險的時刻，穩住了整個場面。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你此刻身處一個大家都情緒激動、想要立刻採取激烈行動的場合——試著像迦瑪列一樣，深呼吸，提出一個冷靜的視角。有時候，一句合宜的話，能改變整個局面。</p>
+      <p style="margin-top:12px;">面對你還無法完全確定的人或事，給它一點時間。真相往往會自然顯明，不需要急著論斷。</p>
+      <p style="margin-top:12px;">你教出來的、影響到的人，最後會走向哪裡，可能超乎你的想像。好好珍惜每一次教導與傳承的機會。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果你身處一個群情激憤的場合——試著成為那個說『等等，先冷靜一下』的人。</p>
+    </div>
+
+    <div class="insight-box">『迦瑪列原則』持續是當代組織決策與危機管理領域中，被引用的重要智慧框架——它提醒領導者，面對難以立即判斷真偽或走向的新興現象時，保持審慎觀望、讓時間驗證，往往比倉促的強硬介入更為明智。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他以一段冷靜的歷史智慧，挽救了使徒們的性命，也培養出此後對教會歷史影響最深遠的使徒保羅，留下了聖經中『審慎智慧扭轉危機』最重要的見證。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">『迦瑪列原則』的經典聖經來源</div>
+          <div class="legacy-body">他『若是出於神，你們就不能敗壞他們』這句話，此後被廣泛稱為『迦瑪列原則』，成為理解如何審慎評估新興運動或現象之真實本質時，最常被引用的智慧準則之一。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">使徒保羅少年時期的重要老師</div>
+          <div class="legacy-body">他培養出的學生保羅，此後成為對基督教會發展影響最深遠的使徒之一，這段師徒關係，成為理解教育傳承之深遠影響力的重要歷史見證。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">初代教會歷史中關鍵危機的緩解者</div>
+          <div class="legacy-body">他在公會眾人想要殺害使徒的緊張時刻，成功地以智慧的言語緩解危機，使福音得以繼續傳揚，成為初代教會歷史發展中一位看似間接卻極其關鍵的人物。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「他們所謀的、所行的，若是出於人，必要敗壞；若是出於神，你們就不能敗壞他們，恐怕你們倒是攻擊神了。」</div>
+      <div class="final-verse-ref">使徒行傳 5:38–39</div>
+    </div>
+
+    <div class="final-question">如果你此刻正身處某個群情激憤、大家都急於採取激烈行動的處境之中——你願不願意像迦瑪列一樣，保持冷靜審慎的智慧，給時間讓真相自然顯明？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 迦瑪列 <span>Γαμαλιήλ</span> · 眾民所敬重的律法師 · 保羅的老師 · 勸公會謹慎對待使徒的拉比</div>
+
+</body>
+</html>

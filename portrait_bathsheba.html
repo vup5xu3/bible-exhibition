@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>拔示巴 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">拔示巴</h1>
+  <span class="hero-name-en">Bathsheba · בַּת־שֶׁבַע</span>
+  <p class="hero-slogan">「先知拿單對大衛說：「你就是那人！」……大衛對拿單說：「我得罪耶和華了！」拿單說：「耶和華已經除掉你的罪，你必不至於死。」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">約主前十世紀（大衛王朝中期）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ISFJ · 守衛者型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">撒母耳記下 11–12 章 · 列王紀上 1–2 章 · 太 1:6</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">以連之女，烏利亞之妻 · 大衛之妻 · 所羅門之母</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">她的名字，因大衛王一次致命的目光而被捲入聖經中最沉重的罪咎敘事之一——然而她此後的一生，卻展現出遠比這場悲劇開端更深刻的堅韌與智慧。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">約主前十世紀，大衛王朝中期</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">以連之女，赫人烏利亞之妻，此後成為大衛之妻</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">耶路撒冷</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">父以連；夫烏利亞（陣亡）、此後大衛；子（首子夭折）、所羅門、示米亞、朔罷、拿單</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">撒下 11–12 章 · 王上 1–2 章 · 太 1:6</div>
+      </div>
+    </div>
+
+    <p>拔示巴的故事，是聖經中對『罪如何從一個看似微小的抉擇迅速失控』刻畫得最直接的敘事之一。大衛在春天諸王出戰的季節，卻留在耶路撒冷，某個黃昏在王宮屋頂看見拔示巴沐浴，『見她甚美貌』，便差人打聽她的身分，得知她是赫人烏利亞（大衛麾下忠心的勇士）之妻，仍然差人將她接來，與她同房，使她懷孕。大衛此後試圖掩蓋這場醜聞——他召回正在前線作戰的烏利亞，希望他回家與妻子同房，藉此掩蓋孩子的真正身分，然而烏利亞出於對同袍與約櫃的忠誠，堅持不肯回家享受安逸，使大衛的計謀落空。大衛最終選擇了更為黑暗的手段——他寫信命令元帥約押，故意將烏利亞派往陣勢最險惡之處，使他在戰場上陣亡，隨後正式娶拔示巴為妻。</p>
+    <p>先知拿單奉神差遣，透過一則關於窮人唯一的小母羊羔被富人奪取宰殺的比喻，讓大衛在義憤填膺地定罪那位富人之後，聽見那句擲地有聲的宣告：『你就是那人！』大衛深自懊悔認罪，然而先知同時宣告，這個孩子必要死去——拔示巴與大衛的第一個孩子，果然在出生後不久夭折，成為這場罪咎最直接而沉痛的代價。此後『大衛安慰他的妻拔示巴，與她同寢，她就生了兒子，起名叫所羅門。耶和華也喜愛他』——拔示巴此後的人生軌跡，從悲劇的中心，逐漸走向被神恩典重新接納與使用的歷程。她此後最關鍵的一次行動，發生在大衛年老、亞多尼雅意圖篡奪王位之際——她在先知拿單的提醒下，主動進宮向大衛提醒他先前立所羅門為王的應許，這個果斷而及時的行動，直接確保了所羅門順利繼承王位，也確保了彌賽亞家系血脈得以延續在正確的軌道上。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從屋頂沐浴被王看見的悲劇開端，到失去第一個孩子的沉痛代價，再到晚年挺身確保所羅門王位的果斷行動——拔示巴的一生，展現出一段從受害者到關鍵歷史推手的深刻轉變。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">屋頂的悲劇——「大衛差人打聽那婦人是誰」</div>
+        <div class="timeline-body">大衛在王宮屋頂看見拔示巴沐浴，差人接她入宮同房，使她懷孕。大衛此後試圖召回她丈夫烏利亞掩蓋此事未果，最終設計使烏利亞在戰場上陣亡，並正式娶拔示巴為妻。</div>
+        <div class="timeline-ref">撒下 11 章</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">拿單的責備與孩子的夭折——「你就是那人」</div>
+        <div class="timeline-body">先知拿單透過比喻讓大衛親口定自己的罪，大衛深自懊悔認罪，然而拿單宣告他們所生的孩子必要死去——這個孩子果然在出生後不久夭折，成為這場罪咎最直接而沉痛的代價。</div>
+        <div class="timeline-ref">撒下 12:1–23</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">所羅門的誕生——「耶和華也喜愛他」</div>
+        <div class="timeline-body">大衛安慰拔示巴，她此後生下所羅門，聖經特別記載『耶和華也喜愛他』——這個孩子的誕生，標誌著這段悲劇性的開端，逐漸走向神恩典重新介入與更新的歷程。</div>
+        <div class="timeline-ref">撒下 12:24–25</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">為所羅門的王位挺身而出——「求你為我兒子所羅門的性命求恩」</div>
+        <div class="timeline-body">大衛年老，亞多尼雅意圖篡奪王位，拔示巴在先知拿單的提醒下，主動進宮向大衛提醒先前立所羅門為王的應許，這個及時而果斷的行動，直接促成大衛正式膏立所羅門為王，確保了應許血脈得以延續在正確的軌道上。</div>
+        <div class="timeline-ref">王上 1 章</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">她的故事以一場悲劇性的開端展開，卻在此後的歲月中，展現出遠超乎悲劇受害者身分的智慧與果斷——她從被動捲入王的罪咎，成長為主動介入、確保正確歷史走向的關鍵推手。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">（材料需誠實區分——前段敘事她是被動捲入事件的受害者，後段展現出主動的智慧與果斷）</div>
+          <div class="soul-body">聖經敘事對拔示巴在悲劇發生時的內心狀態著墨極少，主要聚焦於大衛的行動；然而她在晚年為所羅門王位挺身而出的行動，卻清楚展現出她堅定的信念——確保神先前的應許得以實現。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">晚年展現出的政治智慧與果斷行動力</div>
+          <div class="soul-body">面對亞多尼雅意圖篡位的緊急處境，拔示巴沒有選擇被動等待，而是在拿單的提醒下，主動進宮向大衛陳明處境，這種在關鍵時刻挺身而出的果斷，成為確保所羅門順利繼位的重要關鍵。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">與先知拿單保持密切的合作關係，共同促成正確的歷史走向</div>
+          <div class="soul-body">她在晚年的行動中，展現出與拿單先知緊密配合、依循清晰策略推動局勢的能力，兩人先後進宮向大衛陳情，成功化解了亞多尼雅篡位的危機。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">（材料有限——聖經未直接記載她個人在悲劇發生當時的過犯或掙扎）</div>
+          <div class="soul-body">聖經敘事的焦點主要集中於大衛所犯下的罪，拔示巴在整場悲劇中，更多被呈現為捲入其中的一方，而非主動的加害者。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">她從一場王室醜聞的中心人物，成為彌賽亞家譜中確保血脈正確延續的關鍵母親</div>
+          <div class="soul-body">馬太福音的家譜提及她時，僅以『烏利亞的妻子』稱呼，而非直接寫她的名字——這個隱晦卻意味深長的稱謂方式，永久地保留了這段歷史的複雜性，卻也確立了她作為所羅門之母、彌賽亞家系血脈延續者的重要地位。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">拔示巴的故事，隨著敘事的推進，展現出一段從『悲劇中心』到『歷史關鍵推手』的深刻轉變。撒母耳記下十一、十二章的敘事重點，主要聚焦於大衛所犯下之罪的嚴重性與後果——他濫用王權奪取部下之妻、設計害死忠心的烏利亞，這場罪咎為整個大衛家族此後帶來了深遠的動盪。然而列王紀上第一章所呈現的拔示巴，卻展現出截然不同的樣貌——她不再是被動捲入事件的一方，而是憑藉政治智慧與果斷行動，在關鍵時刻確保了神先前的應許（所羅門將繼承王位）得以實現。這種敘事上的轉變，提醒我們，一個人生命故事的開端，未必決定了故事的全貌——拔示巴的一生，從一場她或許未曾主動選擇的悲劇開始，卻透過此後歲月中展現出的智慧與堅定，成為彌賽亞家系血脈得以正確延續，不可或缺的關鍵人物。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ISFJ</span>
+      <div class="mbti-name">守衛者型 · 從悲劇中心到王位守護者</div>
+      <div class="mbti-slogan">「她的故事以一場她無法掌控的悲劇開始，卻以她親手確保應許實現的果斷行動，走向了完全不同的結局。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Si · 內向感覺</span>
+          <div class="mbti-fn-body">她晚年清楚記得並提醒大衛先前所立下、關於所羅門將繼承王位的具體應許，這種對既有承諾與傳統責任的忠實記憶與堅持，正是主導內向感覺的典型展現。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Fe · 外向情感</span>
+          <div class="mbti-fn-body">她與先知拿單緊密配合、共同為所羅門的王位挺身而出，展現出對家庭與王朝未來高度的關懷與責任感。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ti · 內向思考</span>
+          <div class="mbti-fn-body">她在進宮陳情的過程中，清晰而有條理地向大衛陳述亞多尼雅篡位的處境與應對之策，顯示出邏輯清晰的分析與表達能力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Ne · 外向直覺</span>
+          <div class="mbti-fn-body">（材料有限——聖經對她個人性格中此功能的具體展現著墨較少，此處從缺以維持誠實）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">她一生最重要的兩段關係，一段以悲劇性的失去展開，另一段則以她親手確保兒子王位的堅定行動作結。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">烏</div>
+          <div class="relation-name">烏利亞</div>
+          <div class="relation-type-badge">她原本的丈夫，因大衛的罪而陣亡</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">烏利亞是大衛麾下忠心的勇士，在大衛試圖掩蓋罪行未果後，被大衛設計派往陣勢最險惡之處而陣亡——他的忠誠與大衛的背叛，形成了這段悲劇最深刻的對比。</div>
+          <div class="relation-ref">撒下 11:6–17</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">大</div>
+          <div class="relation-name">大衛</div>
+          <div class="relation-type-badge">奪取她、此後正式娶她為妻的君王</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">大衛因對拔示巴的慾望而犯下奪人妻子、設計害死其夫的重罪，此後在先知拿單的責備下深自懊悔，兩人的婚姻此後在悔改與重建中延續，並生下所羅門。</div>
+          <div class="relation-ref">撒下 11–12 章</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">拿</div>
+          <div class="relation-name">先知拿單</div>
+          <div class="relation-type-badge">指出大衛罪行、此後與她共同確保所羅門繼位的先知</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">拿單先是奉神差遣，透過比喻使大衛認罪悔改；多年後，他又與拔示巴緊密合作，共同促成大衛正式膏立所羅門為王，化解了亞多尼雅篡位的危機。</div>
+          <div class="relation-ref">撒下 12:1–14 · 王上 1:11–27</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">所</div>
+          <div class="relation-name">所羅門</div>
+          <div class="relation-type-badge">她所生、此後成為以色列最富智慧君王的兒子</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">所羅門的誕生，標誌著這段悲劇性開端逐漸被神恩典更新的歷程，他此後成為以色列歷史上最富智慧與強盛的君王之一，並在馬太福音的家譜中，佔據著承先啟後的關鍵地位。</div>
+          <div class="relation-ref">撒下 12:24 · 太 1:6</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">馬太福音家譜提及她時，用的是「烏利亞的妻子」而非她的本名——這個刻意保留的稱謂，永久地記載了這段歷史的複雜性，卻也宣告了恩典如何超越最沉重的罪咎。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「大衛從烏利亞的妻子生所羅門。」</div>
+      <div class="verse-ref">馬太福音 1:6</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">אֵשֶׁת אוּרִיָּה</span>
+        <div class="word-transliteration">eshet Uriyah · 烏利亞的妻子 · 希伯來文 / 希臘文對應稱謂</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「烏利亞的妻子」，馬太福音刻意不直接使用『拔示巴』這個名字，而以她原本丈夫的名字稱呼她。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這個刻意的稱謂選擇極具深意——它沒有迴避或美化這段歷史（大衛奪人妻、害死其夫的罪咎），反而透過提及烏利亞的名字，讓讀者無法忽略這段醜聞的完整重量；然而正是透過這樣一段充滿罪咎的歷史，彌賽亞的家系血脈依然得以延續，這深刻地宣告了神的恩典，能夠涵蓋並超越人類歷史中最沉重的過犯。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">罪的後果真實而沉重，卻不是神恩典工作的終點</div>
+      <div class="theology-insight-body">拔示巴與大衛的第一個孩子因這場罪咎而夭折，這是真實而沉痛的代價；然而神此後仍然使用他們所生的所羅門，成就了彌賽亞家系的延續——這提醒我們，罪帶來的後果不會被神輕易抹去，然而祂的恩典，仍能在破碎之後，開創出新的可能。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">彌賽亞家譜中恩典超越醜聞的一貫主題</div>
+      <div class="theology-insight-body">拔示巴與喇合、他瑪、路得一同被列入耶穌的家譜，這四位背景各異、卻都帶著某種醜聞或外邦身分的女性，共同宣告了救恩血脈中，恩典勝過人性軟弱與歷史複雜性的深刻見證。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">先知的責備與果斷的行動，都是促成歷史正確走向的重要因素</div>
+      <div class="theology-insight-body">拿單先知在大衛犯罪時的責備、以及此後與拔示巴共同確保所羅門繼位的行動，共同顯示出，神的旨意得以在歷史中正確地延續，往往需要忠心之人在關鍵時刻的介入與行動。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">拔示巴的故事以一場她無法完全掌控的悲劇開始，卻透過神的恩典，使她成為彌賽亞家系血脈得以延續的重要母親</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這種『從破碎的開端，走向被恩典重新使用的生命』的模式，預表了新約神學中，神能夠使用任何破碎的過去，成就祂救贖計畫的核心真理</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">保羅宣告「萬事都互相效力，叫愛神的人得益處」，拔示巴的一生，正是這句應許最具體而深刻的舊約見證（羅 8:28）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻的生命故事，帶著一段你無法選擇、甚至充滿創傷的開端——拔示巴的故事，想告訴你，這個開端，不必定義你整個生命的走向。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">拔示巴的故事命中的是每一個此刻覺得自己的生命故事，帶著某段無法選擇、甚至充滿創傷或醜聞的開端，並因此懷疑自己此後是否還有可能被神重新使用的人。她的故事誠實地呈現了罪與創傷帶來的真實代價（第一個孩子的夭折），卻也展現出，這段悲劇性的開端，並未定義她此後的整個生命——她最終成為確保神應許得以延續的關鍵人物。她的故事提醒我們，無論生命的開端多麼破碎，神的恩典，仍能在此後的歲月中，開創出全新的可能。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你此刻的生命故事，是否帶著某段你無法選擇、甚至充滿創傷的開端？拔示巴此後的生命軌跡，對你此刻的處境，帶來什麼樣的盼望？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">她在晚年展現出的果斷與智慧，與故事開端她相對被動的處境，形成鮮明對比。你是否也曾經歷過，從『被動承受某個處境』到『主動採取行動改變局面』的生命轉折？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">馬太福音刻意用『烏利亞的妻子』這個稱謂記載她，沒有迴避這段歷史的複雜性。這對你理解『誠實面對自己的過去，同時相信恩典仍能在其中運作』，帶來什麼樣的啟發？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 拔示巴</span>
+        <div class="gen-title">示範劇本：從悲劇性的開端，走向確保應許實現的關鍵推手</div>
+        <div class="gen-body">她的故事以大衛的罪咎為開端，承受了失去第一個孩子的沉痛代價，卻在此後的歲月中，展現出智慧與果斷，成為確保所羅門王位、以及彌賽亞家系血脈正確延續的關鍵人物。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 所羅門（她的兒子）</span>
+        <div class="gen-title">延續：從罪咎中誕生的孩子，成為以色列最富智慧的君王</div>
+        <div class="gen-body">所羅門的誕生，標誌著這段悲劇性開端被神恩典更新的歷程，他此後成為以色列歷史上最強盛、最富智慧的君王之一，並直接延續了通向彌賽亞的家系血脈。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在拔示巴的故事中，展現在神即使容讓罪的後果真實地臨到（第一個孩子的夭折），仍然透過此後所生的所羅門，延續了祂對大衛家系的應許；也展現在，她此後的生命軌跡，從悲劇的中心，走向了確保神旨意正確實現的關鍵位置。這提醒我們，神的恩典，能夠在人生命中最破碎的篇章之後，開創出全新而充滿盼望的可能。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位捲入王的罪咎、卻在多年後親手守護兒子王位的女子，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#破碎的開端不是終點</span>
+      <span class="tag">#罪的代價真實但恩典更深</span>
+      <span class="tag">#從被動到主動的生命轉折</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>拔示巴的故事，開始得很沉重。大衛在王宮屋頂看見她沐浴，差人把她接進宮裡，還使她懷了孕。她的丈夫烏利亞，是大衛手下一位忠心的將士，大衛想盡辦法要掩蓋這件事，最後選擇了最黑暗的手段——把烏利亞派到戰場最危險的地方，讓他戰死。</p>
+      <p>先知拿單來找大衛，講了一個故事：一個窮人只有一隻小母羊，被一個有很多羊群的富人硬搶走宰了。大衛聽了很生氣，說這個富人該死。拿單直接指著他說：你就是那個人。大衛終於認罪了，但代價已經造成——拔示巴和大衛的第一個孩子，出生後不久就死了。</p>
+      <p>這段故事讀起來讓人很不舒服，聖經也沒有迴避這種不舒服。但拔示巴的故事，並沒有停在這裡。</p>
+      <p>多年後，大衛年老，另一個兒子亞多尼雅想篡奪王位。這時候，拔示巴不再是那個被動捲入事件的人了——她在先知拿單的提醒下，主動走進大衛的寢宮，清楚地陳述了目前的處境，提醒大衛先前立所羅門為王的應許。就是這個果斷的行動，確保了所羅門順利登基，成為以色列歷史上最富智慧的君王之一。</p>
+      <p>馬太福音後來寫耶穌的家譜，提到拔示巴的時候，用的稱呼是『烏利亞的妻子』，不是她的名字。這個選擇很特別——沒有幫她洗白，也沒有讓這段歷史被遺忘，但同時清楚地寫下：所羅門，是從她而生。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——拔示巴這塊石頭，一開始被砸得傷痕累累，卻在多年後，被雕成了守護一整個王朝血脈的關鍵一環。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你的人生故事，有一段你無法選擇、甚至充滿創傷的開端——拔示巴的故事想告訴你：這個開端，不用定義你的全部。她此後的人生，證明了這一點。</p>
+      <p style="margin-top:12px;">罪跟創傷的代價是真實的，聖經沒有假裝那個夭折的孩子不存在。但恩典也是真實的，它沒有停在那個悲劇裡。</p>
+      <p style="margin-top:12px;">留意你自己生命中，是否也有從『被動承受』走向『主動行動』的時刻。拔示巴在晚年展現出的果斷，或許正是她一路走來、逐漸累積出的力量。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果你的故事有一段破碎的開端——記得，恩典還沒說完你的故事。</p>
+    </div>
+
+    <div class="insight-box">拔示巴的故事，持續為當代討論『創傷倖存者的生命敘事重建』這一議題，提供了具體而深刻的聖經參照——她的故事沒有迴避傷害的真實性，卻也展現出，一個人此後的生命，可以透過持續的智慧與行動，走向遠超乎最初創傷所能定義的可能性。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">她從大衛罪咎的中心，走向確保所羅門王位與彌賽亞家系正確延續的關鍵人物，留下了聖經中『恩典超越破碎開端』最深刻的見證之一。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">彌賽亞家譜中恩典勝過醜聞的重要見證</div>
+          <div class="legacy-body">她與喇合、他瑪、路得一同被列入耶穌的家譜，成為救恩血脈中，恩典超越人性軟弱與歷史複雜性最鮮明的共同見證。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">所羅門王位確立的關鍵推手</div>
+          <div class="legacy-body">她在晚年果斷的行動，直接促成大衛正式膏立所羅門為王，化解了亞多尼雅篡位的危機，確保了彌賽亞家系血脈延續在正確的軌道上。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">『從被動受害到主動推手』生命轉變的重要敘事範例</div>
+          <div class="legacy-body">她從悲劇性事件的中心，成長為晚年展現出政治智慧與果斷行動力的關鍵人物，持續為後世提供了『生命故事的開端不必定義其全貌』這一深刻啟示。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「大衛從烏利亞的妻子生所羅門。」</div>
+      <div class="final-verse-ref">馬太福音 1:6</div>
+    </div>
+
+    <div class="final-question">如果你此刻的生命故事，帶著一段你無法選擇、甚至充滿創傷的開端——你願不願意相信，就像拔示巴的故事所展現的，神的恩典，能夠帶領你走向遠超乎這個開端所能定義的未來？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 拔示巴 <span>בַּת־שֶׁבַע</span> · 大衛所犯之罪的中心人物 · 所羅門之母 · 家譜中另一位曾承受醜聞卻被恩典接納的女性</div>
+
+</body>
+</html>

@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>亞干 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">亞干</h1>
+  <span class="hero-name-en">Achan · עָכָן</span>
+  <p class="hero-slogan">「約書亞對亞干說：「我兒，我勸你將榮耀歸給耶和華以色列的神，在他面前認罪，將你所做的事告訴我，不要向我隱瞞。」亞干回答約書亞說：「我實在得罪了耶和華以色列的神……」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">約主前十四世紀（約書亞征服迦南初期）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ISTP · 鑑賞家型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">約書亞記 7 章</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">猶大支派迦米之子 · 私取當滅之物、招致全軍潰敗者</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">耶利哥城陷落後，神明確吩咐所有的金銀銅鐵器皿都要分別為聖歸入耶和華的府庫，城中一切都當毀滅——唯獨亞干，趁著混亂，將一件美好的示拿衣服、二百舍客勒銀子、一條金子藏在自己帳棚的地裡。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">約主前十四世紀，約書亞征服迦南初期</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">猶大支派謝拉族人，迦米的兒子</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">以色列營地，此後全家在亞割谷被石頭打死</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">有兒女（此後與亞干一同被石頭打死）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">書 7 章</div>
+      </div>
+    </div>
+
+    <p>亞干的故事，發生在以色列人征服迦南地最重要的初期戰役之後——耶利哥城在神蹟性的繞城與呼喊中陷落，約書亞在攻城之前，特別吩咐百姓：『這城和其中所有的都要在耶和華面前毀滅……惟有金子、銀子，和銅鐵的器皿都要歸耶和華為聖，必入耶和華的庫中。』這道命令的核心，是要求以色列人將這場勝利完全歸功於耶和華，不可將戰利品據為己有。然而亞干卻在混亂之中，違背了這道明確的命令——他看見一件美好的示拿（巴比倫）衣服、二百舍客勒銀子、一條重五十舍客勒的金子，便貪愛這些物件，取了拿去，並秘密地埋藏在自己帳棚內的地裡。</p>
+    <p>以色列人此後轉往攻打人數與防禦都遠不及耶利哥的艾城，卻在戰事中意外潰敗，三十六人陣亡，全軍『心就消化如水』。約書亞極度震驚，俯伏在約櫃前痛心呼求，耶和華卻回答：『以色列人犯了罪，違背了我所吩咐他們的約，取了當滅的物；又偷竊，又行詭詐，又把那當滅的放在他們的家具裡。』神吩咐約書亞透過支派、宗族、家室、丁男逐層抽籤查究，最終抽中了亞干。約書亞懇切地勸他認罪：『我兒，我勸你將榮耀歸給耶和華以色列的神，在他面前認罪。』亞干這才承認自己的罪，並具體交代了藏匿財物的地點。眾人搜出這些財物後，約書亞率領全以色列將亞干、他所偷的財物、以及他的兒女、牛驢羊、帳棚、他所有的一切，都帶到亞割谷，用石頭打死，並用火焚燒——這場嚴厲的審判之後，『耶和華就轉意，不發他的烈怒』，以色列人此後才得以順利攻取艾城。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從耶利哥城陷落後秘密私藏當滅之物，到艾城戰役中全軍意外潰敗，再到抽籤查究後被迫認罪、全家在亞割谷被處死——亞干的故事，是聖經中對『個人隱藏的罪如何波及整個群體』刻畫得最直接的警示敘事之一。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">私藏當滅之物——「便貪愛這些物件，取為己有」</div>
+        <div class="timeline-body">耶利哥城陷落後，神明令所有戰利品當毀滅歸神，唯獨亞干看見一件美好的示拿衣服、銀子與金子，貪愛取了拿去，秘密埋藏在自己帳棚內的地裡。</div>
+        <div class="timeline-ref">書 7:1, 21</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">艾城戰役全軍潰敗——「以色列人在艾城人面前逃跑了」</div>
+        <div class="timeline-body">以色列人轉往攻打規模遠小於耶利哥的艾城，卻意外潰敗，三十六人陣亡，約書亞極度震驚，俯伏在約櫃前痛心呼求神，耶和華指出以色列人在當滅的物上犯了罪。</div>
+        <div class="timeline-ref">書 7:2–12</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">抽籤查究，亞干認罪——「我實在得罪了耶和華以色列的神」</div>
+        <div class="timeline-body">神吩咐約書亞透過支派、宗族、家室、丁男逐層抽籤查究，最終抽中亞干。約書亞懇切勸他認罪，亞干承認自己的罪，並具體交代了藏匿財物的地點，眾人隨即搜出這些財物。</div>
+        <div class="timeline-ref">書 7:13–23</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">亞割谷的審判——「耶和華就轉意，不發他的烈怒」</div>
+        <div class="timeline-body">約書亞率領全以色列將亞干與他所有的一切帶到亞割谷，用石頭打死並用火焚燒——這場嚴厲的審判之後，耶和華的烈怒平息，以色列人此後才得以順利攻取艾城。</div>
+        <div class="timeline-ref">書 7:24–8:1</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他是聖經中對『看似隱密的個人貪念，最終如何波及整個群體、並招致嚴厲審判』刻畫得最直接的警示人物之一——他自己的認罪告白，精確地揭示了罪如何一步步在心中萌芽並付諸行動的完整過程。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">在神明確吩咐所有戰利品當歸神為聖的命令下，內心依然被物質的貪念所主導</div>
+          <div class="soul-body">亞干明知神已清楚吩咐當滅之物不可據為己有，內心卻依然被眼前具體可見的財富（美衣、金銀）所吸引，這種明知故犯的貪念，是他核心信念中最致命的缺陷。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">在被查究出來後，最終選擇誠實地承認自己的罪，而非繼續隱瞞或狡辯</div>
+          <div class="soul-body">面對約書亞懇切的勸勉，亞干沒有選擇繼續隱瞞或推諉，而是誠實地承認『我實在得罪了耶和華以色列的神』，並具體交代了藏匿財物的地點，這份最終的誠實坦承，是他複雜敘事中僅存的正面亮點。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">傾向在群體混亂、監督鬆懈的時刻，秘密地滿足自己個人的私慾</div>
+          <div class="soul-body">亞干選擇在耶利哥城陷落、全軍混亂忙碌之際，秘密地將戰利品據為己有並埋藏，這種利用群體混亂之機、暗中滿足私慾的行事模式，是他犯罪過程中值得警惕的特徵。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">個人隱密的貪念與罪行，最終導致整個以色列軍隊在艾城潰敗，三十六人因此陣亡</div>
+          <div class="soul-body">亞干個人的罪行，其後果遠遠超出他個人的範疇，直接導致了以色列全軍在艾城的意外潰敗與三十六條人命的犧牲，這種『個人的罪波及整個群體』的後果，是他故事中最令人警惕的部分。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">他自己的認罪告白，成為聖經中對『罪如何一步步在心中萌芽並付諸行動』刻畫得最精確的自我剖析之一</div>
+          <div class="soul-body">亞干描述自己犯罪過程的話語——『我見……我就貪愛……我便拿去』——這三個動詞精確地勾勒出罪從『看見』到『貪愛』再到『行動』的完整心理歷程，這段自白，此後成為理解罪之心理機制最經典的聖經文本之一。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">亞干的故事，是聖經中對『個人隱密的罪，如何波及整個所屬群體』刻畫得最直接、也最具警示意味的敘事之一。他的罪行，本質上是一場個人的貪念與行動——在混亂之中，秘密地取走並藏匿了本應毀滅歸神的戰利品。然而這個看似只涉及個人的秘密行動，其後果卻遠遠超出他個人的範疇——以色列全軍在此後攻打艾城時，意外遭遇潰敗，三十六名以色列人因此陣亡，而神明確指出，這場潰敗的根源，正是『以色列人犯了罪』（而非僅僅指稱亞干一人），顯示出神將以色列百姓視為一個整體，個人的罪咎，確實可能為整個群體帶來真實的屬靈後果。亞干自己認罪時所說的『我見……我就貪愛……我便拿去』這句話，精確地描繪了罪從萌芽到付諸行動的完整心理過程——他先是『看見』那件美好的衣服與財物，這份視覺上的吸引，此後轉化為內心『貪愛』的渴望，而這份未被及時處理的貪念，最終驅使他做出了具體『拿去』的行動。這個過程，某種程度上，與雅各書所描述『私慾既懷了胎，就生出罪來』的心理機制完全一致。亞干的故事提醒我們，看似隱密、無人知曉的個人抉擇，未必真的『與他人無關』——尤其在一個彼此連結緊密的群體之中，個人的罪與虧欠，可能以我們自己完全無法預見的方式，波及周遭的群體。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ISTP</span>
+      <div class="mbti-name">鑑賞家型 · 私藏當滅之物的以色列人</div>
+      <div class="mbti-slogan">「他以為自己藏得夠深，卻沒想到，這個秘密的貪念，讓三十六個以色列人付出了生命的代價。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Se · 外向實感</span>
+          <div class="mbti-fn-body">他對眼前具體可見的美好物件（衣服、金銀）產生直接而強烈的欲望反應，並迅速採取具體的行動（拿取、埋藏），這種對眼前具體事物之敏銳反應與立即行動的傾向，正是主導外向實感的典型展現。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Ti · 內向思考</span>
+          <div class="mbti-fn-body">他精心策劃將財物藏匿在自己帳棚內的地裡，試圖透過具體而周密的隱藏方式，避免被人發現，顯示出一定程度的邏輯策劃能力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">他最終在約書亞的懇切勸勉下，選擇誠實地承認自己的罪，這種在道德壓力下最終回應內在良知的反應，顯示出第三功能的作用。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Ne · 外向直覺</span>
+          <div class="mbti-fn-body">他未能預見自己這個看似隱密的個人行動，將會對整個以色列群體帶來何等深遠而災難性的後果，這種對長遠、系統性後果缺乏充分想像與評估的疏漏，反映出劣勢外向直覺的特徵。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最重要的一次互動，是與那位懇切勸他認罪、卻也必須依神的吩咐執行審判的約書亞——這段互動，最終以嚴厲卻公正的方式收場。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">約</div>
+          <div class="relation-name">約書亞</div>
+          <div class="relation-type-badge">懇切勸他認罪、此後執行審判的以色列統帥</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">約書亞在得知以色列因罪而在艾城潰敗後，極度震驚痛心，透過抽籤查究出亞干，並懇切地勸他將榮耀歸給耶和華、誠實認罪，此後依神的吩咐，執行了對亞干及其全家的審判。</div>
+          <div class="relation-ref">書 7:19–25</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">全</div>
+          <div class="relation-name">以色列全軍</div>
+          <div class="relation-type-badge">因他個人的罪而在艾城意外潰敗的群體</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">以色列全軍在攻打艾城時意外潰敗，三十六人陣亡，這場災難的根源，正是亞干個人隱密的罪行——這段記載，具體展現出個人的罪如何波及整個所屬的群體。</div>
+          <div class="relation-ref">書 7:2–5</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「以色列人在當滅的物上犯了罪」——神這句宣告，將亞干個人的過犯，明確地歸屬於整個以色列群體，成為聖經中『群體連帶責任』這一神學主題最具體的例證之一。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「我見所奪的財物中有一件美好的示拿衣服，二百舍客勒銀子，一條金子重五十舍客勒，我就貪愛這些物件，便拿去了。」</div>
+      <div class="verse-ref">約書亞記 7:21</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">חֵרֶם</span>
+        <div class="word-transliteration">cherem · 當滅之物 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「當毀滅、分別為聖歸神的物」，指戰爭中依神的命令，必須完全毀滅或歸入聖所、不可據為己有的戰利品。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">亞干私自取走的，正是被明確劃定為『當滅之物』的財物，這個字強調的分別，不容許任何個人的私自佔有，亞干的罪，本質上正是對這條神聖界線的公然踐踏。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">רָאָה ... חָמַד ... לָקַח</span>
+        <div class="word-transliteration">ra'ah ... chamad ... laqach · 看見……貪愛……拿去 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「看見」、「貪戀、渴望」、「拿取」，這三個動詞依序描述了亞干犯罪的完整心理與行動歷程。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這三個動詞的排列順序，精確地呈現出罪從視覺的吸引，到內心的貪戀，再到具體的行動，這個完整的心理機制，此後也呼應了創世記第三章夏娃見那棵樹的果子『悅人的眼目』而摘來吃的類似犯罪歷程，成為聖經中理解罪之心理根源最重要的文本範例。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">個人隱密的罪可能為整個所屬群體帶來真實的屬靈後果</div>
+      <div class="theology-insight-body">神明確指出『以色列人犯了罪』，而非僅僅指稱亞干個人——這確立了聖經神學中一個重要而嚴肅的原則：在一個彼此連結緊密的信仰群體之中，個人的罪咎，可能真實地波及整個群體的屬靈狀態與具體處境。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">罪的萌芽過程遵循著從看見到貪戀再到行動的一貫心理機制</div>
+      <div class="theology-insight-body">亞干的認罪告白，精確地描繪了罪從視覺吸引、內心貪戀、到具體行動的完整歷程，這為理解並防範罪的根源，提供了重要的心理與屬靈洞察。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">誠實的認罪即使無法完全免除後果依然是面對罪咎唯一正確的道路</div>
+      <div class="theology-insight-body">亞干最終選擇誠實認罪，儘管這並未使他免於嚴厲的審判後果，卻依然展現出誠實面對自己罪咎，是任何處境下唯一正確而應當持守的道路。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">亞干因個人隱密的貪念而觸犯神明確劃定當毀滅歸神的界線，這個看似個人的罪行，最終導致整個以色列群體遭受艾城潰敗的具體後果</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這則敘事此後成為新約教會論中，強調『個人的罪可能影響整個信仰群體』這一原則的重要舊約背景，並與此後亞拿尼亞和撒非拉私自留下奉獻卻謊稱全獻的悲劇性結局，有著深刻的敘事呼應</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">使徒行傳記載亞拿尼亞和撒非拉因私自留下奉獻的部分金額卻向教會謊稱全獻，同樣當場遭受嚴厲的審判而死，這場悲劇同樣強調了個人在信仰群體中誠實與聖潔的重要性，與亞干的敘事形成深刻的呼應（徒 5:1–11）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正懷抱著某個自認為『無人知曉』的秘密貪念或隱藏的過犯——亞干的故事，是一則鄭重而及時的警示。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">亞干的故事命中的是每一個此刻正懷抱著某個自認為『無人知曉』、且可能正逐漸從內心的貪戀走向具體行動的秘密過犯的人。他的故事提醒我們，看似隱密、無人知曉的個人抉擇，其後果，可能遠遠超出我們自己所能預見的範圍，甚至可能波及我們身邊、乃至整個所屬的群體。他認罪的過程也提醒我們，儘管誠實面對罪咎未必能完全免除後果，卻依然是我們在面對自己過犯時，唯一正確而應當持守的道路。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你此刻是否懷抱著某個自認為『無人知曉』的秘密貪念或隱藏的過犯？亞干『我見……我就貪愛……我便拿去』這句自我剖析，是否也呼應著你內心某個正在萌芽的類似歷程？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">亞干個人的罪，最終波及了整個以色列群體。你是否曾意識到，自己看似私人的某個抉擇或過犯，可能正對身邊的人或所屬的群體，帶來你未曾預見的影響？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">亞干最終在約書亞的勸勉下，選擇誠實認罪。你此刻是否也需要對某個一直隱藏的過犯，選擇誠實地面對與承認？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 亞干</span>
+        <div class="gen-title">示範劇本：因個人隱密的貪念而觸犯神明確的命令，最終導致整個以色列群體承受艾城潰敗的沉重代價</div>
+        <div class="gen-body">他在耶利哥城陷落的混亂中，秘密地貪取並藏匿了本應毀滅歸神的財物，這個看似個人的罪行，最終導致以色列全軍在艾城意外潰敗，三十六人因此陣亡，他也在被查究出來後，付出了全家被處死的沉重代價。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 以色列全軍</span>
+        <div class="gen-title">延續：亞干受審之後，以色列人才得以順利攻取艾城</div>
+        <div class="gen-body">亞干與他所有的一切在亞割谷被審判之後，『耶和華就轉意，不發他的烈怒』，以色列人此後才得以順利攻取艾城，展現出徹底處理群體中隱藏之罪咎，對整個群體恢復與神正常關係的重要性。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在亞干的故事中，展現得極為嚴肅而複雜——儘管審判是嚴厲的，神仍然給予亞干誠實認罪的機會，並在審判執行之後，隨即轉消祂的烈怒，使以色列人得以繼續前進、完成征服迦南的使命。這提醒我們，神對罪的審判是真實而嚴肅的，然而祂同樣樂意在徹底的悔改與審判之後，賜下恢復與繼續前行的恩典。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位偷藏了一件美衣和一些金銀、卻讓全軍付出代價的以色列人，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#秘密的貪念不會真的秘密</span>
+      <span class="tag">#個人的罪可能連累群體</span>
+      <span class="tag">#誠實面對比繼續隱瞞好</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>耶利哥城被攻破以後，神明確吩咐：城裡所有的東西都要毀滅，只有金銀銅鐵器皿，要歸入耶和華的府庫，不可有人私自留下任何東西。</p>
+      <p>亞干沒有遵守。他在混亂之中，看見一件很漂亮的巴比倫產的外袍，還有一些銀子跟金子，就動了貪念，拿走了，偷偷埋在自己帳篷底下的地裡。他大概以為，這件事沒有人會知道。</p>
+      <p>接下來，以色列人去攻打艾城——一個規模比耶利哥小很多的城市，理論上應該輕鬆取勝。結果他們卻潰敗了，三十六個人戰死。約書亞嚇壞了，跑去約櫃前痛哭質問神。神說：不是我不幫你們了，是你們裡面有人犯了罪，取了當滅的東西。</p>
+      <p>神吩咐透過抽籤，一層一層縮小範圍——支派、宗族、家庭、最後查到了亞干。約書亞很誠懇地對他說：孩子，把榮耀歸給神吧，向祂認罪，把你做的事告訴我，不要隱瞞。亞干這才承認：我確實得罪了神，我看見……我就貪愛……我就拿走了。他老老實實地說出了藏東西的地方。</p>
+      <p>眾人搜出了那些財物，約書亞把亞干、他的家人、他所有的一切，都帶到亞割谷，用石頭打死，燒了。之後，神的怒氣才平息，以色列人才順利拿下艾城。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——亞干這塊石頭，以為自己埋得夠深，卻沒想到，一個秘密的貪念，讓整個群體都承受了它的重量。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你此刻心裡藏著某個自己以為『沒人知道』的秘密過犯——亞干的故事想提醒你：這樣的秘密，往往不會真的一直是秘密，而且它的影響，可能比你想像的更廣。</p>
+      <p style="margin-top:12px;">你的抉擇，未必只是你一個人的事。亞干的貪念，讓三十六個以色列人付出了生命。</p>
+      <p style="margin-top:12px;">誠實面對，永遠比繼續隱瞞好。亞干最後選擇誠實認罪，這雖然沒有讓他免於審判，卻是他能做的最後、也最正確的一件事。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果你心裡藏著什麼——誠實地面對它，別讓它繼續埋在地底下。</p>
+    </div>
+
+    <div class="insight-box">亞干的故事，持續為當代討論『組織文化中的個人違規行為如何影響整個團隊』這類議題，提供了聖經中最經典的參照案例——它提醒我們，在任何緊密連結的群體中，個人的誠信與操守，從來不只是私事。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他因一次隱密的貪念，讓以色列全軍付出了艾城潰敗、三十六人陣亡的沉重代價，留下了聖經中『個人的罪波及群體』最直接的警示敘事。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">『個人的罪波及群體』最直接的聖經警示案例</div>
+          <div class="legacy-body">他的故事成為聖經中，闡明『在信仰群體之中，個人隱密的罪咎可能為整個群體帶來真實屬靈後果』這一原則最具體的例證。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">罪之心理機制最精確的自我剖析範例</div>
+          <div class="legacy-body">他『我見……我就貪愛……我便拿去』這句認罪告白，成為聖經中對『罪如何從視覺吸引到內心貪戀再到具體行動』這一心理歷程，刻畫得最精確的文本範例之一。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">亞割谷此後成為審判與轉機的地理象徵</div>
+          <div class="legacy-body">亞割谷這個地名此後在先知書中被賦予深刻的象徵意涵，何西阿書更預言這個曾經審判之地，此後將成為『指望之門』，展現出審判之後恩典轉機的盼望（何 2:15）。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「約書亞和以色列眾人把謝拉的曾孫亞干……都帶到亞割谷去……以後耶和華的烈怒就消了。」</div>
+      <div class="final-verse-ref">約書亞記 7:24, 26</div>
+    </div>
+
+    <div class="final-question">如果你此刻懷抱著某個自認為『無人知曉』的秘密過犯——你願不願意記取亞干的教訓，趁早誠實地面對它，而非任由它持續在暗中滋長？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 亞干 <span>עָכָן</span> · 私藏當滅之物的以色列人 · 使全軍在艾城敗北者</div>
+
+</body>
+</html>

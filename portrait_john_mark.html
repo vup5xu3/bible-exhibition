@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>馬可 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">馬可・·約翰馬可</h1>
+  <span class="hero-name-en">John Mark · Ἰωάννης Μᾶρκος</span>
+  <p class="hero-slogan">「獨有路加在我這裡。你來的時候，要把馬可帶來，因為他在工作上於我有益處。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">約主後40–68年（初代教會時期）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ISFP · 探險家型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">使徒行傳 12–15章 · 歌羅西書 4:10 · 提摩太後書 4:11 · 彼得前書 5:13</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">巴拿巴的表弟 · 保羅與巴拿巴的宣教助手 · 馬可福音的作者</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他第一次登場，是在耶路撒冷宣教旅程中途放棄離去的年輕助手；他最後一次出現在保羅筆下，卻是這位垂死使徒特別點名要求帶來身邊、稱許他『在工作上於我有益處』的同工。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">約主後40–68年，初代教會時期</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">巴拿巴的表弟，馬利亞（耶路撒冷教會聚會之家的主人）之子</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">耶路撒冷，此後隨保羅、巴拿巴、彼得等人往來各地宣教</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">母馬利亞（家中曾是耶路撒冷教會禱告聚會之處）；表兄巴拿巴</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">徒 12:12, 25, 13:5, 13, 15:36–39 · 西 4:10 · 門 24 · 提後 4:11 · 彼前 5:13</div>
+      </div>
+    </div>
+
+    <p>馬可（又稱約翰馬可）最初登場於使徒行傳，是在彼得被天使從監牢中救出後，『想了一想，就往那稱呼馬可的約翰、他母親馬利亞家去，在那裡有好些人聚集禱告』——這段記載顯示，馬可的家庭，很可能是耶路撒冷初代教會重要的聚會場所之一，馬可本人也因此自幼便處於教會核心的屬靈氛圍之中。此後，馬可跟隨表兄巴拿巴與保羅，一同展開第一次宣教旅程，擔任他們的『幫手』——然而當宣教隊伍抵達旁非利亞的別加時，馬可卻選擇離開他們，獨自返回耶路撒冷，聖經並未明確記載他離去的具體原因（可能涉及旅程的艱辛、對保羅路線轉變的不適應、或單純的思鄉之情）。</p>
+    <p>這次半途而廢的決定，此後在保羅準備展開第二次宣教旅程時，引發了一場激烈的衝突——巴拿巴想再帶著馬可同去，保羅卻『因為馬可從前在旁非利亞離開他們，不和他們同去做工，就以為不可帶他去』，兩人『起了爭論，甚至彼此分開』，巴拿巴帶著馬可揚帆往塞浦路斯去，保羅則另選西拉同行。這段記載，誠實地呈現出即使是初代教會最重要的宣教領袖之間，也可能因對他人過往失誤的評估產生真實而深刻的分歧。然而馬可的故事並未止步於這次的失敗與分裂——多年後，保羅在寫給歌羅西教會與腓利門的書信中，已經將馬可列為與自己同工、甚至特別叮囑教會『接待他』的同伴；而在保羅殉道前所寫、最後一封書信提摩太後書中，他更懇切地要求提摩太：『你來的時候，要把馬可帶來，因為他在工作上於我有益處』——這句話，成為聖經中對『一個人能夠從過去的失敗中重新被信任、甚至被高度倚重』最動人的見證之一。此後的教會傳統普遍認為，馬可正是《馬可福音》的作者，這卷書被認為深受使徒彼得口述見證的影響（彼得在彼得前書中，也親暱地稱他為『我兒子馬可』），馬可因此在教會歷史中，同時承載著保羅陣營與彼得陣營兩方深厚信任的獨特地位。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從半途離開保羅與巴拿巴、引發兩位宣教領袖分道揚鑣的年輕助手，到保羅晚年書信中特別倚重的同工，再到教會傳統中馬可福音的作者——馬可的一生，是聖經中對『一次失敗不必然定義一生』刻畫得最完整的見證之一。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">耶路撒冷教會核心家庭的孩子——「往那稱呼馬可的約翰、他母親馬利亞家去」</div>
+        <div class="timeline-body">馬可的母親馬利亞的家，是耶路撒冷初代教會重要的禱告聚會場所，彼得被天使救出監牢後，第一個前往的地方正是這裡——馬可自幼便處於教會核心的屬靈氛圍之中。</div>
+        <div class="timeline-ref">徒 12:12</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">半途離開宣教隊伍——「馬可就離開他們，回耶路撒冷去了」</div>
+        <div class="timeline-body">馬可隨表兄巴拿巴與保羅展開第一次宣教旅程擔任幫手，然而在抵達旁非利亞的別加時，卻選擇離開隊伍、獨自返回耶路撒冷，這個決定此後成為保羅對他評價的重要陰影。</div>
+        <div class="timeline-ref">徒 13:5, 13</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">因他而起的分裂——「二人起了爭論，甚至彼此分開」</div>
+        <div class="timeline-body">保羅準備展開第二次宣教旅程時，因不信任馬可過往半途而廢的紀錄，拒絕再次帶他同行，巴拿巴卻堅持要帶馬可，兩人因此激烈爭論、分道揚鑣——巴拿巴帶馬可前往塞浦路斯，保羅則另選西拉同行。</div>
+        <div class="timeline-ref">徒 15:36–41</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">重新被保羅倚重——「他在工作上於我有益處」</div>
+        <div class="timeline-body">多年後，保羅在書信中已將馬可列為值得教會接待的同工；在殉道前所寫的最後書信中，保羅更懇切地要求提摩太將馬可帶來，稱許他『在工作上於我有益處』——這句話，成為馬可從過往失敗中重新被信任的最有力見證。此後教會傳統普遍認為，馬可正是《馬可福音》的作者。</div>
+        <div class="timeline-ref">西 4:10 · 門 24 · 提後 4:11 · 彼前 5:13</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他是聖經中對『一次公開而具體的失敗，不必然定義一個人此後一生的價值與可信度』刻畫得最完整、也最激勵人心的見證之一。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">早年可能因缺乏經歷艱辛旅程的準備或韌性而選擇退縮，此後卻透過持續的委身重新贏得信任</div>
+          <div class="soul-body">馬可早年半途離開宣教隊伍的具體原因雖未被明確記載，然而他此後在巴拿巴、彼得、乃至保羅陣營中持續而穩定的服事，展現出他確實透過時間與持續的努力，逐漸修復並重建了自己的可信度。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">願意在失敗之後持續留在服事的崗位上，最終透過實際的行動重新贏得信任</div>
+          <div class="soul-body">儘管遭遇保羅公開的不信任，馬可並未因此徹底離開服事，而是持續透過巴拿巴、此後彼得的帶領與陪伴下，持續在宣教與教會事工中忠心服事，最終憑藉具體的表現，重新贏得保羅的高度信任。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">傾向在較為穩定、有經驗長者陪伴的處境中，展現出更好的服事果效</div>
+          <div class="soul-body">馬可此後主要與巴拿巴、彼得等經驗更豐富的屬靈長者一同服事，這種模式或許顯示，他在有適當支持與陪伴的環境中，能夠更有效地發揮自己的恩賜與服事能力。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">早年半途而廢的具體決定，直接引發了初代教會兩位重要領袖之間激烈的衝突與分裂</div>
+          <div class="soul-body">馬可早年的這個決定，不僅影響了他個人的可信度，更成為保羅與巴拿巴這對長期同工的宣教夥伴，最終分道揚鑣的直接導火線，顯示出個人的失誤，可能帶來超乎預期的深遠人際影響。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">他此後同時被保羅與彼得兩大使徒陣營所信任與倚重，教會傳統更相信他正是馬可福音的作者</div>
+          <div class="soul-body">一個曾經在保羅眼中『不可靠』的年輕人，此後不僅重新贏得保羅的信任，更被視為記錄使徒彼得第一手見證、成就《馬可福音》這部重要福音書的作者——這種身分的巨大轉變，賦予他的故事一種深刻的救贖與更新意涵。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">馬可的故事，是聖經中對『一次公開的失敗，能否成為一生無法擺脫的標籤』這一問題，回答得最溫柔卻也最有力的敘事之一。他早年半途離開保羅與巴拿巴的宣教隊伍，這個具體的失誤，不僅影響了保羅對他此後長達多年的信任評估，更直接導致了保羅與巴拿巴——這對曾經緊密同工、共同開展外邦宣教大業的夥伴——徹底的分裂。若聖經的敘事僅止於此，馬可很可能會被記載為一個令人惋惜、甚至帶有負面色彩的次要人物。然而馬可的故事並未停在這裡——透過巴拿巴不離不棄的接納與陪伴、以及此後在彼得身邊的持續服事，馬可用實際的行動，一點一滴地重建了自己的可信度，最終使保羅在生命最後的書信中，親口稱許他『在工作上於我有益處』，甚至在孤獨等候殉道之際，特別要求提摩太將他帶來。馬可的故事提醒我們，一次具體的失敗，即使代價沉重、即使造成了他人之間深遠的裂痕，依然不必然是一個人此後一生的終局定論——只要願意持續委身、持續在服事中證明自己，重建信任與重新被重用的可能性，始終真實存在。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ISFP</span>
+      <div class="mbti-name">探險家型 · 從半途離去到重新被倚重的助手</div>
+      <div class="mbti-slogan">「他曾經半途離開，讓保羅與巴拿巴因此分裂——多年後，保羅卻在獄中特別要求：把馬可帶來，他對我有益處。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">他早年半途離開的決定，很可能源自於某種深刻而個人化的內在掙扎或不適應（無論是艱辛的旅程或對路線變化的不安），這種強烈而私密的內在情感反應，是主導內向情感的典型展現。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Se · 外向實感</span>
+          <div class="mbti-fn-body">他此後在具體的服事崗位上，透過實際而具體的行動表現（而非言語上的辯解），逐步重建了自己的可信度，顯示出透過具體行動落實委身的能力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">（材料有限——聖經對他此後具體的內在反思過程著墨較少，此處僅能從他此後行為模式的轉變推知這一功能的可能作用）</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">他早年在面對宣教旅程的艱辛或不確定性時，未能展現出堅持完成既定計畫、克服眼前具體困難的執行力，這種在壓力下難以維持既定目標與紀律的傾向，反映出劣勢外向思考的特徵。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最重要的兩段關係——巴拿巴始終不離不棄的接納，以及保羅從不信任到重新高度倚重的轉變——共同構成了他從失敗走向被重用最完整的敘事弧線。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">巴</div>
+          <div class="relation-name">巴拿巴</div>
+          <div class="relation-type-badge">他的表兄，也是始終不離不棄接納他的宣教夥伴</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">巴拿巴在保羅拒絕再次帶馬可同行時，堅持要給予這位表弟第二次機會，甚至不惜與保羅分道揚鑣——這份不離不棄的接納，成為馬可此後得以重建可信度、繼續在服事崗位上成長的重要基礎。</div>
+          <div class="relation-ref">徒 15:37–39</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">保</div>
+          <div class="relation-name">保羅</div>
+          <div class="relation-type-badge">從公開不信任到晚年高度倚重他的使徒</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">保羅起初因馬可過往半途而廢的紀錄，堅決拒絕再次帶他同行；然而多年後，保羅卻在書信中將馬可列為值得信任的同工，並在生命最後的時刻，特別要求將他帶到自己身邊——這段關係的完整轉變，是聖經中『重建信任』最動人的見證之一。</div>
+          <div class="relation-ref">徒 15:38 · 西 4:10 · 提後 4:11</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">彼</div>
+          <div class="relation-name">彼得</div>
+          <div class="relation-type-badge">此後親暱稱他為『我兒子』的使徒</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">馬可此後與使徒彼得建立起深厚的服事關係，彼得在書信中親暱地稱他為『我兒子馬可』，教會傳統普遍認為，《馬可福音》正是馬可根據彼得第一手的見證與口述所記錄而成。</div>
+          <div class="relation-ref">彼前 5:13</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「他在工作上於我有益處」——保羅這句對馬可的稱許，成為聖經中對『一個人能夠從過去的失敗中重新被信任』最直接而動人的宣告之一。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「獨有路加在我這裡。你來的時候，要把馬可帶來，因為他在工作上於我有益處。」</div>
+      <div class="verse-ref">提摩太後書 4:11</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">εὔχρηστος</span>
+        <div class="word-transliteration">euchrestos · 有益處 / 有用 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「有用的、有益的、實用的」，這個字由『好』（eu）與『有用』（chrestos）組合而成。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">保羅特意用這個字肯定馬可『在工作上』的具體貢獻，這與多年前他因馬可『不和他們同去做工』而拒絕重用他的評價，形成鮮明而深刻的對照——同一個關於『工作』與『事奉』的評判標準，此刻卻給出了截然相反的結論，這正是馬可透過多年委身所贏得的具體轉變。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">一次具體的失敗不必然定義一個人此後一生的可信度</div>
+      <div class="theology-insight-body">馬可的故事完整地展現了，即使一個人曾經因具體的失誤而失去他人的信任，透過持續的委身與具體的行動，這份信任依然可能被重新贏得——這為所有曾經經歷失敗、卻渴望重新被信任的人，提供了深刻的盼望。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">屬靈長者不離不棄的接納對重建失敗者的信心具有關鍵作用</div>
+      <div class="theology-insight-body">巴拿巴堅持給予馬可第二次機會的決定，即使代價是與保羅的分裂，卻成為馬可此後得以持續成長、重建可信度的重要基礎——這提醒我們，願意給予失敗者恢復機會的屬靈陪伴，具有何等關鍵的價值。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">教會歷史中不同的服事恩賜與性格特質可能適合不同的服事處境</div>
+      <div class="theology-insight-body">馬可此後在巴拿巴、彼得的陪伴帶領下發揮了美好的服事果效，這提醒我們，一個人未必適合所有的服事處境，找到合適的服事環境與陪伴者，可能是幫助一個人充分發揮恩賜的重要關鍵。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">馬可經歷了一次公開而具體的失敗，此後透過持續的委身與服事，重新贏得了保羅的信任，最終被高度肯定為『在工作上於我有益處』</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這種『從失敗到被重新信任與重用』的完整生命歷程，與使徒彼得三次不認主、此後卻被耶穌親自恢復並重新委以『餵養我的羊』之重任的經歷，有著深刻的呼應——兩者都見證了神（以及祂所使用之人）願意給予失敗者恢復與重新被使用的機會</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">耶穌在提比哩亞海邊，三次問彼得「你愛我比這些更深嗎」，並在他三次確認後，親自委以「餵養我的羊」的重任，恢復了他因三次不認主而受損的信心與職分（約 21:15–17）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正因為過去某次具體的失敗，而被他人（或自己）貼上『不可靠』的標籤——馬可的故事，想告訴你，這個標籤，不必然是永久的。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">馬可的故事命中的是每一個此刻正因為過去某次具體的失敗（半途放棄某項承諾、辜負他人的信任、在關鍵時刻退縮），而被他人（甚至自己）貼上『不可靠』標籤的人。他的故事提醒我們，一次具體的失敗，固然可能帶來深遠的後果——甚至如馬可的例子，導致重要關係的破裂——然而這不必然是故事的終局。透過持續的委身、在合適的環境中持續成長，重新贏得信任的可能性，始終真實存在。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你此刻是否正因為過去某次具體的失敗，而被他人（或自己）貼上『不可靠』的標籤？馬可從失敗到被保羅重新高度信任的完整歷程，對你此刻的處境，帶來什麼樣的盼望？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">巴拿巴堅持給予馬可第二次機會，即使代價是與保羅的分裂。你的生命中，是否也有這樣一位『巴拿巴』，願意在你失敗之後，依然不離不棄地陪伴你？你是否也願意成為別人生命中的這樣一位『巴拿巴』？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">馬可此後在巴拿巴、彼得的陪伴下發揮了美好的服事果效。你是否也曾發現，自己在某個特定的環境或陪伴者身邊，能夠展現出比其他處境更好的表現？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 馬可</span>
+        <div class="gen-title">示範劇本：從半途放棄引發分裂的年輕助手，到晚年被保羅高度稱許『在工作上於我有益處』的同工</div>
+        <div class="gen-body">他早年半途離開宣教隊伍的失敗，直接導致保羅與巴拿巴的分裂，然而透過此後持續的委身與服事，最終重新贏得保羅的高度信任，並被教會傳統視為記錄使徒彼得見證、完成馬可福音的重要作者。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 此後閱讀馬可福音的歷代信徒</span>
+        <div class="gen-title">延續：一個曾經失敗的人，成為記錄福音核心見證的作者</div>
+        <div class="gen-body">馬可此後被教會傳統普遍視為《馬可福音》的作者，這卷書此後成為歷代信徒認識耶穌基督生平與事工最重要的福音書之一——一個曾經『半途而廢』的人，最終成為記錄並傳遞福音核心真理最重要的見證者之一。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在馬可的故事中，展現在神使用巴拿巴不離不棄的接納，給予他重建自己的機會；也展現在，神最終使用他，成為記錄耶穌基督生平事蹟、傳遞福音核心真理的重要器皿。這提醒我們，神的恩典，能夠將一次具體的失敗，轉化為此後生命更深刻成長與更大服事果效的起點。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位半途放棄宣教之旅、卻在多年後被保羅在獄中特別點名要見的年輕人，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#一次失敗不是永久的標籤</span>
+      <span class="tag">#重建信任需要時間與行動</span>
+      <span class="tag">#找到適合你的陪伴環境</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>馬可第一次跟著保羅、巴拿巴（他的表哥）出去宣教，走到半路，在旁非利亞的別加，他選擇離開隊伍，自己回耶路撒冷去了。聖經沒有明說原因，可能是旅途太艱辛，可能是害怕，也可能只是單純想家。</p>
+      <p>這件事的後座力，比馬可自己想像的大得多。幾年後，保羅準備再出發，巴拿巴想再帶馬可一起去，保羅堅決反對——他不信任這個曾經半途而廢的年輕人。兩人吵得很兇，最後決定分道揚鑣，各走各的路，巴拿巴帶著馬可去了塞浦路斯，保羅則找了西拉一起走。</p>
+      <p>如果故事在這裡結束，馬可大概就會被記成『那個讓保羅跟巴拿巴鬧翻的人』。但故事沒有結束。</p>
+      <p>多年後，我們看到保羅寫信給教會，已經把馬可列為值得信任、值得接待的同工。更驚人的是，保羅在人生最後的一封信——寫給提摩太，那時他人在監獄裡，快要殉道了——裡面，他特別交代：你來的時候，把馬可也帶來，因為他對我的工作有幫助。從『不可以帶他』到『請把他帶來，他對我有幫助』，這是一段長達多年、靠著實際行動一點一滴累積出來的信任重建。</p>
+      <p>後來的教會傳統普遍相信，馬可就是《馬可福音》的作者，這卷書是根據使徒彼得的見證寫成的——一個曾經『半途而廢』的年輕人，最後成了記錄耶穌生平最重要的作者之一。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——馬可這塊石頭，中途留下了一道很深的裂痕，卻花了多年的時間，慢慢把裂痕，磨成了值得信賴的紋理。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你此刻正因為過去某次具體的失敗，被貼上『不可靠』的標籤——馬可的故事想告訴你：這個標籤，不是永久的判決。重建信任，需要時間，也需要行動，但這是可能的。</p>
+      <p style="margin-top:12px;">留意你生命中是否有一位『巴拿巴』，願意在你失敗之後依然陪著你。如果有，好好珍惜；如果沒有，也許你可以成為別人生命中的那位巴拿巴。</p>
+      <p style="margin-top:12px;">找到適合你的環境與陪伴者很重要。馬可在巴拿巴跟彼得身邊，發揮出了美好的果效——不是每個人都能在同一種環境下展現最好的自己。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果你曾經因為一次失敗而被貼標籤——記得馬可，重建信任，永遠不嫌太晚。</p>
+    </div>
+
+    <div class="insight-box">馬可的故事，持續為當代討論『失敗後的信任重建』與『第二次機會的價值』這類議題，提供了聖經中最完整而具體的參照案例——他從『被拒絕同行』到『被特別點名要求陪伴』的完整生命歷程，至今仍是激勵無數曾經歷失敗、卻渴望重新開始之人最重要的聖經典範之一。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他從半途離開宣教隊伍、引發保羅與巴拿巴分裂的年輕助手，成為保羅晚年特別倚重、教會傳統中馬可福音的作者，留下了『失敗不是永久標籤』最動人的見證。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">『重建信任』最完整的聖經敘事典範</div>
+          <div class="legacy-body">他從被保羅拒絕同行、到被高度稱許『在工作上於我有益處』的完整轉變，成為聖經中，闡明一次具體失敗不必然定義一個人此後一生可信度的最重要例證。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">教會傳統中《馬可福音》的作者</div>
+          <div class="legacy-body">他被普遍認為是記錄使徒彼得見證、完成《馬可福音》的作者，這卷書此後成為歷代信徒認識耶穌基督生平事工最重要的文獻之一。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">保羅與彼得兩大使徒陣營共同信任的橋樑人物</div>
+          <div class="legacy-body">他同時獲得保羅與彼得的高度信任與親暱稱許，這種罕見的雙重連結，展現出他此後在初代教會中所扮演的獨特而重要的角色。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「獨有路加在我這裡。你來的時候，要把馬可帶來，因為他在工作上於我有益處。」</div>
+      <div class="final-verse-ref">提摩太後書 4:11</div>
+    </div>
+
+    <div class="final-question">如果你此刻正因為過去某次具體的失敗，而覺得自己已經失去了他人（或自己）的信任——你願不願意相信，就像馬可的故事所展現的，透過持續的委身與行動，重新被信任的可能性，始終真實存在？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 馬可 <span>Ἰωάννης Μᾶρκος</span> · 半途而廢的宣教同工 · 第二次成為保羅稱許的同工 · 馬可福音的作者</div>
+
+</body>
+</html>

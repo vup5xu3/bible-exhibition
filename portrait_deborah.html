@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>底波拉 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">底波拉</h1>
+  <span class="hero-name-en">Deborah · דְּבוֹרָה</span>
+  <p class="hero-slogan">「底波拉打發人將亞比挪菴的兒子巴拉從拿弗他利的基低斯召了來，對他說：「耶和華以色列的神吩咐你說：你率領一萬人上他泊山去……我必使耶賓的將軍西西拉率領車輛和全軍到基順河，交在你手中。」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">約主前十二世紀（士師時代中期）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ENTJ · 指揮官型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">士師記 4–5 章</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">拉比多之妻 · 以色列女先知 · 士師時代唯一的女性士師</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">在士師記那個『各人任意而行』的混亂循環之中，底波拉是極少數集先知、士師、軍事號召者三重身分於一身的領袖——而她，恰好是一位女性。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">約主前十二世紀，士師時代中期</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">先知，以色列的士師，拉比多之妻</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">以法蓮山地，底波拉的棕樹（在拉瑪和伯特利中間）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">夫拉比多（聖經僅提及其名，無其他記載）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">士師記 4–5 章 · 來 11:32（士師集體被列入信心偉人榜）</div>
+      </div>
+    </div>
+
+    <p>底波拉出場的背景，是以色列因行耶和華眼中看為惡的事，被耶和華交在迦南王耶賓手中，遭受其將軍西西拉率領九百輛鐵車長達二十年的殘酷壓迫。士師記用一句簡潔卻極具份量的話介紹她：『有一位女先知底波拉，是拉比多的妻，當時作以色列的士師。她住在以法蓮山地拉瑪和伯特利中間，在底波拉的棕樹下；以色列人都上她那裡去聽判斷。』這段描述顯示，底波拉不僅是一位先知，更是一位受到全以色列百姓公開信任、主動前來尋求審斷的實際治理者——這種公開而穩定的司法權威，在士師記所描繪那個道德混亂、『各人任意而行』的時代裡，格外醒目。</p>
+    <p>底波拉生命中最關鍵的行動，是她奉神的指示，召來亞比挪菴的兒子巴拉，吩咐他率領一萬人前往他泊山，應許耶和華必將迦南將軍西西拉交在他手中。然而巴拉的回應卻顯露出明顯的猶豫與不安全感：『你若同我去，我就去；你若不同我去，我就不去。』底波拉答應與他同去，卻也直言不諱地指出這個決定的代價：『你在所行的路上，得不著榮耀，因為耶和華要將西西拉交在一個婦人手裡。』這則預言，最終應驗在另一位女性——基尼人希百的妻子雅億——身上：雅億在西西拉逃入她的帳篷躲藏時，用帳棚橛子將他殺死。底波拉與巴拉此後合唱的凱旋之歌（士師記第五章），是聖經中最古老的詩歌之一，詳盡歌頌了耶和華的得勝，也記載了以色列此後『太平四十年』的安穩歲月。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從棕樹下受百姓信任的公正審斷者，到奉神指示召集軍隊出戰的先知，再到與巴拉合唱凱旋之歌的得勝見證——底波拉的一生，展現出士師時代罕見的穩定與清晰的屬靈權柄。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">棕樹下的審判——「以色列人都上她那裡去聽判斷」</div>
+        <div class="timeline-body">底波拉作為先知與士師，在以法蓮山地的棕樹下，受到以色列百姓公開的信任與尋求，主持公正的審斷——這種穩定而受信賴的治理權威，在士師時代動盪混亂的大環境中極為罕見。</div>
+        <div class="timeline-ref">士 4:4–5</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">召集巴拉出戰——「你若同我去，我就去」</div>
+        <div class="timeline-body">底波拉奉耶和華的指示，召來巴拉，吩咐他率軍前往他泊山迎戰西西拉的九百輛鐵車。巴拉卻要求底波拉必須同行才願意出戰，底波拉應允，卻直言指出這將意味著西西拉要被交在一個婦人手中，而非巴拉自己得著擊殺敵將的榮耀。</div>
+        <div class="timeline-ref">士 4:6–9</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">他泊山的得勝——「耶和華使西西拉和他一切車輛全軍潰亂」</div>
+        <div class="timeline-body">以色列軍隊在底波拉與巴拉的帶領下，於他泊山迎戰西西拉大軍，耶和華使敵軍全面潰亂，西西拉本人棄車步行逃跑，最終逃入基尼人希百之妻雅億的帳篷，被雅億用帳棚橛子殺死——底波拉先前的預言完全應驗。</div>
+        <div class="timeline-ref">士 4:10–22</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">底波拉之歌與太平四十年——「底波拉和亞比挪菴的兒子巴拉，就在當日唱歌」</div>
+        <div class="timeline-body">底波拉與巴拉合唱了聖經中最古老的詩歌之一，詳盡歌頌耶和華的得勝與各支派在這場戰役中的表現，此後『國中太平四十年』——底波拉的領導，為以色列帶來了士師時代難得一見的長期安穩。</div>
+        <div class="timeline-ref">士 5 章, 士 5:31</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">她在一個士師時代普遍缺乏穩定屬靈權柄的年代，同時展現出先知的洞察、士師的公正、以及軍事號召者的決斷力——這種多重身分的完整結合，在整卷士師記中絕無僅有。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">堅信神已明確吩咐的話語，並勇於將此宣告付諸具體的軍事行動</div>
+          <div class="soul-body">底波拉不僅傳達了神的吩咐，更親自參與了整個軍事行動的執行過程——她不是遙遠的傳話者，而是深度參與、承擔責任的實際領袖。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">在公正審斷與果斷行動之間，展現出罕見的平衡</div>
+          <div class="soul-body">她既能在棕樹下耐心地聽取百姓的案件、給予公正的判斷，也能在戰事迫在眉睫時，果斷地召集軍隊、親自隨行督戰，這種文武兼備的領導特質，格外難能可貴。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">面對他人的猶豫與不安全感，選擇同行支持，卻也誠實指出其後果</div>
+          <div class="soul-body">面對巴拉近乎討價還價的猶豫回應，底波拉沒有嚴厲斥責，而是選擇答應同行支持他，卻也毫不迴避地指出，這個猶豫將使他失去原本可以獨得的榮耀。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">（材料有限——聖經未直接記載她個人的過犯或掙扎）</div>
+          <div class="soul-body">士師記對底波拉的整體描寫相當正面，聖經未如記載參孫或基甸那樣，具體揭露她個人的軟弱或過犯，這也與士師記其他部分的敘事筆調形成對比。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">她是士師記中唯一一位女性士師，也是聖經中極少數同時具備先知與士師雙重身分的女性</div>
+          <div class="soul-body">在士師記整卷書所記載的十二位士師中，底波拉是唯一的女性，也是唯一在出場時便已明確被稱為『先知』的一位——這種雙重身分的獨特性，賦予她的角色特殊而重要的神學份量。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">底波拉的故事，是士師記中對『神能夠興起任何祂所揀選的人，帶領百姓走出困境』這一主題，展現得最清晰的敘事之一。士師記整體的敘事模式，是一個不斷重複的循環：以色列離棄神、遭受外邦壓迫、向神呼求、神興起士師拯救、士師死後百姓再度離棄神。在這個循環之中，底波拉的出現格外引人注目——她不僅帶領以色列脫離二十年的壓迫，更在她的治理下，為以色列帶來了『太平四十年』這段相對穩定的歲月，是士師記中持續時間最長的和平期之一。而她面對巴拉猶豫不決的態度時所展現的智慧尤其值得深思——她沒有選擇獨自代替巴拉出戰，也沒有嚴厲斥責他的軟弱，而是選擇陪伴支持，卻同時誠實地讓他明白，這個選擇將帶來的後果。這種『既給予支持、又不迴避誠實』的領導風格，為後世所有承擔帶領責任的人，提供了深刻的典範。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ENTJ</span>
+      <div class="mbti-name">指揮官型 · 棕樹下的女先知</div>
+      <div class="mbti-slogan">「百姓上山來找她斷案，男人卻要她陪著才敢上戰場——底波拉兩件事都做了，而且做得同樣好。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">她清晰而果斷地組織了整場軍事行動——從召集巴拉、明確傳達戰略指示，到親自隨軍督戰，展現出極強的組織與決策執行能力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">她準確地預見了這場戰役的結局走向（西西拉將死於婦人之手），並在棕樹下的審斷工作中，展現出對是非曲直深刻而清晰的洞察力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Se · 外向實感</span>
+          <div class="mbti-fn-body">她親自隨軍前往他泊山參與這場實際的軍事行動，而非僅止於遠距離發號施令，顯示出願意親身介入具體現實處境的行動力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">（材料有限——聖經未具體記載她內在情感層面的掙扎或表達，她的敘事整體聚焦於公開的治理與軍事行動）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">她一生最關鍵的互動，發生在那位需要她同行才敢出戰的軍事統帥身上——而這段互動，最終應驗了她自己所發出的預言。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">巴</div>
+          <div class="relation-name">巴拉</div>
+          <div class="relation-type-badge">她奉神指示召來、卻猶豫不前的軍事統帥</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">巴拉要求底波拉必須同行才願意率軍出戰，底波拉應允卻也直言指出，這個猶豫將使他失去原本應得的榮耀——這段互動精確地預示了此後西西拉死於婦人之手的結局。</div>
+          <div class="relation-ref">士 4:6–9</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">雅</div>
+          <div class="relation-name">雅億</div>
+          <div class="relation-type-badge">殺死敵將西西拉、應驗底波拉預言的婦人</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">雅億是基尼人希百的妻子，在西西拉逃入她的帳篷躲藏時，用帳棚橛子將他殺死——這個結局，正是底波拉先前向巴拉所預言『耶和華要將西西拉交在一個婦人手裡』的具體應驗。</div>
+          <div class="relation-ref">士 4:17–22</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">西</div>
+          <div class="relation-name">西西拉</div>
+          <div class="relation-type-badge">壓迫以色列二十年的迦南將軍</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">西西拉率領九百輛鐵車壓迫以色列長達二十年，最終在他泊山一役中全軍潰敗，自己也在逃亡中喪命，結束了他對以色列長期的殘酷統治。</div>
+          <div class="relation-ref">士 4:2–3, 15–22</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「耶和華要將西西拉交在一個婦人手裡」——底波拉這句預言，成為聖經中對『神揀選人的方式超越世俗性別期待』最具體的宣告之一。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「以色列中的官長停職，直到我底波拉興起，等我興起作以色列的母。」</div>
+      <div class="verse-ref">士師記 5:7</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">אֵם בְּיִשְׂרָאֵל</span>
+        <div class="word-transliteration">em b'Yisrael · 以色列的母 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「以色列的母親」，這是底波拉在她的凱旋之歌中，用以形容自己在以色列所扮演角色的自我定位。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這個意象將領導的權柄與母親般的保護、養育連結在一起，展現出底波拉的領導風格，不僅止於軍事上的決斷，更帶有對整個民族深切的關懷與守護，這個意象也成為此後理解女性領導典範的重要參照。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">נְבִיאָה</span>
+        <div class="word-transliteration">nevi'ah · 女先知 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「女性的先知」，這個字明確標記了底波拉作為神話語傳達者的身分。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">士師記開篇便明確以這個字定義底波拉的身分，這個明確的標記，確立了她此後一切審斷與軍事號召行動，其根本權柄來源，都在於她作為神所揀選之先知的身分，而非僅僅是個人的才幹或魅力。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">神揀選領袖的方式超越世俗對性別角色的既定期待</div>
+      <div class="theology-insight-body">在士師時代那個以男性軍事領袖為主流的社會背景中，神揀選底波拉這位女性，同時擔任先知、士師、軍事號召者的多重角色——這具體展現了神揀選人的標準，從不受限於世俗社會對性別角色的既定框架。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">屬靈權柄與公正治理能夠帶來實際而長久的和平</div>
+      <div class="theology-insight-body">底波拉治理下『太平四十年』的記載，展現出真正紮根於屬靈權柄的公正治理，能夠為群體帶來實質而持久的穩定與和平。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">猶豫不前的信心仍可能導致失去原本應得的榮耀</div>
+      <div class="theology-insight-body">巴拉因猶豫而堅持要底波拉同行，最終失去了親手擊殺敵將的榮耀，這提醒我們，信心行動中的猶豫遲疑，即使最終仍然順服，也可能使我們錯失原本可以經歷的更完整祝福。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">底波拉在以色列被外邦壓迫、士師時代普遍缺乏穩定屬靈領導的處境中興起，同時作為先知、士師、軍事號召者，帶領百姓走向拯救與長久的和平</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這種『在群體最需要的時刻，神興起合適的領袖帶來拯救與安穩』的模式，預表了此後基督作為終極的先知、祭司、君王，親自帶領神的子民脫離罪的轄制、進入永恆的平安</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督集先知、祭司、君王三重職分於一身，成就了比底波拉所帶來『太平四十年』更為深遠而永恆的拯救與安息（來 1:1–3 · 約 14:27）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正身處一個缺乏穩定領導、甚至有人期待你必須同行才敢向前的處境——底波拉的故事，或許正是為此刻的你而寫。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">底波拉的故事命中兩種處境中的人——一種人可能正身處某個缺乏穩定、公正領導的群體或處境之中，底波拉在棕樹下公正審斷、帶來『太平四十年』的典範，提醒我們真正紮根於屬靈根基的領導，能夠帶來實質而長久的安穩；另一種人，則可能像巴拉一樣，面對某個明確的呼召或任務，卻因缺乏信心而猶豫不前，需要他人的陪伴才敢向前——底波拉的故事提醒我們，即使需要陪伴才能跨出這一步，也好過完全不敢行動，但這樣的猶豫，也可能使我們錯失原本可以經歷的更完整祝福。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你此刻是否身處某個缺乏穩定公正領導的群體或處境？底波拉的典範，對你渴望或期待的領導風格，帶來什麼樣的啟發？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">你是否也曾像巴拉一樣，面對某個明確的呼召，卻因缺乏信心而要求他人的陪伴才敢向前？這種猶豫，是否也讓你錯失了某個原本可以經歷的祝福或榮耀？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">底波拉將自己定位為『以色列的母』，將領導的權柄與母親般的守護連結在一起。你如何理解，權柄與關懷可以如何在一個人身上和諧並存？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">神揀選底波拉這位女性，在士師時代擔任多重領導角色，超越了當時社會對性別角色的既定期待。這對你理解『神揀選人的標準超越世俗框架』，帶來什麼樣的啟發？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 底波拉</span>
+        <div class="gen-title">示範劇本：在缺乏穩定領導的時代，以先知的洞察與士師的公正，帶來長久的和平</div>
+        <div class="gen-body">她同時擔任先知、士師、軍事號召者的多重角色，在士師時代普遍混亂的大環境中，帶領以色列脫離二十年的壓迫，並為百姓帶來『太平四十年』的長久安穩。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 巴拉（她所召集的軍事統帥）</span>
+        <div class="gen-title">延續：即使帶著猶豫，最終仍在底波拉的陪伴下完成使命</div>
+        <div class="gen-body">巴拉雖然因猶豫而失去獨得榮耀的機會，卻仍在底波拉的陪伴與支持下，完成了這場對抗西西拉大軍的重要戰役，展現出即使不完美的信心，也能在他人的支持下成就神的計畫。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在底波拉的故事中，展現在神願意興起一位女性、在一個充滿性別框架限制的古代社會中，賦予她先知、士師、軍事號召者的多重權柄，並透過她，為以色列帶來長達四十年的和平。這提醒我們，神的恩典與揀選，從不受限於人為劃定的社會框架或既定期待。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位坐在棕樹下斷案、又親自帶兵上戰場的女先知，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#領導不分性別</span>
+      <span class="tag">#陪伴支持也是一種力量</span>
+      <span class="tag">#猶豫的代價要誠實面對</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>士師記那個年代，以色列被迦南王耶賓壓迫了整整二十年，他的將軍西西拉有九百輛鐵車，殺得以色列人幾乎抬不起頭。就在這個危急時刻，聖經介紹了一位人物：有一位女先知底波拉，是拉比多的妻子，當時作以色列的士師。她坐在棕樹下，以色列人都跑去找她斷案。</p>
+      <p>她奉神的指示，把一個叫巴拉的軍事將領找來，告訴他：帶一萬人上他泊山，神會把西西拉交在你手裡。巴拉的反應很有意思——他說：你陪我去，我就去；你不陪我去，我就不去。底波拉答應了，但她也很直接地告訴他：那你這次的行動，就得不到本該屬於你的榮耀了，因為神要把西西拉交在一個女人手裡。</p>
+      <p>後來真的打贏了，西西拉自己棄車逃跑，躲進了一個叫雅億的女人的帳篷，結果被雅億用帳棚橛子敲死了——底波拉的預言，一字不差地應驗了。</p>
+      <p>打完仗以後，底波拉跟巴拉一起唱了一首歌，就是聖經裡最古老的詩歌之一。這首歌之後，以色列享有了整整四十年的太平日子——這在士師記那個動盪循環的年代裡，是相當難得的一段長久安穩。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——底波拉這塊石頭，在一個沒幾個人能穩住局面的年代，被雕成了先知、法官、統帥三種形狀，還都刻得很扎實。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你此刻正身處一個缺乏穩定領導的環境——底波拉提醒我們，真正紮根於是非公正的領導，能帶來實質而長久的安穩，不分性別。</p>
+      <p style="margin-top:12px;">如果你正像巴拉一樣，需要別人陪著才敢往前走——這沒關係，底波拉沒有嫌棄他，反而陪他去了。但也記得，猶豫是有代價的，誠實面對這個代價，好過假裝沒這回事。</p>
+      <p style="margin-top:12px;">領導力，不是只有『一個人衝在最前面』這一種模樣。底波拉的領導，同時包含了公正的審斷、清晰的指引，以及親自同行的陪伴。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，不管你是需要領導，還是需要被陪伴才敢前行——記得，神能使用任何祂所揀選的人。</p>
+    </div>
+
+    <div class="insight-box">底波拉的故事，持續是當代討論『女性領導力』與『陪伴式領導風格』這類議題時，最常被引用的聖經典範之一——她展現出的公正、決斷、與陪伴支持並存的領導模式，為許多正在探索領導風格的現代讀者，提供了具體而深刻的參照。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">她是士師記中唯一的女性士師，帶領以色列脫離二十年的壓迫，並留下了聖經中最古老的詩歌之一，見證神超越世俗框架的揀選與拯救。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">士師記中唯一的女性士師與先知</div>
+          <div class="legacy-body">她是士師記所記載十二位士師中唯一的女性，也是聖經中極少數同時具備先知、士師、軍事號召者三重身分的人物，展現出神揀選領袖的方式超越世俗性別框架。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">『太平四十年』長治久安的治理典範</div>
+          <div class="legacy-body">她的治理為以色列帶來士師時代持續時間最長的和平期之一，成為聖經中『紮根於屬靈權柄的公正治理能帶來實質長久和平』這一原則的重要例證。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">聖經中最古老詩歌之一的作者</div>
+          <div class="legacy-body">底波拉之歌（士師記第五章）被學者公認為聖經中最古老的文本之一，其詳盡而生動的戰爭敘事與神學宣告，具有極高的文學與歷史價值。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">希伯來書信心偉人榜中士師集體見證的一員</div>
+          <div class="legacy-body">希伯來書十一章提及士師們『因著信……制伏了敵國』，底波拉作為士師記中最重要的士師之一，理應被納入這份集體信心見證的重要行列之中。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「耶和華啊，願你的仇敵都這樣滅亡！願愛你的人如日頭出現，光輝烈烈。這樣，國中太平四十年。」</div>
+      <div class="final-verse-ref">士師記 5:31</div>
+    </div>
+
+    <div class="final-question">如果你此刻正身處一個缺乏穩定領導的處境，或正猶豫著是否要跨出信心的一步——你願不願意相信，就像底波拉的故事所展現的，神能夠興起任何祂所揀選的人，帶來意想不到的拯救與長久的安穩？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 底波拉 <span>דְּבוֹרָה</span> · 以色列女士師 · 先知 · 唯一同時集審判、預言、軍事號召於一身的女性領袖</div>
+
+</body>
+</html>

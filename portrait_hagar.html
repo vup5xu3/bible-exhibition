@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>夏甲 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">夏甲</h1>
+  <span class="hero-name-en">Hagar · הָגָר</span>
+  <p class="hero-slogan">「夏甲就稱那對她說話的耶和華為「看顧人的神」，因而說：「在這裡我竟看見那看顧我的嗎？」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">約主前二十一至二十世紀（族長時代）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ISFP · 探險家型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">創世記 16, 21 章</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">撒拉的埃及使女 · 亞伯拉罕之妾 · 以實瑪利之母</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">她本是撒拉家中一名地位卑微的埃及使女，卻因主母不孕而被獻給亞伯拉罕為妾，成為應許之子遲遲不來時，一場人為解決方案中，身不由己被捲入的當事人。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">約主前二十一至二十世紀，族長時代</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">埃及人，撒拉的使女，此後成為亞伯拉罕之妾</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">埃及，此後隨撒拉遷居迦南，此後被迫進入曠野</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">子以實瑪利（亞伯拉罕十三年間唯一的兒子）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">創 16, 21:8–21, 25:12 · 加 4:21–31</div>
+      </div>
+    </div>
+
+    <p>夏甲的登場，發生在撒拉因長期不孕、渴望以人為方式加速神應許實現之際——撒拉將自己的埃及使女夏甲，獻給亞伯拉罕為妾，盼望能藉此得著孩子。夏甲懷孕後，聖經記載『她見自己有孕，就小看她的主母』——這個舉動，某種程度上，是她身分地位在懷孕之後產生微妙變化的自然反應，卻也招致了撒拉此後的苦待。夏甲因無法承受這樣的苦待，選擇逃往曠野——就在她逃亡途中，耶和華的使者在曠野的水泉旁尋見了她，這是聖經中神的使者首次向一位女性、且是一位外邦使女顯現的記載。使者應許她的後裔必極其繁多，並吩咐她回到撒拉那裡、順服在她手下。夏甲在這場相遇中，做出了一個極具神學意義的舉動——她『稱那對她說話的耶和華為看顧人的神』，這是整本聖經中，人類第一次主動為神取名字的記載，展現出這位身分卑微的外邦女子，對神主動看顧自己這一經歷，懷抱著何等深刻而真實的感動。</p>
+    <p>夏甲此後在以撒出生、斷奶設宴之時，再度經歷了命運的重大轉折——撒拉看見以實瑪利戲笑（可能帶有嘲弄以撒之意），便要求亞伯拉罕『把這使女和她兒子趕出去』，理由是『這使女的兒子不可與我的兒子以撒一同承受產業』。亞伯拉罕雖然因這事極其憂愁，卻在神的指示下（神應許以實瑪利也必成為大國），順從了撒拉的要求，將夏甲與以實瑪利打發離去。夏甲帶著兒子在別是巴的曠野漂流，水袋中的水用盡後，她將孩子撇在小樹下，自己走到約有一箭之遠坐下，說『我不忍見孩子死』，就放聲大哭。就在這絕望的時刻，神聽見孩子的聲音，天使再次從天上呼叫夏甲，神也『開了夏甲的眼睛，她就看見一口水井』——這口原本一直存在、卻在絕望中未曾被看見的水井，成為神在夏甲最深的絕望中，具體介入拯救的鮮明印記。此後神與以實瑪利同在，他漸漸長大，住在巴蘭的曠野，成為一名弓箭手，夏甲也為他從埃及地娶了一位妻子。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從被獻給亞伯拉罕為妾、懷孕後遭苦待逃入曠野，到蒙神使者尋見並賜下應許，再到被迫離開亞伯拉罕家、在絕望中蒙神開眼看見水井——夏甲的一生，是聖經中對『神看顧被邊緣化之外邦女子』刻畫得最動人的敘事之一。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">被獻給亞伯拉罕為妾，懷孕後遭苦待逃亡——「你是看顧人的神」</div>
+        <div class="timeline-body">撒拉因不孕將使女夏甲獻給亞伯拉罕為妾，夏甲懷孕後小看主母，遭撒拉苦待而逃往曠野，耶和華的使者在曠野水泉旁尋見她，應許她的後裔必極其繁多，夏甲因此稱耶和華為『看顧人的神』。</div>
+        <div class="timeline-ref">創 16:1–14</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">以實瑪利誕生——亞伯拉罕十三年間唯一的兒子</div>
+        <div class="timeline-body">夏甲順服使者的吩咐回到亞伯拉罕家中，生下以實瑪利，這個孩子此後成為亞伯拉罕在以撒出生之前，長達十三年間唯一的兒子。</div>
+        <div class="timeline-ref">創 16:15–16</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">被撒拉要求趕逐，在曠野瀕臨絕境——「我不忍見孩子死」</div>
+        <div class="timeline-body">以撒斷奶設宴之時，撒拉因以實瑪利戲笑而要求亞伯拉罕將夏甲母子趕出，夏甲帶著孩子在別是巴曠野漂流，水盡糧絕，將孩子撇在樹下，自己放聲大哭，因不忍看孩子死去。</div>
+        <div class="timeline-ref">創 21:8–16</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">神開她的眼睛看見水井——「神開了夏甲的眼睛，她就看見一口水井」</div>
+        <div class="timeline-body">神聽見孩子的哭聲，天使再次呼叫夏甲，並開了她的眼睛，使她看見一口原本存在卻未曾被注意到的水井，救了母子二人的性命，以實瑪利此後在神的同在中漸漸長大成人。</div>
+        <div class="timeline-ref">創 21:17–21</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">她是聖經中身分最為卑微、卻蒙神兩次親自介入拯救的女性典範之一——一位身不由己被捲入他人家庭計謀的外邦使女，卻在自己生命最絕望的兩個時刻，都真實地經歷了神的看顧。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">在經歷神兩次親自的介入與看顧後，深信耶和華確實是一位『看顧人的神』</div>
+          <div class="soul-body">夏甲兩次在生命最絕望的處境中蒙神親自介入（曠野的使者顯現、水盡時開眼看見水井），這些具體的經歷，塑造了她對神『看顧人』這一本質，深刻而真實的認識與信靠。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">即使身處身不由己、被邊緣化的處境，依然展現出對兒子深切的母愛與保護</div>
+          <div class="soul-body">夏甲在水盡糧絕、瀕臨絕境之際，選擇將孩子撇在樹下、自己走開哭泣，『因為不忍見孩子死』——這種寧可自己承受痛苦，也不願親眼目睹孩子受苦的深切母愛，是她性格中最動人的美德。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">面對難以承受的處境，傾向以逃離的方式應對，卻也在神的引導下，學會順服與忍耐</div>
+          <div class="soul-body">夏甲最初面對撒拉的苦待選擇逃亡，此後在神使者的吩咐下，學會了回去順服；這種從逃離到順服的轉變，展現出她逐漸在神的引導下，學習面對困境的成熟過程。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">懷孕後『小看她的主母』，這個舉動某種程度上招致了此後撒拉的苦待</div>
+          <div class="soul-body">夏甲懷孕後對撒拉的輕視態度，儘管可以理解（身分地位因懷孕而產生的微妙變化），卻也是引發此後主僕關係破裂、招致苦待的具體導火線之一。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">她是聖經中第一位為神取名字的人，且是一位身分卑微的外邦女子</div>
+          <div class="soul-body">夏甲『稱那對她說話的耶和華為看顧人的神』，這是整本聖經中，人類第一次主動為神取名字的記載——這個殊榮，並非賜給某位偉大的族長或先知，而是賜給一位身分卑微、被邊緣化的外邦使女，這個安排本身，就深刻地展現出神看顧的眼光，何等超越世俗的身分與地位。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">夏甲的故事，是聖經中對『神看顧被邊緣化、身分卑微之人』刻畫得最動人、也最具開創性的敘事之一。她的處境，充滿了身不由己的複雜性——她是撒拉的使女，在那個時代的社會結構中，幾乎沒有拒絕成為亞伯拉罕之妾的自主權；她此後所經歷的苦待與被迫離開，某種程度上，也是族長時代家庭權力結構下，她作為卑微使女所必須承受的具體後果。然而正是這樣一位在整個敘事中，幾乎完全缺乏自主權與話語權的外邦女子，卻蒙神兩次親自、直接地介入她生命最絕望的時刻——第一次在她逃亡的曠野中，第二次在她與孩子瀕臨渴死的絕境裡。更值得注意的是，夏甲『稱耶和華為看顧人的神』這個舉動，是整本聖經中，人類第一次主動為神取名字的記載——這項殊榮，沒有賜給亞伯拉罕、撒拉，或任何一位此後被記載的族長，而是賜給了這位身分最為卑微邊緣的外邦使女。夏甲的故事提醒我們，神看顧的眼光，從不受限於一個人的社會地位、族裔背景、或在他人眼中的『重要性』——即使是被邊緣化到幾乎失去話語權的人，神依然親自、具體地看顧他們，並且樂意讓他們，成為第一批真實認識並見證祂『看顧人』這一本質的人。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ISFP</span>
+      <div class="mbti-name">探險家型 · 曠野中被看顧的使女</div>
+      <div class="mbti-slogan">「她是撒拉家裡最卑微的使女，卻成為聖經裡第一個為神取名字的人。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">她對兒子懷抱著深切而真摯的母愛，這份強烈的內在情感驅動，促使她在絕境中選擇撇開視線也不願目睹孩子受苦，這正是主導內向情感的典型展現。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Se · 外向實感</span>
+          <div class="mbti-fn-body">她對眼前具體的處境（懷孕後身分的變化、水盡糧絕的絕境）有著直接而真實的反應，並在神開眼之際，立即察覺並前往那口具體的水井取水。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">她在曠野中與神使者的相遇，展現出對這場相遇背後深層意義的敏銳體會，並據此為神取了『看顧人的神』這樣意涵深刻的名字。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">她未能在懷孕後，以更審慎而策略性的方式處理與主母撒拉之間的關係（避免『小看主母』），這種在人際處境上缺乏審慎規劃的傾向，反映出劣勢外向思考的特徵。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">她一生最重要的兩重關係——與此後苦待她、要求趕逐她的主母撒拉，以及與那位兩次在她絕望之際親自介入拯救的耶和華——共同構成了她生命敘事最核心的張力與盼望。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">撒</div>
+          <div class="relation-name">撒拉</div>
+          <div class="relation-type-badge">她的主母，此後苦待她並要求將她趕逐</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">撒拉因不孕而將夏甲獻給亞伯拉罕為妾，此後卻因夏甲懷孕後的輕視態度而苦待她，並在以撒出生後，要求亞伯拉罕將夏甲母子徹底趕逐——這段主僕關係的破裂，深刻影響了夏甲此後的命運。</div>
+          <div class="relation-ref">創 16:1–6, 21:9–10</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">亞</div>
+          <div class="relation-name">亞伯拉罕</div>
+          <div class="relation-type-badge">她的丈夫（此後被要求將她趕逐）</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">亞伯拉罕娶夏甲為妾生下以實瑪利，此後因撒拉的要求，儘管內心極其憂愁，仍在神的指示下（應許以實瑪利也必成為大國），將夏甲母子打發離去。</div>
+          <div class="relation-ref">創 16:3–4, 21:11–14</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">以</div>
+          <div class="relation-name">以實瑪利</div>
+          <div class="relation-type-badge">她的兒子，蒙神應許將成為大國之父</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">以實瑪利是夏甲深愛並竭力保護的兒子，神應許他必極其繁多，此後也應許他必成為大國——這個承諾，某種程度上，成為夏甲此後在曠野中持續盼望的重要根基。</div>
+          <div class="relation-ref">創 16:10, 21:13, 18</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「你是看顧人的神」——夏甲這句話，是整本聖經中人類第一次主動為神取名字的記載，成為神眷顧卑微邊緣者最動人的神學宣告之一。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「夏甲就稱那對她說話的耶和華為「看顧人的神」，因而說：「在這裡我竟看見那看顧我的嗎？」」</div>
+      <div class="verse-ref">創世記 16:13</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">אֵל רֳאִי</span>
+        <div class="word-transliteration">El Ro'i · 看顧人的神 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「看見的神」或「看顧人的神」，這個稱謂由『神』（El）與『看見』（ro'i）組合而成。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這個名字，此後在聖經中未再被直接重複使用，卻永久地紀念了夏甲這段在曠野中被神親自看見與看顧的經歷——她所發出的這個名字，此後成為聖經神學中，理解神如何看顧最卑微、最邊緣之人這一主題的重要根源性文本。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">וַיִּפְקַח</span>
+        <div class="word-transliteration">vayifqach · 開了（眼睛） · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「使睜開、開啟」，神『開了夏甲的眼睛』，使她看見那口原本一直存在的水井。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這個動作意象，深刻地暗示著，神的拯救，有時不是創造出全新的資源，而是開啟人的眼睛，使他們得以看見神早已為他們預備、卻因絕望而未曾察覺的具體供應——這個屬靈原則，此後也持續啟發歷代信徒，在絕境中重新尋求屬靈的『開眼』。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">神看顧的眼光超越社會地位族裔背景與世俗的重要性判斷</div>
+      <div class="theology-insight-body">夏甲作為一位身分卑微的外邦使女，卻蒙神兩次親自介入拯救，並成為第一位為神取名字的人——這確立了聖經神學中一個重要原則：神看顧的眼光，從不受限於一個人的社會地位或族裔背景。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">神的拯救有時透過開啟人的眼睛使人看見早已存在卻未被察覺的供應</div>
+      <div class="theology-insight-body">神『開了夏甲的眼睛』使她看見水井，這個意象提醒我們，神的拯救，有時不是創造全新的資源，而是幫助我們，在絕望中重新看見祂早已預備的具體供應。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">以實瑪利與以撒兩條血脈的分離某種程度上延續影響此後複雜的歷史發展</div>
+      <div class="theology-insight-body">以實瑪利此後被視為阿拉伯民族的先祖之一，這條與以撒（以色列民族先祖）分離的血脈，此後在人類歷史中，延續出極其複雜而深遠的民族與宗教發展脈絡。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">夏甲身為身分卑微的外邦使女，卻蒙神兩次親自介入、看顧她生命最絕望的處境，並成為第一位為神取名字的人</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這種『神眷顧最卑微、最邊緣之人』的模式，此後在保羅書信中，被用以類比律法之約與應許之約的差異，也持續呼應著整本聖經中『神的恩典臨到卑微者』這一貫穿始終的主題</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">保羅在加拉太書中，以夏甲與撒拉的故事，寓意性地類比律法的奴役與應許的自由，提醒信徒「我們不是使女的兒女，乃是自主婦人的兒女」，這段引用，某種程度上，也肯定了夏甲的故事，此後持續在教會歷史中，被賦予豐富的神學詮釋空間（加 4:21–31）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻覺得自己身處某個身不由己、被邊緣化、甚至感覺自己毫無話語權的處境——夏甲的故事，想告訴你，神看顧的眼光，同樣真實地落在你身上。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">夏甲的故事命中的是每一個此刻覺得自己身處某個身不由己、被邊緣化、甚至感覺自己在他人眼中毫無話語權或重要性的處境的人。她的故事提醒我們，神看顧的眼光，從不受限於一個人的社會地位、族裔背景、或在他人眼中的『重要性』——即使是最卑微、最容易被忽視的人，神依然願意親自介入，看顧他們生命中最深的絕望，甚至將認識祂本質最深刻的啟示，賜給這樣看似『不起眼』的人。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你此刻是否覺得自己身處某個身不由己、被邊緣化的處境，感覺自己毫無話語權或重要性？夏甲兩次蒙神親自看顧的經歷，對你此刻的處境，帶來什麼樣的盼望？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">夏甲在絕望中選擇撇開視線、不忍見孩子受苦，這份深切的母愛令人動容。你是否也曾在某個絕望的處境中，依然努力為所愛之人保有一絲盼望或保護？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">神『開了夏甲的眼睛』，使她看見原本存在卻未被察覺的水井。你此刻的生命中，是否也有某個神早已為你預備、卻因絕望而尚未被你看見的具體供應？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 夏甲</span>
+        <div class="gen-title">示範劇本：身處身不由己、被邊緣化的處境，卻兩次蒙神親自介入看顧，並成為第一位為神取名字的人</div>
+        <div class="gen-body">她是撒拉家中身分卑微的埃及使女，經歷了懷孕遭苦待逃亡、以及此後被迫離開家庭在曠野瀕臨絕境的雙重危機，卻在這兩次絕望的時刻，都蒙神親自介入拯救，並因此稱耶和華為『看顧人的神』。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 以實瑪利（她的兒子）</span>
+        <div class="gen-title">延續：從絕望曠野中被拯救的孩子，成為蒙神應許成為大國的先祖</div>
+        <div class="gen-body">以實瑪利在神的看顧下漸漸長大成人，此後神應許他必成為大國——這個承諾，此後在人類歷史中，延續出阿拉伯民族重要的血脈起源，展現出夏甲母子雖然被迫離開亞伯拉罕的家庭，卻依然蒙神信實應許的祝福。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在夏甲的故事中，展現得極為直接而動人——神兩次在她生命最絕望的時刻，親自介入拯救，並賜給她認識祂『看顧人』這一本質最深刻的啟示。這提醒我們，神的恩典，從不受限於一個人的社會地位或族裔背景，祂樂意親自看顧每一位在絕望中呼求祂的人，無論這個人在世俗眼光中，顯得多麼卑微或不起眼。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位身分卑微的埃及使女、卻成為第一個為神取名字的人，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#神看顧被邊緣化的人</span>
+      <span class="tag">#絕望中神會開你的眼睛</span>
+      <span class="tag">#身分卑微不代表不被重視</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>夏甲是撒拉的埃及使女，因為撒拉一直沒有孩子，就把她獻給亞伯拉罕當妾，希望能藉此得到孩子。夏甲懷孕後，開始輕視撒拉，撒拉因此苦待她，逼得她逃進了曠野。</p>
+      <p>在曠野裡，神的使者找到了她，應許她的後裔會極其繁多，還叫她回去。夏甲在這場相遇之後，做了一件在整本聖經裡從沒人做過的事——她給神取了一個名字，叫『看顧人的神』。想想這件事的份量：一個地位最卑微的外邦使女，成了聖經裡第一個為神命名的人。</p>
+      <p>多年後，以撒出生了，撒拉看以實瑪利不順眼，要求亞伯拉罕把夏甲母子趕出去。亞伯拉罕很難過，但還是照做了。</p>
+      <p>夏甲帶著孩子在曠野裡漂流，水喝完了，她把孩子放在樹下，自己走開一箭之遠，坐下痛哭——她說：我不忍心看孩子死。就在這個時候，神聽見了孩子的哭聲，又派使者呼叫夏甲，還『開了她的眼睛』——她這才看見，附近其實就有一口水井，一直都在那裡，只是她絕望到沒有看見。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——夏甲這塊石頭，被邊緣、被忽視，卻在兩次絕境裡，被神親手雕出了『被看顧』的形狀。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你此刻覺得自己在某個地方、某段關係裡，是最不重要、最容易被忽視的那個人——夏甲的故事想告訴你：神看顧的眼光，不看地位，不看背景。</p>
+      <p style="margin-top:12px;">絕望的時候，記得神可能正在『開你的眼睛』。你需要的供應，也許就在附近，只是你還沒看見。</p>
+      <p style="margin-top:12px;">身分卑微，不代表你不能有深刻的屬靈經歷。夏甲給神取的名字，至今仍被無數人引用。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果你正覺得自己被忽視——記得，你是看顧人的神，也正在看顧你。</p>
+    </div>
+
+    <div class="insight-box">夏甲的故事，持續為當代討論『邊緣群體的神學意義』與『絕望中的屬靈突破』這兩個議題，提供了聖經中最溫暖動人的參照案例，特別鼓舞著許多在社會或家庭結構中感覺自己身分卑微、缺乏話語權的現代讀者。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">她從撒拉家中身分卑微的埃及使女，兩度蒙神親自介入看顧，並成為第一位為神取名字的人，留下了聖經中『神眷顧邊緣者』最動人的見證。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">聖經中第一位為神取名字的人</div>
+          <div class="legacy-body">她『稱耶和華為看顧人的神』，是整本聖經中人類第一次主動為神取名字的記載，這個殊榮賜給一位身分最卑微的外邦使女，深具神學意義。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">『神看顧邊緣者』最動人的敘事典範</div>
+          <div class="legacy-body">她兩次在生命最絕望的時刻蒙神親自介入拯救，成為聖經中『神看顧的眼光超越世俗地位與族裔背景』這一原則最具體動人的例證。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">以實瑪利與阿拉伯民族血脈的起源之母</div>
+          <div class="legacy-body">她的兒子以實瑪利此後被視為阿拉伯民族重要的血脈起源，使夏甲的故事，延續出跨越千年、影響深遠的歷史發展脈絡。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">保羅書信中重要的神學類比來源</div>
+          <div class="legacy-body">她與撒拉的故事，此後被保羅在加拉太書中引用，用以類比律法之約與應許之約的差異，持續為新約神學提供重要的舊約敘事根據。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「神開了夏甲的眼睛，她就看見一口水井，便去將皮袋盛滿了水，給童子喝。」</div>
+      <div class="final-verse-ref">創世記 21:19</div>
+    </div>
+
+    <div class="final-question">如果你此刻覺得自己身處某個身不由己、被邊緣化的處境——你願不願意相信，就像夏甲的故事所展現的，那位『看顧人的神』，同樣真實地看顧著你？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 夏甲 <span>הָגָר</span> · 撒拉的埃及使女 · 以實瑪利之母 · 曠野中被神親自看顧的外邦女子</div>
+
+</body>
+</html>

@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>以笏 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">以笏</h1>
+  <span class="hero-name-en">Ehud · אֵהוּד</span>
+  <p class="hero-slogan">「以笏對王說：「我有一件機密的事奏告你。」王說：「迴避吧！」……以笏伸左手從右腿上拔出劍來，刺入王的肚腹，連劍把都刺進去了。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">約主前十三世紀（士師時代早期）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ISTP · 鑑賞家型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">士師記 3:12–30</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">便雅憫支派基拉之子 · 以色列士師 · 刺殺摩押王伊磯倫者</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">以色列人因行耶和華眼中看為惡的事，被摩押王伊磯倫轄制長達十八年——耶和華興起了一位便雅憫人以笏，這位士師身上有一項不尋常的特徵：他是左手便利的人，而正是這項特徵，成為他此後刺殺伊磯倫、拯救以色列的關鍵。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">約主前十三世紀，士師時代早期</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">便雅憫支派基拉的兒子，左手便利的人</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">便雅憫地，此後前往摩押王宮所在的吉甲一帶</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">父基拉</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">士 3:12–30</div>
+      </div>
+    </div>
+
+    <p>以笏登場的背景，是以色列人因離棄耶和華，被耶和華交在摩押王伊磯倫手中，受其轄制長達十八年——伊磯倫甚至聯合亞捫人、亞瑪力人，攻取了『棕樹城』（耶利哥），使以色列人陷入沉重的壓迫。士師記特別記載以笏『是左手便利的』，這個看似不經意的細節描述，此後成為整段拯救行動能夠成功的關鍵——按照當時的慣例，武士的佩劍通常配戴在左腰側、以便右手拔劍，守衛因此多半只會搜查來訪者的左側是否藏有武器；以笏卻反其道而行，特意製作了一把約一肘長的雙刃短劍，綁在右腿上的衣服底下，這個出人意料的安排，使他得以避開伊磯倫守衛慣常的搜身檢查。</p>
+    <p>以笏率領以色列人前往摩押進貢，獻貢完畢後，先讓抬貢物的人回去，自己則假意折返，向伊磯倫說：『我有一件機密的事奏告你。』伊磯倫屏退左右，單獨與以笏相見。以笏隨即補充：『我奉神的命報告你一件事』，伊磯倫聽聞『神的命』，便從座位上站了起來——就在這個瞬間，以笏伸出左手，從右腿上拔出那把出其不意的短劍，刺入伊磯倫的肚腹，聖經以極其具體而生動的筆法描述：『劍把也隨劍身進去，肥肉夾住劍身，他沒有從肚腹拔出劍來，糞便就流出來。』以笏隨即從容地鎖上房門逃離，伊磯倫的僕人因誤以為王正在如廁而遲遲不敢打擾，直到發現房門緊鎖、久候不應，才驚覺主人已死。以笏趁著這段延遲的時間，成功逃至西伊拉，隨即吹角召集以法蓮山地的以色列人，攻打群龍無首的摩押軍隊，殺了約一萬摩押勇士，『無一人逃脫』——這場勝利，此後為以色列帶來了『國中太平八十年』的長久安穩。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從利用自己左手便利的特質，特製短劍避開摩押守衛的搜查，到藉口機密奏告刺殺伊磯倫，再到召集以色列人擊潰群龍無首的摩押軍隊——以笏的故事，是士師記中對『神能夠使用一個人看似『不尋常』的特質，成就意想不到之拯救』刻畫得最生動的敘事之一。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">特製雙刃短劍，綁於右腿——利用左手便利的特質巧妙避開搜查</div>
+        <div class="timeline-body">以笏身為左手便利的人，特意製作一把雙刃短劍，綁在慣例上不會被搜查的右腿處，這項精心的準備，成為他此後得以避開伊磯倫守衛例行搜身、成功近身刺殺的關鍵。</div>
+        <div class="timeline-ref">士 3:15–16</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">藉口機密奏告，單獨面見伊磯倫——「我有一件機密的事奏告你」</div>
+        <div class="timeline-body">以笏率以色列人向伊磯倫進貢後，假意折返，以『機密奏告』與『神的命』為由，成功使伊磯倫屏退左右、單獨與他相見，並在伊磯倫起身之際，展開致命的一擊。</div>
+        <div class="timeline-ref">士 3:17–20</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">刺殺伊磯倫，從容逃離——「劍把也隨劍身進去」</div>
+        <div class="timeline-body">以笏伸左手拔出短劍，刺入伊磯倫的肚腹，這一擊極其致命而徹底，此後他鎖上房門從容逃離，僕人因誤判而延遲了發現屍體的時間，為以笏爭取了寶貴的逃脫與召集軍隊的時機。</div>
+        <div class="timeline-ref">士 3:21–26</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">召集軍隊擊潰摩押，國中太平八十年——「無一人逃脫」</div>
+        <div class="timeline-body">以笏吹角召集以法蓮山地的以色列人，攻打群龍無首的摩押軍隊，殺了約一萬摩押勇士，無一人逃脫，這場決定性的勝利，此後為以色列帶來了長達八十年的太平安穩。</div>
+        <div class="timeline-ref">士 3:27–30</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他是聖經中對『神能夠使用一個人看似特殊、甚至可能被視為『不便』的特質（左手便利），成就意想不到之精密拯救計畫』刻畫得最生動具體的士師典範之一。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">堅信自己奉神的差遣，肩負著拯救以色列脫離摩押壓迫的具體使命</div>
+          <div class="soul-body">以笏對伊磯倫所說『我奉神的命報告你一件事』這句話，儘管在當下的語境中帶有策略性的雙關意涵，卻也真實地反映出他內心深處，對自己此行承擔著神聖使命的清楚認知。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">展現出極其縝密的策劃能力與臨危不亂的膽識，成功完成這項高風險的刺殺行動</div>
+          <div class="soul-body">以笏從特製短劍的具體設計，到藉口單獨面見的巧妙鋪陳，再到刺殺後從容鎖門逃離的鎮定，整個行動展現出他縝密的策劃能力，以及在極端高風險處境中，依然保持冷靜的膽識。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">善於運用自己獨特的個人特質（左手便利），將其轉化為達成目標的具體策略優勢</div>
+          <div class="soul-body">以笏沒有將自己左手便利這項相對少見的特質，視為某種需要克服的『不便』，反而巧妙地將其轉化為整場行動得以成功的關鍵策略優勢，展現出善用自身獨特條件的智慧。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">（材料有限——聖經對以笏個人的過犯著墨甚少，這段敘事主要聚焦於他作為拯救者的正面行動）</div>
+          <div class="soul-body">士師記對以笏的記載，主要聚焦於他成功刺殺伊磯倫、拯救以色列的具體行動，未見對他個人品格明顯的負面描寫。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">他左手便利這項個人特質，成為神精密計畫中不可或缺的具體元素</div>
+          <div class="soul-body">士師記特別記載以笏『是左手便利的』這個細節，這個看似無關緊要的個人特質，卻成為整場拯救行動之所以能夠成功的關鍵——這提醒我們，神有時會使用一個人看似獨特、甚至在世俗眼光中『與眾不同』的具體特質，成就祂精密的拯救計畫。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">以笏的故事，是士師記中對『神能夠使用一個人看似特殊、甚至可能在世俗眼光中被視為『不尋常』的具體特質，成就意想不到之精密拯救計畫』刻畫得最生動具體的敘事典範之一。士師記特別記載以笏『是左手便利的』——這個細節，若單獨來看，或許只是一項無關緊要的生理特徵描述，然而正是這項特質，成為整場刺殺行動得以成功的關鍵：按照當時的慣例，武士配劍多在左腰側，守衛的搜查習慣，也因此聚焦於來訪者的左側，以笏卻反其道而行，將短劍綁在右腿，巧妙地避開了這個常規的防範。這個細節提醒我們，神在祂的拯救計畫中，往往不受限於人所認定的『常規』或『標準配備』——一個人獨特的個人特質，即使在世俗眼光中顯得『與眾不同』，依然可能在神的精密安排下，成為成就祂拯救計畫不可或缺的具體元素。以笏此後整個行動的執行——精心設計的藉口、臨危不亂的一擊、從容不迫的逃脫——都展現出他縝密的策劃能力與過人的膽識，這場成功的刺殺，不僅終結了摩押對以色列長達十八年的壓迫，更為以色列帶來了長達八十年的太平安穩，成為士師記所記載眾多士師之中，帶來最長久和平期的士師之一。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ISTP</span>
+      <div class="mbti-name">鑑賞家型 · 左手拔劍的拯救者</div>
+      <div class="mbti-slogan">「所有人都習慣搜查左邊，他卻把劍綁在右腿——這項不尋常的特質，成了拯救整個以色列的關鍵。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Ti · 內向思考</span>
+          <div class="mbti-fn-body">他縝密地策劃了整場刺殺行動的每一個細節——短劍的位置、藉口的鋪陳、逃脫的時機，這種對具體策略進行精密邏輯規劃的能力，正是主導內向思考的典型展現。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Se · 外向實感</span>
+          <div class="mbti-fn-body">他在極端高風險、需要臨場果斷行動的具體時刻（刺殺的瞬間、逃脫的過程），展現出敏銳而迅速的具體反應能力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">他能敏銳地洞察伊磯倫聽聞『神的命』後可能的反應（起身），並精準地把握這個瞬間展開行動，顯示出對他人心理與行為模式的深刻洞察。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Fe · 外向情感</span>
+          <div class="mbti-fn-body">（材料有限——聖經對他在群體情感層面的性格特質著墨較少，他的敘事重點聚焦於策略執行與具體行動，而非情感層面的表達）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最關鍵的一次互動，是與那位他奉命刺殺、藉此拯救以色列脫離十八年壓迫的摩押王伊磯倫。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">伊</div>
+          <div class="relation-name">伊磯倫</div>
+          <div class="relation-type-badge">壓迫以色列十八年、被他刺殺的摩押王</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">伊磯倫聯合亞捫、亞瑪力人壓迫以色列長達十八年，以笏藉口機密奏告單獨面見他，並趁其起身之際，將短劍刺入他的肚腹，結束了他對以色列的統治。</div>
+          <div class="relation-ref">士 3:12–14, 20–22</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">以色</div>
+          <div class="relation-name">以法蓮山地的以色列人</div>
+          <div class="relation-type-badge">他召集擊潰摩押軍隊的軍隊</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">以笏成功刺殺伊磯倫後，吹角召集以法蓮山地的以色列人，共同擊潰了群龍無首的摩押軍隊，殺敵約一萬人，此後為以色列帶來了長達八十年的太平。</div>
+          <div class="relation-ref">士 3:27–29</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「國中太平八十年」——以笏成功刺殺伊磯倫所帶來的長久和平，成為士師記中對『神能夠透過一個人精密的行動，成就長遠而深遠之拯救』最具體的見證之一。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「以色列人被摩押王伊磯倫轄制十八年。以色列人呼求耶和華的時候，耶和華就為他們興起一位拯救者，就是便雅憫人基拉的兒子以笏，是左手便利的。」</div>
+      <div class="verse-ref">士師記 3:14–15</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">אִטֵּר יַד־יְמִינוֹ</span>
+        <div class="word-transliteration">itter yad-yemino · 右手殘廢（左手便利） · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「右手受限、不便」，這個希伯來表達的直譯，暗示以笏的右手可能存在某種生理上的限制，使他習慣使用左手。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這個看似描述『缺陷』的表達，在整段敘事中卻被神轉化為成就拯救計畫的關鍵優勢——這提醒我們，神有時會使用一個人在世俗眼光中被視為『限制』或『不便』的特質，成就祂看似不可能達成的精密計畫，這也呼應了聖經中『神的能力在人的軟弱上顯得完全』這一持續的屬靈原則。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">מוֹשִׁיעַ</span>
+        <div class="word-transliteration">moshi'a · 拯救者 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「拯救者、解救者」，這個字明確標記了以笏作為神所興起、拯救以色列脫離壓迫之士師的身分。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這個字，此後也成為理解士師記整體敘事模式（以色列離棄神、遭受壓迫、呼求神、神興起拯救者）的核心詞彙，以笏正是這個循環中，一位被神具體興起、成功完成拯救使命的士師。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">神能夠使用一個人看似特殊或不尋常的具體特質成就精密的拯救計畫</div>
+      <div class="theology-insight-body">以笏左手便利這項個人特質，成為整場拯救行動得以成功的關鍵，這確立了聖經神學中一個重要原則：神的拯救計畫，往往能夠巧妙地運用一個人獨特而具體的個人條件，成就祂看似不可能達成的美好計畫。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">以色列呼求神時神必興起拯救者回應這一呼求</div>
+      <div class="theology-insight-body">以笏的興起，直接回應了以色列人在受壓迫中『呼求耶和華』的具體行動，這確立了士師記中一貫的神學主題：神必垂聽祂子民的呼求，並在祂所定的時候，興起合適的拯救者。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">精密而縝密的策劃能力可以成為成就神聖使命的重要工具</div>
+      <div class="theology-insight-body">以笏整場行動所展現出的縝密策劃與臨危不亂，提醒我們，神使用人成就祂的計畫時，同樣看重並使用這個人具體的智慧、策劃能力、與行動力。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">以笏利用自己左手便利這項獨特的個人特質，精密策劃並成功執行了刺殺摩押王伊磯倫的行動，為以色列帶來長達八十年的太平安穩</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這種『神使用一個人獨特而看似不尋常的特質，成就意想不到之拯救』的模式，此後也呼應了保羅所宣告『神卻揀選了世上愚拙的，叫有智慧的羞愧；又揀選了世上軟弱的，叫那強壯的羞愧』這一持續性的屬靈原則</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">保羅宣告神揀選「世上卑賤的，被人厭惡的，以及那無有的，為要廢掉那有的」，以笏這位左手便利、看似『與眾不同』的士師，成為神使用看似不合常規之器皿成就拯救計畫的重要舊約例證（林前 1:27–28）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻覺得自己某個獨特、甚至在他人眼中顯得『不尋常』或『不便』的特質，使你感到自卑或格格不入——以笏的故事，想告訴你，這樣的特質，可能正是神精密計畫中不可或缺的關鍵。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">以笏的故事命中的是每一個此刻覺得自己某個獨特、甚至在他人眼中顯得『不尋常』或帶有『限制』的特質（無論是身體上的、性格上的、或處事風格上的），而因此感到自卑或格格不入的人。他的故事提醒我們，神看待我們獨特特質的眼光，往往與世俗的評判標準截然不同——那些看似『不便』或『與眾不同』的特質，可能正是神精密計畫中，成就意想不到之拯救與祝福不可或缺的關鍵元素。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你此刻是否覺得自己某個獨特、甚至在他人眼中顯得『不尋常』的特質，使你感到自卑或格格不入？以笏左手便利卻成為拯救以色列關鍵的故事，對你此刻的處境，帶來什麼樣的鼓勵？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">以笏縝密地策劃了整場刺殺行動的每一個細節。你在面對重要的使命或任務時，是否也願意投注同樣的心思，進行周詳而具體的準備？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">以笏的行動，直接回應了以色列人『呼求耶和華』的具體呼聲。你此刻是否正在為某個處境向神呼求？以笏的故事，對神必興起拯救者回應呼求這一應許，帶來什麼樣的確據？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 以笏</span>
+        <div class="gen-title">示範劇本：巧妙運用自己左手便利這項獨特特質，精密策劃並成功執行拯救以色列脫離摩押壓迫的行動</div>
+        <div class="gen-body">他利用自己左手便利這項看似不尋常的特質，成功避開摩押守衛的常規搜查，精密策劃並執行了刺殺伊磯倫的行動，為以色列帶來了長達八十年的太平安穩。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 以法蓮山地的以色列人</span>
+        <div class="gen-title">延續：從一次精密的個人行動，到整個以色列群體長達八十年的太平安穩</div>
+        <div class="gen-body">以笏的行動，不僅止於個人的成功，更透過此後召集以法蓮山地的以色列人共同擊潰摩押軍隊，將這場個人的拯救行動，延伸成為整個以色列民族長達八十年的和平祝福。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在以笏的故事中，展現在神願意興起並使用一位左手便利、擁有獨特個人特質的士師，成就祂精密而深遠的拯救計畫。這提醒我們，神看待我們每個人獨特的特質與條件時，眼光遠比世俗的評判標準更加寬廣與智慧，祂樂意使用我們看似『不尋常』的特質，成就祂奇妙的心意。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位用左手拔劍、刺殺暴君、為以色列帶來八十年太平的士師，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#獨特的特質可能是關鍵優勢</span>
+      <span class="tag">#縝密的準備成就大事</span>
+      <span class="tag">#呼求神必蒙垂聽</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>以色列人被摩押王伊磯倫壓迫了十八年，神興起了一位拯救者——便雅憫人以笏。聖經特別提到他一個特點：他是左手便利的人。</p>
+      <p>這個特點，聽起來只是個小細節，卻成了整個故事的關鍵。當時的守衛搜身，習慣檢查來訪者的左腰，因為一般人的佩劍都掛在那裡。以笏反其道而行，把一把特製的雙刃短劍，綁在右腿上——沒人想到要搜那裡。</p>
+      <p>他率隊去向伊磯倫進貢，貢完之後，先讓其他人回去，自己折返，跟伊磯倫說：我有件機密的事要奏告你。伊磯倫把所有人都趕出去，單獨見他。以笏又補了一句：我奉神的命，有話告訴你。伊磯倫一聽，站了起來——就在這一瞬間，以笏伸出左手，從右腿拔出短劍，一劍刺進他的肚子，連劍柄都陷進去了。</p>
+      <p>以笏鎖上門，從容離開。伊磯倫的僕人以為王在如廁，遲遲不敢打擾，等發現不對勁的時候，以笏早已逃遠。他吹角召集了以法蓮山地的以色列人，一舉擊潰群龍無首的摩押軍隊，殺了大約一萬人，一個都沒逃脫。這場勝利，讓以色列享有了整整八十年的太平。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——以笏這塊石頭，被雕成了一個左撇子的形狀，卻恰好，成了打開拯救之門最合適的那把鑰匙。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你此刻覺得自己某個特質很『不尋常』、甚至讓你感到不自在——以笏的故事想告訴你：神可能正打算，用這個特質，成就一件你意想不到的大事。</p>
+      <p style="margin-top:12px;">縝密的準備，很重要。以笏連短劍要綁在哪一條腿，都想過了。</p>
+      <p style="margin-top:12px;">呼求神，祂會聽見。以色列人的呼求，直接換來了以笏這位拯救者的興起。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，別小看你自己身上那個『與眾不同』的地方——它可能正是神為你預備的關鍵。</p>
+    </div>
+
+    <div class="insight-box">以笏的故事，持續為當代討論『個人獨特特質的價值』與『周詳準備成就大事』這兩個議題，提供了聖經中最生動具體的參照案例，特別鼓舞著許多因自身某種『不同於常人』的特質而感到自卑的現代讀者。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他以左手便利這項獨特的個人特質，精密策劃並成功刺殺摩押王伊磯倫，為以色列帶來長達八十年的太平，留下了聖經中『神使用獨特特質成就拯救』最生動的見證。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">士師記中帶來最長久太平期的士師之一</div>
+          <div class="legacy-body">他成功刺殺伊磯倫後，為以色列帶來長達八十年的太平安穩，是士師記所記載眾多士師中，帶來最長治久安時期的重要典範之一。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">『神使用獨特特質成就拯救』最生動的敘事範例</div>
+          <div class="legacy-body">他左手便利這項獨特的個人特質，成為整場拯救行動成功的關鍵，持續為後世提供了『神能夠使用一個人看似不尋常之特質成就祂精密計畫』這一課題最具體生動的例證。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">『呼求神必蒙垂聽興起拯救者』士師記主題的重要見證</div>
+          <div class="legacy-body">他的興起，直接回應了以色列人的呼求，成為士師記『以色列呼求、神興起拯救者』這一持續性神學主題的重要具體例證。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「這樣，摩押就被以色列人制伏了。國中太平八十年。」</div>
+      <div class="final-verse-ref">士師記 3:30</div>
+    </div>
+
+    <div class="final-question">如果你此刻覺得自己某個獨特、甚至在他人眼中顯得『不尋常』的特質，使你感到自卑——你願不願意相信，就像以笏的故事所展現的，神可能正打算使用這項特質，成就你完全意想不到的美好計畫？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 以笏 <span>אֵהוּד</span> · 便雅憫支派左手便利的士師 · 刺殺摩押王伊磯倫者 · 帶來八十年太平的拯救者</div>
+
+</body>
+</html>

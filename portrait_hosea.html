@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>何西阿 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">何西阿</h1>
+  <span class="hero-name-en">Hosea · הוֹשֵׁעַ</span>
+  <p class="hero-slogan">「耶和華對何西阿說：「你去愛一個淫婦，好像以色列人，雖然轉向別神，喜愛葡萄餅，耶和華還是愛他們。」……我便用十五舍客勒銀子，一賀梅珥半大麥，買她歸我。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">約主前八世紀（北國以色列耶羅波安二世至何細亞王在位期間）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">INFP · 調停者型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">何西阿書全書</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">北國以色列先知 · 歌篾之夫 · 用自己婚姻演出神之愛的活喻先知</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">神給他的第一道命令，是全本聖經中最令人震驚的先知呼召之一——不是去傳講一篇道，而是去娶一個必然背叛他的女子為妻，用自己此後一生最私密的婚姻傷痛，演出神對悖逆之以色列不離不棄的愛。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">約主前八世紀，北國以色列耶羅波安二世至何細亞王在位期間</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">備利之子，北國以色列的先知</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">北國以色列</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">妻歌篾；子耶斯列、羅路哈瑪（不蒙憐恤）、羅阿米（非我民）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">何西阿書全書</div>
+      </div>
+    </div>
+
+    <p>何西阿書開篇，記載了耶和華對何西阿發出一道極其震撼的呼召：『你去娶淫婦為妻，也收淫婦所生的兒女；因為這地大行淫亂，離棄耶和華。』何西阿順服了這個命令，娶了歌篾為妻，兩人育有三個孩子，這些孩子的名字，同樣承載著沉重的神學信息——長子『耶斯列』（紀念耶戶家族在耶斯列所流的血將受審判）、女兒『羅路哈瑪』（意為『不蒙憐恤』，宣告神將不再憐憫以色列家）、次子『羅阿米』（意為『非我民』，宣告以色列不再是神的子民）。然而歌篾此後果然如神所預示的那樣，離棄何西阿，重蹈淫行，甚至淪落到需要被贖回的地步。</p>
+    <p>何西阿書最深刻動人的篇章，記載於第三章——耶和華再次吩咐何西阿：『你去愛一個淫婦，好像以色列人，雖然轉向別神，喜愛葡萄餅，耶和華還是愛他們。』何西阿便用十五舍客勒銀子、一賀梅珥半大麥，將這位已經離棄他、甚至可能已經淪為奴隸或妓女的妻子歌篾，重新買贖回來，並對她說：『你當多日獨居，不可行淫，不可歸別人為妻，我向你也必這樣。』這個看似荒謬、甚至令人心碎的舉動——用金錢贖回一位不斷背叛自己的妻子——正是整卷何西阿書神學核心最具體的演出：神對以色列的愛，正如何西阿對歌篾的愛，即使面對對方一再的背叛與離棄，依然選擇主動地追尋、付出代價買贖、並持續盼望對方回轉。何西阿書此後大量的篇章，正是以這段婚姻的破碎與重建為隱喻，反覆呼籲以色列『歸向耶和華』，並宣告『我要醫治他們背道的病，甘心愛他們，因為我的怒氣向他們轉消。』</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從奉命娶淫婦為妻，到孩子承載著審判的名字，再到親手用銀錢買贖離棄自己的妻子——何西阿的一生，是聖經中對『用自己最私密的婚姻傷痛演出神之愛』刻畫得最震撼也最動人的先知敘事。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">奉命娶淫婦為妻——「你去娶淫婦為妻」</div>
+        <div class="timeline-body">耶和華吩咐何西阿娶歌篾為妻，這個命令的目的，是要何西阿用自己的婚姻，具體演出以色列離棄耶和華、行淫悖逆的處境——何西阿順服了這道極不尋常的命令。</div>
+        <div class="timeline-ref">何 1:2–3</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">孩子承載審判的名字——「羅路哈瑪」、「羅阿米」</div>
+        <div class="timeline-body">何西阿與歌篾所生的三個孩子，名字分別承載著『耶斯列的審判』、『不蒙憐恤』、『非我民』這樣沉重的神學信息，具體宣告了神對悖逆之以色列即將施行的審判。</div>
+        <div class="timeline-ref">何 1:4–9</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">歌篾的背叛與離棄——「這地大行淫亂」</div>
+        <div class="timeline-body">歌篾此後果然如神所預示的那樣，離棄何西阿，重蹈淫行，甚至可能因此淪為奴隸或妓女的處境——這場婚姻的破碎，具體演出了以色列離棄耶和華、轉向別神的悖逆處境。</div>
+        <div class="timeline-ref">何 2 章（隱含背景）</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">買贖歌篾——「我便用十五舍客勒銀子……買她歸我」</div>
+        <div class="timeline-body">耶和華再次吩咐何西阿去愛這位已經離棄他的妻子，何西阿便親自用銀子與大麥，將歌篾贖回，並宣告此後將持續等候她的回轉——這個具體的買贖行動，成為整卷何西阿書神學核心最震撼的具體演出。</div>
+        <div class="timeline-ref">何 3 章</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他是聖經中極少數，被神呼召不僅止於『傳講』一篇信息，而是必須用自己一生最私密、最痛苦的婚姻經歷，親身『演出』這則信息的先知——這種呼召的沉重，格外令人動容。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">願意順服神極其艱難、甚至可能帶來一生痛苦的呼召，即使這意味著要承受配偶的背叛與離棄</div>
+          <div class="soul-body">何西阿順服了神娶淫婦為妻、以及此後買贖離棄自己之妻子的命令，這種願意讓自己最私密的婚姻生活，成為傳達神心意之具體工具的順服，是他一生最核心的信念與委身。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">在配偶一再背叛的處境中，依然選擇主動追尋、付出代價、並持續盼望對方回轉</div>
+          <div class="soul-body">何西阿沒有選擇放棄或棄絕離他而去的歌篾，而是主動花錢將她贖回，並持續盼望她真正的回轉——這種在被背叛之後依然選擇主動付代價挽回的愛，是他性格中最深刻動人的美德。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">願意讓自己最私密的人生經歷，成為向公眾傳達神學真理的具體教材</div>
+          <div class="soul-body">何西阿的婚姻，以及他孩子的名字，都成為公開向以色列百姓傳達神學信息的具體素材——這種將個人最私密的痛苦，轉化為公共屬靈教導之教材的行事風格，展現出他對先知職分的完全委身。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">（材料有限——聖經未直接記載何西阿個人在承受這場婚姻背叛時的具體情感掙扎）</div>
+          <div class="soul-body">儘管我們可以合理推測，何西阿身為丈夫，必然承受著極其深刻的個人痛苦與屈辱，然而聖經文本主要聚焦於這場婚姻所承載的神學意義，對何西阿個人情感層面的具體描寫相對簡略。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">他透過自己的婚姻悲劇，成為舊約中對神之愛描寫得最深情、也最令人心碎的先知</div>
+          <div class="soul-body">何西阿書中『我怎能捨棄你，以法蓮啊，我怎能棄絕你，以色列啊……我回心轉意，我的憐愛大大發動』這樣的經文，某種程度上，正是何西阿透過自己對歌篾類似的內心掙扎，所體會並傳達出神對以色列深情而痛苦的愛。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">何西阿的故事，是舊約先知書中對『神之愛的本質』刻畫得最深情、也最令人心碎的敘事之一。他所承受的呼召，遠遠超越一般先知『傳講信息』的職責——神要求他用自己一生最私密的婚姻生活，親身『演出』以色列如何背叛神、以及神如何依然選擇不離不棄地追尋、買贖、並盼望其回轉。這意味著，何西阿必須親身經歷配偶的背叛、離棄、乃至淪落風塵的屈辱與傷痛，而這一切，並非因為他個人的過犯，而是為要成為向整個民族傳達神心意最具體、最真實的活教材。何西阿用十五舍客勒銀子與大麥買贖歌篾這個具體的行動，其震撼力，正在於它毫無保留地演出了神對以色列之愛的本質——這份愛不是抽象的概念，而是願意付上具體代價、主動追尋一位一再背叛自己之對象的深情委身。何西阿的故事提醒我們，神對祂子民的愛，即使面對一再的背叛與離棄，依然選擇不放棄、不棄絕，而是持續地付代價、持續地追尋、持續地盼望回轉——這正是整本聖經中，對『恩典何等深沉』刻畫得最具體而動人的見證之一。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">INFP</span>
+      <div class="mbti-name">調停者型 · 用婚姻演出神之愛的先知</div>
+      <div class="mbti-slogan">「神要他用一生最痛的傷口，演出一則關於愛從不放棄的真理。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">他願意讓自己最私密、最痛苦的婚姻經歷，成為傳達神深刻情感與心意的具體載體，這種將深沉的內在情感投注於使命之中的方式，正是主導內向情感的典型展現。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Ne · 外向直覺</span>
+          <div class="mbti-fn-body">他能將自己個人的婚姻經歷，與神對整個以色列民族之愛這一更宏大的屬靈真理連結在一起，展現出將具體經歷延伸至更廣泛意義的直覺洞察力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Si · 內向感覺</span>
+          <div class="mbti-fn-body">他忠實地依循神具體的指示——娶歌篾、為孩子命名、買贖歌篾——一一落實這些具體而詳細的先知性行動指令。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">（材料有限——聖經對他在具體現實策略或組織層面的性格特質著墨較少，他的敘事重點聚焦於情感與屬靈意義的深刻傳達）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最重要、也最痛苦的關係，是與那位他奉命迎娶、此後卻一再背叛離棄他的妻子歌篾——這段婚姻，成為傳達神對以色列之愛最深刻的活喻。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">歌</div>
+          <div class="relation-name">歌篾</div>
+          <div class="relation-type-badge">他奉神命令迎娶、此後離棄他又被他買贖回來的妻子</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">歌篾此後如神所預示的那樣，離棄何西阿、重蹈淫行，卻在何西阿主動用銀子與大麥將她贖回後，被要求『多日獨居』——她此後的具體結局，聖經未詳細記載，然而整段敘事，具體演出了神對背叛祂之以色列不離不棄的愛。</div>
+          <div class="relation-ref">何 1:2–3, 3:1–3</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">耶</div>
+          <div class="relation-name">耶斯列、羅路哈瑪、羅阿米</div>
+          <div class="relation-type-badge">他與歌篾所生、承載審判信息的三個孩子</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">這三個孩子的名字，分別宣告了對耶戶家族的審判、對以色列『不蒙憐恤』、以及以色列將『非我民』的沉重信息，然而何西阿書此後也宣告，這些名字此後將被翻轉為『蒙憐恤』與『我的子民』——展現出審判之後恩典終將臨到的盼望。</div>
+          <div class="relation-ref">何 1:4–9, 2:23</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「我怎能捨棄你，以法蓮啊，我怎能棄絕你，以色列啊……我回心轉意，我的憐愛大大發動」——這段經文，成為舊約中對神深情而痛苦之愛，刻畫得最動人的宣告之一。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「我要醫治他們背道的病，甘心愛他們，因為我的怒氣向他們轉消。」</div>
+      <div class="verse-ref">何西阿書 14:4</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">אֵשֶׁת זְנוּנִים</span>
+        <div class="word-transliteration">eshet zenunim · 淫婦 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「行淫之婦、淫亂的女子」，神明確用這個帶有強烈污名的詞語，來描述何西阿所要迎娶的對象。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">神刻意選用這個毫不掩飾的字眼，強調這場婚姻所要演出的，正是以色列毫不掩飾、真實而深重的悖逆——這個字的強烈程度，恰恰凸顯出此後神依然選擇買贖、挽回這樣一位對象時，所展現出恩典的深廣。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">אָהַב</span>
+        <div class="word-transliteration">ahav · 愛 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「愛、喜愛」，這個字在何西阿書中反覆出現，用以描述神對以色列、以及何西阿對歌篾，那份即使面對背叛依然持續存在的愛。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">神特別吩咐何西阿『你去愛一個淫婦，好像耶和華愛以色列人』——這句話直接將何西阿對歌篾的愛，與神對以色列的愛畫上等號，使這個字承載了整卷何西阿書最核心的神學重量：真正的愛，即使面對對方一再的背叛，依然選擇持續地愛下去。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">神對祂子民的愛即使面對一再的背叛依然選擇不離不棄</div>
+      <div class="theology-insight-body">何西阿買贖歌篾的具體行動，成為整本聖經中，對神那份即使面對以色列一再悖逆與背叛、依然選擇主動追尋與挽回之愛，刻畫得最震撼也最具體的敘事典範。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">先知的個人生命經歷可以成為傳達神學真理最深刻的載體</div>
+      <div class="theology-insight-body">何西阿用自己最私密的婚姻傷痛，具體演出以色列與神之間的關係——這確立了聖經中一個重要的啟示模式：神有時選擇透過先知個人真實的生命經歷，而非僅止於言語，向祂的子民傳達最深刻的屬靈真理。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">審判的宣告最終指向恩典與醫治的盼望</div>
+      <div class="theology-insight-body">何西阿書雖然充滿對以色列悖逆的嚴厲責備與審判宣告，卻以『我要醫治他們背道的病，甘心愛他們』這樣充滿盼望的應許作結——這提醒我們，神審判的最終目的，始終指向恩典的挽回與關係的醫治。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">何西阿主動用銀子與大麥，將已經離棄他、重蹈淫行的妻子歌篾贖回，並持續盼望她真正的回轉與委身</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這種『甘願付上具體代價，買贖一位一再背叛自己之對象』的行動，成為新約神學中，理解基督用自己的寶血買贖悖逆之世人這一核心救贖真理最動人的舊約預表</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">彼得前書宣告信徒「不是憑著能壞的金銀等物……乃是憑著基督的寶血，如同無瑕疵、無玷污的羔羊之血」被救贖，這正是何西阿買贖歌篾這一行動，在基督救贖工作中最終極、最完整的成就（彼前 1:18–19）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正經歷某種深刻的背叛，卻依然掙扎著是否要選擇繼續愛、繼續付代價去挽回——何西阿的故事，展現出神那份即使被背叛也不放棄的愛，何等真實而深刻。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">何西阿的故事命中兩種處境中的人——一種人可能此刻正經歷某種深刻的背叛（婚姻、友誼、或其他重要關係），掙扎著是否要選擇繼續愛、繼續付代價去挽回對方，何西阿買贖歌篾的行動，展現出這樣的愛何等艱難卻也何等真實；另一種人，則可能正因自己一再的軟弱與背叛，而懷疑神是否還願意繼續愛自己、挽回自己，何西阿書的核心信息，正是要向這樣的人宣告：神的愛，即使面對一再的背叛，依然選擇不離不棄。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你此刻是否正經歷某種深刻的背叛，掙扎著是否要選擇繼續愛、繼續付代價去挽回對方？何西阿買贖歌篾的行動，對你此刻的處境，帶來什麼樣的啟發（或挑戰）？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">你是否曾因自己一再的軟弱或過犯，而懷疑神是否還願意繼續愛你、挽回你？何西阿書『我怎能捨棄你……我的憐愛大大發動』這段經文，對這種懷疑，帶來什麼樣的安慰？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">何西阿願意讓自己最私密的婚姻經歷，成為傳達神學真理的具體教材。你自己生命中的某段艱難經歷，是否也可能成為此後幫助他人理解神之愛的具體見證？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 何西阿</span>
+        <div class="gen-title">示範劇本：用自己一生最私密的婚姻傷痛，具體演出神對背叛祂之以色列不離不棄的愛</div>
+        <div class="gen-body">他順服神極其艱難的呼召，娶了必然背叛他的歌篾為妻，並在她離棄自己之後，主動付上代價將她贖回，用自己真實的婚姻經歷，向以色列具體演出了神那份即使被背叛也不放棄的愛。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 此後歷世歷代閱讀何西阿書的信徒</span>
+        <div class="gen-title">延續：何西阿的婚姻悲劇，成為歷代信徒理解神之愛最重要的神學資源</div>
+        <div class="gen-body">何西阿書此後成為舊約先知書中，對神深情而痛苦之愛刻畫得最動人的文本之一，持續啟發歷代信徒，透過何西阿與歌篾的婚姻悲劇，更深刻地理解神對祂悖逆之子民那份不離不棄的愛。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在何西阿的故事中，展現得極為震撼而具體——神即使面對以色列一再的背叛與悖逆，依然選擇主動追尋、付上代價買贖、並持續盼望他們回轉。這提醒我們，神的恩典，從不因我們一再的失敗與背叛而收回，祂那份『甘心愛他們』的心意，始終真實而深刻地存在。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位用自己的婚姻演出神之愛的先知，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#神的愛不因背叛而收回</span>
+      <span class="tag">#被背叛之後選擇挽回的勇氣</span>
+      <span class="tag">#審判最終指向恩典</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>何西阿收到的第一道神的命令，是聖經裡數一數二讓人震驚的——去娶一個必然會背叛你的女子為妻。不是比喻，是真的要他去娶，用自己一輩子的婚姻，演一齣戲給以色列人看：這就是你們對神做的事。</p>
+      <p>何西阿照做了，娶了歌篾。他們生的三個孩子，名字都很沉重——耶斯列（審判要來了）、羅路哈瑪（不蒙憐恤）、羅阿米（非我民）。每叫一次孩子的名字，就是在向以色列宣告一次審判的信息。</p>
+      <p>後來歌篾真的離開何西阿，回到她原本淫亂的生活裡，甚至可能淪落到被賣為奴或當妓女的地步。這對何西阿來說，不只是神學上的『演出』，是真實發生在他身上的婚姻背叛跟屈辱。</p>
+      <p>神接下來的命令，更讓人心碎——去愛那個淫婦，就像我愛以色列人一樣，即使他們轉去拜別的神。何西阿真的去了，用十五個銀子加一些大麥，把已經離開他的歌篾買回來，然後告訴她：你先安靜下來，不要再亂來了，我對你也是這樣。</p>
+      <p>整卷何西阿書，用這段破碎又重建的婚姻做背景，一直在向以色列人喊話：回來吧，神說，我要醫治你們背道的病，我甘心愛你們，因為我的怒氣已經轉消了。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——何西阿這塊石頭，被自己最深的婚姻傷痛雕刻，最後刻出的形狀，是一則關於『愛從不放棄』最真實的見證。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你此刻正經歷某種深刻的背叛——何西阿的故事沒有告訴你這不會痛，它誠實地讓你看見，這份痛是真的。但它也讓你看見，選擇繼續愛、繼續付代價去挽回，是可能的。</p>
+      <p style="margin-top:12px;">如果你正因為自己一再的軟弱而覺得自己不配被愛——記住神對何西阿說的那句話：你去愛一個淫婦，好像我愛以色列人一樣。神的愛，從不因你的背叛而收回。</p>
+      <p style="margin-top:12px;">審判的信息，最後總是指向恩典。何西阿書用了很多篇幅講審判，卻用『我甘心愛他們』作結。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果你正被背叛的傷痛困住——記得，神的愛，比你能想像的更深，也更持久。</p>
+    </div>
+
+    <div class="insight-box">何西阿的故事，持續為當代討論『婚姻中的背叛與挽回』、以及『恩典的深度』這類議題，提供了聖經中最深刻也最具挑戰性的參照——它誠實地呈現了被背叛的真實痛苦，卻也毫不妥協地宣告了愛可以選擇繼續付代價去挽回的可能性。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他用自己一生最私密的婚姻傷痛，演出了神對背叛祂之以色列那份不離不棄的愛，留下了舊約先知書中對『恩典的深度』刻畫得最動人的見證。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">『神之愛超越背叛』最具體而震撼的先知性演出</div>
+          <div class="legacy-body">他用買贖歌篾這個具體的行動，成為整本聖經中，對神那份即使面對一再背叛依然選擇主動挽回之愛，刻畫得最真實動人的敘事典範。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">基督救贖之愛的重要舊約預表</div>
+          <div class="legacy-body">他付代價買贖背叛自己之妻子的行動，成為新約神學中，理解基督用自己的寶血買贖悖逆之世人這一核心救贖真理最動人的舊約預表。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">先知個人生命經歷作為神學啟示載體的重要典範</div>
+          <div class="legacy-body">他的故事持續為後世提供了『先知的個人生命經歷可以成為傳達神深刻心意最真實載體』這一啟示模式最具體的例證。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「我要醫治他們背道的病，甘心愛他們，因為我的怒氣向他們轉消。」</div>
+      <div class="final-verse-ref">何西阿書 14:4</div>
+    </div>
+
+    <div class="final-question">如果你此刻正經歷某種深刻的背叛，或因自己的軟弱而懷疑自己是否還配得被愛——你願不願意相信，就像何西阿買贖歌篾所演出的，神的愛，即使面對一再的背叛，依然選擇不離不棄？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 何西阿 <span>הוֹשֵׁעַ</span> · 娶淫婦為妻的先知 · 用自己的婚姻演出神對以色列之愛的活喻</div>
+
+</body>
+</html>

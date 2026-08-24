@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>迦勒 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">迦勒</h1>
+  <span class="hero-name-en">Caleb · כָּלֵב</span>
+  <p class="hero-slogan">「迦勒對摩西說：「如今我八十五歲了，我還是強壯，能出能入，能爭能戰，像摩西打發我去的那天一樣。求你將耶和華那日應許我的這山地給我。」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">約主前十五至十四世紀（出埃及與征服迦南時期）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ESTJ · 總經理型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">民數記 13–14 章 · 約書亞記 14–15 章</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">耶孚尼之子 · 猶大支派探子 · 希伯崙的承受者</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">十二個探子帶回同樣的偵察結果，卻寫出了截然不同的兩種報告——十個人看見的是『巨人』，迦勒看見的是『耶和華必領我們進去』。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">約主前十五至十四世紀，出埃及與征服迦南時期</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">基尼洗族人，耶孚尼之子，猶大支派的探子與此後的族長</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">曠野漂流，此後承受希伯崙為業</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">父耶孚尼；女押撒（嫁俄陀聶）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">民 13–14 章 · 書 14–15 章 · 士 1:12–15</div>
+      </div>
+    </div>
+
+    <p>迦勒生命最關鍵的時刻，發生在摩西差遣十二支派各一位首領前往迦南地窺探的行動中。四十天後，十二位探子回報同樣的偵察結果——那地確實流奶與蜜、物產豐饒，然而當地的居民『民強壯，城邑也堅固寬大』，且有亞衲族巨人居住。十位探子因此在百姓中發出惡信：『我們不能上去攻擊那民，因為他們比我們強壯……我們在他們眼中，如同蚱蜢一樣。』唯獨迦勒（此後約書亞亦加入）站出來，安撫因懼怕而喧嚷的百姓，斬釘截鐵地宣告：『我們立刻上去得那地吧！我們足能得勝。』然而百姓選擇相信懼怕的多數報告而非迦勒的信心宣告，甚至揚言要用石頭打死摩西、亞倫、約書亞與迦勒——耶和華因此審判這一代不信的以色列人，宣告他們必在曠野飄流四十年、直到這一代人全部死盡，唯有迦勒和約書亞，因『存著別樣的心』，得以存活並進入應許之地。</p>
+    <p>四十五年後，以色列人終於征服迦南地，此時八十五歲的迦勒，來到約書亞面前，重述當年他與約書亞如何忠實地回報偵察結果，並提醒約書亞，耶和華曾親口應許他和他的子孫必得那地為業。迦勒接著說出了聖經中最激勵人心的宣告之一：『如今我八十五歲了，我還是強壯，能出能入，能爭能戰，像摩西打發我去的那天一樣……求你將耶和華那日應許我的這山地給我。』他所求的，正是當年令十位探子聞風喪膽、有亞衲族巨人居住的希伯崙山地。約書亞應允了他的請求，迦勒隨即率兵擊敗當地的亞衲族人，正式承受希伯崙為業——這位年邁卻依然勇猛的老將，用實際行動，完整地印證了他四十五年前那句『我們足能得勝』的信心宣告從未動搖。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從十二探子中唯一發出信心報告的少數派，到四十五年曠野漂流後依然求戰的八十五歲老將——迦勒的一生，是聖經中對『持守信心直到應許實現』刻畫得最完整的敘事之一。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">十二探子中的少數派——「我們立刻上去得那地吧」</div>
+        <div class="timeline-body">十二位探子窺探迦南地歸回後，十位因當地居民的強壯與城邑的堅固而發出令百姓喪膽的惡信，唯有迦勒安撫百姓、堅定宣告『我們足能得勝』，卻遭百姓否決，甚至面臨被石頭打死的威脅。</div>
+        <div class="timeline-ref">民 13:26–14:10</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">因存別樣的心而得存活——「惟有迦勒和約書亞……存活」</div>
+        <div class="timeline-body">耶和華因百姓的不信，宣告這一代人必在曠野漂流四十年直至死盡，唯獨迦勒與約書亞，因『心中另有一個心志，專一跟從我』，得以存活並進入應許之地。</div>
+        <div class="timeline-ref">民 14:20–38</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">四十五年的等候——「像摩西打發我去的那天一樣」</div>
+        <div class="timeline-body">迦勒在曠野漂流與此後征服迦南的漫長歲月中，始終持守著當年所領受的應許，直到八十五歲高齡，依然自認『強壯，能出能入，能爭能戰』，絲毫沒有因歲月的流逝而放棄或懷疑這份應許。</div>
+        <div class="timeline-ref">書 14:6–12</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">承受希伯崙為業——「迦勒就趕出住那裡的三個亞衲族人」</div>
+        <div class="timeline-body">約書亞應允迦勒的請求，將希伯崙賜給他為業，迦勒隨即率兵擊敗當地強大的亞衲族巨人，正式承受這塊當年令十位探子聞風喪膽之地——以行動完整地印證了他終身不變的信心。</div>
+        <div class="timeline-ref">書 14:13–15, 15:13–14</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他是聖經中對『持守信心直到應許實現，即使需要等候四十五年』刻畫得最完整、也最激勵人心的典範——他的信心，從未因時間的流逝或處境的艱難而動搖。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">堅信神的應許必定實現，不因多數人的懼怕或漫長的等待而動搖</div>
+          <div class="soul-body">面對十位同伴發出的懼怕報告與百姓的集體不信，迦勒始終堅持神必領百姓得勝的信念，這份信心持續了四十五年，直到他親自率兵征服希伯崙才真正實現。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">在群體壓力與長期等待中，依然持守『存別樣的心，專一跟從耶和華』的品格</div>
+          <div class="soul-body">神親口稱許迦勒『心中另有一個心志，專一跟從我』，這種在群體集體背離信心時依然堅守正道、且能持續數十年不改變的品格，是他一生最核心的美德。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">以具體而果斷的行動，回應並實現自己所持守的信心</div>
+          <div class="soul-body">迦勒不僅在言語上堅持信心的宣告，更在八十五歲高齡時，親自率兵出征、擊敗強大的亞衲族人，展現出將信心轉化為具體行動的一貫作風。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">（材料有限——聖經對迦勒個人的過犯或掙扎著墨極少）</div>
+          <div class="soul-body">迦勒是聖經中少數幾乎找不到負面記載的人物之一，他的敘事整體聚焦於他信心的堅定與行動的果斷，這種持續正面的形象，在聖經人物中相對罕見。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">他八十五歲時所展現的體力與戰鬥意志，超越了一般對老年處境的預期</div>
+          <div class="soul-body">迦勒在八十五歲高齡，依然自認『強壯，能出能入，能爭能戰』，並親自率兵征服強敵，這種超越年齡限制的活力與意志，某種程度上，被理解為神信實地保守那些持守信心之人身心力量的具體見證。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">迦勒的故事，是聖經中對『信心需要在漫長的等待中被持守，而非僅止於一時的宣告』刻畫得最完整、也最激勵人心的敘事典範。他在四十歲時初次發出信心的宣告——『我們足能得勝』——然而這份應許的實現，卻要等到整整四十五年後，他已經八十五歲高齡之時，才真正臨到。在這漫長的等待歲月中，迦勒經歷了整整一代同伴的死去（包括曾與他一同持守信心的約書亞之外的所有成年人）、四十年的曠野漂流、以及征服迦南地的多年征戰——然而聖經沒有任何記載顯示，迦勒在這段漫長的等待中，曾對神的應許產生過絲毫的懷疑或動搖。他八十五歲時所說的『像摩西打發我去的那天一樣』，精準地捕捉了他信心歷程最動人之處：時間的流逝，並未磨損他對神應許的信靠，也未削弱他親身實踐這份信靠的意志與體力。迦勒的故事提醒我們，真正的信心，往往不是一次性的激情宣告，而是能夠經得起漫長歲月考驗、並在應許終於實現時，依然全力以赴去承接的持久委身。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ESTJ</span>
+      <div class="mbti-name">總經理型 · 八十五歲仍求戰的信心老將</div>
+      <div class="mbti-slogan">「四十五年前他說「我們足能得勝」，四十五年後他八十五歲，依然要親自去證明這句話。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">他清晰而果斷地評估迦南地的處境，並得出『我們足能得勝』這樣具體而堅定的結論，此後更以實際的軍事行動，親自率兵征服希伯崙，展現出強大的目標導向執行能力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Si · 內向感覺</span>
+          <div class="mbti-fn-body">他忠實地持守四十五年前所領受的具體應許，並精確地向約書亞重述當年偵察的完整經過，這種對過往承諾與細節的忠實記憶與堅持，顯示第二功能的作用。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ne · 外向直覺</span>
+          <div class="mbti-fn-body">他在十位探子只看見眼前具體的困難（巨人、堅固城邑）時，能夠看見神應許背後更大的可能性，展現出超越表面處境的信心視野。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">（材料有限——聖經對他個人內在情感層面的掙扎著墨較少，他的敘事整體聚焦於外在的行動與堅定的宣告）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最重要的同伴關係，是與那位同樣持守信心、此後一同進入應許之地的約書亞——兩人是那整整一代人中，唯二存活下來的成年人。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">約</div>
+          <div class="relation-name">約書亞</div>
+          <div class="relation-type-badge">與他一同持守信心、存活進入應許之地的同伴</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">約書亞與迦勒是十二探子中唯二堅持信心報告的人，也是那整整一代曠野漂流的以色列成年人中，唯二得以存活並進入迦南地的人——這段深刻的患難與信心之交，貫穿了他們此後數十年的生命歷程。</div>
+          <div class="relation-ref">民 14:6, 30, 38</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">摩</div>
+          <div class="relation-name">摩西</div>
+          <div class="relation-type-badge">差遣他前往窺探迦南地的領袖</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">摩西差遣迦勒作為猶大支派的代表前往窺探迦南地，迦勒此後也在八十五歲時，向約書亞提及『像摩西打發我去的那天一樣』，顯示這段被差遣的經歷，對他此後一生的信心持守，具有深刻的意義。</div>
+          <div class="relation-ref">民 13:6, 30 · 書 14:7</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">俄</div>
+          <div class="relation-name">俄陀聶</div>
+          <div class="relation-type-badge">迦勒之女押撒的丈夫，此後成為以色列首位士師</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">迦勒將女兒押撒許配給攻取基列西弗的俄陀聶，俄陀聶此後成為士師記記載的以色列首位士師——迦勒的家族，某種程度上延續了他一生忠心跟隨神的信心典範。</div>
+          <div class="relation-ref">士 1:12–15, 3:9–11</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「惟有我的僕人迦勒，因他另有一個心志，專一跟從我，我就把他領進他所去過的那地」——神這句評語，成為聖經中對『持守專一信心』最直接的稱許之一。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「惟有我的僕人迦勒，因他另有一個心志，專一跟從我，我就把他領進他所去過的那地；他的後裔也必得那地為業。」</div>
+      <div class="verse-ref">民數記 14:24</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">רוּחַ אַחֶרֶת</span>
+        <div class="word-transliteration">ruach acheret · 另有的心志 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「另一種靈、不同的心志」，用以形容迦勒與其他十位探子在面對相同處境時，所展現出截然不同的內在態度與信心。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這個表達精確地指出，迦勒與其他探子看見的是完全相同的客觀事實（巨人、堅固的城邑），然而他內在的信心視角卻截然不同——這提醒我們，信心的差異，往往不在於所面對的事實本身，而在於詮釋這些事實時，所持守的內在心志。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">מִלֵּא אַחֲרַי</span>
+        <div class="word-transliteration">mille acharai · 專一跟從我 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「完全地、毫無保留地跟隨我」，這個表達強調一種毫無雜念、全心投入的跟隨態度。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">神用這個字概括迦勒一生信心的核心特質，這種『專一』的跟隨，貫穿了他從四十歲窺探迦南到八十五歲親自征服希伯崙的整整四十五年歲月，展現出信心持守的完整性與一貫性。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">信心的差異在於詮釋相同事實時所持守的內在視角</div>
+      <div class="theology-insight-body">十二位探子看見的是完全相同的客觀處境，卻寫出了截然不同的報告——這提醒我們，信心的關鍵，不在於處境本身的難易，而在於我們選擇以何種內在視角來詮釋與回應這些處境。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">神的應許可能需要漫長的等候才能完全實現，但終必實現</div>
+      <div class="theology-insight-body">迦勒從四十歲領受應許，到八十五歲才真正承受希伯崙為業，這中間長達四十五年的等候，確立了聖經神學中一個重要原則：神的應許縱然遲延，終必按著祂所定的時候實現。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">專一的信心能夠使人在群體集體背離時依然持守正道</div>
+      <div class="theology-insight-body">迦勒在整個以色列會眾都選擇相信懼怕之報告的處境中，依然堅持信心的宣告，這展現出真正紮根於對神信靠的信心，能夠使人在群體壓力下，依然持守正確的立場。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">迦勒在四十五年前領受應許，經歷漫長的等候、曠野漂流、與艱難的征戰，最終在八十五歲高齡，依然全力以赴地承接這份應許——他的信心從未因時間的流逝而消退</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這種『持守信心直到應許最終實現』的漫長歷程，預表了新約信徒在等候基督再來、天國完全實現之應許時，所應持守的堅忍信心典範</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">希伯來書勉勵信徒「你們必須忍耐，使你們行完了神的旨意，就可以得著所應許的」，迦勒式的持久信心，正是這種忍耐等候應許之典範最具體的舊約見證（來 10:36）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正等候一個神多年前給你的應許，卻因漫長的等待而開始懷疑它是否真的會實現——迦勒的故事，想告訴你，四十五年，他都沒有放棄。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">迦勒的故事命中的是每一個此刻正等候某個神多年前所賜下、卻遲遲未見實現之應許的人。他的故事誠實地展現了信心可能需要經歷何等漫長的等候——四十五年，橫跨了整整一代人的死亡與更替——然而他從未因這份等待的漫長而放棄或懷疑，反而在應許終於臨到的那一刻，以八十五歲的高齡，全力以赴地承接。他的故事提醒我們，真正的信心，不是一時的激情宣告，而是能夠經得起時間考驗的持久委身。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你此刻是否正等候某個神多年前所賜下、卻遲遲未見實現的應許？迦勒四十五年不變的堅持，對你此刻的等待，帶來什麼樣的鼓勵？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">十二位探子面對相同的客觀處境，卻寫出了截然不同的報告。你此刻面對的處境中，是否也存在著『用懼怕的視角』與『用信心的視角』兩種截然不同的詮釋可能？你選擇的是哪一種？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">迦勒在整個以色列會眾都選擇懼怕與不信時，依然堅持自己的信心立場，甚至因此面臨被石頭打死的威脅。你是否也曾在群體壓力下，需要堅持一個與多數人不同的立場？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">他八十五歲時依然求戰，而非選擇安逸地度過餘生。這對你理解『信心的委身應當持續一生，而非隨著年齡增長而消退』，帶來什麼樣的挑戰？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 迦勒</span>
+        <div class="gen-title">示範劇本：從四十歲的信心宣告，到八十五歲全力以赴承接應許的完整信心歷程</div>
+        <div class="gen-body">他在四十五年漫長的等候中，經歷了曠野漂流與征服迦南的種種艱難，卻從未對神的應許產生絲毫的懷疑，最終在八十五歲高齡，親自率兵征服希伯崙，完整地實現了他終身持守的信心。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 俄陀聶（他的女婿）</span>
+        <div class="gen-title">延續：從迦勒的信心典範，到以色列首位士師的興起</div>
+        <div class="gen-body">迦勒之女押撒的丈夫俄陀聶，此後成為士師記所記載的以色列首位士師，某種程度上延續了迦勒一生忠心跟隨神、並將信心轉化為具體行動的典範。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在迦勒的故事中，展現在神信實地保守他，使他在整整一代人死於曠野漂流的漫長歲月中，得以存活下來，並最終親眼見證、親身承接了祂所應許的產業。這提醒我們，神的恩典，能夠信實地保守那些持守專一信心之人，直到應許完全實現的那一天。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位十個人都說不可能、他卻說我們足能得勝的老將，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#同樣的事實不同的信心</span>
+      <span class="tag">#等待不代表放棄</span>
+      <span class="tag">#信心要持續一輩子</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>摩西派了十二個探子去偵察迦南地，四十天後回來，大家看到的東西其實一樣——那地很肥美，但當地人高大強壯，城邑又堅固，還有巨人族亞衲族人。十個探子的結論是：我們打不贏，我們在他們眼中就像蚱蜢一樣。</p>
+      <p>只有迦勒（後來加上約書亞）站出來說：我們立刻上去得那地吧，我們足能得勝！百姓不但沒聽他的，反而想拿石頭打死他和摩西、亞倫、約書亞。神因此宣布：這一代不信的人，要在曠野漂流四十年，直到全部死光，只有迦勒和約書亞，因為存著不一樣的心，可以活下來進入應許之地。</p>
+      <p>接下來的四十五年，迦勒經歷了整整一代人的死去——所有跟他同齡、一起出埃及的成年人，一個一個都死在曠野。但迦勒沒有。他等到了。</p>
+      <p>四十五年後，八十五歲的迦勒站到約書亞面前，說了一句超硬核的話：如今我八十五歲了，我還是強壯，能出能入，能爭能戰，跟摩西當年派我出去的那天一樣。求你把當年應許給我的那塊山地給我。他要的，正是當年讓十個探子嚇破膽的、有巨人住的希伯崙。約書亞答應了，迦勒真的親自帶兵，把亞衲族人打退，拿下了那塊地。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——迦勒這塊石頭，被歲月打磨了四十五年，卻始終沒有失去當年那句『我們足能得勝』的稜角。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你此刻正在等一個神多年前給你的應許——迦勒等了四十五年，經歷了同輩全部死去，依然沒有放棄。你的等待，還沒有那麼長。</p>
+      <p style="margin-top:12px;">同樣的處境，可以有完全不同的解讀方式。十個人看見蚱蜢般的自己，迦勒看見的是必得的地。你此刻選擇的，是哪一種視角？</p>
+      <p style="margin-top:12px;">信心不是年輕時候的一時衝動。迦勒八十五歲，依然求戰。你打算讓自己的信心，持續到幾歲？</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，不管你等了多久——記得迦勒那句：我還是強壯，我還能爭能戰。</p>
+    </div>
+
+    <div class="insight-box">迦勒『四十五年不變的信心』故事，持續是激勵人心的講道與人生教練領域中，最常被引用的聖經典範之一——他證明了信心的持久性遠比信心的強度更加重要，這對正在經歷漫長等待、卻幾乎要放棄盼望的現代讀者，提供了極具體而振奮人心的鼓勵。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他從十二探子中唯一的信心少數派，到八十五歲仍全力以赴承接應許的老將，留下了聖經中『持守信心直到應許實現』最完整而激勵人心的見證。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">『存別樣的心，專一跟從耶和華』的最高稱許典範</div>
+          <div class="legacy-body">他是聖經中極少數獲得神親口稱許『另有心志、專一跟從』的人物，成為此後理解『何謂真正專一信心』最重要的舊約典範。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">『信心持久性』最完整的敘事見證</div>
+          <div class="legacy-body">他從四十歲的信心宣告，到八十五歲親自征服希伯崙的完整歷程，成為聖經中『信心需要經得起漫長歲月考驗』這一原則最完整而具體的敘事範例。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">同一處境下信心視角差異的經典對照案例</div>
+          <div class="legacy-body">十二探子面對相同客觀事實卻寫出截然不同報告的敘事，持續為後世提供了『信心的關鍵在於詮釋處境的內在視角，而非處境本身』這一課題最經典的聖經案例。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「如今我八十五歲了，我還是強壯，能出能入，能爭能戰，像摩西打發我去的那天一樣……求你將耶和華那日應許我的這山地給我。」</div>
+      <div class="final-verse-ref">約書亞記 14:10–12</div>
+    </div>
+
+    <div class="final-question">如果你此刻正等候一個神多年前所賜下、卻遲遲未見實現的應許——你願不願意像迦勒一樣，無論等候多久，都持守著『我們足能得勝』這份不變的信心？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 迦勒 <span>כָּלֵב</span> · 十二探子中唯一全心跟從耶和華的人 · 八十五歲仍求戰的信心老將</div>
+
+</body>
+</html>

@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>拉結 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">拉結</h1>
+  <span class="hero-name-en">Rachel · רָחֵל</span>
+  <p class="hero-slogan">「拉結快要生產甚是艱難。正在艱難的時候，收生婆對她說：「不要怕，你又要得一個兒子了。」她將近於死，靈魂要走的時候，就給她兒子起名叫便俄尼；他父親卻給他起名叫便雅憫。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">約主前十九世紀（族長時代）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ISFP · 探險家型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">創世記 29–35 章</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">拉班之女 · 雅各摯愛的妻子 · 約瑟與便雅憫之母</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">雅各在井邊初次見到她，就情不自禁地放聲大哭；為了娶她，他甘願為拉班服事十四年——然而這段被形容為『愛她如同一天』的深情婚姻，卻交織著長期不孕的痛苦，與最終難產而死的悲劇終局。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">約主前十九世紀，族長時代</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">拉班的小女兒，雅各的表妹，此後成為雅各最鍾愛的妻子</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">巴旦亞蘭，此後隨雅各遷居迦南地</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">父拉班；姊利亞（雅各的另一位妻子）；子約瑟、便雅憫</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">創 29–35 章 · 得 4:11 · 耶 31:15 · 太 2:18</div>
+      </div>
+    </div>
+
+    <p>拉結的出場，伴隨著聖經中極具畫面感的浪漫敘事——雅各逃避以掃的追殺，來到舅舅拉班的地界，在井邊初次見到牧羊而來的拉結，聖經記載他『就哭起來』，隨即主動為拉結的羊群挪開井口的石頭飲水。雅各向拉班提出，願意服事七年以娶拉結為妻，『他因為深愛拉結，就看這七年如同幾天』。然而婚禮之夜，拉班卻用計以長女利亞頂替拉結，使雅各在渾然不覺的情況下，先娶了他並不屬意的利亞，此後雅各又額外服事拉班七年，才終於得以娶拉結為妻——這段婚姻的開端，本身就交織著深情與被欺騙的複雜張力。</p>
+    <p>拉結雖然是雅各最深愛的妻子，卻長期承受不孕的痛苦，而她的姊姊利亞卻接連生下多個兒子——這種鮮明的對比，使拉結陷入極度的痛苦與嫉妒之中，她曾對雅各喊出『你給我孩子，不然我就死了』，雅各則生氣地回應『我豈能代替神，叫你不生育呢』。拉結此後仿效撒拉的做法，將使女辟拉給雅各為妾，透過辟拉所生的孩子『得子』，然而這並未真正平息她內心的渴望，直到『神顧念拉結，應允了她，使她能生育』，她才終於生下長子約瑟，並說『神除去了我的羞恥』。多年後，拉結在雅各一家從伯特利前往以法他（伯利恆）的路上，再度懷孕臨盆，這次的生產卻異常艱難——她在極度痛苦中生下次子，收生婆安慰她『不要怕，你又要得一個兒子了』，然而拉結『將近於死，靈魂要走的時候』，只來得及給孩子取名『便俄尼』（意為『我愁苦中的兒子』），便氣絕身亡；雅各則將孩子改名為『便雅憫』（意為『右手之子』，象徵力量與尊榮）。拉結被安葬在通往以法他（伯利恆）的路旁，雅各特意在她的墳墓上立了一根柱子作記念。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從井邊令雅各一見傾心的牧羊女，到長期不孕的痛苦掙扎，再到晚年得子卻難產而死的悲劇終局——拉結的一生，是聖經中對『被深愛卻仍承受深刻苦難』刻畫得最動人的敘事之一。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">井邊的相遇——「雅各就哭起來」</div>
+        <div class="timeline-body">雅各逃亡途中在井邊初次見到拉結，被她深深吸引，主動為她的羊群挪開井口石頭飲水，並提出願意服事拉班七年以娶她為妻——『他因為深愛拉結，就看這七年如同幾天』。</div>
+        <div class="timeline-ref">創 29:9–20</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">被欺換娶利亞——「到了早晨，才知道是利亞」</div>
+        <div class="timeline-body">拉班在婚禮之夜以計謀讓長女利亞頂替拉結，使雅各先娶了利亞，雅各此後又額外服事拉班七年，才得以娶拉結為妻——這段婚姻的開端，交織著深情與拉結自己也身處其中的家庭欺騙。</div>
+        <div class="timeline-ref">創 29:21–30</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">長期不孕的痛苦——「給我孩子，不然我就死了」</div>
+        <div class="timeline-body">拉結雖為雅各摯愛，卻長期不孕，眼見姊姊利亞接連生子，她陷入極度的痛苦與嫉妒，向雅各喊出『給我孩子，不然我就死了』，並仿效撒拉將使女辟拉給雅各為妾以求得子嗣。</div>
+        <div class="timeline-ref">創 29:31–30:8</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">神顧念她，生下約瑟——「神除去了我的羞恥」</div>
+        <div class="timeline-body">在漫長的等待之後，『神顧念拉結，應允了她，使她能生育』，拉結終於生下長子約瑟，並宣告『神除去了我的羞恥』——這個孩子此後成為雅各最鍾愛的兒子，並在埃及成就了拯救全家的大業。</div>
+        <div class="timeline-ref">創 30:22–24</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">難產而死——「她將近於死，靈魂要走的時候」</div>
+        <div class="timeline-body">拉結在前往以法他（伯利恆）途中再度臨盆，這次生產異常艱難，她在極度痛苦中生下次子便雅憫，卻因難產而死，被安葬在通往伯利恆的路旁，雅各特意為她立柱作記念。</div>
+        <div class="timeline-ref">創 35:16–20</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">她是雅各一生摯愛的妻子，卻同時承受著長期不孕的煎熬、與姊姊之間微妙的競爭、以及最終在生產中付出生命的深刻苦難——她的故事，交織著被深愛與深刻受苦的雙重張力。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">渴望透過生育證明自己被神眷顧、擺脫羞恥感的深切心理需求</div>
+          <div class="soul-body">拉結將自己的價值與尊嚴，某種程度上與能否生育緊密連結——她那句『給我孩子，不然我就死了』，深刻揭示出這份渴望背後極其真實而沉重的心理壓力。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">（材料呈現複雜面貌——聖經誠實記載了她的痛苦掙扎，也記載了她臨終時對孩子的顧念）</div>
+          <div class="soul-body">即使在難產瀕死之際，拉結仍然努力為孩子取名『便俄尼』，這個舉動即使帶著愁苦的意涵，仍顯示出她身為母親，至死仍顧念著孩子的深刻情感。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">在長期承受痛苦的處境中，傾向以具體行動（如獻上使女）尋求解決之道</div>
+          <div class="soul-body">面對不孕的痛苦，拉結沒有選擇被動承受，而是仿效撒拉的先例，主動將使女辟拉給雅各為妾，試圖透過這個具體行動緩解自己的焦慮與羞恥感。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">與姊姊利亞之間長期存在著因生育而生的競爭與嫉妒</div>
+          <div class="soul-body">拉結與利亞這對姊妹，因雅各的偏愛與生育能力的懸殊差異，陷入了長期而深刻的競爭關係——這段關係的張力，是拉結故事中最真實也最令人心疼的部分。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">她的死亡地點與方式，此後成為以色列民族集體哀傷的象徵性意象</div>
+          <div class="soul-body">先知耶利米以『拉結哭她兒女……不肯受安慰』的意象，形容此後以色列被擄時期母親們喪失兒女的哀傷，這個意象更被馬太福音引用，用以描述希律王屠殺伯利恆嬰孩的慘劇——拉結的墳墓與她難產而死的悲劇，跨越了千年，成為承載民族集體哀傷的重要象徵。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">拉結的故事，是聖經中對『被深愛，卻依然承受深刻苦難』這一人生弔詭現象，描寫得最真實動人的敘事之一。她是雅各一生中唯一『因為深愛……看這七年如同幾天』的妻子，然而這份深刻的愛，卻未能使她免於長期不孕的煎熬、與姊姊利亞之間持續的競爭與嫉妒、乃至最終在生產中失去生命的悲劇終局。她的故事提醒我們，被深愛與經歷苦難，從來不是互相排斥的兩件事——一個人可以同時是他人生命中最珍視的存在，卻依然要獨自面對自己內心深處的掙扎與外在處境的艱難。拉結那句『給我孩子，不然我就死了』，聽起來或許帶著誇張的情緒化色彩，卻真實地反映出，當一個人將自我價值與某個尚未實現的渴望過度緊密地綁定時，內心所承受的重壓，可以何等深沉。她最終在便雅憫出生時真正走向死亡，這個結局帶著深刻的反諷與悲劇色彩，卻也提醒我們，生命最珍貴的禮物（新生兒的誕生）與最深刻的失落（母親的死亡），有時會以令人心碎的方式同時降臨。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ISFP</span>
+      <div class="mbti-name">探險家型 · 被深愛卻承受深刻苦難的母親</div>
+      <div class="mbti-slogan">「雅各說，這七年因為愛她，感覺不過幾天——而她自己的一生，卻在等待與痛苦中，感覺無比漫長。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">她對『生育』這件事所投注的強烈情感重量——甚至喊出『不然我就死了』這樣的話——展現出極其深刻而個人化的內在情感驅動，這正是主導內向情感的典型體現。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Se · 外向實感</span>
+          <div class="mbti-fn-body">面對不孕的具體處境，她採取了具體而直接的行動（獻上使女辟拉）來回應眼前的困境，顯示出對具體現實處境的敏銳反應。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">她將生育與『神是否眷顧自己、除去羞恥』緊密連結，顯示出她試圖從眼前具體的處境中，尋求更深層意義與神聖印證的傾向。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">她與姊姊利亞之間長期存在的競爭與嫉妒，未能透過更理性、更具建設性的方式化解，這種在處理複雜人際張力時，缺乏客觀邏輯調節能力的傾向，反映出劣勢外向思考的特徵。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">她一生最深刻的兩段關係——與雅各深摯卻交織著痛苦的婚姻，以及與姊姊利亞之間因生育而生的長期競爭——共同構成了她生命敘事最核心的張力。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">雅</div>
+          <div class="relation-name">雅各</div>
+          <div class="relation-type-badge">深愛她、甘願為她服事十四年的丈夫</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">雅各對拉結的愛極其深摯，甚至在她死後，仍在臨終祝福約瑟時，特意提起『拉結死在我旁邊……我便將她葬在……伯利恆的路上』，顯示這份思念延續終生。</div>
+          <div class="relation-ref">創 29:18–20 · 48:7</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">利</div>
+          <div class="relation-name">利亞</div>
+          <div class="relation-type-badge">她的姊姊，同時也是生育上的競爭對手</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">利亞因不受雅各鍾愛，卻接連生下多個兒子，這種生育能力上的懸殊差異，使拉結與利亞之間，長期存在著深刻而複雜的競爭與嫉妒關係。</div>
+          <div class="relation-ref">創 29:31–30:24</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">約</div>
+          <div class="relation-name">約瑟</div>
+          <div class="relation-type-badge">她期盼多年後終於得著的長子</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">拉結在漫長的等待後終於生下約瑟，並宣告『神除去了我的羞恥』——約瑟此後成為雅各最鍾愛的兒子，並在埃及成就了拯救全家性命的偉大使命，某種程度上延續並成就了拉結生命中最深的渴望。</div>
+          <div class="relation-ref">創 30:22–24</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">便</div>
+          <div class="relation-name">便雅憫</div>
+          <div class="relation-type-badge">她用生命換來的次子</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">拉結在生下便雅憫時難產而死，這個孩子的誕生與母親的死亡緊密交織，他的名字本身（從拉結臨終所取的『便俄尼』改為雅各所取的『便雅憫』），承載著這段悲劇性生產的完整記憶。</div>
+          <div class="relation-ref">創 35:16–19</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「在拉瑪聽見號咷痛哭的聲音，是拉結哭她兒女……不肯受安慰」——先知耶利米借用拉結的意象，表達了跨越千年的民族哀傷，這個意象此後更被引用於描述伯利恆嬰孩的慘劇。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「拉結生產甚是艱難……她將近於死，靈魂要走的時候，就給她兒子起名叫便俄尼；他父親卻給他起名叫便雅憫。」</div>
+      <div class="verse-ref">創世記 35:16–18</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">בֶּן־אוֹנִי</span>
+        <div class="word-transliteration">Ben-oni · 便俄尼 · 我愁苦中的兒子 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「我愁苦（或我力量耗盡）之子」，這是拉結在臨終痛苦中，為孩子所取的名字。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這個名字承載著拉結生命最後時刻的痛苦與哀傷，若這個名字被保留，孩子此後將終生背負著母親死亡的沉重記憶——雅各此後將名字改為『便雅憫』，某種程度上，是一位父親對這份沉重哀傷的溫柔轉化。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">בֶּן־יָמִין</span>
+        <div class="word-transliteration">Ben-yamin · 便雅憫 · 右手之子 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「右手之子」，在希伯來文化中，右手象徵著力量、尊榮與吉祥。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">雅各將孩子的名字，從母親臨終取的哀傷之名，改為象徵力量與尊榮的『便雅憫』，這個改名的舉動，展現出一位父親試圖將深刻的喪妻之痛，轉化為對新生兒未來祝福之盼望的深情用心。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">深刻的愛與深刻的苦難可以同時存在於同一段生命關係之中</div>
+      <div class="theology-insight-body">拉結是雅各一生摯愛，卻同時承受著不孕的煎熬與難產而死的悲劇——這提醒我們，被愛從不保證免於苦難，兩者可以真實地並存於同一個生命故事之中。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">個人的悲劇可以成為承載民族集體哀傷的深刻象徵</div>
+      <div class="theology-insight-body">先知耶利米借用拉結為兒女痛哭的意象，形容此後以色列被擄時期母親們喪子的哀傷，這顯示一個個人的悲劇敘事，可能在此後的歷史中，被賦予超越個人層面的集體象徵意義。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">新生命的誕生與至親的失落有時會令人心碎地同時降臨</div>
+      <div class="theology-insight-body">拉結在生下便雅憫的同時失去生命，這種生與死交織的悲劇，深刻提醒我們生命的脆弱與寶貴，以及在最喜悅的時刻依然可能伴隨最深的哀傷。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">拉結因難產而死，在生命最後的痛苦中，仍為孩子取名、留下對孩子的祝福與愛的印記，這個意象此後被先知耶利米引用，象徵以色列母親們為被擄兒女的哀哭</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">馬太福音進一步將這個意象，引用於描述希律王在伯利恆屠殺無辜嬰孩時，母親們撕心裂肺的哀傷——拉結的墳墓恰好座落於伯利恆附近，使這個古老的意象，與耶穌降生時期的慘劇產生了跨越千年的深刻呼應</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">馬太福音記載「在拉瑪聽見號咷大哭的聲音，是拉結哭她兒女，不肯受安慰，因為他們都不在了」，這句引自耶利米的預言，透過拉結的意象，見證了救主降生所伴隨的、真實而深刻的人間苦難（太 2:16–18）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正承受著某種深切的渴望遲遲未能實現的痛苦，甚至因此陷入與他人比較的嫉妒之中——拉結的故事，想對你誠實地說一句話。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">拉結的故事命中的是每一個此刻正承受著某種深切渴望遲遲未能實現的痛苦（無論是生育、婚姻、事業成就，或其他深切盼望）、並可能因此陷入與他人比較之嫉妒情緒的人。她的故事誠實地呈現了這種痛苦的真實重量，也提醒我們，即使身處被深愛的關係之中，內心深處的掙扎依然真實存在。她的故事同時提醒我們，生命中最喜悅與最哀傷的時刻，有時會意外地交織在一起，這提醒我們要珍惜眼前所擁有的每一刻。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你此刻是否也承受著某種深切渴望遲遲未能實現的痛苦？拉結那句『給我孩子，不然我就死了』，如此強烈的情緒，是否也呼應著你內心深處某種真實的煎熬？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">她與利亞之間因生育而生的長期競爭與嫉妒，是否也讓你想起自己與某個人之間，類似的比較心理？你如何面對這樣的情緒？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">拉結最終在便雅憫出生時付出生命，這種生與死交織的悲劇，對你理解『生命中最喜悅與最哀傷的時刻，有時會同時降臨』，帶來什麼樣的省思？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 拉結</span>
+        <div class="gen-title">示範劇本：被深愛卻承受深刻苦難的一生</div>
+        <div class="gen-body">她是雅各一生摯愛的妻子，卻長期承受不孕的煎熬、與姊姊的競爭，最終在生下便雅憫時難產而死，她的一生完整呈現了『被愛』與『受苦』如何真實並存的生命弔詭。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 約瑟、便雅憫（她的兩個兒子）</span>
+        <div class="gen-title">延續：從母親的渴望與犧牲，到兩個兒子此後截然不同卻同樣重要的命運</div>
+        <div class="gen-body">約瑟此後在埃及成就拯救全家的偉大使命，便雅憫則成為以色列十二支派之一的先祖——拉結一生的渴望與最終的犧牲，透過這兩個兒子，延續成為以色列民族血脈中不可或缺的重要篇章。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在拉結的故事中，展現在神最終『顧念拉結，應允了她』，使她得以生下約瑟；也展現在，即使她的生命以悲劇告終，神仍然透過她的兩個兒子，延續了深遠而重要的祝福。這提醒我們，即使生命的故事以哀傷收場，神的恩典與計畫，仍能在其中，成就超越個人苦難的深遠美好。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位被雅各深愛、卻一生承受深切渴望與最終悲劇的女子，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#被愛不代表沒有痛苦</span>
+      <span class="tag">#比較是嫉妒最深的土壤</span>
+      <span class="tag">#喜悅與哀傷可能同時降臨</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>雅各在井邊第一次看到拉結，感動到當場哭了出來。他跟拉結的父親拉班談好，服事七年換娶拉結為妻——聖經特別寫了一句：因為他深愛拉結，這七年像過了幾天一樣。這是聖經裡數一數二浪漫的愛情敘事。</p>
+      <p>但拉結的人生，並沒有因為被深愛而變得順遂。她長期不孕，眼看著姊姊利亞一個接一個生孩子，她心裡的痛苦跟嫉妒，越積越深，最後對雅各喊出一句很重的話：你不給我孩子，我就要死了。雅各也生氣地回她：我又不是神，難道我能讓你懷孕嗎？</p>
+      <p>後來神終於眷顧她，她生下了約瑟，說：神除去了我的羞恥。你能感受到，這份『羞恥感』，在她心裡壓了多久。</p>
+      <p>多年後，一家人在前往伯利恆的路上，拉結又懷孕了，這次生產異常艱難。收生婆安慰她說：別怕，你又要得一個兒子了。可是拉結已經撐不住了，她用盡最後的力氣，給孩子取名『便俄尼』——意思是『我愁苦中的兒子』——然後就斷氣了。雅各後來把孩子的名字改成『便雅憫』，意思是『右手之子』，象徵力量與尊榮，某種程度上，是一位父親試圖把喪妻之痛，轉化成對孩子未來的祝福。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——拉結這塊石頭，被雅各深愛的光芒照得閃閃發亮，卻也在生命最後一刻，留下了最深的裂痕。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你此刻正承受著某種深切渴望遲遲未能實現的痛苦——不管是感情、生育、還是任何一種你等了很久卻還沒等到的東西——拉結的故事想告訴你：被愛，不代表你的痛苦會消失，這兩件事可以同時真實。</p>
+      <p style="margin-top:12px;">留意你是不是也在跟某個人做著類似拉結跟利亞那樣的比較。這種比較，往往是嫉妒最肥沃的土壤。</p>
+      <p style="margin-top:12px;">生命中最喜悅的時刻，有時候真的會跟最哀傷的時刻，一起發生。拉結的故事提醒我們，珍惜眼前擁有的每一刻，因為沒有人能保證明天。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果你正承受著某種深切的渴望——記得，你的痛苦是真實的，神也看見了。</p>
+    </div>
+
+    <div class="insight-box">拉結的故事，持續為當代討論『不孕的心理掙扎』與『手足或同儕間的比較嫉妒』這類普遍的人生議題，提供了極其誠實而具體的聖經參照——她的痛苦沒有被聖經美化或淡化，這種誠實的呈現，讓她的故事對正經歷類似掙扎的現代讀者，格外真實而具有共鳴。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">她是雅各一生摯愛的妻子，卻也承受了長期不孕的煎熬與最終難產而死的悲劇——她的一生，完整呈現了被愛與受苦如何真實並存。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">雅各深情摯愛的象徵性人物</div>
+          <div class="legacy-body">她與雅各之間『愛她如同幾天』的深情敘事，此後成為聖經中描繪真摯愛情最經典的文本之一。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">以色列十二支派中約瑟與便雅憫兩支派的先祖之母</div>
+          <div class="legacy-body">她所生的約瑟與便雅憫，此後分別發展成以色列十二支派中重要的兩支，她的血脈延續深刻影響了以色列此後的民族歷史。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">承載民族集體哀傷的象徵性意象來源</div>
+          <div class="legacy-body">先知耶利米借用她為兒女哭泣的意象，形容以色列被擄時期的集體哀傷，此後更被馬太福音引用於描述伯利恆嬰孩的慘劇，使她的悲劇跨越千年，承載了超越個人層面的深刻象徵意義。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「拉結死了，葬在以法他的路上；以法他就是伯利恆。雅各在她的墳上立了一統碑，就是拉結的墓碑，到今日還在。」</div>
+      <div class="final-verse-ref">創世記 35:19–20</div>
+    </div>
+
+    <div class="final-question">如果你此刻正承受著某種深切渴望遲遲未能實現的痛苦，甚至因此陷入與他人比較的嫉妒——你願不願意相信，就像拉結的故事所展現的，神看見你內心深處真實的煎熬，祂的顧念，終將以祂自己的方式臨到？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 拉結 <span>רָחֵל</span> · 雅各摯愛的妻子 · 約瑟與便雅憫之母 · 難產而死的悲劇女性</div>
+
+</body>
+</html>

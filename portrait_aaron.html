@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>亞倫 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">亞倫</h1>
+  <span class="hero-name-en">Aaron · אַהֲרֹן</span>
+  <p class="hero-slogan">「耶和華對摩西說：「你哥哥利未人亞倫不是能言的嗎？……你要將當說的話傳給他；我也要賜你和他口才，指教你們所當行的事。他要替你對百姓說話；他要以你當作口，你要以他當作神。」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">約主前十三世紀（出埃及與曠野時期）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ISFJ · 守衛者型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">出埃及記 4–40 章 · 利未記 8–10 章 · 民數記 12, 16–20 章</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">暗蘭與約基別之子 · 摩西的兄長 · 以色列首位大祭司</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">神起初揀選他，只是因為摩西自認口才笨拙——然而這位『代言人』的一生，卻同時承載了以色列信仰史上最莊嚴的大祭司職分，與最沉重的信仰失敗。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">約主前十三世紀，出埃及與曠野時期</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">暗蘭與約基別之子，摩西的兄長，以色列首位大祭司</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">埃及歌珊地，此後隨以色列人於曠野漂流</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">妻以利沙巴；四子拿答、亞比戶（因獻凡火被燒死）、以利亞撒、以他瑪</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">出 4–40 章 · 利 8–10 章 · 民 12, 16–20 章</div>
+      </div>
+    </div>
+
+    <p>亞倫在聖經中的登場，緊密伴隨著摩西受呼召的敘事——當摩西面對神差遣他去見法老的呼召，一再以自己『拙口笨舌』為由推辭時，耶和華指出，亞倫將成為摩西的代言人：『他要替你對百姓說話；他要以你當作口，你要以他當作神。』這個安排，確立了亞倫此後長期作為摩西輔助者與傳話者的角色定位——他與摩西一同去見法老、一同施行神蹟、一同帶領以色列人出埃及。然而亞倫此後最深刻的信仰危機，發生在西奈山下：摩西上山領受十誡遲遲未歸，百姓聚集向亞倫要求『你起來，為我們作神像，可以在我們前面引路』，亞倫在群眾壓力下，收集百姓的金環，鑄造了一隻金牛犢，甚至為它築壇，宣告『明日要向耶和華守節』——這場信仰的徹底崩壞，成為以色列出埃及後最沉重的悖逆事件之一，摩西下山後怒摔法版，並嚴厲斥責亞倫的失職。</p>
+    <p>儘管有這段深刻的信仰失敗，神仍然揀選亞倫，正式設立他與他的子孫，承擔以色列大祭司的莊嚴職分——利未記詳細記載了亞倫受膏、穿上聖衣、獻祭承接祭司職分的整個過程。然而亞倫作為大祭司的生涯，同樣交織著榮耀與悲痛：他的兩個兒子拿答與亞比戶，因獻上耶和華未曾吩咐的凡火，當場被神的火焚燒而死，亞倫在承受這場喪子巨慟時，聖經記載他『默默不言』；此後他又與姊姊米利暗一同因摩西的婚姻而毀謗他，遭神責備；在可拉黨叛變事件中，亞倫手持香爐，在瘟疫蔓延的百姓中站立，成功止息了神的怒氣。亞倫最終在何珥山上，於摩西與其子以利亞撒面前，被摩西親手脫去大祭司的聖衣、換給以利亞撒穿上，隨即死在山頂——這個莊嚴而帶著哀傷的場景，象徵著大祭司職分的正式交接，也標誌著亞倫漫長而複雜之一生的終結。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從摩西的代言人，到鑄造金牛犢的悖逆者，再到承接大祭司莊嚴職分、卻也承受喪子之痛的祭司——亞倫的一生，交織著蒙神使用的尊榮與人性軟弱的深刻教訓。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">成為摩西的代言人——「他要以你當作口」</div>
+        <div class="timeline-body">神因摩西自認口才笨拙，指派亞倫作為他的代言人，兩人一同去見法老、一同施行神蹟，共同承擔起帶領以色列人出埃及的重任。</div>
+        <div class="timeline-ref">出 4:14–16, 27–31</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">鑄造金牛犢——「你起來，為我們作神像」</div>
+        <div class="timeline-body">摩西上西奈山遲遲未歸，百姓要求亞倫為他們製作可見的神像，亞倫在群眾壓力下鑄造了金牛犢並為它築壇獻祭——這是以色列出埃及後最嚴重的信仰崩壞事件之一，摩西下山後嚴厲斥責亞倫的失職。</div>
+        <div class="timeline-ref">出 32 章</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">承接大祭司職分——「亞倫和他兒子受膏」</div>
+        <div class="timeline-body">儘管有金牛犢事件的失敗，神仍揀選亞倫與他的子孫，正式承擔以色列大祭司的莊嚴職分，利未記詳細記載了他受膏、穿聖衣、獻祭承接職分的完整儀式。</div>
+        <div class="timeline-ref">利 8 章</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">喪子之痛與默默不言——「亞倫就默默不言」</div>
+        <div class="timeline-body">亞倫的兩個兒子拿答與亞比戶，因獻上耶和華未曾吩咐的凡火，當場被神的火焚燒而死，亞倫在承受這場巨大的喪子之痛時，選擇了『默默不言』，展現出對神審判近乎沉默的順服。</div>
+        <div class="timeline-ref">利 10:1–3</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">何珥山上職分的交接與死亡——「亞倫必死在那裡，歸他列祖」</div>
+        <div class="timeline-body">亞倫因在米利巴水事件中與摩西一同未能尊耶和華為聖，被神宣告不得進入應許之地。他最終在何珥山上，於摩西與其子以利亞撒面前，被脫去大祭司聖衣、換給以利亞撒穿上，隨即死在山頂，象徵大祭司職分正式交接給下一代。</div>
+        <div class="timeline-ref">民 20:22–29</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他既承擔了以色列首位大祭司的莊嚴職分，也親手鑄造了金牛犢這場信仰史上最沉重的失敗——這種尊榮與軟弱並存的複雜性，使他的故事格外真實而發人深省。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">願意順服神的差遣、輔助摩西承擔使命，卻在群眾壓力下容易動搖</div>
+          <div class="soul-body">亞倫忠實地履行了摩西代言人的角色，展現出對神呼召的順服；然而金牛犢事件卻揭露出，當面對群眾強烈的壓力與要求時，他的立場容易動搖，未能堅守應有的屬靈領導原則。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">在喪子的巨大悲痛中，選擇默默不言、順服神的審判</div>
+          <div class="soul-body">面對兩個兒子當場被神的火焚燒而死的巨大衝擊，亞倫沒有選擇質問或反抗，而是『默默不言』，這種在極度悲痛中依然順服神公義審判的態度，是他性格中值得肯定的一面。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">傾向順應眼前的處境與他人的要求，而非堅持獨立的屬靈判斷</div>
+          <div class="soul-body">無論是鑄造金牛犢以平息百姓的躁動，或是此後與米利暗一同附和對摩西的質疑，亞倫都展現出容易受周遭聲音影響、而非堅持獨立判斷的行事風格。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">在群眾壓力下鑄造金牛犢，是以色列信仰史上最嚴重的悖逆事件之一</div>
+          <div class="soul-body">亞倫身為摩西的代言人與此後的大祭司，本應是堅守純正信仰的屬靈領袖，卻在關鍵時刻屈服於群眾的要求，親手促成了這場公然的偶像崇拜事件，這是他一生中最沉重的失敗。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">他手持香爐站在活人死人中間，成功止息了神的怒氣與瘟疫</div>
+          <div class="soul-body">在可拉黨叛變引發的瘟疫中，亞倫奉摩西的吩咐，手持香爐『站在活人死人中間，瘟疫就止住了』——這個場景，展現出大祭司職分所承載『在神的公義審判與百姓之間居間代求』的深刻象徵意義。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">亞倫的故事，是聖經中對『屬靈領袖如何在群眾壓力下動搖、卻仍然被神恩慈地繼續使用』刻畫得最誠實的敘事之一。他一生中最沉重的失敗——鑄造金牛犢——並非發生在他對神毫無認識的階段，而是發生在他已經與摩西一同經歷過十災神蹟、親眼見證紅海分開的巨大神蹟之後。這提醒我們，即使一個人曾經歷深刻的屬靈經歷，依然可能在群眾壓力或處境的驅使下，做出違背信仰核心的抉擇。然而亞倫的故事並未止步於這場失敗——神此後仍然揀選他，承擔以色列大祭司的莊嚴職分，這展現出神恩典的深廣，能夠使用一個曾經歷重大失敗的人，繼續承擔祂交付的重要使命。亞倫此後在喪子之痛中『默默不言』的順服、以及在瘟疫中挺身代求的忠心，某種程度上，也展現出他在經歷失敗與管教之後，屬靈生命確實有所成長與深化。他的故事提醒我們，一次深刻的失敗，不必然是屬靈生命的終點，神的恩典，仍能在失敗之後，繼續使用一個願意悔改、持續學習順服的生命。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ISFJ</span>
+      <div class="mbti-name">守衛者型 · 在壓力下動搖的代言人</div>
+      <div class="mbti-slogan">「他原本只是摩西的口，卻在群眾的壓力下，親手鑄了一隻金牛犢——而神，卻依然揀選他，成為以色列的第一位大祭司。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Si · 內向感覺</span>
+          <div class="mbti-fn-body">他忠實地履行既定的角色與職責——無論是作為摩西的代言人，或是此後承接大祭司的具體禮儀職分，都展現出對既定角色與傳統責任的忠誠依循。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Fe · 外向情感</span>
+          <div class="mbti-fn-body">他對百姓群體的情緒與要求有著高度的敏感——這種敏感雖然使他在金牛犢事件中屈服於群眾壓力，卻也使他在此後成為一位能真正體恤百姓、居間代求的大祭司。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ti · 內向思考</span>
+          <div class="mbti-fn-body">他在可拉黨叛變的瘟疫中，迅速依循摩西的指示，準確執行了獻香止息瘟疫的具體行動，顯示出在危機中依循邏輯步驟執行任務的能力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Ne · 外向直覺</span>
+          <div class="mbti-fn-body">他在面對百姓要求製作神像時，未能預見這個決定將帶來何等嚴重的信仰與屬靈後果，這種對長遠可能性缺乏充分評估的傾向，反映出劣勢外向直覺在壓力下的表現。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最重要的關係，是與那位需要他作為代言人、卻也在金牛犢事件後嚴厲斥責他的弟弟摩西——這段兄弟關係，貫穿了以色列出埃及與曠野漂流的整個歷程。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">摩</div>
+          <div class="relation-name">摩西</div>
+          <div class="relation-type-badge">他的弟弟，也是他終身輔佐的領袖</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">亞倫作為摩西的代言人與兄長，長期輔佐摩西帶領以色列人出埃及、行走曠野，儘管兩人之間曾因金牛犢事件、米利巴水事件等經歷過嚴重的張力，這段兄弟與同工關係，仍然貫穿了他們此後的一生。</div>
+          <div class="relation-ref">出 4:14–16 · 民 20:23–29</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">拿</div>
+          <div class="relation-name">拿答與亞比戶</div>
+          <div class="relation-type-badge">他因獻凡火而喪生的兩個兒子</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">亞倫的長子拿答與次子亞比戶，因獻上耶和華未曾吩咐的凡火，當場被神的火焚燒而死，亞倫在這場巨大的喪子之痛中，選擇了默默不言的順服。</div>
+          <div class="relation-ref">利 10:1–3</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">以利</div>
+          <div class="relation-name">以利亞撒</div>
+          <div class="relation-type-badge">他此後承接大祭司職分的兒子</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">亞倫在何珥山上，於摩西面前將大祭司聖衣脫下，親手換給兒子以利亞撒穿上，象徵大祭司職分正式傳承給下一代，延續了亞倫家族此後世代承接祭司職分的傳統。</div>
+          <div class="relation-ref">民 20:25–28</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「亞倫就默默不言」——這句簡短的記載，展現出他在經歷神最嚴厲的審判臨到自己至親時，所選擇的深刻順服。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「耶和華對摩西說：「你告訴他們，我曾說，我民中挨近我的人，我要在他們中間顯為聖；在眾民面前，我要得榮耀。」亞倫就默默不言。」</div>
+      <div class="verse-ref">利未記 10:3</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">עֵגֶל מַסֵּכָה</span>
+        <div class="word-transliteration">egel massekhah · 鑄造的牛犢 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「鑄造的（金屬）牛犢像」，這是亞倫用百姓所獻的金環鑄造而成的偶像。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">牛犢在古埃及與迦南文化中，常被用作力量與生育神明的象徵，亞倫選擇鑄造這樣一個具體可見的形象，某種程度上反映出他試圖回應百姓對『看得見的神』之渴望，卻也直接違反了神所吩咐『不可為自己雕刻偶像』的核心誡命。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">דָּמַם</span>
+        <div class="word-transliteration">damam · 沉默 / 靜默 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「靜默、沉默、不作聲」，這個字描繪出一種在極度震驚或悲痛中，選擇不發一語的深沉狀態。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">亞倫面對兩個兒子當場被神的火焚燒而死，選擇的反應是『沉默』——這種沉默，並非冷漠或麻木，而更可能是一種在深刻的悲痛與對神公義審判的敬畏之間，所展現出的複雜而深沉的順服。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">屬靈領袖在群眾壓力下的妥協可能導致嚴重的信仰崩壞</div>
+      <div class="theology-insight-body">亞倫鑄造金牛犢的事件，具體展現出，即使是蒙神使用的領袖，若在群眾壓力下失去堅守純正信仰的立場，可能導致整個群體陷入嚴重的偶像崇拜與悖逆。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">神的恩典能夠使用一個曾經歷重大失敗的人繼續承擔重要使命</div>
+      <div class="theology-insight-body">儘管亞倫曾犯下鑄造金牛犢這樣嚴重的過犯，神仍然揀選他承擔以色列首位大祭司的莊嚴職分——這展現出神恩典的深廣，遠超過人一時的失敗所能限定。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">大祭司職分承載著在神的審判與百姓之間居間代求的深刻使命</div>
+      <div class="theology-insight-body">亞倫在瘟疫中手持香爐、站在活人死人中間止息神怒氣的行動，具體展現出大祭司職分『居間代求』的核心使命，這也成為此後理解基督作為信徒大祭司之預表的重要基礎。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">亞倫作為以色列首位大祭司，承擔起在神與百姓之間居間代求的職分，甚至親自手持香爐、站在活人死人中間，以自己的行動止息神的怒氣與瘟疫</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這種『大祭司居間代求、止息神怒氣』的職分模式，成為新約神學中理解基督作為信徒永恆大祭司之核心身分最重要的舊約預表</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">希伯來書明確宣告基督「既得了更美之職任，就作了更美之約的中保……他是長遠活著，替他們祈求」，成就了亞倫祭司職分所預表、卻無法完全達成的永恆代求工作（來 7:24–25, 8:6）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正面臨群眾或他人強大的壓力，要求你妥協某個你原本堅持的原則——亞倫的故事，是一則鄭重卻仍帶著盼望的警示。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">亞倫的故事命中兩種處境中的人——一種人可能此刻正面臨群眾或他人強大的壓力，要求自己妥協某個原本堅持的信仰原則或道德底線，亞倫鑄造金牛犢的失敗，提醒我們群眾壓力可能導致何等嚴重的後果；另一種人，則可能正因過去一次深刻的失敗，而懷疑自己是否還配得被神繼續使用，亞倫此後仍被神揀選承擔大祭司職分的故事，提醒我們神的恩典，能夠使用一個曾經歷重大失敗的人，繼續完成祂交付的使命。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你此刻是否正面臨某種群眾或他人的壓力，要求你妥協原本堅持的原則或底線？亞倫鑄造金牛犢的失敗，對你此刻的處境，帶來什麼樣的警示？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">亞倫在喪子的巨大悲痛中選擇『默默不言』。你在面對無法理解的苦難或神的管教時，是否也能學習這種深沉而順服的態度？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">儘管亞倫曾犯下嚴重的過犯，神仍然揀選他承擔大祭司的職分。你是否也曾因過去某次深刻的失敗，而懷疑自己不再配得被神使用？亞倫的故事，對這種懷疑，帶來什麼樣的盼望？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 亞倫</span>
+        <div class="gen-title">示範劇本：在群眾壓力下犯下嚴重過犯，卻仍被神恩慈地揀選繼續承擔重要使命</div>
+        <div class="gen-body">他鑄造金牛犢的失敗，是以色列信仰史上最沉重的悖逆事件之一，然而神此後仍然揀選他承擔大祭司的莊嚴職分，並在此後的歲月中，見證他在悲痛與危機中展現出的順服與忠心。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 以利亞撒（他的兒子）</span>
+        <div class="gen-title">延續：大祭司職分正式傳承給下一代</div>
+        <div class="gen-body">亞倫在何珥山上，將大祭司聖衣親手換給兒子以利亞撒穿上，象徵這個莊嚴的職分，此後持續在亞倫的家族中世代傳承延續。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在亞倫的故事中，展現在神即使面對他鑄造金牛犢這樣嚴重的過犯，仍然揀選他與他的子孫，承擔以色列大祭司的莊嚴職分，並使用他在此後的歲月中，多次居間代求、止息神的怒氣。這提醒我們，神的恩典，能夠涵蓋並超越一個人生命中最沉重的失敗，持續使用願意悔改的生命，成就祂重要的計畫。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位在群眾壓力下鑄了金牛犢、卻仍成為以色列第一位大祭司的人，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#群眾壓力下的妥協很危險</span>
+      <span class="tag">#失敗不是被使用的終點</span>
+      <span class="tag">#沉默有時是最深的順服</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>亞倫一開始的角色很簡單——摩西覺得自己口才不好，神就安排亞倫當他的『嘴巴』，兩人一起去見法老，一起帶以色列人出埃及。</p>
+      <p>但亞倫最讓人印象深刻（也最讓人心痛）的一幕，發生在西奈山下。摩西上山領十誡，遲遲沒回來，百姓等得不耐煩，跑去跟亞倫說：給我們做一個神像吧，我們要有個看得見的東西可以跟隨。亞倫沒有堅持原則，反而收集大家的金環，鑄成了一隻金牛犢，還為它築了壇，宣布隔天要向耶和華守節。摩西下山看到這一幕，氣得把手上的法版都摔碎了。</p>
+      <p>換作任何人，大概都會覺得，亞倫這輩子大概就這樣了。但神沒有放棄他——祂親自揀選亞倫和他的子孫，承擔以色列大祭司的職分，這是何等莊嚴的職位。</p>
+      <p>亞倫當大祭司的日子，也不是一路順遂。他的兩個兒子拿答和亞比戶，因為獻了神沒有吩咐的凡火，當場被神的火燒死。聖經只寫了一句話形容亞倫的反應：他就默默不言。這種沉默，不是冷漠，是一種太深，深到說不出話的順服。</p>
+      <p>後來可拉一夥人叛變，神降下瘟疫，亞倫聽從摩西的指示，拿著香爐衝進瘟疫蔓延的人群中，站在活人死人中間，瘟疫就止住了。這個人，一輩子有低谷，也有高光，最後在何珥山上，親手把大祭司的聖衣脫下來，交給兒子以利亞撒，然後死在山頂。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——亞倫這塊石頭，被群眾的壓力砸出了一道深深的裂痕，神卻依然願意，把最莊嚴的職分，交託給這塊帶著裂痕的石頭。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你此刻正面對某種群眾或旁人的壓力，要你妥協原本堅持的底線——亞倫的故事想提醒你：屈服的代價，可能比你想像的更沉重。</p>
+      <p style="margin-top:12px;">但如果你已經妥協了，已經犯了錯，也別急著認定自己這輩子就這樣了。亞倫鑄了金牛犢之後，還是成了大祭司。</p>
+      <p style="margin-top:12px;">有時候面對無法理解的苦難或管教，最深的回應，不是質問，而是像亞倫一樣，沉默地站在神面前。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果你正被要求妥協——記得亞倫的教訓；如果你已經失敗過——記得亞倫依然被神使用。</p>
+    </div>
+
+    <div class="insight-box">亞倫的故事，持續為當代討論『群體壓力下的道德妥協』（社會心理學稱之為從眾效應）這一課題，提供了聖經中最經典而具體的參照案例——他的失敗，至今仍是講道與屬靈教導中，最常被引用來警惕『順應群眾而非堅守原則』之危險性的例證之一。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他從摩西的代言人，成為以色列首位大祭司，一生交織著鑄造金牛犢的沉重失敗，與居間代求止息神怒氣的忠心事奉。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">以色列大祭司職分的開創者</div>
+          <div class="legacy-body">他是以色列歷史上第一位大祭司，此後亞倫家族世代承接這個莊嚴的職分，直到聖殿被毀。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">『群眾壓力導致信仰崩壞』最深刻的警示範例</div>
+          <div class="legacy-body">他鑄造金牛犢的事件，成為聖經中『屬靈領袖在群眾壓力下妥協可能導致嚴重後果』這一課題最經典的歷史例證。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">基督作為信徒永恆大祭司的重要舊約預表</div>
+          <div class="legacy-body">他手持香爐居間代求、止息神怒氣的行動，成為新約神學中，理解基督作為信徒永恆大祭司、持續代求職分的重要舊約預表基礎。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">『神恩典使用曾失敗之人』的具體見證</div>
+          <div class="legacy-body">儘管他曾犯下鑄造金牛犢的重大過犯，神仍然揀選他承擔大祭司職分，持續為後世提供了『一次深刻的失敗不必然是被神使用之終點』這一重要屬靈盼望。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「亞倫必死在那裡，歸他列祖。……摩西剝去亞倫的聖衣，給他的兒子以利亞撒穿上，亞倫就死在山頂那裡。」</div>
+      <div class="final-verse-ref">民數記 20:26, 28</div>
+    </div>
+
+    <div class="final-question">如果你此刻正面臨群眾或他人的壓力，被要求妥協某個原本堅持的原則——你願不願意記取亞倫的教訓，堅守你所信的，而非在壓力下鑄造你自己的『金牛犢』？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 亞倫 <span>אַהֲרֹן</span> · 摩西的代言人 · 以色列首位大祭司 · 鑄造金牛犢的軟弱領袖</div>
+
+</body>
+</html>

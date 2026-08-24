@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>非比 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">非比</h1>
+  <span class="hero-name-en">Phoebe · Φοίβη</span>
+  <p class="hero-slogan">「我對你們舉薦我們的姊妹非比，她是堅革哩教會中的女執事。請你們為主接待她，合乎聖徒的體統，她在何事上要你們幫助，你們就幫助她，因她素來幫助許多人，也幫助了我。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">約主後57年（保羅第三次宣教旅程末期）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ESTJ · 總經理型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">羅馬書 16:1–2</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">堅革哩教會的女執事 · 保羅鄭重舉薦、可能是羅馬書信使者的女性同工</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">保羅在羅馬書這卷被公認為他神學思想最完整、最系統性之代表作的結尾，用僅僅兩節經文，鄭重地向羅馬教會舉薦了一位女性——非比，並用『女執事』與『幫助許多人，也幫助了我』這樣具體而崇高的稱謂，肯定她的服事與地位。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">約主後57年，保羅第三次宣教旅程末期，寫作羅馬書之時</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">堅革哩（哥林多的東港口城市）教會中的女執事</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">堅革哩，很可能奉派前往羅馬</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">聖經未記載其家庭成員</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">羅 16:1–2</div>
+      </div>
+    </div>
+
+    <p>非比在聖經中的登場，僅有羅馬書十六章開頭這短短兩節經文，然而這段簡短的舉薦，卻蘊含著極其豐富的信息。保羅寫道：『我對你們舉薦我們的姊妹非比，她是堅革哩教會中的女執事。請你們為主接待她，合乎聖徒的體統，她在何事上要你們幫助，你們就幫助她，因她素來幫助許多人，也幫助了我。』這段話中，『女執事』（希臘文διάκονον，與此後教會體制中『執事』一詞完全相同的字）這個稱謂，是新約中極少數明確以正式教會職分稱謂稱呼女性的例證之一，顯示出非比在堅革哩教會中，很可能承擔著具體而正式的服事或治理職責，而非僅僅是一位普通的信徒。</p>
+    <p>保羅進一步用『幫助許多人，也幫助了我』這句話，肯定非比對整個教會群體、乃至對保羅個人事工所給予的具體支持——這裡『幫助』一字的希臘原文（προστάτις），在當時的語境中，也常用於指稱在法律或財務事務上，為他人提供保護與資助的『資助人』或『保護人』角色，這暗示著非比很可能是一位擁有相當社會地位與經濟能力的女性，能夠在具體而實質的層面上，支持保羅與教會的事工。此外，多數釋經學者依據古代書信傳遞的一般習慣（保羅的書信通常需要委託一位可信賴的使者親自送達收信教會，並可能需要在對方詢問書信內容時，提供進一步的口頭解釋），推斷非比很可能正是親自攜帶這封羅馬書信、長途跋涉從堅革哩送達羅馬教會的那位信使——若這個推斷成立，這意味著，非比不僅是一位受保羅高度肯定的女性同工，更可能是歷史上第一位親手將這卷影響基督教神學史最深遠之書信，實際傳遞給讀者的人。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">由於聖經對非比的直接記載僅限於羅馬書結尾這短短兩節經文，這裡呈現的，是她在保羅書信與初代教會服事網絡中所扮演的具體角色。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">堅革哩教會的女執事——「她是堅革哩教會中的女執事」</div>
+        <div class="timeline-body">非比在堅革哩（哥林多的東港口城市）教會中，擔任『女執事』這一正式的教會職分，這是新約中極少數明確以正式教會職分稱謂稱呼女性的例證之一。</div>
+        <div class="timeline-ref">羅 16:1</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">被保羅鄭重舉薦給羅馬教會——「請你們為主接待她」</div>
+        <div class="timeline-body">保羅在羅馬書結尾，鄭重地將非比舉薦給他此前從未親自造訪過的羅馬教會，懇請他們『為主接待她，合乎聖徒的體統』，並在她有需要之處給予幫助。</div>
+        <div class="timeline-ref">羅 16:2</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">肯定她過往具體而實質的幫助——「她素來幫助許多人，也幫助了我」</div>
+        <div class="timeline-body">保羅特別肯定非比過往對眾人、乃至對他個人所給予的具體幫助，這裡使用的希臘字『προστάτις』，暗示她可能是一位具備相當社會地位與資源、能夠實質資助他人的『資助人』角色。</div>
+        <div class="timeline-ref">羅 16:2</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">很可能是親自送達羅馬書信的使者——歷史上第一位傳遞這卷重要書信的人</div>
+        <div class="timeline-body">多數釋經學者依據古代書信傳遞的習慣，推斷非比很可能正是親自攜帶羅馬書信、長途跋涉送達羅馬教會的信使，這意味著她可能是歷史上第一位親手傳遞這卷影響基督教神學史最深遠之書信的人。</div>
+        <div class="timeline-ref">羅 16:1–2（推斷）</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">她是新約中極少數被明確以正式教會職分稱謂稱呼、且獲得保羅高度肯定與鄭重舉薦的女性同工之一——儘管聖經對她個人的記載極為簡短，這段舉薦本身，已經蘊含著對她服事份量的深刻肯定。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">（材料有限——聖經未直接記載她個人的信念告白，僅能從保羅的舉薦內容側面推知）</div>
+          <div class="soul-body">保羅稱她『素來幫助許多人，也幫助了我』，這暗示著非比是一位將自己的資源、地位、與能力，具體而持續地投入於服事眾人與支持福音事工的女性。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">被保羅明確稱許為長期以來持續幫助許多人、也幫助保羅本人的服事者</div>
+          <div class="soul-body">這句稱許，展現出非比並非一時興起的服事，而是長期、持續、且具體地將自己的資源與能力，用於幫助他人與支持福音的事工，這種持之以恆的具體服事，是她最鮮明的美德。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">（推斷）願意承擔起長途跋涉、親自傳遞重要書信這樣具體而負責任的使命</div>
+          <div class="soul-body">若她確實是羅馬書信的信使，這意味著她願意承擔起長途旅行、並可能需要代表保羅回答教會提問的重責大任，這種願意承擔具體責任的行事風格，展現出她值得信賴的品格。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">（材料不足以推論）</div>
+          <div class="soul-body">聖經對非比個人的記載極為簡短，沒有任何內容可供分析她可能的軟弱或過犯。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">她很可能是歷史上第一位親手傳遞羅馬書——這卷此後深刻影響馬丁路德、加爾文等歷代神學家思想的重要書信——的人</div>
+          <div class="soul-body">若非比確實是羅馬書信的信使，這意味著，在此後兩千年教會歷史中，無數次被引用、研讀、詮釋，深刻塑造了基督教神學核心教義（如因信稱義）的這卷書信，其最初與收信教會的具體接觸，正是透過非比這位女性親手完成的。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">非比的故事，儘管聖經對她個人的直接記載，僅有羅馬書結尾這短短兩節經文，卻蘊含著對新約教會女性服事角色，極其重要而深刻的啟示。保羅使用『女執事』這一正式的教會職分稱謂稱呼她，並用『幫助許多人，也幫助了我』這樣具體而崇高的話語肯定她的服事，這清楚地顯示，在保羅所建立與牧養的初代教會群體中，女性能夠承擔具體、正式、且備受敬重的服事職分與角色，而非僅止於邊緣性、輔助性的參與。更值得深思的是，若非比確實如多數釋經學者所推斷的那樣，是親自攜帶羅馬書信、長途跋涉送達羅馬教會的信使——這意味著，這卷此後深刻影響馬丁路德『因信稱義』神學突破、進而點燃宗教改革運動，並持續塑造此後兩千年基督教核心教義的重要書信，其最初實際的傳遞與交付，正是仰賴一位女性忠心而具體的服事完成的。非比的故事提醒我們，教會歷史與神學思想的偉大進展，往往仰賴著許多像非比這樣，儘管在聖經正典中僅留下極其簡短記載、卻忠心而具體地承擔起關鍵服事責任的無名英雄——他們的貢獻，未必總是被詳盡記載，卻同樣是神救贖工作不可或缺的重要環節。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ESTJ</span>
+      <div class="mbti-name">總經理型 · 堅革哩的女執事</div>
+      <div class="mbti-slogan">「她可能是第一個把羅馬書，親手送到羅馬教會手上的人。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">保羅稱她『素來幫助許多人』，這暗示她具備組織資源、實際解決他人具體需要的能力，這種務實而有效率地提供幫助的傾向，正是主導外向思考的典型展現。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Si · 內向感覺</span>
+          <div class="mbti-fn-body">她忠實地承擔起堅革哩教會女執事這一正式職分的具體責任，並可能願意承擔傳遞重要書信這樣需要謹慎依循既定程序的使命，顯示出對具體責任的忠實依循。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">（材料不足以判斷） · —</span>
+          <div class="mbti-fn-body">聖經對她個人具體性格特質的記載極為簡略，此處從缺，以維持對材料的誠實呈現。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">（材料不足以判斷） · —</span>
+          <div class="mbti-fn-body">聖經對她個人具體性格特質的記載極為簡略，此處從缺，以維持對材料的誠實呈現。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">她一生最重要的一次記載，是與那位在羅馬書結尾鄭重舉薦她、並肯定她長期具體服事的使徒保羅。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">保</div>
+          <div class="relation-name">保羅</div>
+          <div class="relation-type-badge">鄭重舉薦她、並肯定她長期具體幫助的使徒</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">保羅在羅馬書結尾，用『女執事』這一正式職分稱謂舉薦非比，並具體肯定她『素來幫助許多人，也幫助了我』，這段舉薦，展現出保羅對她服事價值的高度肯定與信任。</div>
+          <div class="relation-ref">羅 16:1–2</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">羅</div>
+          <div class="relation-name">羅馬教會</div>
+          <div class="relation-type-badge">被保羅懇請接待非比的教會群體</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">保羅懇請羅馬教會『為主接待她，合乎聖徒的體統』，並在她有需要之處給予幫助——這意味著，非比此後很可能親自前往羅馬，與這個此前她可能素未謀面的教會群體，展開具體的服事與互動。</div>
+          <div class="relation-ref">羅 16:2</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「她是堅革哩教會中的女執事」——這句簡短的稱謂，成為新約中理解初代教會女性正式服事角色最重要的文本依據之一。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「我對你們舉薦我們的姊妹非比，她是堅革哩教會中的女執事。請你們為主接待她，合乎聖徒的體統，她在何事上要你們幫助，你們就幫助她，因她素來幫助許多人，也幫助了我。」</div>
+      <div class="verse-ref">羅馬書 16:1–2</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">διάκονον</span>
+        <div class="word-transliteration">diakonon · 執事 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「執事、服事者」，這個字與此後教會體制中正式的『執事』職分完全相同，保羅在此處明確以這個字稱呼非比。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這個字的使用，此後在釋經學界引發持續的討論——保羅是單純以『服事者』這個一般性的描述稱呼非比，還是明確肯定她擔任堅革哩教會中一項正式的『執事』職分？多數當代釋經學者傾向後者的理解，這使非比的記載，成為理解初代教會女性可能承擔之正式服事職分，最重要的新約文本依據之一。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">προστάτις</span>
+        <div class="word-transliteration">prostatis · 幫助（原文更精確的意涵為『資助人、保護人』） · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「保護人、資助人、贊助者」，這個字在當時的希臘羅馬社會語境中，常用於指稱在法律或財務事務上，為他人提供保護與資助的正式角色。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這個字的使用，暗示非比很可能是一位具備相當社會地位與經濟能力的女性，能夠在具體而實質的層面上（可能包括財務資助、法律協助、或提供住所），支持保羅與教會的事工，這使她的服事角色，具有超越單純情感性支持的具體實質份量。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">女性能夠在初代教會中承擔具體正式的服事職分</div>
+      <div class="theology-insight-body">保羅明確以『女執事』這一正式職分稱謂稱呼非比，這為理解初代教會中女性服事角色的具體樣貌，提供了重要而直接的新約文本依據。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">書信的傳遞與交付本身也是一項需要被重視的具體服事</div>
+      <div class="theology-insight-body">若非比確實是羅馬書信的信使，這提醒我們，教會歷史與神學思想的傳遞，不僅仰賴書信內容本身的深刻，也同樣仰賴忠心可靠之信使，具體而負責任地完成傳遞的使命。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">保羅對非比的舉薦展現出初代教會彼此接待與扶持的具體實踐</div>
+      <div class="theology-insight-body">保羅懇請羅馬教會『為主接待她』，這展現出初代教會之間，即使素未謀面，依然透過彼此的舉薦與接待，建立起緊密而具體的服事網絡與群體連結。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">非比很可能親自承擔起長途跋涉、傳遞羅馬書信這卷重要神學書信的具體使命，使這卷此後深刻影響教會歷史的書信，得以實際交付並被收信教會研讀</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這種『忠心而具體地承擔傳遞神聖信息之使命』的服事模式，某種程度上，呼應了此後保羅在其他書信中，反覆稱許並倚重許多忠心同工（如推基古、以巴弗提）具體傳遞書信或消息之服事的敘事模式</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">保羅在以弗所書中提及推基古「將我的事……告訴你們」，並稱他為「親愛的兄弟，忠心的執事」，非比若確實承擔起傳遞羅馬書信的使命，正是這種忠心傳遞神聖信息之服事模式的具體例證（弗 6:21）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正在教會或群體中，承擔著某種看似『幕後』、卻極其具體而重要的服事角色——非比的故事，是對你這份服事最溫暖的肯定。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">非比的故事命中的是每一個此刻正在教會或群體中，承擔著某種看似『幕後』、不那麼引人注目、卻極其具體而重要之服事角色（行政協調、資源提供、書信或訊息的傳遞、實際的接待與幫助）的人。她的故事提醒我們，這樣具體而忠心的服事，即使未必總是站在最顯眼的位置，卻同樣蒙神與教會群體高度的肯定與珍視——保羅願意在他最重要的神學書信結尾，鄭重地舉薦並肯定這樣一位服事者。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你此刻是否正在教會或群體中，承擔著某種看似『幕後』、卻極其具體而重要的服事角色？非比被保羅鄭重舉薦與肯定的故事，對你這份服事的價值，帶來什麼樣的鼓勵？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">非比『素來幫助許多人，也幫助了我』，這種長期而持續的具體幫助，成為她最鮮明的美德。你此刻的服事，是偶發性的，還是已經成為一種持續而穩定的生命實踐？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">若非比確實是羅馬書信的信使，這意味著她承擔起了一項極具責任、卻可能不那麼『顯眼』的使命。你是否也曾承擔過類似『幕後卻關鍵』的責任？你如何看待這樣的角色，對整體事工的重要性？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 非比</span>
+        <div class="gen-title">示範劇本：在堅革哩教會中承擔正式的女執事職分，並持續具體地幫助眾人與保羅的事工</div>
+        <div class="gen-body">她在堅革哩教會中承擔正式的服事職分，長期具體地幫助許多人、也幫助保羅的事工，此後很可能承擔起長途跋涉、將羅馬書信親自送達羅馬教會的重要使命。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 羅馬教會與此後歷代研讀羅馬書的信徒</span>
+        <div class="gen-title">延續：一封書信的忠心傳遞，此後深刻塑造了整個基督教神學史的發展</div>
+        <div class="gen-body">若非比確實是羅馬書信的信使，她這份忠心而具體的服事，使這卷此後深刻影響馬丁路德、加爾文等歷代神學家思想的重要書信，得以實際交付並流傳，持續塑造著兩千年來基督教核心教義的發展。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在非比的故事中，展現在保羅願意在他最重要的神學書信結尾，鄭重地舉薦並肯定這樣一位女性服事者的具體貢獻；也展現在，神使用她忠心而具體的服事（無論是持續的幫助，或可能承擔的書信傳遞使命），成為祂在初代教會、乃至整個教會歷史中，成就深遠救贖工作不可或缺的環節。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位可能是第一個把羅馬書送到羅馬教會手上的女執事，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#幕後的服事同樣被珍視</span>
+      <span class="tag">#持續的幫助勝過一時的熱情</span>
+      <span class="tag">#忠心傳遞信息也是重要使命</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>非比在聖經裡出現的篇幅很短——就羅馬書最後一章開頭的兩節經文。但這兩節經文，份量很重。</p>
+      <p>保羅寫道：我向你們舉薦我們的姊妹非比，她是堅革哩教會的女執事。請你們好好接待她，她需要什麼幫助，你們就幫助她，因為她一直以來幫助了很多人，也幫助了我。</p>
+      <p>『女執事』這個詞，跟教會裡正式的『執事』職分，是同一個希臘字。這意味著，非比在堅革哩教會，很可能擔任著一個正式而受人敬重的服事角色，不是隨便說說的。</p>
+      <p>更有意思的是，聖經學者普遍認為，非比很可能就是那位親自把這封羅馬書信，一路從堅革哩送到羅馬教會的信使。想想這件事的份量——羅馬書，是後來馬丁路德讀了以後，點燃宗教改革的那卷書，是兩千年來基督教神學史上最重要的文獻之一。如果非比真的是那位信使，那她就是歷史上，第一個親手把這封信交到讀者手上的人。</p>
+      <p>她沒有留下什麼豪言壯語，聖經對她的記載，就是『她一直在幫助人』這麼簡單的一句話。但正是這樣持續、具體、幕後的服事，撐起了教會歷史裡一段極其重要的篇章。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——非比這塊石頭，只被雕了短短兩行字，卻可能親手，把整卷改變教會歷史的書信，穩穩地遞到了下一個世代手中。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你此刻正在做著某種看起來『幕後』、不太起眼的服事——行政、接待、傳遞消息、默默的資助——非比的故事想告訴你：這樣的服事，同樣被珍視，同樣重要。</p>
+      <p style="margin-top:12px;">非比的美德，不是一次性的熱情，而是『一直以來』的持續幫助。留意你自己的服事，是持續的，還是三分鐘熱度？</p>
+      <p style="margin-top:12px;">有時候，把一件重要的事，忠心地『送到』對的地方，本身就是一項極其關鍵的使命——即使這個過程，看起來沒那麼『轟轟烈烈』。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果你正做著幕後的服事——記得，這同樣被神與教會珍視。</p>
+    </div>
+
+    <div class="insight-box">非比的故事，持續是新約研究與教會歷史學界，探討『初代教會女性領導與服事角色』這一課題時，最常被引用的重要文本案例之一，也持續啟發著當代教會，重新思考並珍視各種形式（尤其是幕後而具體）的服事貢獻。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">她從堅革哩教會一位被保羅鄭重舉薦的女執事，可能成為歷史上第一位親手傳遞羅馬書信的人，留下了聖經中『幕後忠心服事』最重要的見證之一。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">新約中女執事職分最重要的文本依據</div>
+          <div class="legacy-body">保羅明確以『女執事』稱呼她，這成為理解初代教會中女性可能承擔之正式服事職分，最重要而直接的新約文本依據之一。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">羅馬書信使者最可能的歷史人選</div>
+          <div class="legacy-body">多數釋經學者推斷她正是親自傳遞羅馬書信的使者，這意味著她可能是歷史上第一位將這卷深刻影響基督教神學史之書信，實際交付讀者的人。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">『幕後忠心服事』最重要的敘事典範</div>
+          <div class="legacy-body">她被保羅稱許『素來幫助許多人』的具體服事，持續為後世提供了『持續而具體的幕後服事同樣蒙神與教會高度珍視』這一課題的重要見證。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「我對你們舉薦我們的姊妹非比，她是堅革哩教會中的女執事。」</div>
+      <div class="final-verse-ref">羅馬書 16:1</div>
+    </div>
+
+    <div class="final-question">如果你此刻正承擔著某種看似『幕後』、卻具體而重要的服事角色——你願不願意相信，就像非比一樣，這樣持續而忠心的服事，同樣被神深深珍視？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 非比 <span>Φοίβη</span> · 堅革哩教會的女執事 · 保羅託付羅馬書信、並鄭重舉薦給羅馬教會的女性同工</div>
+
+</body>
+</html>

@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>瑪挪亞 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">瑪挪亞</h1>
+  <span class="hero-name-en">Manoah · מָנוֹחַ</span>
+  <p class="hero-slogan">「瑪挪亞對他妻說：「我們必要死，因為看見了神。」他的妻卻對他說：「耶和華若要殺我們，必不從我們手裡收納燔祭和素祭，也不將這一切事指示我們，今日也不將這些話告訴我們。」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">約主前十一世紀（士師時代）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ISFJ · 守衛者型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">士師記 13 章</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">但支派瑣拉人 · 參孫的父親</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他的妻子多年不能生育，耶和華的使者卻向她顯現，應許她將要懷孕生下一個此後要作拿細耳人、且要開頭拯救以色列脫離非利士人手中的孩子——瑪挪亞得知這個消息後，最深切的渴望，是能夠親自見到這位使者，求問該如何撫養這個孩子。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">約主前十一世紀，士師時代</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">但支派瑣拉人</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">瑣拉</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">妻（起初不能生育）；子參孫（此後成為以色列士師）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">士 13 章</div>
+      </div>
+    </div>
+
+    <p>瑪挪亞的故事，始於耶和華的使者向他不能生育的妻子顯現，宣告她將懷孕生子，並具體指示她此後懷孕期間不可喝清酒濃酒，也不可吃不潔之物，因為這孩子『必歸神作拿細耳人，以後必為以色列人開頭脫離非利士人的手』。瑪挪亞的妻子將這個消息告訴丈夫，瑪挪亞的第一反應，展現出他性格中謹慎而渴望親自確認的特質——他向耶和華禱告：『主啊，求你再差遣那神人到我們這裡來，好指教我們怎樣待這將要生的孩子。』神應允了他的祈求，那位神人再次向他的妻子顯現，瑪挪亞得知後，急忙跟著妻子去見這位使者，詳細詢問：『耶和華的話怎樣應驗呢？這孩子當怎樣管理，我們當怎樣待他？』</p>
+    <p>當瑪挪亞邀請這位使者留下、要為他預備一隻山羊羔款待時，使者卻指示他，若要獻，當獻與耶和華為燔祭。瑪挪亞此時尚未明白站在眼前的，正是耶和華自己（或其使者）的顯現，便問對方的名字，使者卻回答：『你何必問我的名，我名是奇妙的。』瑪挪亞於是將羊羔和素祭獻在磐石上獻與耶和華——就在火焰從壇上往上升之時，耶和華的使者在火焰中也升上去了，瑪挪亞和他的妻子看見，就俯伏於地。瑪挪亞這才恍然大悟，驚恐地對妻子說：『我們必要死，因為看見了神。』然而他的妻子卻展現出比丈夫更為冷靜而具說服力的信心邏輯：『耶和華若要殺我們，必不從我們手裡收納燔祭和素祭，也不將這一切事指示我們，今日也不將這些話告訴我們。』這番話成功地安撫了瑪挪亞的恐懼。此後，瑪挪亞的妻子果然生了一個兒子，取名參孫，孩子漸漸長大，『耶和華賜福與他。在瑪哈尼但，就是瑣拉和以實陶中間，耶和華的靈才感動他』。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從得知妻子將懷孕生子的消息、渴望親自求問天使，到獻祭時目睹使者升天而懼怕將死，再到妻子以冷靜的信心邏輯安撫他——瑪挪亞的故事，是士師記中對『渴望確據卻也需要學習信靠』刻畫得最生動的家庭敘事之一。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">求問神人再次顯現——「求你再差遣那神人到我們這裡來」</div>
+        <div class="timeline-body">瑪挪亞得知妻子將懷孕生子的應許後，向耶和華懇求讓那位使者再次顯現，親自指教他們該如何撫養這個孩子——神應允了他的祈求，使者再次向他的妻子顯現。</div>
+        <div class="timeline-ref">士 13:8–9</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">詳細詢問孩子的管理之道——「這孩子當怎樣管理，我們當怎樣待他」</div>
+        <div class="timeline-body">瑪挪亞親自見到使者後，詳細詢問這孩子此後應當如何被管理與對待，展現出他身為即將為人父者，渴望謹慎盡責、正確撫養這個承載重要應許之孩子的心情。</div>
+        <div class="timeline-ref">士 13:11–12</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">獻祭時目睹使者升天——「我們必要死，因為看見了神」</div>
+        <div class="timeline-body">瑪挪亞獻上燔祭與素祭時，耶和華的使者在火焰中升天而去，瑪挪亞這才明白自己所面對的，正是神自己的顯現，驚恐地認為自己與妻子必死無疑。</div>
+        <div class="timeline-ref">士 13:19–22</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">妻子以信心邏輯安撫他——「耶和華若要殺我們，必不從我們手裡收納燔祭」</div>
+        <div class="timeline-body">瑪挪亞的妻子以冷靜而具說服力的邏輯，指出耶和華若真要殺他們，不會收納他們的祭物、也不會將這些應許指示他們——這番話成功安撫了瑪挪亞的懼怕，此後他們的兒子參孫果然照著應許誕生。</div>
+        <div class="timeline-ref">士 13:23, 24</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他是一位渴望謹慎盡責、卻也在面對神聖顯現時展現出人性軟弱與懼怕的父親——他的故事，與此後兒子參孫此生反覆展現的軟弱與掙扎，形成某種微妙而耐人尋味的呼應。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">渴望親自確認神的應許與指示，以求謹慎盡責地承擔起撫養孩子的重任</div>
+          <div class="soul-body">瑪挪亞兩次懇求使者的顯現與指教，展現出他對即將承擔之父職責任的謹慎態度，他渴望的，不僅是應許本身，更是具體而明確的指引，好使自己能夠正確地履行撫養孩子的責任。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">在面對超自然的顯現時，依然選擇透過具體的獻祭行動來回應神聖的同在</div>
+          <div class="soul-body">儘管瑪挪亞尚未完全明白對方的真實身分，他依然選擇以獻上燔祭與素祭這樣具體的敬拜行動，回應這位使者的顯現，這份對神聖之事的敬畏與回應，是他性格中值得肯定的一面。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">傾向謹慎求證、渴望明確指引，卻也在面對超乎預期的處境時，容易陷入恐懼與過度反應</div>
+          <div class="soul-body">瑪挪亞在整段敘事中，展現出反覆求證、渴望確據的行事風格，然而當他終於明白使者的真實身分時，卻也立即陷入『我們必要死』這樣過度恐懼的反應。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">在面對神聖顯現的震撼之後，展現出比妻子更為軟弱、缺乏冷靜信心邏輯的反應</div>
+          <div class="soul-body">面對同樣的處境，瑪挪亞陷入了恐懼的結論『我們必要死』，他的妻子卻能以更為冷靜而具邏輯性的方式，正確地推論出神並無意殺害他們——這種反應上的落差，某種程度上，展現出瑪挪亞性格中相對缺乏冷靜信心的軟弱一面。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">他的兒子參孫，此後一生也反覆展現出類似『渴望具體確據、卻也容易陷入衝動與軟弱』的性格特質</div>
+          <div class="soul-body">瑪挪亞這種渴望確據、卻也容易在壓力下陷入過度反應的性格模式，某種程度上，似乎也在此後參孫一生反覆展現的衝動與軟弱之中，留下了隱約的呼應痕跡，儘管聖經並未明確指出兩者之間的直接因果關係。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">瑪挪亞的故事，是士師記中對『渴望確據的謹慎心態，如何在真正面對神聖顯現的震撼時，可能轉化為過度的恐懼』刻畫得最生動的家庭敘事之一。他兩次懇求使者顯現、詳細詢問孩子管理之道的舉動，展現出他身為一位即將為人父者，對承擔起撫養孩子這份重任的謹慎與負責——這份心態本身，是值得肯定的。然而當他終於明白，自己所面對的，正是神自己（或其使者）真實的顯現時，他的反應，卻從謹慎求證，轉為『我們必要死』這樣過度的恐懼與結論。真正令人玩味的，是他的妻子此刻所展現出的冷靜信心邏輯——她沒有陷入同樣的恐懼，而是透過具體的事實（神悅納了他們的祭物、神已經向他們指示了重要的應許）進行理性的推論，準確地判斷出神並無意殺害他們。這段夫妻二人面對同一處境卻展現出截然不同反應的敘事，提醒我們，真正成熟的信心，不僅在於渴望確據與謹慎求證，更在於，當確據真的以超乎預期的方式臨到時，能夠依循已知的事實與神的心意，做出冷靜而正確的推論，而非任由恐懼主導自己的判斷。瑪挪亞的故事，某種程度上，也為此後他兒子參孫一生反覆展現的衝動與掙扎，提供了一絲耐人尋味的家庭背景線索。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ISFJ</span>
+      <div class="mbti-name">守衛者型 · 求問天使卻懼怕見神的父親</div>
+      <div class="mbti-slogan">「他渴望謹慎地問清楚每一個細節，卻在天使真的顯現神聖大能時，嚇得以為自己要死了。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Si · 內向感覺</span>
+          <div class="mbti-fn-body">他渴望獲得具體而明確的指引與確據，好謹慎盡責地履行撫養孩子的責任，這種對具體細節與明確指示的重視，正是主導內向感覺的典型展現。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Fe · 外向情感</span>
+          <div class="mbti-fn-body">他對即將承擔的父職責任懷抱著深切的關懷，渴望正確地對待這個承載重要應許的孩子，展現出對他人（尤其是這個尚未出生的孩子）福祉的高度重視。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ti · 內向思考</span>
+          <div class="mbti-fn-body">他試圖透過具體的獻祭行動與詢問，理性地確認並回應這場超自然的顯現，儘管此後在恐懼之下，未能維持這份理性判斷。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Ne · 外向直覺</span>
+          <div class="mbti-fn-body">他在明白使者的真實身分後，未能像妻子一樣，透過已知的具體事實進行合理的推論，而是直接陷入『我們必要死』的恐懼結論，這種在壓力下難以進行冷靜、多面向推理的傾向，反映出劣勢外向直覺的特徵。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最重要的關係，是與那位在他陷入恐懼時，以冷靜而具說服力的信心邏輯安撫他的妻子——這段夫妻互動，展現出他們在面對同一處境時截然不同、卻互補的反應方式。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">妻</div>
+          <div class="relation-name">瑪挪亞的妻子</div>
+          <div class="relation-type-badge">以冷靜信心邏輯安撫他懼怕的伴侶</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">瑪挪亞的妻子在他陷入『我們必要死』的恐懼時，以清晰而具說服力的邏輯推論，指出神既已悅納他們的祭物、又已向他們指示重要的應許，斷不會有意殺害他們——這番話成功地安撫了瑪挪亞的懼怕。</div>
+          <div class="relation-ref">士 13:23</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">使</div>
+          <div class="relation-name">耶和華的使者</div>
+          <div class="relation-type-badge">向他們顯現、應許並指教參孫誕生與撫養之道的神聖使者</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">這位使者先向瑪挪亞的妻子顯現，此後應瑪挪亞的懇求再次顯現，詳細指教他們此後應如何對待這個將要誕生的孩子，並在獻祭之時，於火焰中升天而去，顯明自己神聖的身分。</div>
+          <div class="relation-ref">士 13:3–21</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">參</div>
+          <div class="relation-name">參孫</div>
+          <div class="relation-type-badge">他們此後照著應許所生的兒子</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">瑪挪亞的妻子此後果然照著應許生下參孫，這個孩子從出生便被分別為拿細耳人，此後成為以色列士師，展開對抗非利士人的一生使命。</div>
+          <div class="relation-ref">士 13:24</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「耶和華若要殺我們，必不從我們手裡收納燔祭和素祭」——瑪挪亞妻子這句話，成為聖經中對『依循已知的具體事實進行冷靜信心推論』刻畫得最生動的智慧範例之一。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「耶和華若要殺我們，必不從我們手裡收納燔祭和素祭，也不將這一切事指示我們，今日也不將這些話告訴我們。」</div>
+      <div class="verse-ref">士師記 13:23</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">פְּלִאי</span>
+        <div class="word-transliteration">pil'i · 奇妙 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「奇妙、超乎理解、驚奇」，這是使者回答瑪挪亞詢問其名字時所用的字，與此後以賽亞書九章形容彌賽亞『奇妙策士』的用字相同字根。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這個字的使用，暗示這位向瑪挪亞夫婦顯現的使者，可能不僅僅是一般的天使，而帶有更深的神聖性質（此後被稱為『基督顯現』，即舊約中基督在道成肉身之前所顯現的神蹟性形象）——這個字與此後彌賽亞稱號的呼應，賦予這段敘事更深一層的神學意涵。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">נָמוּת</span>
+        <div class="word-transliteration">namut · 我們必要死 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「我們將要死」，瑪挪亞在明白使者真實身分後，脫口而出的恐懼結論。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這句話反映出古代近東文化中『見神者必死』這一普遍存在的宗教觀念（此後摩西求見神榮耀時，神也回應『人見我的面不能存活』），瑪挪亞的恐懼，某種程度上，是這種文化與宗教觀念在他心中根深蒂固的具體反應。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">真正成熟的信心需要依循已知的事實進行冷靜的推論而非任由恐懼主導判斷</div>
+      <div class="theology-insight-body">瑪挪亞妻子的回應，展現出一種寶貴的信心智慧——面對超乎預期的神聖顯現，與其直接陷入恐懼的結論，不如依循已知的具體事實（神已悅納祭物、已賜下應許），進行冷靜而合理的推論。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">神的顯現與應許本身即是祂恩慈心意的具體證據</div>
+      <div class="theology-insight-body">瑪挪亞妻子的邏輯核心，在於神既然已經主動向他們顯現、賜下應許、悅納祭物，這些具體的恩慈行動本身，便已充分證明神並無意加害他們——這提醒我們，神已經賜下的恩典與應許，本身就是我們可以倚靠的堅實確據。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">這場顯現此後被理解為舊約中基督顯現的重要例證之一</div>
+      <div class="theology-insight-body">這位使者回答自己的名字是『奇妙』，這個字與此後彌賽亞的稱號相呼應，此後多數釋經傳統，將這段記載理解為舊約中基督在道成肉身前顯現的重要例證之一。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">瑪挪亞夫婦在面對神聖使者的顯現時，一位陷入恐懼的結論，一位卻以冷靜的信心邏輯，依循已知的具體恩典證據，正確地判斷出神的心意</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這種『依循神已顯明之恩典證據而非任由恐懼主導判斷』的信心智慧，此後在新約中，也成為信徒面對懼怕與不確定之處境時，應當持守的重要屬靈原則</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">約翰一書教導信徒「愛裡沒有懼怕；愛既完全，就把懼怕除去」，瑪挪亞妻子這種依循神已顯明之恩慈證據、而非任由懼怕主導判斷的信心智慧，正呼應著這種『完全的愛除去懼怕』的屬靈原則（約一 4:18）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正因某個超乎預期、甚至令你震撼的處境，而陷入不必要的恐懼與過度反應——瑪挪亞妻子的回應，是一則充滿智慧的提醒。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">瑪挪亞的故事命中的是每一個此刻正因某個超乎預期、甚至令自己震撼的處境（無論是屬靈的經歷，或是生活中的重大轉折），而容易陷入不必要之恐懼與過度反應的人。瑪挪亞妻子的回應，示範了一種寶貴的信心智慧——面對令人震撼的處境，與其立即陷入最壞的結論，不如冷靜地回顧神已經向我們顯明的恩典與應許，依循這些具體的事實，做出更為合理而充滿信心的判斷。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你此刻是否正因某個超乎預期、甚至令你震撼的處境，而容易陷入不必要的恐懼或過度反應？瑪挪亞妻子冷靜的信心邏輯，對你此刻的處境，帶來什麼樣的啟發？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">瑪挪亞渴望透過反覆求證、獲得具體確據來謹慎盡責。你在面對重要的責任或抉擇時，是否也傾向需要更多的確據才能安心行動？這種謹慎，是否有時也可能轉化為過度的焦慮？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">瑪挪亞妻子的邏輯，建立在『神已經向我們顯明的恩典與應許』這一具體事實之上。你此刻的生命中，是否也能回顧並列舉出神已經向你顯明的具體恩典，作為你此刻信心的堅實根基？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 瑪挪亞與他的妻子</span>
+        <div class="gen-title">示範劇本：面對神聖使者的顯現，一位陷入恐懼，一位卻以冷靜的信心邏輯正確判斷神的心意</div>
+        <div class="gen-body">瑪挪亞在明白使者真實身分後陷入『我們必要死』的恐懼，他的妻子卻依循已知的具體恩典證據，冷靜而正確地推論出神並無意殺害他們，成功安撫了丈夫的懼怕。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 參孫（他們的兒子）</span>
+        <div class="gen-title">延續：從父母對確據與信心的不同反應，到兒子此生反覆展現的類似掙扎</div>
+        <div class="gen-body">瑪挪亞夫婦這場面對神聖顯現時的不同反應，某種程度上，似乎也在此後參孫一生反覆展現的衝動與軟弱之中，留下了隱約的家庭背景呼應，儘管參孫最終依然被神使用，成就了拯救以色列脫離非利士人的重要使命。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在瑪挪亞的故事中，展現在神耐心地兩次向這對夫婦顯現，詳細指教他們此後應如何撫養參孫；也展現在，即使瑪挪亞一度陷入不必要的恐懼，神依然容讓他透過妻子智慧的提醒，重新恢復冷靜的信心，並使參孫此後照著應許誕生，成就神在他身上的計畫。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位渴望問清楚每個細節、卻在天使真的顯現時嚇得以為要死的父親，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#確據來了別急著陷入恐懼</span>
+      <span class="tag">#回顧已知的恩典做判斷</span>
+      <span class="tag">#夫妻可以互相補位</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>瑪挪亞的妻子一直沒有孩子，有一天，天使向她顯現，說她要懷孕生一個兒子，這孩子將來要成為拿細耳人，並且要開始帶領以色列人脫離非利士人的壓迫。</p>
+      <p>瑪挪亞聽完妻子轉述，第一個反應不是懷疑，而是想更謹慎地知道細節——他向神禱告：求你再讓那位使者來一次，好教我們該怎麼帶這個孩子。神答應了他的請求，使者又來了。</p>
+      <p>瑪挪亞見到使者，很仔細地問：這孩子該怎麼管教？我們該怎麼對待他？他想邀請使者留下來吃飯，使者卻說：如果你要獻，就獻給耶和華吧。瑪挪亞這時候還不知道，站在他面前的，其實就是神自己（或神的使者以極高的形式顯現）。</p>
+      <p>他獻了祭，火焰往上升的時候，使者也隨著火焰升天而去。瑪挪亞這才恍然大悟，嚇壞了，跟妻子說：完了，我們看見了神，我們一定會死。</p>
+      <p>他的妻子，卻很冷靜地回了一句很有智慧的話：如果神真的要殺我們，祂會收下我們的祭物嗎？會把這些事告訴我們嗎？瑪挪亞聽了，才安心下來。後來，孩子真的生下來了，取名參孫。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——瑪挪亞這塊石頭，渴望把每個細節都問清楚，卻在真正的確據來臨時，差點被自己的恐懼絆倒。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你此刻正因為某個超乎預期的處境而慌了手腳——試試瑪挪亞妻子的方法：回頭看看神已經給你的具體恩典跟應許，用這些事實，冷靜地做判斷，而不是任由恐懼牽著走。</p>
+      <p style="margin-top:12px;">渴望謹慎、想問清楚細節，這沒有錯。但也要留意，別讓這份謹慎，變成過度的焦慮。</p>
+      <p style="margin-top:12px;">夫妻（或任何緊密的關係），可以在對方陷入恐懼時，互相補位、彼此提醒。瑪挪亞的妻子，就是這樣的存在。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果你正被某個震撼的處境嚇到——回頭看看神已經給你的恩典，讓它成為你冷靜下來的依據。</p>
+    </div>
+
+    <div class="insight-box">瑪挪亞夫婦的故事，持續為當代討論『面對超乎預期之處境時的情緒管理』與『夫妻在信心層面的互補作用』這兩個議題，提供了聖經中最生動而具體的參照案例。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他兩度求問神聖使者、渴望謹慎撫養即將誕生的參孫，卻在使者顯現的震撼中一度陷入恐懼，最終在妻子智慧的安撫下重拾信心，留下了聖經中『依循恩典證據勝過恐懼』最生動的家庭見證。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">士師參孫誕生敘事的重要背景見證者</div>
+          <div class="legacy-body">他與妻子共同見證並參與了參孫誕生前夕的神聖顯現，這段敘事，成為理解參孫此生拿細耳人身份與使命起源的重要背景。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">舊約中基督顯現重要例證的見證人</div>
+          <div class="legacy-body">向他們顯現、自稱名為『奇妙』的這位使者，此後被多數釋經傳統理解為舊約中基督在道成肉身前顯現的重要例證之一。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">『依循恩典證據而非恐懼做判斷』智慧的重要見證</div>
+          <div class="legacy-body">他妻子那句冷靜而具說服力的信心邏輯，持續為後世提供了『面對超乎預期之處境時，應當依循已知的恩典證據進行判斷，而非任由恐懼主導』這一屬靈智慧最生動的例證。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「後來婦人生了一個兒子，給他起名叫參孫。孩子漸漸長大，耶和華賜福與他。」</div>
+      <div class="final-verse-ref">士師記 13:24</div>
+    </div>
+
+    <div class="final-question">如果你此刻正因某個超乎預期、甚至令你震撼的處境而陷入恐懼——你願不願意像瑪挪亞的妻子一樣，回顧神已經向你顯明的具體恩典，以此作為你冷靜信心的堅實根基？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 瑪挪亞 <span>מָנוֹחַ</span> · 參孫的父親 · 兩度求問天使卻險些因見神而懼死者</div>
+
+</body>
+</html>

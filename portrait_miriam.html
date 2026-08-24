@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>米利暗 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">米利暗</h1>
+  <span class="hero-name-en">Miriam · מִרְיָם</span>
+  <p class="hero-slogan">「亞倫的姊姊女先知米利暗，手裡拿著鼓；眾婦女也跟她出去拿鼓跳舞。米利暗應聲說：「你們要歌頌耶和華，因他大大戰勝，將馬和騎馬的投在海中。」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">約主前十三世紀（出埃及時期）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ENFP · 競選者型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">出埃及記 2, 15 章 · 民數記 12, 20 章 · 彌 6:4</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">暗蘭與約基別之女 · 摩西與亞倫的姊姊 · 女先知</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">她的第一次登場，是一個孩子在河邊遠遠地守望——她的最後一次登場，卻是一位因嫉妒而長大痲瘋、被隔離營外七天的先知。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">約主前十三世紀，出埃及時期</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">暗蘭與約基別之女，摩西與亞倫的姊姊，女先知</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">埃及歌珊地，此後隨以色列人出埃及、於曠野漂流</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">父暗蘭；母約基別；弟亞倫、摩西</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">出 2:1–10, 15:20–21 · 民 12, 20:1 · 申 24:9 · 彌 6:4</div>
+      </div>
+    </div>
+
+    <p>米利暗在聖經中的首次登場，雖未被直接點名（多數學者依上下文推斷『他的姊姊』即為米利暗），卻是一段極具智慧與勇氣的敘事：法老下令將希伯來男嬰全數投入尼羅河中，摩西的母親約基別將他放在蒲草箱裡，藏在河邊的蘆荻中，『孩子的姊姊遠遠站著，要知道他究竟怎麼樣』。當法老的女兒發現這個蒲草箱、心生憐憫收養這個孩子時，這位機智的姊姊立即上前，主動提議去叫一個希伯來婦人來奶養這孩子——她找來的，正是摩西親生的母親。這個安排，不僅保全了摩西的性命，更使他得以在生命最初的階段，由自己的母親哺育撫養，這段情節展現出米利暗年幼時便已具備的機智與勇氣。</p>
+    <p>米利暗此後在出埃及記中，正式以『女先知』的身分登場——以色列人過紅海、埃及大軍全軍覆沒之後，『米利暗手裡拿著鼓，眾婦女也跟她出去拿鼓跳舞。米利暗應聲說：你們要歌頌耶和華，因他大大戰勝，將馬和騎馬的投在海中。』這段記載，使米利暗成為聖經中最早以敬拜帶領者身分登場的女性之一。然而米利暗的故事並非全然正面——在曠野漂流期間，她與亞倫因摩西娶了古實女子為妻而毀謗他，並質疑『難道耶和華單與摩西說話，不也與我們說話嗎？』耶和華因此向他們發怒，使米利暗『長了大痲瘋，像雪那樣白』，摩西雖為她懇切代求，她仍需在營外隔離七天才得潔淨——這段插曲，誠實地呈現出即使是蒙神使用的先知，也可能因嫉妒與驕傲而犯罪。米利暗最終死於加低斯，葬在那裡，此後先知彌迦提及神差遣『摩西、亞倫、並米利暗在你前面引導』，肯定了她在以色列出埃及歷史中，作為神所差遣之領袖三人組其中一員的重要地位。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從河邊機智守望的孩童，到擊鼓帶領敬拜的女先知，再到因嫉妒而長大痲瘋的悔悟——米利暗的一生，展現出從忠誠守護到驕傲跌倒、再到被神管教挽回的完整歷程。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">河邊的守望與機智——「要叫一個希伯來婦人來奶你」</div>
+        <div class="timeline-body">米利暗年幼時遠遠守望漂在蒲草箱中的弟弟摩西，在法老女兒發現並收養他之際，機智地上前提議尋找乳母，成功促成摩西親生母親約基別得以哺育撫養他。</div>
+        <div class="timeline-ref">出 2:1–10</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">紅海邊的敬拜帶領——「米利暗手裡拿著鼓」</div>
+        <div class="timeline-body">以色列人過紅海、埃及大軍覆沒之後，米利暗以女先知的身分，帶領眾婦女擊鼓跳舞，歌頌耶和華戰勝的大能——這是聖經中最早記載的女性敬拜帶領者之一。</div>
+        <div class="timeline-ref">出 15:20–21</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">毀謗摩西與長大痲瘋——「難道耶和華單與摩西說話嗎」</div>
+        <div class="timeline-body">米利暗與亞倫因摩西娶古實女子為妻而毀謗他，並質疑自己是否也同樣蒙神使用。耶和華向他們發怒，使米利暗長大痲瘋，摩西為她懇切代求，她仍需在營外隔離七天才得潔淨。</div>
+        <div class="timeline-ref">民 12 章</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">死於加低斯——「摩西、亞倫，並米利暗」</div>
+        <div class="timeline-body">米利暗最終死於加低斯，葬在那裡。先知彌迦此後提及神曾差遣『摩西、亞倫，並米利暗』在以色列人前面引導，肯定了她在出埃及歷史中作為神所使用之領袖的重要地位。</div>
+        <div class="timeline-ref">民 20:1 · 彌 6:4</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">她既是聖經中最早的女性敬拜帶領者之一，也毫不迴避地被記載因嫉妒而犯罪、遭受神管教——這種真實而複雜的呈現，使她的故事格外具有教育意義。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">對神拯救大能的真實敬拜，以及對自身地位與角色的敏感在意</div>
+          <div class="soul-body">她在紅海邊由衷帶領的敬拜歌頌，展現出對神拯救大能真實的感恩；然而她此後對摩西的毀謗，也顯露出她對自己在領導群體中之地位與角色，懷有相當程度的敏感與在意。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">年幼時展現出的機智與對至親的忠誠守護</div>
+          <div class="soul-body">她在河邊機智地促成母親得以哺育摩西，這份年幼時便已展現的智慧與勇氣，成為她此後被神使用為先知的重要性格基礎。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">善於在群體場合中扮演帶領與凝聚的角色</div>
+          <div class="soul-body">無論是帶領眾婦女擊鼓跳舞敬拜，或是與亞倫一同對摩西提出質疑，米利暗都展現出在群體中主動發聲、扮演帶領角色的傾向。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">因嫉妒摩西獨特的地位而毀謗他，招致神嚴厲的管教</div>
+          <div class="soul-body">她與亞倫對摩西的毀謗，表面上以摩西的婚姻為由，實則透露出對摩西獨特領導地位的嫉妒與不滿——這份嫉妒，最終招致她長大痲瘋的嚴厲管教。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">她的痲瘋病與潔淨過程，牽動了整個以色列營的行程</div>
+          <div class="soul-body">民數記記載『百姓沒有行路，直等到米利暗潔淨了才走』——這意味著，她個人的犯罪與管教過程，直接影響了整個以色列會眾此後的行進節奏，展現出領袖個人的屬靈狀態，可能對整個群體帶來真實的具體影響。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">米利暗的故事，展現出聖經中對『同一個人身上，忠誠與嫉妒如何真實並存』刻畫得極為誠實的敘事。她年幼時展現出的機智與勇氣，直接促成了摩西此後偉大的一生得以延續；她在紅海邊帶領敬拜的畫面，也成為聖經中最早、最動人的女性敬拜帶領典範之一。然而聖經同樣毫不迴避地記載了她的軟弱——她因對摩西獨特領導地位的嫉妒，選擇了毀謗而非直接溝通的方式表達不滿，最終招致神嚴厲的管教。這種誠實而不美化的呈現，提醒我們，即使是蒙神大用、曾在關鍵時刻展現出智慧與忠誠的人，依然可能在此後的歲月中，因未被妥善處理的嫉妒或不滿，做出傷害他人、甚至得罪神的舉動。米利暗的故事同時提醒我們，神的管教雖然嚴厲，其目的仍在於挽回而非棄絕——她最終得以潔淨、重新與會眾同行，也持續被此後的先知彌迦，與摩西、亞倫並列，稱許為神所差遣引導以色列的重要領袖之一。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ENFP</span>
+      <div class="mbti-name">競選者型 · 河邊的機智守望者</div>
+      <div class="mbti-slogan">「她小時候用一句機智的話，救了整個以色列的未來；長大後卻因一句嫉妒的話，讓自己長了大痲瘋。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Ne · 外向直覺</span>
+          <div class="mbti-fn-body">她在河邊面對法老女兒收養摩西的處境，能迅速想出『找希伯來婦人乳養』這個機智的臨場應變方案，展現出對可能性的敏銳捕捉與快速反應。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">她對弟弟摩西懷有深刻的守護之情，此後對自身角色與地位的敏感在意，也反映出她內在情感反應的強烈與真實。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">她在紅海邊主動組織眾婦女一同擊鼓跳舞敬拜，展現出一定程度的群體組織與帶領能力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Si · 內向感覺</span>
+          <div class="mbti-fn-body">她未能妥善記取並尊重神先前透過具體事件所確立的既定秩序（摩西獨特的領導地位），而選擇挑戰質疑，這種對既定秩序缺乏足夠尊重的傾向，反映出劣勢內向感覺的特徵。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">她一生最重要的兩段關係，都圍繞著自己的弟弟摩西——一段是年幼時忠誠的守護，另一段卻是此後因嫉妒而生的毀謗與衝突。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">摩</div>
+          <div class="relation-name">摩西</div>
+          <div class="relation-type-badge">她年幼時守護、此後卻毀謗的弟弟</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">米利暗年幼時機智地守護摩西的性命，促成他得以由親生母親哺育；然而多年後，她卻因嫉妒摩西獨特的領導地位而毀謗他，儘管如此，摩西仍然在她長大痲瘋時，懇切地為她向神代求。</div>
+          <div class="relation-ref">出 2:1–10 · 民 12:13</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">亞</div>
+          <div class="relation-name">亞倫</div>
+          <div class="relation-type-badge">與她一同毀謗摩西的弟弟</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">亞倫與米利暗一同對摩西的婚姻提出質疑與毀謗，然而神的懲罰卻僅臨到米利暗一人（她長大痲瘋），這個記載的差異，此後引發了釋經傳統中對兩人在這場毀謗中角色輕重的不同討論。</div>
+          <div class="relation-ref">民 12:1–10</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">約</div>
+          <div class="relation-name">約基別</div>
+          <div class="relation-type-badge">她的母親，被她機智地引薦為摩西的乳母</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">米利暗在河邊的機智提議，成功促成自己的母親約基別得以正式受雇於法老女兒，哺育撫養自己的親生兒子摩西，這個安排使摩西得以在人生最初階段，接受來自親生母親的信仰薰陶。</div>
+          <div class="relation-ref">出 2:7–9</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「你們要歌頌耶和華，因他大大戰勝」——米利暗在紅海邊帶領的這首敬拜之歌，成為聖經中最早、也最動人的女性敬拜帶領典範之一。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「亞倫的姊姊女先知米利暗，手裡拿著鼓；眾婦女也跟她出去拿鼓跳舞。米利暗應聲說：「你們要歌頌耶和華，因他大大戰勝，將馬和騎馬的投在海中。」」</div>
+      <div class="verse-ref">出埃及記 15:20–21</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">נְבִיאָה</span>
+        <div class="word-transliteration">nevi'ah · 女先知 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「女性的先知」，這個稱謂明確標記了米利暗作為神話語傳達者與敬拜帶領者的身分。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">米利暗是舊約中最早被明確稱為『女先知』的人物之一，這個身分的確立，展現出神使用女性作為敬拜與屬靈帶領者的先例，此後底波拉、戶勒大等女先知的出現，某種程度上延續了米利暗所開創的這一先例。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">תֹּף</span>
+        <div class="word-transliteration">tof · 鼓 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「手鼓、鈴鼓」，古代近東文化中，常用於慶典、敬拜、舞蹈場合的打擊樂器。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">米利暗手拿鼓、帶領眾婦女跳舞敬拜的畫面，成為聖經中最早記載透過音樂舞蹈進行群體敬拜的具體場景之一，這個意象此後持續啟發著教會歷史中，關於敬拜形式多元性的神學反思。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">神使用女性作為先知與敬拜帶領者具有深遠的聖經先例</div>
+      <div class="theology-insight-body">米利暗作為舊約中最早的女先知之一，確立了神使用女性承擔屬靈帶領角色的重要先例，此後底波拉、戶勒大、以及新約中的女先知（如腓利的四個女兒），都延續了這一傳統。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">嫉妒與對地位的敏感可能導致對神所設立之秩序的挑戰</div>
+      <div class="theology-insight-body">米利暗對摩西獨特領導地位的嫉妒，最終演變成對神所設立之秩序的公開質疑——這提醒我們，未經處理的嫉妒之心，可能逐漸導致對神主權安排的不服與挑戰。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">神的管教即使嚴厲，其目的仍在於挽回而非棄絕</div>
+      <div class="theology-insight-body">米利暗雖然因罪而長大痲瘋，卻在七天的隔離後得以潔淨、重新與會眾同行——這展現出神管教的目的，始終是為要帶來悔改與恢復，而非徹底的棄絕。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">米利暗年幼時在河邊機智地守望並促成弟弟摩西得以存活、並由親生母親哺育撫養，這個看似微小的行動，卻對此後整個以色列民族的拯救歷史，帶來深遠的影響</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這種『一個看似不起眼的具體行動，卻成為神拯救計畫中不可或缺一環』的模式，提醒我們神救贖計畫的實現，往往仰賴許多看似平凡卻忠心的具體行動</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">保羅提醒信徒「我們原是他的工作，在基督耶穌裡創造的，為要叫我們行善，就是神所預備叫我們行的」，這提醒我們，每一個忠心的具體行動，無論多麼微小，都可能被神使用成就祂更大的計畫（弗 2:10）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正因為身邊某人獨特的地位或恩賜，而心裡悄悄滋生著嫉妒與不平——米利暗的故事，是一則誠實而鄭重的提醒。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">米利暗的故事命中兩種處境中的人——一種人可能正身處某個需要機智與勇氣守護至親或重要使命的處境，米利暗年幼時的智慧提醒我們，看似微小的具體行動，可能帶來深遠的影響；另一種人，則可能正因身邊某人獨特的恩賜、地位或成就，而心裡悄悄滋生著嫉妒與不平，米利暗因嫉妒摩西而遭受管教的經歷，提醒我們要誠實地面對並處理這樣的情緒，而非任其演變成對他人的毀謗或對神所設立秩序的挑戰。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你此刻是否正身處某個需要機智與勇氣守護至親或重要使命的處境？米利暗年幼時的智慧，對你此刻的處境，帶來什麼樣的啟發？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">你是否也曾因身邊某人獨特的恩賜、地位、或成就，而心裡悄悄滋生著嫉妒與不平？米利暗因嫉妒而遭受管教的經歷，對你這份情緒，帶來什麼樣的警示？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">米利暗最終在七天的隔離管教後得以潔淨、重新與會眾同行。這對你理解『神的管教即使嚴厲，其目的仍在於挽回』，帶來什麼樣的盼望？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 米利暗</span>
+        <div class="gen-title">示範劇本：從河邊機智守護的孩童，到帶領敬拜的女先知，卻也因嫉妒而遭受管教</div>
+        <div class="gen-body">她年幼時展現出的機智與忠誠，直接促成了摩西此後偉大一生的延續，她也成為聖經中最早的女性敬拜帶領者之一；然而她此後因嫉妒摩西的地位而毀謗他，遭受神嚴厲卻帶著挽回意圖的管教。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 此後歷世歷代的女性屬靈領袖</span>
+        <div class="gen-title">延續：米利暗開創的先例，持續啟發此後的女性屬靈帶領者</div>
+        <div class="gen-body">米利暗作為舊約中最早的女先知之一，此後底波拉、戶勒大等女性屬靈領袖的出現，某種程度上延續了她所開創的先例，持續見證神樂意使用女性承擔重要的屬靈帶領角色。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在米利暗的故事中，展現在神即使因她的嫉妒與毀謗而施行管教，仍然使她在七天後得以潔淨恢復，重新與會眾同行；也展現在，此後先知彌迦仍然將她與摩西、亞倫並列，稱許她在以色列出埃及歷史中的重要地位——這提醒我們，神的恩典能夠涵蓋人生命中軟弱失敗的篇章，使一個人的一生，不被單一的過犯所完全定義。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位河邊機智的姊姊、紅海邊擊鼓的女先知，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#機智的守護能改變歷史</span>
+      <span class="tag">#嫉妒要誠實面對</span>
+      <span class="tag">#管教的目的是挽回</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>米利暗第一次出現在聖經裡，是個孩子——她躲在河邊，遠遠看著弟弟摩西漂在蒲草箱裡。法老的女兒發現了這個箱子，決定收養這個孩子。就在這個關鍵時刻，米利暗跑上前，很機靈地問：要不要我幫你找一個希伯來婦人來奶這個孩子？法老女兒答應了，米利暗找來的，正是自己的媽媽。</p>
+      <p>多年後，以色列人過了紅海，埃及軍隊全軍覆沒。米利暗這時候正式以『女先知』的身分登場——她手拿鼓，帶著一群婦女一起跳舞唱歌，歌頌神的大能。這是聖經裡最早記載的女性敬拜帶領畫面之一。</p>
+      <p>但故事沒有停在這個高光時刻。曠野漂流期間，米利暗跟亞倫一起，因為摩西娶了一個古實女子，開始說他的閒話，甚至質疑：難道神只跟摩西說話，不跟我們說話嗎？神聽到了，很生氣，讓米利暗長了大痲瘋，白得像雪一樣。摩西趕緊為她禱告求情，她還是得在營外隔離七天，才能重新回到大家中間。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——米利暗這塊石頭，河邊的那一面被雕得機智動人，紅海邊的那一面被雕得敬拜洋溢，卻也留下了嫉妒刻下的一道傷痕。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你此刻正需要機智與勇氣守護某個重要的人或使命——米利暗提醒我們，看似微小的一句話、一個提議，可能改變整個歷史的走向。</p>
+      <p style="margin-top:12px;">留意你是不是也對身邊某個人的地位或恩賜，悄悄滋生著嫉妒。米利暗的故事提醒我們，這種情緒如果不誠實面對，可能演變成傷害他人的言語或行動。</p>
+      <p style="margin-top:12px;">神的管教，是為了挽回，不是為了棄絕。米利暗七天後，還是重新回到了會眾中間。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，用你的機智去守護重要的人，也誠實面對心裡任何一絲嫉妒的苗頭。</p>
+    </div>
+
+    <div class="insight-box">米利暗的故事，持續為當代討論『女性屬靈領導力的聖經先例』與『嫉妒對群體關係的破壞性影響』這兩個議題，提供了兼具鼓勵與警示的重要參照。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">她從河邊機智守護弟弟的孩童，成為聖經中最早的女先知之一，也誠實地留下了嫉妒如何招致管教的警示記載。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">舊約中最早被明確稱為『女先知』的人物之一</div>
+          <div class="legacy-body">她確立了神使用女性承擔屬靈帶領與敬拜角色的重要先例，此後啟發了底波拉、戶勒大等女性屬靈領袖的出現。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">聖經中最早的女性敬拜帶領典範</div>
+          <div class="legacy-body">她在紅海邊擊鼓帶領眾婦女敬拜的畫面，成為聖經中最早、也最生動的群體敬拜場景之一。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">『嫉妒導致管教』的重要警示範例</div>
+          <div class="legacy-body">她因嫉妒摩西而遭受長大痲瘋的管教，持續為後世提供了『未經處理的嫉妒可能導致對神所設立秩序之挑戰』這一屬靈原則的具體例證。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">先知彌迦稱許的以色列出埃及三大領袖之一</div>
+          <div class="legacy-body">先知彌迦將她與摩西、亞倫並列，稱許她在以色列出埃及歷史中的重要領導地位，肯定了她一生整體的屬靈貢獻。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「我曾將你從埃及地領出來，從作奴僕之家救贖你；我也差遣摩西、亞倫，並米利暗在你前面引導。」</div>
+      <div class="final-verse-ref">彌迦書 6:4</div>
+    </div>
+
+    <div class="final-question">如果你此刻正因身邊某人的恩賜或地位而心生嫉妒——你願不願意像米利暗最終所經歷的，誠實面對這份情緒，並選擇被神挽回而非讓嫉妒定義你的一生？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 米利暗 <span>מִרְיָם</span> · 摩西的姊姊 · 尼羅河邊的守望者 · 女先知</div>
+
+</body>
+</html>

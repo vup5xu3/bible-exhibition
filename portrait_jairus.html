@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>睚魯 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">睚魯</h1>
+  <span class="hero-name-en">Jairus · Ἰάϊρος</span>
+  <p class="hero-slogan">「耶穌聽見所說的話，就對管會堂的說：「不要怕，只要信！」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">約主後30年（耶穌傳道期間）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ESFJ · 執政官型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">馬可福音5:21–43 · 路加福音8:40–56</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">管會堂的睚魯 · 俯伏懇求耶穌醫治其女兒的父親</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他是管理會堂的睚魯，在猶太社會中享有崇高的宗教與社會地位——然而當自己十二歲的獨生女兒病危垂死時，這份地位絲毫不能保護他免於一位父親最深切的恐懼與絕望。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">約主後30年，耶穌傳道期間</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">管會堂的（會堂的主管，負責會堂的日常運作與敬拜秩序）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">加利利海邊一帶（可能是迦百農）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">十二歲的獨生女兒（病危後蒙耶穌醫治復活）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">可 5:21–43 · 路 8:40–56</div>
+      </div>
+    </div>
+
+    <p>睚魯的登場，展現出一種身分地位與個人絕望之間強烈的反差——聖經記載，他是『管會堂的一個人，名叫睚魯』，這個職分，意味著他在當地猶太社會中，享有相當崇高的宗教地位與公眾聲望。然而當耶穌從海的那邊回來，眾人在海邊迎接祂之際，睚魯『看見耶穌，就俯伏在他腳前，再三地求他，說：我的小女兒快要死了，求你去按手在她身上，使她痊癒，得以活了』。這位受人敬重的會堂主管，毫不顧惜自己的身分與顏面，公開俯伏在耶穌腳前『再三地求』——這種毫無保留的懇求姿態，展現出一位父親在面對女兒生死交關之際，願意放下一切社會地位考量的深切迫切。</p>
+    <p>耶穌隨即與睚魯同去，然而途中卻發生了一段插曲——一位患了十二年血漏之疾的婦人，在人群中摸了耶穌的衣裳繸子而得醫治，耶穌因此停下腳步，尋問是誰摸了祂。這段延遲，對心急如焚、女兒命懸一線的睚魯而言，想必是極其煎熬的等待。正在耶穌與這位婦人對話之際，從睚魯家裡來的人趕到，帶來了睚魯內心最深恐懼成真的消息：『你的女兒死了，何必還勞動先生呢？』然而耶穌『聽見所說的話，就對管會堂的說：不要怕，只要信！』祂繼續前往睚魯的家，屏退了正在哀哭號咷的眾人，只帶著彼得、雅各、約翰，以及孩子的父母，進入孩子所在的房間。耶穌拉著孩子的手，說：『大利大，古米！』（意思是『閨女，我吩咐你起來』）——那孩子立時起來走，眾人便大大地驚奇。耶穌吩咐他們把這事保密，又叫人給孩子東西吃——這個充滿人情味的細節，展現出耶穌在行了這場驚人神蹟之後，依然體貼地顧念孩子此刻具體而實際的身體需要。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從俯伏懇求耶穌醫治病危女兒的會堂主管，到途中遭遇延遲、又傳來女兒已死的絕望消息，再到親眼見證耶穌使女兒從死裡復活——睚魯的故事，是福音書中對『信心如何在延遲與看似絕望的消息中依然被呼召持守』刻畫得最扣人心弦的敘事之一。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">俯伏懇求耶穌——「我的小女兒快要死了」</div>
+        <div class="timeline-body">睚魯身為管會堂的、享有崇高社會地位，卻在女兒病危之際，毫不顧惜自己的身分，公開俯伏在耶穌腳前再三懇求，求祂前往按手醫治自己的女兒。</div>
+        <div class="timeline-ref">可 5:22–23</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">途中因血漏婦人而延遲——「還說話的時候……」</div>
+        <div class="timeline-body">耶穌與睚魯同去的途中，因醫治一位摸祂衣裳繸子而得痊癒的血漏婦人而停下腳步，這段對心急如焚的睚魯而言極其煎熬的延遲，成為此後傳來絕望消息前的重要鋪墊。</div>
+        <div class="timeline-ref">可 5:24–34</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">傳來女兒已死的消息——「不要怕，只要信」</div>
+        <div class="timeline-body">從睚魯家裡來的人趕到，帶來女兒已經死了的絕望消息，耶穌卻在這個時刻，對睚魯說出了『不要怕，只要信』這句此後被廣泛引用的信心呼召，繼續前往他的家。</div>
+        <div class="timeline-ref">可 5:35–36</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">女兒從死裡復活——「大利大，古米」</div>
+        <div class="timeline-body">耶穌屏退哀哭的眾人，只帶著三位門徒與孩子的父母進入房間，拉著孩子的手，說『大利大，古米』，孩子立時起來行走，耶穌並體貼地吩咐給孩子東西吃。</div>
+        <div class="timeline-ref">可 5:38–43</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他是一位在自己的社會地位與女兒生死交關的迫切需要之間，毫不猶豫選擇了謙卑懇求的父親，也是聖經中親身經歷『信心在延遲與絕望消息中依然被呼召持守』最完整歷程的見證人之一。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">深信耶穌具有醫治的能力，並願意為此放下自己身為會堂主管的身分與顏面，公開謙卑地懇求</div>
+          <div class="soul-body">睚魯身為受人敬重的會堂主管，本可以透過更為隱密或體面的方式尋求幫助，然而他選擇了在眾人面前公開俯伏懇求，這展現出他對女兒的愛，與對耶穌醫治能力的信心，遠超過對自身社會形象的顧慮。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">在女兒病危、乃至傳來死訊的絕望處境中，依然選擇繼續信靠並跟隨耶穌</div>
+          <div class="soul-body">即使面對『你的女兒死了』這樣近乎絕望的消息，睚魯並未當場崩潰放棄，聖經沒有記載他中途離去或拒絕耶穌繼續前往，這種在絕望消息中依然選擇繼續信靠的堅持，是他性格中最動人的美德。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">面對至親性命垂危的緊急處境，展現出直接而迫切的行動力——親自尋找耶穌、俯伏懇求、再三祈求</div>
+          <div class="soul-body">睚魯沒有選擇差遣僕人代為求助，而是親自尋找耶穌、俯伏懇求，這種親力親為、直接面對問題核心的行事風格，展現出他身為父親深切的責任感與行動力。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">（材料有限——聖經對睚魯個人的過犯或掙扎著墨極少，這段敘事主要聚焦於他懇求與信心持守的正面歷程）</div>
+          <div class="soul-body">福音書對睚魯的記載，主要聚焦於他懇求耶穌醫治女兒、並在絕望消息中依然被呼召持守信心的完整歷程，未見任何負面的性格描寫。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">他必須在眾目睽睽之下、在血漏婦人插曲的延遲中，忍受著身為父親最深切的煎熬與等待</div>
+          <div class="soul-body">睚魯的故事中，那段因血漏婦人而生的延遲，某種程度上，成為整段敘事中最具張力的一環——一位心急如焚、女兒命懸一線的父親，卻必須在人群的圍觀中，眼睜睜看著耶穌停下腳步處理另一件事，這種被迫等待的煎熬，賦予睚魯的故事一種格外真實而扣人心弦的人性張力。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">睚魯的故事，是福音書中對『信心如何在延遲與看似絕望的消息中，依然被呼召持守』刻畫得最扣人心弦的敘事之一。他一開始的懇求，出於一位父親在女兒生死交關之際，最直接而迫切的信心行動——他相信耶穌有能力醫治，因此毫不猶豫地放下自己身為會堂主管的社會地位，公開俯伏懇求。然而他此後所經歷的，卻是一連串遠超乎他當初預期的考驗——先是因血漏婦人而生的延遲，這段等待，對任何一位心急如焚的父親而言，都是極其煎熬的；此後更傳來『你的女兒死了』這樣近乎徹底粉碎其信心根基的絕望消息。正是在這個信心最容易崩潰瓦解的臨界點，耶穌對他說出了『不要怕，只要信』這句話——這句話的力量，不在於否認睚魯所面對之處境的真實嚴重性（女兒確實已經死了），而在於邀請睚魯，將自己的信心，從『相信耶穌能夠醫治疾病』，提升到『相信耶穌的能力，甚至超越死亡本身的界限』這樣更深、更完整的層次。睚魯的故事提醒我們，真正的信心，往往需要在延遲、甚至看似徹底絕望的消息面前，依然被呼召繼續持守與前行——而正是這樣持守到底的信心，最終得以親眼見證，遠超乎自己原本祈求範圍的、更為深刻而完整的神蹟。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ESFJ</span>
+      <div class="mbti-name">執政官型 · 俯伏懇求的會堂主管</div>
+      <div class="mbti-slogan">「他放下所有的身分顏面，只求耶穌救他的女兒——即使聽見女兒已經死了，他依然被邀請，繼續相信。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Fe · 外向情感</span>
+          <div class="mbti-fn-body">他毫不顧惜自己身為會堂主管的社會地位，在眾人面前公開俯伏懇求，這種將他人（女兒）的需要置於自身形象考量之上的行動，展現出強烈的外向情感特質。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Si · 內向感覺</span>
+          <div class="mbti-fn-body">他清楚而具體地向耶穌陳述女兒的具體處境（『快要死了』），並依循既定的社會禮節（俯伏、再三懇求）表達自己的請求，顯示出對具體處境與合宜行為方式的重視。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Te · 內向思考</span>
+          <div class="mbti-fn-body">他直接而有效率地採取行動——親自尋找耶穌，而非透過間接的管道求助，展現出目標導向的實際行動力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Ti · 內向思考</span>
+          <div class="mbti-fn-body">面對女兒已死的消息，他可能一度陷入邏輯上『一切都已經太遲』的絕望判斷，這種在極端壓力下難以維持更深層信心邏輯的傾向，反映出劣勢內向思考的特徵，然而他最終依然選擇繼續跟隨耶穌前行。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最重要的一次相遇，是與那位在他女兒病危、乃至傳來死訊之際，依然邀請他『不要怕，只要信』的耶穌。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">耶</div>
+          <div class="relation-name">耶穌</div>
+          <div class="relation-type-badge">應允前往醫治、並在絕望消息中呼召他持守信心的主</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">耶穌應允睚魯的懇求，前往醫治他病危的女兒，途中雖因血漏婦人而延遲，卻在傳來女兒已死的消息時，親自對睚魯說『不要怕，只要信』，並最終使他的女兒從死裡復活。</div>
+          <div class="relation-ref">可 5:23, 36, 41–42</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">女</div>
+          <div class="relation-name">睚魯的女兒</div>
+          <div class="relation-type-badge">他病危、死去，此後又蒙耶穌使其復活的獨生女</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">這位十二歲的女孩，是睚魯懇求的核心對象，她的病危、死亡、與此後的復活，構成了這段敘事最核心的情感與神蹟張力。</div>
+          <div class="relation-ref">可 5:42</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">婦</div>
+          <div class="relation-name">患血漏的婦人</div>
+          <div class="relation-type-badge">途中因摸耶穌衣裳繸子而得醫治、造成延遲的婦人</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">這位患了十二年血漏之疾的婦人，在前往睚魯家的路上摸了耶穌的衣裳而得痊癒，這段插曲，造成了睚魯所經歷之延遲與煎熬，卻也成為此後耶穌對睚魯發出信心呼召前的重要鋪墊。</div>
+          <div class="relation-ref">可 5:25–34</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「不要怕，只要信」——耶穌對睚魯所說的這句話，成為聖經中對『信心需要在延遲與看似絕望的消息中依然被持守』最簡潔有力的呼召之一。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「耶穌聽見所說的話，就對管會堂的說：「不要怕，只要信！」」</div>
+      <div class="verse-ref">馬可福音 5:36</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">μὴ φοβοῦ, μόνον πίστευε</span>
+        <div class="word-transliteration">me phobou, monon pisteue · 不要怕，只要信 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「不要懼怕，只管相信」，這句簡短而直接的話語，成為耶穌面對睚魯絕望處境時，最核心的信心呼召。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這句話的力量，在於它並未否認睚魯此刻所面對之處境的真實嚴重性，而是邀請他將自己的信心，提升至一個超越死亡界限的更深層次——這句話此後也成為聖經中，信徒面對任何看似絕望之處境時，最常被引用的信心宣告之一。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">Ταλιθὰ κοῦμι</span>
+        <div class="word-transliteration">Talitha koum · 大利大，古米 · 亞蘭文（耶穌當時日常使用的語言）</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「閨女，我吩咐你起來」，馬可福音特意保留了耶穌原本所說的亞蘭文原話，並附上希臘文翻譯。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">馬可福音刻意保留這句話的亞蘭文原音，這種罕見的處理方式，某種程度上，暗示著這句話對最初的讀者（可能包含見證這場神蹟的門徒）而言，具有極其真實而深刻的個人記憶份量，值得原音重現地保留下來。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">信心的呼召往往在延遲與看似絕望的消息中被賦予更深的意義</div>
+      <div class="theology-insight-body">耶穌對睚魯發出『不要怕，只要信』的呼召，正是在傳來女兒已死這個看似徹底絕望的消息之後——這確立了聖經神學中一個重要原則：真正的信心，需要在延遲與看似絕望的處境中，依然被持守，而這樣的信心，最終能夠見證超乎預期的神蹟。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">耶穌的能力超越疾病的醫治延伸至對死亡本身的掌管</div>
+      <div class="theology-insight-body">睚魯女兒的復活，展現出耶穌的能力，不僅止於醫治疾病，更延伸至對死亡本身的掌管與勝過，這為此後理解基督自己復活的核心真理，提供了重要的先聲與印證。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">神蹟之後的具體體貼展現出耶穌對人實際需要的細膩關懷</div>
+      <div class="theology-insight-body">耶穌在使孩子復活後，特意吩咐給她東西吃，這個充滿人情味的細節，展現出祂在行了驚人神蹟之後，依然體貼地顧念孩子此刻具體而實際的身體需要。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">睚魯的女兒病危、死去，耶穌卻在眾人已經放棄希望之際，親自使她從死裡復活</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這場『在眾人已經絕望放棄之時，耶穌親自介入使死人復活』的神蹟，成為福音書中預示耶穌自己此後將要經歷死亡、卻最終戰勝死亡復活這一核心救贖真理的重要先聲</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">耶穌自己此後被釘死在十字架上，眾人（包括門徒）幾乎都已絕望放棄，然而祂卻在第三日從死裡復活，成就了睚魯女兒復活這一神蹟，所預表之基督自己戰勝死亡的終極應驗（林前 15:20–22）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正懷抱著某個迫切的懇求向神祈求，卻遭遇令人煎熬的延遲、甚至傳來近乎絕望的消息——睚魯的故事，邀請你依然選擇相信。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">睚魯的故事命中的是每一個此刻正懷抱著某個迫切的懇求（無論是至親的健康、某個重要的關係、或人生的重大轉折）向神祈求，卻遭遇令人煎熬的延遲、甚至傳來近乎絕望之消息的人。他的故事提醒我們，耶穌對他所說『不要怕，只要信』這句話，並非要否認我們所面對之處境的真實嚴重性，而是邀請我們，即使在看似絕望的處境中，依然選擇繼續信靠，因為祂的能力，往往超越我們自己當下所能想像的範圍。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你此刻是否正懷抱著某個迫切的懇求向神祈求，卻遭遇令人煎熬的延遲，甚至傳來近乎絕望的消息？耶穌對睚魯所說『不要怕，只要信』，對你此刻的處境，帶來什麼樣的鼓勵？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">睚魯身為受人敬重的會堂主管，卻毫不猶豫地公開俯伏懇求耶穌。你是否也曾因顧慮自己的形象或地位，而遲遲不願在他人面前謙卑地表達自己真實的需要？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">睚魯在等候耶穌前往的路途中，經歷了因血漏婦人而生的延遲，這段等待想必極其煎熬。你此刻是否也正經歷某種令人煎熬的等待？你如何在這段等待中，繼續持守信心？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 睚魯</span>
+        <div class="gen-title">示範劇本：在女兒病危、乃至傳來死訊的絕望處境中，依然被呼召並選擇繼續信靠耶穌</div>
+        <div class="gen-body">他懇切地懇求耶穌醫治病危的女兒，卻在途中經歷延遲、乃至傳來女兒已死的絕望消息，然而他依然選擇繼續跟隨耶穌，最終親眼見證女兒從死裡復活的神蹟。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 睚魯的女兒</span>
+        <div class="gen-title">延續：從病危死去到蒙耶穌使其復活，成為耶穌能力超越死亡的具體見證</div>
+        <div class="gen-body">睚魯女兒的復活，成為福音書中耶穌能力超越死亡界限最具體而動人的見證之一，這場神蹟，此後也成為理解基督自己復活這一核心救贖真理最重要的先聲。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在睚魯的故事中，展現在耶穌即使面對延遲與看似絕望的消息，依然選擇繼續前往，並親自使睚魯的女兒從死裡復活；也展現在，耶穌在行了這場驚人神蹟之後，依然體貼地顧念孩子具體而實際的身體需要。這提醒我們，神的恩典，往往超越我們最初祈求的範圍，也超越我們自己所能想像的絕望界限。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位放下身分懇求耶穌、卻在等待中聽見女兒死訊的父親，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#謙卑懇求不看身分</span>
+      <span class="tag">#延遲不等於拒絕</span>
+      <span class="tag">#絕望消息中依然可以選擇信靠</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>睚魯是管理會堂的，在當地是個有頭有臉的人物。但他十二歲的女兒快要死了，這件事，讓他什麼身段都放下了——他跑去找耶穌，當著眾人的面，直接跪下來，一再懇求：求你去按手在我女兒身上，救救她。</p>
+      <p>耶穌答應了，跟他一起走。結果半路上，一個患血漏病十二年的婦人，摸了耶穌的衣角，耶穌停下來，處理這件事。想像一下睚魯當時的心情——他的女兒命懸一線，耶穌卻停下腳步。這段等待，一定極其煎熬。</p>
+      <p>更糟的還在後面——睚魯家裡的人趕來，說：你女兒已經死了，不用再麻煩老師了。這句話，等於是宣告一切都太遲了。就在這個時刻，耶穌對睚魯說：不要怕，只要信。</p>
+      <p>耶穌繼續往睚魯家走，到了以後，把哭喪的人都趕出去，只留下三個門徒跟孩子的父母，進到房間裡。祂拉著孩子的手，說：閨女，我吩咐你起來。孩子立刻站起來，開始走動。眾人都嚇壞了。耶穌還特別叮囑：給孩子東西吃——這麼驚天動地的神蹟之後，祂還記得孩子肚子餓了。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——睚魯這塊石頭，帶著身分的光環走向耶穌，卻在絕望的消息裡，被雕出了『不要怕，只要信』的形狀。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你此刻正懇求神做某件事，卻感覺祂『慢了半拍』——別急著失望。有時候，延遲不是拒絕，而是有別的事正在發生。</p>
+      <p style="margin-top:12px;">如果你此刻聽到了一個讓你覺得『一切都太遲了』的壞消息——記得，耶穌對睚魯說的話，同樣是對你說的：不要怕，只要信。</p>
+      <p style="margin-top:12px;">放下身段去懇求，不丟臉。睚魯是個有地位的人，卻願意當眾跪下來求助，這份謙卑，值得學習。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果你正等候一個答案、或剛聽到一個壞消息——不要怕，只要信。</p>
+    </div>
+
+    <div class="insight-box">睚魯的故事，持續為當代討論『在等待中持守信心』與『面對絕望消息時的信仰韌性』這兩個議題，提供了聖經中最扣人心弦的參照案例，特別鼓舞著許多正經歷至親病危或重大等待的現代讀者。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他從一位放下身分公開懇求耶穌的會堂主管，經歷了延遲與絕望消息的雙重考驗，最終親眼見證女兒從死裡復活，留下了聖經中『信心在絕望中依然被持守』最扣人心弦的見證。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">『不要怕，只要信』信心呼召的經典來源</div>
+          <div class="legacy-body">耶穌對他所說的這句話，此後成為聖經中，信徒面對任何看似絕望之處境時，最常被引用的信心宣告之一。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">耶穌能力超越死亡界限的重要見證</div>
+          <div class="legacy-body">他女兒的復活，成為福音書中耶穌能力超越疾病醫治、延伸至對死亡本身之掌管最具體的見證之一，成為此後理解基督自己復活真理的重要先聲。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">『延遲不等於拒絕』信心功課的重要敘事典範</div>
+          <div class="legacy-body">他在等候耶穌前往醫治的路途中所經歷的延遲與煎熬，持續為後世提供了『在等待中依然持守信心』這一課題最具體而扣人心弦的敘事範例。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「他就拉著孩子的手，對她說：「大利大，古米！」翻出來就是說：「閨女，我吩咐你起來！」」</div>
+      <div class="final-verse-ref">馬可福音 5:41</div>
+    </div>
+
+    <div class="final-question">如果你此刻正懷抱著某個迫切的懇求，卻遭遇延遲、甚至聽見近乎絕望的消息——你願不願意像睚魯一樣，依然選擇相信『不要怕，只要信』這句邀請？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 睚魯 <span>Ἰάϊρος</span> · 會堂主管 · 俯伏懇求耶穌醫治女兒的父親 · 在絕望消息中依然被邀信心的人</div>
+
+</body>
+</html>

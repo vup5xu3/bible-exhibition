@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>西門 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">西門・·古利奈人</h1>
+  <span class="hero-name-en">Simon of Cyrene · Σίμων ὁ Κυρηναῖος</span>
+  <p class="hero-slogan">「有一個古利奈人西門，就是亞歷山大和魯孚的父親，從鄉下來，經過那地方，他們就勉強他同去，好背著耶穌的十字架。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">約主後30年（耶穌受難之日）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ISFJ · 守衛者型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">馬太福音27:32 · 馬可福音15:21 · 路加福音23:26</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">古利奈（北非）人 · 亞歷山大與魯孚的父親 · 被迫背起耶穌十字架者</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他大概只是一個尋常的日子，從鄉下進城辦事，卻在半路上，被羅馬兵丁一把攔下，強迫他背起那根本不屬於他的十字架——這根沉重的木頭，此後卻可能成為改變他與全家一生的關鍵接觸點。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">約主後30年，耶穌受難之日（逾越節期間）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">古利奈（今利比亞境內北非城市）人，可能是在耶路撒冷過節或定居的猶太僑民</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">古利奈，此刻正經過耶路撒冷城外的路上</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">兩個兒子：亞歷山大與魯孚</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">太 27:32 · 可 15:21 · 路 23:26 · 羅 16:13（可能提及魯孚）</div>
+      </div>
+    </div>
+
+    <p>西門的登場，發生在耶穌被判死刑、即將被帶往各各他釘十字架的路途中——三卷符類福音（馬太、馬可、路加）都不約而同地記載了這個瞬間：耶穌因先前所受的鞭打與極度的身心創傷，可能已經無力繼續背負沉重的十字架橫木，羅馬兵丁於是『勉強』（原文帶有強制徵用之意，這是羅馬佔領軍普遍擁有、可隨意徵用當地人力的具體權力）一個名叫西門的古利奈人，代替耶穌背起十字架。西門很可能只是恰巧『從鄉下來，經過那地方』的一位普通路人，這場相遇，完全出乎他自己的預料與意願，是被羅馬帝國的強制性權力，猝然加諸在他身上的一件意外差事。</p>
+    <p>馬可福音在記載這件事時，特別補充了一個極具意義的細節：『就是亞歷山大和魯孚的父親』——這個補充說明，在整段簡短的記載中顯得格外突出，因為福音書通常不會特意介紹一位僅出現一次之路人的家庭成員，除非這些家庭成員，此後在馬可福音最初的讀者群體（很可能是羅馬教會）中，是廣為人知、具體而真實存在的人物。這個細節，強烈暗示著，西門此後很可能因這場意外而深刻的十字架經歷，帶領全家歸信了基督——保羅在羅馬書十六章問安名單中，也特別提及一位『魯孚』，稱他是『在主蒙揀選的』，並提及魯孚的母親『就是我的母親』（意指她待保羅如同待自己的兒子一般），若這位魯孚正是西門的兒子，那麼西門一家此後在初代教會中，便扮演著相當重要而具體的角色。西門的故事，儘管聖經對他個人此後的際遇沒有更多直接的記載，卻透過這個關於兒子名字的簡短補充，向讀者暗示了一則動人的可能性——一場完全非自願、被迫承擔的痛苦經歷，最終可能成為一個人與全家生命徹底轉化的起點。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">由於聖經對西門的直接記載僅限於這一個瞬間，這裡呈現的，是他在耶穌受難敘事中所扮演的具體角色，以及此後透過他兒子姓名所暗示的可能發展。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">被強迫背起耶穌的十字架——「他們就勉強他同去」</div>
+        <div class="timeline-body">西門只是恰巧從鄉下進城，途經耶穌被押往各各他的路上，羅馬兵丁強行徵用他，要他代替因鞭打而虛弱的耶穌，背負沉重的十字架橫木前往刑場。</div>
+        <div class="timeline-ref">太 27:32 · 可 15:21 · 路 23:26</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">馬可福音特別記載他兒子的名字——「亞歷山大和魯孚的父親」</div>
+        <div class="timeline-body">馬可福音特別補充西門是『亞歷山大和魯孚的父親』，這個罕見的具體家庭資訊，暗示著這兩個孩子，此後很可能在馬可福音最初的讀者群體中，是廣為人知的教會成員。</div>
+        <div class="timeline-ref">可 15:21</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">魯孚此後可能出現在保羅的問安名單中——「問在主蒙揀選的魯孚安」</div>
+        <div class="timeline-body">保羅在羅馬書問安名單中，特別提及一位『在主蒙揀選的』魯孚，並提及他的母親待保羅如同己出——若這位魯孚正是西門之子，這意味著西門一家，此後很可能全家歸信基督，並在初代教會中扮演著具體而重要的角色。</div>
+        <div class="timeline-ref">羅 16:13</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他是聖經中對『一場完全非自願、被迫承擔的痛苦經歷，如何可能成為一個人與全家生命徹底轉化之起點』刻畫得最含蓄動人的敘事人物之一——他自己沒有留下一句話語，卻透過兒子的名字，向讀者訴說著一則意味深長的可能性。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">（材料有限——聖經未直接記載他個人的內心反應或信念，僅能從此後的發展側面推測）</div>
+          <div class="soul-body">西門在被迫背負十字架的當下，內心的具體反應，聖經沒有留下任何記載，然而馬可福音特別提及他兒子姓名這一細節，強烈暗示著這段經歷，此後在他心中，留下了何等深刻而正面的轉化印記。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">（材料有限——聖經對他個人主動展現的美德著墨極少，這段記載主要聚焦於他被動承受的經歷）</div>
+          <div class="soul-body">西門這段記載的核心，在於他被迫承擔了一件完全非自願的沉重差事，然而正是這份被迫的承擔，此後很可能引導他走向了一條全然不同、充滿信仰意義的人生道路。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">（材料不足以推論——聖經僅記載了他被迫參與的這一個具體瞬間）</div>
+          <div class="soul-body">由於聖經對西門的記載極為簡短，我們難以從中推論他一貫的行事風格，僅能從這唯一一次的記載，窺見他在毫無準備之下，被迫承擔了這件具體的差事。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">（材料不足以推論）</div>
+          <div class="soul-body">沒有任何記載顯示他個人的弱點或掙扎，這是資料的空白，而非品格的評價。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">他被迫背負的，是那根即將被用來釘死耶穌的十字架，這根木頭此後卻成為整個基督信仰最核心的救贖象徵</div>
+          <div class="soul-body">西門所背負的十字架，正是耶穌即將被釘死其上的那件刑具——這個看似只是被迫服勞役的瞬間，卻讓西門成為聖經敘事中，與耶穌受難最貼近、最具體的肢體接觸見證人之一，這種身分的深刻性，賦予他的故事一種格外動人的神學意涵。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">西門的故事，是聖經中對『一場完全非自願、被迫承擔的痛苦經歷，可能成為一個人與全家生命徹底轉化之起點』這一深刻主題，刻畫得最含蓄動人的敘事典範之一。他被強迫背負十字架的那一刻，絕非出於他自己的選擇——他很可能只是恰巧經過、被羅馬兵丁隨機徵用的無辜路人，這場經歷，對他而言，起初很可能只是一件令人蒙羞、疲憊、甚至恐懼的強制性勞役。然而馬可福音特別補充『就是亞歷山大和魯孚的父親』這個細節，卻向讀者傳遞出一則極其動人的暗示——這場完全非自願的經歷，此後很可能成為西門與全家歸信基督最關鍵的起點，他的兩個兒子，甚至可能此後在初代教會中，成為廣為人知的重要成員。西門的故事提醒我們，生命中某些我們完全無法選擇、甚至滿懷抗拒被迫承擔的艱難處境，未必永遠只是單純的苦難或羞辱——神有時可能正透過這樣被迫的、意外的、甚至令人不情願的經歷，將我們帶到一個近乎耶穌自己、近乎十字架核心真理最貼近的位置，並在此後的歲月中，將這段經歷，轉化為我們生命與信仰最深刻的轉捩點。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ISFJ</span>
+      <div class="mbti-name">守衛者型 · 被迫背起十字架的路人</div>
+      <div class="mbti-slogan">「他沒有選擇這件事，卻可能因此，選擇了此後全新的一生。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">（材料不足以判斷） · —</span>
+          <div class="mbti-fn-body">聖經對西門個人具體言行的記載極為簡略，此處從缺，以維持對材料的誠實呈現，此MBTI類型標記主要基於他此後全家可能歸信基督這一發展的合理推想，而非基於具體的敘事細節。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生唯一被具體記載的關係，是與那位他被迫替其背負十字架的耶穌——以及此後透過他兩個兒子的姓名，向讀者暗示的全家歸信之可能發展。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">耶</div>
+          <div class="relation-name">耶穌</div>
+          <div class="relation-type-badge">他被迫替其背負十字架的主</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">西門在毫無準備之下，被迫代替因鞭打而虛弱的耶穌，背負沉重的十字架前往各各他——這是他與耶穌唯一一次被具體記載的直接接觸，卻也是聖經敘事中，一位路人與耶穌受難之路最貼近的肢體見證。</div>
+          <div class="relation-ref">可 15:21</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">子</div>
+          <div class="relation-name">亞歷山大與魯孚</div>
+          <div class="relation-type-badge">他的兩個兒子，此後可能成為初代教會的重要成員</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">馬可福音特別記載這兩個兒子的姓名，這個罕見的細節，暗示著他們此後很可能在馬可福音最初的讀者群體中廣為人知，保羅書信中也可能提及其中一位魯孚，作為『在主蒙揀選』的教會成員。</div>
+          <div class="relation-ref">可 15:21 · 羅 16:13</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「就是亞歷山大和魯孚的父親」——馬可福音這句看似附帶的補充說明，卻向讀者傳遞出一則關於『被迫的苦難如何轉化為全家蒙福』最含蓄動人的暗示。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「有一個古利奈人西門，就是亞歷山大和魯孚的父親，從鄉下來，經過那地方，他們就勉強他同去，好背著耶穌的十字架。」</div>
+      <div class="verse-ref">馬可福音 15:21</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">ἀγγαρεύουσιν</span>
+        <div class="word-transliteration">angareuousin · 勉強 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「強制徵用、強迫服勞役」，這個字源自波斯文，特指羅馬佔領軍依法擁有、可隨意徵用當地平民從事特定勞役（如搬運物品）的權力。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這個字精確地說明了西門背負十字架這件事，完全出於強制而非自願——他沒有選擇的餘地，這使他此後（若確實）全家歸信基督的發展，格外具有『恩典臨到毫無預備、甚至毫不情願之人』這一深刻的神學意涵。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">Ῥοῦφον τὸν ἐκλεκτὸν ἐν κυρίῳ</span>
+        <div class="word-transliteration">Rouphon ton eklekton en kyrio · 在主蒙揀選的魯孚 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「在主裡蒙揀選的魯孚」，保羅在羅馬書問安名單中，特別以這個稱謂問候一位名叫魯孚的教會成員。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">儘管無法完全確認這位魯孚，就是西門的兒子，兩者姓名的巧合、以及地理與時間脈絡的合理性，使多數釋經學者傾向認為，這極可能正是同一人——若確實如此，這意味著西門這場被迫的十字架經歷，最終在他兒子身上，結出了『在主裡蒙揀選』這樣深具份量的屬靈果實。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">神能夠使用完全非自願、甚至被迫的處境成就祂救贖工作中重要的部分</div>
+      <div class="theology-insight-body">西門背負十字架完全出於被迫而非自願，然而這段經歷，卻可能成為他與全家歸信基督最關鍵的起點——這提醒我們，神的恩典，未必總是透過我們主動選擇的處境臨到，也可能透過我們完全無法掌控、甚至被迫承擔的艱難經歷而來。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">與耶穌受難最貼近的肢體接觸可能成為信仰最深刻的起點</div>
+      <div class="theology-insight-body">西門是福音書記載中，唯一一位被具體記載曾親身背負耶穌十字架的人，這種與基督受難最貼近的肢體性經歷，某種程度上，也象徵著此後保羅所教導『與基督同釘十字架』這一深刻屬靈真理的具體先聲。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">聖經敘事中看似附帶的細節可能承載著深遠的神學暗示</div>
+      <div class="theology-insight-body">馬可福音特別提及西門兩個兒子的姓名，這個看似附帶的細節，卻向讀者傳遞出一則關於全家歸信的動人暗示，提醒我們留意聖經敘事中，那些看似次要卻可能承載深意的具體細節。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">西門被迫背負耶穌的十字架，這段完全非自願的經歷，此後卻可能成為他與全家歸信基督最關鍵的起點，他的兒子甚至此後可能成為『在主裡蒙揀選』的教會成員</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這種『被迫背負十字架、卻因此經歷生命轉化』的模式，具體預表了此後保羅所教導『你們若是與基督同釘十字架，現在活著的不再是我，乃是基督在我裡面活著』這一核心屬靈真理——與基督十字架的貼近接觸，無論是主動或被迫，都可能成為生命徹底轉化的起點</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">保羅宣告「我已經與基督同釘十字架，現在活著的不再是我，乃是基督在我裡面活著」，西門這場被迫背負十字架、卻可能因此帶來全家歸信的經歷，正是這句深刻屬靈真理最具體而動人的歷史先聲（加 2:20）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正被迫承擔某個你完全沒有選擇、甚至滿懷不情願的艱難處境或責任——西門的故事，想告訴你，這段被迫的經歷，可能正是神轉化你生命最意想不到的起點。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">西門的故事命中的是每一個此刻正被迫承擔某個自己完全沒有選擇、甚至滿懷不情願的艱難處境、責任、或十字架的人——無論是照顧生病的家人、承擔一份不情願的工作責任、或身處某個自己無法選擇離開的艱難處境。他的故事提醒我們，一場完全被迫、甚至令人蒙羞疲憊的經歷，未必永遠只是單純的苦難，神有時正透過這樣的處境，將我們帶到與祂救贖真理最貼近的位置，並在此後的歲月中，將這段經歷，轉化為我們生命最深刻的祝福與轉捩點。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你此刻是否正被迫承擔某個自己完全沒有選擇、甚至滿懷不情願的艱難處境或責任？西門被迫背負十字架、此後卻可能全家蒙福的故事，對你此刻的處境，帶來什麼樣的盼望？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">西門自己沒有留下一句話語，我們只能透過他兒子的姓名，推測這段經歷此後可能帶來的正面轉化。你生命中，是否也有某段當下看似毫無意義、甚至令人抗拒的經歷，此後卻在回顧時，發現了超乎預期的深遠意義？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">西門是福音書中唯一被記載曾親身背負耶穌十字架的人。你如何理解『與基督的十字架貼近接觸』這件事，無論是主動或被迫，可能為一個人的生命帶來何等深刻的轉化？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 西門</span>
+        <div class="gen-title">示範劇本：完全非自願地被迫背負耶穌的十字架，這段經歷可能成為他與全家歸信基督最關鍵的起點</div>
+        <div class="gen-body">他毫無準備、也毫無選擇地被羅馬兵丁強迫背負耶穌的十字架，這段完全被迫的經歷，透過馬可福音對他兒子姓名的特別記載，暗示著此後可能帶來他與全家生命的徹底轉化。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 亞歷山大與魯孚（他的兩個兒子）</span>
+        <div class="gen-title">延續：從父親被迫的十字架經歷，到兒子此後在初代教會中蒙揀選的身分</div>
+        <div class="gen-body">若保羅書信中提及的魯孚正是西門之子，這意味著西門一家，此後很可能全家歸信基督，並在初代教會（很可能是羅馬教會）中，成為廣為人知、具體而重要的成員。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在西門的故事中，展現得極為含蓄卻深刻——神使用一場完全非自願、被迫承擔的痛苦經歷，將一位素不相識的路人，帶到與耶穌受難最貼近的位置，並可能藉此，開啟了他與全家此後歸信基督、在初代教會中蒙揀選服事的美好篇章。這提醒我們，神的恩典，能夠臨到我們生命中最意想不到、甚至最不情願的處境之中。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位被羅馬兵丁隨機抓來背十字架的路人，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#被迫的處境可能藏著轉機</span>
+      <span class="tag">#與十字架貼近的經歷改變人生</span>
+      <span class="tag">#小小的細節可能藏著大故事</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>西門那天，大概只是像平常一樣，從鄉下進城辦點事。走到半路，羅馬士兵一把把他攔下來——按照當時羅馬帝國的規矩，士兵有權隨意徵用當地百姓做勞役，西門完全沒有拒絕的餘地。他們要他背起一根沉重的木頭，那是耶穌的十字架，因為耶穌被鞭打得太重，已經沒有力氣自己背了。</p>
+      <p>西門完全沒有選擇。這對他來說，很可能是一件蒙羞、疲憊、甚至有點恐懼的差事——莫名其妙就被捲進了一場公開處決的隊伍裡。</p>
+      <p>聖經對西門本人的反應，什麼都沒說。但馬可福音特別加了一句話：他就是亞歷山大和魯孚的父親。這句話很奇怪，福音書一般不會特別介紹一個只出現一次的路人的家人，除非，這兩個兒子，此後在讀這卷福音書的教會裡，是大家都認識的人。</p>
+      <p>後來，保羅寫羅馬書，問安名單裡提到一個叫魯孚的人，說他是『在主蒙揀選的』，還提到魯孚的媽媽，待保羅像自己的兒子一樣。如果這個魯孚就是西門的兒子，那麼西門這場完全被迫的十字架經歷，很可能，成了他跟全家信主最重要的起點。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——西門這塊石頭，被硬生生地拖去承受一段完全不屬於自己的重量，卻可能因此，被雕出了全家蒙福的形狀。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你此刻正被迫承擔某件你完全不情願、也沒有選擇的事——西門的故事想告訴你：這件事，未必只是單純的苦難，它可能正是神轉化你生命最意想不到的起點。</p>
+      <p style="margin-top:12px;">跟十字架貼近的經歷，即使是被迫的，也可能徹底改變一個人的一生。留意你生命中那些『被迫』的處境，也許正藏著神的心意。</p>
+      <p style="margin-top:12px;">有時候，一個看似不起眼的小細節（就像西門兒子的名字），可能藏著一個更大、更動人的故事。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果你正被迫背負某個不情願的重擔——留意，這可能正是轉化的起點。</p>
+    </div>
+
+    <div class="insight-box">西門的故事，持續為當代討論『非自願的苦難如何可能成為生命轉化的契機』這一課題，提供了聖經中最含蓄卻也最動人的參照案例，特別鼓舞著許多此刻正被迫承擔某種不情願之責任或處境的人。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他從一位被羅馬兵丁隨機強徵、代替耶穌背負十字架的路人，可能成為全家歸信基督、在初代教會中蒙揀選服事的重要見證，留下了聖經中最含蓄動人的轉化故事之一。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">唯一被記載曾親身背負耶穌十字架的人</div>
+          <div class="legacy-body">他是福音書中，唯一一位被具體記載曾親身代替耶穌背負十字架的人，這種與基督受難最貼近的肢體性經歷，賦予他在整個受難敘事中獨特而重要的地位。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">『被迫的苦難轉化為全家蒙福』的重要暗示典範</div>
+          <div class="legacy-body">馬可福音對他兩個兒子姓名的特別記載，持續為後世提供了『完全非自願的艱難經歷，可能成為一個人與全家生命徹底轉化之起點』這一課題最含蓄動人的敘事範例。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">初代教會（可能是羅馬教會）重要成員的父親</div>
+          <div class="legacy-body">若保羅書信中的魯孚確實是他的兒子，這意味著西門一家，此後在初代教會的具體服事與見證中，扮演著相當重要的角色。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「有一個古利奈人西門，就是亞歷山大和魯孚的父親，從鄉下來，經過那地方，他們就勉強他同去，好背著耶穌的十字架。」</div>
+      <div class="final-verse-ref">馬可福音 15:21</div>
+    </div>
+
+    <div class="final-question">如果你此刻正被迫承擔某個自己完全沒有選擇、甚至滿懷不情願的艱難處境——你願不願意相信，就像西門的故事所暗示的，這段經歷，可能正是神轉化你生命最意想不到的起點？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 西門 <span>Σίμων ὁ Κυρηναῖος</span> · 被強迫背起耶穌十字架的路人 · 亞歷山大與魯孚的父親</div>
+
+</body>
+</html>

@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>亞哈 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">亞哈</h1>
+  <span class="hero-name-en">Ahab · אַחְאָב</span>
+  <p class="hero-slogan">「從前沒有像亞哈的，因他自賣，行耶和華眼中看為惡的事，受了耶洗別王后的誘惑。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">約主前874–853年在位（北國以色列王，在位二十二年）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ISFP · 探險家型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">列王紀上 16–22 章</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">北國以色列王 · 耶洗別之夫 · 縱容妻子惡行的軟弱君王</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">聖經對他的評價毫不留情：『從前沒有像亞哈的，因他自賣，行耶和華眼中看為惡的事，受了耶洗別王后的誘惑』——他不是一位主動策劃惡行的暴君，卻是一位在關鍵時刻，一再選擇軟弱屈服、縱容妻子惡行的君王。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">約主前874–853年在位，北國以色列王，在位二十二年</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">暗利之子，北國以色列王</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">撒馬利亞</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">妻耶洗別；子亞哈謝、約蘭（先後繼位）；女亞她利雅（此後嫁猶大王）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">王上 16:29–22:40</div>
+      </div>
+    </div>
+
+    <p>亞哈的統治，聖經以極其嚴厲的評語開篇：『暗利的兒子亞哈行耶和華眼中看為惡的事，比他以前的列王更甚……又娶了西頓王謁巴力的女兒耶洗別為妻，去事奉敬拜巴力，在撒馬利亞建造巴力的廟，在廟裡為巴力築壇。』這段評語清楚顯示，亞哈的惡行，很大程度上與他娶耶洗別為妻、進而『受了耶洗別王后的誘惑』有著直接的關聯——這種將自己信仰與治理方向，深受配偶影響甚至主導的模式，貫穿了亞哈統治的大部分時期。然而亞哈並非全然剛硬不化的人物——當先知以利亞在迦密山擊敗巴力先知、宣告嚴厲的乾旱審判之後，亞哈確實一度展現出某種程度的懼怕與敬畏；此後在先知傳達神對他家族的審判信息時，聖經也記載『亞哈聽見這話，就撕裂衣服，禁食，身穿麻布，睡臥也穿著麻布，並且緩緩而行』，耶和華也因此對以利亞說：『我因他在我面前自卑，就不在他活著的日子降這禍』——這段記載，顯示亞哈確實具備某種程度悔改的能力，只是這份悔改，此後未能真正持續轉化為徹底而堅定的信仰委身。</p>
+    <p>亞哈生命中最著名、也最深刻揭示其性格軟弱的一幕，記載於拿伯葡萄園事件——亞哈看中了鄰近王宮的一片葡萄園，想要買下或交換作為菜園，園主拿伯卻以『耶和華不許我把我先人留下的產業給你』為由拒絕（依摩西律法，祖傳的產業不可任意變賣）。面對這個合理而合乎律法的拒絕，堂堂一國之君的亞哈，卻展現出令人詫異的孩子氣反應：『就悶悶不樂地回宮，臉面轉向一邊，也不吃飯。』正是這份幼稚而消極的沮喪，給了耶洗別可乘之機——她主動介入，以亞哈的名義偽造書信，唆使假見證誣陷謀害了拿伯，奪得了這片葡萄園。聖經沒有明確記載亞哈是否事先知情這場謀殺的具體計畫，然而當耶洗別將奪來的葡萄園交給他時，亞哈欣然接受，並未追究或阻止這場冷血的司法謀殺——這個沉默的接受，使他與這場罪行同樣需要承擔嚴厲的審判責任，以利亞因此宣告：『在狗舔拿伯血的地方，狗也必舔你的血。』亞哈此後在與亞蘭人的戰爭中，儘管刻意喬裝出戰，仍被一支無意射出的箭射中，血流滿了車，當日晚間便死去——他的血在耶斯列的池旁被洗淨，狗來舔他的血，妓女在那裡洗澡，應驗了先知先前的審判預言。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從娶耶洗別為妻、開始事奉巴力的以色列王，到迦密山對決後短暫的敬畏與悔改，再到因拿伯葡萄園而悶悶不樂、縱容妻子謀殺奪產，最終在戰場上中箭身亡——亞哈的一生，是聖經中對『軟弱的君王如何在關鍵時刻一再選擇屈從而非堅守公義』刻畫得最完整的敘事之一。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">娶耶洗別為妻，開始事奉巴力——「行耶和華眼中看為惡的事，比他以前的列王更甚」</div>
+        <div class="timeline-body">亞哈娶西頓王之女耶洗別為妻，此後開始事奉敬拜巴力，並在撒馬利亞為巴力建廟築壇，聖經評價他的惡行，比在他之前所有的以色列王都更加嚴重。</div>
+        <div class="timeline-ref">王上 16:30–33</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">迦密山對決後短暫的敬畏——「亞哈聽見這話，就撕裂衣服……在我面前自卑」</div>
+        <div class="timeline-body">面對以利亞在迦密山擊敗巴力先知的神蹟，以及此後先知傳達對他家族的審判信息，亞哈曾展現出撕裂衣服、禁食、身穿麻布的悔改姿態，耶和華也因此暫緩了原定要降在他身上的禍患。</div>
+        <div class="timeline-ref">王上 18章 · 21:27–29</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">因拿伯葡萄園而悶悶不樂——「就悶悶不樂地回宮，臉面轉向一邊，也不吃飯」</div>
+        <div class="timeline-body">亞哈因拿伯依律法合理拒絕出售祖傳葡萄園而陷入孩子氣的沮喪，這份消極的情緒反應，給了耶洗別可乘之機，主動介入策劃了謀害拿伯、奪取葡萄園的冷血罪行，亞哈默許接受了這片葡萄園。</div>
+        <div class="timeline-ref">王上 21:1–16</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">戰場中箭身亡，應驗審判預言——「狗也必舔你的血」</div>
+        <div class="timeline-body">亞哈在與亞蘭人的戰爭中喬裝出戰，卻被一支無意射出的箭射中，血流滿車，當日晚間便死去，他的血在耶斯列池旁被洗淨、狗來舔血，完全應驗了先知以利亞先前針對拿伯葡萄園事件所發出的審判預言。</div>
+        <div class="timeline-ref">王上 22:29–38</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他是聖經中對『一位擁有實質權力、卻在關鍵的道德抉擇時刻一再選擇軟弱屈從、任憑更為強勢之配偶主導自己信仰與治理方向』刻畫得最具體的君王典範之一。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">缺乏堅定而自主的信仰核心，容易在關鍵時刻，受配偶或處境的強勢影響而動搖或屈從</div>
+          <div class="soul-body">聖經明確指出亞哈的惡行，很大程度上『受了耶洗別王后的誘惑』——這顯示他自身缺乏一種堅定不移、能夠抵擋外部強勢影響的信仰核心，這種性格上的軟弱，貫穿了他統治的大部分時期。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">面對明確的屬靈警示時，展現出至少表面而暫時的敬畏與悔改反應</div>
+          <div class="soul-body">亞哈在迦密山神蹟與以利亞審判宣告的雙重警示下，確實展現出撕裂衣服、禁食悔改的具體反應，這使他免於在自己活著的日子承受原定的審判——這種尚存的悔改能力，是他複雜性格中值得注意的一面。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">在面對挫折或渴望而不可得的處境時，傾向以消極的情緒沮喪來回應，而非透過正當的途徑積極處理</div>
+          <div class="soul-body">亞哈面對拿伯合理拒絕出售葡萄園時，選擇了『悶悶不樂、不吃飯』這種近乎孩子氣的消極反應，而非接受這個依律法合理的結果、或透過其他正當途徑處理，這種行事風格，是他性格中最令人詫異的軟弱。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">對妻子耶洗別惡行的默許與縱容，使他成為拿伯謀殺案不可推卸的共犯</div>
+          <div class="soul-body">儘管亞哈未必是拿伯謀殺案的主謀，他對耶洗別行動的默許、以及此後欣然接受奪來之葡萄園的行為，使他無可推卸地成為這場司法謀殺的共犯，也因此招致與耶洗別同樣嚴厲的審判。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">他短暫的悔改，使神暫緩了原定的審判，卻未能真正扭轉他家族此後被徹底剷除的命運</div>
+          <div class="soul-body">神因亞哈一時的自卑悔改，暫緩了原定要在他活著的日子降下的禍患，然而這份悔改，終究未能徹底扭轉神對他整個家族所發出的審判——這種『暫緩卻未能完全免除』的複雜結局，賦予亞哈的故事一種發人深省的張力。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">亞哈的故事，是聖經中對『一位擁有實質權力的領袖，若缺乏堅定而自主的道德核心，如何在關鍵時刻一再選擇軟弱屈從，最終招致嚴重後果』刻畫得最具體的君王典範之一。他並非如耶洗別那般，展現出主動而系統性的惡意策劃——聖經對他的描述，更多呈現出一種『被動的軟弱』：他因娶耶洗別為妻而『受了誘惑』開始事奉巴力，他因拿伯的合理拒絕而陷入近乎幼稚的消極沮喪，他對耶洗別謀害拿伯的計畫，未見積極的參與，卻也未見任何阻止或譴責的具體行動。這種性格上的軟弱與被動，某種程度上，比耶洗別赤裸裸的惡意，更具有一種發人深省的警示意義——它提醒我們，一個人未必需要主動策劃或執行惡行，僅僅是在關鍵的道德抉擇時刻，選擇沉默、迴避、或任憑更為強勢之他人主導局勢，同樣可能使自己成為惡行不可推卸的共犯，並承受相應的審判責任。亞哈確實展現出某種程度悔改的能力（撕裂衣服、禁食自卑），這使他得以在有生之年，暫緩神原定的審判，然而這份悔改的表面性與短暫性，也提醒我們，真正徹底的信仰轉化，需要的不僅是危機時刻的情緒性反應，更需要此後持續而堅定的生命方向調整——而這，正是亞哈終其一生，都未能真正做到的。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ISFP</span>
+      <div class="mbti-name">探險家型 · 悶悶不樂的軟弱君王</div>
+      <div class="mbti-slogan">「他不是主動作惡的人，卻因為軟弱屈從，成了惡行最縱容的共犯。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">他面對拿伯拒絕出售葡萄園時，展現出強烈而未經節制的個人情感反應（悶悶不樂、不吃飯），這種情感主導、卻缺乏成熟自制的反應方式，正是主導內向情感在不成熟階段的展現。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Se · 外向實感</span>
+          <div class="mbti-fn-body">他對眼前具體渴望之事物（拿伯的葡萄園）有著直接而強烈的欲望反應，並在此後接受耶洗別為他奪來的葡萄園時，展現出對具體現實利益的直接接納。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">他在面對以利亞的審判宣告時，能夠一定程度地洞察這則預言所指向之深遠後果，並因此展現出自卑悔改的反應，顯示出第三功能有限的作用。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">他未能以堅定而果斷的領導力，阻止或糾正耶洗別的惡行，也未能將自己短暫的悔改轉化為持續而有紀律的信仰實踐，這種在執行果斷而有原則之領導行動上的欠缺，反映出劣勢外向思考的特徵。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最重要、也最具決定性的關係，是與那位主導他信仰方向、並在他軟弱沮喪之際主動介入策劃謀殺的妻子耶洗別。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">耶</div>
+          <div class="relation-name">耶洗別</div>
+          <div class="relation-type-badge">他的妻子，主導其信仰方向並策劃謀害拿伯的王后</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">亞哈因娶耶洗別為妻而『受了誘惑』開始事奉巴力，此後在拿伯葡萄園事件中，正是耶洗別主動介入，策劃了謀害拿伯的整個陰謀，亞哈則默許並接受了這片透過謀殺奪得的葡萄園。</div>
+          <div class="relation-ref">王上 16:31, 21:5–16</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">以</div>
+          <div class="relation-name">先知以利亞</div>
+          <div class="relation-type-badge">多次向他發出審判警告的先知</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">以利亞在迦密山公開擊敗巴力先知，向亞哈展現耶和華的大能；此後更在拿伯葡萄園事件後，向亞哈宣告嚴厲的審判預言——這段對抗與警示，貫穿了亞哈統治期間最重要的屬靈張力。</div>
+          <div class="relation-ref">王上 18, 21:17–29</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">拿</div>
+          <div class="relation-name">拿伯</div>
+          <div class="relation-type-badge">因拒絕出售葡萄園而被謀害的無辜受害者</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">拿伯依摩西律法合理拒絕出售祖傳的葡萄園給亞哈，這個拒絕引發亞哈的消極沮喪，並最終導致耶洗別策劃謀害了拿伯——這場悲劇，成為亞哈統治期間最深刻揭示其性格軟弱的具體事件。</div>
+          <div class="relation-ref">王上 21:1–16</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「亞哈聽見這話，就撕裂衣服……在我面前自卑」——神對亞哈短暫悔改的回應，展現出祂即使面對一位極其軟弱、甚至犯下嚴重過犯的君王，依然願意察看並回應任何真實的自卑悔改。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「亞哈聽見這話，就撕裂衣服，禁食，身穿麻布，睡臥也穿著麻布，並且緩緩而行。耶和華的話臨到提斯比人以利亞說：「亞哈在我面前這樣自卑，你看見了嗎？因他在我面前自卑，我不在他活著的日子降這禍。」」</div>
+      <div class="verse-ref">列王紀上 21:27, 28–29</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">מָכַר</span>
+        <div class="word-transliteration">makhar · 自賣 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「賣掉、出賣」，聖經用這個字形容亞哈『自賣，行耶和華眼中看為惡的事』，暗示他將自己完全交託給了行惡的道路。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這個字的使用，某種程度上，呼應了此後聖經中『罪的奴僕』這一概念——亞哈並非被迫作惡，而是某種程度上，主動或至少默許地『出賣』了自己，任憑錯誤的信仰與惡行主導自己的統治方向。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">נִכְנַע</span>
+        <div class="word-transliteration">nikhna · 自卑 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「使自己降卑、謙卑」，這個字描述亞哈在聽見審判宣告後，所展現出的具體悔改姿態。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">儘管亞哈此後的生命並未展現出徹底而持續的信仰轉化，神依然因這一次真實的自卑悔改，暫緩了原定的審判——這提醒我們，神願意察看並回應任何真實的悔改反應，即使這份悔改此後未能延續為完全的生命轉化。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">軟弱的屈從縱容同樣需要承擔嚴重的道德與屬靈責任</div>
+      <div class="theology-insight-body">亞哈未必是拿伯謀殺案的主謀，卻因默許並接受耶洗別的惡行，同樣招致嚴厲的審判——這確立了聖經神學中一個重要原則：對惡行的沉默縱容，同樣構成需要承擔責任的過犯。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">神察看並回應任何真實的自卑悔改即使此後未能持續</div>
+      <div class="theology-insight-body">神因亞哈一時的自卑悔改，暫緩了原定要降下的禍患，這展現出神對真實悔改的珍視與回應，即使這份悔改，此後未能真正轉化為徹底而持久的生命改變。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">缺乏堅定信仰核心的領袖容易被更強勢之他人主導方向</div>
+      <div class="theology-insight-body">亞哈的一生，展現出一位缺乏堅定自主信仰核心的領袖，如何容易受配偶或處境的強勢影響而動搖，這提醒身處任何領導位置的人，建立堅定而自主的信仰根基何等重要。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">亞哈因軟弱而默許縱容妻子耶洗別謀害無辜的拿伯、奪取其產業，即使此後展現出一時的自卑悔改，依然無法完全逃脫神所宣告的審判後果</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這種『因軟弱而默許他人之惡行，最終仍需承擔相應審判責任』的敘事模式，提醒信徒必須謹慎省察自己是否也曾以沉默或消極的方式，縱容身邊發生的不義</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">雅各書教導信徒「人若知道行善，卻不去行，這就是他的罪了」，亞哈對耶洗別惡行的默許與縱容，正呼應著這種『因不作為而承擔之罪責』的屬靈警示（雅 4:17）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正身處某個處境，發現自己因軟弱或消極，而默許甚至縱容身邊之人正在進行的不義行為——亞哈的故事，是一則鄭重的警示。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">亞哈的故事命中的是每一個此刻正身處某個處境，發現自己因軟弱、消極、或不願面對衝突，而默許甚至間接縱容身邊之人（配偶、同事、朋友）正在進行的不義行為的人。他的故事提醒我們，對惡行的沉默縱容，同樣構成我們需要承擔的道德與屬靈責任——即使我們自己並非主謀，僅僅是選擇不作為、不阻止、或事後欣然接受不義所帶來的利益，同樣可能使我們成為這場惡行不可推卸的共犯。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你此刻是否正身處某個處境，發現自己因軟弱或消極，而默許甚至間接縱容身邊之人正在進行的不義行為？亞哈對耶洗別惡行的沉默默許，對你此刻的處境，帶來什麼樣的警示？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">亞哈因拿伯合理的拒絕而陷入孩子氣的沮喪，而非接受這個結果或透過正當途徑處理。你是否也曾在面對某個合理卻不如己意的結果時，選擇了消極的情緒反應，而非成熟的接納或正當的處理？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">亞哈曾展現出一時的悔改（撕裂衣服、禁食），神也因此暫緩審判，然而這份悔改此後並未真正持續轉化他的生命。你自己過往的悔改經歷，是否也曾停留在一時的情緒反應，而未能真正延續為持久的生命改變？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 亞哈</span>
+        <div class="gen-title">示範劇本：因軟弱而受妻子耶洗別的信仰與惡行主導，即使展現一時悔改，仍未能徹底扭轉家族的審判命運</div>
+        <div class="gen-body">他因娶耶洗別為妻而偏離信仰、默許縱容她謀害拿伯的惡行，儘管曾展現出一時的自卑悔改而暫緩神的審判，最終依然在戰場上中箭身亡，應驗了先知先前的審判預言。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 亞哈謝、約蘭（他的兒子們）</span>
+        <div class="gen-title">延續：亞哈家族此後被耶戶徹底剷除，應驗了神對其家族的審判</div>
+        <div class="gen-body">亞哈死後，他的兒子亞哈謝、約蘭先後繼位，然而神對亞哈家族的審判，最終在耶戶奉神差遣起來革命、徹底剷除亞哈全家的行動中完全應驗，展現出即使個人的審判被暫緩，家族性的審判依然可能在此後的世代中應驗。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在亞哈的故事中，展現在神即使面對他一生大部分時間的軟弱與過犯，依然願意察看並回應他一時真實的自卑悔改，暫緩了原定要在他活著的日子降下的禍患。這提醒我們，即使是最軟弱、甚至犯下嚴重過犯的人，神依然願意在任何一次真實悔改的時刻，向他們顯明恩慈的回應——然而這份恩典，也呼籲我們，將一時的悔改，轉化為持續而堅定的生命改變。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位因妻子的強勢而偏離信仰、又因鄰居不肯賣地而悶悶不樂的軟弱君王，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#沉默縱容也是一種責任</span>
+      <span class="tag">#軟弱的君王一樣要負責</span>
+      <span class="tag">#一時悔改要轉化成持續的改變</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>亞哈是北國以色列的王，聖經對他的評價很直接：他做的惡事，比之前所有的以色列王都嚴重——很大一部分原因，是因為他娶了耶洗別，然後『受了她的誘惑』，開始拜巴力。</p>
+      <p>但亞哈不是那種主動策劃壞事的人，他比較像是，在關鍵時刻，一次又一次選擇軟弱、選擇讓別人（特別是他老婆）替他做決定。</p>
+      <p>最能看出這一點的，是拿伯葡萄園那件事。亞哈看中了鄰居拿伯的一塊葡萄園，想買下來，拿伯按照律法拒絕了——祖傳的地不能隨便賣。堂堂一國之君，聽到這個合理的拒絕，反應是什麼？躺在床上，臉轉向一邊，不吃飯，像個賭氣的孩子。</p>
+      <p>耶洗別看不下去，直接說：你不是王嗎？她自己動手，偽造書信，找假見證，把拿伯用石頭打死，奪來了葡萄園。聖經沒有寫亞哈事先知不知情，但他事後開開心心地接受了這塊地——這個默許跟接受，讓他一樣要負起責任。以利亞因此宣告：你的血，也要被狗舔。</p>
+      <p>後來亞哈在跟亞蘭人的戰爭中，特意喬裝出戰，還是被一支亂箭射中，當天晚上就死了。他的血，就在先知預言的那個地方，被狗舔了。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——亞哈這塊石頭，不是被雕成主動作惡的形狀，而是被『放任』雕成了共犯的形狀。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你此刻發現自己在某件不義的事情上，選擇了沉默或消極——亞哈的故事想提醒你：不作為，也是一種責任，不能完全置身事外。</p>
+      <p style="margin-top:12px;">面對合理卻不如意的結果，別讓自己陷入孩子氣的沮喪。成熟地接受，或者透過正當的方式處理，才是更健康的回應。</p>
+      <p style="margin-top:12px;">一時的悔改很好，但別讓它只停在情緒層面。真正的改變，需要持續的努力。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果你正對身邊的不義保持沉默——想想，這份沉默，是不是也是一種縱容。</p>
+    </div>
+
+    <div class="insight-box">亞哈的故事，持續為當代討論『旁觀者效應』與『沉默的共犯責任』這兩個社會心理學課題，提供了聖經中最具體的參照案例，提醒我們，不作為同樣需要承擔道德責任。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他從一位娶耶洗別為妻、偏離信仰的君王，因對妻子惡行的軟弱縱容，最終應驗了先知的審判預言，留下了聖經中『軟弱屈從同樣需要承擔責任』最具體的警示。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">『沉默縱容同樣需要承擔道德責任』的重要聖經例證</div>
+          <div class="legacy-body">他對耶洗別謀害拿伯之惡行的默許與接受，成為聖經中『對不義的沉默縱容同樣構成需要承擔之過犯』這一原則最具體的敘事案例。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">『一時悔改與持續生命轉化之間落差』的重要警示典範</div>
+          <div class="legacy-body">他展現出的一時自卑悔改，儘管換來神暫緩審判的恩慈回應，卻未能真正轉化為持久的生命改變，持續為後世提供反思『真實悔改需要持續實踐』這一課題的重要例證。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">以色列列王中被聖經評價最為嚴厲的君王之一</div>
+          <div class="legacy-body">聖經『從前沒有像亞哈的』這句評語，使他在整個以色列列王的歷史記載中，成為信仰偏離與治理失職最嚴厲的負面典範之一。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「從前沒有像亞哈的，因他自賣，行耶和華眼中看為惡的事，受了耶洗別王后的誘惑。」</div>
+      <div class="final-verse-ref">列王紀上 21:25</div>
+    </div>
+
+    <div class="final-question">如果你此刻正因軟弱或消極，而默許甚至間接縱容身邊之人正在進行的不義行為——你願不願意記取亞哈的教訓，勇敢地承擔起自己不作為所帶來的責任，並選擇積極的介入而非沉默的縱容？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 亞哈 <span>אַחְאָב</span> · 北國以色列王 · 行耶和華眼中看為惡最甚者 · 因悶悶不樂而縱容妻子謀害拿伯者</div>
+
+</body>
+</html>

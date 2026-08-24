@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>約押 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">約押</h1>
+  <span class="hero-name-en">Joab · יוֹאָב</span>
+  <p class="hero-slogan">「大衛臨終的時候，囑咐他兒子所羅門說：「你知道洗魯雅的兒子約押向我所行的……你所知道的，也知道他在太平之時流這二人的血，如在爭戰之時一樣……所以你要照你的智慧行，不容他白頭安然下陰間。」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">約主前十一至十世紀（大衛王朝時期）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ESTJ · 總經理型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">撒母耳記下 2–3, 11, 14, 18–20 章 · 列王紀上 1–2 章</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">大衛的外甥（洗魯雅之子）· 以色列軍隊元帥 · 執行多項爭議性軍事與政治行動者</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他是大衛麾下最忠誠、也最戰功彪炳的元帥，統領以色列軍隊征戰數十年——然而正是這位忠誠的統帥，卻也一次又一次，以先斬後奏、甚至公然違逆王命的方式，親手執行了聖經中幾樁最具爭議的殺戮事件。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">約主前十一至十世紀，大衛王朝時期</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">洗魯雅（大衛的姊妹）之子，大衛的外甥，以色列軍隊元帥</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">伯利恆，此後隨大衛征戰各地</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">母洗魯雅；兄弟亞比篩、亞撒黑（此後被押尼珥所殺）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">撒下 2–3, 11, 14, 18–20 章 · 王上 1–2 章</div>
+      </div>
+    </div>
+
+    <p>約押是大衛終身最重要的軍事統帥之一，他率領以色列軍隊，成功攻取耶路撒冷、征服眾多外邦勢力，戰功彪炳，是大衛統治期間軍事勝利不可或缺的關鍵推手。然而約押的忠誠，卻始終伴隨著一種令人不安的暴烈與獨斷——當押尼珥（掃羅家的元帥，此後歸順大衛）前來與大衛談和時，約押因押尼珥曾殺害自己的兄弟亞撒黑，竟私自將他誘騙至城門洞，親手將他刺殺，這場擅自的血親復仇，使大衛極其憤怒卻又無可奈何，只能公開哀悼押尼珥、並宣告『我雖然受膏為王，今日還是軟弱，這洗魯雅的兩個兒子比我剛強』。</p>
+    <p>約押生命中最具爭議的行動，發生在大衛與拔示巴的姦情事件中——他奉大衛之命，親自執行了那道要將烏利亞置於陣勢極險之處、藉此使他戰死的密令，儘管這道命令本身的道德責任在於大衛，約押卻是這場謀殺具體而毫不猶豫的執行者，甚至還特意調整了戰術部署以確保計畫成功。約押此後在押沙龍叛變事件中，同樣展現出他複雜而獨斷的行事風格——他先是策劃了讓押沙龍得以歸回耶路撒冷的計謀，此後卻在平定押沙龍叛變的戰役中，不顧大衛明確吩咐『要溫柔待押沙龍』的命令，親手用槍刺死了這位懸掛在橡樹上的王子，這個決定，使大衛陷入了『我兒押沙龍啊，我恨不得替你死』的椎心之痛。約押晚年在所羅門繼位的政治鬥爭中，選擇支持亞多尼雅而非所羅門，這個政治判斷上的失誤，加上他過去多年來一連串先斬後奏、屢屢僭越王權的行動，最終招致大衛在臨終遺言中，明確要求所羅門『不容他白頭安然下陰間』——所羅門登基後，約押逃往耶和華的帳幕、拿住祭壇的角尋求庇護，卻依然被比拿雅奉命在壇旁將他擊殺，結束了這位戰功彪炳卻爭議纏身的元帥充滿張力的一生。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從大衛麾下戰功彪炳的元帥，到私自誘殺押尼珥、親手執行烏利亞死刑指令、違命殺死押沙龍，最終在所羅門繼位的政爭中選錯陣營，並在祭壇旁被擊殺——約押的一生，是聖經中對『忠誠與獨斷如何交織、最終招致自我毀滅』刻畫得最複雜的軍事將領敘事之一。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">私自誘殺押尼珥——「這洗魯雅的兩個兒子比我剛強」</div>
+        <div class="timeline-body">約押因押尼珥曾殺害自己的兄弟亞撒黑，在押尼珥前來與大衛談和之際，私自將他誘至城門洞刺殺——這場擅自的血親復仇，使大衛極其憤怒卻又無可奈何。</div>
+        <div class="timeline-ref">撒下 3:22–30</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">執行烏利亞的死刑密令——「要派烏利亞前進至陣勢極險之處」</div>
+        <div class="timeline-body">約押奉大衛之命，將烏利亞置於陣勢最險惡之處、使他戰死，具體而毫不猶豫地執行了這場為掩蓋大衛姦情而策劃的謀殺。</div>
+        <div class="timeline-ref">撒下 11:14–17</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">違命殺死押沙龍——「約押……趕忙將三枝短槍刺入押沙龍的心」</div>
+        <div class="timeline-body">在平定押沙龍叛變的戰役中，約押不顧大衛明確吩咐『要溫柔待押沙龍』的命令，親手用槍刺死了懸掛在橡樹上的押沙龍，這個決定使大衛陷入椎心之痛。</div>
+        <div class="timeline-ref">撒下 18:9–15</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">在祭壇旁被擊殺——「不容他白頭安然下陰間」</div>
+        <div class="timeline-body">約押在所羅門繼位的政爭中支持亞多尼雅，大衛臨終遺命所羅門處置約押過去的罪責，所羅門登基後，約押逃往祭壇尋求庇護，仍被比拿雅奉命在壇旁擊殺，結束了他充滿張力的一生。</div>
+        <div class="timeline-ref">王上 1:7, 2:5–6, 28–34</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他是聖經中對『軍事上不可或缺的忠誠統帥，卻也在關鍵的道德與政治抉擇上，一再展現出獨斷專行、甚至公然違逆權威』刻畫得最複雜的人物典範之一——他的一生，交織著卓越的貢獻與深重的爭議。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">堅信自己對大衛與以色列軍隊的忠誠與貢獻，賦予了自己相當程度自主決斷、甚至先斬後奏的正當性</div>
+          <div class="soul-body">約押多次在未經大衛明確授權、甚至違逆大衛明確命令的情況下，依自己的判斷採取行動（誘殺押尼珥、違命殺押沙龍），這種行事模式，顯示出他深信自己身為元帥、且對大衛忠心耿耿的地位，賦予了他相當程度自主決斷的空間與正當性。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">展現出對大衛與以色列軍隊終身不渝的忠誠，以及卓越的軍事統帥才能</div>
+          <div class="soul-body">約押率領以色列軍隊，成功攻取耶路撒冷、征服眾多外邦勢力，這份數十年如一日的軍事貢獻與忠誠，是他性格中不可否認的美德。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">傾向以果斷、甚至獨斷的方式，直接處理他認為對大衛或以色列有利的具體事務，即使這意味著要違逆王命或道德常規</div>
+          <div class="soul-body">無論是誘殺押尼珥、執行烏利亞的死刑密令、或違命殺死押沙龍，約押都展現出一種『先斬後奏』、以結果為導向的行事風格，這種風格雖然在軍事上屢屢奏效，卻也一再突破道德與王權的界限。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">多次以暴烈而獨斷的手段，僭越王權、擅自剝奪他人性命，即使這違背了大衛明確的命令</div>
+          <div class="soul-body">約押誘殺押尼珥、違命殺死押沙龍等行動，展現出他性格中最令人不安的暴烈與獨斷——他似乎認為，只要自己判斷這是對大衛或以色列『最好』的結果，便有權僭越王的明確命令，甚至擅自剝奪他人的性命。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">他親手執行的兩場最具爭議的殺戮（烏利亞、押沙龍），恰恰都與大衛家庭最深的傷痛緊密相連</div>
+          <div class="soul-body">約押親手執行了導致烏利亞死亡的密令，也親手殺死了大衛椎心泣血、深愛卻叛變的兒子押沙龍——這兩場約押親自參與的死亡，某種程度上，成為大衛此後一生所要承受之家庭審判與傷痛的具體象徵，賦予約押這個角色一種近乎『執行審判之工具』的複雜意涵。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">約押的故事，是聖經中對『一位在軍事上不可或缺、忠誠卓著的統帥，卻在關鍵的道德與政治抉擇上，一再展現出獨斷專行、甚至公然違逆權威』這一複雜人格特質，刻畫得最完整的敘事典範之一。他對大衛與以色列軍隊的忠誠，是毋庸置疑的——數十年的軍事生涯，他率領大衛的軍隊，成就了無數關鍵的勝利。然而正是這同一位約押，卻在一次又一次的關鍵時刻，選擇以自己的判斷，僭越大衛明確的命令與道德的底線——他誘殺押尼珥，某種程度上，是出於血親復仇的個人動機；他執行烏利亞的死刑密令，儘管道德責任主要在大衛，他卻是毫不猶豫的具體執行者；他違命殺死押沙龍，儘管此舉某種程度上，也確實終結了這場威脅大衛王位的叛變，卻是對王命最直接、最公然的違逆。這種『忠誠卻獨斷』的複雜人格，某種程度上，正是聖經對『軍事或行政才能，未必與健全的道德判斷力成正比』這一深刻現實，所提供的具體人物寫照。約押最終在所羅門繼位的政爭中選錯陣營，加上過去這一連串先斬後奏的行動所累積的罪責，最終招致大衛臨終遺命對他的清算——他的故事提醒我們，即使一個人在某個專業領域（如軍事才能）展現出無可取代的貢獻，若在道德判斷與對權威的尊重上，一再選擇獨斷專行、僭越應有的界限，這樣的行事模式，終將累積成無法逃避的後果。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ESTJ</span>
+      <div class="mbti-name">總經理型 · 先斬後奏的元帥</div>
+      <div class="mbti-slogan">「他為大衛打贏了無數場仗，卻也一次又一次，用自己的判斷，凌駕於王的命令之上。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">他極其有效率地組織並執行軍事行動，並在多次關鍵時刻，果斷地依自己的判斷採取行動（即使違逆王命），這種以結果為導向、高效執行的行事風格，正是主導外向思考的典型展現。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Si · 內向感覺</span>
+          <div class="mbti-fn-body">他忠實地延續並執行既定的軍事職責與對大衛的效忠承諾，展現出對既有角色與責任的堅定持守，儘管這份持守，有時被他自己對『何謂正確行動』的判斷所扭曲。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ne · 外向直覺</span>
+          <div class="mbti-fn-body">他能敏銳地洞察政治與軍事局勢中的多重可能性，並據此規劃具體的策略（如策劃押沙龍歸回的計謀），顯示出一定程度的策略性思考能力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">他在誘殺押尼珥、違命殺死押沙龍等行動中，未能充分考量這些決定對大衛個人情感（喪失摯友押尼珥的信任、喪子之痛）所帶來的深刻傷害，這種對他人內在情感缺乏充分同理與尊重的傾向，反映出劣勢內向情感的特徵。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最重要、也最充滿張力的關係，是與那位他終身效忠、卻又屢屢僭越其命令的舅舅兼君王大衛——這段複雜的關係，最終以大衛臨終的清算指令畫下句點。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">大</div>
+          <div class="relation-name">大衛</div>
+          <div class="relation-type-badge">他終身效忠、卻屢屢僭越其命令的舅舅與君王</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">約押是大衛麾下最重要的軍事統帥，卻也多次以先斬後奏的方式違逆大衛的明確命令，這段複雜而充滿張力的關係，最終在大衛臨終遺命清算約押過去的罪責中畫下句點。</div>
+          <div class="relation-ref">撒下 3:39 · 王上 2:5–6</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">押</div>
+          <div class="relation-name">押尼珥</div>
+          <div class="relation-type-badge">被他私自誘殺的掃羅家元帥</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">約押因押尼珥曾殺害自己的兄弟亞撒黑，在他前來與大衛談和之際，私自將他誘騙刺殺，這場擅自的血親復仇，使大衛極其憤怒卻又無可奈何。</div>
+          <div class="relation-ref">撒下 3:22–30</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">押沙</div>
+          <div class="relation-name">押沙龍</div>
+          <div class="relation-type-badge">被他違命殺死的大衛之子</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">約押不顧大衛明確吩咐要溫柔對待押沙龍的命令，親手用槍刺死了這位懸掛在橡樹上的王子，這個決定，使大衛陷入了椎心之痛，也成為約押與大衛關係中最深的裂痕之一。</div>
+          <div class="relation-ref">撒下 18:9–15</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">所</div>
+          <div class="relation-name">所羅門</div>
+          <div class="relation-type-badge">奉大衛遺命清算約押罪責的新王</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">所羅門登基後，依照大衛臨終的遺命，差比拿雅在祭壇旁擊殺了逃往那裡尋求庇護的約押，正式了結了他過去一連串先斬後奏、僭越王命之行動的罪責。</div>
+          <div class="relation-ref">王上 2:28–34</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「不容他白頭安然下陰間」——大衛臨終對約押的這句遺命，成為聖經中對『忠誠若脫離對權威與道德界限的尊重，終將招致清算』最鄭重的警示之一。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「你所知道的，也知道他在太平之時流這二人的血，如在爭戰之時一樣……所以你要照你的智慧行，不容他白頭安然下陰間。」</div>
+      <div class="verse-ref">列王紀上 2:5–6</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">דָּם נָקִי</span>
+        <div class="word-transliteration">dam naqi · 無辜的血 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「無辜人的血」，用以形容約押在和平時期擅自殺害押尼珥與押沙龍等人，如同戰爭時期殺敵一般草率的行為。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這個詞組，精確地指出約押罪責的核心——他將本應嚴格區分的戰爭殺敵與和平時期擅自殺人這兩種截然不同的道德範疇，混為一談，這種對生命尊嚴缺乏應有敬畏的態度，正是大衛臨終遺命要求清算他的核心原因。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">שֵׂיבָה</span>
+        <div class="word-transliteration">seivah · 白頭 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「白髮、老年」，大衛使用『不容他白頭安然下陰間』這個表達，意指不容約押安享天年、平靜地走完他的一生。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這句遺命的嚴厲程度，顯示出大衛對約押這一連串罪行的深刻不滿，即使這些行動，某種程度上，都曾在當下對大衛個人或以色列軍隊帶來實際的『益處』，卻無法掩蓋這些行動背後，對王命與生命尊嚴的公然踐踏。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">軍事或專業才能上的卓越貢獻不能替代對道德界限與權威的應有尊重</div>
+      <div class="theology-insight-body">約押儘管在軍事上戰功彪炳，卻因一再僭越王命、擅自剝奪他人性命，最終招致清算——這確立了聖經中一個重要原則：任何領域的卓越才能與貢獻，都不能替代一個人對道德界限與正當權威應有的尊重。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">先斬後奏的行事模式即使結果看似有利終究需要承擔相應的責任</div>
+      <div class="theology-insight-body">約押多次以先斬後奏的方式達成看似對大衛有利的結果（除掉押尼珥、平定押沙龍叛變），然而這些行動背後所踐踏的道德界限，終究需要承擔相應的責任與後果。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">累積的罪責可能在遲來的時候才真正被清算</div>
+      <div class="theology-insight-body">約押的罪行分別發生在他一生不同的階段，卻在大衛臨終之際，才被正式而完整地清算——這提醒我們，即使某些過犯在當下未見立即的後果，神公義的清算，終將以祂自己所定的方式與時候來到。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">約押以先斬後奏、獨斷專行的方式，一再僭越大衛的王命、擅自剝奪他人性命，即使這些行動在軍事或政治上看似對大衛有利，最終依然招致大衛臨終遺命的嚴厲清算</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這種『表面忠誠卻屢屢僭越應有界限、最終招致清算』的模式，某種程度上，提醒我們新約中對『順服掌權者卻不逾越神所設立之界限』這一原則的重要性</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">彼得前書教導信徒「你們為主的緣故，要順服人的一切制度」，卻也在使徒行傳中示範「順從神，不順從人，是應當的」這一原則的界限——約押的悲劇，反面印證了逾越應有界限、僭越權柄的行動，終將招致嚴重的後果（彼前 2:13 · 徒 5:29）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻在某個崗位上，因自己過往的貢獻或才能，而傾向於以『先斬後奏』的方式，僭越應有的界限或權威——約押的故事，是一則鄭重的警示。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">約押的故事命中的是每一個此刻在某個崗位（職場、家庭、組織）上，因自己過往的貢獻、才能、或地位，而傾向於以『先斬後奏』、獨斷專行的方式，僭越應有的界限或正當權威的人。他的故事提醒我們，即使我們在某個領域展現出卓越的才能與貢獻，這都不能成為我們僭越道德界限、忽視他人正當權威、甚至損害他人尊嚴與生命的正當理由——這樣的行事模式，即使短期內看似『有效』，終究需要承擔相應的責任與後果。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你此刻是否在某個崗位上，因自己過往的貢獻或才能，而傾向於以先斬後奏的方式，僭越應有的界限或權威？約押的故事，對你此刻可能存在的這種傾向，帶來什麼樣的警示？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">約押在誘殺押尼珥、違命殺死押沙龍等行動中，展現出以結果為導向、卻忽視道德底線的行事模式。你是否也曾在追求某個看似『有利』的結果時，選擇了忽視應有的道德界限？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">約押的罪責，直到大衛臨終才被正式清算。你是否也曾以為，某些過去的過犯，因為未見立即的後果，就已經『過去了』？這對你重新省思過往的行動，帶來什麼樣的提醒？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 約押</span>
+        <div class="gen-title">示範劇本：以卓越的軍事才能忠誠效力於大衛，卻一再以先斬後奏的方式僭越王命，最終招致清算</div>
+        <div class="gen-body">他率領大衛的軍隊成就無數關鍵勝利，卻也多次以獨斷專行的方式，誘殺押尼珥、執行烏利亞的死刑密令、違命殺死押沙龍，最終在所羅門繼位的政爭中選錯陣營，招致大衛臨終遺命的嚴厲清算。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 所羅門</span>
+        <div class="gen-title">延續：所羅門登基後徹底清算約押的罪責，確立王權應有的秩序與尊嚴</div>
+        <div class="gen-body">所羅門依照大衛的遺命，正式清算了約押過去一連串僭越王命的罪責，這個決定，某種程度上，也象徵著所羅門統治初期，致力於重新確立王權應有秩序與尊嚴的具體行動。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在約押的故事中，展現得極為複雜——儘管他最終因累積的罪責而遭受清算，聖經依然誠實地記載了他數十年來對大衛與以色列軍隊的忠誠貢獻，這種對複雜人物功過並陳的誠實記載，提醒我們，神的公義審判，最終會考量一個人完整的生命軌跡，而非僅止於單一面向的評價。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位打了無數勝仗、卻一再先斬後奏違逆王命的元帥，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#才能不能替代對界限的尊重</span>
+      <span class="tag">#先斬後奏的代價終須承擔</span>
+      <span class="tag">#遲來的清算依然算數</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>約押是大衛的外甥，也是他最倚重的元帥，帶兵打了無數場勝仗，攻下耶路撒冷，征服了不少外邦勢力。單看軍事貢獻，他是大衛政權最重要的支柱之一。</p>
+      <p>但約押這個人，有個很危險的習慣——先斬後奏。押尼珥（掃羅家的元帥）曾經殺了約押的弟弟亞撒黑，後來押尼珥主動來跟大衛談和，約押完全不管大衛已經接納了這場和談，直接把押尼珥騙到城門洞，親手殺了他。大衛氣得說：這洗魯雅的兩個兒子，比我這個王還要剛強。</p>
+      <p>更嚴重的一次，是大衛跟拔示巴的姦情事件——大衛親手寫信，要約押把烏利亞派到最危險的地方害死他。約押毫不猶豫地照做了，甚至還特意調整了戰術部署確保計畫成功。</p>
+      <p>接著是押沙龍叛變。大衛明確交代：對押沙龍要手下留情。約押卻在押沙龍被樹枝纏住頭髮、動彈不得的時候，直接拿槍刺死了他——完全違背了大衛的命令，讓大衛陷入『我兒啊，我恨不得替你死』的巨大悲痛。</p>
+      <p>大衛臨終前，把這一切都算了總帳，交代所羅門：不要讓約押安然老死。所羅門登基後，約押逃到祭壇邊想尋求庇護，還是被下令在那裡處死了。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——約押這塊石頭，被戰功雕出了耀眼的光澤，卻也因為一次次先斬後奏，被鑿出了再也無法修補的裂痕。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你此刻在某個位置上，因為過去的貢獻，開始習慣先斬後奏——約押的故事想提醒你：才能跟功勞，不能替代對界限的尊重。</p>
+      <p style="margin-top:12px;">先斬後奏，即使結果看起來『有效』，代價通常不會消失，只是延遲出現。</p>
+      <p style="margin-top:12px;">有些帳，會算得比你想像的更晚，但終究會算清楚。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果你正想「先斬後奏」——先停下來，想想這樣做的代價。</p>
+    </div>
+
+    <div class="insight-box">約押的故事，持續為當代討論『高績效員工的權力濫用』與『才能與品格之間的落差』這類組織管理議題，提供了聖經中最具體而深刻的參照案例。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他以卓越的軍事才能，成為大衛政權最重要的支柱之一，卻也因一再僭越王命、獨斷專行，最終招致大衛臨終遺命的清算，留下了聖經中『才能與道德界限之間張力』最複雜的見證。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">大衛王朝軍事勝利不可或缺的關鍵統帥</div>
+          <div class="legacy-body">他率領以色列軍隊成就無數關鍵勝利，包括攻取耶路撒冷，是大衛統治期間軍事成就不可或缺的重要推手。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">『先斬後奏終須承擔責任』的重要警示典範</div>
+          <div class="legacy-body">他多次以獨斷專行的方式僭越王命、擅自剝奪他人性命，最終招致清算，成為聖經中『即使結果看似有利，逾越道德界限終究需要承擔責任』這一原則最具體的例證。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">大衛家庭悲劇中不可或缺的執行角色</div>
+          <div class="legacy-body">他親手執行了烏利亞的死刑密令、也親手殺死了押沙龍，這兩場死亡都與大衛家庭最深的傷痛緊密相連，使約押在整個大衛家族的悲劇敘事中，扮演著複雜而關鍵的角色。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「你所知道的，也知道他在太平之時流這二人的血，如在爭戰之時一樣……所以你要照你的智慧行，不容他白頭安然下陰間。」</div>
+      <div class="final-verse-ref">列王紀上 2:5–6</div>
+    </div>
+
+    <div class="final-question">如果你此刻因自己過往的貢獻或才能，而傾向於以先斬後奏的方式僭越應有的界限或權威——你願不願意記取約押的教訓，重新謹守對道德底線與正當權柄的尊重？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 約押 <span>יוֹאָב</span> · 大衛的元帥與外甥 · 忠誠善戰卻屢屢先斬後奏者 · 執行烏利亞謀殺計畫的軍事執行者</div>
+
+</body>
+</html>

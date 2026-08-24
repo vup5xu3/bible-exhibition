@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>約瑟 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">約瑟・·亞利馬太人</h1>
+  <span class="hero-name-en">Joseph of Arimathea · Ἰωσὴφ ὁ ἀπὸ Ἁριμαθαίας</span>
+  <p class="hero-slogan">「有一個人名叫約瑟，是個議士，為人善良公義；……他去見彼拉多，求耶穌的身體。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">約主後30年（耶穌受難之時）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ISFJ · 守衛者型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">馬太福音27章 · 馬可福音15章 · 路加福音23章 · 約翰福音19章</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">猶太公會議士 · 暗自作耶穌門徒者 · 安葬耶穌之人</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他是猶太公會中一位有財富、有地位、受人尊敬的議士——四卷福音書都不約而同地記載了他的名字與這件事，卻也都特別指出，他『因怕猶太人，就暗暗地作門徒』。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">約主後30年，耶穌受難之時</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">亞利馬太人，猶太公會（Sanhedrin）中一位尊貴的議士，財主</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">亞利馬太，此後於耶路撒冷任職公會議士</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">聖經未詳細記載其家庭成員</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">太 27:57–60 · 可 15:42–46 · 路 23:50–53 · 約 19:38–42</div>
+      </div>
+    </div>
+
+    <p>約瑟在四卷福音書中都留下了記載，這種罕見的一致性，顯示出他在耶穌受難與安葬事件中所扮演角色的重要性。路加福音給予他極高的評價：『這人是個議士，為人善良公義。眾人所謀所為，他並沒有附從。』這句評語極具份量——它明確指出，儘管約瑟身為猶太公會的一員，他卻沒有參與該公會定意將耶穌置於死地的那場審判與陰謀。約翰福音則補充了一個關鍵的細節：約瑟『因怕猶太人，就暗暗地作門徒』——這句話誠實地揭示出，他雖然內心相信耶穌，卻長期因懼怕猶太領袖與同儕的壓力，未能公開表明自己的信仰立場。</p>
+    <p>然而，正是在耶穌被釘死、其他門徒因懼怕而四散躲避的那個下午，約瑟卻做出了他一生中最勇敢、也最公開的信仰宣告——馬可福音特別用『放膽』（或譯『壯膽』）這個字，形容他前去見彼拉多、求領耶穌身體的舉動：『約瑟壯著膽子進去見彼拉多，求耶穌的身體。』這是一個極具政治與社會風險的行動——公開向羅馬總督求領一位被以叛國罪名處死之人的屍體，等同於公然宣告自己與這位『罪犯』的關聯，這在當時的處境下，足以徹底摧毀他在公會中的地位與聲望。彼拉多准許了他的請求，約瑟便用細麻布裹好耶穌的身體，安放在自己為自己預備、『從來沒有葬過人』的新墳墓裡，又滾了一塊大石頭擋住墓門。約翰福音更記載，另一位同樣暗中信主的公會議士尼哥底母，也在這個時刻與約瑟一同行動，帶來沒藥與沉香的香料，用以膏抹耶穌的身體——這兩位曾經『暗暗』相信的人，在耶穌看似徹底失敗、被釘十字架死去的最深黑暗時刻，反而選擇了公開而勇敢的行動。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從公會中暗自相信、卻因懼怕而未敢公開的議士，到在耶穌死後放膽向彼拉多求領遺體、公開安葬祂的信徒——約瑟的故事，是聖經中對『暗藏的信心如何在關鍵時刻轉化為公開行動』刻畫得最動人的敘事之一。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">暗中作門徒——「因怕猶太人，就暗暗地作門徒」</div>
+        <div class="timeline-body">約瑟身為猶太公會的尊貴議士，長期因懼怕猶太領袖與同儕的壓力，未能公開表明自己對耶穌的信仰，然而路加福音特別指出，他『並沒有附從』公會定意害死耶穌的那場謀劃。</div>
+        <div class="timeline-ref">約 19:38 · 路 23:51</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">放膽去見彼拉多——「約瑟壯著膽子進去見彼拉多」</div>
+        <div class="timeline-body">耶穌被釘死在十字架上、其他門徒四散逃避之際，約瑟卻鼓起極大的勇氣，公開前去見羅馬總督彼拉多，求領耶穌的身體——這個行動，等同於公開宣告自己與這位被處死之『罪犯』的關聯，充滿了政治與社會風險。</div>
+        <div class="timeline-ref">可 15:43</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">用自己的新墳墓安葬耶穌——「安放在自己的新墳墓裡」</div>
+        <div class="timeline-body">彼拉多准許約瑟的請求後，他用細麻布裹好耶穌的身體，安放在自己為自己預備、從未葬過人的新墳墓裡，並滾石頭擋住墓門——尼哥底母也在此刻一同前來，帶著大量的香料膏抹耶穌的身體。</div>
+        <div class="timeline-ref">太 27:59–60 · 約 19:39–42</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">空墳墓的見證地——「這墳墓便成了耶穌復活最重要的歷史見證地」</div>
+        <div class="timeline-body">約瑟所提供的這座墳墓，此後成為耶穌復活事件最重要的歷史見證地——婦女與門徒此後前來，發現墓門的石頭已經滾開、墳墓已經空了，這座原本為約瑟自己預備的墳墓，因此永久地與基督復活的核心真理連結在一起。</div>
+        <div class="timeline-ref">太 28:1–8 · 可 16:1–6</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他長期因懼怕而選擇隱藏自己的信仰，卻在耶穌看似徹底失敗、被釘死的最黑暗時刻，展現出一生中最公開、也最勇敢的信心行動——這種在絕境中反而放膽的轉變，格外令人動容。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">內心真實相信耶穌，卻長期在懼怕與信心之間掙扎，最終選擇了公開的委身</div>
+          <div class="soul-body">約瑟長期『暗暗地』作門徒，顯示出他內心的信心與外在的懼怕之間，存在著真實的張力；然而正是在耶穌死後這個看似信心最沒有理由被公開表達的時刻，他卻選擇了徹底的公開委身。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">為人善良公義，並在公會謀害耶穌的過程中堅持不附從</div>
+          <div class="soul-body">路加福音特別稱許他『為人善良公義』，並明確指出他『並沒有附從』公會定意害死耶穌的那場不義的謀劃——這顯示出，即使他未能公開表明信仰，他至少在關鍵的道德抉擇上，堅守了自己的良知。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">在關鍵時刻願意付上具體而昂貴的代價，展現信心而非僅止於言語</div>
+          <div class="soul-body">他不僅公開向彼拉多求領耶穌的身體，更獻出自己的新墳墓、以及此後與尼哥底母一同準備的大量昂貴香料——這種願意付上實質具體代價的行動，展現出他信心的真實份量。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">長期因懼怕猶太人（或同儕的社會壓力）而未能公開表明自己的信仰立場</div>
+          <div class="soul-body">約瑟長期『暗暗地』作門徒，這種因懼怕而隱藏信仰的軟弱，是他此後才透過關鍵時刻的公開行動，得以真正突破與克服的性格陰影。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">他所獻出的墳墓，此後成為印證耶穌復活這一核心真理最重要的歷史地標</div>
+          <div class="soul-body">約瑟原本為自己預備的墳墓，因著獻給耶穌安葬，此後成為印證基督復活『墳墓已空』這一核心福音真理最重要的具體歷史見證，這個原本私人的產業，因此承載了超乎約瑟自己所能想像的深遠意義。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">約瑟的故事，是聖經中對『懼怕如何長期壓抑一個人真實的信心，而危機或絕境有時反而能催生出最勇敢的公開委身』刻畫得最動人的敘事之一。他長期『暗暗地』作耶穌的門徒，這種隱藏的信心狀態，某種程度上，是許多信徒都能感同身受的真實掙扎——內心確實相信，卻因懼怕他人的眼光、可能付出的社會或職業代價，而選擇將信仰保留在私下的層面。然而約瑟故事最動人之處，正在於這個轉折點——在耶穌看似徹底失敗、被釘死在十字架上、連最親近的門徒都因懼怕而四散逃避的時刻，約瑟卻選擇了公開而勇敢的行動。從理性的角度來看，這正是最不『划算』表明信仰的時刻——耶穌已經死了，公開與祂連結，只會招致更大的風險，卻不會帶來任何看得見的『回報』。然而正是在這樣的處境下，約瑟選擇了放膽前去見彼拉多，這提醒我們，真正的信心，往往不是在順境或安全的處境中被證明，而恰恰是在看似毫無指望、甚至可能招致更大代價的絕境時刻，透過具體而昂貴的行動被彰顯出來。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ISFJ</span>
+      <div class="mbti-name">守衛者型 · 暗中相信卻放膽安葬的議士</div>
+      <div class="mbti-slogan">「他長期不敢公開自己的信仰，卻在耶穌看起來徹底失敗的那個下午，做出了一生中最勇敢的舉動。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Si · 內向感覺</span>
+          <div class="mbti-fn-body">他長期謹慎地維持自己在公會中既有的地位與人際關係，這種對既有處境與規範的謹慎依循，正是主導內向感覺的典型展現，也是他長期選擇『暗暗』作門徒的性格根源。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Fe · 外向情感</span>
+          <div class="mbti-fn-body">他在耶穌死後，深切關注耶穌遺體是否能得到合宜而尊嚴的安葬處理，這種對他人（即使已逝）處境與尊嚴的深刻關懷，顯示出強烈的外向情感特質。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ti · 內向思考</span>
+          <div class="mbti-fn-body">他清楚知道向彼拉多求領耶穌遺體所需依循的正式程序與可能面對的政治風險，並在關鍵時刻，展現出足以突破這些顧慮、採取具體行動的判斷能力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Ne · 外向直覺</span>
+          <div class="mbti-fn-body">他長期未能設想或探索『公開表明信仰』這個選項所可能帶來的正面可能性，反而長期停留在懼怕負面後果的思維模式中，這種對正面可能性缺乏充分想像的傾向，反映出劣勢外向直覺的特徵。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最重要的一次行動，是與另一位同樣曾經暗中相信的公會議士尼哥底母，共同在耶穌死後，為祂進行了合宜而尊嚴的安葬。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">彼</div>
+          <div class="relation-name">彼拉多</div>
+          <div class="relation-type-badge">他向其請求領取耶穌遺體的羅馬總督</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">約瑟放膽前去見彼拉多，求領耶穌的身體，彼拉多在確認耶穌確實已經死亡後，准許了他的請求——這個許可，使約瑟得以親自為耶穌進行安葬。</div>
+          <div class="relation-ref">可 15:43–45</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">尼</div>
+          <div class="relation-name">尼哥底母</div>
+          <div class="relation-type-badge">與他一同暗中相信、此後共同安葬耶穌的公會同僚</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">尼哥底母同樣是猶太公會中暗中相信耶穌的議士，他此後與約瑟一同前來，帶著大量沒藥沉香的香料，共同用細麻布加上香料裹好耶穌的身體，完成這場莊嚴而合宜的安葬。</div>
+          <div class="relation-ref">約 19:39–40</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">婦</div>
+          <div class="relation-name">抹大拉的馬利亞等婦女</div>
+          <div class="relation-type-badge">此後前來探望墳墓、成為復活見證者的婦女</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">馬利亞等幾位婦女目睹了約瑟安葬耶穌的過程，並在安息日過後，第一時間前來察看這座墳墓，成為此後發現耶穌復活、墳墓已空這一歷史事件最初的見證者。</div>
+          <div class="relation-ref">太 27:61 · 可 16:1–6</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「約瑟壯著膽子」——這句簡短的描述，成為聖經中對『信心如何在最深的絕境中，從隱藏轉化為公開勇敢的行動』最凝練的宣告之一。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「有一個亞利馬太的約瑟，是尊貴的議士，也是等候神國的。他放膽進去見彼拉多，求耶穌的身體。」</div>
+      <div class="verse-ref">馬可福音 15:43</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">τολμήσας</span>
+        <div class="word-transliteration">tolmesas · 壯膽 / 放膽 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「鼓起勇氣、大膽地」，這個字帶有克服內在恐懼、主動採取具風險之行動的意涵。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">馬可福音特別用這個字形容約瑟前去見彼拉多的舉動，這個字的選用，精確地捕捉了約瑟此刻內心從『長期因懼怕而隱藏』到『在關鍵時刻主動克服恐懼、公開行動』這一深刻的心理轉折。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">μνημεῖον καινόν</span>
+        <div class="word-transliteration">mnemeion kainon · 新墳墓 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「嶄新的墳墓」，指這座墳墓從未被使用、未曾葬過任何人。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">約瑟獻出的，是自己原本為自己此後預備的『新』墳墓，這個具體的細節，某種程度上呼應了此後歷代神學家所指出的意涵——這座『從未有人躺臥過』的墳墓，恰好成為印證此後耶穌復活時、墳墓真正『空了』這一核心真理最無可爭議的物證，避免了任何『與其他遺骸混淆』的疑慮。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">真正的信心可能長期隱藏卻不代表虛假</div>
+      <div class="theology-insight-body">約瑟長期『暗暗地』作門徒，卻在關鍵時刻展現出真實而勇敢的信心行動——這提醒我們，一個人信心的真實性，未必總是即時透過公開的宣告來證明，也可能經過一段隱藏與掙扎的歷程，才在關鍵時刻迸發出來。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">絕境有時反而成為信心公開彰顯的契機</div>
+      <div class="theology-insight-body">約瑟選擇在耶穌看似徹底失敗、被釘死的時刻放膽行動，而非在耶穌行神蹟、備受歡迎的時刻公開表態——這提醒我們，真正的信心考驗，往往發生在最沒有『世俗回報』、甚至充滿風險的處境之中。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">約瑟所獻的新墳墓成為印證基督復活真實性的重要歷史物證</div>
+      <div class="theology-insight-body">這座『從未葬過人』的新墳墓，此後成為印證耶穌復活『墳墓已空』這一核心福音真理最無可爭議的具體歷史見證，這個看似平凡的物質細節，承載著深遠的神學意義。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">約瑟長期因懼怕而隱藏自己對耶穌的信心，卻在耶穌死後這個看似最沒有理由公開表態的絕境時刻，選擇了放膽而公開的行動，甚至獻出自己的新墳墓</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這種『在絕境中反而勇敢公開委身』的模式，某種程度上，與此後保羅『我不以福音為恥』的宣告遙相呼應——真正的信心，往往在最沒有世俗利益、甚至充滿風險的處境中，展現出最真實的樣貌</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">保羅宣告「我不以福音為恥；這福音本是神的大能，要救一切相信的」，這種即使面對逼迫與羞辱也不隱藏信仰的宣告，正是約瑟式勇氣在使徒身上的延續與深化（羅 1:16）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻因為懼怕他人的眼光或可能的代價，一直將自己真實的信仰或信念隱藏起來——約瑟的故事，想溫柔卻鄭重地邀請你，思考何時是放膽公開的時刻。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">約瑟的故事命中的是每一個此刻因為懼怕他人的眼光、可能的社會或職業代價，而長期將自己真實的信仰、信念、或身分隱藏起來的人。他的故事誠實地呈現出，這種隱藏的掙扎是真實而可以理解的，然而他的故事同樣提醒我們，真正的信心，最終需要在某個關鍵的時刻，透過具體而勇敢的行動被公開彰顯出來——而這樣的時刻，未必總是在最安全、最有利的處境中出現，反而可能恰恰是在看似最沒有『回報』、甚至充滿風險的絕境之中。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你此刻是否因為懼怕他人的眼光或可能的代價，一直將自己真實的信仰、信念、或身分隱藏起來？約瑟長期『暗暗地』作門徒的掙扎，是否也呼應著你此刻的處境？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">約瑟選擇在耶穌看似徹底失敗的時刻放膽行動，而非在祂備受歡迎時公開表態。你是否也曾經歷過，在某個看似『不划算』的時刻，反而更清楚地看見自己需要公開委身的呼召？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">他獻出了自己原本為自己預備的新墳墓。你此刻是否也需要獻出某個對你而言珍貴、原本為自己預留的資源，以具體行動回應你的信心？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 約瑟</span>
+        <div class="gen-title">示範劇本：長期暗中相信，卻在最深的絕境時刻選擇放膽公開委身</div>
+        <div class="gen-body">他長期因懼怕而隱藏自己對耶穌的信心，卻在耶穌死後這個看似最沒有理由公開表態的時刻，鼓起勇氣前去見彼拉多，並獻出自己的新墳墓，完成了對耶穌最莊嚴而公開的信心行動。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 此後前來察看墳墓的婦女與門徒</span>
+        <div class="gen-title">延續：他所獻的墳墓，成為此後見證耶穌復活最重要的歷史地標</div>
+        <div class="gen-body">約瑟所提供的這座新墳墓，此後成為婦女與門徒發現耶穌復活、墳墓已空這一歷史事件最重要的見證地點，他一次看似私人的奉獻，最終成為印證整個基督信仰核心真理不可或缺的一環。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在約瑟的故事中，展現在神即使容許他長期在懼怕中隱藏信心，仍然在最關鍵的時刻，賜給他放膽而行的勇氣；也展現在，神使用他這個看似私人而平凡的奉獻（自己的新墳墓），成就了此後印證基督復活這一核心真理最重要的歷史見證。這提醒我們，神能夠使用我們最私密、最個人的資源與奉獻，成就超乎我們自己所能想像的深遠意義。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位長期不敢公開信仰、卻在耶穌死後放膽求領遺體的議士，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#隱藏的信心不代表虛假</span>
+      <span class="tag">#絕境反而是公開委身的時刻</span>
+      <span class="tag">#願意獻出你最珍貴的東西</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>約瑟是猶太公會裡一位有錢有地位的議士，他相信耶穌，但一直不敢公開，聖經直接寫了原因：因為怕猶太人。他就這樣，暗暗地做著耶穌的門徒。</p>
+      <p>耶穌被釘十字架死了，其他門徒大多躲起來了，連彼得都三次不敢承認認識耶穌。就在這個所有人都認為『耶穌的事已經結束了』的下午，約瑟做了一件讓人意外的事——他鼓起勇氣，直接去見羅馬總督彼拉多，要求領走耶穌的遺體。</p>
+      <p>這個舉動，風險非常大。公開跟一個被判『叛國罪』處死的人扯上關係，等於是把自己在公會裡的地位、名聲，全部賭上去。彼拉多確認耶穌真的死了以後，答應了他的請求。</p>
+      <p>約瑟用細麻布把耶穌的身體包好，放進自己原本為自己準備的新墳墓——一個從來沒有葬過人的墳墓——裡面，還滾了一塊大石頭擋住墓門。另一位同樣暗中信主的議士尼哥底母，也帶著大量珍貴的香料一起來，兩個人一起，把耶穌的身體處理得莊重而尊嚴。</p>
+      <p>這座墳墓，後來成了整個基督信仰最重要的地標之一——因為三天後，婦女們來到這裡，發現墳墓空了。約瑟原本為自己準備的墳墓，成了見證耶穌復活最重要的物證。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——約瑟這塊石頭，很長一段時間都藏在陰影裡，卻在最黑暗的那個下午，被雕出了一生中最勇敢的形狀。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你此刻因為害怕別人的眼光，一直不敢公開表明自己真正相信或在意的事——約瑟的故事想告訴你：隱藏的信心，不代表不是真的。但也許，某個關鍵的時刻，就是你需要放膽的時候。</p>
+      <p style="margin-top:12px;">有意思的是，約瑟選的不是耶穌最風光的時刻站出來，而是耶穌看起來『徹底失敗』的時候。真正的委身，往往是在最沒有『好處』的時候，才最能看出真假。</p>
+      <p style="margin-top:12px;">他獻出的，是自己最珍貴的東西——一座嶄新的墳墓。你此刻是不是也有一件很珍貴、原本留給自己的東西，可以獻出來？</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果你一直暗自相信卻不敢公開——想想約瑟，也許現在就是放膽的時刻。</p>
+    </div>
+
+    <div class="insight-box">約瑟的故事，持續為當代討論『職場或社會壓力下隱藏信仰』這一普遍的現代處境，提供了極具體而深刻的聖經參照——他的故事提醒許多因擔心影響事業或人際關係、而選擇隱藏自己信仰的現代信徒，隱藏的掙扎是可以理解的，然而放膽公開委身的時刻，終將以某種方式來臨。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他從長期暗中相信的公會議士，成為在耶穌死後放膽公開安葬祂的信徒，留下了聖經中『絕境中的勇敢委身』最動人的見證。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">四福音書一致記載的重要見證者</div>
+          <div class="legacy-body">他是少數同時被馬太、馬可、路加、約翰四卷福音書一致記載的人物之一，這種罕見的一致性，凸顯出他在耶穌安葬事件中所扮演角色的歷史重要性。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">耶穌復活最重要的歷史見證地提供者</div>
+          <div class="legacy-body">他所獻出的新墳墓，此後成為印證耶穌復活『墳墓已空』這一核心福音真理最無可爭議的具體歷史物證。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">『隱藏的信心在絕境中轉化為公開委身』的重要典範</div>
+          <div class="legacy-body">他長期暗中相信、卻在關鍵時刻放膽公開行動的完整歷程，持續為後世提供了理解信心如何在最艱難的處境中被彰顯這一課題最動人的敘事範例。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「有一個亞利馬太的約瑟，是尊貴的議士，也是等候神國的。他放膽進去見彼拉多，求耶穌的身體。」</div>
+      <div class="final-verse-ref">馬可福音 15:43</div>
+    </div>
+
+    <div class="final-question">如果你此刻因為懼怕他人的眼光而一直隱藏自己真實的信仰或信念——你願不願意相信，就像約瑟一樣，某個關鍵的時刻，終將召喚你放膽公開委身？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 約瑟 <span>Ἰωσὴφ ὁ ἀπὸ Ἁριμαθαίας</span> · 公會的尊貴議士 · 暗自作門徒的富有人 · 獻出自己新墳墓的人</div>
+
+</body>
+</html>

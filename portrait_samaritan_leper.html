@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>撒馬利亞痲瘋病人 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">撒馬利亞痲瘋病人</h1>
+  <span class="hero-name-en">The Samaritan Leper · Σαμαρίτης λεπρός</span>
+  <p class="hero-slogan">「耶穌說：「潔淨了的不是十個人嗎？那九個在哪裡呢？除了這外族人，再沒有別人回來歸榮耀與神嗎？」就對那人說：「起來，走吧！你的信救了你了。」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">約主後30年（耶穌前往耶路撒冷的路上）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ISFP · 探險家型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">路加福音 17:11–19</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">撒馬利亞人 · 十個大痲瘋病人中唯一歸榮耀與神並感謝耶穌者</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他是十個大痲瘋病人之一，因著疾病被迫遠遠站著、隔離於正常社會之外——然而在這十個人共同蒙受的神蹟中，唯獨他，是那位在得潔淨後選擇回轉、俯伏感謝的人，而路加福音特別點出，這個人，是撒馬利亞人。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">約主後30年，耶穌前往耶路撒冷途中經過撒馬利亞和加利利中間</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">撒馬利亞人，患大痲瘋病</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">撒馬利亞與加利利交界一帶的某個村莊</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">聖經未記載其家庭成員</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">路 17:11–19</div>
+      </div>
+    </div>
+
+    <p>這段記載，發生在耶穌『往耶路撒冷去，經過撒馬利亞和加利利中間』的途中——祂進入一個村子時，『有十個長大痲瘋的，迎面而來，遠遠地站著，高聲說：耶穌，夫子，可憐我們吧！』按照摩西律法（利未記十三、十四章），大痲瘋病人必須與正常社會隔離、且必須『喊叫說：不潔淨了！不潔淨了！』，這十個人『遠遠地站著』的姿態，正是這條律法規定具體而沉痛的呈現。值得注意的是，這十個人之中，可能同時包含猶太人與撒馬利亞人——這兩個族群在當時因宗教與歷史的深刻分歧而彼此敵視，然而共同的疾病與被排斥的處境，卻使他們得以暫時跨越這道長久的族群藩籬，共同結伴、共同呼求。</p>
+    <p>耶穌看見他們，說：『你們去把身體給祭司察看。』這句指示，本身便要求極大的信心——祭司的職責，是在確認痲瘋病人已經痊癒後，正式宣告其潔淨、得以重新回歸社會，然而耶穌吩咐他們前去見祭司時，他們身上的痲瘋病其實尚未痊癒。聖經記載：『他們正去的時候就潔淨了。』十個人都在憑信心前往祭司那裡的路上，經歷了神蹟性的潔淨。然而路加福音接下來的記載，卻揭示出這十個人此後截然不同的反應：『內中有一個見自己已經好了，就回轉來，大聲歸榮耀與神，又俯伏在耶穌腳前感謝他；這人是撒馬利亞人。』耶穌對此發出了意味深長的提問：『潔淨了的不是十個人嗎？那九個在哪裡呢？除了這外族人，再沒有別人回來歸榮耀與神嗎？』祂隨即對這位回轉的撒馬利亞人說：『起來，走吧！你的信救了你了。』這句話，某種程度上，暗示著這位撒馬利亞人所領受的，不僅止於身體疾病的醫治（十個人都同樣得到了），更是一種更深、更完整的救恩——正是他懂得回轉感謝這個具體的行動，將他與其餘九人此後的際遇，區分開來。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從遠遠呼求耶穌憐憫的十個痲瘋病人之一，到憑信心前往祭司途中得潔淨，再到唯一回轉感謝而蒙耶穌特別稱許信心——這位撒馬利亞人的故事，是路加福音中對『感恩之心如何使已得的醫治更臻完整』刻畫得最精煉動人的敘事之一。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">十人共同遠遠呼求——「耶穌，夫子，可憐我們吧」</div>
+        <div class="timeline-body">十個大痲瘋病人（可能同時包含猶太人與撒馬利亞人）遠遠站著，高聲呼求耶穌的憐憫，耶穌吩咐他們前去讓祭司察看身體。</div>
+        <div class="timeline-ref">路 17:12–14</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">憑信心前往途中得潔淨——「他們正去的時候就潔淨了」</div>
+        <div class="timeline-body">十個人都憑著信心，在身體尚未痊癒之際，便遵照耶穌的吩咐前往祭司那裡，就在他們前去的路上，痲瘋病神蹟性地潔淨了。</div>
+        <div class="timeline-ref">路 17:14</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">唯獨一人回轉感謝——「大聲歸榮耀與神，又俯伏在耶穌腳前感謝他」</div>
+        <div class="timeline-body">十個人中，唯獨這位撒馬利亞人發現自己已經痊癒後，選擇回轉，大聲歸榮耀與神，並俯伏在耶穌腳前表達感謝——路加福音特別點出他外族人（撒馬利亞人）的身分。</div>
+        <div class="timeline-ref">路 17:15–16</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">耶穌稱許他的信心——「你的信救了你了」</div>
+        <div class="timeline-body">耶穌感嘆其餘九人未曾回來感謝，並對這位撒馬利亞人說：『起來，走吧！你的信救了你了』——這句話暗示著，他所領受的，不僅是身體的醫治，更是一種因感恩之心而臻於完整的救恩。</div>
+        <div class="timeline-ref">路 17:17–19</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他是聖經中對『感恩之心如何使已經領受的醫治，昇華為更完整、更深刻的救恩經歷』刻畫得最精煉動人的敘事人物之一——他與其餘九人領受了完全相同的神蹟，卻唯獨他，選擇了回轉感謝。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">深信自己所領受的醫治，其源頭與意義，值得他付上具體的代價（暫緩前往祭司那裡宣告潔淨的正式程序）回轉表達感謝</div>
+          <div class="soul-body">他發現自己已經痊癒後，選擇立即回轉，而非繼續前往祭司那裡完成正式的宣告程序，這個選擇顯示，他將對神與耶穌的感恩，置於完成既定社會與宗教程序之上的核心價值排序。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">在領受神蹟之後，展現出真誠而具體的感恩之心，且以公開、俯伏的方式表達這份感謝</div>
+          <div class="soul-body">他『大聲歸榮耀與神，又俯伏在耶穌腳前感謝他』，這種毫不掩飾、公開而具體的感恩表達，是他性格中最鮮明、也最受耶穌稱許的美德。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">一旦意識到自己所領受的恩典，便立即而果斷地採取回轉致謝的具體行動</div>
+          <div class="soul-body">他『見自己已經好了，就回轉來』，這種在意識到恩典之後毫不猶豫、立即回應的行事風格，展現出他性格中真誠而果斷的特質。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">（材料有限——聖經對他個人的過犯著墨極少，這段敘事的焦點在於他與其餘九人的對比）</div>
+          <div class="soul-body">路加福音對這位撒馬利亞人的記載，主要聚焦於他回轉感謝的正面行動，並透過與其餘九人的對比，凸顯出感恩之心的珍貴，未見對他個人負面性格的具體描寫。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">唯一回轉感謝的，竟是十人中身分最為邊緣（撒馬利亞人，且患痲瘋病，是雙重的社會排斥）的一位</div>
+          <div class="soul-body">在這十個共同蒙受神蹟的人之中，唯獨這位在猶太社會中身分最為邊緣的撒馬利亞人，選擇了回轉感謝，這個對比，賦予這段敘事一種深刻的神學諷刺與反思——真正的感恩之心，未必與一個人的族群或宗教身分地位成正比。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">這位撒馬利亞痲瘋病人的故事，是路加福音中對『感恩之心如何使已經領受的醫治，昇華為更完整、更深刻之救恩經歷』刻畫得最精煉動人的敘事之一。十個大痲瘋病人，懷抱著同樣迫切的呼求，也同樣憑信心前往祭司那裡，並且同樣在途中經歷了神蹟性的潔淨——就這個層面而言，十個人所領受的醫治，完全相同。然而正是在這場神蹟之後，這十個人展現出截然不同的回應方式——九個人繼續前往祭司那裡，完成摩西律法所規定的正式潔淨宣告程序，這本身並非錯誤的舉動（畢竟這正是耶穌起初所吩咐的）；然而唯獨這位撒馬利亞人，選擇了暫緩這個既定的程序，回轉來俯伏在耶穌腳前表達感謝。耶穌對這位撒馬利亞人所說『你的信救了你了』這句話，格外耐人尋味——因為他與其餘九人，早已同樣「得潔淨」，這意味著耶穌此刻所指的「救」，指向一種超越身體疾病痊癒的更深層次的救恩，一種唯有透過回轉感恩才能真正領受、臻於完整的屬靈實際。這位撒馬利亞人的故事提醒我們，領受神的恩典與醫治，是一回事；然而是否願意在領受之後，回轉表達真誠而具體的感恩，卻可能決定我們所經歷的，究竟僅止於表面的問題解決，還是能夠進一步深化為與神更完整、更親密的救恩關係。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ISFP</span>
+      <div class="mbti-name">探險家型 · 回轉感謝的撒馬利亞人</div>
+      <div class="mbti-slogan">「十個人一起得了醫治，只有一個人，選擇轉身回來說謝謝——而正是這個轉身，讓他得著了更完整的救恩。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">他對自己所領受之恩典懷抱著極其真摯而深刻的內在感激之情，這份強烈的情感驅動，促使他立即而不加猶豫地選擇回轉致謝，這正是主導內向情感的典型展現。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Se · 外向實感</span>
+          <div class="mbti-fn-body">他能敏銳地察覺自己身體『已經好了』這個具體而立即的事實，並據此迅速採取回轉的具體行動，展現出對眼前具體處境的敏銳反應。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">他隱約意識到，回轉感謝這件事，具有超越單純禮貌回應的更深層意義，這種對深層意義的直覺洞察，某種程度上，促成了他這個看似『暫緩正式程序』卻更為重要的選擇。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">（材料有限——聖經對他在具體策略規劃或邏輯組織層面的性格特質著墨較少，他的敘事重點聚焦於情感驅動的直接回應）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最重要的一次相遇，是與那位吩咐十人前去見祭司、卻在唯獨他回轉感謝時，特別稱許他信心的耶穌。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">耶</div>
+          <div class="relation-name">耶穌</div>
+          <div class="relation-type-badge">醫治他並特別稱許他回轉感謝之信心的主</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">耶穌吩咐十個痲瘋病人前去見祭司，使他們在途中得潔淨；當唯獨這位撒馬利亞人回轉感謝時，耶穌感嘆其餘九人的缺席，並特別對他說『你的信救了你了』。</div>
+          <div class="relation-ref">路 17:14, 17–19</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">九</div>
+          <div class="relation-name">其餘九位痲瘋病人</div>
+          <div class="relation-type-badge">同樣得潔淨卻未回轉感謝的同伴</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">這九位痲瘋病人（可能包含猶太人）與這位撒馬利亞人一同蒙受了神蹟性的潔淨，卻選擇繼續前往祭司那裡完成正式程序，而未曾回轉感謝耶穌——這個對比，凸顯出感恩之心的珍貴與稀有。</div>
+          <div class="relation-ref">路 17:17</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「你的信救了你了」——耶穌對這位撒馬利亞人所說的這句話，成為聖經中對『感恩之心如何使人的救恩經歷臻於完整』最精煉的宣告之一。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「耶穌說：「潔淨了的不是十個人嗎？那九個在哪裡呢？除了這外族人，再沒有別人回來歸榮耀與神嗎？」就對那人說：「起來，走吧！你的信救了你了。」」</div>
+      <div class="verse-ref">路加福音 17:17–19</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">ἀλλογενὴς</span>
+        <div class="word-transliteration">allogenes · 外族人 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「外邦的、異族的人」，耶穌用這個帶有強調意味的字，特別指出這位回轉感謝的人，其族群身分是撒馬利亞人。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這個字的使用，凸顯出耶穌話語中深刻的反諷意味——在猶太人的視角中，撒馬利亞人是宗教與族群上的『外人』，然而正是這位『外人』，展現出十人之中唯一真實的感恩之心，這深刻挑戰了以族群或宗教身分來預先判斷一個人屬靈狀態的傾向。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">σέσωκέν</span>
+        <div class="word-transliteration">sesoken · 救了 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「拯救、醫治」，這個字同時涵蓋身體醫治與屬靈救贖的雙重意涵。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">耶穌對這位撒馬利亞人所說『你的信救了你了』，使用的正是這個帶有雙重意涵的字——考慮到十人已經『同樣潔淨』，這句話所指涉的『救』，某種程度上，指向一種超越身體醫治、唯有透過回轉感恩才能真正領受的更完整屬靈實際。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">感恩之心能夠使已經領受的恩典臻於更完整而深刻的屬靈實際</div>
+      <div class="theology-insight-body">這位撒馬利亞人與其餘九人同樣得潔淨，卻唯獨他因回轉感謝而蒙耶穌特別稱許『你的信救了你了』——這確立了聖經神學中一個重要原則：感恩之心，能夠使我們對神恩典的領受，從表面的問題解決，深化為更完整的屬靈實際。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">真正的感恩之心未必與一個人的族群或宗教身分地位成正比</div>
+      <div class="theology-insight-body">在十人之中，唯獨身分最為邊緣的撒馬利亞人選擇回轉感謝，這提醒我們，切勿以族群、宗教背景、或社會地位，預先判斷一個人屬靈生命的真實深度。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">缺乏感恩的回應可能使人錯失恩典中更深層的祝福</div>
+      <div class="theology-insight-body">其餘九人雖然同樣得潔淨，卻因未曾回轉感謝，而錯失了耶穌『你的信救了你了』這句更深層祝福的宣告——這提醒我們，忽略感恩的回應，可能使我們與神恩典中更豐富的層面失之交臂。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">十個痲瘋病人同樣得著神蹟性的潔淨，唯獨一位撒馬利亞人選擇回轉，歸榮耀與神並俯伏感謝耶穌，因此蒙受了超越身體醫治的更深層祝福</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這種『同樣蒙恩卻因感恩之回應而經歷更深層祝福』的模式，此後成為新約教導中，反覆強調信徒當『凡事謝恩』這一屬靈操練之重要性的具體舊約敘事範例</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">保羅教導信徒「凡事謝恩，因為這是神在基督耶穌裡向你們所定的旨意」，這位撒馬利亞人回轉感恩的具體行動，正是這一持續性屬靈操練最生動的敘事典範（帖前 5:18）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻已經領受了神某個具體的恩典或醫治，卻尚未真正回轉、以具體的方式表達感謝——這位撒馬利亞人的故事，是一則溫柔卻鄭重的提醒。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">這位撒馬利亞痲瘋病人的故事命中的是每一個此刻已經領受了神某個具體的恩典、醫治、或幫助，卻可能因忙於繼續處理生活中的其他事務，而尚未真正停下腳步、以具體的方式回轉感謝的人。他的故事提醒我們，感恩之心，不應只是恩典領受後可有可無的附加動作，而是能夠使我們對這份恩典的經歷，深化為更完整、更親密之屬靈實際的重要關鍵。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你此刻是否已經領受了神某個具體的恩典或醫治，卻尚未真正停下腳步、以具體的方式回轉感謝？這位撒馬利亞人的故事，對你此刻的處境，帶來什麼樣的提醒？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">十人中唯獨這位身分最邊緣的撒馬利亞人回轉感謝。你是否也曾因某種身分或背景上的自卑，而低估了自己表達感恩、或屬靈生命之真實深度的可能性？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">耶穌對回轉的撒馬利亞人說『你的信救了你了』，暗示著超越身體醫治的更深層祝福。你此刻的生活中，是否也有某個已經領受的恩典，因尚未真誠回轉感謝，而可能錯失了更深層的祝福？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 撒馬利亞痲瘋病人</span>
+        <div class="gen-title">示範劇本：在十人同蒙醫治的處境中，唯獨他選擇回轉感謝，因此蒙受超越身體醫治的更深層祝福</div>
+        <div class="gen-body">他與其餘九位痲瘋病人同樣憑信心前往祭司途中得潔淨，卻唯獨他選擇回轉，大聲歸榮耀與神並俯伏感謝耶穌，因此蒙耶穌特別稱許『你的信救了你了』。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 此後路加福音的讀者</span>
+        <div class="gen-title">延續：他的故事持續提醒歷代信徒感恩之心的珍貴與力量</div>
+        <div class="gen-body">這位撒馬利亞人回轉感謝的故事，此後持續啟發歷代信徒，反思感恩之心如何能夠使我們對神恩典的領受，從表面的問題解決，深化為更完整而親密的屬靈實際。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在這位撒馬利亞人的故事中，展現在耶穌即使容讓其餘九人未曾回轉，依然特別看重並稱許這位回轉感謝之人的信心；也展現在，神的恩典，樂意向任何真誠回轉感恩之人，賜下超越表面問題解決的更深層祝福，無論這個人的族群或社會身分地位如何。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位十人之中唯一轉身回來說謝謝的撒馬利亞人，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#感恩讓恩典變得更完整</span>
+      <span class="tag">#身分不能定義感恩的深度</span>
+      <span class="tag">#轉身致謝需要具體的行動</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>十個大痲瘋病人，遠遠站著，一起喊：耶穌，可憐我們吧！按照當時的規矩，痲瘋病人必須跟正常人保持距離，還得大聲喊『不潔淨』提醒別人閃避。</p>
+      <p>耶穌說：你們去讓祭司察看吧。這句話本身就需要信心——因為他們此刻身上的病，其實還沒好。但他們照做了，就在往祭司那裡去的路上，十個人，全部都痊癒了。</p>
+      <p>接下來的發展，才是這個故事真正的重點——十個人裡面，只有一個人，發現自己好了以後，掉頭回來，大聲讚美神，跪在耶穌腳前，說謝謝。路加福音特別點出：這個人，是撒馬利亞人——在猶太人眼中，是被排斥的『外人』。</p>
+      <p>耶穌看著他，說了一句很感慨的話：得潔淨的不是十個人嗎？其他九個在哪裡？除了這個外族人，難道沒有別人回來歸榮耀給神嗎？</p>
+      <p>然後耶穌對這位撒馬利亞人說：起來，走吧，你的信救了你了。這句話很耐人尋味——因為十個人身體上其實都『得潔淨』了，但只有這一個人，被說『得救』。感謝，似乎讓他的醫治，變得更完整了。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——這位撒馬利亞人，用一個轉身、一句謝謝，把自己身體的醫治，雕成了更完整的救恩。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你此刻正享受著某個神已經賜給你的恩典或醫治，卻還沒有真正停下來說一聲謝謝——這位撒馬利亞人的故事想提醒你：轉身回來，把感謝說出口，會讓這份恩典變得更完整。</p>
+      <p style="margin-top:12px;">別因為自己的背景、身分，覺得自己『不夠格』表達深刻的感恩。十個人裡，最被邊緣化的那一個，反而做對了最重要的事。</p>
+      <p style="margin-top:12px;">感謝，不是抽象的心情，是具體的轉身、具體的行動。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果你正享受著某個恩典——轉身回去，具體地說一聲謝謝。</p>
+    </div>
+
+    <div class="insight-box">這位撒馬利亞人的故事，持續為當代正向心理學與感恩實踐研究提供了重要的聖經參照——研究顯示，具體而持續的感恩實踐，能顯著提升個人的心理健康與幸福感，這與這段古老敘事所傳遞的智慧，形成深刻的呼應。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他從十位大痲瘋病人中身分最邊緣的一位，因唯一回轉感謝耶穌，蒙受了超越身體醫治的深層救恩，留下了聖經中『感恩使恩典臻於完整』最動人的見證。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">『感恩使恩典臻於完整』最精煉的聖經敘事典範</div>
+          <div class="legacy-body">他與其餘九人同蒙醫治卻唯獨他回轉感謝的對比，成為聖經中闡明『感恩之心能夠使人對神恩典的領受更加完整深刻』這一屬靈原則最精煉動人的例證。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">挑戰族群身分預設的重要敘事見證</div>
+          <div class="legacy-body">作為十人中身分最邊緣的撒馬利亞人，卻唯獨他展現出真實的感恩之心，這段記載持續挑戰後世讀者，切勿以族群或宗教背景預先判斷一個人屬靈生命的真實深度。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">『凡事謝恩』新約教導的重要舊約敘事根源</div>
+          <div class="legacy-body">他回轉感謝的具體行動，成為此後保羅教導信徒『凡事謝恩』這一持續性屬靈操練，最生動的敘事典範之一。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「就對那人說：「起來，走吧！你的信救了你了。」」</div>
+      <div class="final-verse-ref">路加福音 17:19</div>
+    </div>
+
+    <div class="final-question">如果你此刻已經領受了神某個具體的恩典，卻尚未真正回轉、以具體的方式表達感謝——你願不願意像這位撒馬利亞人一樣，轉身回來，讓這份恩典在你生命中臻於完整？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 撒馬利亞痲瘋病人 <span>Σαμαρίτης λεπρός</span> · 十個大痲瘋病人中唯一回來感謝的一個 · 蒙耶穌稱許信心的外邦人</div>
+
+</body>
+</html>

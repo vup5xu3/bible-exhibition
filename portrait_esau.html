@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>以掃 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">以掃</h1>
+  <span class="hero-name-en">Esau · עֵשָׂו</span>
+  <p class="hero-slogan">「以掃對雅各說：「我要死了，這長子的名分於我有什麼益處呢？」雅各說：「你今日對我起誓吧！」以掃就對他起了誓，把長子的名分賣給雅各。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">約主前二十世紀（族長時代）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ESFP · 表演者型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">創世記 25–33 章 · 來 12:16–17</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">以撒與利百加的長子 · 雅各的雙生兄長 · 以東人的先祖</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他是一位皮膚發紅、渾身有毛、善於打獵的粗獷男子，深受父親以撒的偏愛，卻在一次飢餓的當下，用長子珍貴的名分，換來了一碗紅豆湯——這個決定，成為他此後一生揮之不去的陰影。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">約主前二十世紀，族長時代</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">以撒與利百加所生的長子（雙生子中先出生的一位）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">迦南地，此後遷居西珥山（以東地）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">父以撒；母利百加；孿生弟雅各；多位妻子（包括赫人女子與以實瑪利之女）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">創 25–33, 36 章 · 來 12:16–17</div>
+      </div>
+    </div>
+
+    <p>以掃與雅各是利百加所生的雙生子，兩人在母腹中便已彼此相爭，出生時，以掃先出，滿身有毛，如同皮衣，雅各隨後出生，手抓住以掃的腳跟。聖經記載，『以掃善於打獵，常在田野；雅各為人安靜，常住在帳棚裡。以撒愛以掃，因為常吃他的野味；利百加卻愛雅各。』這種父母對兩個兒子截然不同的偏愛，為此後的家庭衝突埋下了深遠的種子。以掃生命中最關鍵、也最令人扼腕的一幕，發生在他有一次從田野打獵歸來，疲乏飢餓之際，看見雅各正熬著紅豆湯——他求雅各給他喝，雅各卻要求以此換取以掃長子的名分。聖經用一句意味深長的評語總結了這個決定：『於是以掃吃了喝了，便起來走了。這就是以掃輕看了他長子的名分。』</p>
+    <p>以掃此後的悲劇，並未止步於這次的交易——當以撒年老眼矇，欲私下按長子的名分祝福以掃時，利百加與雅各聯手設計欺騙，讓雅各假扮以掃，成功騙取了原本屬於以掃的祝福。以掃發現真相後，『就放聲痛哭，說：我父啊，求你也為我祝福』，這段記載，是聖經中對失落與哀傷刻畫得最令人心碎的場景之一。以掃因此對雅各心懷怨恨，甚至說『殺我兄弟雅各的日子近了』，雅各因此被迫逃亡，在外二十年之久。然而以掃故事最動人的轉折，發生在雅各多年後準備歸回迦南、滿懷恐懼地差人前去請求以掃的接納之時——以掃卻『跑來迎接他，將他抱住，又摟著他的頸項親嘴，兩個人就哭了』。這場出乎意料的和解，展現出以掃內心深處，早已超越了當年那份深刻的傷痛與怨恨，選擇了寬容與接納。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從善於打獵、深受父親偏愛的長子，到一時衝動賣掉長子名分、又被弟弟騙走祝福的失落者，再到二十年後主動擁抱歸回之雅各的兄長——以掃的一生，是聖經中對『一時的輕率如何帶來深遠代價，卻也能在時間中走向和解』刻畫得最完整的敘事之一。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">賣掉長子的名分——「以掃就輕看了他長子的名分」</div>
+        <div class="timeline-body">以掃打獵歸來疲乏飢餓，用長子的名分換取雅各所熬的紅豆湯，聖經用『輕看』這個字，直接評價了他這個決定的輕率與代價的沉重。</div>
+        <div class="timeline-ref">創 25:29–34</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">被騙走祝福，放聲痛哭——「我父啊，求你也為我祝福」</div>
+        <div class="timeline-body">利百加與雅各聯手設計，讓雅各假扮以掃騙取了以撒本應給予長子的祝福，以掃發現真相後放聲痛哭，這段記載成為聖經中對失落哀傷刻畫得最令人心碎的場景之一。</div>
+        <div class="timeline-ref">創 27:30–38</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">心懷怨恨，雅各逃亡——「殺我兄弟雅各的日子近了」</div>
+        <div class="timeline-body">以掃因失去祝福而對雅各心懷深刻的怨恨，甚至暗自決意要殺害他，利百加得知後，安排雅各逃往娘家避難，這段兄弟關係的破裂，此後持續了長達二十年之久。</div>
+        <div class="timeline-ref">創 27:41–45</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">主動擁抱和解——「以掃跑來迎接他，將他抱住……兩個人就哭了」</div>
+        <div class="timeline-body">二十年後，雅各準備歸回迦南，滿懷恐懼地差人前去請求以掃的接納，以掃卻出乎意料地主動跑來迎接、擁抱並親吻雅各，兩人在淚水中和解——這場和解，展現出以掃內心深處超越傷痛的寬容。</div>
+        <div class="timeline-ref">創 33:1–4</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他是一位活在當下、重視眼前具體感受的粗獷男子，一時的衝動為他帶來了畢生的遺憾，卻也在多年後，展現出令人意外而動容的寬容與和解能力。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">重視眼前具體而立即的滿足，卻未能充分珍視長遠而抽象的價值（長子名分）</div>
+          <div class="soul-body">以掃『我要死了，這長子的名分於我有什麼益處呢』這句話，直接揭示出他將眼前具體的生理需要（飢餓），置於長遠而抽象的屬靈與家族價值（長子名分）之上的核心心態。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">在經歷深刻的傷痛與怨恨之後，最終選擇了寬容與和解，而非持續的報復</div>
+          <div class="soul-body">儘管以掃曾因失去祝福而心懷殺機，二十年後，當雅各歸回時，他卻主動選擇了擁抱與和解，而非延續當年的怨恨——這種歷經歲月沉澱後展現出的寬宏大量，是他性格中最令人動容的美德。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">傾向以直接而情感外顯的方式回應生命中的重大事件——無論是失落的痛哭，或是和解的擁抱</div>
+          <div class="soul-body">以掃在得知失去祝福時『放聲痛哭』，在與雅各重逢時『跑來迎接……又哭了』，這種毫不掩飾、直接而強烈的情感表達方式，貫穿了他一生面對重大處境時的行事風格。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">在關鍵時刻因一時的衝動與短視，做出了帶來畢生遺憾的決定</div>
+          <div class="soul-body">他為了一碗紅豆湯而賣掉長子的名分，這個決定的輕率程度，此後被希伯來書明確引用為『貪戀世俗』的警示案例，成為他一生最受爭議的性格弱點。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">他此後成為以東民族的先祖，這個民族此後與以色列之間，延續了長達數百年複雜而時而衝突的關係</div>
+          <div class="soul-body">以掃（又稱以東）此後的後裔發展成以東民族，這個與以色列有著血緣淵源、卻此後屢屢發生衝突的鄰邦，某種程度上，延續並放大了以掃與雅各這對兄弟之間，那段既親密又充滿張力的複雜關係。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">以掃的故事，是聖經中對『一時的輕率抉擇，可能帶來畢生的遺憾，然而時間與寬容，依然能夠帶來意想不到之和解』刻畫得最完整的敘事之一。他為一碗紅豆湯賣掉長子名分的決定，此後被希伯來書列為『貪戀世俗，如以掃一樣』的警示案例——這句評語提醒我們，過度看重眼前立即的滿足，而輕忽長遠而珍貴的價值，可能帶來我們此後永遠無法挽回的損失。然而以掃的故事並未停留在這則警示之中——當雅各多年後戰戰兢兢地歸回，準備面對這位他曾經深深傷害過的兄長時，以掃展現出的，卻是超乎所有人（包括雅各自己）預期的寬容與接納。他『跑來迎接他，將他抱住，又摟著他的頸項親嘴』，這個畫面，與他當年『放聲痛哭』的畫面遙相呼應，共同勾勒出一個完整的生命弧線——從深刻的傷痛與怨恨，走向了跨越歲月的和解與擁抱。以掃的故事提醒我們，即使我們曾經因輕率而失去珍貴的事物，即使我們曾經因受傷而心懷怨恨，時間與內心的成長，依然可能引導我們，走向一條超越傷痛、選擇寬容的道路。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ESFP</span>
+      <div class="mbti-name">表演者型 · 為紅豆湯賣掉長子名分的獵人</div>
+      <div class="mbti-slogan">「他曾經為了一碗湯，賣掉了自己最珍貴的名分——二十年後，他卻主動張開雙臂，擁抱了那個曾經騙走他一切的弟弟。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Se · 外向實感</span>
+          <div class="mbti-fn-body">他對眼前具體而立即的生理需要（飢餓）有著強烈而直接的反應，這種聚焦當下具體感受、而非長遠抽象價值的傾向，正是主導外向實感的典型展現，也是他賣掉長子名分這一決定的核心根源。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">他對失去祝福、以及此後與雅各重逢時的情感反應都極其真摯而強烈（痛哭、擁抱），展現出深刻而真實的內在情感驅動力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">他此後成功地在西珥山建立自己的家族與產業，展現出一定程度的具體組織與治理能力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">他未能在賣掉長子名分的當下，充分預見這個決定將帶來的長遠後果，這種對深層未來影響缺乏審慎洞察的疏漏，反映出劣勢內向直覺的特徵。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最深刻的關係，是與那位在母腹中便已與他相爭、此後騙走他長子名分與祝福、卻在二十年後被他親手擁抱和解的孿生弟弟雅各。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">雅</div>
+          <div class="relation-name">雅各</div>
+          <div class="relation-type-badge">他的孿生弟弟，也是騙走他長子名分與祝福、此後與他和解的對象</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">雅各先是用紅豆湯換取以掃的長子名分，此後又設計騙取本應屬於以掃的祝福，這段兄弟關係因此破裂長達二十年，卻在雅各歸回迦南時，以以掃主動的擁抱與親吻，畫下了和解的句點。</div>
+          <div class="relation-ref">創 25:29–34, 27:1–40, 33:1–4</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">以撒</div>
+          <div class="relation-name">以撒</div>
+          <div class="relation-type-badge">偏愛他、卻被雅各與利百加聯手欺騙的父親</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">以撒因常吃以掃打獵所得的野味而偏愛他，欲按長子的名分祝福他，卻被利百加與雅各的欺騙所矇蔽，將原本屬於以掃的祝福，誤給了雅各。</div>
+          <div class="relation-ref">創 25:28, 27:1–29</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">利</div>
+          <div class="relation-name">利百加</div>
+          <div class="relation-type-badge">偏愛雅各、策劃欺騙以掃的母親</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">利百加明顯偏愛雅各，並主動策劃了讓雅各假扮以掃騙取祝福的整個計謀，這個決定，直接導致了以掃此後深刻的傷痛與怨恨。</div>
+          <div class="relation-ref">創 27:5–17</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「恐怕有淫亂的，有貪戀世俗如以掃的，他因一點食物把自己長子的名分賣了」——希伯來書用以掃的例子，向後世發出對貪戀眼前世俗滿足的鄭重警示。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「以掃跑來迎接他，將他抱住，又摟著他的頸項親嘴，兩個人就哭了。」</div>
+      <div class="verse-ref">創世記 33:4</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">בָּזָה</span>
+        <div class="word-transliteration">bazah · 輕看 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「輕視、蔑視、看不起」，這個字直接評價了以掃對長子名分所抱持的態度。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">聖經用這個字總結以掃賣掉長子名分的決定，這個字的選用，清楚地表明，問題不在於以掃當下的飢餓（這是真實的生理需要），而在於他對長子名分這一珍貴屬靈與家族地位所抱持的輕忽態度。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">בְּכֹרָה</span>
+        <div class="word-transliteration">bekhorah · 長子的名分 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「長子的權利、長子的名分」，在古代近東文化中，長子通常享有雙倍的產業繼承權，以及在家族中的優先地位。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">在以撒的家族之中，長子的名分更承載著超越一般家族繼承的深遠意義——它與神向亞伯拉罕所應許的祝福血脈延續直接相關，以掃輕率地賣掉這個名分，某種程度上，也象徵著他對這份屬靈應許缺乏應有的珍視。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">過度看重眼前立即的滿足可能導致無法挽回的長遠損失</div>
+      <div class="theology-insight-body">以掃為一碗紅豆湯賣掉長子名分的決定，被希伯來書明確引用為『貪戀世俗』的警示案例，這確立了聖經中一個重要原則：眼前具體而立即的滿足，若被過度看重，可能導致對長遠而珍貴之價值的輕忽與喪失。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">深刻的傷痛與怨恨可能在時間與內心的成長中被寬容所化解</div>
+      <div class="theology-insight-body">以掃從『放聲痛哭』、心懷殺機，到多年後主動擁抱和解雅各，這段轉變展現出，即使是最深刻的傷痛，依然可能在時間的沉澱與內心的成長中，被寬容與愛所超越。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">家族中父母的偏心可能為此後的世代衝突埋下深遠的種子</div>
+      <div class="theology-insight-body">以撒與利百加對兩個兒子截然不同的偏愛，直接導致了此後的欺騙、怨恨、與長達二十年的分離，這提醒為人父母者，持守公平對待子女的重要性。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">以掃因一時的飢餓，輕率地賣掉了自己長子的名分，此後即使含淚懇求，也無法挽回這個決定所帶來的後果</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">希伯來書特別以他為警示案例，提醒信徒不要因貪戀眼前世俗的滿足，而輕忽神所賜予更長遠、更珍貴的屬靈產業與應許</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">希伯來書勸勉信徒「你們要謹慎，恐怕有人失了神的恩……又要謹慎，恐怕有淫亂的，有貪戀世俗如以掃的」，直接以以掃的例子，警示信徒切勿為了眼前的滿足，而失落神所應許的永恆產業（來 12:15–17）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正因眼前立即的滿足，而考慮輕率地放棄某個長遠而珍貴的價值——以掃的故事，是一則鄭重的警示；如果你此刻正懷抱著對某人深刻的怨恨——以掃的和解，是一則溫柔的邀請。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">以掃的故事命中兩種處境中的人——一種人可能此刻正因眼前立即的滿足或壓力，考慮輕率地放棄某個長遠而珍貴的價值（信念、關係、或屬靈的產業），以掃賣掉長子名分的教訓，提醒我們謹慎衡量眼前的選擇；另一種人，則可能正懷抱著對某人（甚至是至親）深刻的傷痛與怨恨，以掃最終選擇擁抱與和解雅各的故事，展現出即使是最深的傷害，依然可能在時間與內心的成長中，被寬容所超越。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你此刻是否正因眼前立即的滿足或壓力，考慮輕率地放棄某個長遠而珍貴的價值？以掃『輕看長子名分』的教訓，對你此刻的處境，帶來什麼樣的警示？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">你此刻是否懷抱著對某人（甚至是至親）深刻的傷痛與怨恨？以掃在二十年後主動擁抱雅各的故事，對你此刻的處境，帶來什麼樣的邀請？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">以撒與利百加對兩個兒子截然不同的偏愛，為此後的家庭衝突埋下了種子。你是否也曾在對待身邊不同的人時，出現不自覺的偏心？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 以掃</span>
+        <div class="gen-title">示範劇本：因一時的輕率而失去長子名分與祝福，卻在多年後選擇超越傷痛的寬容與和解</div>
+        <div class="gen-body">他因眼前的飢餓而輕率地賣掉長子的名分，此後又被弟弟騙走本應屬於他的祝福，承受了深刻的傷痛與怨恨，卻在二十年後，展現出令人動容的寬容，主動擁抱歸回的雅各。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 以東民族（他的後裔）</span>
+        <div class="gen-title">延續：以掃的後裔發展成以東民族，此後與以色列延續著複雜的鄰邦關係</div>
+        <div class="gen-body">以掃（以東）的後裔此後發展成以東民族，這個與以色列有著血緣淵源的鄰邦，此後數百年間，與以色列之間延續著時而衝突、時而複雜的關係，某種程度上，延續了以掃與雅各這對兄弟關係的深遠影響。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在以掃的故事中，展現在他自己內心深處超越傷痛的寬容——即使他曾經歷深刻的失落與怨恨，他最終依然選擇了擁抱而非報復。這提醒我們，即使我們曾經因他人的過犯而深受傷害，寬容與和解，依然是我們自己可以選擇的道路，而這份選擇，本身就是一種深刻的恩典彰顯。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位為一碗紅豆湯賣掉長子名分、卻在二十年後主動擁抱弟弟的獵人，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#眼前的滿足別賣掉長遠的價值</span>
+      <span class="tag">#傷痛可以被時間與寬容化解</span>
+      <span class="tag">#父母的偏心影響深遠</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>以掃是雅各的雙胞胎哥哥，一個渾身是毛、擅長打獵的粗獷男子，是父親以撒的心頭好，因為以撒愛吃他打回來的野味。</p>
+      <p>有一天，以掃打獵回來，又累又餓，看見弟弟雅各正煮著紅豆湯，他求雅各給他喝一點。雅各卻開條件：把你長子的名分賣給我。以掃當下的反應是：我都要餓死了，長子的名分對我有什麼用？他就這樣，把長子的名分，換了一碗湯。</p>
+      <p>後來父親以撒年老，眼睛看不清了，準備把長子才有的祝福給以掃。利百加跟雅各聯手，讓雅各假扮以掃，成功騙走了這份祝福。以掃發現真相後，放聲痛哭：我父啊，求你也為我祝福！這是聖經裡讀起來最讓人心碎的畫面之一。</p>
+      <p>以掃因此對雅各恨之入骨，甚至想殺了他。雅各被迫逃亡，一走就是二十年。</p>
+      <p>二十年後，雅各準備回家，心裡怕得要命，怕以掃還記恨著要殺他。結果呢？以掃看到雅各，直接跑過去，抱住他，親吻他，兩個人抱頭痛哭。這個和解的畫面，跟當年以掃痛哭失去祝福的畫面，形成了一個完整的圓——從最深的傷痛，走到了最溫暖的擁抱。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——以掃這塊石頭，因為一時的衝動裂了一道深深的縫，卻在二十年後，被時間磨出了寬容的溫度。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你此刻正因為眼前的壓力或誘惑，考慮放棄某個你知道長遠很重要的東西——想想以掃的紅豆湯，別讓一時的餓，換走了你真正珍貴的東西。</p>
+      <p style="margin-top:12px;">如果你心裡對某個人（也許是家人）懷著很深的怨恨——以掃的故事想告訴你：即使傷得再深，時間跟選擇寬容，依然可以帶你走到和解的那一刻。</p>
+      <p style="margin-top:12px;">留意你對待身邊不同的人，是不是也有不自覺的偏心。以撒跟利百加的偏心，種下了這整個故事最初的裂痕。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，別為眼前的一碗湯，賣掉你長遠珍貴的東西；也別讓舊的傷痛，攔住你選擇擁抱的機會。</p>
+    </div>
+
+    <div class="insight-box">以掃的故事，持續為當代討論『延遲滿足的重要性』與『家庭創傷的和解可能性』這兩個心理學課題，提供了聖經中最經典也最溫暖的雙重參照案例。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他從一位輕率賣掉長子名分的粗獷獵人，成為多年後主動擁抱和解、展現寬容的兄長，留下了聖經中『輕率的代價』與『和解的可能』並存的深刻見證。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">『貪戀世俗』警示的經典聖經來源</div>
+          <div class="legacy-body">希伯來書明確以他為警示案例，此後成為闡明『不可為眼前的滿足輕忽長遠珍貴之價值』這一屬靈原則時，被引用頻率最高的舊約例證之一。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">家庭創傷與和解最完整的敘事典範</div>
+          <div class="legacy-body">他從深刻的傷痛與怨恨，走向主動擁抱和解的完整生命弧線，持續為後世提供了『時間與內心的成長能夠化解深刻家庭創傷』這一課題最動人的敘事範例。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">以東民族的先祖</div>
+          <div class="legacy-body">他的後裔發展成以東民族，此後與以色列延續著數百年複雜的鄰邦關係，這段歷史，某種程度上，持續迴響著他與雅各這對兄弟關係最初的張力與淵源。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「以掃跑來迎接他，將他抱住，又摟著他的頸項親嘴，兩個人就哭了。」</div>
+      <div class="final-verse-ref">創世記 33:4</div>
+    </div>
+
+    <div class="final-question">如果你此刻正因眼前的滿足而考慮放棄某個長遠珍貴的價值，或正懷抱著對某人深刻的怨恨——你願不願意從以掃的故事中，同時記取警示與盼望，做出你自己的選擇？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 以掃 <span>עֵשָׂו</span> · 以撒的長子 · 為一碗紅豆湯賣掉長子名分者 · 失去祝福卻此後選擇和解的兄長</div>
+
+</body>
+</html>

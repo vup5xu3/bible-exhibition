@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>約拿 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">約拿</h1>
+  <span class="hero-name-en">Jonah · יוֹנָה</span>
+  <p class="hero-slogan">「耶和華的話臨到亞米太的兒子約拿，說：「你起來往尼尼微大城去，向其中的居民呼喊，因為他們的惡達到我面前。」約拿卻起來，逃往他施去躲避耶和華。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">約主前八世紀（北國以色列耶羅波安二世在位期間）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ISTP · 鑑賞家型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">約拿書全書 · 王下 14:25 · 太 12:39–41</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">亞米太之子 · 北國以色列先知 · 被神差往尼尼微宣告審判的傳道人</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他是聖經中極少數，明明清楚知道神的心意，卻選擇公然掉頭逃跑的先知——而他逃跑的理由，最終被揭曉，竟是因為他太清楚神的憐憫，不希望這份憐憫臨到他所厭惡的敵國。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">約主前八世紀，北國以色列耶羅波安二世在位期間</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">迦特希弗人，亞米太之子，北國以色列的先知</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">迦特希弗（加利利境內）；奉差前往亞述首都尼尼微</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">聖經未詳細記載其家庭成員</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">約拿書全書 · 王下 14:25 · 太 12:39–41, 16:4 · 路 11:29–32</div>
+      </div>
+    </div>
+
+    <p>約拿在歷史記載中，是一位在耶羅波安二世時期，曾對北國以色列疆域擴張作出正面預言的先知（王下 14:25）——這意味著他在約拿書事件發生之前，已是一位具有一定聲望的真先知。然而約拿書開篇所記載的，卻是他生命中最不光彩的一頁：耶和華吩咐他前往亞述帝國的首都尼尼微，向這座以殘暴著稱的異教大城宣告神的審判，約拿卻『起來，逃往他施去躲避耶和華』——他搭船前往與尼尼微完全相反的方向，試圖徹底逃離這項使命。這個舉動，展現出約拿身為以色列人，對亞述這個歷史上以殘酷手段對待以色列（此後更滅亡北國）的世仇之國，懷抱著深刻的民族仇恨與排斥。</p>
+    <p>約拿的逃亡並未成功——耶和華使海中起了大風，約拿的船幾乎被打破，水手們在恐懼中抽籤，發現正是約拿的緣故招致這場風暴。約拿要求水手將自己拋入海中以平息風浪，水手照做後，海『就止住怒濤』。而耶和華『安排一條大魚吞了約拿，約拿在魚腹中三日三夜』——他在魚腹中向神獻上悔改與感恩的禱告，耶和華此後吩咐魚將他吐在旱地上。約拿這才順服神第二次的吩咐，前往尼尼微宣告『再等四十日，尼尼微必傾覆了』——出乎約拿意料的是，尼尼微全城上下，從王到百姓，竟然真心悔改、披麻蒙灰、禁食禱告，耶和華因此後悔不降所說的災。這個結果，非但沒有讓約拿歡喜，反而使他『大大不悅，且甚發怒』，他向耶和華抱怨：『我在本國的時候，豈不是這樣說？我知道你是有恩典、有憐憫的神，不輕易發怒，有豐盛的慈愛，並且後悔不降所說的災，所以我急速逃往他施去。』約拿書以耶和華用一棵蓖麻樹的比喻，溫柔卻鄭重地質問約拿——他豈能愛惜這棵一夜生長、一夜枯萎的蓖麻，卻不容神愛惜尼尼微城十二萬多不能分辨左右手的人與許多牲畜——作為全書意味深長的結尾。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從公然逃避神呼召的先知，到大魚腹中三日三夜的悔改，再到尼尼微全城悔改後反而向神發怒的矛盾反應——約拿的故事，是聖經中對『神的憐憫如何超越人的偏見』刻畫得最戲劇性的敘事之一。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">逃避呼召——「約拿卻起來，逃往他施去躲避耶和華」</div>
+        <div class="timeline-body">耶和華吩咐約拿前往尼尼微宣告審判，約拿卻搭船逃往完全相反的方向他施，試圖徹底逃離這項使命——這個舉動，源自他對亞述這個以色列世仇之國深刻的民族仇恨與不願見其蒙神憐憫的心態。</div>
+        <div class="timeline-ref">拿 1:1–3</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">海中風暴與大魚吞噬——「約拿在魚腹中三日三夜」</div>
+        <div class="timeline-body">耶和華使海中起了大風，水手抽籤發現是約拿的緣故，約拿要求水手將自己拋入海中，風浪隨即止息。耶和華安排一條大魚吞了約拿，他在魚腹中三日三夜向神獻上悔改與感恩的禱告，耶和華此後吩咐魚將他吐在旱地上。</div>
+        <div class="timeline-ref">拿 1:4–2:10</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">尼尼微全城悔改——「神察看他們的行為，見他們離開惡道」</div>
+        <div class="timeline-body">約拿順服神第二次的吩咐，前往尼尼微宣告審判信息，出乎意料地，尼尼微王與全城百姓竟真心悔改、披麻蒙灰、禁食禱告，耶和華因此後悔不降所說的災——這是聖經中規模最大、也最戲劇性的群體悔改敘事之一。</div>
+        <div class="timeline-ref">拿 3 章</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">約拿的憤怒與蓖麻的教訓——「這尼尼微大城……我豈能不愛惜呢」</div>
+        <div class="timeline-body">尼尼微蒙神憐憫非但沒有讓約拿歡喜，反而使他大發脾氣，甚至向神求死。耶和華安排一棵蓖麻樹為他遮蔭，又使蟲子咬死這棵樹，藉此溫柔卻鄭重地質問約拿：他豈能愛惜一夜之間生長枯萎的蓖麻，卻不容神愛惜尼尼微城十二萬多的居民與許多牲畜。</div>
+        <div class="timeline-ref">拿 4 章</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他是聖經中少數幾位，即使在經歷神蹟性拯救、並親眼見證史上規模最大的群體悔改之後，仍然坦承自己內心深處偏見與憤怒的先知——這種毫不掩飾的誠實，使他的故事格外發人深省。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">深刻的民族仇恨，使他寧可違抗神的吩咐，也不願見敵國蒙神憐憫</div>
+          <div class="soul-body">約拿最終坦承，他逃避呼召的真正原因，正是他太清楚神『有恩典、有憐憫……不輕易發怒』的本性，他不願意讓自己民族的世仇亞述，因這份憐憫而免於審判。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">即使心懷強烈的個人偏見，最終仍選擇順服神明確的吩咐</div>
+          <div class="soul-body">儘管內心充滿抗拒，約拿在經歷大魚吞噬的管教後，最終依然前往尼尼微，忠實地傳達了神所吩咐的審判信息，這份儘管不甘願卻依然順服的行動，是他性格中值得肯定的一面。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">面對不願意接受的呼召，傾向以逃避而非正面表達自己的掙扎作為第一反應</div>
+          <div class="soul-body">約拿沒有選擇向神表達自己的疑慮或請求另派他人，而是直接搭船逃往相反方向——這種以逃避處理內心衝突的行事風格，最終導致了他自己與整船水手的巨大危機。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">即使親眼見證神蹟性的群體悔改，仍然被自己的偏見與憤怒所困</div>
+          <div class="soul-body">約拿在經歷了大魚吞噬的拯救、又親眼見證尼尼微全城的悔改之後，理應對神的憐憫有更深的體會，然而他卻在這一切之後，依然選擇向神發怒、甚至求死，顯示他內心的偏見，遠比表面的順服更加根深蒂固。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">他在魚腹中的三日三夜，此後被耶穌親自引用作為自己受死復活的預表</div>
+          <div class="soul-body">耶穌明確將約拿在大魚腹中三日三夜的經歷，類比為自己此後將要經歷的死亡與復活——這使約拿這位性格複雜、甚至帶著明顯偏見的先知，意外地承載了指向基督救贖工作最重要的預表意義之一。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">約拿的故事，是聖經中對『神的憐憫如何超越人最根深蒂固的偏見』描寫得最誠實、也最發人深省的敘事之一。約拿並非一位典型的反派或惡人——他是一位真實的先知，曾為以色列傳講過蒙神應允的預言，然而當神的呼召要求他向自己深惡痛絕的敵國宣講憐憫的可能性時，他選擇了逃避，甚至在最終被迫順服、親眼見證神蹟性的群體悔改之後，依然無法真心為此歡喜，反而因此向神發怒。這種毫不掩飾的誠實記載，使約拿書成為聖經中，最直接挑戰讀者自身偏見與狹隘的一卷書——它逼問我們：是否也曾像約拿一樣，希望神的審判臨到我們所厭惡的對象，卻對神向他們施行憐憫的可能性，感到不悅甚至憤怒？約拿書結尾那句『這尼尼微大城……我豈能不愛惜呢』，成為整本聖經中，對神普世憐憫最溫柔卻也最鄭重的宣告——神的愛，超越約拿（以及所有讀者）狹隘的民族與個人偏見，延伸向每一個祂所創造的生命。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ISTP</span>
+      <div class="mbti-name">鑑賞家型 · 逃往他施的先知</div>
+      <div class="mbti-slogan">「他搭船逃向與使命完全相反的方向，卻在大魚腹中，被神溫柔而堅定地，帶回了原本該去的地方。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Ti · 內向思考</span>
+          <div class="mbti-fn-body">他對於『尼尼微不該被憐憫』這件事，有著清晰而堅持的個人邏輯與立場，即使面對神明確的吩咐，仍然依照自己的判斷選擇逃避，這種堅持個人內在邏輯的傾向，正是主導內向思考的展現。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Se · 外向實感</span>
+          <div class="mbti-fn-body">他面對不願意的呼召，選擇了具體而直接的行動（搭船逃往他施），而非停留在內心掙扎或尋求對話，顯示出以具體行動回應處境的傾向。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">他在魚腹中三日三夜的禱告，展現出對自己處境與神旨意更深層意義的反思與領悟，這段經歷促成了他此後的順服。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Fe · 外向情感</span>
+          <div class="mbti-fn-body">他即使親眼見證尼尼微全城的悔改，仍然無法真心體會並認同神對這些生命的憐憫與關愛，這種難以將他人（尤其是敵對群體）的處境納入自己情感考量的侷限，反映出劣勢外向情感的特徵。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最深刻的關係張力，不是與任何一個具體的人，而是與那位他既清楚認識、卻又試圖逃避與違抗的神。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">水</div>
+          <div class="relation-name">船上的水手</div>
+          <div class="relation-type-badge">因他而遭遇風暴、卻也因他而蒙保全的異邦人</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">水手們因約拿的緣故遭遇幾乎致命的風暴，然而在約拿被拋入海中、風浪止息後，他們『大大敬畏耶和華，向耶和華獻祭，並且許願』——這群異邦水手的敬畏回應，某種程度上預示了此後尼尼微城的悔改。</div>
+          <div class="relation-ref">拿 1:4–16</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">尼</div>
+          <div class="relation-name">尼尼微王與百姓</div>
+          <div class="relation-type-badge">在他傳講審判信息後，出乎意料真心悔改的異教徒</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">尼尼微王聽見約拿宣告的審判信息，下令全城披麻蒙灰、禁食禱告，甚至『各人回頭離開所行的惡道，丟棄手中的強暴』——這場史上規模最大的群體悔改，成為約拿書中最戲劇性的轉折。</div>
+          <div class="relation-ref">拿 3:5–10</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「這尼尼微大城，其中不能分辨左右手的有十二萬多人，並有許多牲畜，我豈能不愛惜呢？」——神這句反問，成為聖經中對神普世憐憫最溫柔卻也最鄭重的宣告。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「我知道你是有恩典、有憐憫的神，不輕易發怒，有豐盛的慈愛，並且後悔不降所說的災。」</div>
+      <div class="verse-ref">約拿書 4:2</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">נִחַם</span>
+        <div class="word-transliteration">nicham · 後悔 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「後悔、改變心意、憐恤」，此處描述神因人的悔改，而改變原先所宣告要施行的審判。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這個字並非指神的本質或計畫發生了矛盾或錯誤，而是描述神的審判宣告，本身就帶有『若人悔改，審判可以被收回』的條件性——這個字深刻揭示了神的公義與憐憫如何在祂與人的互動中動態地展現。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">חוּס</span>
+        <div class="word-transliteration">chus · 愛惜 / 顧惜 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「顧惜、憐惜、捨不得」，這個字在約拿書結尾，用以形容約拿對蓖麻的顧惜，以及神對尼尼微城百姓的顧惜，形成鮮明的對照。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">神用約拿自己對一棵蓖麻樹的顧惜之情作為類比，反問他豈不更應該顧惜尼尼微城十二萬多的生命——這個精巧的類比，直接挑戰約拿（以及所有讀者）狹隘的同理心範圍，邀請我們將神的顧惜之心，擴展到我們原本不願意接納的對象之上。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">神的憐憫具有超越以色列、涵蓋外邦人的普世性</div>
+      <div class="theology-insight-body">約拿書透過尼尼微城的悔改，具體展現了神的憐憫並不局限於以色列一族，而是延伸向所有願意悔改的人——這為此後新約福音『傳給萬民』的普世性使命，奠定了重要的舊約神學基礎。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">先知的個人偏見可能與神的心意產生真實的張力</div>
+      <div class="theology-insight-body">約拿書誠實地呈現了一位真先知，如何在傳講神的信息時，內心依然懷抱著與神心意相悖的個人偏見——這提醒我們，即使是被神使用的僕人，也需要持續讓自己的心意，被神的心意所更新。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">神的審判宣告帶有邀請悔改的憐憫性質</div>
+      <div class="theology-insight-body">尼尼微城的悔改與神隨之收回審判的記載，確立了聖經神學中一個重要原則：神宣告審判的最終目的，往往是為要給予悔改的機會，而非單純為了施行毀滅。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">約拿在大魚腹中三日三夜，此後被吐在旱地上，重新展開他的使命</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">耶穌親自將這段經歷，明確類比為自己此後將要經歷的死亡與復活——約拿在魚腹中的三日三夜，成為舊約中，對基督受死埋葬三日、此後復活這一核心救贖事件，最直接而明確的預表</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">耶穌說「約拿三日三夜在大魚肚腹中，人子也要這樣三日三夜在地裡頭」，直接以自己的權柄，確立了約拿故事作為自己受難復活之預表的神學地位（太 12:39–40）</div>
+        </div>
+      </div>
+
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">約拿起初極度不願意將神的憐憫傳講給外邦的尼尼微城，然而神最終使用他，成就了這座外邦大城史上規模最大的群體悔改</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這種『先知的偏見未能攔阻神的憐憫臨到外邦人』的模式，預表了此後新約教會突破猶太與外邦界限，將福音傳向萬國萬民的普世宣教使命</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">耶穌在升天前吩咐門徒「你們要去，使萬民作我的門徒」，這個大使命，正是約拿書中神對尼尼微之憐憫，在新約時代得到全面擴展與成就的具體實現（太 28:19）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正抗拒神呼召你去接觸、甚至去愛某個你打從心底排斥的人或群體——約拿的故事，是一面誠實得令人不安的鏡子。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">約拿的故事命中的是每一個此刻正抗拒神呼召自己去接觸、饒恕、甚至去愛某個自己打從心底排斥的人或群體的人。約拿並非表面上顯而易見的惡人，他甚至是一位真實蒙神使用的先知——然而他內心深處對亞述人的仇恨，卻使他寧可違抗神的吩咐，也不願見這份憐憫臨到他所厭惡的對象。約拿書逼問每一位讀者：我們是否也曾希望神的審判臨到我們所排斥的人，卻對神向他們施行憐憫的可能性，感到不悅甚至憤怒？</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你此刻的生命中，是否存在某個你打從心底排斥、甚至希望神審判而非憐憫的人或群體？約拿的故事，對你這份情緒，帶來什麼樣的誠實挑戰？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">約拿即使在大魚腹中經歷神蹟性的拯救，最終仍未能真正放下自己的偏見。你是否也曾在經歷神的恩典之後，卻在某個特定的處境中，依然固守著自己的成見？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">神以約拿對蓖麻的顧惜作為類比，反問他豈不更應顧惜尼尼微的百姓。你此刻是否也需要重新省視，自己的同理心與顧惜之情，是否過於狹隘地局限在自己熟悉或喜愛的對象之上？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">約拿書以一個開放式的反問句結尾，沒有明確交代約拿最終的回應。你認為，如果是你站在約拿的位置，你的回答會是什麼？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 約拿</span>
+        <div class="gen-title">示範劇本：即使身為蒙神使用的先知，仍需面對並處理自己內心深處的偏見</div>
+        <div class="gen-body">他逃避神向敵國宣講憐憫的呼召，即使被迫順服、並親眼見證史上規模最大的群體悔改，依然未能真正放下自己對尼尼微人的仇恨與偏見。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 尼尼微全城的百姓</span>
+        <div class="gen-title">延續：一座異教大城因悔改而蒙神憐憫的具體見證</div>
+        <div class="gen-body">儘管約拿內心充滿抗拒，尼尼微城百姓仍然因著他所傳講的信息而真心悔改，蒙神收回審判——這證明神的憐憫，從不受限於祂所使用之器皿的個人偏見。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在約拿的故事中，展現在神即使面對約拿一再的抗拒與偏見，依然耐心地透過大魚的管教、以及蓖麻樹的教訓，溫柔卻堅定地引導他認識神憐憫的浩大；也展現在，神的憐憫從不因約拿個人的不情願，而縮限祂向尼尼微城百姓所施行的拯救。這提醒我們，神的恩典工作，從不受限於祂所使用之人的完全順服或毫無偏見。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位逃避使命、卻在大魚肚子裡被神找回來的先知，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#偏見會讓你抗拒神的心意</span>
+      <span class="tag">#逃避不會讓呼召消失</span>
+      <span class="tag">#神的愛比你想像的更寬廣</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>神叫約拿去尼尼微，一個以殘暴著稱、跟以色列有深仇大恨的敵國首都，去告訴他們：你們的惡已經達到神面前了。約拿的反應是什麼？他直接搭船，往反方向走。</p>
+      <p>他沒能逃成功。海上起了大風暴，船差點翻，水手抽籤發現是約拿的問題，約拿自己說：把我丟進海裡吧。他們照做了，風浪立刻停了。然後神安排一條大魚把約拿吞下去，他在魚肚子裡，待了三天三夜。</p>
+      <p>在魚肚子裡，約拿禱告了，態度軟化了，神吩咐魚把他吐到岸上。約拿這次終於去了尼尼微，宣告：再過四十天，這城要毀滅了。結果呢？全城，從國王到百姓，全部披麻蒙灰，認真悔改。神因此收回了原本要降的災。</p>
+      <p>照理說，這應該是個皆大歡喜的結局，對吧？約拿卻氣炸了。他跟神抱怨：我早就知道你是有恩典有憐憫的神，所以我才逃跑！你看，我就說會這樣！他氣到甚至跟神說：求你取我的性命吧，我死了比活著還好。</p>
+      <p>神沒有直接罵他，而是安排一棵蓖麻樹為他遮陰，隔天又讓蟲子把樹咬死。約拿因為失去這棵樹的遮蔭又發怒。神這時候問他：你這麼捨不得一棵一夜長出來、一夜枯掉的樹，難道我不該捨不得尼尼微城裡十二萬多個分不清左右手的人嗎？故事，就在這個問句中結束了。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——約拿這塊石頭，被神一路追著雕刻，從逃跑到魚肚子到蓖麻樹下，卻始終沒能把心裡那道偏見的裂痕，完全磨平。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你此刻心裡對某個人、某個群體，抱著『他們不值得被原諒』的想法——約拿的故事想溫柔地逼問你：你希望神對他們嚴厲，還是你希望神也對他們有恩典？</p>
+      <p style="margin-top:12px;">逃避不會讓呼召消失，只會讓你多繞一段大魚肚子裡的路。與其逃跑，不如誠實地告訴神你的抗拒。</p>
+      <p style="margin-top:12px;">約拿書沒有給出約拿最終的回答，這個問句，其實是留給每一個讀者的——換作是你，你的答案是什麼？</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，想想那個你心裡『希望神別對他太好』的人——然後，把約拿的問句，也問問自己。</p>
+    </div>
+
+    <div class="insight-box">約拿的故事，持續為當代討論『內團體偏見』與『如何學習愛敵人』這類跨文化與跨族群和解議題，提供了極具挑戰性也極具啟發性的聖經參照——它不迴避地呈現了偏見如何存在於一位真實的信仰群體成員內心，也毫不妥協地宣告了神的愛超越一切人為劃定的敵我界限。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他從逃避呼召的先知，成為神用以彰顯憐憫超越一切民族偏見之普世性的關鍵見證人物。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">基督受死復活最直接的舊約預表</div>
+          <div class="legacy-body">他在大魚腹中三日三夜的經歷，被耶穌親自引用，成為預表基督受死埋葬三日、此後復活這一核心救贖事件最明確的舊約文本。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">神憐憫具普世性的重要神學見證</div>
+          <div class="legacy-body">尼尼微城的悔改與蒙神憐憫，成為舊約中，具體展現神的救恩並不局限於以色列一族、而是延伸向所有願意悔改之人這一普世性真理最重要的敘事範例。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">『先知的個人偏見與神的心意之間張力』的誠實記載</div>
+          <div class="legacy-body">約拿書毫不迴避地記載了一位真先知內心的偏見與抗拒，持續為後世提供了『即使是蒙神使用的僕人，也需要持續被神更新自己狹隘之心』這一深刻的屬靈提醒。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">跨族群和解與普世宣教神學的重要舊約根基</div>
+          <div class="legacy-body">約拿書為此後新約『福音傳給萬民』的宣教使命，奠定了重要的舊約神學基礎，持續啟發教會歷史中，對跨文化宣教與族群和解議題的深刻反思。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「這尼尼微大城，其中不能分辨左右手的有十二萬多人，並有許多牲畜，我豈能不愛惜呢？」</div>
+      <div class="final-verse-ref">約拿書 4:11</div>
+    </div>
+
+    <div class="final-question">如果你此刻心裡正對某個人或某個群體，懷抱著『他們不配得神憐憫』的想法——你願不願意像神反問約拿那樣，重新思考神的愛惜，是否本就超越你此刻所能想像的界限？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 約拿 <span>יוֹנָה</span> · 逃避呼召的先知 · 大魚腹中三日的倖存者 · 對神憐憫發怒的傳道人</div>
+
+</body>
+</html>

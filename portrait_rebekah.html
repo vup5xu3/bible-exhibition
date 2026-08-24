@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>利百加 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">利百加</h1>
+  <span class="hero-name-en">Rebekah · רִבְקָה</span>
+  <p class="hero-slogan">「他們就叫了利百加來，問她說：「你和這人同去嗎？」利百加說：「我去。」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">約主前二十世紀（族長時代）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ENTJ · 指揮官型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">創世記 24–27 章</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">彼土利之女 · 以撒之妻 · 雅各與以掃之母</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">她在井邊只用了一句『我願意去』，就決定了自己下半生的命運；多年後，她同樣用果斷的行動，決定了自己兩個兒子此後截然不同的命運。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">約主前二十世紀，族長時代</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">彼土利之女，拿鶴的孫女（亞伯拉罕的姪孫女），此後成為以撒之妻</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">巴旦亞蘭的拿鶴城，此後遷居迦南地</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">父彼土利；兄拉班；夫以撒；雙生子以掃、雅各</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">創 24–27 章 · 羅 9:10–13</div>
+      </div>
+    </div>
+
+    <p>利百加的出場，是聖經中最生動、最富畫面感的相親敘事之一。亞伯拉罕差遣老僕人前往故鄉，為兒子以撒尋找合適的妻子，僕人在井邊禱告求神明確的印證——他求神使那位主動願意打水給他與駱駝喝的女子，成為神為以撒預備的妻子。利百加正是那位不僅打水給僕人喝、更主動提出要為他所有的駱駝打水的女子，這個具體而慷慨的舉動，印證了僕人的禱告。當僕人向利百加的家人說明來意，家人詢問利百加本人的意願時，她只用了一句斬釘截鐵的『我去』，便決定了自己此後遠嫁陌生之地、嫁給一位素未謀面之男子的命運——這種果斷與勇氣，在她初次登場時，便已鮮明可見。</p>
+    <p>利百加婚後同樣長期不孕，以撒為她祈求耶和華，她才懷孕——且懷的是雙胞胎。懷孕期間，兩個孩子在她腹中『彼此相爭』，她因此求問耶和華，得到的回應是：『兩國在你腹內，兩族要從你身上出來，這族必強於那族，將來大的要服事小的。』這則預言，此後成為利百加此生一切重大抉擇的核心依據——她明顯偏愛次子雅各，而以撒則偏愛長子以掃，這種夫妻間對兩個兒子截然不同的偏愛，為此後的家庭埋下了深遠的衝突種子。當以撒年老眼矇，欲私下將長子祝福給以掃時，利百加得知後，果斷地策劃了一場精密的欺騙——她讓雅各假扮以掃，用羊皮偽裝毛髮觸感，親手為雅各準備以掃愛吃的野味，成功地讓以撒將原本屬於長子的祝福，誤給了雅各。這個決定性行動，徹底改變了雅各與以掃此後的命運，也讓利百加自己，此後再也沒有機會見到被迫逃亡在外的愛子雅各。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從井邊主動打水的慷慨少女，到懷孕時求問神旨的母親，再到親手策劃欺騙以奪取祝福的謀劃者——利百加的一生，展現出從果斷善良到果斷偏執的複雜軌跡。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">井邊的印證——「我去」</div>
+        <div class="timeline-body">亞伯拉罕的僕人在井邊禱告求神明確印證，利百加主動為他及所有駱駝打水，完全印證了僕人所求的記號。當家人詢問她是否願意跟隨僕人遠嫁陌生之地，她只用『我去』兩字，果斷地答應了這樁婚事。</div>
+        <div class="timeline-ref">創 24 章</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">求問懷孕之兆——「兩國在你腹內」</div>
+        <div class="timeline-body">利百加婚後長期不孕，以撒為她祈求耶和華，她這才懷上雙胞胎。懷孕期間胎兒在腹中激烈相爭，她因此求問耶和華，得到『將來大的要服事小的』這則此後深刻影響她一生抉擇的預言。</div>
+        <div class="timeline-ref">創 25:21–23</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">偏愛雅各——「利百加卻愛雅各」</div>
+        <div class="timeline-body">聖經明確指出，以撒因愛吃野味而偏愛以掃，利百加則偏愛雅各——這種父母對兩個兒子截然不同的偏愛，成為此後家庭衝突與欺騙事件的深層根源。</div>
+        <div class="timeline-ref">創 25:28</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">策劃欺騙奪取祝福——「我兒，你只管聽我的話」</div>
+        <div class="timeline-body">以撒年老眼矇，欲私下將長子祝福給以掃，利百加得知後，果斷策劃讓雅各假扮以掃，用羊皮偽裝觸感、親手預備野味，成功使以撒將祝福誤給雅各——這個決定，永久改變了雅各與以掃此後的命運，也使利百加此後與以掃、以撒的關係，蒙上難以化解的裂痕。</div>
+        <div class="timeline-ref">創 27 章</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">她初次登場時的果斷善良，與此後策劃欺騙時的果斷精明，展現出同一種核心性格特質——行動力極強、決策明快——卻在不同的處境中，導向了截然不同的道德評價。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">早年出於信心的果斷回應，晚年卻轉為出於偏愛與焦慮的果斷操控</div>
+          <div class="soul-body">利百加井邊的『我去』，展現出對神安排的信心與順服；然而她此後策劃欺騙以撒的行動，卻更多出於對雅各的偏愛，以及對『大的要服事小的』這則預言未能透過正當方式實現的焦慮。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">初次相遇時展現出的主動慷慨與果斷決心</div>
+          <div class="soul-body">她在井邊主動提出為駱駝打水這個超乎僕人所求的慷慨舉動，以及她面對遠嫁陌生之地的重大抉擇時毫不猶豫的果斷，都展現出她性格中值得稱許的行動力。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">面對關鍵處境時，傾向以具體而周密的計畫主動介入，而非被動等待</div>
+          <div class="soul-body">無論是主動提議為駱駝打水，或是精心策劃讓雅各假扮以掃的整個欺騙過程（準備衣服、野味、羊皮），利百加都展現出極強的策劃與執行能力。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">為達成心中認定『對的結果』，不惜策劃並執行一場精密的欺騙</div>
+          <div class="soul-body">儘管『大的要服事小的』確實是神所給予的預言，利百加卻選擇用欺騙的手段，而非信靠神以祂自己的方式讓這則預言實現，這個抉擇，成為她生命中最受爭議的部分。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">她所求問並領受的神諭，成為她此後一切行動（包括欺騙）的自我合理化依據</div>
+          <div class="soul-body">利百加懷孕時所領受的『大的要服事小的』預言，某種程度上，成為她此後偏愛雅各、乃至策劃欺騙的心理與屬靈依據——這提醒我們，即使領受了真實的神諭，人仍然可能以錯誤或急躁的方式，試圖促成其實現。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">利百加的故事，展現出聖經中對『同一種性格特質，如何在不同處境下導向截然不同之道德後果』刻畫得最細膩的敘事之一。她初次登場時的果斷與慷慨，是聖經中極受讚賞的美德展現——她不假思索地為素未謀面的僕人與駱駝打水，並在面對遠嫁的重大抉擇時毫不猶豫。然而正是這同一種果斷、善於策劃並執行具體行動的性格特質，此後卻被用於策劃一場精密的欺騙，奪取本應屬於長子以掃的祝福。利百加確實領受了『將大的要服事小的』這則真實的神諭，然而她選擇的方式，卻是透過欺騙而非信靠神以祂自己的時候與方式成就這則應許——這個抉擇，不僅造成了她與以掃、以撒關係的永久裂痕，更使她此後再也無法與自己偏愛的雅各相見（雅各因懼怕以掃報復而逃亡他鄉，利百加自此再未在聖經敘事中被提及與雅各重逢）。她的故事提醒我們，即使我們確信自己所領受的是神真實的心意，選擇透過何種手段去實現它，同樣至關重要——急於用人的方法促成神的應許，往往帶來我們始料未及的深遠代價。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ENTJ</span>
+      <div class="mbti-name">指揮官型 · 井邊的果斷少女</div>
+      <div class="mbti-slogan">「她在井邊只說了兩個字就決定了自己的命運；多年後，她同樣用果斷的行動，決定了兩個兒子的命運——只是這一次，她選擇了欺騙。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">她策劃雅各假扮以掃的整個欺騙行動，展現出極其縝密而具體的組織執行能力——從準備衣物、野味、到羊皮偽裝觸感，每個細節都經過周密的規劃，這正是主導外向思考的典型展現。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">她能敏銳地洞察『將大的要服事小的』這則預言背後所指向的長遠格局，並據此規劃此後的家庭策略，顯示出對深層意義與未來走向的洞察力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Se · 外向實感</span>
+          <div class="mbti-fn-body">她在井邊迅速而具體地回應僕人與駱駝的需要，展現出對眼前處境的敏銳反應與行動力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">她在策劃欺騙以撒的過程中，似乎未能充分考量這個行動對家庭關係（尤其是與以掃、以撒）所造成的長遠情感傷害，這種在內在道德與情感後果評估上的疏漏，反映出劣勢內向情感的特徵。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">她一生最深刻的關係抉擇，都圍繞著兩個兒子截然不同的命運——而她親手策劃的欺騙，永久改變了這個家庭此後的樣貌。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">以撒</div>
+          <div class="relation-name">以撒</div>
+          <div class="relation-type-badge">她的丈夫</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">以撒因愛吃野味而偏愛長子以掃，利百加則偏愛次子雅各——夫妻二人對兩個兒子截然不同的偏愛，成為此後欺騙事件爆發的深層家庭根源。</div>
+          <div class="relation-ref">創 25:28, 27 章</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">雅</div>
+          <div class="relation-name">雅各</div>
+          <div class="relation-type-badge">她所偏愛、並協助奪取祝福的次子</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">利百加親手策劃讓雅各假扮以掃騙取祝福，此後又為保護雅各免於以掃報復，安排他逃往自己的娘家巴旦亞蘭——這個安排，卻也意味著利百加此生再也沒有機會與自己偏愛的兒子重逢。</div>
+          <div class="relation-ref">創 27 章</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">以掃</div>
+          <div class="relation-name">以掃</div>
+          <div class="relation-type-badge">她的長子，祝福被奪取的受害者</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">以掃因這場欺騙而失去了本應屬於他的長子祝福，因此對雅各懷恨在心，甚至揚言要殺他——這段兄弟關係的破裂，直接源自利百加的策劃與介入。</div>
+          <div class="relation-ref">創 27:41</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「將來大的要服事小的」——利百加所領受的這則真實預言，卻因她選擇以欺騙而非信靠神的時候去實現，留下了深刻的複雜教訓。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「耶和華對她說：「兩國在你腹內，兩族要從你身上出來，這族必強於那族，將來大的要服事小的。」」</div>
+      <div class="verse-ref">創世記 25:23</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">רַב יַעֲבֹד צָעִיר</span>
+        <div class="word-transliteration">rav ya'avod tsa'ir · 大的要服事小的 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「年長的（將）服事年幼的」，這句預言直接顛覆了古代近東社會中，長子理應享有優先繼承權的普遍慣例。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這則預言此後被使徒保羅在羅馬書中引用，作為闡明神主權揀選『不在乎行為，只在乎那召人的主』這一神學原則的重要例證——然而利百加選擇透過欺騙來『幫助』這則預言實現，這提醒我們，即使神的應許確實真實，人若急於用自己的手段強行促成，仍可能帶來意想不到的傷害與代價。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">真實的神諭不能作為使用不義手段的正當理由</div>
+      <div class="theology-insight-body">利百加確實領受了『大的要服事小的』這則真實的預言，然而她選擇用欺騙的方式促成其實現，這提醒我們，即使目標本身合乎神的心意，達成目標的手段，同樣需要合乎神的旨意。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">家庭中的偏心可能為此後的世代衝突埋下深遠的種子</div>
+      <div class="theology-insight-body">以撒與利百加對兩個兒子截然不同的偏愛，直接導致了此後欺騙、仇恨、與長達二十年的分離——這提醒為人父母者，在子女教養中持守公平的重要性。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">急於促成神應許的人為手段，往往帶來始料未及的長遠代價</div>
+      <div class="theology-insight-body">利百加雖然成功讓雅各獲得祝福，卻也因此永久失去了與這個兒子相見的機會——這具體印證了『人的急躁往往與神的信實計畫背道而馳』這一屬靈原則。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">利百加所領受『大的要服事小的』這則預言，顛覆了長子優先繼承的世俗慣例，宣告神揀選的主權超越人自然的長幼順序</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這則預言此後被保羅引用，作為闡明神揀選的主權『不在乎人的行為，只在乎那召人的主』這一救恩神學核心原則的重要舊約根據</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">保羅在羅馬書中明確引用利百加所領受的這則預言，論證神揀選的恩典，從不基於人自身的條件或次序，而完全出於神自己主權的憐憫（羅 9:10–16）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻確信自己正領受著神某個真實的心意或應許，卻正考慮透過某種不太光明正大的手段去加速促成它——利百加的故事，值得你停下來深思。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">利百加的故事命中兩種處境中的人——一種人可能正確信自己領受了神真實的應許或心意，卻在等待的過程中失去耐心，開始考慮透過某種操控或不誠實的手段，加速促成這個應許的實現；另一種人，則可能正身為父母或領導者，需要面對『如何在多個下屬或子女之間持守公平』這一課題。利百加的故事誠實地展現了她果斷善良的一面，也毫不迴避地記載了她因偏愛與焦慮而選擇欺騙的軟弱，提醒我們，即使確信目標本身合神心意，達成目標的過程，同樣至關重要。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你此刻是否確信自己正領受著某個神的心意或應許，卻因等待的煎熬，開始考慮某種『捷徑』或不太誠實的手段去加速促成它？利百加的欺騙及其後果，對你此刻的處境，帶來什麼樣的警示？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">利百加對雅各的偏愛，某種程度上源自她所領受的預言。你是否也曾因為某種『我認為是對的』信念，而在對待身邊的人時，出現不自覺的偏心？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">她的欺騙成功地達成了眼前的目標，卻付出了此後再也無法與雅各相見的代價。這對你理解『手段不義，即使達成了目標，仍可能帶來意想不到的長遠損失』，帶來什麼樣的提醒？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 利百加</span>
+        <div class="gen-title">示範劇本：從果斷善良的少女，到因偏愛而策劃欺騙的母親</div>
+        <div class="gen-body">她初次登場時展現出真實而動人的果斷與慷慨，然而此後卻因對雅各的偏愛，以及急於促成『大的要服事小的』預言，選擇了欺騙丈夫的手段，為家庭帶來深遠的裂痕。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 雅各（她所偏愛的兒子）</span>
+        <div class="gen-title">延續：從騙取祝福的兒子，到此後親身經歷被騙的報應循環</div>
+        <div class="gen-body">雅各此後在拉班家中，同樣多次經歷被欺騙（如娶妻時被調換新娘）的處境——這種『欺騙的循環』某種程度上延續了利百加當年所樹立的行事模式，直到雅各晚年在毘努伊勒與神摔跤後，生命才真正經歷徹底的轉化。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在利百加的故事中，展現在神即使面對她以欺騙手段促成應許的軟弱，仍然使雅各承接了應許的祝福，並使這條血脈此後持續延續。這提醒我們，神的恩典能夠在人不完美、甚至充滿瑕疵的抉擇中，依然成就祂自己的計畫，然而這不代表這些不義的手段本身，不會帶來真實而深遠的代價。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位在井邊一口答應遠嫁、後來卻親手策劃騙局的女先祖，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#果斷是把雙面刃</span>
+      <span class="tag">#偏心會埋下長遠的裂痕</span>
+      <span class="tag">#手段不義代價很長</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>利百加第一次出場的畫面很美——一個素未謀面的老僕人在井邊，向她要點水喝，她不僅給了，還主動說：我也為你的駱駝打水，直到牠們喝足。駱駝喝水量很大，這個舉動需要相當的體力與耐心。這個細節，成了僕人確認她就是神為以撒預備之妻子的印證。</p>
+      <p>家人問她願不願意跟這個僕人走、嫁給一個從沒見過面的男人，利百加的回答只有兩個字：我去。乾脆、果斷，一點猶豫都沒有。</p>
+      <p>婚後她長期不孕，以撒為她禱告，她懷了雙胞胎。懷孕期間肚子裡兩個孩子打得很兇，她跑去求問神，得到的答案是：將來大的要服事小的。這句話，此後成了她一生行事的重要依據。</p>
+      <p>以撒偏愛大兒子以掃，利百加偏愛小兒子雅各。等以撒年老眼睛看不清，準備把只有一次、不可撤回的祝福給以掃時，利百加出手了——她讓雅各披上羊皮假裝以掃多毛的手臂，煮了以撒愛吃的野味，一步步精密地執行了一場騙局，成功讓雅各奪走了本該屬於以掃的祝福。</p>
+      <p>這場騙局『成功』了，但代價也很清楚：以掃恨透了雅各，揚言要殺他；雅各被迫連夜逃往舅舅家，一逃就是二十年。而利百加自己呢？聖經此後再也沒有記載她與雅各重逢的場景——她可能至死，都沒能再見到自己最疼愛的兒子。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——利百加這塊石頭，井邊的那一面被雕得無比動人，餐桌邊策劃騙局的那一面，卻留下了永遠的裂痕。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你此刻確信自己正在等一個神真實的應許，卻等得心浮氣躁，開始想找『捷徑』——利百加的故事想提醒你：她說的預言是真的，但她用的方法，讓她付出了再也見不到愛子的代價。</p>
+      <p style="margin-top:12px;">留意你對待身邊不同的人（孩子、下屬、朋友），是不是也存在著不自覺的偏心。這種偏心，往往是長遠衝突最初的種子。</p>
+      <p style="margin-top:12px;">還有，果斷不是壞事——利百加井邊的果斷很美，但她需要學會的是：把這份果斷，用在誠實而非欺騙的行動上。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果你正等一個應許——繼續等，別讓等待的煎熬，把你推向欺騙的捷徑。</p>
+    </div>
+
+    <div class="insight-box">利百加的故事，持續為當代家庭治療與親子關係研究中，探討『父母偏心對子女關係造成的長遠影響』這一課題，提供了極具體而深刻的聖經參照案例。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">她從井邊果斷善良的少女，走向親手策劃欺騙的母親，留下了聖經中對『果斷的性格如何在不同抉擇中導向截然不同後果』刻畫得最細膩的敘事。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">神揀選主權超越世俗長幼次序的重要神學見證</div>
+          <div class="legacy-body">她所領受『大的要服事小的』這則預言，此後被使徒保羅引用，成為闡明神揀選恩典完全出於祂自己主權、而非人自身條件這一核心救恩神學的重要舊約根據。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">『手段不義帶來深遠代價』的重要警示典範</div>
+          <div class="legacy-body">她策劃欺騙以撒的行動，儘管達成了眼前促成雅各得福的目標，卻也使她付出了此後永遠無法與愛子相見的代價，持續為後世提供『目的無法使不義的手段正當化』這一倫理課題的具體例證。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">族長家庭偏心導致世代衝突的重要敘事案例</div>
+          <div class="legacy-body">她與以撒對兩個兒子截然不同的偏愛，持續為後世探討『家庭偏心的長遠破壞性影響』這一課題，提供了聖經中最具體而完整的敘事範例。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「耶和華對她說：「兩國在你腹內，兩族要從你身上出來，這族必強於那族，將來大的要服事小的。」」</div>
+      <div class="final-verse-ref">創世記 25:23</div>
+    </div>
+
+    <div class="final-question">如果你此刻確信自己正領受著神某個真實的心意，卻在等待中感到煎熬——你願不願意選擇繼續信靠神自己的時候與方式，而非像利百加一樣，訴諸人為的手段？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 利百加 <span>רִבְקָה</span> · 以撒之妻 · 雅各以掃之母 · 果斷卻偏心的女先祖</div>
+
+</body>
+</html>

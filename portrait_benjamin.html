@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>便雅憫 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">便雅憫</h1>
+  <span class="hero-name-en">Benjamin · בִּנְיָמִין</span>
+  <p class="hero-slogan">「猶大說：「求我主容僕人住下，替這童子作我主的奴僕，叫童子和他哥哥們一同上去。我父沒有這童子，怎能上去見我父呢？恐怕我看見災禍臨到我父身上。」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">約主前十九世紀（族長時代）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ISFP · 探險家型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">創世記 35, 42–45 章 · 49:27</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">雅各與拉結所生的幼子 · 約瑟唯一的同母胞弟 · 便雅憫支派的先祖</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他的誕生，是聖經中喜悅與哀傷交織得最深刻的一幕——母親拉結在生下他之後，便因難產而死；然而父親雅各卻在這份沉痛的失落中，選擇為這個孩子取了一個充滿盼望的名字。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">約主前十九世紀，族長時代</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">雅各與拉結所生的幼子，以色列十二支派中便雅憫支派的先祖</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">以法他（伯利恆）附近的路上</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">父雅各；母拉結（難產而死）；同母胞兄約瑟</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">創 35:16–20, 42–45 章, 49:27</div>
+      </div>
+    </div>
+
+    <p>便雅憫的誕生，發生在雅各一家從伯特利前往以法他（伯利恆）的路途中——拉結生產甚是艱難，收生婆安慰她說『不要怕，你又要得一個兒子了』，然而拉結在瀕死的痛苦中，只來得及為孩子取名『便俄尼』（意為『我愁苦中的兒子』），便氣絕身亡。雅各此後卻將這個帶著哀傷意涵的名字，改為『便雅憫』（意為『右手之子』，在希伯來文化中象徵力量、尊榮與吉祥）——這個改名的舉動，展現出一位父親試圖將喪妻之痛，轉化為對新生兒未來祝福的深情用心。便雅憫因此成為雅各十二個兒子中，唯一一位在迦南地（而非巴旦亞蘭）出生的孩子，也是雅各摯愛的妻子拉結所生的最後一個兒子。</p>
+    <p>便雅憫此後在創世記的敘事中，長期作為雅各晚年最珍視、最不願讓其離開身邊的幼子而出現——當饑荒臨到迦南、雅各的兒子們必須前往埃及糴糧時，雅各起初堅決不肯讓便雅憫同去，深怕他會像約瑟一樣『遭害』。然而埃及的宰相（實為約瑟，尚未向兄長們表明身分）堅持要求，若不帶便雅憫前來，便不得再見他的面，甚至不賣糧給他們。猶大此後在雅各面前，親自以自己的性命作擔保，承諾必使便雅憫平安歸回，這才說服了年邁的父親。當約瑟此後試探性地將銀杯栽贓在便雅憫的糧袋中、意圖將他留下為奴時，猶大挺身而出，發出了聖經中最動人的代求之一——他懇求約瑟容自己代替便雅憫為奴，因為『我父的命與這童子的命相連』，若便雅憫不能歸回，恐怕『白髮的父親必悲哀著下陰間』。這段懇切的代求，最終促成了約瑟向兄長們表明真實身分、全家在埃及團聚的重大轉折。雅各臨終前為十二個兒子祝福時，形容便雅憫『是個撕掠的狼，早晨要吃他所抓的，晚上要分他所奪的』，這句帶有戰士意象的祝福，此後也應驗在便雅憫支派此後在以色列歷史中，屢屢展現出善戰之特質的具體記載中（如士師記中便雅憫人擅用左手投石、以及此後掃羅王出身便雅憫支派）。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從母親難產而死時誕生的幼子，到父親年老最不願讓其離開身邊的珍愛，再到猶大以性命擔保、促成全家在埃及團聚的關鍵人物——便雅憫的一生，是創世記末段家族和解敘事中最重要的情感樞紐之一。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">母親難產而死時誕生——「他父親卻給他起名叫便雅憫」</div>
+        <div class="timeline-body">拉結在生便雅憫時難產而死，臨終取名『便俄尼』（我愁苦中的兒子），雅各此後改名為『便雅憫』（右手之子），將喪妻的哀傷，轉化為對這個孩子未來的祝福與盼望。</div>
+        <div class="timeline-ref">創 35:16–19</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">父親年老最珍視的幼子——「我父沒有這童子，怎能上去見我父呢」</div>
+        <div class="timeline-body">饑荒臨到，雅各起初堅決不肯讓便雅憫隨兄長們前往埃及糴糧，深怕他會遭遇不測——這種近乎過度的保護，展現出雅各晚年將所有失去約瑟的哀傷，都投注在這位拉結所生之幼子身上的深切情感。</div>
+        <div class="timeline-ref">創 42:4, 38</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">銀杯的試探與猶大的代求——「求你容僕人住下，替這童子作我主的奴僕」</div>
+        <div class="timeline-body">約瑟試探性地將銀杯栽贓在便雅憫的糧袋中，意圖將他留下為奴，猶大挺身而出，懇求代替便雅憫為奴，並陳明父親雅各的性命與這童子緊密相連——這段懇切的代求，成為約瑟向兄長們表明身分的關鍵轉折點。</div>
+        <div class="timeline-ref">創 44:1–34</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">全家團聚與雅各的祝福——「便雅憫是個撕掠的狼」</div>
+        <div class="timeline-body">約瑟因猶大的代求而深受感動，終於向兄長們表明真實身分，全家此後在埃及團聚。雅各臨終前為便雅憫獻上帶有戰士意象的祝福，此後便雅憫支派也在以色列歷史中，屢屢展現出善戰的特質。</div>
+        <div class="timeline-ref">創 45:1–15, 49:27</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他的一生，在創世記的敘事中，更多是作為家人（尤其是父親雅各與兄長猶大）深切情感投注的對象而存在——他的存在本身，成為此後促成家族和解最重要的情感樞紐。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">（材料有限——聖經對便雅憫個人的具體言行著墨極少，他的敘事主要透過他人對他的態度與行動呈現）</div>
+          <div class="soul-body">便雅憫在創世記的敘事中，幾乎沒有留下任何直接的個人話語或具體行動記載，他的存在，更多是作為父親雅各與兄長猶大深切情感投注的對象而呈現。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">（材料有限——無法從直接的具體事蹟評估）</div>
+          <div class="soul-body">由於聖經對便雅憫個人的具體記載極為簡略，我們難以從他自己的行動中，直接評估他個人的美德，然而他被家人如此珍視與保護，某種程度上，也側面反映出他在家族中所享有的獨特地位。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">（材料不足以推論）</div>
+          <div class="soul-body">聖經沒有記載他個人具體的言行或決策方式，僅有的資訊集中在他人如何對待與保護他。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">（材料不足以推論）</div>
+          <div class="soul-body">沒有任何記載顯示他個人的弱點或掙扎，這是資料的空白，而非品格的評價。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">他的誕生伴隨著母親的死亡，他的存在卻成為此後促成家族和解最重要的情感樞紐</div>
+          <div class="soul-body">便雅憫從出生那一刻起，便承載著母親死亡的沉重記憶（『便俄尼』）與父親轉念賜下的祝福（『便雅憫』）這兩種截然不同的意涵，此後他的存在，更成為促成約瑟與兄長們最終和解、全家團聚最關鍵的情感連結點——猶大正是為了保護他，才發出了那段促成約瑟表明身分的懇切代求。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">便雅憫的故事，某種程度上，是聖經中對『一個人的存在本身，即使缺乏大量具體的個人事蹟記載，依然可能承載著深遠的家族與救贖歷史意義』刻畫得最含蓄動人的例證之一。他自己幾乎沒有留下任何直接的話語或具體的行動記載，然而正是圍繞著他所展開的一連串事件——他誕生時母親的死亡與父親的轉念命名、他此後被父親近乎過度保護的珍視、以及猶大為了保護他而發出的懇切代求——共同編織出創世記末段最重要、也最感人的家族和解敘事。猶大願意以自己的性命為便雅憫擔保，這份出於對父親雅各深切體貼、以及對這位幼弟真實關愛的犧牲精神，最終促成了約瑟向兄長們表明身分、全家在埃及團聚的重大轉折——而這場團聚，正是延續整個以色列民族血脈、成就此後出埃及與應許之地敘事得以展開的關鍵起點。便雅憫的故事提醒我們，一個人在家族或群體的敘事中所扮演的角色，未必總是透過自己主動而顯著的具體行動來彰顯，有時，正是透過他人（如猶大）圍繞著自己所展現出的深切情感與犧牲，一個人的存在，便已經在神救贖歷史的宏大敘事中，佔據著不可或缺的重要位置。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ISFP</span>
+      <div class="mbti-name">探險家型 · 父親年老所疼愛的幼子</div>
+      <div class="mbti-slogan">「（材料有限，此類型推測僅供參考）他自己幾乎沒說過一句話，卻讓整個家族的和解，都圍繞著他而展開。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">（材料不足以判斷） · —</span>
+          <div class="mbti-fn-body">聖經對便雅憫個人具體言行的記載極為簡略，此處從缺，以維持對材料的誠實呈現。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最重要的兩段關係，是與那位年老後將所有失去約瑟之哀傷都投注在他身上的父親雅各，以及那位甘願以自己性命為他擔保的兄長猶大。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">雅</div>
+          <div class="relation-name">雅各</div>
+          <div class="relation-type-badge">他年老後最珍視、最不願讓其離開身邊的父親</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">雅各在便雅憫出生時，將母親臨終所取的哀傷之名，改為象徵力量與尊榮的『便雅憫』；此後晚年更近乎過度地保護這位幼子，深怕他會像約瑟一樣遭遇不測，這份深切的珍視，貫穿了便雅憫的整個成長歷程。</div>
+          <div class="relation-ref">創 35:18 · 42:4, 38</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">猶</div>
+          <div class="relation-name">猶大</div>
+          <div class="relation-type-badge">甘願以自己性命為他擔保的兄長</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">猶大向父親雅各承諾必使便雅憫平安歸回，並在約瑟試探性地要留下便雅憫時，懇求代替他為奴——這份犧牲的代求，最終促成了約瑟向兄長們表明身分的關鍵轉折。</div>
+          <div class="relation-ref">創 43:8–9 · 44:18–34</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">約</div>
+          <div class="relation-name">約瑟</div>
+          <div class="relation-type-badge">他唯一的同母胞兄</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">約瑟與便雅憫是拉結所生的唯一兩個兒子，約瑟在與眾兄長相認前，特意要求他們將便雅憫帶到埃及，這個要求，流露出他對這位唯一血緣至親胞弟的深切思念。</div>
+          <div class="relation-ref">創 43:29–30</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「我父沒有這童子，怎能上去見我父呢？恐怕我看見災禍臨到我父身上」——猶大這段以性命為便雅憫擔保的代求，成為聖經中對『代替性犧牲之愛』刻畫得最動人的舊約敘事之一。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「現在求你容僕人住下，替這童子作我主的奴僕，叫童子和他哥哥們一同上去。」</div>
+      <div class="verse-ref">創世記 44:33</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">בֶּן־יָמִין</span>
+        <div class="word-transliteration">Ben-yamin · 便雅憫 · 右手之子 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「右手之子」，在希伯來文化中，右手象徵著力量、尊榮與吉祥的一側。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">雅各將孩子的名字從母親臨終取的哀傷之名（便俄尼），改為象徵力量與尊榮的便雅憫，這個改名的舉動，展現出一位父親試圖將深刻的喪妻之痛，轉化為對新生兒未來祝福之盼望的深情用心，也預示著這個孩子此後在家族敘事中所扮演的重要角色。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">עָרַב</span>
+        <div class="word-transliteration">arav · 擔保 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「作保、擔保」，猶大向父親雅各承諾『我為他作保』，願意以自己承擔便雅憫平安歸回的全部責任。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">猶大這份甘願『作保』、甚至最終願意『替這童子作奴僕』的代求精神，此後成為理解基督代替罪人承擔刑罰這一核心救贖真理，最重要的舊約敘事預表之一。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">深刻的哀傷可以透過信心的轉念被賦予新的祝福意涵</div>
+      <div class="theology-insight-body">雅各將便雅憫的名字從『我愁苦中的兒子』改為『右手之子』，展現出即使面對至親死亡的深刻哀傷，依然可能透過信心的轉念，為此後的生命，重新賦予盼望與祝福的意涵。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">代替性的犧牲之愛能夠促成破碎關係的深刻和解</div>
+      <div class="theology-insight-body">猶大甘願以自己的性命為便雅憫擔保、代替他為奴的懇求，最終促成了約瑟與眾兄長之間長達多年的破碎關係得以徹底和解——這展現出，願意為他人犧牲自己利益的愛，具有促成深刻和解的強大力量。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">一個看似次要角色的存在可能成為神救贖計畫中不可或缺的關鍵環節</div>
+      <div class="theology-insight-body">便雅憫自己幾乎沒有留下任何具體的言行記載，然而圍繞著他所展開的事件，卻直接促成了以色列全家在埃及團聚、進而延續整個民族血脈的關鍵轉折。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">猶大甘願以自己的自由與性命，代替便雅憫承擔為奴的責任與後果，懇求約瑟容許他代替這位幼弟，只求父親雅各不至因失去便雅憫而悲傷至死</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這種『甘願代替他人承擔本應由對方承受之後果』的犧牲精神，成為舊約中預表基督代替罪人承擔刑罰、成就救贖這一核心真理最動人的敘事範例之一</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">耶穌基督甘願「為我們的罪死了……按聖經所說，第三天復活了」，代替全人類承擔了本應由我們自己承受的罪的刑罰，這正是猶大式代求精神在基督救贖工作中最完整、也最終極的成就（林前 15:3–4）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正經歷某段至親死亡所帶來的深刻哀傷，卻渴望能為此後的生命重新找到盼望——雅各為便雅憫改名的舉動，是一則溫柔的邀請。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">便雅憫的故事命中兩種處境中的人——一種人可能此刻正經歷某段至親死亡所帶來的深刻哀傷，雅各將孩子的名字從『我愁苦中的兒子』改為『右手之子』的舉動，邀請我們思考，是否也能透過信心的轉念，為此後的生命重新找到盼望與祝福的意涵；另一種人，則可能正身處某段需要有人願意犧牲自己利益、代替他人承擔責任才能促成和解的破碎關係之中，猶大甘願以自己性命為便雅憫擔保的代求，展現出這樣的犧牲之愛，具有促成深刻和解的強大力量。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你此刻是否正經歷某段至親死亡或重大失落所帶來的深刻哀傷？雅各將便雅憫的名字從哀傷轉為祝福的舉動，對你此刻的處境，帶來什麼樣的啟發？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">猶大甘願以自己的性命為便雅憫擔保，這份犧牲的代求，最終促成了家族的和解。你的生命中，是否也有一段需要有人（或你自己）願意犧牲代價才能促成和解的破碎關係？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">便雅憫自己幾乎沒有留下具體的言行記載，卻在家族的敘事中佔據著不可或缺的重要位置。你是否也曾覺得自己在某個群體或關係中，角色相對『次要』，卻可能正扮演著超乎自己想像之重要的連結角色？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 便雅憫</span>
+        <div class="gen-title">示範劇本：他的誕生伴隨著母親的死亡，他的存在卻成為此後促成家族和解最重要的情感樞紐</div>
+        <div class="gen-body">他從出生起便承載著母親死亡的沉重記憶與父親轉念賜下的祝福，此後成為猶大以性命擔保、促成約瑟與眾兄長最終和解的關鍵情感連結。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 便雅憫支派（他的後裔）</span>
+        <div class="gen-title">延續：從父親年老疼愛的幼子，到以色列十二支派中善戰著稱的一支</div>
+        <div class="gen-body">便雅憫此後成為以色列十二支派之一，雅各臨終祝福他『是個撕掠的狼』，這句帶有戰士意象的祝福，此後也應驗在便雅憫支派屢屢展現善戰特質的歷史記載中，包括此後以色列首位君王掃羅，正是出身於便雅憫支派。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在便雅憫的故事中，展現在神使用一位自己幾乎沒有留下具體言行記載的孩子，成為促成整個家族和解、進而延續以色列民族血脈最關鍵的情感樞紐；也展現在，雅各將喪妻之痛轉化為對這孩子祝福的信心轉念，以及猶大甘願犧牲自己以保護便雅憫的愛，共同見證了神恩典如何在深刻的哀傷與破碎之中，開創出和解與盼望的道路。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位誕生時母親剛好離世、此後卻成為整個家族和解關鍵的幼子，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#哀傷可以被轉念成祝福</span>
+      <span class="tag">#犧牲的愛能促成和解</span>
+      <span class="tag">#次要的角色也可能是關鍵</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>便雅憫出生的那一刻，充滿了矛盾的情感——他的母親拉結在生他的時候難產，臨終前，用盡最後的力氣，給孩子取名『便俄尼』，意思是『我愁苦中的兒子』。她說完這句話，就斷氣了。</p>
+      <p>父親雅各，卻做了一個很有意思的決定——他把孩子的名字，改成了『便雅憫』，意思是『右手之子』，代表力量跟尊榮。他沒有讓這個孩子，一輩子背負著母親死亡的沉重記憶，而是選擇用一個充滿祝福的名字，重新定義這個孩子的未來。</p>
+      <p>便雅憫此後，成了雅各最疼愛、最不放心的幼子。後來饑荒來了，兒子們要去埃及買糧，雅各死都不肯讓便雅憫一起去，怕他也像約瑟一樣『不見了』。</p>
+      <p>後來埃及的宰相（其實就是約瑟本人，只是還沒表明身分）堅持要見便雅憫，猶大在父親面前，親口用自己的性命做擔保：我保證把他平安帶回來。後來約瑟故意栽贓，說便雅憫偷了他的銀杯，要留下他當奴隸。這時候，猶大站出來，說了一段讓約瑟聽了忍不住當場落淚的話：求你讓我代替這孩子留下當奴隸吧，因為我父親的命，跟這孩子的命是連在一起的，如果他回不去，我父親一定會傷心而死。</p>
+      <p>約瑟聽完，再也忍不住了，向所有的兄弟表明了自己的真實身分。這場全家團聚的和解，正是因為猶大願意為便雅憫犧牲自己，才得以促成。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——便雅憫這塊石頭，出生時帶著哀傷的裂痕，卻在父親的轉念與哥哥的犧牲裡，被雕成了整個家族和解的關鍵。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你此刻正因為某段至親的離世或重大的失落而哀傷——雅各給便雅憫改名的故事想告訴你：哀傷可以被轉念，重新賦予盼望的意義，不代表遺忘，而是選擇往前走。</p>
+      <p style="margin-top:12px;">如果你的家庭或關係中，有一段需要被修復的裂痕——猶大的代求提醒我們，願意犧牲自己利益去成全別人的愛，往往是促成和解最有力量的方式。</p>
+      <p style="margin-top:12px;">別小看你在某個群體裡看似『次要』的角色。便雅憫自己幾乎沒說過一句話，卻是整個和解故事的核心。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果你正帶著某段哀傷——試著像雅各一樣，為它找到一個充滿盼望的新名字。</p>
+    </div>
+
+    <div class="insight-box">便雅憫的故事，持續為當代討論『喪親之痛的轉化』與『犧牲性的愛如何促成家庭和解』這兩個議題，提供了聖經中最溫暖也最動人的雙重參照。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他從母親難產而死時誕生的幼子，成為父親轉念賜福、兄長甘願代求的家族和解關鍵，留下了聖經中『哀傷轉化為祝福』最動人的見證。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">以色列十二支派之一的先祖</div>
+          <div class="legacy-body">他此後成為以色列十二支派中的便雅憫支派，這個支派此後在以色列歷史中屢屢展現善戰的特質，並孕育出以色列首位君王掃羅。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">猶大代求精神最重要的敘事對象</div>
+          <div class="legacy-body">猶大為保護便雅憫所發出的懇切代求，成為聖經中『代替性犧牲之愛』刻畫得最動人的舊約敘事之一，並成為理解基督代贖真理最重要的預表範例。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">『哀傷轉化為祝福』信心轉念的具體見證</div>
+          <div class="legacy-body">雅各將他的名字從『我愁苦中的兒子』改為『右手之子』的舉動，持續為後世提供了『深刻的哀傷可以透過信心的轉念被賦予新的盼望意涵』這一課題最動人的具體例證。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「便雅憫是個撕掠的狼，早晨要吃他所抓的，晚上要分他所奪的。」</div>
+      <div class="final-verse-ref">創世記 49:27</div>
+    </div>
+
+    <div class="final-question">如果你此刻正經歷某段深刻的哀傷，或身處某段需要犧牲才能促成和解的關係之中——你願不願意從便雅憫的故事中，同時經歷雅各式的轉念與猶大式的犧牲之愛？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 便雅憫 <span>בִּנְיָמִין</span> · 拉結難產而死時所生的幼子 · 約瑟唯一的同母胞弟 · 父親年老所倚靠的愛子</div>
+
+</body>
+</html>

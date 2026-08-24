@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>拿單 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">拿單</h1>
+  <span class="hero-name-en">Nathan · נָתָן</span>
+  <p class="hero-slogan">「拿單對大衛說：「你就是那人！耶和華以色列的神如此說：我膏你作以色列的王，救你脫離掃羅的手……你為什麼藐視耶和華的命令，行他眼中看為惡的事呢？」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">約主前十世紀（大衛王朝時期）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">INFJ · 提倡者型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">撒母耳記下 7, 12 章 · 列王紀上 1 章</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">大衛王朝的宮廷先知 · 傳達永約應許者 · 責備王罪的先知</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他是大衛身邊最重要的宮廷先知，既傳達了神與大衛所立、此後延續至彌賽亞的永恆家系應許，也親口對這位權傾一時的君王，說出了『你就是那人』這句聖經中最擲地有聲的定罪之詞。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">約主前十世紀，大衛王朝時期</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">大衛王朝的宮廷先知</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">耶路撒冷</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">聖經未詳細記載其家庭成員</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">撒下 7, 12 章 · 王上 1 章 · 代上 17, 29:29</div>
+      </div>
+    </div>
+
+    <p>拿單首次在聖經中登場，是在大衛已經安居王宮、心裡籌劃要為約櫃建造一座聖殿之時。大衛向拿單表達這個心願，拿單起初憑著個人的直覺回應：『你可以照你的心意而行，因為耶和華與你同在。』然而就在當夜，耶和華的話臨到拿單，指示他傳達一個截然不同的信息——神並不要大衛建造聖殿（這項任務將留給他的兒子所羅門完成），然而神卻在這則信息中，向大衛宣告了一個遠比建殿更加深遠的應許：『你的家和你的國必在我面前永遠堅立，你的國位也必堅定，直到永遠。』這則被稱為『大衛之約』的應許，成為此後彌賽亞降生、大衛家系永續為王這一核心神學主題最重要的舊約根基。拿單在這段插曲中，展現出他作為先知最重要的品格——即使自己前一晚已經給出了鼓勵性的個人意見，他仍然願意在領受神不同的話語後，誠實地回頭向大衛傳達真正屬神的信息，而非固守自己先前的說法。</p>
+    <p>拿單生命中最具戲劇張力的時刻，發生在大衛犯下奪取烏利亞之妻拔示巴、並設計害死烏利亞這樁重罪之後。拿單奉神差遣前去見大衛，卻沒有選擇直接的指控，而是講述了一則精巧的比喻——一個窮人只有一隻他心愛、如同女兒般疼惜的小母羊羔，一個富人卻捨不得從自己龐大的牛群羊群中取一隻，反而奪去了窮人這唯一的羊羔，宰了款待客人。大衛聽完，怒氣大發，斷言這個富人『大大該死』，並且必須四倍賠償——正是在這個大衛完全沒有防備、義憤填膺定了『別人』之罪的時刻，拿單說出了那句永遠定義了這段敘事的話：『你就是那人！』拿單隨即代表神，具體而嚴厲地列舉大衛的罪狀，並宣告刀劍必永不離開他的家、他所行的惡必興起在他眼前——大衛聞言，立即懊悔認罪：『我得罪耶和華了。』拿單則傳達了神的赦免與隨之而來的具體管教：『耶和華已經除掉你的罪，你必不至於死；只是你所做的這事，叫耶和華的仇敵大得褻瀆的機會，故此你所得的孩子必定要死。』</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從初次給出個人意見卻在領受神話語後誠實修正，到用比喻讓大衛親口為自己定罪的智慧先知——拿單的一生，是聖經中對『先知職分如何忠實傳達神的心意，即使代價是責備最尊貴的君王』刻畫得最完整的敘事之一。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">傳達大衛之約——「你的家和你的國必在我面前永遠堅立」</div>
+        <div class="timeline-body">拿單起初以個人意見鼓勵大衛建殿，此後領受神不同的指示，誠實地回頭向大衛傳達——神不要大衛建殿，卻應許他的家系與國位必永遠堅立，這則應許成為此後大衛家系延續至彌賽亞降生最重要的舊約根基。</div>
+        <div class="timeline-ref">撒下 7 章</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">用比喻使大衛親口定罪——「你就是那人」</div>
+        <div class="timeline-body">拿單奉神差遣，透過一則關於窮人小母羊羔被富人奪取的比喻，讓義憤填膺、親口定了『富人』死罪的大衛，在毫無防備之下，聽見那句『你就是那人』——直接指出大衛自己就是這則比喻中所指控的罪人。</div>
+        <div class="timeline-ref">撒下 12:1–14</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">宣告赦免與管教——「耶和華已經除掉你的罪，你必不至於死」</div>
+        <div class="timeline-body">大衛在拿單的責備下立即懊悔認罪，拿單隨即傳達神的赦免，卻也誠實地宣告，這場罪咎所帶來的具體管教與後果依然無法迴避——大衛與拔示巴所生的孩子，將因此夭折。</div>
+        <div class="timeline-ref">撒下 12:13–14</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">確保所羅門繼位——「拿單先見來見王」</div>
+        <div class="timeline-body">大衛年老，亞多尼雅意圖篡奪王位，拿單與拔示巴緊密合作，一同進宮向大衛提醒先前立所羅門為王的應許，這段行動直接促成大衛正式膏立所羅門，確保了大衛之約應許得以延續在正確的血脈軌道上。</div>
+        <div class="timeline-ref">王上 1:8–40</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他是聖經中對『先知如何忠實傳達神的心意，即使這意味著要修正自己先前的說法、或責備君王最私密的罪咎』刻畫得最完整的典範——他的忠心，體現在誠實與智慧的完美結合之中。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">堅信必須忠實傳達神真正的心意，即使這意味著要推翻自己先前給出的個人意見，或指控備受尊崇的君王</div>
+          <div class="soul-body">拿單願意在領受神不同指示後，誠實地回頭修正自己先前對大衛所說的話；他此後更願意冒著觸怒君王的風險，直接指控大衛的罪——這種對神話語毫不妥協的忠實傳達，是他一生最核心的信念。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">運用智慧而非直接的對抗，使真理得以被聽見並產生果效</div>
+          <div class="soul-body">拿單沒有選擇直接、正面地指控大衛（這很可能會招致君王的憤怒與防衛性的抗拒），而是透過一則精巧的比喻，先讓大衛在毫無防備的情況下，親口為類似的惡行定罪，再揭示這個罪人正是他自己——這種運用智慧策略以達成真理果效的能力，是他性格中最令人讚嘆的美德。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">在傳達困難或令人不悅的信息時，善於運用具體而生動的敘事方式，使真理更容易被接受</div>
+          <div class="soul-body">無論是建殿異象的修正，或是責備大衛的罪，拿單都展現出善於運用具體的敘事情境（比喻、詳細的神諭內容），使抽象的真理或困難的責備，更容易被聽者理解與接受。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">（材料有限——聖經對拿單個人的過犯或掙扎著墨極少）</div>
+          <div class="soul-body">拿單的敘事整體聚焦於他作為先知忠實傳達神話語的職分，聖經未見對他個人性格弱點的具體記載。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">他所傳達的大衛之約，成為此後理解彌賽亞降生血脈延續最重要的神學根基之一</div>
+          <div class="soul-body">拿單所傳達『你的家和你的國必在我面前永遠堅立』這則應許，此後貫穿整個舊約先知書的彌賽亞預言，並最終在新約中，透過天使對馬利亞所說『主神要把他祖大衛的位給他……他要作雅各家的王，直到永遠』得到完整的呼應與成就。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">拿單的故事，是聖經中對『先知職分如何在忠實傳達神心意的過程中，展現出智慧與勇氣的完美結合』刻畫得最完整的敘事之一。他兩次重大的先知行動，都展現出這種特質——傳達建殿異象的修正時，他願意誠實地推翻自己前一晚給出的個人意見，這種不固執己見、以神的話語為最終依歸的態度，展現出真正先知職分應有的謙卑；面對責備大衛姦淫殺人重罪這項極其艱鉅而危險的任務時，他選擇了透過一則精巧的比喻，讓大衛在毫無防備、甚至義憤填膺的狀態下，親口為類似的惡行定罪，這種運用智慧策略、而非直接對抗的方式，最終使真理得以真正穿透大衛的心防、產生果效。拿單的故事提醒我們，忠實傳達真理與運用智慧的溝通策略，從不是彼此對立的兩件事——真正有效的先知性責備，往往需要同時具備對真理毫不妥協的堅持，以及對人心運作方式深刻的理解與智慧。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">INFJ</span>
+      <div class="mbti-name">提倡者型 · 用比喻定罪的智慧先知</div>
+      <div class="mbti-slogan">「他沒有直接指著大衛的鼻子罵，而是先讓他自己，親口為那個『富人』定了罪。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">他能深刻洞察如何運用一則精巧的比喻，讓大衛在毫無防備的狀態下親口定罪，這種對人心運作方式與溝通策略的深刻洞察力，正是主導內向直覺的典型展現。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Fe · 外向情感</span>
+          <div class="mbti-fn-body">他深切關切大衛與神之間關係的真實狀態，即使這意味著要傳達令人心碎的責備與管教信息，也展現出他對這段君臣與屬靈關係的深刻投入。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ti · 內向思考</span>
+          <div class="mbti-fn-body">他清晰而有條理地傳達了大衛之約的具體內容，並在責備大衛時，邏輯清晰地列舉了具體的罪狀與後果。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Se · 外向實感</span>
+          <div class="mbti-fn-body">（材料有限——聖經對他在具體現實行動層面的性格特質著墨較少，他的敘事重點聚焦於言語傳達與智慧策略）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最重要的關係，是與那位他既傳達永恆應許、也親口指控其重罪的大衛王——這段複雜而深刻的先知與君王關係，貫穿了大衛統治期間最重要的兩個神學轉折點。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">大</div>
+          <div class="relation-name">大衛</div>
+          <div class="relation-type-badge">他所服事、既蒙應許也蒙責備的君王</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">拿單向大衛傳達了此後延續至彌賽亞的永恆家系應許，也在他犯下重罪後，直接而勇敢地指出他的罪——這段關係展現出先知職分同時承載祝福傳達與罪咎責備的雙重使命。</div>
+          <div class="relation-ref">撒下 7, 12 章</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">拔</div>
+          <div class="relation-name">拔示巴</div>
+          <div class="relation-type-badge">他此後與其共同確保所羅門繼位的合作者</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">拿單在大衛晚年，與拔示巴緊密合作，共同促成大衛正式膏立所羅門為王，化解了亞多尼雅篡位的危機，確保了大衛之約應許延續在正確的血脈軌道上。</div>
+          <div class="relation-ref">王上 1:11–27</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">所</div>
+          <div class="relation-name">所羅門</div>
+          <div class="relation-type-badge">他協助確保王位、此後延續大衛之約應許的君王</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">拿單一生兩項最重要的先知行動——傳達大衛之約與確保所羅門繼位——都直接關係到所羅門此後作為大衛家系繼承者的地位，某種程度上，所羅門的統治，正是拿單忠心先知職事最直接的具體成果。</div>
+          <div class="relation-ref">王上 1:32–40</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「你的家和你的國必在我面前永遠堅立」——拿單所傳達的這則應許，成為此後理解彌賽亞降生血脈延續最重要的舊約神學根基之一。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「你的家和你的國必在我面前永遠堅立，你的國位也必堅定，直到永遠。」</div>
+      <div class="verse-ref">撒母耳記下 7:16</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">בְּרִית</span>
+        <div class="word-transliteration">berit · 約 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「約、盟約」，儘管『約』這個字在撒母耳記下第七章中並未直接出現，此後的聖經文本（如詩篇89篇）明確將這段應許稱為神與大衛所立的『約』。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">拿單所傳達的這則應許，此後被稱為『大衛之約』，成為舊約中除了與亞伯拉罕、摩西所立之約以外，最重要的神聖聖約之一，這個約的核心內容——大衛家系永遠為王——直接構成了此後彌賽亞降生血脈延續的神學基礎。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">אַתָּה הָאִישׁ</span>
+        <div class="word-transliteration">atah ha-ish · 你就是那人 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「你（就）是那人」，這句簡短卻極具力量的宣告，直接揭穿了大衛透過比喻所暴露的自我定罪。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這句話此後成為聖經中『透過智慧的敘事策略使人親口承認自己的過犯』這一勸誡模式最經典的來源，這句話的力量，不在於言辭本身的複雜，而在於它出現的精確時機——恰好是在大衛毫無防備、剛剛親口定了『別人』之罪的那一刻。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">先知職分需要在忠實傳達神心意與運用智慧溝通策略之間取得平衡</div>
+      <div class="theology-insight-body">拿單透過比喻使大衛親口定罪的方式，展現出真正有效的屬靈責備，往往不是單純的直接對抗，而是需要智慧地選擇能夠真正穿透人心防的溝通方式。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">大衛之約確立了彌賽亞降生血脈延續的神學根基</div>
+      <div class="theology-insight-body">拿單所傳達的這則應許，此後貫穿整個舊約先知書的彌賽亞預言，並在新約中透過天使對馬利亞的宣告得到完整的成就，成為理解耶穌基督君王身份最重要的舊約神學基礎。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">神的赦免與罪的具體後果可以同時真實地存在</div>
+      <div class="theology-insight-body">拿單向大衛宣告『耶和華已經除掉你的罪，你必不至於死』的同時，也宣告了孩子必定夭折的具體後果——這確立了聖經神學中一個重要原則：神的赦免真實而完全，卻不必然消除罪行所帶來的具體後果。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">拿單傳達神與大衛所立的永恆家系應許——大衛的家與國必永遠堅立——這則應許此後貫穿整個舊約先知書的彌賽亞預言傳統</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這則『大衛之約』的應許，成為此後理解耶穌基督作為『大衛的子孫』、永遠坐在大衛寶座上為王這一核心救恩神學最重要的舊約根基</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">天使對馬利亞宣告「主神要把他祖大衛的位給他，他要作雅各家的王，直到永遠；他的國也沒有窮盡」，這正是拿單當年所傳達之大衛之約應許，在耶穌基督身上最終極、最完整的成就（路 1:32–33）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻承擔著需要指出他人（甚至是位高權重之人）過犯的艱難責任——拿單的故事，示範了智慧與勇氣如何完美結合，使真理得以真正被聽見。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">拿單的故事命中的是每一個此刻承擔著需要指出他人（甚至是位高權重、或自己敬重之人）過犯這項艱難責任的人。他的故事提醒我們，真正有效的責備，未必需要透過直接而正面的對抗——有時，透過智慧地選擇能夠讓對方在毫無防備的狀態下，先行認清類似情境之是非對錯的敘事方式，反而更能使真理真正穿透人心的防衛，產生果效。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你此刻是否承擔著需要指出某人（甚至是你敬重或懼怕之人）過犯的艱難責任？拿單運用比喻的智慧策略，對你此刻的處境，帶來什麼樣的啟發？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">拿單願意在領受神不同的指示後，誠實地推翻自己先前給出的個人意見。你是否也能在發現自己先前的判斷有誤時，願意誠實地承認並修正？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">拿單宣告神的赦免，同時也誠實地指出罪咎所帶來的具體後果。你在傳達或領受赦免的信息時，是否也能同時保有這種既真實又完整的理解？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 拿單</span>
+        <div class="gen-title">示範劇本：忠實傳達神的心意，並運用智慧的溝通策略，使艱難的真理得以真正被聽見</div>
+        <div class="gen-body">他傳達了大衛之約這則深遠的應許，也運用比喻的智慧，讓大衛親口為自己的重罪定罪，展現出先知職分中忠實與智慧的完美結合。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 所羅門（因他的行動而得以順利繼位的君王）</span>
+        <div class="gen-title">延續：拿單的忠心事奉，直接確保了大衛之約應許的正確延續</div>
+        <div class="gen-body">拿單晚年與拔示巴共同確保所羅門順利繼位的行動，直接延續並落實了他早年所傳達之大衛之約的應許，使這條血脈得以持續延續至此後的彌賽亞家譜之中。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在拿單的故事中，展現在神即使面對大衛所犯下的重罪，仍然透過拿單忠心而智慧的責備，引導他真正悔改認罪，並隨即宣告赦免；也展現在，神透過拿單所傳達的大衛之約，向這個充滿軟弱與失敗的家族，賜下了永不動搖的永恆應許。這提醒我們，神的恩典與真理，總能透過忠心僕人智慧的傳達，真正臨到最需要聽見的人。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位用一個關於小羊羔的故事、讓大衛親口為自己定罪的先知，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#智慧的責備比直接對抗更有效</span>
+      <span class="tag">#願意承認自己先前說錯了</span>
+      <span class="tag">#赦免與後果可以同時存在</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>拿單是大衛身邊的宮廷先知。有一次，大衛想蓋一座聖殿，跟拿單商量，拿單當下憑感覺說：去做吧，神與你同在。結果當天晚上，神親自跟拿單說：不是這樣，大衛不能蓋殿，但我要給他一個更大的應許——他的家、他的國，要永遠堅立。拿單隔天，老老實實地把這個修正過的信息，帶回去給大衛。他沒有因為前一晚說錯話而不好意思承認。</p>
+      <p>拿單最有名的一次行動，發生在大衛犯下大罪之後——他奪取部下烏利亞的妻子拔示巴，還設計害死了烏利亞。拿單去見大衛，沒有直接開罵，而是講了一個故事：有個窮人，只有一隻他心愛如女兒的小母羊，一個有錢人卻捨不得從自己龐大的羊群裡拿一隻，反而搶走了窮人這唯一的羊，殺了款待客人。</p>
+      <p>大衛聽完，氣得火冒三丈，說這個有錢人該死，還要四倍賠償。就在這個時候，拿單說出了那句永遠留在聖經裡的話：你就是那個人！</p>
+      <p>大衛聽懂了，立刻認罪：我得罪耶和華了。拿單告訴他：神已經赦免你的罪了，你不會死；但你所做的事，還是會有具體的後果——那個孩子必定會死。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——拿單這塊石頭，用一個關於小羊羔的故事，鑿開了大衛最堅硬的心防。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你此刻需要指出某個你敬重或懼怕之人的過犯——直接指控，未必是最有效的方式。拿單用一個故事，讓大衛自己說出了審判自己的話。</p>
+      <p style="margin-top:12px;">如果你發現自己之前給的建議是錯的——像拿單一樣，誠實地承認，然後把正確的話帶回去。</p>
+      <p style="margin-top:12px;">赦免跟後果，可以同時存在。神赦免了大衛的罪，但那個孩子還是死了。這提醒我們，真正的悔改，不是逃避後果，而是坦然面對它。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果你需要說出一句難以出口的真話——想想拿單，找一個能真正被聽見的方式。</p>
+    </div>
+
+    <div class="insight-box">拿單『用比喻定罪』的溝通策略，持續為當代溝通學與衝突調解領域中，探討『如何有效傳達令人不悅的真相』這一課題，提供了聖經中最經典而具體的參照案例。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他既傳達了大衛之約這則貫穿整個救贖歷史的深遠應許，也用一則精巧的比喻，成就了聖經中最著名的悔改敘事之一。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">大衛之約傳達者的重要歷史地位</div>
+          <div class="legacy-body">他所傳達『你的家和你的國必在我面前永遠堅立』這則應許，成為此後理解彌賽亞降生血脈延續最重要的舊約神學根基。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">『你就是那人』責備模式的經典來源</div>
+          <div class="legacy-body">他透過比喻使大衛親口定罪的智慧策略，此後成為聖經中『運用敘事智慧使艱難的真理真正被聽見』這一勸誡模式最經典的例證。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">所羅門王位確立的關鍵推手之一</div>
+          <div class="legacy-body">他晚年與拔示巴共同確保所羅門順利繼位的行動，直接延續並落實了大衛之約應許的正確血脈傳承。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「拿單對大衛說：「你就是那人！」……大衛對拿單說：「我得罪耶和華了！」拿單說：「耶和華已經除掉你的罪，你必不至於死。」」</div>
+      <div class="final-verse-ref">撒母耳記下 12:7, 13</div>
+    </div>
+
+    <div class="final-question">如果你此刻承擔著需要指出他人過犯的艱難責任——你願不願意像拿單一樣，尋求智慧的方式，讓真理得以真正被聽見，而非僅止於正面的對抗？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 拿單 <span>נָתָן</span> · 大衛的宮廷先知 · 用比喻使王親口定自己之罪的智者</div>
+
+</body>
+</html>

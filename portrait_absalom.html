@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>押沙龍 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">押沙龍</h1>
+  <span class="hero-name-en">Absalom · אַבְשָׁלוֹם</span>
+  <p class="hero-slogan">「王就心裡傷慟，上城門樓去哀哭，一面走一面說：「我兒押沙龍啊！我兒，我兒押沙龍啊！我恨不得替你死，押沙龍啊，我兒，我兒！」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">約主前十世紀（大衛王朝中晚期）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ENTJ · 指揮官型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">撒母耳記下 13–18 章</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">大衛之子 · 他瑪之兄 · 篡位叛變的王子</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他是大衛諸子中『全以色列沒有一個人像押沙龍那樣俊美，得人稱讚的』——然而正是這位英俊的王子，最終在一場精心策劃的叛變中，將父親逐出耶路撒冷，並在潰敗逃亡時，懸掛在橡樹枝上死去。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">約主前十世紀，大衛王朝中晚期</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">大衛與瑪迦（基述王talmai之女）所生之子</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">希伯崙出生，此後於耶路撒冷成長</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">父大衛；妹他瑪（被暗嫩玷污）；兄暗嫩（被他所殺）；子三子一女（女兒名他瑪）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">撒下 13–18 章</div>
+      </div>
+    </div>
+
+    <p>押沙龍生命最深刻的轉折點，源自他的妹妹他瑪遭同父異母的兄長暗嫩設計玷污的悲劇。大衛得知此事後，『甚發怒』，卻始終沒有對暗嫩施加任何具體的懲處——這種公義的缺席，成為此後一連串悲劇的深層根源。押沙龍表面上『並不與暗嫩說好說歹』，內心卻懷著深刻的仇恨，沉默地等待了整整兩年，才在剪羊毛的宴席上，親手策劃謀殺了暗嫩，隨即逃往母親娘家所在的基述避難，長達三年之久。此後在元帥約押的斡旋下，押沙龍雖被允許歸回耶路撒冷，大衛卻整整兩年不肯與他見面——這段漫長的疏離，某種程度上，成為押沙龍此後決意奪權的心理根源之一。</p>
+    <p>押沙龍此後展開了一場極具政治手腕的奪權行動——他每日清早站在城門口，攔截前來求王審斷的百姓，以『我若作國中的士師……使他得公平』這樣的話語，刻意收買人心，聖經記載『押沙龍這樣行，籠絡了以色列人的心』。他此後在希伯崙宣告自己為王，正式起兵叛變，逼得大衛倉皇逃離耶路撒冷。這場叛變最終在以法蓮的樹林中決定勝負——押沙龍騎著騾子逃跑時，頭髮（他素來以濃密美髮著稱）被橡樹枝纏住，整個人懸在空中，元帥約押不顧大衛先前『要溫柔待押沙龍』的明確吩咐，親手用槍刺死了他。當大衛得知這個消息時，發出了聖經中最沉痛的哀哭之一：『我兒押沙龍啊！我兒，我兒押沙龍啊！我恨不得替你死，押沙龍啊，我兒，我兒！』</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從為妹妹沉默兩年後的復仇，到多年疏離父親後策劃奪權的叛變，再到懸掛橡樹的悲劇終局——押沙龍的一生，是聖經中對『未得伸張的公義如何滋生更深仇恨』刻畫得最完整的悲劇敘事之一。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">沉默兩年後的復仇——「押沙龍……並不與暗嫩說好說歹」</div>
+        <div class="timeline-body">押沙龍的妹妹他瑪被同父異母的兄長暗嫩設計玷污，大衛雖然發怒卻未施加任何懲處。押沙龍表面沉默，內心卻懷恨兩年，最終在剪羊毛的宴席上策劃謀殺暗嫩，隨即逃往基述避難。</div>
+        <div class="timeline-ref">撒下 13 章</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">歸回卻不得相見——「見王的面」</div>
+        <div class="timeline-body">押沙龍在約押的斡旋下獲准歸回耶路撒冷，大衛卻整整兩年不肯與他見面，這段漫長的疏離，某種程度上加深了押沙龍對父親的怨懟，成為他此後決意奪權的心理根源之一。</div>
+        <div class="timeline-ref">撒下 14:1–33</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">籠絡民心與宣告為王——「押沙龍這樣行，籠絡了以色列人的心」</div>
+        <div class="timeline-body">押沙龍每日在城門口攔截求審之百姓，以能得公平審判的話語刻意收買人心，此後在希伯崙正式宣告自己為王，起兵叛變，迫使大衛倉皇逃離耶路撒冷。</div>
+        <div class="timeline-ref">撒下 15 章</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">懸掛橡樹與大衛的哀哭——「我恨不得替你死」</div>
+        <div class="timeline-body">叛軍在以法蓮樹林中潰敗，押沙龍逃跑時頭髮被橡樹枝纏住，懸在半空，約押不顧大衛先前的明確吩咐，親手用槍刺死了他。大衛得知消息後，發出了聖經中最沉痛的哀哭之一：『我兒押沙龍啊！我恨不得替你死。』</div>
+        <div class="timeline-ref">撒下 18 章</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他因妹妹所受的傷害而生出正當的憤怒，卻選擇了以暴制暴的復仇道路；他因父親長期的疏離而心懷怨懟，卻選擇了篡位奪權而非尋求真正的和解——他的悲劇，某種程度上，是未被妥善處理的傷痛，最終演變成毀滅性行動的深刻寫照。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">深信自己必須親手為妹妹討回公道、也必須親手奪取本應更早屬於自己的權位</div>
+          <div class="soul-body">無論是對暗嫩的復仇，或是此後對王位的奪取，押沙龍都展現出一種『既然沒有人為我伸張公義，我就自己動手』的核心信念。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">對妹妹他瑪所受的委屈，展現出深刻而持久的關切</div>
+          <div class="soul-body">他瑪在遭受玷污後『就住在她胞兄押沙龍家裡，很淒涼』，押沙龍收留照顧了受傷的妹妹，這份對至親的保護與關切，是他性格中值得肯定的一面。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">善於長期隱忍、精密策劃，並透過收買人心來達成目標</div>
+          <div class="soul-body">無論是等待兩年後精密策劃暗嫩之死，或是長期在城門口籠絡百姓民心，押沙龍都展現出極強的耐心、策略性思考、以及政治操作的能力。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">選擇以暴力復仇與篡位奪權，取代透過正當途徑尋求公義與和解</div>
+          <div class="soul-body">無論是謀殺暗嫩，或是起兵推翻父親的王位，押沙龍最終都選擇了破壞性的手段，而非嘗試透過對話、和解、或耐心等候神的公義來處理內心的傷痛與怨懟。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">他俊美的外貌與濃密的頭髮，最終竟成為導致他死亡的具體原因</div>
+          <div class="soul-body">聖經特別強調押沙龍『全以色列沒有一個人像他那樣俊美』，尤其他的頭髮『甚重』，然而正是這頭引以為傲的濃密美髮，在他逃亡時纏住橡樹枝，直接導致了他的死亡——這個諷刺性的細節，賦予他的悲劇一種深刻的命運反諷色彩。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">押沙龍的故事，是聖經中對『未得伸張的公義，如何逐漸演變為毀滅性復仇』描寫得最深刻的悲劇敘事之一。他的仇恨，最初源自一個完全正當的憤怒——妹妹遭受了嚴重的侵害，而父親大衛卻始終沒有給予應有的公義處置。這種公義的缺席，讓押沙龍逐漸相信，唯有靠自己的手段，才能討回公道——他因此親手策劃了對暗嫩的復仇。然而這場復仇，並未真正平息他內心的傷痛，反而開啟了他與父親之間長達多年的疏離與怨懟，最終演變成一場推翻父親王位的血腥叛變。押沙龍的悲劇提醒我們，未經妥善處理的傷害與憤怒，若長期得不到公正的回應，可能會在人的心中逐漸累積、扭曲，最終導向遠比最初傷害更具毀滅性的行動——這不僅摧毀了押沙龍自己的生命，也為大衛的整個家庭與王朝，帶來了難以彌補的裂痕與傷痛。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ENTJ</span>
+      <div class="mbti-name">指揮官型 · 橡樹下的叛子</div>
+      <div class="mbti-slogan">「他等了兩年才對哥哥動手，又等了多年才對父親動手——每一次，他都選擇了自己動手，而不是等候真正的公義。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">他策劃了長達多年、極具系統性的政治奪權行動——從城門口收買民心，到在希伯崙正式宣告為王、發動叛變——展現出極強的策略規劃與組織執行能力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">他能敏銳地洞察民心的走向，並據此設計出長期而有效的收買策略，顯示出對局勢深層走向的洞察力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Se · 外向實感</span>
+          <div class="mbti-fn-body">他在剪羊毛宴席上精準把握時機，親自策劃並執行對暗嫩的謀殺，展現出對具體時機與行動的果斷掌握。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">他未能妥善處理自己內心深處對妹妹受辱、以及對父親長期疏離的真實情感創傷，而是將這些情感全數轉化為外在的復仇與奪權行動，這種對內在情感缺乏健康處理方式的傾向，反映出劣勢內向情感的特徵。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最深刻的兩段關係——與受害的妹妹他瑪、以及與始終疏離自己的父親大衛——共同構成了他此後一連串悲劇性抉擇最深層的根源。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">他</div>
+          <div class="relation-name">他瑪</div>
+          <div class="relation-type-badge">他所深愛、卻遭受嚴重侵害的妹妹</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">他瑪遭同父異母的兄長暗嫩設計玷污後，『淒涼地』住在押沙龍家中，押沙龍收留並照顧了受傷的妹妹，這份保護之情，成為他此後策劃復仇最直接的動機。</div>
+          <div class="relation-ref">撒下 13:1–22</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">暗</div>
+          <div class="relation-name">暗嫩</div>
+          <div class="relation-type-badge">他親手策劃謀殺的異母兄長</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">暗嫩設計玷污了押沙龍的妹妹他瑪，卻未受到父親大衛任何具體的懲處，押沙龍因此在沉默兩年後，親手策劃了對暗嫩的復仇謀殺。</div>
+          <div class="relation-ref">撒下 13:23–29</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">大</div>
+          <div class="relation-name">大衛</div>
+          <div class="relation-type-badge">他的父親，也是他此後起兵反叛的對象</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">大衛對他瑪被玷污一事發怒卻未加懲處，此後又讓押沙龍長期遭受兩年不得相見的疏離——這段複雜而破裂的父子關係，最終演變成押沙龍起兵篡位的悲劇；然而大衛對押沙龍的愛從未止息，在他死後發出了聖經中最沉痛的哀哭之一。</div>
+          <div class="relation-ref">撒下 13:21, 14:24, 18:33</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">約</div>
+          <div class="relation-name">約押</div>
+          <div class="relation-type-badge">違背大衛吩咐、親手殺死押沙龍的元帥</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">約押不顧大衛先前明確吩咐要溫柔對待押沙龍的命令，在他被橡樹枝纏住懸空時，親手用槍將他刺死，結束了這場叛變，卻也讓大衛痛失愛子。</div>
+          <div class="relation-ref">撒下 18:9–15</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「我恨不得替你死」——大衛得知押沙龍死訊後這句撕心裂肺的哀哭，成為聖經中對『父愛超越背叛』刻畫得最深刻動人的宣告之一。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「王就心裡傷慟，上城門樓去哀哭，一面走一面說：「我兒押沙龍啊！我兒，我兒押沙龍啊！我恨不得替你死，押沙龍啊，我兒，我兒！」」</div>
+      <div class="verse-ref">撒母耳記下 18:33</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">רָגַז</span>
+        <div class="word-transliteration">ragaz · 傷慟 / 震動 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「震動、顫抖、深切地傷慟」，這個字描繪出一種身體與情感層面都劇烈震動的深沉悲痛。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">大衛得知押沙龍死訊時的反應，用這個帶有強烈身體性震動意涵的字來描述，顯示出這份喪子之痛的劇烈程度，遠超過一般的哀傷，即使押沙龍是背叛並試圖推翻他的叛子，大衛的父愛依然沒有絲毫的削減。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">公義的長期缺席可能滋生更深的仇恨與破壞</div>
+      <div class="theology-insight-body">大衛未對暗嫩的罪行施加應有的懲處，這種公義的缺席，成為押沙龍此後一連串復仇與叛變行動最深層的根源——這提醒我們，當公義遲遲未能伸張，傷害往往不會自行消失，反而可能在沉默中持續累積、最終以更具毀滅性的方式爆發。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">父母對子女的愛可能超越子女最深的背叛</div>
+      <div class="theology-insight-body">即使押沙龍起兵推翻自己的王位，大衛聽聞他的死訊時，依然發出了『我恨不得替你死』這樣毫無保留的哀慟——這展現出一種超越背叛與傷害、近乎無條件的父愛，也成為此後理解神對悖逆之子女之愛的重要參照。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">以暴制暴的復仇無法真正化解內心深處的傷痛</div>
+      <div class="theology-insight-body">押沙龍透過謀殺暗嫩來為妹妹討回公道，卻未能真正平息自己內心的傷痛，反而開啟了此後與父親更深的疏離與衝突——這提醒我們，訴諸暴力的復仇，往往無法真正療癒最初的創傷，反而可能帶來更深遠的破壞。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">大衛即使面對押沙龍徹底的背叛與篡位，聽聞他死訊時仍然發出『我恨不得替你死』這樣毫無保留的哀慟，展現出超越背叛的深刻父愛</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這種『甘願以自己的生命換取悖逆之子的生命』的渴望，某種程度上，預表了天父對悖逆世人那份甘願犧牲愛子性命以換取世人得救的救贖之愛</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">「神愛世人，甚至將他的獨生子賜給他們，叫一切信他的，不至滅亡，反得永生」——這正是大衛渴望『替押沙龍死』這份父愛，在基督救贖工作中最完整而真實的成就（約 3:16）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻心中正懷著某種因未得伸張之公義而生的深刻怨懟，甚至開始考慮某種報復性的行動——押沙龍的故事，是一則鄭重卻誠實的警示。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">押沙龍的故事命中的是每一個此刻心中正懷著某種因未得伸張之公義而生的深刻怨懟，甚至已經開始考慮以某種破壞性方式討回公道的人。他的悲劇提醒我們，公義遲遲未能伸張所帶來的傷害是真實的，然而選擇以暴力復仇或破壞性行動來處理這份傷痛，往往無法真正療癒內心深處的創傷，反而可能開啟一連串更加毀滅性的後果。他的故事也提醒身為父母或掌權者的人，公義的及時伸張，對於防止傷害在沉默中累積、最終演變成無法挽回的破壞，具有何等關鍵的重要性。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你此刻心中是否也懷著某種因未得伸張之公義而生的深刻怨懟？押沙龍以暴力復仇處理傷痛的結局，對你此刻可能考慮的因應方式，帶來什麼樣的警示？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">押沙龍因父親長期的疏離而心懷怨懟，最終走向了篡位的悲劇。你是否也曾經歷過與至親之間長期未能化解的疏離？你如何面對這種疏離所帶來的傷痛？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">大衛即使面對押沙龍的背叛，仍然發出『我恨不得替你死』這樣深刻的父愛宣告。這對你理解神對待悖逆之人的愛，帶來什麼樣的啟發？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">押沙龍收留、照顧受傷的妹妹他瑪，展現出他性格中良善的一面。你是否也曾在保護至親的良善動機下，卻選擇了錯誤或破壞性的具體行動？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 押沙龍</span>
+        <div class="gen-title">示範劇本：從為妹妹討回公道的正當憤怒，走向以暴制暴、最終篡位的悲劇終局</div>
+        <div class="gen-body">他因妹妹所受的侵害而懷抱正當的憤怒，卻在公義長期缺席的處境中，選擇了謀殺復仇與篡位奪權的破壞性道路，最終在懸掛橡樹的悲劇中結束了自己的生命。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 大衛（他的父親）</span>
+        <div class="gen-title">延續：即使面對兒子的背叛，父愛依然沒有止息</div>
+        <div class="gen-body">大衛在押沙龍死後發出的沉痛哀哭，展現出即使面對子女最深的背叛，父母之愛依然可能超越這份傷害而持續存在——這段哀哭，此後成為聖經中描繪父愛最深刻動人的文本之一。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在押沙龍的故事中，展現得極為複雜而真實——儘管他最終因背叛而死於非命，大衛對他毫無保留的愛，依然真實地存在，這提醒我們，即使一個人的生命故事以悲劇收場，愛與恩典的可能性，從未因此而完全消失。這也提醒為人父母者，及時的公義與和解，何等重要，能夠避免傷痛演變成無可挽回的破壞。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位為妹妹沉默兩年後動手復仇、最終懸掛橡樹而死的王子，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#遲來的公義會滋生更深的怨恨</span>
+      <span class="tag">#以暴制暴治不好傷痛</span>
+      <span class="tag">#父母的愛可能超越最深的背叛</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>押沙龍的妹妹他瑪，被同父異母的哥哥暗嫩設計侵犯了。大衛得知這件事，非常生氣，但他什麼都沒做——沒有懲罰暗嫩，什麼具體的公義處置都沒有。</p>
+      <p>押沙龍表面上什麼都沒說，跟暗嫩正常來往，但他心裡記著這件事，記了整整兩年。兩年後，他找了個機會，在剪羊毛的宴席上，親手策劃殺了暗嫩，然後逃到外公家躲了三年。</p>
+      <p>後來他被允許回耶路撒冷，但大衛整整兩年不肯見他一面。這段被冷落的日子，某種程度上，成了押沙龍此後決定造反的心理根源。</p>
+      <p>他開始每天清早站在城門口，攔下那些要來找大衛評理的百姓，跟他們說：可惜沒有人替王聽你們的案子，如果我是審判官，我一定會給你們公平。就這樣，他一點一滴收買了民心，然後在希伯崙正式宣布自己是王，起兵造反，把大衛逼得倉皇逃出耶路撒冷。</p>
+      <p>最後這場叛變在樹林裡打了敗仗，押沙龍騎騾子逃跑時，他那頭出名濃密的頭髮，被橡樹的樹枝纏住了，整個人懸在半空。元帥約押不顧大衛先前特別交代要『溫柔對待押沙龍』的命令，直接一槍把他刺死了。大衛得知消息，哭得撕心裂肺：我兒押沙龍啊，我恨不得替你死。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——押沙龍這塊石頭，因為一次遲遲未到的公義，被自己的憤怒一路雕刻，最終懸在了一棵橡樹上。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你此刻心裡正因為某件事沒有得到應有的公義處理，而懷著深深的怨恨——押沙龍的故事想提醒你：以暴制暴，不會真正治好那道傷口，反而可能開啟更深的破壞。</p>
+      <p style="margin-top:12px;">如果你是掌握著某種公義裁決權力的人（父母、主管、領導者）——押沙龍的故事想提醒你：遲來的公義，代價可能遠比你想像的更加沉重。</p>
+      <p style="margin-top:12px;">但也記得故事的最後——不管押沙龍做了什麼，大衛對他的愛，從來沒有消失過。這提醒我們，愛可以比背叛更深。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果你心裡懷著某種未得伸張的委屈——別讓它變成押沙龍式的復仇，尋求真正能療癒的公義吧。</p>
+    </div>
+
+    <div class="insight-box">押沙龍的故事，持續為當代討論『未處理的創傷如何演變為破壞性行為』這一心理學與家庭系統理論的核心課題，提供了極具體而深刻的聖經參照——他的悲劇提醒我們，及時而公正地處理傷害，對防止長期累積的怨恨演變成無法挽回的破壞，具有何等關鍵的重要性。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他從為妹妹討回公道的正當憤怒，走向謀殺復仇與篡位叛變的悲劇終局，留下了聖經中對『未得伸張之公義如何滋生毀滅性後果』刻畫得最深刻的警示敘事。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">『遲來的公義帶來深遠代價』的重要警示典範</div>
+          <div class="legacy-body">他的悲劇軌跡，持續為後世提供了『公義的及時伸張，對防止傷害演變成毀滅性復仇何等重要』這一課題最具體而深刻的歷史例證。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">大衛家族內部動盪最重要的敘事篇章</div>
+          <div class="legacy-body">他的叛變是大衛統治期間最嚴重的內部危機之一，深刻影響了此後大衛王朝的權力結構與家族關係。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">父愛超越背叛之深刻宣告的來源</div>
+          <div class="legacy-body">大衛在他死後發出的哀哭『我恨不得替你死』，此後成為聖經中，描繪父母之愛如何超越子女最深背叛的最經典文本之一。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「王就心裡傷慟，上城門樓去哀哭，一面走一面說：「我兒押沙龍啊！我兒，我兒押沙龍啊！我恨不得替你死，押沙龍啊，我兒，我兒！」」</div>
+      <div class="final-verse-ref">撒母耳記下 18:33</div>
+    </div>
+
+    <div class="final-question">如果你此刻心中正懷著某種因未得伸張之公義而生的深刻怨懟——你願不願意選擇一條不同於押沙龍的道路，尋求真正能療癒傷痛的公義，而非訴諸破壞性的復仇？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 押沙龍 <span>אַבְשָׁלוֹם</span> · 大衛俊美的兒子 · 為妹復仇者 · 篡奪父親王位的叛子</div>
+
+</body>
+</html>

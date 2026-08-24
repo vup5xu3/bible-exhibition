@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>多加 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">多加・·大比大</h1>
+  <span class="hero-name-en">Dorcas (Tabitha) · Ταβιθά (Δορκάς)</span>
+  <p class="hero-slogan">「彼得叫她們都出去，就跪下禱告，轉身對著死人說：「大比大，起來！」她就睜開眼睛，見了彼得，便坐起來。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">約主後30年代（初代教會宣教初期）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ISFJ · 守衛者型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">使徒行傳 9:36–43</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">約帕的女門徒 · 廣行善事賙濟窮人者 · 彼得所行復活神蹟的對象</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">使徒行傳用『這女徒廣行善事，多施賙濟』這句話介紹她——她是新約中極少數被明確稱為『女徒』（女門徒）的人物之一，這個罕見的稱謂，凸顯出她在初代教會中所扮演角色的重要性。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">約主後30年代，初代教會宣教初期</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">約帕的女門徒，希臘文名『多加』（意為『羚羊』），亞蘭文名『大比大』</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">約帕（今雅法，地中海沿岸港口城市）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">聖經未詳細記載其家庭成員</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">徒 9:36–43</div>
+      </div>
+    </div>
+
+    <p>多加（亞蘭文名大比大）是約帕教會中一位備受敬重的女性，使徒行傳特別用『這女徒廣行善事，多施賙濟』這句簡潔卻極具份量的評語，總結她一生的服事特質——她不僅是一位『信徒』，更被明確稱為『女徒』（希臘文μαθήτρια，門徒的陰性形式），這個稱謂在新約中極為罕見，顯示出她在教會群體中所享有的敬重地位。她具體的服事方式，透過此後她死後眾寡婦的反應而得到生動的呈現——這些寡婦『把多加與她們同在時所做的裡衣外衣給彼得看』，顯示多加生前，很可能持續而具體地用自己的雙手，為約帕當地的貧困寡婦縫製衣物，這種默默無聞卻極其實際的服事，深深地烙印在受她幫助之人的記憶之中。</p>
+    <p>多加患病死了，門徒們得知使徒彼得正在附近的呂大，便打發兩個人去懇求他『快到我們那裡去，不要耽延』。彼得抵達約帕後，被帶到多加的屍體停放之處，眾寡婦『站在彼得旁邊哭，拿多加與她們同在時所做的裡衣外衣給他看』——這個場景，具體而動人地呈現出多加的服事，如何在她死後，依然透過這些具體的衣物，持續訴說著她的良善與慷慨。彼得叫這些寡婦都出去，隨即跪下禱告，轉身對著死人說：『大比大，起來！』多加便睜開眼睛，見了彼得，就坐了起來，彼得伸手扶她起來，叫聖徒和寡婦進來，把她活活地交給他們。使徒行傳記載，這件神蹟『傳遍了約帕，就有許多人信了主』——多加的復活，不僅是她個人生命的奇蹟性延續，更成為約帕當地福音廣傳的重要契機。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從約帕教會中廣行善事、親手為寡婦縫製衣物的女門徒，到病逝後透過彼得的禱告奇蹟性復活——多加的故事，是使徒行傳中對『日常具體的良善服事，最終在神的大能中得到超乎想像之延續』刻畫得最動人的敘事之一。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">廣行善事賙濟窮人——「這女徒廣行善事，多施賙濟」</div>
+        <div class="timeline-body">多加在約帕教會中，以廣行善事、多施賙濟著稱，她具體的服事方式，包括親手為當地貧困的寡婦縫製裡衣外衣，這種默默無聞卻極其實際的服事，深受眾人的敬重與感念。</div>
+        <div class="timeline-ref">徒 9:36</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">患病死亡與門徒的懇求——「快到我們那裡去，不要耽延」</div>
+        <div class="timeline-body">多加患病死了，門徒們得知使徒彼得正在附近的呂大，便打發兩個人前去懇求他盡快前來——這個急切的行動，顯示出約帕教會對多加離世所懷抱的深切哀痛與挽留的迫切心情。</div>
+        <div class="timeline-ref">徒 9:37–38</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">寡婦展示衣物與彼得的禱告——「拿多加與她們同在時所做的裡衣外衣給他看」</div>
+        <div class="timeline-body">彼得抵達約帕，眾寡婦站在他旁邊哭泣，拿出多加生前親手縫製的衣物給他看，具體見證她生前的良善；彼得叫她們出去，跪下禱告，轉身對著死人說『大比大，起來』。</div>
+        <div class="timeline-ref">徒 9:39</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">復活與福音廣傳——「這事傳遍了約帕，就有許多人信了主」</div>
+        <div class="timeline-body">多加睜開眼睛坐了起來，彼得將她活活地交給聖徒和寡婦，這件神蹟傳遍了約帕，成為許多人信主的重要契機——多加的復活，不僅延續了她個人的生命，更成為福音在約帕廣傳的關鍵事件。</div>
+        <div class="timeline-ref">徒 9:40–42</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">她是新約中極少數被明確稱為『女徒』（門徒）的女性之一，她一生的服事，具體而持續地展現在她親手為窮人縫製的衣物之中——這種默默無聞卻真實具體的良善，最終在她死後，得到了超乎想像的延續與見證。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">堅信信仰必須透過具體而持續的實際行動來彰顯，而非僅止於言語或教義的認信</div>
+          <div class="soul-body">多加的信仰，透過她廣行善事、親手縫製衣物賙濟窮人這樣具體而持續的行動彰顯出來，這種將信仰落實於日常實際服事的核心信念，是她一生最鮮明的品格特質。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">以默默無聞、卻持續而具體的方式，服事教會中最需要幫助的群體（寡婦）</div>
+          <div class="soul-body">她的服事方式，不是引人注目的公開講道或領導職分，而是透過親手縫製衣物這樣具體而細膩的方式，持續地關懷約帕當地的貧困寡婦——這種謙卑卻極其實際的服事，是她品格中最動人的美德。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">傾向以具體、實用、且能直接回應他人實際需要的方式進行服事</div>
+          <div class="soul-body">她選擇縫製衣物這種具體而實用的服事方式，直接回應寡婦們在物質生活上真實的需要，展現出她務實而貼近他人具體處境的服事風格。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">（材料有限——聖經對她個人的過犯或掙扎著墨極少，這段簡短的敘事主要聚焦於她服事的正面典範與復活的神蹟）</div>
+          <div class="soul-body">使徒行傳對多加的記載相對簡潔，敘事重點完全聚焦於她廣行善事的美好見證，以及她復活的神蹟性事件，未見任何負面的性格描寫。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">她是使徒行傳中，彼得所行的第一件叫死人復活的神蹟對象</div>
+          <div class="soul-body">多加的復活，是使徒行傳中彼得所行諸多神蹟中，第一次叫死人復活的具體記載，這個神蹟此後也與此後保羅在特羅亞使少年人猶推古復活的神蹟相互呼應，共同見證使徒們所承接、延續自耶穌本身的復活大能。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">多加的故事，是使徒行傳中對『日常具體的良善服事，其價值與影響力，往往遠超過我們自己所能想像』刻畫得最動人的敘事之一。她的服事，沒有戲劇性的講道、沒有領導性的職分，只是持續而具體地，用自己的雙手，為約帕當地的寡婦縫製衣物——這種服事方式，在教會歷史的宏大敘事中，看似微不足道，卻在她死後，透過眾寡婦含淚展示她親手所做之衣物的場景，具體而深刻地見證了她生命所帶來的真實影響。這個場景本身，已經足以構成一則動人的見證——即使沒有此後的復活神蹟，多加也已經憑藉她廣行善事的一生，贏得了周遭群體真實而深刻的感念與愛戴。然而神卻進一步透過彼得，行了叫她從死裡復活的神蹟，這個神蹟性的延續，某種程度上，也成為神對多加一生忠心服事的具體印證與獎賞——她生命的價值，不僅止於教會群體對她的感念，更蒙神親自介入，賜予她生命奇蹟性的延續。多加的故事提醒我們，即使是最默默無聞、最日常瑣碎的具體服事，只要是出於真實的愛與忠心，都可能在神的眼中、在祂所定的時候，結出超乎我們自己想像的深遠果效。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ISFJ</span>
+      <div class="mbti-name">守衛者型 · 縫製衣物的女門徒</div>
+      <div class="mbti-slogan">「她沒有講過一篇道，卻用自己的雙手，縫出了整個約帕教會最真實的見證。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Si · 內向感覺</span>
+          <div class="mbti-fn-body">她持續而穩定地投入具體、實用的服事方式（縫製衣物），這種對具體、細膩之日常實踐的忠實投入，正是主導內向感覺的典型展現。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Fe · 外向情感</span>
+          <div class="mbti-fn-body">她的服事深切關懷約帕當地寡婦這一群體真實的物質與情感需要，展現出對他人處境高度的體貼與關懷。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ti · 內向思考</span>
+          <div class="mbti-fn-body">（材料有限——聖經對她在邏輯分析或策略規劃層面的性格特質著墨較少，她的敘事重點聚焦於具體的服事行動）</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Ne · 外向直覺</span>
+          <div class="mbti-fn-body">（材料有限——聖經對她在抽象可能性或創新層面的性格特質著墨較少，她的服事方式呈現出一貫而穩定的具體實踐模式）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">她一生最重要的關係，是與那群她持續以縫製衣物來服事、並在她死後含淚見證她良善的約帕寡婦們——以及那位奉神的大能，使她從死裡復活的使徒彼得。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">寡</div>
+          <div class="relation-name">約帕的寡婦們</div>
+          <div class="relation-type-badge">她生前持續服事、死後含淚見證其良善的群體</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">這些寡婦在多加死後，站在彼得旁邊哭泣，拿出多加生前親手為她們所做的裡衣外衣給他看，這個場景，具體而動人地見證了多加一生服事所帶來的真實影響。</div>
+          <div class="relation-ref">徒 9:39</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">彼</div>
+          <div class="relation-name">使徒彼得</div>
+          <div class="relation-type-badge">奉神的大能使她從死裡復活的使徒</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">彼得應約帕門徒的懇求，前來為多加禱告，並奉神的大能，使她從死裡復活——這個神蹟，是彼得所行的第一件叫死人復活的具體記載。</div>
+          <div class="relation-ref">徒 9:40</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「這女徒廣行善事，多施賙濟」——這句簡短的評語，成為聖經中對『信仰透過具體而持續的良善行動被彰顯』最精煉的宣告之一。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「在約帕有一個女徒，名叫大比大，翻希臘話就是多加（就是羚羊的意思）；她廣行善事，多施賙濟。」</div>
+      <div class="verse-ref">使徒行傳 9:36</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">μαθήτρια</span>
+        <div class="word-transliteration">mathetria · 女徒 / 女門徒 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「女性的門徒」，這是希臘文『門徒』（mathetes）一字唯一一次在新約中以陰性形式出現，專門用以形容多加。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這個罕見的陰性詞形，特別用以稱呼多加，顯示出她在初代教會中，被明確而正式地承認為一位『門徒』，而非僅僅是一位受幫助的邊緣人物——這個稱謂本身，就是對她屬靈地位與服事重要性的具體肯定。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">ἐλεημοσύνη</span>
+        <div class="word-transliteration">eleemosyne · 賙濟 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「憐憫的施捨、賙濟」，這個字強調出於憐憫之心而具體給予物質幫助的行動。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這個字精確地描述了多加服事的本質——不僅止於口頭上的關懷，而是具體、實際地給予物質上的幫助，這種將信仰中的憐憫，轉化為具體行動的模式，成為此後教會歷史中，理解『信心與行為並重』這一原則的重要具體例證。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">信仰必須透過具體而持續的良善行動來彰顯而非僅止於言語的認信</div>
+      <div class="theology-insight-body">多加『廣行善事，多施賙濟』的一生，成為聖經中『真實的信心必然帶出具體行為』這一雅各書核心教導最生動的敘事印證。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">日常瑣碎卻真誠的服事其影響力可能遠超乎表面所見</div>
+      <div class="theology-insight-body">多加透過縫製衣物這樣看似微小的具體服事，卻在她死後，透過眾寡婦含淚展示衣物的場景，具體見證了她一生服事所帶來的深遠而真實的影響。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">使徒所行的神蹟延續了耶穌基督復活大能的具體彰顯</div>
+      <div class="theology-insight-body">彼得使多加從死裡復活的神蹟，成為使徒行傳中，見證耶穌基督復活大能透過使徒繼續在教會中運行的重要具體例證，也直接促成了約帕當地福音的廣傳。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">多加因廣行善事、多施賙濟而深受約帕教會愛戴，死後蒙彼得奉神的大能使她從死裡復活，這個神蹟此後直接促成了許多人信主</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這個『死裡復活、進而促成信主』的神蹟模式，直接延續並見證了耶穌基督自己復活大能，如何透過使徒的服事，繼續在初代教會中真實地運行</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">耶穌曾使睚魯的女兒、寡婦的獨生子、以及拉撒路從死裡復活，彼得所行使多加復活的神蹟，正是這種復活大能透過使徒繼續延續的具體見證，共同指向基督自己戰勝死亡的終極得勝（約 11:25）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正從事某種看似默默無聞、不引人注目的具體服事——多加的故事，想告訴你，這樣的服事，其價值遠超乎你自己所能想像。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">多加的故事命中的是每一個此刻正從事某種看似默默無聞、不引人注目的具體服事（照顧家人、默默的義工工作、日常瑣碎卻真誠的關懷行動）的人。她的故事提醒我們，真正的信心，往往體現在這樣持續而具體的良善行動之中，而非僅止於引人注目的公開服事。她的故事也提醒我們，這樣看似微小的服事，其影響力與價值，可能遠超乎我們自己當下所能想像，甚至可能在神所定的時候，結出超乎預期的深遠果效。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你此刻是否正從事某種看似默默無聞、不引人注目的具體服事？多加透過縫製衣物所展現的忠心，對你此刻的服事，帶來什麼樣的鼓勵？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">多加死後，眾寡婦含淚展示她生前所做的衣物，具體見證她一生服事的真實影響。你的服事，是否也在他人的生命中，留下了類似具體而真實的印記？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">多加被明確稱為『女徒』，這個罕見的稱謂，肯定了她在教會中的屬靈地位。你是否也曾因某種看似『次要』的服事方式，而低估了自己在神眼中真正的屬靈價值？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 多加</span>
+        <div class="gen-title">示範劇本：以默默無聞卻持續而具體的良善服事，深刻影響約帕教會與貧困寡婦的生命</div>
+        <div class="gen-body">她廣行善事、多施賙濟，親手為約帕的寡婦縫製衣物，這種具體而持續的服事，即使在她死後，依然透過眾寡婦含淚的見證，展現出她一生所帶來的真實影響。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 約帕教會與此後信主的許多人</span>
+        <div class="gen-title">延續：她的復活神蹟直接促成了福音在約帕的廣傳</div>
+        <div class="gen-body">多加復活的神蹟『傳遍了約帕，就有許多人信了主』——她個人生命奇蹟性的延續，最終成為整個約帕地區福音廣傳的重要契機，使她一生的服事與見證，結出了超乎個人層面的深遠果效。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在多加的故事中，展現在神紀念她一生忠心而具體的良善服事，透過彼得的禱告，賜給她生命奇蹟性的延續；也展現在，這個神蹟此後成為許多人信主的契機，使多加一生默默無聞的服事，最終在神的計畫中，結出了遠超乎她自己所能想像的深遠果效。這提醒我們，神看重並記念每一項出於真實的愛所做的具體服事，即使它看似微小而不引人注目。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位用雙手縫製衣物服事寡婦、死後蒙神使其復活的女門徒，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#默默無聞的服事同樣有價值</span>
+      <span class="tag">#具體的行動勝過空談</span>
+      <span class="tag">#神記念每一份真實的良善</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>多加是約帕教會裡一位很特別的女性，聖經用了一個很少見的稱呼形容她——女徒，也就是女門徒。她不是講道的，也不是領袖，她做的事很具體：用自己的雙手，為窮困的寡婦們縫製衣服。</p>
+      <p>她生病死了，教會的人聽說使徒彼得剛好在附近的呂大，趕緊派人去請他：快來，不要耽誤了。</p>
+      <p>彼得趕到約帕，走進她的屍體停放的房間，一群寡婦圍在旁邊哭，手裡拿著多加生前為她們縫的衣服，一件一件給彼得看——這個畫面很動人，這些衣服，就是多加一生最真實的見證。</p>
+      <p>彼得請大家先出去，自己跪下禱告，然後轉身，對著已經死去的身體說：大比大，起來！她真的睜開眼睛，看見彼得，坐了起來。彼得扶她起身，把她活著交給了在場的聖徒和寡婦。</p>
+      <p>這件事傳遍了約帕，很多人因此信了主。多加一生做的，可能只是縫縫補補，看起來很平凡，但它帶來的影響，遠遠超過她自己能想像的範圍。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——多加這塊石頭，靠著一針一線，默默地被雕成了整個約帕教會最真實的見證。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你此刻正做著某種看起來默默無聞、沒人特別注意的服事——像多加的縫紉一樣——別小看它。這樣的忠心，可能比你想像的更有分量。</p>
+      <p style="margin-top:12px;">具體的行動，勝過空談。多加沒有留下一句被記載的話語，卻用她的雙手，留下了最深刻的見證。</p>
+      <p style="margin-top:12px;">神記念每一份出於真心的良善，即使它看起來微不足道。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，繼續做那件看似平凡、卻出於真心的服事——神看見了。</p>
+    </div>
+
+    <div class="insight-box">多加的故事，持續為當代討論『默默無聞之服事的價值』與『具體行動作為信仰見證』這類議題，提供了溫暖而深刻的聖經參照，特別鼓舞著許多在幕後默默付出、卻鮮少被看見的服事者。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">她從約帕一位默默用雙手縫製衣物、服事窮困寡婦的女門徒，成為彼得所行第一件叫死人復活之神蹟的對象，留下了『具體服事的深遠影響力』最動人的見證。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">新約中罕見被明確稱為『女徒』的女性典範</div>
+          <div class="legacy-body">她是新約中唯一一位以陰性詞形『女徒』被明確稱呼的人物，肯定了她在初代教會中所享有的屬靈地位與重要性。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">彼得所行第一件叫死人復活神蹟的對象</div>
+          <div class="legacy-body">她的復活，是使徒行傳中彼得所行諸多神蹟中，第一次叫死人復活的具體記載，延續並見證了耶穌基督復活大能透過使徒繼續運行的重要歷史事件。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">『具體服事的深遠影響力』最動人的敘事典範</div>
+          <div class="legacy-body">她透過縫製衣物這樣看似微小的具體服事，持續為後世提供了『日常瑣碎卻真誠的良善行動，其影響力可能遠超乎表面所見』這一屬靈原則最動人的例證。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">約帕地區福音廣傳的重要契機</div>
+          <div class="legacy-body">她復活的神蹟直接促成了『許多人信了主』，使她個人生命的延續，成為整個約帕地區福音廣傳歷史中不可或缺的一環。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「這事傳遍了約帕，就有許多人信了主。」</div>
+      <div class="final-verse-ref">使徒行傳 9:42</div>
+    </div>
+
+    <div class="final-question">如果你此刻正從事某種看似默默無聞、不引人注目的具體服事——你願不願意相信，就像多加的故事所展現的，這樣的忠心，其價值與影響力，遠超乎你自己所能想像？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 多加 <span>Ταβιθά (Δορκάς)</span> · 約帕的女門徒 · 廣行善事賙濟窮人者 · 彼得所行第一件叫死人復活的神蹟對象</div>
+
+</body>
+</html>

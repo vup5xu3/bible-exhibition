@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>腓立比獄卒 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">腓立比獄卒</h1>
+  <span class="hero-name-en">The Philippian Jailer · δεσμοφύλαξ</span>
+  <p class="hero-slogan">「他就叫人拿燈來，跳進去，戰戰兢兢地俯伏在保羅、西拉面前；又領他們出來，說：「二位先生，我當怎樣行才可以得救？」他們說：「當信主耶穌，你和你一家都必得救。」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">約主後50年代（保羅第二次宣教旅程）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ISTJ · 物流師型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">使徒行傳 16:19–34</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">腓立比城的監獄官 · 半夜信主全家受洗的外邦人</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他是羅馬殖民城市腓立比的監獄官，職責是嚴密看守囚犯，甚至將保羅與西拉的腳上了木狗，關進內監——然而就在那個半夜，一場地震，徹底改變了他的一生。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">約主後50年代，保羅第二次宣教旅程期間</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">腓立比城的監獄官（獄卒）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">腓立比（羅馬帝國馬其頓省的殖民城市）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">全家（此後與他一同受洗信主）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">徒 16:19–34</div>
+      </div>
+    </div>
+
+    <p>這位獄卒的故事，發生在保羅與西拉因趕出一個使女身上叫人算命的鬼、卻因此觸怒其主人而遭誣告、被官長剝了衣裳、用棍打了許多下、又被下在監裡的背景之下。獄卒奉命『嚴緊看守他們』，因此將他們的腳上了木狗，關進內監（監獄中最深、最森嚴的部分）。然而聖經記載，保羅與西拉『約在半夜，禱告，唱詩讚美神，眾囚犯也側耳而聽』——這個畫面本身，已經展現出這兩位使徒在極度痛苦與羞辱的處境中，依然選擇敬拜神的驚人信心。忽然間，『地大震動，甚至監牢的地基都搖動了，監門立刻全開，眾囚犯的鎖鍊也都鬆開了』。</p>
+    <p>獄卒『一醒，看見監門全開，以為囚犯已經逃走，就拔刀要自殺』——按照羅馬的法律，看守囚犯的官員若讓囚犯脫逃，將要承擔極其嚴重的責任，甚至可能面臨死刑，這位獄卒選擇以自盡來面對這場他以為已經無可挽回的失職。就在這千鈞一髮之際，保羅『大聲呼叫說：不要傷害自己！我們都在這裡』——保羅與西拉，儘管本可以趁著地震帶來的混亂逃離，卻選擇留在原地，這個決定，直接拯救了獄卒的性命。獄卒『叫人拿燈來，跳進去，戰戰兢兢地俯伏在保羅、西拉面前』，隨即問出了那句聖經中最直接、也最著名的求道之問：『二位先生，我當怎樣行才可以得救？』保羅與西拉回答：『當信主耶穌，你和你一家都必得救。』他們便『把主的道講給他和他全家的人聽』。獄卒『當夜就在那時候，把他們帶去，洗他們的傷；他和屬乎他的人立時都受了洗』，並『歡歡喜喜地擺上飯，合家因為信了神，都很喜樂』。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從嚴密看守保羅西拉的監獄官，到地震後幾乎自盡、卻在保羅的呼喊中得蒙拯救，再到當夜全家受洗歡喜信主——這段濃縮於一夜之間的敘事，是使徒行傳中對『絕望與拯救如何在瞬間交織轉化』刻畫得最戲劇性的敘事之一。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">嚴密看守保羅與西拉——「把他們下在監裡……嚴緊看守」</div>
+        <div class="timeline-body">獄卒奉命嚴密看守遭官長下令鞭打下監的保羅與西拉，將他們的腳上了木狗，關進監獄中最森嚴的內監，這是他此前作為監獄官例行職責的體現。</div>
+        <div class="timeline-ref">徒 16:23–24</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">地震震開監門，他欲拔刀自盡——「以為囚犯已經逃走，就拔刀要自殺」</div>
+        <div class="timeline-body">半夜忽然地震，監獄的地基搖動，監門全開，眾囚犯的鎖鍊也鬆開了。獄卒驚醒後以為囚犯全數逃脫，深知這將帶來嚴重的後果，正要拔刀自盡之際，保羅大聲呼喊阻止了他。</div>
+        <div class="timeline-ref">徒 16:26–28</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">戰兢俯伏，發出求道之問——「我當怎樣行才可以得救」</div>
+        <div class="timeline-body">獄卒叫人拿燈來，戰戰兢兢地俯伏在保羅、西拉面前，問出了『我當怎樣行才可以得救』這句直接而迫切的問題，保羅回答『當信主耶穌，你和你一家都必得救』。</div>
+        <div class="timeline-ref">徒 16:29–31</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">當夜全家受洗，合家喜樂——「合家因為信了神，都很喜樂」</div>
+        <div class="timeline-body">獄卒當夜便為保羅與西拉洗去他們身上的傷，他和全家人也立時受了洗，並歡歡喜喜地擺上飯食款待他們——這場信主的經歷，從絕望的自盡邊緣，在同一個夜晚，轉化為全家團聚的喜樂盛宴。</div>
+        <div class="timeline-ref">徒 16:33–34</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他是聖經中對『絕望邊緣的瞬間，如何在他人捨己的恩慈中，轉化為全家蒙福之開端』刻畫得最戲劇性的敘事人物之一——他一夜之間的轉變，從職責所繫的嚴密看守，到全家歡喜的信主受洗。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">以嚴謹履行職責、承擔法律責任為核心的行事準則，直到親身經歷保羅捨己的恩慈才徹底轉化</div>
+          <div class="soul-body">他起初以羅馬法律所要求的嚴密看守與失職即擔責的準則行事，這種對職責與法律後果的嚴謹態度，甚至驅使他在以為失職時選擇自盡；然而正是保羅超乎他預期的捨己呼喊，徹底轉化了他核心的信念與人生方向。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">在戰兢俯伏的謙卑中，迫切而誠懇地尋求得救之道</div>
+          <div class="soul-body">他在經歷生死交關的震撼之後，沒有選擇迴避或掩飾自己的驚惶，而是戰戰兢兢地俯伏、誠懇地發出『我當怎樣行才可以得救』這句迫切的求問，這份謙卑而真誠的求道態度，是他性格中最動人的美德。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">一旦確信真理，便立即而全面地以具體行動回應——為使徒洗傷、全家受洗、擺上飯食款待</div>
+          <div class="soul-body">獄卒在明白福音後，沒有絲毫的猶豫或拖延，當夜便採取了一連串具體而全面的行動，這種迅速而徹底的行動力，展現出他一貫務實而果斷的行事風格。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">（材料有限——聖經對他此前的具體過犯著墨較少，他的敘事聚焦於這場戲劇性的信主轉折）</div>
+          <div class="soul-body">使徒行傳對這位獄卒的記載，主要聚焦於他因地震而幾乎自盡、此後蒙拯救信主的完整過程，未見對他個人此前品格的負面描寫。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">他的信主經歷，發生在一場地震所帶來的物理性震撼與屬靈性震撼同時交織的獨特時刻</div>
+          <div class="soul-body">這場地震既是促使監門大開、幾乎導致悲劇的物理事件，也成為促成他真正認識福音、全家蒙救的屬靈轉捩點——這種物理與屬靈事件緊密交織的敘事模式，賦予這段記載一種格外戲劇性的神學張力。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">這位腓立比獄卒的故事，是使徒行傳中對『絕望的邊緣，如何在他人捨己的恩慈中，瞬間轉化為蒙福的開端』刻畫得最戲劇性的敘事之一。他起初的處境，完全籠罩在羅馬法律嚴苛的責任要求之下——監門大開、囚犯疑似脫逃，這意味著他即將面臨的，可能是極其嚴厲的懲罰甚至死刑，他選擇拔刀自盡，某種程度上，正是這種被法律責任逼至絕境的具體展現。然而正是在這千鈞一髮的時刻，保羅與西拉展現出的行動，成為整段敘事最關鍵的轉折——他們本可以趁著地震帶來的混亂，輕易逃離這座囚禁他們、鞭打他們的監獄，卻選擇留在原地，並且主動出聲呼喊，阻止獄卒自盡。這份完全出乎獄卒意料之外的捨己與恩慈，徹底擊碎了他原本以法律責任與嚴苛後果為核心的世界觀，促使他戰戰兢兢地俯伏、誠懇地發出對『得救』之道的迫切追尋。這位獄卒的故事提醒我們，福音最深刻的說服力，往往不僅在於言語上的教導，更在於信徒本身，在極端處境中所展現出超乎常理的捨己與恩慈——正是這樣具體而真實的恩典行動，最能觸動一個人內心深處，走向真正的悔改與信靠。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ISTJ</span>
+      <div class="mbti-name">物流師型 · 拔刀自盡邊緣得救的獄卒</div>
+      <div class="mbti-slogan">「他以為自己失職到必須以死謝罪的地步，卻在保羅一聲呼喊中，找到了真正得救的道路。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Si · 內向感覺</span>
+          <div class="mbti-fn-body">他嚴謹地依循羅馬法律對監獄官職責的具體要求行事，這種對既定規範與責任後果的忠實依循，正是主導內向感覺的典型展現，也是他一度選擇自盡的核心心理根源。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Fe · 外向情感</span>
+          <div class="mbti-fn-body">他在明白福音後，立即以具體的關懷行動（為使徒洗傷、擺上飯食款待）回應這份恩典，並與全家一同歡喜信主，展現出對他人處境與群體團聚喜樂的高度重視。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ti · 內向思考</span>
+          <div class="mbti-fn-body">他迅速而清晰地理解保羅『當信主耶穌』這句話的核心要義，並立即依此展開具體而合乎邏輯的信主行動（受洗）。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Ne · 外向直覺</span>
+          <div class="mbti-fn-body">他起初面對監門大開的處境，只能想到『囚犯已逃』這唯一、最直接的可能解釋，未能考量其他可能性，這種對多重可能性缺乏充分探索的傾向，反映出劣勢外向直覺在極端壓力下的表現。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最重要的一次相遇，是與那兩位他原本奉命嚴密看守、此後卻在他絕望自盡的邊緣，主動出聲拯救他性命的保羅與西拉。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">保</div>
+          <div class="relation-name">保羅</div>
+          <div class="relation-type-badge">阻止他自盡、並向他傳講福音的使徒</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">保羅在地震後本可趁亂逃離，卻選擇留下並大聲呼喊阻止獄卒自盡，此後向他與全家傳講福音，促成了這場戲劇性的信主經歷。</div>
+          <div class="relation-ref">徒 16:28, 31–32</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">西</div>
+          <div class="relation-name">西拉</div>
+          <div class="relation-type-badge">與保羅一同被囚、一同見證獄卒信主的同工</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">西拉與保羅一同在監獄中禱告唱詩，一同經歷地震的震撼，也一同參與了向獄卒全家傳講福音、施行洗禮的整個過程。</div>
+          <div class="relation-ref">徒 16:25, 32</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">家</div>
+          <div class="relation-name">獄卒的全家</div>
+          <div class="relation-type-badge">與他一同在當夜受洗信主的家人</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">獄卒的全家，在他信主的同一個夜晚，一同聽福音、一同受洗，並一同歡喜慶祝這場全家蒙福的重大轉折。</div>
+          <div class="relation-ref">徒 16:33–34</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「當信主耶穌，你和你一家都必得救」——保羅對獄卒所說的這句話，成為聖經中對『因信稱義』這一核心救恩真理，表達得最簡潔有力的宣告之一。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「他們說：「當信主耶穌，你和你一家都必得救。」」</div>
+      <div class="verse-ref">使徒行傳 16:31</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">τί με δεῖ ποιεῖν ἵνα σωθῶ</span>
+        <div class="word-transliteration">ti me dei poiein hina sotho · 我當怎樣行才可以得救 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「我必須做什麼才能得救」，這句話直接而迫切地表達了獄卒內心對得救之道最核心的追問。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這句問題，此後成為聖經中最著名、也最直接的求道之問之一——它精確地捕捉了每一個真誠面對自己生命有限與罪咎之人，內心深處最迫切的疑問，而保羅的回答『當信主耶穌』，則以最簡潔的方式，宣告了因信稱義這一核心救恩真理。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">πιστεύω</span>
+        <div class="word-transliteration">pisteuo · 信 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「相信、信靠」，保羅回答獄卒時所使用的核心動詞，強調得救的途徑，在於對主耶穌的信靠，而非任何形式的功德或儀式。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">保羅這句簡潔的回答，直接排除了任何複雜的宗教儀式或功德要求，將得救的途徑，完全聚焦於單純地信靠主耶穌——這句回答，此後成為理解因信稱義這一新約核心救恩教義最經典、也最直接的文本依據之一。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">因信稱義是得救唯一而直接的途徑而非透過任何功德或儀式</div>
+      <div class="theology-insight-body">保羅對獄卒『當信主耶穌，你和你一家都必得救』的回答，以最簡潔的方式，確立了新約救恩神學中『因信稱義』這一核心真理——得救完全在於對主耶穌的信靠，而非任何形式的功德累積。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">信徒捨己的具體行動可能成為他人認識福音最有力的見證</div>
+      <div class="theology-insight-body">保羅與西拉選擇留在監獄中而非趁亂逃離，這個捨己的具體行動，比任何言語上的教導，更直接而有力地促成了獄卒真誠的悔改與信靠。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">全家一同信主展現出福音對整個家庭群體的祝福與更新</div>
+      <div class="theology-insight-body">獄卒全家在同一夜一同受洗信主，這展現出福音的祝福，不僅止於個人層面，更能延伸至整個家庭，帶來群體性的更新與喜樂。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">獄卒在以為自己必須為職責的失職付上生命代價、正要自盡之際，保羅主動呼喊、以捨己的方式阻止了他，並進一步引導他認識能使他真正得救的福音真理</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這種『在絕望瀕死之際，蒙受他人捨己的拯救，進而認識更深的救恩』的模式，某種程度上，預表了基督甘願捨己、拯救本應承受罪之刑罰的世人，進而使人認識並領受永恆救恩的核心救贖真理</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">羅馬書宣告「惟有基督在我們還作罪人的時候為我們死，神的愛就在此向我們顯明了」，保羅捨己拯救獄卒性命的具體行動，正呼應著基督捨己拯救世人這一核心救贖真理的具體歷史演出（羅 5:8）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正處在某個因自己的失職或過犯而感到絕望、甚至覺得自己已經無可挽回的處境——這位獄卒的故事，想告訴你，拯救可能就在眼前。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">這位腓立比獄卒的故事命中的是每一個此刻正處在某個因自己的失職、過犯、或無法挽回的失敗，而感到深刻絕望，甚至覺得自己已經走投無路的人。他的故事提醒我們，即使身處看似無可挽回的絕境，拯救與恩典，依然可能以我們完全意想不到的方式，在關鍵的時刻臨到。他的故事也提醒我們，真正的得救，最終不在於我們自己能做什麼來彌補過犯，而在於單純地信靠那位甘願捨己拯救我們的主。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你此刻是否正處在某個因自己的失職或過犯而感到絕望、甚至覺得自己已經無可挽回的處境？這位獄卒在自盡邊緣被拯救的經歷，對你此刻的處境，帶來什麼樣的盼望？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">保羅與西拉本可以趁亂逃離監獄，卻選擇留下拯救這位曾經嚴密看守他們的獄卒。你是否也曾經歷過，或能夠成為，這樣一種捨己拯救他人的具體恩典行動？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">獄卒問『我當怎樣行才可以得救』，保羅的回答卻極其簡單——『當信主耶穌』。你是否也曾將『得救』或『被接納』想得過於複雜，而忽略了信靠本身的單純與直接？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 腓立比獄卒</span>
+        <div class="gen-title">示範劇本：在自盡的絕望邊緣，因保羅捨己的拯救而蒙恩，全家在同一夜信主受洗</div>
+        <div class="gen-body">他因地震帶來的震撼而幾乎自盡，卻在保羅主動的呼喊與捨己的恩慈中，戰兢俯伏，誠懇地尋求得救之道，最終與全家在同一個夜晚，一同信主受洗，經歷了從絕望到喜樂的戲劇性轉變。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 他的全家</span>
+        <div class="gen-title">延續：一場個人的信主經歷，延伸成為整個家庭的蒙福時刻</div>
+        <div class="gen-body">獄卒全家在他信主的同一夜，一同聽福音、一同受洗，並『因為信了神，都很喜樂』——這場個人的信主經歷，最終延伸成為整個家庭群體共同蒙受的祝福。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在這位獄卒的故事中，展現得極為戲劇性而直接——神使用一場地震，將這位原本奉命嚴密看守使徒的監獄官，帶到了自盡的絕望邊緣，卻在這個關鍵時刻，透過保羅捨己的呼喊與福音的宣講，將他與全家一同帶入真正的救恩與喜樂之中。這提醒我們，神的恩典，常常在我們最絕望、最意想不到的時刻，以最直接而戲劇性的方式臨到。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位差點拔刀自盡、卻在保羅一聲呼喊中找到真正救恩的獄卒，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#絕望邊緣也可能有拯救</span>
+      <span class="tag">#捨己的行動比言語更有說服力</span>
+      <span class="tag">#得救其實很簡單</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>這位獄卒的工作，是嚴密看守囚犯。他把保羅跟西拉的腳上了木狗，關進最裡面、最森嚴的內監，確保他們絕對逃不掉。</p>
+      <p>半夜，保羅跟西拉在監獄裡禱告唱詩讚美神——想像一下這個畫面，兩個人渾身是傷，卻在唱歌敬拜。忽然地震了，監獄的地基都搖動了，門全開了，所有人的鎖鍊也鬆脫了。</p>
+      <p>獄卒被震醒，一看監門大開，直接的反應是：完了，囚犯全跑了。按照羅馬的法律，讓囚犯逃脫是重罪，他可能要用命來償。他拔出刀，準備自我了斷。</p>
+      <p>就在這一瞬間，保羅在黑暗中大聲喊：不要傷害自己！我們都還在這裡！保羅跟西拉，其實有機會可以趁亂逃走的，他們選擇留下來。</p>
+      <p>獄卒叫人拿燈進來，看到使徒們真的都還在，整個人跪下來，戰戰兢兢地問了一句聖經裡最直接的問題：先生，我該怎麼做才能得救？保羅的回答，簡單到讓人意外：信主耶穌，你和你全家都必得救。當天晚上，獄卒為他們清洗傷口，然後，他跟全家人，都受了洗，大家歡歡喜喜地一起吃飯慶祝。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——這位獄卒，本來已經準備好用死亡結束這個夜晚，卻在一聲呼喊裡，被雕出了全新的人生開端。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你此刻正因為某個失職或過犯，覺得自己已經走投無路——這個故事想告訴你：拯救，可能就在你以為一切都完了的那一刻，出現。</p>
+      <p style="margin-top:12px;">有時候，一個捨己的行動，比一千句道理更有說服力。保羅選擇留下來，這個選擇本身，就是最有力的福音宣講。</p>
+      <p style="margin-top:12px;">得救，其實沒有你想像的那麼複雜。不需要先把自己修復完美，先信靠，答案就已經在那裡了。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果你正處在絕望的邊緣——留意，拯救可能比你想像的更近。</p>
+    </div>
+
+    <div class="insight-box">這位獄卒的故事，持續為當代討論『危機中的悔改契機』與『因信稱義的簡潔核心』這兩個神學與心理層面的議題，提供了聖經中最戲劇性也最直接的參照案例。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他從一位在自盡邊緣的監獄官，成為全家在同一夜歡喜信主受洗的見證，留下了聖經中『絕望轉化為蒙福』最戲劇性的敘事典範。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">『因信稱義』最簡潔有力的聖經文本來源</div>
+          <div class="legacy-body">保羅對他所說『當信主耶穌，你和你一家都必得救』，成為新約中，闡明因信稱義這一核心救恩真理時，被引用頻率最高、也最簡潔有力的經文之一。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">全家歸主的重要敘事典範</div>
+          <div class="legacy-body">他與全家在同一夜一同受洗信主的記載，成為聖經中『福音的祝福能夠延伸至整個家庭群體』這一主題最具體動人的例證。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">捨己的恩慈促成悔改的重要見證</div>
+          <div class="legacy-body">保羅選擇留下拯救他而非趁亂逃離的行動，持續為後世提供了『信徒捨己的具體行動可能成為他人認識福音最有力見證』這一課題的重要例證。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「於是禁卒歡歡喜喜地擺上飯，合家因為信了神，都很喜樂。」</div>
+      <div class="final-verse-ref">使徒行傳 16:34</div>
+    </div>
+
+    <div class="final-question">如果你此刻正處在某個因自己的失職或過犯而感到絕望的處境——你願不願意相信，就像這位獄卒的故事所展現的，拯救與恩典，可能正以你完全意想不到的方式，在此刻向你靠近？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 腓立比獄卒 <span>δεσμοφύλαξ</span> · 看守保羅西拉的監獄官 · 拔刀欲自盡卻蒙拯救者 · 全家在深夜受洗的人</div>
+
+</body>
+</html>

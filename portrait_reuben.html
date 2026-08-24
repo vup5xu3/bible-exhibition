@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>流便 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">流便</h1>
+  <span class="hero-name-en">Reuben · רְאוּבֵן</span>
+  <p class="hero-slogan">「流便聽見了，要救他脫離他們的手，說：「我們不可害他的性命」；又說：「不可流他的血，可以把他丟在這野地的坑裡，不可下手害他。」流便的意思是要救他脫離他們的手，把他歸還他的父親。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">約主前十九世紀（族長時代）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ISFP · 探險家型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">創世記 29–30, 35, 37, 42, 49 章</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">雅各與利亞所生的長子 · 流便支派的先祖</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他是雅各十二個兒子中的長子，按照古代近東的傳統，本應享有雙倍的產業繼承權與家族中的優先地位——然而他此生兩個關鍵時刻的抉擇，卻讓這份與生俱來的尊榮，最終從他手中永久流失。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">約主前十九世紀，族長時代</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">雅各與利亞所生的長子</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">巴旦亞蘭，此後隨家族遷居迦南地</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">父雅各；母利亞；十一位兄弟；一位妹妹底拿</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">創 29:32, 30:14, 35:22, 37:21–30, 42:22, 37, 49:3–4</div>
+      </div>
+    </div>
+
+    <p>流便作為利亞的長子，他的誕生，本身就承載著母親對丈夫之愛深切的渴求——利亞為他命名時說：『耶和華看見我的苦情，如今我的丈夫必愛我。』流便在創世記中留下的兩段具體事蹟，共同勾勒出他性格中複雜而矛盾的一面。第一段記載，展現出他對整個家族良善的關切——當眾兄弟因嫉妒約瑟而密謀要殺害他時，『流便聽見了，要救他脫離他們的手』，他勸眾兄弟不要親手殺害約瑟、也不要流他的血，而是提議將他丟在野地的坑裡，聖經明確指出，流便真正的意圖，是要此後暗中將約瑟從坑裡救出，交還給父親。然而正當流便暫時離開之際，其餘的兄弟卻趁機將約瑟賣給了路過的以實瑪利商隊——流便回到坑邊，發現約瑟已經不在，『就撕裂衣服』，這段記載，展現出他計畫的功虧一簣，以及他此後必須獨自承受無法完成拯救使命的深切懊悔。</p>
+    <p>流便此生更為嚴重的過犯，記載於創世記三十五章一句極其簡短卻份量沉重的經文：『以色列住在那地的時候，流便去與他父親的妾辟拉同寢，以色列也聽見了。』這個行為，在古代近東文化中，被視為對父親權柄極其嚴重的公然挑戰與羞辱（染指父親的妾侍，某種程度上，等同於宣告自己意圖取代父親的家族地位）。雅各此後在臨終為十二個兒子祝福時，明確指出這個過犯所帶來的永久後果：『流便哪，你是我的長子，是我力量強壯的時候生的，本當大有尊榮，權力超眾。但你放縱情慾，滾沸如水，必不得居首位；因為你上了你父親的床，污穢了我的榻。』流便因此永久失去了長子應得的雙倍產業與尊榮地位，這份長子的名分與尊榮，此後轉移給了約瑟（獲得雙倍支派的產業）與猶大（獲得王權的應許）。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從試圖暗中拯救約瑟卻功虧一簣的長兄，到染指父親妾侍而永久失去長子名分——流便的一生，是聖經中對『與生俱來的尊榮如何因具體的過犯而永久流失』刻畫得最直接的敘事之一。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">試圖拯救約瑟卻功虧一簣——「就撕裂衣服」</div>
+        <div class="timeline-body">流便在眾兄弟密謀殺害約瑟時，提議將他丟在坑裡而非親手殺害，意圖此後暗中救出約瑟交還父親，卻在他暫時離開之際，其餘兄弟趁機將約瑟賣給商隊，流便回來發現約瑟已不在，痛心地撕裂了衣服。</div>
+        <div class="timeline-ref">創 37:21–30</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">染指父親的妾侍——「流便去與他父親的妾辟拉同寢」</div>
+        <div class="timeline-body">聖經以極其簡短的一句話，記載了流便此生最嚴重的過犯——他與父親雅各的妾辟拉同寢，這個行為被視為對父親權柄極其嚴重的公然挑戰。</div>
+        <div class="timeline-ref">創 35:22</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">在饑荒中主動承擔責任——「我的兩個兒子交你殺害」</div>
+        <div class="timeline-body">當雅各起初不願讓便雅憫隨兄長前往埃及糴糧時，流便主動提出，若不能將便雅憫平安帶回，情願讓父親殺了自己的兩個兒子——這個提議雖然此後未被雅各採納（雅各最終接受的是猶大的擔保），卻展現出流便試圖彌補過往過犯的努力。</div>
+        <div class="timeline-ref">創 42:37</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">永久失去長子名分——「必不得居首位」</div>
+        <div class="timeline-body">雅各臨終祝福十二個兒子時，明確指出流便因染指父親妾侍的過犯，永久失去了長子應得的尊榮與雙倍產業，這份長子的名分，此後轉移給了約瑟與猶大。</div>
+        <div class="timeline-ref">創 49:3–4 · 代上 5:1–2</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他既展現出對家族良善的真實關切，卻也因一次嚴重的道德過犯，永久失去了與生俱來的尊榮——這種良善的意圖與致命的軟弱並存，使他的故事格外複雜而真實。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">內心懷抱著對家族和睦與手足性命的真實關切，卻也在情慾的試探前顯露出致命的軟弱</div>
+          <div class="soul-body">流便試圖拯救約瑟的行動，展現出他內心對家族和睦與手足性命的真實珍視；然而他染指父親妾侍的行為，卻也揭示出，這份良善的意圖，並未能延伸至他對自身情慾與道德界線的把持。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">在眾兄弟一致密謀害人的處境中，展現出試圖挽救局面的良善意圖</div>
+          <div class="soul-body">面對眾兄弟對約瑟的嫉恨與殺機，流便沒有選擇隨波逐流，而是主動提出折衷方案，試圖在不直接違逆眾兄弟意願的情況下，暗中謀劃拯救約瑟的性命，這份良善的用心，是他性格中值得肯定的一面。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">傾向以間接、迂迴的方式處理衝突或危機，卻可能因此錯失直接介入的關鍵時機</div>
+          <div class="soul-body">流便選擇提議將約瑟丟入坑中、此後再暗中營救，而非直接、公開地反對眾兄弟的殺機，這種迂迴的處理方式，最終導致他因暫時離開而錯失了保護約瑟的關鍵時機。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">在情慾的試探前，做出了嚴重挑戰父親權柄、且此後永久斷送自己長子名分的行為</div>
+          <div class="soul-body">他染指父親妾侍辟拉的行為，是他此生最嚴重、也代價最沉重的過犯，這個行為，此後被雅各以『放縱情慾，滾沸如水』這樣鮮明的意象所形容，直指他性格中缺乏自制的核心軟弱。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">他此後主動提議以自己兩個兒子的性命作為便雅憫平安歸來的擔保，某種程度上，或許是他試圖彌補過往過犯的深切懺悔</div>
+          <div class="soul-body">流便這個看似極端的提議，儘管此後未被雅各採納，卻透露出他內心，可能始終懷抱著對自己過往行為（尤其是約瑟一事的功虧一簣）的深切懊悔，並試圖以具體的行動，重新贏得父親的信任。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">流便的故事，是聖經中對『一個人可以同時懷抱著真實的良善意圖，卻也因缺乏對自身軟弱的把持，而永久斷送與生俱來之尊榮』這一複雜現象，刻畫得最直接的敘事之一。他試圖拯救約瑟的行動，展現出他內心對家族和睦與公義確實懷抱著真誠的關切，這使他在眾兄弟一致密謀害人的處境中，顯得格外與眾不同；然而正是這同一個人，卻在此後（或此前，聖經對確切時序未明確記載）的另一個場景中，做出了染指父親妾侍這樣嚴重挑戰家族倫理秩序的行為。這種良善意圖與致命軟弱並存的複雜性，使流便的故事，格外貼近真實人性的樣貌——一個人未必是全然的義人或全然的惡人，而可能在不同的處境與試探面前，展現出截然不同、甚至彼此矛盾的抉擇。雅各臨終對流便的評語『你放縱情慾，滾沸如水，必不得居首位』，精準地指出了流便性格中最核心的軟弱——一種缺乏穩定自制、容易在情慾或衝動面前失去把持的特質，這也解釋了為何他此後在拯救約瑟一事上，儘管懷抱良善的意圖，卻依然因猶豫與間接的處理方式，功虧一簣。流便的故事提醒我們，與生俱來的地位或優勢（如長子的名分），從來不是永久保證的資產，一個人若不能在關鍵時刻，展現出與其地位相稱的自制與擔當，這份尊榮，終將如流便所經歷的，永久地流失。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ISFP</span>
+      <div class="mbti-name">探險家型 · 失去長子名分的長兄</div>
+      <div class="mbti-slogan">「他本該是家族最尊榮的長子，卻在一次放縱的抉擇裡，親手把這份尊榮，讓給了弟弟們。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">他對約瑟與家族和睦所懷抱的真實關切，以及他此後放縱情慾的行為，都展現出強烈而未經充分節制的內在情感驅動力，這種情感的強度與缺乏穩定自制的特質，正是主導內向情感在不成熟階段的展現。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Se · 外向實感</span>
+          <div class="mbti-fn-body">他傾向以具體而直接的行動回應眼前的處境（提議將約瑟丟入坑中、染指辟拉），這種聚焦當下具體行動、卻可能缺乏長遠考量的傾向，顯示出第二功能的作用。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">（材料有限——聖經對他在長遠洞察或深層意義層面的思考著墨較少，他的敘事重點聚焦於具體的行動與其後果）</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">他未能以更直接、更具紀律性的方式，公開介入並阻止眾兄弟對約瑟的殺機，而是選擇了迂迴、間接的策略，最終因此錯失關鍵時機，這種在執行果斷而有效之行動上的欠缺，反映出劣勢外向思考的特徵。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最重要的兩段關係——與此後被眾兄弟出賣的胞弟約瑟，以及與此後在臨終祝福中明確指出他過犯的父親雅各——共同構成了他生命敘事中最深刻的轉折。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">約</div>
+          <div class="relation-name">約瑟</div>
+          <div class="relation-type-badge">他試圖拯救卻功虧一簣的異母弟弟</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">流便試圖暗中拯救約瑟脫離眾兄弟的殺機，卻因暫時離開而錯失了保護他的關鍵時機，此後約瑟被賣往埃及，此生的際遇，就此與流便的家族產生了深遠的交織。</div>
+          <div class="relation-ref">創 37:21–30</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">雅</div>
+          <div class="relation-name">雅各</div>
+          <div class="relation-type-badge">他此後在臨終祝福中明確指出其過犯的父親</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">雅各因流便染指自己妾侍辟拉的行為，在臨終祝福時明確剝奪了他長子應得的尊榮與雙倍產業，這份評語，成為流便此生最重要的蓋棺定論。</div>
+          <div class="relation-ref">創 49:3–4</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">辟</div>
+          <div class="relation-name">辟拉</div>
+          <div class="relation-type-badge">父親的妾侍，流便染指的對象</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">流便與父親雅各的妾辟拉同寢，這個行為成為他此生最嚴重的過犯，永久斷送了他長子的名分。</div>
+          <div class="relation-ref">創 35:22</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「你放縱情慾，滾沸如水，必不得居首位」——雅各對流便的這句臨終評語，成為聖經中對『與生俱來的尊榮如何因缺乏自制而永久流失』最鮮明的警示之一。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「流便哪，你是我的長子，是我力量強壯的時候生的，本當大有尊榮，權力超眾。但你放縱情慾，滾沸如水，必不得居首位。」</div>
+      <div class="verse-ref">創世記 49:3–4</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">פַּחַז כַּמַּיִם</span>
+        <div class="word-transliteration">pachaz kammayim · 滾沸如水 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「像水一樣沸騰翻滾、不穩定」，這個意象用以形容流便性格中缺乏穩定自制、容易在情感或衝動面前失控的特質。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">水的意象，此後在聖經中常用以形容缺乏堅定根基、容易隨波逐流的性格狀態，雅各用這個意象形容流便，精準地指出了他性格中最核心的軟弱——一種看似流動、卻缺乏穩固界線的特質，這正是導致他染指辟拉、以及在拯救約瑟一事上猶豫不決的深層根源。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">בְּכֹרָה</span>
+        <div class="word-transliteration">bekhorah · 長子的名分 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「長子的權利、雙倍的產業繼承權」，這個名分，本應是流便與生俱來、無可爭議的權利。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">歷代志上特別補充說明：『流便雖是以色列的長子，因他污穢了父親的床，他長子的名分就歸了約瑟……只是按家譜他不算長子。』這段記載，具體確認了流便因自己的過犯，永久失去了這份本應與生俱來的尊榮地位。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">與生俱來的地位或優勢從不是永久保證的資產</div>
+      <div class="theology-insight-body">流便因自己的過犯而永久失去長子的名分，這確立了聖經神學中一個重要原則：任何與生俱來的地位、恩賜、或優勢，都需要與之相稱的品格與自制加以持守，否則終將面臨流失的風險。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">良善的意圖若缺乏堅定的行動與自制依然可能導致失敗與過犯並存</div>
+      <div class="theology-insight-body">流便試圖拯救約瑟的良善意圖，與他此後放縱情慾的過犯並存，這提醒我們，內心懷抱良善的動機，若未能轉化為堅定的行動與持續的自制，依然可能與嚴重的失敗和過犯同時存在於同一個人身上。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">尊榮的轉移可能為神救贖計畫開啟新的可能性</div>
+      <div class="theology-insight-body">流便失去的長子名分，此後轉移給約瑟（雙倍產業）與猶大（王權與彌賽亞血脈），這展現出，即使原本被賦予尊榮之人因過犯而失去這份地位，神的計畫，依然能夠透過這樣的轉移，開啟新的、甚至更為重要的救贖可能性。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">流便作為長子卻因放縱情慾而永久失去長子名分，這份尊榮此後轉移給約瑟（獲得雙倍支派的產業）與猶大（獲得王權與彌賽亞血脈的應許）</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這種『長子的地位因過犯而轉移給其他弟兄』的模式，此後在聖經中反覆出現（如以掃的長子名分轉移給雅各），成為聖經神學中『神揀選的主權超越世俗長幼次序』這一持續主題的重要例證之一</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">保羅在羅馬書中論及神揀選的主權時指出「不在乎人的行為，只在乎那召人的主」，流便長子名分的轉移，某種程度上，也印證了神的揀選與應許，最終超越人天生的地位次序，而依循祂自己主權的心意（羅 9:11–12）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻擁有某種與生俱來的優勢或地位，卻在面對誘惑時，缺乏足夠的自制與堅定——流便的故事，是一則鄭重的警示。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">流便的故事命中的是每一個此刻擁有某種與生俱來的優勢、地位、或恩賜，卻可能在面對某個具體的誘惑或試探時，展現出缺乏足夠自制與堅定之軟弱的人。他的故事提醒我們，任何天生的優勢或地位，都需要與之相稱的品格加以持守，一次嚴重的道德失守，可能導致這份優勢的永久流失。他試圖拯救約瑟卻功虧一簣的經歷，也提醒我們，良善的意圖，若缺乏堅定而直接的行動，同樣可能導致關鍵時機的錯失。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你此刻是否擁有某種與生俱來的優勢、地位、或恩賜？流便因缺乏自制而永久失去長子名分的故事，對你如何持守並運用這份優勢，帶來什麼樣的警示？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">流便試圖以迂迴、間接的方式拯救約瑟，卻因此錯失關鍵時機。你是否也曾在某個需要直接介入的處境中，選擇了過於迂迴的策略，最終導致遺憾的結果？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">流便此後主動提議以自己兒子的性命為便雅憫擔保，某種程度上是他試圖彌補過往過犯的努力。你是否也曾因某個過去的過犯，而在此後的歲月中，持續尋求彌補與重建信任的機會？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 流便</span>
+        <div class="gen-title">示範劇本：懷抱良善的意圖卻因缺乏自制與堅定的行動，最終永久失去與生俱來的長子尊榮</div>
+        <div class="gen-body">他試圖拯救約瑟卻因迂迴的策略而功虧一簣，此後更因染指父親的妾侍而永久失去長子的名分——這兩段經歷，共同展現出良善的意圖若缺乏堅定的自制與行動，終究無法真正持守與生俱來的尊榮。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 約瑟與猶大（承接他長子名分尊榮的弟弟們）</span>
+        <div class="gen-title">延續：流便失去的尊榮，成就了約瑟與猶大此後在以色列歷史中的重要地位</div>
+        <div class="gen-body">流便失去的長子名分，此後轉移給約瑟（獲得雙倍支派的產業）與猶大（獲得王權與彌賽亞血脈的應許），這展現出神的救贖計畫，能夠透過尊榮的轉移，開創出超乎流便自己所能想像的深遠可能性。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在流便的故事中，展現得極為複雜——儘管他因自己的過犯而永久失去長子的尊榮，他依然是以色列十二支派之一的先祖，繼續在此後的以色列歷史中，佔有一席之地。這提醒我們，即使一個人因自己的軟弱而失去某個重要的地位或尊榮，神的恩典，依然容讓他在此後的生命中，繼續尋求彌補與意義，而非徹底被棄絕。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位本該是家族最尊榮的長子、卻因一次放縱而失去這份尊榮的兄長，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#天生的優勢需要品格來持守</span>
+      <span class="tag">#良善的意圖需要堅定的行動</span>
+      <span class="tag">#一次失守可能帶來永久的代價</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>流便是雅各的長子，按照當時的規矩，長子能拿到雙倍的產業，在家族裡地位最高。但他這一生，有兩個關鍵時刻，讓這份與生俱來的尊榮，一點一滴地流失。</p>
+      <p>第一件事，是約瑟的事。兄弟們嫉妒約瑟，密謀要殺他，流便聽到了，出面阻止，說：別殺他，把他丟進坑裡就好——但其實流便心裡想的是，等其他人不注意，再偷偷把約瑟救出來，還給父親。可惜的是，他這個迂迴的計畫，被其他兄弟趁機破壞了——趁流便不在，他們把約瑟賣給了路過的商隊。流便回來一看，約瑟不見了，急得撕裂了衣服。</p>
+      <p>第二件事，聖經只用了一句話帶過：流便去跟父親的妾辟拉同寢。在當時的文化裡，這是對父親權柄極其嚴重的挑戰。</p>
+      <p>雅各臨終前，給每個兒子祝福（其實更像是評語），對流便說了一段很重的話：你是我的長子，本該最有尊榮、最有權力，但你像水一樣放縱、不穩定，所以你不能居首位了。這份長子的名分，後來就轉給了約瑟（分到雙倍的產業）跟猶大（拿到了王權的應許）。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——流便這塊石頭，本來被雕成家族裡最尊貴的形狀，卻因為一次放縱，親手把最頂端的那一角，鑿掉了。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你此刻擁有某種天生的優勢——才華、地位、資源——記得，這些不是永久保證的。流便的故事提醒我們，需要用相稱的品格去持守它。</p>
+      <p style="margin-top:12px;">有良善的意圖是好的，但如果不用堅定、直接的行動去落實，可能會像流便一樣，眼睜睜看著結果溜走。</p>
+      <p style="margin-top:12px;">一次的失守，代價可能很大，甚至是永久的。但流便的故事也告訴我們，失去尊榮不等於被神完全棄絕——他依然是十二支派之一的先祖。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果你擁有某種優勢——記得用堅定的品格，好好持守它。</p>
+    </div>
+
+    <div class="insight-box">流便的故事，持續為當代討論『天賦優勢與品格持守之間的關係』以及『良善意圖需要轉化為堅定行動』這兩個課題，提供了聖經中最直接的參照案例。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他從雅各本該最尊榮的長子，因缺乏自制的過犯，永久失去了這份與生俱來的地位，留下了聖經中『優勢需要品格持守』最鮮明的警示。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">『天生優勢需要品格持守』最鮮明的聖經警示案例</div>
+          <div class="legacy-body">他因染指父親妾侍而永久失去長子名分的記載，成為聖經中『與生俱來的地位或優勢從不是永久保證資產』這一原則最直接的例證。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">以色列十二支派中流便支派的先祖</div>
+          <div class="legacy-body">儘管失去長子的尊榮地位，他依然是以色列十二支派之一流便支派的先祖，此後這個支派在以色列歷史中持續延續。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">長子名分轉移神學主題的重要例證</div>
+          <div class="legacy-body">他失去的長子名分轉移給約瑟與猶大的記載，成為聖經中『神揀選的主權超越世俗長幼次序』這一持續神學主題的重要具體例證。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「流便哪，你是我的長子，是我力量強壯的時候生的，本當大有尊榮，權力超眾。但你放縱情慾，滾沸如水，必不得居首位。」</div>
+      <div class="final-verse-ref">創世記 49:3–4</div>
+    </div>
+
+    <div class="final-question">如果你此刻擁有某種與生俱來的優勢或地位——你願不願意記取流便的教訓，用堅定的品格與自制，去持守這份本不應被視為理所當然的尊榮？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 流便 <span>רְאוּבֵן</span> · 雅各的長子 · 曾試圖救約瑟卻功虧一簣者 · 因染指父妾而失去長子名分</div>
+
+</body>
+</html>

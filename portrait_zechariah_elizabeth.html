@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>撒迦利亞與以利沙伯 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">撒迦利亞與以利沙伯</h1>
+  <span class="hero-name-en">Zechariah &amp; Elizabeth · Ζαχαρίας καὶ Ἐλισάβετ</span>
+  <p class="hero-slogan">「天使對他說：「撒迦利亞，不要害怕，因為你的祈禱已經被聽見了，你的妻子以利沙伯要給你生一個兒子，你要給他起名叫約翰。」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">主前約 6 年左右（施洗約翰誕生前後）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ISFJ · 守衛者型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">路加福音 1 章</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">亞比雅班次的祭司撒迦利亞 · 亞倫的後裔以利沙伯 · 施洗約翰的雙親</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">路加福音用『兩個人在神面前都是義人，遵行主的一切誡命禮儀，沒有可指摘的』這樣毫無保留的稱許介紹他們——然而即使如此敬虔的一對夫妻，仍然要承受『沒有孩子』這個在當時社會中被視為羞恥與遺憾的處境，直到年邁之時。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">主前約 6 年左右，施洗約翰誕生前後</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">撒迦利亞屬亞比雅的班次，是祭司；以利沙伯是亞倫的後代</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">猶太的山地（推測近耶路撒冷）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">子施洗約翰（年邁時所生的獨子）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">路 1 章</div>
+      </div>
+    </div>
+
+    <p>路加福音以極其鄭重的筆法介紹這對夫妻——撒迦利亞是亞比雅班次的祭司，以利沙伯同樣出身亞倫的祭司家系，兩人『在神面前都是義人，遵行主的一切誡命禮儀，沒有可指摘的』。這句評語，在整本聖經中極為罕見而珍貴，然而緊接著的敘述，卻揭示出他們一生最深的遺憾：『只是沒有孩子，因為以利沙伯不生育，兩個人又年紀老邁了。』這段簡短卻沉重的對照，展現出即使是最敬虔忠心的人，依然可能長期承受著某種無法透過自身努力解決的痛苦與缺憾。</p>
+    <p>撒迦利亞生命最關鍵的轉折，發生在他按班次進入聖殿、抽籤得以進入聖所燒香的那一天——這是祭司一生中極為難得、甚至可能僅有一次的殊榮。就在他獨自在聖所中燒香之際，主的使者站在香壇的右邊向他顯現，宣告以利沙伯將要生一個兒子，要給他起名叫約翰，這個孩子將要『使許多以色列人回轉，歸於主他們的神』，並要『行在主的前面，叫父親的心轉向兒女……又叫悖逆的人轉從義人的智慧，又為主預備合用的百姓』。撒迦利亞面對這個超乎常理的應許，脫口質疑：『我憑著什麼可知道這事呢？我已經老了，我的妻子也年紀老邁了。』天使因這份懷疑，宣告他將啞巴不能說話，直到應許應驗的日子。撒迦利亞此後果然啞口失聲，直到約翰出生第八天行割禮時，眾人本欲照他父親的名字為孩子起名，以利沙伯卻堅持要叫他約翰，眾人詢問撒迦利亞的意思，他要過寫字的板，寫上『他的名字是約翰』——他的口立時開了，舌頭立刻舒展，就說話稱頌神。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從一生敬虔卻無子的祭司夫妻，到聖殿中天使顯現宣告應許，再到撒迦利亞因懷疑而啞口、此後在約翰出生時口舌得開稱頌神——這對夫妻的故事，是聖經中對『長期的遺憾如何在神所定的時候被翻轉』刻畫得最動人的敘事之一。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">敬虔卻無子的夫妻——「兩個人在神面前都是義人」</div>
+        <div class="timeline-body">撒迦利亞與以利沙伯儘管在神面前『遵行主的一切誡命禮儀，沒有可指摘的』，卻長期承受不孕與年邁無子的遺憾，這種敬虔與缺憾並存的處境，構成了他們故事最深刻的張力。</div>
+        <div class="timeline-ref">路 1:5–7</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">聖殿中的天使顯現——「你的祈禱已經被聽見了」</div>
+        <div class="timeline-body">撒迦利亞按班次抽籤，得以進入聖所燒香，這是極為難得的殊榮。就在他獨自在聖所中之際，天使顯現，宣告以利沙伯將生一子取名約翰，這孩子將要使許多以色列人回轉歸神，並要為主預備合用的百姓。</div>
+        <div class="timeline-ref">路 1:8–17</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">因懷疑而啞口——「你必啞巴不能說話，直到這事成就的日子」</div>
+        <div class="timeline-body">撒迦利亞質疑這超乎常理的應許，天使因他的不信，宣告他將啞巴不能說話，直到應許應驗的日子——撒迦利亞從聖所出來後果然不能說話，只能用手勢向百姓示意。</div>
+        <div class="timeline-ref">路 1:18–22</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">約翰誕生，口舌得開——「他的口立時開了，舌頭立刻舒展」</div>
+        <div class="timeline-body">以利沙伯果然懷孕生子，眾人本欲以父親之名為孩子命名，以利沙伯卻堅持要叫他約翰，撒迦利亞寫下『他的名字是約翰』確認此事後，口舌立時得開，隨即說出充滿預言性的稱頌之詞（撒迦利亞的頌歌）。</div>
+        <div class="timeline-ref">路 1:57–79</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他們是一對在神面前無可指摘的敬虔夫妻，卻同樣真實地承受著長期無子的遺憾，也同樣在面對超乎常理的應許時，經歷了信心的軟弱與此後的更新。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">終身持守對神誡命的忠誠遵行，即使長期承受著無法解決的個人缺憾</div>
+          <div class="soul-body">儘管長期無子的遺憾未曾消退，撒迦利亞與以利沙伯依然持守著對神誡命一貫的忠誠實踐，這種在缺憾中依然堅守敬虔的品格，是他們一生最核心的信仰特質。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">在神所賜的驚人應許面前，最終選擇順服並全然稱頌神的作為</div>
+          <div class="soul-body">儘管撒迦利亞起初因懷疑而受管教啞口，這對夫妻最終依然全然順服神超乎常理的安排——以利沙伯堅持按天使所吩咐的名字為孩子命名，撒迦利亞口舌得開後，隨即發出充滿信心與稱頌的預言性詩歌。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">面對超乎自己經驗與理解的應許，傾向以理性的質疑先行回應</div>
+          <div class="soul-body">撒迦利亞面對天使宣告的應許，第一反應是理性地質疑『我憑著什麼可知道這事呢』，這種面對超自然應許時，先以自己過往經驗（年老不能生育）進行理性評估的反應，展現出他性格中謹慎求證的一面。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">面對神清楚的應許仍然選擇懷疑，招致啞口的管教</div>
+          <div class="soul-body">撒迦利亞的懷疑，與此後同樣面對超乎常理應許、卻選擇單純相信的馬利亞形成對比——這段記載誠實地呈現出，即使是一生敬虔無可指摘的祭司，依然可能在面對神親自的應許時，展現出信心的軟弱。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">撒迦利亞在啞口的數月中所經歷的沉默，此後化為一篇充滿舊約預言呼應的頌歌</div>
+          <div class="soul-body">他長達數月無法言語的沉默期，並未使他的信心停滯，反而可能成為他更深沉思神救贖計畫的時期——他口舌得開後所發出的頌歌，展現出對彌賽亞應許與施洗約翰使命極其深刻而完整的神學理解。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">撒迦利亞與以利沙伯的故事，是路加福音開篇對『敬虔生活與長期缺憾如何真實並存，以及神的應許如何在人生命的暮年出乎意料地成就』刻畫得最完整的敘事之一。他們的敬虔，不是換取神應許的交易條件——聖經明確指出，即使他們『在神面前都是義人……沒有可指摘的』，依然長期承受著不孕的遺憾，直到年邁。這提醒我們，敬虔的生活，從不保證免於人生中某些深刻而持久的缺憾與痛苦。然而正是在這樣看似『毫無指望』的處境中——以利沙伯不孕且兩人皆已年邁——神選擇在撒迦利亞一生僅有一次的聖殿獻香殊榮中，親自介入並成就了這個超乎常理的應許。撒迦利亞面對這個應許時的懷疑與此後的管教，同樣提醒我們，即使是最敬虔的人，依然可能在面對神超乎想像的作為時，展現出信心的軟弱——然而神並未因此棄絕他，反而透過這段啞口沉默的時期，讓他此後得以用一篇充滿深刻神學洞見的頌歌，全然稱頌神的信實與救贖計畫。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ISFJ</span>
+      <div class="mbti-name">守衛者型 · 無可指摘卻無子的祭司夫婦</div>
+      <div class="mbti-slogan">「他們一生遵行神的誡命，沒有可指摘的——卻依然要等到年邁，才等到那個孩子。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Si · 內向感覺</span>
+          <div class="mbti-fn-body">撒迦利亞與以利沙伯終身忠實地遵行既定的祭司禮儀與摩西律法的一切要求，這種對既有傳統規範一貫而忠誠的持守，正是主導內向感覺的典型展現。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Fe · 外向情感</span>
+          <div class="mbti-fn-body">以利沙伯懷孕後說『主在眷顧我的日子，這樣看待我，要把我在人間的羞恥除掉』，這句話展現出她對周遭社群觀感的深刻情感體會；撒迦利亞此後的頌歌，也充滿對整個以色列群體救贖盼望的深切關懷。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ti · 內向思考</span>
+          <div class="mbti-fn-body">撒迦利亞面對天使的應許，本能地以邏輯理性進行質疑與求證（『我憑著什麼可知道這事呢』），此後他所發出的頌歌，也展現出對舊約預言脈絡極其縝密而深刻的神學連結。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Ne · 外向直覺</span>
+          <div class="mbti-fn-body">撒迦利亞面對超乎常理的應許時，未能像馬利亞那樣單純地敞開心接受這超越自己既有經驗判斷的可能性，這種對超越常理之可能性缺乏開放接納的傾向，反映出劣勢外向直覺在面對超自然應許時的表現。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他們一生最重要的關係，是與那位在聖殿中親自向撒迦利亞顯現、並在年邁時終於成就他們畢生渴望的神——這份信實的應許，最終也延伸連結了他們與馬利亞、耶穌一家的深刻情誼。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">天</div>
+          <div class="relation-name">天使加百列</div>
+          <div class="relation-type-badge">在聖殿中向撒迦利亞顯現、宣告應許的天使</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">加百列在撒迦利亞獻香之際顯現，宣告以利沙伯將要生子，並詳細說明這個孩子（施洗約翰）此後將承擔的重要使命——為主預備合用的百姓。</div>
+          <div class="relation-ref">路 1:11–20</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">馬</div>
+          <div class="relation-name">馬利亞</div>
+          <div class="relation-type-badge">以利沙伯的親戚，此後前來探訪的表親</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">馬利亞在得知自己懷孕的消息後，急忙前往拜訪已懷孕六個月的以利沙伯，以利沙伯被聖靈充滿，稱馬利亞『在婦女中是有福的，你所懷的胎也是有福的』，並稱許她因信而蒙福——這段相會，此後成為路加福音中極具神學份量的一幕。</div>
+          <div class="relation-ref">路 1:39–45</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">約</div>
+          <div class="relation-name">施洗約翰</div>
+          <div class="relation-type-badge">他們年邁時所生、承擔為主預備道路使命的獨子</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">約翰的誕生，是這對敬虔夫妻畢生渴望的實現，也直接開啟了此後為耶穌基督預備道路的重要先鋒使命——撒迦利亞的頌歌中，特別對這個孩子未來的角色，發出了充滿盼望的祝福與宣告。</div>
+          <div class="relation-ref">路 1:57–80</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「你的祈禱已經被聽見了」——天使對撒迦利亞所說的這句話，成為聖經中對『神記念祂子民長期禱告』最溫柔而確據的宣告之一。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「他們二人在神面前都是義人，遵行主的一切誡命禮儀，沒有可指摘的。只是沒有孩子，因為以利沙伯不生育，兩個人又年紀老邁了。」</div>
+      <div class="verse-ref">路加福音 1:6–7</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">δίκαιοι</span>
+        <div class="word-transliteration">dikaioi · 義人 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「公義的、正直的」，這個複數形式，同時用以形容撒迦利亞與以利沙伯兩人。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">路加福音以這個字同時稱許這對夫妻，展現出他們共同持守的敬虔生活；然而緊接著『只是沒有孩子』的轉折，提醒我們，『義』的生活不必然帶來世俗眼光中『完滿』的處境，這為此後理解苦難與敬虔並存的複雜性，提供了重要的敘事鋪墊。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">εἰσηκούσθη ἡ δέησίς σου</span>
+        <div class="word-transliteration">eisekousthe he deesis sou · 你的祈禱已經被聽見了 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「你的懇求已經被聽見了」，動詞使用完成式，強調這個『聽見』並非剛剛才發生，而是早已確立的事實。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">天使這句宣告，暗示撒迦利亞夫妻多年來對於得子的懇切禱告，早已真實地被神聽見，只是應驗的時候，按照神自己所定的時機才顯明——這提醒我們，神聽見禱告與應許的成就之間，可能存在著人所無法預知的時間差距。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">敬虔的生活不保證免於長期而深刻的缺憾與痛苦</div>
+      <div class="theology-insight-body">撒迦利亞與以利沙伯『在神面前都是義人』卻依然長期無子——這確立了聖經神學中一個重要原則：敬虔與苦難的缺席，從不構成必然的因果關係，一個人可以同時是敬虔的義人，也同時承受著真實而深刻的人生缺憾。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">神的應許可能在人看似完全無望之時才顯明成就</div>
+      <div class="theology-insight-body">以利沙伯不孕且兩人皆已年邁，這種在人看來完全無望的處境，恰恰成為神選擇彰顯祂超自然作為的時機——這呼應了聖經中一貫的主題：神的能力，常常在人最軟弱、最無望之處，得以完全彰顯。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">施洗約翰的誕生標誌著舊約與新約救贖歷史的關鍵過渡</div>
+      <div class="theology-insight-body">約翰作為『為主預備合用的百姓』的先鋒角色，他的誕生，象徵著漫長的舊約等候，正式進入新約救恩歷史開展的關鍵過渡時刻。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">撒迦利亞與以利沙伯長期承受不孕的遺憾，最終在年邁之時，因神超自然的介入而懷孕生下施洗約翰，這個孩子此後承擔起為彌賽亞預備道路的先鋒使命</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這種『在人看似完全無望之處，神成就超自然的應許以預備救贖歷史關鍵的下一步』的模式，與撒拉高齡生以撒的敘事遙相呼應，共同見證神一貫透過『不可能』的處境，成就祂救贖計畫的模式</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">施洗約翰此後親自宣告「祂必興旺，我必衰微」，為耶穌基督的降臨與傳道預備了道路，這正是撒迦利亞與以利沙伯生命故事最終指向的核心救贖意義（約 3:30）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻一生持守敬虔，卻依然承受著某種長期而深刻的缺憾或遺憾——撒迦利亞與以利沙伯的故事，想告訴你，敬虔與缺憾，可以同時真實地存在。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">撒迦利亞與以利沙伯的故事命中的是每一個此刻一生持守敬虔生活，卻依然承受著某種長期而深刻之缺憾或遺憾（無論是生育、婚姻、健康，或其他深切的渴望）的人。他們的故事誠實地呈現出，敬虔的生活，從不保證免於這樣的痛苦；然而他們的故事同樣提醒我們，神記念祂子民長期的禱告，即使應驗的時機遠遠超過我們自己所能預期，祂依然可能在我們生命最無望的階段，成就超乎想像的應許。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你此刻是否一生持守敬虔，卻依然承受著某種長期而深刻的缺憾或遺憾？撒迦利亞與以利沙伯『在神面前都是義人，只是沒有孩子』這段記載，對你此刻的處境，帶來什麼樣的誠實安慰？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">撒迦利亞面對天使的應許選擇懷疑，招致啞口的管教。你在面對神超乎自己經驗與理解的應許時，通常的第一反應是理性的質疑，還是單純的相信？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">以利沙伯懷孕後說『主……要把我在人間的羞恥除掉』。你是否也曾承受某種被視為『羞恥』或『不完滿』的處境？你如何理解神最終介入並翻轉這份處境的方式？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 撒迦利亞與以利沙伯</span>
+        <div class="gen-title">示範劇本：一生敬虔卻長期無子，最終在年邁之時經歷神超自然應許的成就</div>
+        <div class="gen-body">他們終身遵行神的一切誡命禮儀，卻長期承受不孕的遺憾，直到年邁之時，才在天使的宣告與此後施洗約翰的誕生中，見證神信實應許的成就。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 施洗約翰（他們的兒子）</span>
+        <div class="gen-title">延續：從父母敬虔的等候，到為彌賽亞預備道路的先鋒使命</div>
+        <div class="gen-body">施洗約翰承接了父母一生敬虔的信仰遺產，此後承擔起為耶穌基督預備道路的重要先鋒角色，將撒迦利亞與以利沙伯畢生的等候與渴望，轉化為對整個救贖歷史具有關鍵意義的貢獻。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在撒迦利亞與以利沙伯的故事中，展現在神記念這對夫妻多年懇切的禱告，在他們生命看似完全無望的年邁階段，親自介入成就超自然的應許；也展現在，即使撒迦利亞一度因懷疑而受管教，神依然使用這段沉默的時期，讓他此後發出更深刻而完整的信心宣告。這提醒我們，神的恩典，總能在我們生命最無望的處境中，找到成就祂應許最合適的時機。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那對敬虔一生卻等到年邁才得子的祭司夫妻，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#敬虔不保證沒有遺憾</span>
+      <span class="tag">#神聽見的禱告總會有回應的時候</span>
+      <span class="tag">#懷疑也可能被神耐心對待</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>撒迦利亞跟以利沙伯，聖經給了他們一句幾乎是滿分的評價：兩個人在神面前都是義人，遵行主的一切誡命禮儀，沒有可指摘的。這是很高的稱許。但緊接著一句話，說出了他們一生的痛：只是沒有孩子，因為以利沙伯不生育，兩個人又年紀老邁了。</p>
+      <p>撒迦利亞是祭司，有一天輪到他抽籤，得到了一生可能只有一次的殊榮——進入聖所燒香。就在他一個人在裡面的時候，天使出現了，說：你的禱告已經被聽見了，你的妻子要給你生一個兒子，取名叫約翰。</p>
+      <p>撒迦利亞的反應，很誠實——他質疑：我怎麼能知道這是真的？我已經老了，我妻子也老了。天使因為這句懷疑，讓他啞巴，不能說話，直到孩子出生。</p>
+      <p>撒迦利亞真的說不出話來了，一直到約翰出生第八天行割禮，大家想照他爸爸的名字取名，以利沙伯堅持：不行，要叫約翰。眾人問撒迦利亞的意思，他寫字板寫下：他的名字是約翰。就在那一刻，他的口開了，立刻開始說話，稱頌神。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——撒迦利亞跟以利沙伯這兩塊石頭，被『敬虔卻無子』的處境磨了一輩子，最後在神親自出手的那一刻，被雕出了意想不到的形狀。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你此刻一直很努力地敬虔生活，卻依然背負著某種長期得不到解決的遺憾——撒迦利亞跟以利沙伯的故事想告訴你：敬虔跟遺憾，是可以同時存在的，這不代表你哪裡做錯了。</p>
+      <p style="margin-top:12px;">神聽見的禱告，不一定馬上有回應，但祂沒有忘記。撒迦利亞夫妻等到年邁，才等到那個孩子。</p>
+      <p style="margin-top:12px;">就算你面對神的應許，第一反應是懷疑——像撒迦利亞一樣——神也沒有因此放棄你，祂依然耐心地，等你重新開口說話。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果你正懷著某個長久未實現的渴望——記得，你的禱告，已經被聽見了。</p>
+    </div>
+
+    <div class="insight-box">撒迦利亞與以利沙伯的故事，持續為當代討論『不孕的心理與屬靈掙扎』、以及『敬虔與長期苦難如何並存』這兩個普遍的人生議題，提供了極其誠實而具體的聖經參照。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他們一生敬虔卻長期無子，最終在年邁之時，迎來了為彌賽亞預備道路之先鋒的誕生——留下了聖經中『神信實記念禱告』最動人的見證之一。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">新約開篇最重要的敬虔夫妻典範</div>
+          <div class="legacy-body">路加福音以他們『在神面前都是義人』的評語開篇，成為新約救恩歷史正式展開前，最具份量的敬虔典範介紹。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">施洗約翰誕生的直接見證者</div>
+          <div class="legacy-body">他們晚年得子的經歷，直接開啟了施洗約翰此後為耶穌基督預備道路的重要先鋒使命，成為新舊約救恩歷史過渡最關鍵的家庭見證。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">『敬虔與缺憾並存』神學命題的重要敘事範例</div>
+          <div class="legacy-body">他們的故事持續為後世提供了『敬虔的生活不保證免於深刻的人生缺憾，然而神的應許終必按祂自己的時候成就』這一重要屬靈原則的具體例證。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「他父親撒迦利亞被聖靈充滿了，就預言說：主以色列的神是應當稱頌的！因他眷顧他的百姓，為他們施行救贖。」</div>
+      <div class="final-verse-ref">路加福音 1:67–68</div>
+    </div>
+
+    <div class="final-question">如果你此刻一生持守敬虔，卻依然承受著某種長期而深刻的缺憾——你願不願意相信，就像撒迦利亞與以利沙伯的故事所展現的，你的禱告，早已被神聽見，只等祂所定的時候？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 撒迦利亞與以利沙伯 <span>Ζαχαρίας καὶ Ἐλισάβετ</span> · 施洗約翰的雙親 · 年邁卻義行滿分卻無子的祭司夫婦</div>
+
+</body>
+</html>

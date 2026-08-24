@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>迦南婦人 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">迦南婦人</h1>
+  <span class="hero-name-en">The Canaanite Woman · γυνὴ Χαναναία</span>
+  <p class="hero-slogan">「耶穌說：「婦人，你的信心是大的！照你所要的，給你成全了吧。」從那時候，她女兒就好了。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">約主後30年代（耶穌傳道期間）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ESFP · 表演者型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">馬太福音15:21–28 · 馬可福音7:24–30</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">推羅西頓地區的迦南（敘利腓尼基）婦人 · 為被鬼附之女兒懇求的母親</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">她是一位外邦母親，女兒被鬼附得甚苦——面對耶穌起初的沉默、門徒的不耐煩、甚至耶穌自己看似尖銳的拒絕，她卻展現出聖經中極為罕見、被耶穌親口稱許為『大』的信心。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">約主後30年代，耶穌傳道期間</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">推羅西頓境內的迦南婦人（馬可福音稱她為『希臘人，屬敘利腓尼基族』）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">推羅、西頓一帶（外邦地區）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">女兒被鬼附得甚苦</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">太 15:21–28 · 可 7:24–30</div>
+      </div>
+    </div>
+
+    <p>這位婦人的故事，發生在耶穌難得離開猶太本土、進入推羅西頓這個外邦地區之際。馬太福音記載，她『喊著說：主啊，大衛的子孫，可憐我！我女兒被鬼附得甚苦。』然而耶穌『卻一言不答』——這種沉默，在整本福音書中極為罕見，耶穌通常對懇求祂的人展現出立即的憐憫回應，這次卻選擇了沉默。門徒因她的呼喊而感到不耐煩，前來求耶穌『打發她走吧，因為她在我們後頭喊叫』。耶穌此時說出了一句看似冷淡、甚至帶著民族界限意味的話：『我奉差遣，不過是到以色列家迷失的羊那裡去。』</p>
+    <p>然而這位婦人並未因此退卻——她『來拜他，說：主啊，幫助我！』耶穌接著說出了整段對話中最尖銳、也最考驗她信心的一句話：『不好拿兒女的餅丟給狗吃。』這句話，在當時的猶太文化語境中，『狗』常被用來蔑稱外邦人，耶穌這句話，某種程度上，正是在直接測試這位婦人，是否會因這樣尖銳、甚至帶有羞辱意味的回應而放棄。婦人的回答，卻展現出聖經中極為罕見的機智、謙卑、與堅持並存的信心：『主啊，不錯；但是狗也吃它主人桌子上掉下來的碎渣兒。』她沒有反駁耶穌話語中的界限設定，反而巧妙地在這個界限之內，找到了自己懇求的立足點——即使是狗，也配得從主人桌上掉落的碎渣。耶穌聽見這句回答，給予了她整本福音書中極為罕見的稱許：『婦人，你的信心是大的！照你所要的，給你成全了吧。』她的女兒，就在那時立刻痊癒了。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從耶穌的沉默不答，到門徒的不耐煩，再到耶穌看似尖銳的拒絕與婦人機智謙卑的回應——這段對話的每一次轉折，都在考驗並最終彰顯了這位外邦母親『大』的信心。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">呼喊卻被沉默以對——「耶穌卻一言不答」</div>
+        <div class="timeline-body">婦人為被鬼附得甚苦的女兒呼喊耶穌憐憫，耶穌卻一言不答，這種罕見的沉默，成為這段考驗信心之對話的起點。</div>
+        <div class="timeline-ref">太 15:22–23</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">門徒的不耐煩與耶穌的界限宣告——「我奉差遣，不過是到以色列家迷失的羊那裡去」</div>
+        <div class="timeline-body">門徒因婦人持續的呼喊而感到不耐煩，求耶穌打發她走；耶穌隨即說明自己此刻的使命範圍，主要是針對以色列家——這句話進一步考驗著婦人是否會因此放棄。</div>
+        <div class="timeline-ref">太 15:23–24</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">尖銳的回應與機智謙卑的回答——「狗也吃它主人桌子上掉下來的碎渣兒」</div>
+        <div class="timeline-body">耶穌以『不好拿兒女的餅丟給狗吃』這句尖銳的話回應婦人下拜的懇求，婦人卻不反駁這個界限的設定，反而機智地回答『狗也吃主人桌子上掉下來的碎渣兒』，在謙卑中依然堅持自己的懇求。</div>
+        <div class="timeline-ref">太 15:25–27</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">蒙稱許大信心，女兒立刻痊癒——「婦人，你的信心是大的」</div>
+        <div class="timeline-body">耶穌聽見婦人這句回答，給予她『你的信心是大的』這一整本福音書中極為罕見的稱許，並應允她的請求——她的女兒，就在那時立刻痊癒了。</div>
+        <div class="timeline-ref">太 15:28</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">她是聖經中對『在持續的拒絕、沉默、甚至看似羞辱性的回應中，依然不放棄且展現出機智與謙卑並存之信心』刻畫得最生動的敘事典範之一。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">深信耶穌具有醫治的能力與憐憫的心，即使面對持續的沉默與看似拒絕的回應，也不輕言放棄</div>
+          <div class="soul-body">婦人在耶穌沉默不答、門徒要求打發她走、耶穌看似設定明確民族界限的重重考驗中，始終沒有放棄自己對耶穌憐憫與能力的信靠，這種鍥而不捨的堅持，是她信心最核心的展現。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">在被拒絕的處境中，依然展現出謙卑卻不失機智的回應</div>
+          <div class="soul-body">面對耶穌『不好拿兒女的餅丟給狗吃』這句尖銳的話，婦人沒有選擇憤怒反駁或自尊受損地離去，而是謙卑地接受這個比喻中的界限設定，卻又機智地在其中找到自己懇求的合理立足點。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">為了至親（女兒）的需要，願意突破自身的尊嚴與文化身分的隔閡，持續而堅定地懇求</div>
+          <div class="soul-body">身為外邦人，她本可以因耶穌看似明確的民族界限設定而知難而退，然而為了女兒的緣故，她願意突破這層隔閡，持續而堅定地俯伏懇求，展現出深刻的母愛驅動力。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">（材料有限——聖經對她個人的過犯或掙扎著墨極少，這段簡短卻完整的敘事，主要聚焦於她信心的正面展現）</div>
+          <div class="soul-body">馬太與馬可福音對這段記載相對簡潔，敘事的重點完全聚焦於她如何在重重考驗中展現出信心，未見任何負面的性格描寫。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">她是福音書中極少數被耶穌親口稱許『信心是大的』的人物之一，且是一位外邦人</div>
+          <div class="soul-body">在整本福音書中，耶穌明確稱許『大信心』的例子極為罕見（另一位是百夫長），而這位婦人身為外邦人，卻獲得這樣的稱許，這個細節，深刻預示了此後福音向外邦人開放的普世性使命。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">這位迦南婦人的故事，是福音書中對『信心如何在持續的考驗中，透過謙卑而堅持的態度被彰顯出來』刻畫得最生動的敘事之一。這段對話中耶穌一連串看似冷淡、甚至尖銳的回應——沉默、劃定民族界限、以『狗』比喻外邦人——若單獨來看，很容易讓人誤以為耶穌對這位婦人缺乏憐憫。然而正是透過這一連串的考驗，這位婦人信心的深度與韌性，才得以完整地被彰顯出來——她沒有因耶穌的沉默而灰心離去，沒有因門徒的不耐煩而自覺理虧，更沒有因耶穌『狗』的比喻而憤怒反駁或羞愧退縮，反而以一種令人驚嘆的機智與謙卑，在耶穌所劃定的比喻框架之內，找到了自己懇求得以成立的立足點：『狗也吃主人桌子上掉下來的碎渣兒。』這句話的精妙之處，在於她完全沒有試圖挑戰或否定耶穌話語中的界限設定，而是謙卑地接受這個界限，卻依然在其中，堅持相信即使是『碎渣』般微小的恩典，也足以滿足她女兒的需要。這種將謙卑與堅持完美結合的信心，最終贏得了耶穌『你的信心是大的』這一整本福音書中極為罕見的稱許，也預示了此後福音將超越猶太民族的界限，臨到所有懷抱這樣信心的人。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ESFP</span>
+      <div class="mbti-name">表演者型 · 求碎渣的外邦母親</div>
+      <div class="mbti-slogan">「耶穌沉默，門徒不耐煩，她卻不放棄——她要的，不多，只是主人桌上掉下來的碎渣兒。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Se · 外向實感</span>
+          <div class="mbti-fn-body">她面對耶穌一連串具體的回應（沉默、界限設定、尖銳的比喻），能迅速而機智地做出臨場反應，並在耶穌的比喻框架內，找到具體而有效的回應方式，這種對眼前具體處境的敏銳反應力，正是主導外向實感的典型展現。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">她為了女兒深切的需要，願意突破自身的尊嚴與外邦人身分可能帶來的隔閡，持續而堅定地懇求，展現出深刻而真摯的內在情感驅動力（母愛）。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">她的回答『狗也吃主人桌子上掉下來的碎渣兒』，展現出清晰而有邏輯的論證能力，巧妙地在耶穌所設定的比喻框架內，找到了自己懇求的合理立足點。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">（材料有限——聖經對她在更深層、抽象意義層面之思考的具體描寫較少，她的信心主要透過具體而即時的回應展現，而非長遠或抽象的洞察）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">她一生最重要的一次相遇，是與那位起初沉默不答、此後卻稱許她『信心是大的』的耶穌——這段簡短卻震撼的對話，成為她此後生命的關鍵轉折。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">耶</div>
+          <div class="relation-name">耶穌</div>
+          <div class="relation-type-badge">起初沉默、最終稱許她大信心並醫治其女兒的主</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">耶穌透過一連串看似冷淡的回應，考驗並最終彰顯了這位婦人信心的深度，並給予她『你的信心是大的』這一整本福音書中極為罕見的稱許，隨即應允她的懇求，醫治了她的女兒。</div>
+          <div class="relation-ref">太 15:28</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">門</div>
+          <div class="relation-name">耶穌的門徒</div>
+          <div class="relation-type-badge">因她的呼喊而感到不耐煩、要求打發她走的人</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">門徒因婦人持續的呼喊而感到不耐煩，求耶穌打發她走——這種不耐煩的態度，成為婦人所面對重重考驗中的一環，卻未能動搖她堅持懇求的決心。</div>
+          <div class="relation-ref">太 15:23</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">女</div>
+          <div class="relation-name">她被鬼附的女兒</div>
+          <div class="relation-type-badge">促使她不辭一切懇求耶穌的至親</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">婦人一切懇求與堅持的動力，都源自對女兒深切的母愛與憐憫，她的女兒也在耶穌應允其懇求的那一刻，立刻痊癒——這場醫治，成為母愛與信心共同結出的美好果實。</div>
+          <div class="relation-ref">太 15:22, 28</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「婦人，你的信心是大的！」——耶穌這句稱許，成為福音書中對『外邦人同樣可以展現出蒙神稱許之大信心』最直接而震撼的宣告之一。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「婦人，你的信心是大的！照你所要的，給你成全了吧。」</div>
+      <div class="verse-ref">馬太福音 15:28</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">μεγάλη ἡ πίστις</span>
+        <div class="word-transliteration">megale he pistis · 大的信心 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「大的、偉大的信心」，耶穌用這個形容詞，明確稱許這位婦人信心的份量與深度。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">在整本福音書中，耶穌明確以『大』來形容某人信心的例子極為罕見，另一個著名的例子是百夫長（太 8:10）——值得注意的是，這兩位獲得此等稱許的人，都是外邦人而非猶太人，這個細節深刻預示了福音此後將超越猶太民族界限、廣傳萬邦的核心救恩主題。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">τὰ κυνάρια</span>
+        <div class="word-transliteration">ta kynaria · 小狗 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「小狗、家犬」，這個字使用的是指家中飼養的寵物狗，而非街頭野狗的貶義用法。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">希臘原文在此處使用的字，帶有相對溫和、指家庭寵物的意涵，而非徹底羞辱性的野狗用語——這個文字上的細微差異，某種程度上，也暗示著耶穌這句話，或許帶有更多測試與引導的意涵，而非單純的拒絕或羞辱。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">信心的深度可能需要在持續的考驗中才能完全彰顯</div>
+      <div class="theology-insight-body">這位婦人的信心，正是透過耶穌一連串看似冷淡的回應——沉默、界限設定、尖銳的比喻——才得以完整地被彰顯出來，這提醒我們，真正深刻的信心，有時需要在持續的考驗與看似的拒絕中，才能真正顯明其真實的份量。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">謙卑地接受處境的界限依然可以堅持懇求的信心</div>
+      <div class="theology-insight-body">婦人沒有試圖否定或挑戰耶穌話語中的界限設定，而是謙卑地接受這個框架，卻依然在其中堅持自己的懇求——這種謙卑與堅持並存的態度，成為信心表達最智慧的典範之一。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">福音的恩典最終超越猶太民族界限廣傳萬邦</div>
+      <div class="theology-insight-body">這位外邦婦人獲得耶穌『大信心』的稱許，並得著醫治的恩典，深刻預示了此後福音將超越猶太民族的界限，廣傳向所有懷抱信心的萬邦百姓。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">這位外邦婦人在耶穌一連串看似拒絕的回應中，依然謙卑而堅持地懇求，最終獲得『大信心』的稱許與具體的醫治恩典</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這種『外邦人憑信心蒙神悅納並得著恩典』的模式，預表了新約救恩歷史中，福音將超越猶太民族的界限，臨到所有懷抱信心的外邦人這一核心救恩主題</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">保羅宣告「並不分猶太人、希臘人……因為你們在基督耶穌裡都成為一了」，這位迦南婦人所展現的信心與蒙福，正是這一普世救恩真理最早、也最動人的具體見證之一（加 3:28）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正為某個至親的深切需要向神懇求，卻感到神的沉默、甚至看似的拒絕——這位迦南婦人的故事，示範了謙卑而堅持的信心，如何能夠穿越重重的考驗。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">這位迦南婦人的故事命中的是每一個此刻正為某個至親（子女、家人）的深切需要向神懇求，卻感到神的沉默、甚至遭遇看似拒絕之回應而心生灰心的人。她的故事示範了一種極其寶貴的信心典範——不因暫時的沉默或看似的拒絕而放棄，也不因對方設定的界限而憤怒反駁，而是以謙卑接受處境、卻依然堅持懇求的態度，持續尋求神的憐憫與恩典。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你此刻是否正為某個至親的深切需要向神懇求，卻感到神的沉默或看似的拒絕？這位迦南婦人堅持不放棄的態度，對你此刻的處境，帶來什麼樣的鼓勵？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">面對耶穌看似尖銳的『狗』的比喻，婦人選擇謙卑接受、卻依然機智地堅持懇求，而非憤怒反駁或羞愧離去。你在面對他人看似輕視或拒絕的回應時，通常的反應是哪一種？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">耶穌稱許她『信心是大的』，而她只求『碎渣兒』般微小的恩典。這對你理解『信心的大小，未必取決於所求之事的宏大，而在於堅持與謙卑的態度』，帶來什麼樣的啟發？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 迦南婦人</span>
+        <div class="gen-title">示範劇本：在持續的沉默與看似拒絕的考驗中，以謙卑而堅持的態度展現出蒙神稱許的大信心</div>
+        <div class="gen-body">她為了女兒的需要，在耶穌沉默、門徒不耐煩、以及耶穌看似尖銳的比喻等重重考驗中，始終沒有放棄，最終以謙卑而機智的回應，贏得耶穌『信心是大的』這一極為罕見的稱許，並使女兒得著醫治。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 此後所有懷抱信心的外邦信徒</span>
+        <div class="gen-title">延續：她的故事預示了福音此後超越民族界限、廣傳萬邦的普世性使命</div>
+        <div class="gen-body">這位外邦婦人蒙神稱許並得著恩典的經歷，深刻預示了此後福音將超越猶太民族的界限，臨到所有懷抱如她一般謙卑而堅持之信心的萬邦百姓。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在這位迦南婦人的故事中，展現在耶穌即使起初以沉默與看似的拒絕考驗她，最終仍然完全應允了她的懇求，醫治了她的女兒；也展現在，神的恩典從不因種族或身分的隔閡而有所保留，反而樂意賜給每一位懷抱謙卑而堅持之信心的人。這提醒我們，神的恩典，即使在看似沉默的等候中，依然真實地朝我們而來。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位在耶穌沉默、門徒不耐煩中依然不放棄、只求碎渣兒的外邦母親，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#沉默不代表拒絕</span>
+      <span class="tag">#謙卑也可以堅持</span>
+      <span class="tag">#為至親的需要不輕言放棄</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>這位婦人不是猶太人，她是迦南人，住在推羅西頓一帶，那時候耶穌難得離開猶太地區，進到了這片外邦土地。她的女兒被鬼附得很嚴重，她一路喊著：主啊，大衛的子孫，可憐我！</p>
+      <p>耶穌沒有回答她。一句話都沒說。門徒被她的喊叫吵得不耐煩，跑去跟耶穌說：把她打發走吧。耶穌這才開口，卻說：我奉差遣，只是到以色列家迷失的羊那裡去——聽起來像是在說，這不關她的事。</p>
+      <p>婦人沒有放棄，她跑到耶穌面前跪下來，說：主啊，幫助我！耶穌這次的回答，更加尖銳：不好拿兒女的餅丟給狗吃。在當時的文化裡，『狗』是拿來形容外邦人的貶義詞——這句話，聽起來就是明確的拒絕。</p>
+      <p>換作任何人，大概都會覺得受夠了，轉身離開。但這位婦人的回答，讓人拍案叫絕：主啊，不錯；但是狗也吃它主人桌子上掉下來的碎渣兒。她沒有反駁耶穌的比喻，反而順著這個比喻，找到了自己可以懇求的空間——我不奢求整塊餅，我只要那些掉下來的碎渣兒。</p>
+      <p>耶穌聽完，說了一句在整本福音書裡都很少見的稱許：婦人，你的信心是大的！照你所要的，給你成全了吧。她的女兒，當下就好了。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——這位迦南婦人，被沉默、被拒絕、被看似的羞辱一路雕刻，最後雕出的，是一份被耶穌親口稱許『大』的信心。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你此刻正為某個至親的需要向神懇求，卻感覺神一直沉默——這位婦人的故事想告訴你：沉默不代表拒絕，堅持下去，別輕易放棄。</p>
+      <p style="margin-top:12px;">面對看似輕視或拒絕的回應時，你可以選擇像這位婦人一樣——不憤怒反駁，也不羞愧退縮，而是謙卑地接受，卻依然機智地堅持你的懇求。</p>
+      <p style="margin-top:12px;">你要的可能不多，就像她只求碎渣兒——但即使是碎渣兒般微小的恩典，也可能足夠。別小看你此刻正在懇求的那一點點。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果你正為誰的需要懇求神——繼續堅持，即使暫時只聽見沉默。</p>
+    </div>
+
+    <div class="insight-box">這位迦南婦人的故事，持續為當代討論『在禱告的沉默中如何持守信心』與『謙卑而堅持的溝通智慧』這兩個議題，提供了聖經中最生動具體的參照案例。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">她從一位在耶穌沉默與看似拒絕中懇求的外邦母親，成為福音書中極少數蒙耶穌親口稱許『信心是大的』之人，留下了『謙卑而堅持的信心』最動人的見證。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">福音書中極少數被稱許『大信心』的人物之一</div>
+          <div class="legacy-body">耶穌明確以『大』稱許某人信心的例子在福音書中極為罕見，這位迦南婦人與百夫長，同為僅有的兩個具體例證，且兩者皆為外邦人。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">謙卑與堅持並存之信心典範</div>
+          <div class="legacy-body">她面對耶穌看似尖銳的拒絕，選擇謙卑接受框架、卻依然機智堅持懇求的方式，成為聖經中『信心的表達可以同時具備謙卑與堅持』這一屬靈典範最生動的例證。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">福音向外邦人開放的重要早期預示</div>
+          <div class="legacy-body">她蒙神稱許並得著恩典的經歷，深刻預示了此後福音將超越猶太民族的界限，廣傳向所有懷抱信心的萬邦百姓。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「耶穌說：「婦人，你的信心是大的！照你所要的，給你成全了吧。」從那時候，她女兒就好了。」</div>
+      <div class="final-verse-ref">馬太福音 15:28</div>
+    </div>
+
+    <div class="final-question">如果你此刻正為某個至親的深切需要向神懇求，卻遭遇沉默或看似的拒絕——你願不願意像這位迦南婦人一樣，以謙卑而堅持的信心，持續懇求，直到恩典臨到？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 迦南婦人 <span>γυνὴ Χαναναία</span> · 為女兒的鬼附懇求耶穌的外邦母親 · 因大信心而蒙稱許者</div>
+
+</body>
+</html>

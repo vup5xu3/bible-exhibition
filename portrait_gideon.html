@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>基甸 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">基甸</h1>
+  <span class="hero-name-en">Gideon · גִּדְעוֹן</span>
+  <p class="hero-slogan">「耶和華對基甸說：「和你同去的人過多，我不能將米甸人交在他們手中，恐怕以色列人向我誇大，說：是我們自己的手救了我們。」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">約主前十二世紀（士師時代中期）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ISFJ · 守衛者型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">士師記 6–8 章 · 來 11:32</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">約阿施之子 · 以色列士師 · 三百勇士的統帥</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">天使稱他為『大能的勇士』的那一刻，他正躲在酒醡裡，偷偷摸摸地打麥子，就怕被壓迫以色列七年之久的米甸人發現——這個反差，成為基甸整個生命故事最鮮明的起點。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">約主前十二世紀，士師時代中期</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">瑪拿西支派亞比以謝族人，約阿施之子</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">俄弗拉</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">父約阿施；子亞比米勒（此後篡奪王位、大肆殺害兄弟）等多子</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">士師記 6–8 章 · 來 11:32</div>
+      </div>
+    </div>
+
+    <p>基甸出場的背景，是以色列因離棄耶和華，被米甸人壓迫長達七年——米甸人如蝗蟲般搶奪以色列的糧食牲畜，迫使百姓『在山中挖穴、挖洞、建造營寨』躲避。耶和華的使者向基甸顯現時，他正躲在酒醡（原本用來榨葡萄汁的設備，而非打麥的場所）裡偷偷打麥子，天使卻對他說：『大能的勇士啊，耶和華與你同在！』基甸的第一反應充滿懷疑與抱怨：『主啊，耶和華若與我們同在，我們何至遭遇這一切事呢？』他隨即表達了自己深刻的自我懷疑：『我家在瑪拿西支派中是至貧窮的，我在我父家是至微小的。』面對神明確的呼召，基甸接連兩次求神以羊毛的濕乾作為印證——這種近乎過度謹慎的求證方式，展現出他性格中深刻的不安全感與懼怕。</p>
+    <p>基甸生命最戲劇性的轉折，發生在他召集了三萬二千人準備與米甸大軍作戰之際——耶和華卻指示他，人數過多，恐怕百姓會將得勝歸功於自己而非神，於是透過『懼怕膽怯的可以回去』與『用舌頭舔水』兩輪篩選，將軍隊從三萬二千人，一路削減到僅剩三百人。基甸雖然順服了這個看似毫無勝算的削減過程，耶和華仍體貼他內心的懼怕，主動讓他夜間潛入米甸營中，聽見敵營中一名士兵述說夢見大麥餅滾入營中、將帳棚翻倒的異夢——這個印證，才真正堅固了基甸出戰的信心。基甸隨即率領三百人，趁夜三面包圍米甸營地，每人手持瓶子、火把與角，同時吹角、打破瓶子、高喊『耶和華和基甸的刀』，米甸全營在黑夜中陷入混亂自相殘殺、四散奔逃——這場以三百人擊潰十三萬五千米甸大軍的戰役，成為聖經中『人的軟弱如何被神的大能成就』最著名的敘事之一。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從躲在酒醡中的懼怕農夫，到兩次求問羊毛印證的謹慎士師，再到率三百人以瓶子火把擊潰米甸大軍的統帥——基甸的一生，完整呈現了信心如何在持續的懼怕與神耐心的印證中逐步建立。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">酒醡中的呼召——「我家在瑪拿西支派中是至貧窮的」</div>
+        <div class="timeline-body">耶和華的使者向正躲藏打麥的基甸顯現，稱他為『大能的勇士』，基甸卻滿懷懷疑地質問神為何容讓米甸壓迫以色列，並表達自己出身卑微、能力不足的深刻自我懷疑。</div>
+        <div class="timeline-ref">士 6:11–16</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">拆毀巴力壇與兩次羊毛印證——「求你不要向我發怒」</div>
+        <div class="timeline-body">基甸奉命拆毀父親家中的巴力壇，卻選擇在夜間行動以避免被人發現；此後他兩次求神以羊毛的濕乾狀態作為出戰的印證，每次求證後都謙卑地說『求你不要向我發怒，我要再說一次』，展現出他性格中深刻的謹慎與不安。</div>
+        <div class="timeline-ref">士 6:25–40</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">三萬二千人削減至三百人——「恐怕以色列人向我誇大」</div>
+        <div class="timeline-body">耶和華指示基甸，軍隊人數過多恐使百姓將得勝歸功於自己，透過兩輪篩選，將三萬二千人的軍隊，一路削減到僅剩三百人——這個過程，考驗著基甸對神應許近乎不合常理的信靠。</div>
+        <div class="timeline-ref">士 7:1–8</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">夜探敵營與瓶子火把的奇襲——「耶和華和基甸的刀」</div>
+        <div class="timeline-body">耶和華體貼基甸的懼怕，讓他潛入米甸營中聽見敵兵述說的異夢，堅固了他的信心。基甸隨即率三百人，以瓶子、火把、角聲，趁夜奇襲，使米甸全營陷入混亂自相殘殺，以三百人擊潰十三萬五千米甸大軍。</div>
+        <div class="timeline-ref">士 7:9–22</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">拒絕世襲王位卻製造以弗得——「我不作你們的王，耶和華必作你們的王」</div>
+        <div class="timeline-body">百姓因這場大勝，請求基甸與其子孫世代作王治理他們，基甸明確拒絕，宣告『耶和華必作你們的王』；然而他此後卻用戰利品製造了一個以弗得，供俸在俄弗拉，『後來以色列人拜那以弗得行了邪淫，這就作了基甸和他全家的網羅』——他晚年的這個決定，為此後的家族悲劇（其子亞比米勒篡位殺害兄弟）埋下隱患。</div>
+        <div class="timeline-ref">士 8:22–27</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他是聖經中對『懼怕與信心如何在同一個人身上並存、並逐步被神耐心地帶領向前』刻畫得最真實細膩的敘事之一——他從未被塑造成一個天生無畏的英雄，而是一個一步步被神耐心陪伴、逐漸建立信心的普通人。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">深刻的自我懷疑，卻在神反覆的印證與陪伴中，逐步建立起真實的信心</div>
+          <div class="soul-body">基甸初次面對呼召時的自我懷疑極其真實而強烈，然而神並未因此責備或棄用他，而是透過一次又一次具體的印證（羊毛、敵營異夢），耐心地陪伴他從懼怕走向行動。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">即使心懷懼怕，最終仍選擇順服神看似不合常理的指示</div>
+          <div class="soul-body">面對軍隊被削減到僅剩三百人這種近乎荒謬的安排，基甸沒有選擇違抗或放棄，而是持續順服神一步步的引導，這種在懼怕中依然選擇順服的品格，是他最動人的美德。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">傾向以謹慎求證的方式回應重大的呼召或決策，而非貿然行動</div>
+          <div class="soul-body">無論是兩次求問羊毛的印證，或是夜探敵營尋求信心的堅固，基甸展現出一種在做出重大決定前，需要充分求證與印證的行事風格。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">晚年因害怕百姓的批評或不信任，選擇了拆毀巴力壇時的夜間行動，以及此後製造以弗得所帶來的信仰隱患</div>
+          <div class="soul-body">基甸拆毀巴力壇時因『懼怕父家和本城的人』而選擇夜間行動；晚年更用戰利品製造了一個以弗得，這個物件此後竟成為以色列人拜偶像的網羅——顯示即使是蒙神大用的士師，晚年仍可能因疏忽而留下屬靈隱患。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">神主動體貼他的懼怕、提供額外的印證，而非單純責備他信心不足</div>
+          <div class="soul-body">耶和華在基甸表達懼怕時，並未斥責他信心軟弱，反而主動讓他夜探敵營、聽見異夢，藉此堅固他的信心——這種神體貼人之軟弱、主動提供恩慈印證的方式，格外溫柔動人。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">基甸的故事，是聖經中對『信心的建立是一個過程，而非一次性的完成』刻畫得最真實的敘事之一。他從躲在酒醡中懼怕米甸人的農夫，到最終率領三百人擊潰十三萬五千大軍的統帥，這段轉變，並非透過一次戲劇性的『信心飛躍』達成，而是透過神耐心地、一步一步地陪伴——容忍他的質疑、應允他兩次羊毛的求證、甚至主動安排他夜探敵營以獲得額外的信心印證——才逐步建立起來。這提醒我們，信心的成長，未必是一蹴而就的過程，神願意體貼我們的軟弱與懼怕，用祂自己的方式，一步步地帶領我們從懷疑走向順服，從躲藏走向行動。然而基甸的故事同樣誠實地提醒我們，即使一個人曾經歷如此深刻的信心建造過程、並成就了驚人的屬靈勝利，晚年仍可能因一時的疏忽（如製造以弗得），為自己與後代留下意想不到的屬靈隱患——持續的警醒，永遠是信心生命不可或缺的功課。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ISFJ</span>
+      <div class="mbti-name">守衛者型 · 酒醡裡的大能勇士</div>
+      <div class="mbti-slogan">「天使叫他『大能的勇士』時，他正躲著打麥子——後來他真的成了大能的勇士，只是花了很多次求證，才敢相信這件事。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Si · 內向感覺</span>
+          <div class="mbti-fn-body">他傾向透過具體、可驗證的方式（羊毛的濕乾）確認神的心意，這種需要具體印證才能安心行動的模式，正是主導內向感覺的典型展現。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Fe · 外向情感</span>
+          <div class="mbti-fn-body">他深切關注百姓對自己與這場戰役的觀感（因此選擇夜間拆毀巴力壇），並在戰後謙卑地拒絕世襲王位的請求，顯示出對群體關係與觀感的高度敏感。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ti · 內向思考</span>
+          <div class="mbti-fn-body">他在得知敵營異夢後，能迅速將這個印證與自己此前所領受的呼召連結，並據此規劃具體的奇襲戰術（瓶子、火把、角聲），展現出邏輯分析與策略規劃的能力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Ne · 外向直覺</span>
+          <div class="mbti-fn-body">他晚年製造以弗得的決定，顯示出對這個舉動可能帶來之長遠後果缺乏足夠的預見與警覺，這種對多重可能後果評估不足的傾向，反映出劣勢外向直覺的特徵。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最重要的關係，是與那位一次次體貼他的懼怕、耐心陪伴他建立信心的神——這段關係的核心，貫穿了他從躲藏到得勝的整個生命歷程。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">使</div>
+          <div class="relation-name">耶和華的使者</div>
+          <div class="relation-type-badge">呼召他、並耐心回應他每一次求證的天使</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">使者稱基甸為『大能的勇士』，並在他表達懷疑與懼怕時，沒有立即責備，而是透過火燒祭物等神蹟印證自己確實是神的使者，開啟了基甸此後一連串信心建造的歷程。</div>
+          <div class="relation-ref">士 6:11–24</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">以</div>
+          <div class="relation-name">以色列三百勇士</div>
+          <div class="relation-type-badge">與他一同見證這場神蹟性大勝的精選軍隊</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">這三百人是從三萬二千人中，透過兩輪嚴格篩選所留下的精兵，他們與基甸一同以瓶子、火把、角聲，見證了這場以少勝多的神蹟性戰役。</div>
+          <div class="relation-ref">士 7:1–8, 16–22</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">亞</div>
+          <div class="relation-name">亞比米勒</div>
+          <div class="relation-type-badge">他此後篡位殺害眾兄弟的兒子</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">基甸死後，他的兒子亞比米勒殺害了自己七十個兄弟中的大部分，篡奪了原本不屬於他的統治地位——這場家族悲劇，某種程度上，與基甸晚年多妻多子、以及製造以弗得所留下的屬靈隱患，有著深刻的關聯。</div>
+          <div class="relation-ref">士 9 章</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「恐怕以色列人向我誇大，說：是我們自己的手救了我們」——耶和華刻意削減基甸軍隊人數的理由，成為聖經中對『神的得勝不容許被歸功於人自己的力量』最清晰的宣告之一。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「耶和華對基甸說：「和你同去的人過多，我不能將米甸人交在他們手中，恐怕以色列人向我誇大，說：是我們自己的手救了我們。」」</div>
+      <div class="verse-ref">士師記 7:2</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">גִּבּוֹר הֶחָיִל</span>
+        <div class="word-transliteration">gibbor hechayil · 大能的勇士 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「大能的勇士、有力的戰士」，這個稱謂通常用於形容已經展現出軍事才能與勇氣的戰士。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">使者用這個稱謂稱呼正躲藏懼怕的基甸，這種『神看見一個人尚未展現出來、卻真實存在的潛力』的呼召方式，展現出神揀選人的視角，往往超越人此刻表面所呈現的軟弱狀態，而看見祂自己所要成就的可能性。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">פַּח</span>
+        <div class="word-transliteration">pach · 網羅 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「網羅、陷阱」，用以形容導致人陷入罪中或困境的事物。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">士師記用這個字形容基甸所製造的以弗得，如何『作了基甸和他全家的網羅』——這提醒我們，即使出於紀念神蹟得勝的良善動機所製造的物件，若缺乏持續的警醒，仍可能演變為使人偏離真道的屬靈陷阱。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">神刻意削減人的資源以確保得勝的榮耀完全歸給祂自己</div>
+      <div class="theology-insight-body">耶和華將基甸的軍隊從三萬二千人削減到三百人，這個看似不合常理的安排，確立了聖經神學中一個重要原則：神有時刻意讓祂的百姓在人的資源與能力明顯不足的處境中經歷得勝，以確保這份得勝的榮耀，完全歸給神自己。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">神體貼人的軟弱，願意提供額外的印證幫助信心的建立</div>
+      <div class="theology-insight-body">神主動安排基甸夜探敵營、聽見異夢以堅固信心，這提醒我們，神並不總是要求人單憑一次呼召就立即擁有完全的信心，祂願意透過各種方式，耐心地幫助軟弱的人逐步建立信靠。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">蒙神大用的經歷不能保證晚年不會出現屬靈的疏忽</div>
+      <div class="theology-insight-body">基甸晚年製造以弗得而使百姓陷入拜偶像的網羅，這提醒我們，一個人過去經歷神蹟性的得勝，並不自動保證此後的生命不會出現新的屬靈隱患，持續的警醒始終是每個信徒的功課。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">基甸以區區三百人、看似毫無軍事優勢的隊伍，卻藉著神的大能，擊潰了十三萬五千人的米甸大軍</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這種『在人看似完全不足的軟弱處境中，彰顯神超乎尋常之大能』的模式，預表了新約神學中『神的能力是在人的軟弱上顯得完全』這一核心屬靈原則</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">保羅宣告「我更喜歡誇自己的軟弱，好叫基督的能力覆庇我」，這正是基甸式得勝——神的能力透過人明顯的軟弱得以彰顯——在新約神學中的延續與深化（林後 12:9）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正面對一個明顯超出自己能力所及的呼召或挑戰，內心充滿懷疑與懼怕——基甸的故事，想溫柔卻鄭重地告訴你，神願意耐心陪伴你，一步步建立信心。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">基甸的故事命中的是每一個此刻正面對某個明顯超出自己能力所及的呼召或挑戰，內心充滿懷疑、懼怕、甚至反覆求證才敢相信的人。他的故事誠實地展現了信心建立的漸進性——神並未要求他一次性擁有完全無懼的信心，而是透過一次次具體的印證與陪伴，帶領他從躲藏走向行動。他的故事提醒我們，懷疑與懼怕的存在，不代表我們不配被神使用；真正重要的，是我們是否願意在懼怕中，依然一步步地跟隨神的引導向前。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你此刻是否正面對某個明顯超出自己能力所及的呼召或挑戰，內心充滿懷疑與懼怕？基甸『大能的勇士』這個稱謂，在他仍躲藏懼怕時就已被賜下，這對你此刻的處境，帶來什麼樣的鼓勵？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">基甸兩次求問羊毛的印證，神都耐心地應允了。你是否也曾在面對重大抉擇時，渴望更多具體的印證？你認為向神求問印證，與缺乏信心之間，界線在哪裡？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">神刻意削減基甸的軍隊，以確保得勝的榮耀歸於祂自己。你此刻面對的處境中，是否也存在著某種『資源看似不足』的困境？這對你重新思考『得勝的真正來源』，帶來什麼樣的提醒？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">基甸晚年製造以弗得而使百姓陷入網羅，這提醒我們持續警醒的重要性。你此刻生命中，是否也存在某個過去出於良善動機、卻可能逐漸演變為屬靈隱患的事物？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 基甸</span>
+        <div class="gen-title">示範劇本：從懼怕躲藏的農夫，在神耐心的陪伴中逐步建立信心，最終成就以少勝多的神蹟性得勝</div>
+        <div class="gen-body">他經歷了深刻的自我懷疑與懼怕，卻在神一次次具體的印證與陪伴中，逐步建立起真實的信心，最終率領三百人，見證了神超乎尋常的大能。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 亞比米勒（他的兒子）</span>
+        <div class="gen-title">延續：晚年的屬靈隱患，最終在下一代釀成家族悲劇</div>
+        <div class="gen-body">基甸晚年製造以弗得所留下的屬靈隱患，加上他多妻多子的家庭結構，最終在他死後，由兒子亞比米勒篡位殺害眾兄弟的悲劇中充分顯現，提醒我們持續警醒的重要性。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在基甸的故事中，展現在神從未因他一再的懷疑與求證而責備或棄用他，反而一次又一次耐心地提供印證，陪伴他從懼怕走向信心與行動。這提醒我們，神對待軟弱之人的方式，充滿了超乎想像的耐心與體貼，祂願意用祂自己的方式，一步步地帶領我們，成就我們自己原本以為不可能達成的事。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位躲在酒醡裡打麥子、卻被天使叫做『大能的勇士』的農夫，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#懼怕不代表你不配被使用</span>
+      <span class="tag">#信心可以一步步建立</span>
+      <span class="tag">#資源不足時神的能力才顯明</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>基甸出場的畫面，一點都不英雄——他躲在酒醡裡，偷偷摸摸地打麥子，因為米甸人隨時會來搶。天使出現，對他說：大能的勇士啊，耶和華與你同在。基甸的反應是：如果神真的與我們同在，我們怎麼會落到這個地步？他還補了一句：我家在瑪拿西支派裡是最窮的，我在我爸家裡是最不起眼的。</p>
+      <p>神沒有因為他這種態度就放棄他。基甸後來還兩次向神求證——他放一團羊毛在地上，求神讓羊毛濕、地是乾的；隔天他又反過來求，讓羊毛乾、地是濕的。神兩次都照做了，沒有絲毫不耐煩。</p>
+      <p>真正的重頭戲，是接下來的軍隊篩選。基甸原本召集了三萬二千人，神卻說：人太多了，你們會以為是自己的實力打贏的。於是先讓懼怕的人回家，剩下一萬人；再用『舔水的方式』篩選，最後只剩三百人。三百人，對上米甸十三萬五千大軍。</p>
+      <p>神知道基甸還是會怕，就讓他半夜潛進敵營，剛好聽到一個米甸士兵說了一個夢——夢見一個大麥餅滾進營裡，把帳篷撞翻了。另一個士兵解夢說：這就是基甸要來打敗我們的預兆。基甸聽完，立刻下拜，信心徹底被堅固了。</p>
+      <p>接下來的奇襲很簡單卻很有效：三百人半夜包圍敵營，同時吹角、打破瓶子、大喊『耶和華和基甸的刀』，米甸軍隊在黑暗混亂中自相殘殺，潰不成軍。三百人，贏了。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——基甸這塊石頭，一開始被恐懼包裹得嚴嚴實實，神一層一層，耐心地把恐懼鑿掉，才露出裡面『大能的勇士』的樣子。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你此刻面對一個看起來遠超自己能力的任務或呼召，滿心懷疑——基甸的故事想告訴你：你不需要立刻擁有完全的信心，神願意像對他一樣，耐心地陪你一步步走過去。</p>
+      <p style="margin-top:12px;">求印證不是信心不足的證明。基甸求了兩次羊毛，神都應允了。如果你需要更多確據才能安心前行，誠實地求問，不需要為此感到羞愧。</p>
+      <p style="margin-top:12px;">留意你手上的資源。有時候『資源不夠』不是壞事——這正是神刻意讓祂的能力，而不是你的實力，被看見的時候。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果你正躲在自己的『酒醡』裡懼怕——記得，神已經看見了你裡面那個『大能的勇士』。</p>
+    </div>
+
+    <div class="insight-box">基甸的故事，持續是當代教會與個人成長領域中，最常被引用來鼓勵『信心不需要完美才能起步』這一觀念的聖經典範——他從懷疑到得勝的完整歷程，為許多正經歷信心掙扎、卻渴望被神使用的現代讀者，提供了極具體而真實的陪伴與鼓勵。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他從躲藏懼怕的農夫，成為以三百人擊潰十三萬五千大軍的士師，留下了聖經中對『信心如何在神耐心的陪伴中逐步建立』刻畫得最真實的見證。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">『神的能力在人的軟弱中彰顯』最經典的舊約敘事範例</div>
+          <div class="legacy-body">他以三百人擊潰米甸大軍的戰役，成為聖經中『神刻意透過人明顯不足的資源，彰顯自己大能』這一原則最戲劇性的歷史例證。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">希伯來書信心偉人榜中被明確列名的士師</div>
+          <div class="legacy-body">希伯來書十一章明確將基甸列入信心偉人榜，稱許他『因著信……以弱為強，行事勇敢』，確立了他在聖經信心典範中的重要地位。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">『信心漸進建立』神學原則的重要敘事見證</div>
+          <div class="legacy-body">他透過反覆求證、逐步建立信心的完整歷程，持續為後世提供了『信心的成長是一個過程，而非一次性完成』這一屬靈原則最具體的敘事範例。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">晚年疏忽導致家族悲劇的重要警示案例</div>
+          <div class="legacy-body">他晚年製造以弗得所留下的屬靈隱患，最終在兒子亞比米勒的篡位悲劇中充分顯現，持續提醒後世『蒙神大用的經歷不能保證持續的警醒』這一重要功課。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「米甸人就在基甸面前被以色列人治服了，不敢再抬頭。基甸還在的日子，國中太平四十年。」</div>
+      <div class="final-verse-ref">士師記 8:28</div>
+    </div>
+
+    <div class="final-question">如果你此刻正面對一個明顯超出自己能力所及的呼召，內心充滿懷疑與懼怕——你願不願意相信，就像基甸的故事所展現的，神願意耐心地陪伴你，一步步從懼怕走向祂為你預備的得勝？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 基甸 <span>גִּדְעוֹן</span> · 在酒醡中打麥子的士師 · 以三百人擊敗米甸大軍的懦弱勇士</div>
+
+</body>
+</html>

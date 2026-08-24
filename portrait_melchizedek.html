@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>麥基洗德 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">麥基洗德</h1>
+  <span class="hero-name-en">Melchizedek · מַלְכִּי־צֶדֶק</span>
+  <p class="hero-slogan">「又是撒冷王麥基洗德……他是至高神的祭司，他為亞伯蘭祝福，說：「願天地的主、至高的神賜福與亞伯蘭！至高的神把敵人交在你手裡，是應當稱頌的！」亞伯蘭就把所得的拿出十分之一來，給麥基洗德。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">約主前二十一世紀（亞伯拉罕時代）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">INTJ · 建築師型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">創世記 14:18–20 · 詩篇 110:4 · 希伯來書 5–7 章</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">撒冷王 · 至高神的祭司 · 基督永恆祭司職分的預表</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他在整本創世記中，只出現在短短兩節經文之中——沒有家譜、沒有出生記載、也沒有死亡記載，然而正是這位神秘的君王兼祭司，此後被詩篇、以及希伯來書反覆引用，成為理解基督永恆祭司職分最重要的舊約預表人物。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">約主前二十一世紀，亞伯拉罕時代</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">撒冷（此後的耶路撒冷）王，同時也是『至高神的祭司』</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">撒冷</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">聖經完全未記載其家譜、父母或後裔</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">創 14:18–20 · 詩 110:4 · 來 5–7 章</div>
+      </div>
+    </div>
+
+    <p>麥基洗德的登場，發生在亞伯拉罕擊敗基大老瑪聯軍、救回姪兒羅得與所有財物之後——聖經記載：『又有撒冷王麥基洗德帶著餅和酒出來迎接；他是至高神的祭司。他為亞伯蘭祝福，說：「願天地的主、至高的神賜福與亞伯蘭！至高的神把敵人交在你手裡，是應當稱頌的！」亞伯蘭就把所得的拿出十分之一來，給麥基洗德。』這段簡短的記載，蘊含著極其豐富的神學意涵——麥基洗德同時身兼『王』與『祭司』兩種身分，這種結合在此後以色列的宗教與政治體制中極為罕見（君王與祭司職分通常嚴格區分）；他的名字『麥基洗德』本身，意為『公義的王』，而『撒冷』這個地名，此後也被理解為與『平安』（shalom）一字有關，使他的稱謂本身，便承載著『公義的王，平安的王』這樣深具意義的稱號。</p>
+    <p>亞伯拉罕在這次相遇中，主動將所得的十分之一獻給麥基洗德，這個舉動，展現出亞伯拉罕對麥基洗德所代表之屬靈權柄的承認與尊崇。此後詩篇一百一十篇這首被廣泛理解為彌賽亞詩篇的經文中，出現了一句極具深遠意義的宣告：『耶和華起了誓，決不後悔，說：你是照著麥基洗德的等次永遠為祭司。』這句話，此後被希伯來書的作者大幅引申發揮，用以說明耶穌基督的祭司職分，並非依循利未支派、亞倫世系的傳統祭司體制（那個體制要求祭司必須具備明確的家譜傳承，且會因死亡而世代更替），而是依循一種更為古老、也更為永恆的『麥基洗德的等次』——希伯來書特別指出，麥基洗德『無父，無母，無族譜，無生之始，無命之終，乃是與神的兒子相似』，這種對麥基洗德『無族譜記載』這一文本特徵的神學詮釋，使他成為理解基督永恆、超越利未祭司體制之祭司職分，最重要的舊約預表人物。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">由於聖經對麥基洗德的直接記載僅有短短兩節經文，這裡呈現的，是他在救贖歷史敘事中所處的結構性位置，而非傳統意義上的生平時間軸。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">帶著餅和酒迎接亞伯拉罕——「他是至高神的祭司」</div>
+        <div class="timeline-body">亞伯拉罕擊敗基大老瑪聯軍、救回姪兒羅得後，撒冷王麥基洗德帶著餅和酒前來迎接，並以『至高神的祭司』的身分，為亞伯拉罕獻上祝福。</div>
+        <div class="timeline-ref">創 14:18–19</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">亞伯拉罕獻上十分之一——「亞伯蘭就把所得的拿出十分之一來」</div>
+        <div class="timeline-body">亞伯拉罕主動將所得的十分之一獻給麥基洗德，這個舉動，展現出他對麥基洗德所代表之屬靈權柄的承認與尊崇，此後也成為理解什一奉獻這一屬靈實踐的重要舊約根源之一。</div>
+        <div class="timeline-ref">創 14:20</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">詩篇的預言性引用——「你是照著麥基洗德的等次永遠為祭司」</div>
+        <div class="timeline-body">詩篇一百一十篇這首彌賽亞詩篇，宣告耶和華起誓應許一位永遠的祭司，這位祭司的職分，不是按著利未世系，而是『照著麥基洗德的等次』——這句宣告，此後成為理解彌賽亞祭司職分最重要的舊約預言文本。</div>
+        <div class="timeline-ref">詩 110:4</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">希伯來書的神學詮釋——「無父，無母，無族譜……乃是與神的兒子相似」</div>
+        <div class="timeline-body">希伯來書大幅引申麥基洗德的敘事，特別指出他沒有家譜記載這一文本特徵，用以說明基督的祭司職分超越並取代了利未支派世襲的祭司體制，成為永恆不變的大祭司。</div>
+        <div class="timeline-ref">來 5:6–10, 6:20, 7:1–17</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他是聖經中材料最為稀少、卻承載著最深遠神學意涵的人物之一——聖經對他個人性格的具體描寫幾乎為零，然而他所代表的『君王兼祭司』身分結合，本身就是一則深刻的神學宣告。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">（材料不足以判斷個人具體信念——他的敘事重點聚焦於其獨特的君王兼祭司身分）</div>
+          <div class="soul-body">聖經對麥基洗德個人的具體言行記載極為簡略，我們僅能從他祝福亞伯拉罕的話語中，推知他對『至高神』（天地的主）具有清楚而堅定的認信。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">（材料有限——僅能從他祝福亞伯拉罕的具體行動側面推知）</div>
+          <div class="soul-body">他主動帶著餅和酒前來迎接、祝福剛從戰場歸來的亞伯拉罕，這個舉動展現出一種慷慨而慈愛的款待與祝福姿態。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">（材料不足以推論具體的行事風格——聖經對他的記載聚焦於單一次的相遇場景）</div>
+          <div class="soul-body">聖經僅記載了他與亞伯拉罕這一次具體的相遇，未能提供足夠的材料以推論他一貫的行事模式。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">（材料不足以推論）</div>
+          <div class="soul-body">聖經沒有記載任何可供分析其可能軟弱或過犯的具體事蹟。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">他『無父，無母，無族譜，無生之始，無命之終』的文本特徵，使他成為舊約中預表基督永恆祭司職分最重要的人物</div>
+          <div class="soul-body">希伯來書特別強調，聖經對麥基洗德的記載中，完全沒有提及他的父母、家譜、出生或死亡——這種文本上罕見的『空白』，被希伯來書的作者賦予深刻的神學意涵，用以預表基督祭司職分那種不受人的家譜傳承所限定、永恆不變的獨特性質。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">麥基洗德的故事，是聖經中材料極為稀少、卻承載著最深遠神學意涵的敘事典範之一。他在創世記中的登場，僅有短短兩節經文，然而這段簡短的記載，卻蘊含著幾層極其重要的神學意義——首先，他同時身兼『王』與『祭司』兩種身分，這種結合，在此後以色列嚴格區分君王與祭司職分的體制中極為罕見，預示著此後彌賽亞將同時承擔君王與祭司的雙重身分；其次，他的名字『麥基洗德』（公義的王）與『撒冷』（平安）這兩個稱謂，本身便承載著『公義』與『平安』並存的深刻意涵，這正是此後先知書中反覆描繪彌賽亞國度核心特質的兩大主題；第三，也是希伯來書著墨最深的一點——聖經對他家譜、出生、死亡的完全『沉默』，被賦予了『無父，無母……無生之始，無命之終』這樣深刻的神學詮釋，用以說明基督的祭司職分，超越了利未支派那種倚賴血緣家譜、且會因死亡而世代更替的祭司體制，而是一種永恆、不受人的世系傳承所限定的祭司職分。麥基洗德的故事提醒我們，聖經中一段極其簡短、看似材料稀少的記載，依然可能承載著超乎我們表面所見的深遠神學意涵——這需要我們願意透過整本聖經的脈絡，去發掘一段簡短敘事背後，可能蘊藏的豐富預表意義。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">INTJ</span>
+      <div class="mbti-name">建築師型 · 撒冷的君王祭司</div>
+      <div class="mbti-slogan">「他只在聖經裡出現了兩節經文，卻成為理解基督永恆祭司職分最重要的一把鑰匙。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">（材料不足以判斷） · —</span>
+          <div class="mbti-fn-body">聖經對麥基洗德個人具體言行的記載極為簡略，此處從缺，以維持對材料的誠實呈現，此MBTI類型標記主要基於他所代表之『君王兼祭司』這一結構性身分的合理推想，而非基於具體的敘事細節。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生唯一被具體記載的關係，是與那位剛從戰場得勝歸來、此後向他獻上十分之一的亞伯拉罕。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">亞</div>
+          <div class="relation-name">亞伯拉罕</div>
+          <div class="relation-type-badge">他祝福並收取十分之一奉獻的對象</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">亞伯拉罕在擊敗基大老瑪聯軍歸來之際，接受了麥基洗德帶著餅和酒的迎接與祝福，並主動將所得的十分之一獻給他——這段互動，成為聖經中麥基洗德唯一被具體記載的人際互動。</div>
+          <div class="relation-ref">創 14:18–20</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">耶</div>
+          <div class="relation-name">耶穌基督</div>
+          <div class="relation-type-badge">此後被證明照著他的等次永遠為祭司者</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">希伯來書大幅引申麥基洗德的敘事，指出耶穌基督的祭司職分，正是『照著麥基洗德的等次』，超越並取代了利未支派世襲的祭司體制，成為永恆不變的大祭司。</div>
+          <div class="relation-ref">來 6:20, 7:17</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「無父，無母，無族譜，無生之始，無命之終，乃是與神的兒子相似，為祭司是永遠的」——希伯來書用這句話，將麥基洗德提升為理解基督永恆祭司職分最重要的舊約預表。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「耶和華起了誓，決不後悔，說：「你是照著麥基洗德的等次永遠為祭司。」」</div>
+      <div class="verse-ref">詩篇 110:4</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">מַלְכִּי־צֶדֶק</span>
+        <div class="word-transliteration">Malki-Tsedeq · 麥基洗德 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「我的王是公義」或「公義的王」，由『王』（melekh）與『公義』（tsedeq）組合而成。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這個名字本身，便承載著深刻的神學意涵——此後先知以賽亞論及彌賽亞的國度時，反覆強調『公義』作為這位君王統治的核心特質，麥基洗德的名字，因此成為此後彌賽亞『公義之王』這一稱號最早的舊約預表痕跡之一。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">שָׁלֵם</span>
+        <div class="word-transliteration">Shalem · 撒冷 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「平安、完全」，此後多數學者認為，撒冷正是耶路撒冷最早的名稱，這個地名與『平安』（shalom）一字有著密切的字源關聯。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">撒冷這個地名，此後成為耶路撒冷——這座在整本聖經救贖歷史中佔據核心地位之城市——最早的名稱，麥基洗德作為這座『平安之城』最早記載的君王，這個身分本身，也為此後彌賽亞被稱為『平安的君』（賽 9:6）這一稱號，提供了深遠的舊約歷史根源。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">基督的祭司職分超越並取代了利未支派世襲的祭司體制</div>
+      <div class="theology-insight-body">希伯來書透過麥基洗德的敘事，具體論證基督的祭司職分，並非依循利未支派那種倚賴血緣家譜、且會因死亡而世代更替的體制，而是一種更為古老、也更為永恆、不受人的世系傳承所限定的祭司職分。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">聖經簡短敘事中的文本特徵可能承載深遠的神學預表意涵</div>
+      <div class="theology-insight-body">希伯來書對麥基洗德『無族譜記載』這一文本特徵的深刻詮釋，提醒我們，聖經中看似材料稀少、甚至只是敘事空白的段落，依然可能透過整本聖經的脈絡，被賦予深遠的神學意涵。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">君王與祭司職分在麥基洗德身上的結合預示了彌賽亞的雙重身分</div>
+      <div class="theology-insight-body">麥基洗德同時身兼撒冷王與至高神祭司的雙重身分，這種在以色列此後歷史中極為罕見的結合，預示著彌賽亞將同時承擔君王與祭司的雙重職分，成就一種超越以色列既有宗教政治體制的獨特身分。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">麥基洗德同時身兼『王』與『祭司』兩種身分，帶著餅和酒祝福亞伯拉罕，且聖經對他的家譜與生死完全沒有記載</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這種『君王兼祭司』的獨特身分結合、以及『無族譜、無生死記載』所暗示的永恆性，成為舊約中預表基督永恆祭司職分與君王身分最重要、也最完整的預表人物</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">希伯來書明確宣告基督是「照著麥基洗德的等次成了永遠的大祭司」，祂同時是天上的君王與代求的大祭司，完全應驗並超越了麥基洗德所預表的這一獨特身分（來 6:20, 7:1–3, 24–25）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正經歷一場屬靈或人生的重大得勝，卻不確定該如何將這份得勝歸功於神——麥基洗德帶著餅和酒迎接亞伯拉罕的畫面，是一則溫柔的提醒。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">麥基洗德的故事命中的是每一個此刻正經歷某種屬靈或人生的重大得勝或突破，卻可能在得勝的喜悅中，忘記將這份成就歸功於神、並以具體的方式表達感恩的人。亞伯拉罕在得勝歸來之際，接受麥基洗德的祝福，並主動獻上十分之一，這個具體的行動，提醒我們，在經歷神所賜下的得勝與祝福之後，以具體的方式向神表達感恩與敬拜，是何等重要而合宜的回應。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你此刻是否正經歷某種屬靈或人生的重大得勝或突破？亞伯拉罕在得勝後接受麥基洗德的祝福、並獻上十分之一的具體回應，對你此刻的處境，帶來什麼樣的提醒？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">麥基洗德的名字『公義的王』與『撒冷』（平安），共同指向此後彌賽亞的核心特質。你在自己的生命中，是否也在追求並活出公義與平安並存的品格？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">希伯來書從麥基洗德『無族譜記載』這一看似空白的文本特徵中，發掘出深遠的神學意涵。這對你理解自己生命中某些看似『空白』或『不完整』的經歷，是否也能蘊藏著超乎表面所見的深刻意義，帶來什麼樣的啟發？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 麥基洗德</span>
+        <div class="gen-title">示範劇本：以君王兼祭司的獨特身分，帶著餅和酒祝福得勝歸來的亞伯拉罕</div>
+        <div class="gen-body">他以撒冷王與至高神祭司的雙重身分，主動迎接並祝福亞伯拉罕，這段簡短卻深具意義的相遇，此後成為理解彌賽亞永恆祭司職分最重要的舊約預表。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 耶穌基督</span>
+        <div class="gen-title">延續：麥基洗德所預表的君王兼祭司身分，最終在基督身上得到完整的成就</div>
+        <div class="gen-body">希伯來書明確宣告，耶穌基督正是『照著麥基洗德的等次』永遠為祭司，同時承擔君王與大祭司的雙重身分，成就了麥基洗德這段簡短卻深具意義之敘事，所預示的完整救贖真理。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在麥基洗德的故事中，展現在神透過一段極其簡短的舊約記載，預先埋下了理解基督永恆祭司職分最重要的神學線索；也展現在，亞伯拉罕願意在得勝之後，謙卑地接受祝福並獻上十分之一，這份具體的感恩回應，成為此後歷代信徒在經歷神的恩典後，應當效法的敬拜典範。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位只出現兩節經文、卻成為理解基督祭司身分最重要鑰匙的神秘君王，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#得勝之後記得感恩</span>
+      <span class="tag">#簡短的記載也可能藏著深意</span>
+      <span class="tag">#君王與祭司身分的預表</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>麥基洗德這個人物，在聖經裡出現的篇幅短到有點不可思議——就只有創世記十四章的兩節經文。亞伯拉罕打贏了一場仗，救回了姪兒羅得，正在回程的路上，撒冷王麥基洗德帶著餅和酒出來迎接他。</p>
+      <p>特別的是，聖經同時說他是『撒冷王』，又說『他是至高神的祭司』——同一個人，既是君王，又是祭司。這在當時是很罕見的身分組合。他為亞伯拉罕祝福，亞伯拉罕也回應地把所得的十分之一給了他。</p>
+      <p>就這樣，故事結束了。這個人再也沒有出現在創世記裡。</p>
+      <p>但故事沒有真的結束。詩篇一百一十篇提到一句話：你是照著麥基洗德的等次永遠為祭司。這句話幾百年後，被希伯來書的作者拿來大做文章——他特別指出，聖經沒有記載麥基洗德的父母是誰、家譜是什麼、什麼時候出生、什麼時候死亡。這種『沒有記載』，被解讀成一種象徵：這暗示著一種超越血緣傳承、永恆不變的祭司身分。</p>
+      <p>希伯來書最後的結論是：耶穌基督，就是那位『照著麥基洗德的等次』永遠為祭司的那一位——不像利未支派的祭司會死去、需要世代交替，耶穌是永遠活著，永遠代替我們祈求。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——麥基洗德這塊石頭，雖然只被雕刻了短短兩筆，卻在千年後，被希伯來書的作者，看出了指向永恆的形狀。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你此刻正經歷一場得勝或突破——別忘了像亞伯拉罕一樣，把這份得勝，具體地獻上感恩。</p>
+      <p style="margin-top:12px;">有時候，一段簡短、甚至看似『沒說什麼』的記載，可能藏著比表面更深的意義。別急著跳過那些『空白』的部分。</p>
+      <p style="margin-top:12px;">麥基洗德的名字是『公義的王』，他所在的城市叫『撒冷』（平安）。公義與平安，是耶穌基督國度最核心的兩個特質，值得我們也在自己的生活裡，一起追求。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果你正經歷得勝——記得帶著感恩，回應那位賜下得勝的神。</p>
+    </div>
+
+    <div class="insight-box">麥基洗德的故事，持續是系統神學與釋經學課程中，最常被用以說明『舊約預表法』（typology）這一釋經方法的經典教材——他極簡卻極富深意的敘事，示範了如何從舊約簡短的文本中，發掘出指向基督的深刻神學意涵。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他雖只在聖經中留下短短兩節經文的記載，卻成為理解基督永恆祭司職分最重要的舊約預表人物，留下了聖經中『簡短卻深遠』最經典的敘事典範。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">基督永恆祭司職分最重要的舊約預表</div>
+          <div class="legacy-body">希伯來書大幅引申他的敘事，用以說明基督的祭司職分超越並取代利未支派世襲的祭司體制，成為理解基督大祭司身分最重要的舊約根基。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">君王兼祭司雙重身分的最早聖經典範</div>
+          <div class="legacy-body">他同時身兼撒冷王與至高神祭司的獨特身分結合，成為舊約中預示彌賽亞將同時承擔君王與祭司雙重職分最早、也最重要的典範。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">什一奉獻屬靈實踐的重要舊約根源</div>
+          <div class="legacy-body">亞伯拉罕向他獻上十分之一的記載，成為此後理解什一奉獻這一屬靈實踐傳統，最重要的舊約歷史根源之一。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">撒冷（耶路撒冷）作為『平安之城』最早的歷史記載</div>
+          <div class="legacy-body">他作為撒冷這座此後成為耶路撒冷之城市最早記載的君王，這個身分，也為此後彌賽亞被稱為『平安的君』提供了深遠的歷史與神學根源。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「無父，無母，無族譜，無生之始，無命之終，乃是與神的兒子相似，為祭司是永遠的。」</div>
+      <div class="final-verse-ref">希伯來書 7:3</div>
+    </div>
+
+    <div class="final-question">如果你此刻正經歷神所賜下的得勝或恩典——你願不願意像亞伯拉罕一樣，以具體的行動，向神獻上感恩與敬拜？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 麥基洗德 <span>מַלְכִּי־צֶדֶק</span> · 撒冷王 · 至高神的祭司 · 為亞伯拉罕祝福並收取十分之一者</div>
+
+</body>
+</html>

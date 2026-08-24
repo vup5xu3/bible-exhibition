@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>埃塞俄比亞太監 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">埃塞俄比亞太監</h1>
+  <span class="hero-name-en">The Ethiopian Eunuch · εὐνοῦχος Αἰθίοψ</span>
+  <p class="hero-slogan">「太監說：「若沒有人指教我，怎能明白呢？」於是請腓利上車，與他同坐。……太監說：「看哪，這裡有水，我受洗有什麼妨礙呢？」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">約主後30年代（初代教會宣教初期）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">INFJ · 提倡者型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">使徒行傳 8:26–40</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">埃塞俄比亞女王干大基的財庫總管 · 因腓利傳福音而受洗的外邦信徒</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他是一位掌管埃塞俄比亞女王全部財庫的高階官員，卻甘願不辭千里跋涉，前往耶路撒冷敬拜——這份對神的渴慕，最終在曠野的路上，透過一位受聖靈引導的傳道人，得到了完整的解答。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">約主後30年代，初代教會宣教初期</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">埃塞俄比亞女王干大基（Candace）手下的太監，掌管全部銀庫的大臣</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">埃塞俄比亞，此後前往耶路撒冷敬拜、於返程途中遇見腓利</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">聖經未記載其家庭成員</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">徒 8:26–40</div>
+      </div>
+    </div>
+
+    <p>這位太監的身分，在使徒行傳中被清楚地介紹：他是『埃塞俄比亞女王干大基的大臣，掌管全國的銀庫』——這意味著他在埃塞俄比亞王國中，擔任著極高的行政與財政職位。作為一名太監，他按照猶太律法（申命記23章）本應被禁止完全進入聖殿敬拜的核心區域，然而他仍然不辭千里，長途跋涉來到耶路撒冷敬拜——這份對神真摯而堅持的渴慕，即使面對宗教體制上可能存在的隔閡與限制，依然驅使他甘願付上長途跋涉的代價。</p>
+    <p>他生命最關鍵的轉折，發生在他敬拜完畢、乘車返回埃塞俄比亞的路上——他正坐在車上誦讀先知以賽亞書，恰逢天使指示腓利前往迦薩曠野的路上，聖靈隨即吩咐腓利：『你去貼近那車走。』腓利聽見太監所念的，正是以賽亞書第五十三章關於受苦僕人的經文：『他像羊被牽到宰殺之地，又像羊羔在剪毛的人手下無聲……』太監誠懇地問腓利：『請問，先知說這話是指著誰？是指著自己呢？是指著別人呢？』並坦承『若沒有人指教我，怎能明白呢』——這份謙卑求教的態度，成為腓利得以『從這經上起，對他傳講耶穌』的直接契機。腓利向他完整地講解了這段經文如何指向耶穌基督的受死與救贖，兩人正往前走，來到一處有水的地方，太監主動提出：『看哪，這裡有水，我受洗有什麼妨礙呢？』他隨即吩咐停車，與腓利一同下到水裡，腓利就給他施洗。使徒行傳以一句充滿盼望的話語，結束了這段記載：『太監……就歡歡喜喜地走路。』</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從千里跋涉前往耶路撒冷敬拜、卻在返程路上讀經不明白的求道者，到腓利受聖靈引導講解經文後主動受洗、歡歡喜喜上路的信徒——這段簡短卻完整的敘事，是使徒行傳中對『福音如何跨越地理與身分界限』刻畫得最精煉動人的見證之一。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">千里跋涉前往耶路撒冷敬拜——「上耶路撒冷禮拜去了」</div>
+        <div class="timeline-body">這位埃塞俄比亞太監不辭長途跋涉，前往耶路撒冷敬拜，即使按猶太律法，太監的身分可能使他無法完全進入聖殿核心區域敬拜，他依然堅持前往，展現出對神真摯的渴慕。</div>
+        <div class="timeline-ref">徒 8:27</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">腓利奉聖靈指示前來——「你去貼近那車走」</div>
+        <div class="timeline-body">太監在返程途中誦讀以賽亞書卻不明白其意，恰逢天使與聖靈指示腓利前來接近他的車輛，這個精密的時機安排，展現出神在幕後對這場相遇的具體引導。</div>
+        <div class="timeline-ref">徒 8:26, 29</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">謙卑求教與腓利的講解——「若沒有人指教我，怎能明白呢」</div>
+        <div class="timeline-body">太監誠懇地邀請腓利上車與他同坐，並謙卑承認自己需要有人指教才能明白經文的意思，腓利便『從這經上起，對他傳講耶穌』，完整地講解了以賽亞書受苦僕人的經文如何應驗在耶穌基督身上。</div>
+        <div class="timeline-ref">徒 8:30–35</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">曠野水邊受洗，歡歡喜喜上路——「就歡歡喜喜地走路」</div>
+        <div class="timeline-body">太監在明白福音後，主動提出在路旁的水邊受洗，腓利便為他施洗，此後聖靈把腓利提去，太監卻不再尋找他，而是『歡歡喜喜地走路』，帶著這份新得的信仰，返回埃塞俄比亞。</div>
+        <div class="timeline-ref">徒 8:36–39</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他是一位在世俗地位上位居高階、卻在屬靈追求上展現出極度謙卑的求道者——他毫不掩飾自己的無知，並在明白真理後，立即以具體的行動（受洗）回應這份新得的信心。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">對神懷抱真摯而堅持的渴慕，即使面對宗教體制上可能存在的隔閡也不輕言放棄</div>
+          <div class="soul-body">他不辭千里跋涉前往耶路撒冷敬拜，即使太監的身分可能使他在聖殿中無法完全進入敬拜核心，這份對神真摯的渴慕，驅使他依然堅持前往。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">在屬靈追求上展現出毫不掩飾的謙卑，坦然承認自己的無知並主動尋求指教</div>
+          <div class="soul-body">面對腓利的詢問，他沒有選擇因自己的身分地位而故作明白，而是誠懇地承認『若沒有人指教我，怎能明白呢』，這種毫無身段的謙卑求教態度，是他性格中最動人的美德。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">一旦明白真理，便立即以具體而果斷的行動回應，毫不拖延</div>
+          <div class="soul-body">他在腓利講解完福音後，立即主動提出受洗的請求，沒有絲毫的猶豫或拖延，這種將領悟到的真理立刻轉化為具體行動的果斷，展現出他一貫的行事風格。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">（材料有限——聖經對他個人的過犯或掙扎著墨極少，這段簡短卻完整的敘事，主要聚焦於他求道與信主的正面歷程）</div>
+          <div class="soul-body">使徒行傳對這位太監的記載相對簡短卻極為正面，未見任何負面的性格描寫，這段敘事的重點，明顯聚焦於福音如何跨越身分與地理界限，臨到一位真誠的求道者。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">神精密地安排了腓利與他相遇的具體時機與地點，展現出祂對個別靈魂之渴慕的細緻眷顧</div>
+          <div class="soul-body">這場相遇的發生，經過天使的指示、聖靈的引導、以及太監恰好在此刻誦讀以賽亞書相關經文的巧合安排，共同展現出神對這位遠道而來、真誠尋求祂的外邦人，所給予極其細緻而個人化的眷顧。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">這位埃塞俄比亞太監的故事，是使徒行傳中對『福音如何超越地理、種族、身分地位、乃至宗教體制隔閡，臨到每一位真誠尋求神的人』刻畫得最精煉而動人的敘事之一。他身為太監，按照猶太律法的字面規定，本應在聖殿敬拜上面臨限制與隔閡（申命記二十三章明確將太監排除在會眾之外）；他來自埃塞俄比亞，是猶太人眼中典型的『外邦人』；他身居高位，卻在屬靈追求上，展現出毫不掩飾的謙卑無知——這幾重看似會構成阻隔的身分特質，卻絲毫沒有攔阻他對神真摯的渴慕，也沒有攔阻神差派腓利、精密地安排這場相遇，向他傳講完整的福音。這位太監得以受洗信主的完整歷程，某種程度上，成為使徒行傳中『福音向外邦人與被邊緣化群體開放』這一重要神學主題最早、也最具體的敘事見證之一——它發生在使徒行傳第八章，早於此後彼得與哥尼流相遇（第十章）這一常被視為『外邦宣教正式開端』的著名事件。這位太監的故事提醒我們，真誠的渴慕與謙卑的求教態度，能夠打破任何看似存在的身分或體制隔閡，迎向神為每一個尋求祂之人所預備的完整真理。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">INFJ</span>
+      <div class="mbti-name">提倡者型 · 曠野路上的求道者</div>
+      <div class="mbti-slogan">「他讀著先知書卻讀不懂，卻誠實地說：若沒有人指教我，怎能明白呢——這句誠實，換來了完整的福音。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">他能敏銳地感知到以賽亞書經文背後所指向的更深層意義，即使自己尚未能完全理解，仍然持續地探究這段經文『是指著誰』，這種對深層意義的持續探求，正是主導內向直覺的展現。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Fe · 外向情感</span>
+          <div class="mbti-fn-body">他真誠地邀請腓利上車同坐、謙卑地尋求指教，並在明白真理後立即以歡喜的心情回應，展現出對人際互動與屬靈連結的高度重視。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ti · 內向思考</span>
+          <div class="mbti-fn-body">他具體地向腓利提出經文究竟『是指著自己呢？是指著別人呢』這樣精確而有邏輯的問題，顯示出他對釐清具體真理內容的重視。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Se · 外向實感</span>
+          <div class="mbti-fn-body">（材料有限——聖經對他在具體行動層面的性格特質著墨較少，然而他一旦明白真理便立即受洗的具體行動，也展現出他並非完全缺乏具體行動力，僅是這方面的材料相對簡略）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最重要的一次相遇，是與那位奉聖靈指示、在曠野的路上恰好接近他馬車的傳道人腓利——這場看似偶然的相遇，成就了他生命中最深刻的轉化。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">腓</div>
+          <div class="relation-name">腓利</div>
+          <div class="relation-type-badge">奉聖靈指示前來、向他講解福音的傳道人</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">腓利奉天使與聖靈的指示，主動接近太監的車輛，從以賽亞書的經文開始，向他完整地講解了福音如何應驗在耶穌基督身上，並在他表明信心後，親自為他施洗。</div>
+          <div class="relation-ref">徒 8:26–38</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">干</div>
+          <div class="relation-name">埃塞俄比亞女王干大基</div>
+          <div class="relation-type-badge">他所服事的女王</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">這位太監是干大基女王手下掌管全國銀庫的大臣，這個身分顯示出他在埃塞俄比亞王國中位居極高的行政地位，然而這份世俗的尊榮，並未攔阻他對屬靈真理的謙卑渴慕。</div>
+          <div class="relation-ref">徒 8:27</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「若沒有人指教我，怎能明白呢」——這句誠實而謙卑的話語，成為聖經中對『真理的領受需要謙卑求教的心』最動人的示範之一。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「太監說：「看哪，這裡有水，我受洗有什麼妨礙呢？」……於是二人同下水裡去，腓利就給他施洗。」</div>
+      <div class="verse-ref">使徒行傳 8:36, 38</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">εὐνοῦχος</span>
+        <div class="word-transliteration">eunouchos · 太監 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「太監、閹人」，古代近東與地中海世界宮廷中常見的官職身分。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這個身分在猶太律法傳統中，可能使他在聖殿敬拜上面臨某種形式的限制，然而先知以賽亞書曾預言：『因為耶和華如此說：那些謹守我的安息日……持守我約的太監，我必使他們在我殿中，在我牆內，有記念，有名號……我必賜他們永遠的名，不能剪除』（賽 56:3–5）——這位太監此後蒙福音接納並受洗的經歷，某種程度上，正是這則古老預言得以應驗的具體見證。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">τί κωλύει</span>
+        <div class="word-transliteration">ti koluei · 有什麼妨礙 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「有什麼阻礙、有什麼攔阻」，太監用這個問句，主動表達自己渴望受洗、且不認為存在任何應當攔阻他的理由。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這句反問，展現出太監在明白福音後，內心毫無保留、渴望立即以具體行動回應的迫切心情，此後使徒行傳同樣使用類似的問句結構（如彼得論及哥尼流時說『誰能禁止用水給他們施洗呢』），顯示這句反問，成為初代教會理解『福音的接納不應被任何人為的身分或條件所攔阻』這一重要主題的關鍵語言模式。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">福音超越身分地位、種族、以及宗教體制上可能存在的隔閡</div>
+      <div class="theology-insight-body">這位太監身為外邦人、且可能因太監身分在猶太律法傳統中面臨敬拜限制，卻依然被神精心引導、完整地領受福音並受洗——這確立了使徒行傳中一個重要的神學主題：福音的恩典，從不受限於任何人為劃定的身分或體制界限。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">謙卑求教的態度是領受真理不可或缺的心志</div>
+      <div class="theology-insight-body">太監誠實地承認『若沒有人指教我，怎能明白呢』，這提醒我們，無論一個人在世俗地位上多麼尊貴，真正領受屬靈真理，都需要一顆願意謙卑求教、承認自己有限的心。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">明白真理後應當立即以具體行動回應而非停留在知識層面</div>
+      <div class="theology-insight-body">太監在明白福音後，立即主動提出受洗的請求，這提醒我們，真正的信心，最終需要透過具體的行動（如受洗）來回應與確認，而非僅止於知識層面的理解與認同。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">太監誦讀以賽亞書第五十三章關於受苦僕人的經文卻不明白其意，直到腓利『從這經上起，對他傳講耶穌』，他才恍然明白這段古老的預言，正指向耶穌基督的受死與救贖</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這個場景本身，成為新約詮釋學中『舊約如何指向並應驗於基督』這一核心解經原則最具體而生動的示範——舊約的預言文本，唯有透過認識耶穌基督，才能被完整而正確地理解</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">耶穌在復活後向以馬忤斯路上的兩個門徒，同樣『從摩西和眾先知起，凡經上所指著自己的話都給他們講解明白了』，這種『以基督為鑰匙解開舊約』的解經模式，與腓利向太監的講解方式完全一致（路 24:27）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正誠心尋求某個真理，卻感到困惑不解，甚至懷疑自己是否有資格得到解答——這位太監的故事，想告訴你，謙卑的求教，終將換來完整的答案。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">這位埃塞俄比亞太監的故事命中的是每一個此刻正誠心尋求某個真理或答案，卻感到困惑不解，甚至可能因自己的身分背景（宗教傳統的隔閡、社會地位、或個人處境）而懷疑自己是否『有資格』得到完整解答的人。他的故事提醒我們，真誠的渴慕與謙卑的求教態度，能夠打破任何看似存在的身分或體制隔閡——神看重的，不是我們的身分地位是否『恰當』，而是我們內心是否真誠地渴望認識祂，並謙卑地承認自己需要指教。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你此刻是否正誠心尋求某個真理或答案，卻感到困惑不解？這位太監誠實承認『若沒有人指教我，怎能明白呢』的態度，對你此刻的處境，帶來什麼樣的啟發？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">你是否曾因自己的身分背景（宗教傳統、社會地位、或個人處境），而懷疑自己是否『有資格』完整地領受某個屬靈真理或恩典？這位太監的故事，對這種懷疑，帶來什麼樣的挑戰？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">太監在明白福音後，立即主動提出受洗的請求，沒有絲毫拖延。你此刻是否也對某個已經明白的真理，遲遲未能付諸具體的行動回應？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 埃塞俄比亞太監</span>
+        <div class="gen-title">示範劇本：懷抱真誠的渴慕、謙卑求教，最終領受完整的福音並立即以行動回應</div>
+        <div class="gen-body">他不辭千里跋涉尋求敬拜，即使身分可能帶來隔閡，依然謙卑地向腓利求教，最終完整地領受福音，並立即主動要求受洗，歡歡喜喜地帶著這份新信心回到自己的國家。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 此後埃塞俄比亞的基督教會</span>
+        <div class="gen-title">延續：一次曠野中的相遇，可能開啟了福音向非洲大陸傳播的重要起點</div>
+        <div class="gen-body">教會傳統普遍認為，這位太監此後將福音帶回埃塞俄比亞，成為福音最早傳入非洲大陸的重要見證之一，一次看似偶然的曠野相遇，可能開啟了此後整個地區數百年信仰傳承的起點。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在這位太監的故事中，展現在神精密地安排腓利與他在曠野中相遇，親自為這位真誠尋求祂的外邦人，解開祂話語中最核心的奧祕；也展現在，神的恩典從不因太監的身分背景而有所保留，反而應驗了以賽亞書中『太監……必在我殿中有記念，有名號』這一古老的應許。這提醒我們，神的恩典何等寬廣，願意跨越任何人為劃定的界限，臨到每一位真誠尋求祂的人。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位在曠野路上讀經卻讀不懂、誠實求教而換來完整福音的太監，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#誠實承認不懂是求道的起點</span>
+      <span class="tag">#身分背景不是恩典的阻礙</span>
+      <span class="tag">#明白之後就立刻行動</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>這位太監，是埃塞俄比亞女王手下掌管全國財庫的大臣——放在現代，大概相當於財政部長這個等級的高官。他大老遠跑到耶路撒冷去敬拜，這趟旅程並不容易，而且照猶太律法的字面規定，太監的身分，可能讓他連聖殿的核心區域都進不去。</p>
+      <p>他敬拜完，坐車往回走，一邊看著先知以賽亞書的經文，一邊卻讀不懂。剛好，神差腓利去接近他的車。腓利聽到他在念的正是那段『他像羊被牽到宰殺之地』的經文，就問他：你明白你所念的嗎？</p>
+      <p>太監的回答很誠實，沒有半點高官的架子：若沒有人指教我，怎能明白呢？他還邀請腓利上車，跟他一起坐，問：這段話說的是先知自己，還是別人？</p>
+      <p>腓利就從這段經文開始，把耶穌的事，完整地講給他聽。兩人正走著，經過一處有水的地方，太監主動提出：這裡有水，我受洗有什麼妨礙呢？他一點都沒有猶豫，馬上停車，跟腓利一起下到水裡，受了洗。</p>
+      <p>使徒行傳最後用了一句很美的話結束這段故事：他就歡歡喜喜地走路。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——這位太監，帶著滿心的疑惑上路，卻在一段誠實的對話裡，被雕出了『歡歡喜喜』的形狀。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你此刻正讀著某段經文、或思考著某個人生問題，卻怎麼也想不通——別不好意思承認：若沒有人指教我，怎能明白呢。誠實地承認不懂，是求道最重要的第一步。</p>
+      <p style="margin-top:12px;">你的身分、背景、社會地位，從來不是攔阻你認識真理的理由。這位太監身居高位，卻依然謙卑求教。</p>
+      <p style="margin-top:12px;">一旦你明白了，別拖延——像太監一樣，立刻行動。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果你有什麼不懂的——誠實地問，然後，準備好立刻回應。</p>
+    </div>
+
+    <div class="insight-box">這位太監的故事，持續為當代討論『信仰的普世性』與『謙卑求教的重要性』這類議題，提供了聖經中最精煉動人的參照——他的故事提醒我們，無論一個人的社會地位、種族背景、或宗教傳統如何，真誠的渴慕與謙卑的求教，終將迎向完整的真理。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他從一位在曠野路上讀經卻不明白的求道者，成為歡歡喜喜受洗、可能將福音帶回非洲大陸的信徒，留下了聖經中『福音超越身分界限』最精煉動人的見證。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">福音向外邦人開放的早期見證</div>
+          <div class="legacy-body">他的受洗記載於使徒行傳第八章，早於此後彼得與哥尼流相遇這一常被視為外邦宣教正式開端的著名事件，成為福音向外邦人開放最早的具體歷史見證之一。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">以賽亞書太監得福應許的具體應驗</div>
+          <div class="legacy-body">先知以賽亞曾預言持守約的太監必在神的殿中有記念、有名號，這位太監蒙福音接納並受洗的經歷，成為這則古老應許得以應驗的重要具體見證。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">福音可能傳入非洲大陸的重要起點</div>
+          <div class="legacy-body">教會傳統普遍認為，這位太監此後將福音帶回埃塞俄比亞，可能成為基督信仰最早傳入非洲大陸的重要歷史起點之一。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">『謙卑求教換來完整真理』的經典敘事典範</div>
+          <div class="legacy-body">他誠實承認『若沒有人指教我，怎能明白呢』的態度，持續成為闡明謙卑求道之重要性時，被引用頻率最高的聖經例證之一。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「太監……就歡歡喜喜地走路。」</div>
+      <div class="final-verse-ref">使徒行傳 8:39</div>
+    </div>
+
+    <div class="final-question">如果你此刻正誠心尋求某個真理，卻感到困惑不解——你願不願意像這位太監一樣，謙卑地承認自己需要指教，並在明白之後，立即以具體的行動回應？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 埃塞俄比亞太監 <span>εὐνοῦχος Αἰθίοψ</span> · 埃塞俄比亞女王的總管 · 曠野中讀以賽亞書卻不明白的求道者</div>
+
+</body>
+</html>

@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>耶弗他 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">耶弗他</h1>
+  <span class="hero-name-en">Jephthah · יִפְתָּח</span>
+  <p class="hero-slogan">「耶弗他就向耶和華許願，說：「你若將亞捫人交在我手中，我從亞捫人那裡平平安安回來的時候，無論什麼人先從我家門出來迎接我，就必歸你，我也必將他獻上為燔祭。」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">約主前十一世紀（士師時代）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ESTP · 企業家型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">士師記 11–12 章 · 來 11:32</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">基列人 · 以色列士師 · 因魯莽誓言而失去獨生女的父親</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他因母親是妓女而被同父異母的兄弟驅逐出家門，淪落到匪類聚集的陀伯地——多年後，正是這群曾經拋棄他的家族長老，在亞捫人壓境的危機中，回頭來求他領兵作戰。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">約主前十一世紀，士師時代</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">基列人，妓女之子，此後成為以色列士師</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">基列，此後逃往陀伯地，領兵時活動於亞捫邊境</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">父基列；異母兄弟（驅逐他的人）；獨生女（因誓言而獻祭）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">士 11–12 章 · 來 11:32</div>
+      </div>
+    </div>
+
+    <p>耶弗他的出場，聖經直言不諱地記載他的出身背景：『基列生耶弗他，耶弗他是大能的勇士，是妓女的兒子。』基列的正妻所生的兒子們，因這層出身而排斥並驅逐他：『你不可承受我們父家的產業，因為你是別的女人生的兒子。』耶弗他因此逃往陀伯地，聖經記載『有些匪徒到耶弗他那裡聚集，與他一同出入』——他就這樣，從一個被家族拋棄的邊緣人，帶領著一群同樣被社會排斥的人，逐漸成為當地小有名氣、擅長作戰的頭目。命運的轉折發生在亞捫人向基列人宣戰之時——原本驅逐他的基列長老，此刻卻主動前來陀伯地，懇求耶弗他回來領兵作戰。耶弗他先是質問他們當年驅逐自己的舊帳，長老們則承諾若他願意領兵得勝，便立他作全基列的領袖，耶弗他這才答應歸回。</p>
+    <p>耶弗他在出戰亞捫人之前，曾先嘗試透過外交途徑與亞捫王談判，詳細陳明以色列人並未侵佔亞捫人的土地，然而亞捫王並未聽從。就在耶和華的靈降在耶弗他身上、他即將出戰之際，他向耶和華許下了一個此後帶來畢生悔恨的誓言：『你若將亞捫人交在我手中，我從亞捫人那裡平平安安回來的時候，無論什麼人先從我家門出來迎接我，就必歸你，我也必將他獻上為燔祭。』耶弗他此後大獲全勝，然而當他凱旋歸家時，第一個從家門出來、拿著鼓跳舞迎接他的，卻是他唯一的女兒——聖經記載耶弗他見她，『就撕裂衣服，說：哀哉！我的女兒啊，你使我甚是愁苦，叫我作難了；因為我已經向耶和華開口許願，不能挽回。』他的女兒展現出令人心碎的順服，只求父親准她與同伴上山，為自己終身未嫁哀哭兩個月，此後耶弗他便照所許的願向她行了——這段記載，此後成為以色列婦女每年紀念基列人耶弗他女兒的重要傳統。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從被兄弟驅逐、淪落匪類之地的私生子，到基列長老回頭求他領兵的士師，再到因魯莽誓言而痛失獨生女的父親——耶弗他的一生，是士師記中對『被邊緣化者的逆襲，卻也伴隨著自身悲劇性缺陷』刻畫得最複雜的敘事之一。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">被兄弟驅逐——「你不可承受我們父家的產業」</div>
+        <div class="timeline-body">耶弗他因是妓女所生而被同父異母的兄弟驅逐出家門，逃往陀伯地，與一群匪徒聚集出入，逐漸成為當地擅長作戰的頭目。</div>
+        <div class="timeline-ref">士 11:1–3</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">長老回頭求他領兵——「求你來作我們的元帥」</div>
+        <div class="timeline-body">亞捫人向基列宣戰，原本驅逐耶弗他的基列長老，此刻主動前來懇求他回來領兵作戰，並承諾若得勝便立他作全基列的領袖，耶弗他這才答應歸回。</div>
+        <div class="timeline-ref">士 11:4–11</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">魯莽的誓言——「無論什麼人先從我家門出來迎接我，就必歸你」</div>
+        <div class="timeline-body">耶弗他在耶和華的靈降在他身上、即將出戰亞捫人之際，許下了一個未經深思的誓言，承諾將戰後第一個從家門迎接他的人獻為燔祭——他此後大獲全勝，成功擊敗亞捫人。</div>
+        <div class="timeline-ref">士 11:29–33</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">獻上獨生女——「我已經向耶和華開口許願，不能挽回」</div>
+        <div class="timeline-body">耶弗他凱旋歸家，第一個出來迎接他的，卻是他唯一的女兒。他撕裂衣服哀慟，女兒卻順服地請求兩個月的哀哭期，此後耶弗他便照所許的願向她行了——這段記載成為以色列婦女每年紀念的傳統。</div>
+        <div class="timeline-ref">士 11:34–40</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他是一位從社會邊緣被召回、擔負起拯救整個群體之重任的士師，卻也因一個未經深思的誓言，親手為自己帶來了畢生無法挽回的悲劇。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">堅信透過戰功與具體的行動，能夠翻轉自己被家族排斥的命運</div>
+          <div class="soul-body">耶弗他從被驅逐的私生子，成長為擅長作戰的頭目，此後更成功地透過軍事才能，贏得基列長老的重新接納與領袖地位——這種堅信自己能透過具體成就扭轉命運的信念，貫穿了他人生前半段的軌跡。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">在出戰前展現出審慎的外交嘗試，並在戰後即使面對悲劇仍堅守自己誓言的誠信</div>
+          <div class="soul-body">耶弗他在正式開戰前，曾詳細地嘗試透過外交途徑與亞捫王理性談判，展現出他並非一味訴諸武力；此後面對自己誓言所帶來的悲劇性後果，他依然選擇履行誓言，而非違背自己對神所許的承諾。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">傾向以衝動而未經深思的方式，在關鍵時刻做出重大的承諾或誓言</div>
+          <div class="soul-body">耶弗他在出戰前所許下的誓言，明顯缺乏對『第一個出來迎接』這個情境可能涉及至親家人的審慎考量——這種在情緒高漲或壓力極大的時刻，未經深思熟慮便做出重大承諾的行事風格，是他性格中最致命的缺陷。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">許下一個未經深思、最終導致親手獻上獨生女的悲劇性誓言</div>
+          <div class="soul-body">耶弗他的誓言，本可以有更審慎的表達方式（例如僅限定牲畜，或設立可替代的條件），然而他選擇了『無論什麼人』這樣涵蓋範圍極廣、未經深思的措辭，最終為自己帶來了畢生無法挽回的悲劇。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">儘管他的誓言帶來悲劇，希伯來書仍將他列入信心偉人榜之中</div>
+          <div class="soul-body">儘管耶弗他因這則魯莽誓言而承受了畢生的悲劇，希伯來書十一章仍然將他與基甸、巴拉、參孫等士師一同列入信心偉人榜，這種評價上的並存，展現出聖經對複雜人物『因著信』的整體肯定，同時不迴避其個人抉擇所帶來的悲劇性後果。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">耶弗他的故事，是士師記中對『一個人如何在追求救贖與肯定的過程中，因自身未經審視的性格缺陷，親手為自己帶來悲劇』刻畫得最複雜、也最令人痛心的敘事之一。他前半生的軌跡，展現出一種令人振奮的逆襲——從被家族排斥、淪落匪類之地的邊緣人，透過具體的軍事才能與領導力，最終成為拯救整個基列的士師。然而正是在他人生最高光的時刻——即將出戰、渴望確保得勝——他做出了一個未經深思、卻具有毀滅性後果的決定：許下一個涵蓋範圍過廣、未曾設想具體後果的誓言。這個誓言的悲劇性，某種程度上，或許正根植於耶弗他自己早年被家族拋棄的創傷——他終其一生，都在試圖透過具體的成就與承諾，證明並確保自己的價值與地位，而這份急切，最終讓他在做出對神的承諾時，未能給予足夠的審慎思考。耶弗他的故事提醒我們，一個人早年的創傷經歷，即使此後帶來看似正面的成就與翻轉，若未能被真正療癒與整合，依然可能在未經察覺的情況下，導致此後生命中同樣具有毀滅性的行為模式。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ESTP</span>
+      <div class="mbti-name">企業家型 · 被驅逐後逆襲的士師</div>
+      <div class="mbti-slogan">「他從被家族拋棄的邊緣人，靠著自己的本事翻了身——卻在最風光的那一刻，親手許下了一個毀了自己女兒的願。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Se · 外向實感</span>
+          <div class="mbti-fn-body">他在被驅逐後，迅速適應陀伯地的具體生存處境，成長為擅長作戰的頭目，並在出戰前的緊要關頭，做出快速而直接的誓言承諾，這種聚焦當下具體行動、快速回應處境的方式，正是主導外向實感的典型展現。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Ti · 內向思考</span>
+          <div class="mbti-fn-body">他在出戰前，曾嘗試以邏輯清晰的方式向亞捫王陳述歷史事實與土地歸屬的具體論證，顯示出一定程度的理性分析能力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Fe · 外向情感</span>
+          <div class="mbti-fn-body">他面對女兒的悲劇性犧牲時，展現出強烈而真實的情感反應（撕裂衣服、哀慟），顯示出對至親情感狀態的真切關懷。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">他許下誓言時，未能充分預見『第一個出來迎接』這個情境極可能涉及至親家人的長遠後果，這種對深層可能性缺乏審慎洞察的疏漏，反映出劣勢內向直覺的特徵。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最深刻的兩段關係——與當年驅逐他、此後又回頭求助的兄弟長老，以及與那位因他魯莽誓言而犧牲的獨生女——共同構成了他生命中最複雜的悲喜交織。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">兄</div>
+          <div class="relation-name">驅逐他的兄弟們</div>
+          <div class="relation-type-badge">當年因他出身而將他趕出家門的異母兄弟</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">耶弗他的兄弟們因他是妓女所生而將他驅逐，然而在亞捫人壓境的危機中，正是基列的長老（可能包含這些兄弟）主動回頭來求他領兵——這段關係的反轉，展現出耶弗他生命前半段最戲劇性的翻轉。</div>
+          <div class="relation-ref">士 11:2, 7–11</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">女</div>
+          <div class="relation-name">耶弗他的女兒</div>
+          <div class="relation-type-badge">因他的誓言而犧牲的獨生女</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">她是第一個出來迎接凱旋歸來之父親的人，因此成為耶弗他魯莽誓言的犧牲者。她展現出令人心碎的順服，僅求兩個月的時間為自己終身未嫁哀哭，此後以色列婦女每年都紀念她。</div>
+          <div class="relation-ref">士 11:34–40</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「我已經向耶和華開口許願，不能挽回」——耶弗他這句話，成為聖經中對『言語的重量與後果需要何等審慎對待』最沉痛的警示之一。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「你們向耶和華許願，總要償還，不可遲延；因為耶和華你的神必定向你追討，你不償還就有罪。」</div>
+      <div class="verse-ref">申命記 23:21</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">נֶדֶר</span>
+        <div class="word-transliteration">neder · 誓願 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「誓言、許願」，在摩西律法中，向神所許的願被視為具有極其嚴肅而不可輕易撤銷的約束力。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">耶弗他的悲劇，正根植於他對『誓願』這件事所欠缺的審慎——摩西律法雖然要求誓願必須償還，卻也提供了贖回人身獻祭的具體條例（利未記二十七章），耶弗他若能更審慎地思考誓言的具體措辭與可能後果，這場悲劇原本或許可以避免。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">言語的承諾具有真實而嚴肅的約束力需要審慎對待</div>
+      <div class="theology-insight-body">耶弗他的悲劇，具體展現出未經審慎思考便許下的誓言或承諾，可能帶來何等深遠而無法挽回的後果——這提醒我們，在做出任何重大承諾之前，需要給予充分而審慎的考量。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">個人早年的創傷經歷可能未經察覺地影響此後重大的決策模式</div>
+      <div class="theology-insight-body">耶弗他因早年被家族拋棄的創傷，此後畢生急於透過具體成就證明自己的價值，這種未被療癒的心理動力，某種程度上，可能正是他在關鍵時刻做出魯莽誓言的深層根源。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">聖經對複雜人物的信心給予肯定卻不迴避其抉擇所帶來的悲劇性後果</div>
+      <div class="theology-insight-body">希伯來書將耶弗他列入信心偉人榜，卻也毫不迴避地完整記載了他因魯莽誓言而失去女兒的悲劇——這種評價方式，提醒我們，聖經對人物的記載，往往同時涵蓋肯定與警示這兩個層面。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">耶弗他許下一個他自己未曾預見具體後果、卻堅持履行到底的誓言，最終付出了失去獨生女的沉重代價</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這個悲劇性的敘事，此後成為聖經倫理傳統中，反覆強調『許願當謹慎、言語當審慎』這一智慧教導最重要的舊約警示案例</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">耶穌在登山寶訓中教導門徒「你們的話，是，就說是；不是，就說不是；若再多說，就是出於那惡者」，這正呼應著耶弗他式悲劇所帶來的深刻警示——言語應當審慎而誠實，而非輕率地做出難以承擔的承諾（太 5:37）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正因渴望證明自己的價值或確保某個結果，而考慮做出一個未經深思的重大承諾——耶弗他的故事，是一則鄭重而沉痛的警示。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">耶弗他的故事命中的是每一個此刻正因渴望證明自己的價值、確保某個渴望的結果、或處在情緒高漲的關鍵時刻，而考慮做出一個未經深思熟慮之重大承諾或誓言的人。他的悲劇提醒我們，言語與承諾具有真實而嚴肅的重量，未經審慎思考便做出的重大決定，即使動機出於渴望成就或保障某個美好的結果，依然可能帶來自己完全無法預見、也無法挽回的深遠代價。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你此刻是否正因渴望證明自己的價值或確保某個結果，而考慮做出一個未經深思的重大承諾？耶弗他的悲劇，對你此刻的處境，帶來什麼樣的警示？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">耶弗他早年被家族拋棄的創傷，某種程度上可能影響了他此後做出重大決策的方式。你是否也曾發現，自己某些看似衝動的決定，其實根植於某段未被療癒的過往創傷？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">耶弗他在履行誓言的悲劇性後果面前，依然選擇堅守自己對神的承諾。這對你理解『言語的重量需要在做出承諾之前、而非之後才審慎考量』，帶來什麼樣的提醒？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 耶弗他</span>
+        <div class="gen-title">示範劇本：從被驅逐的邊緣人逆襲成為士師，卻因未經深思的誓言而承受畢生無法挽回的悲劇</div>
+        <div class="gen-body">他透過軍事才能翻轉了自己被家族排斥的命運，成功拯救基列脫離亞捫人的威脅，卻因出戰前一個未經審慎思考的誓言，親手為自己帶來了失去獨生女的沉痛代價。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 耶弗他的女兒</span>
+        <div class="gen-title">延續：她順服的犧牲，成為以色列婦女世代紀念的傳統</div>
+        <div class="gen-body">耶弗他的女兒展現出令人心碎卻深具尊嚴的順服，此後以色列的女子每年都聚集哀哭，紀念這位基列人耶弗他的女兒——這段紀念傳統，某種程度上，使她的犧牲得到了群體性的悼念與記憶。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在耶弗他的故事中，展現得極為複雜而沉痛——儘管他的誓言帶來了無法挽回的悲劇，希伯來書仍將他列入信心偉人榜，肯定他因著信、拯救基列脫離仇敵的忠心事奉。這提醒我們，神對一個人整體生命的評價，可能同時涵蓋對其忠心的肯定，與對其軟弱抉擇所帶來之悲劇的誠實記載，而非簡化為單一的成功或失敗。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位被家族趕出去、靠自己拚出一片天卻又親手毀了女兒的士師，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#承諾之前先想清楚後果</span>
+      <span class="tag">#早年的創傷會影響你的決定</span>
+      <span class="tag">#言語的重量不能輕忽</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>耶弗他的出身，聖經寫得很直白——他是妓女生的孩子。同父異母的兄弟們看不起他，把他趕出家門：你不能繼承我們父親的產業，因為你媽是別的女人。耶弗他就逃到陀伯地，跟一群同樣被社會排斥的人混在一起，慢慢混出了名號，成了擅長打仗的頭目。</p>
+      <p>後來亞捫人打過來了，基列的長老們——很可能包括當年趕走他的那些人——跑去找耶弗他，求他回來領兵。耶弗他先質問他們：當初趕我走的時候，你們人呢？長老們保證：只要你打贏，你就是我們的領袖。耶弗他這才答應。</p>
+      <p>出戰之前，耶弗他做了一件讓自己後悔一輩子的事——他向耶和華許願：如果你讓我打贏亞捫人，我平安回家的時候，第一個從家門出來迎接我的，我就把他獻給你，當作燔祭。</p>
+      <p>他真的打贏了。凱旋回家，第一個從家門跑出來迎接他、還拿著鼓跳著舞的，是他唯一的女兒。耶弗他當場撕裂衣服，痛哭：哀哉！我的女兒，你讓我陷入了大難，因為我已經向耶和華開了口，不能挽回了。</p>
+      <p>他的女兒，展現出令人心碎的懂事——她只求了兩個月的時間，跟同伴上山，為自己終身未嫁哀哭。之後，耶弗他就照著自己許的願，做了這件事。這件事，此後成了以色列婦女每年都要紀念的傳統。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——耶弗他這塊石頭，被驅逐的傷痛雕出了逆襲的稜角，卻也在一句沒想清楚的誓言裡，留下了永遠無法磨平的裂痕。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你此刻正想做出一個重大的承諾或誓言，尤其是在情緒高漲、渴望確保某個結果的時刻——先停下來，想清楚所有可能的後果。耶弗他的悲劇，就是從一句沒想清楚的話開始的。</p>
+      <p style="margin-top:12px;">留意你早年的創傷，是不是還在悄悄影響你此刻的決定。耶弗他一輩子都在證明自己，這份急切，可能正是他許下魯莽誓言的深層原因。</p>
+      <p style="margin-top:12px;">言語有重量。說出口之前，多想一秒。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果你正要做出一個重大的承諾——先想清楚，再開口。</p>
+    </div>
+
+    <div class="insight-box">耶弗他的故事，持續為當代討論『衝動承諾的長遠代價』與『早年創傷如何影響成年後的決策模式』這兩個心理學課題，提供了聖經中最沉痛而深刻的參照案例。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他從被家族驅逐的邊緣人，逆襲成為拯救基列的士師，卻也因一句未經深思的誓言，留下了聖經中最令人痛心的警示故事之一。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">希伯來書信心偉人榜中被列名的士師</div>
+          <div class="legacy-body">儘管他的誓言帶來悲劇，希伯來書仍將他與其他士師一同列入信心偉人榜，肯定他因著信而拯救基列脫離仇敵的忠心事奉。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">『言語的重量需審慎對待』最沉痛的聖經警示</div>
+          <div class="legacy-body">他的悲劇持續為後世提供了『未經深思的承諾或誓言可能帶來無法挽回之後果』這一課題最具體而沉痛的例證。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">以色列婦女世代紀念傳統的起源</div>
+          <div class="legacy-body">他女兒順服的犧牲，此後成為以色列婦女每年聚集哀哭紀念的傳統，這段記載，也成為聖經中對女性犧牲給予群體性紀念的重要例證之一。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「此後以色列中有例，每年以色列的女子去為基列人耶弗他的女兒哀哭四天。」</div>
+      <div class="final-verse-ref">士師記 11:39–40</div>
+    </div>
+
+    <div class="final-question">如果你此刻正考慮做出一個未經深思的重大承諾——你願不願意先停下來，記取耶弗他的教訓，審慎地思考這個承諾可能帶來的全部後果？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 耶弗他 <span>יִפְתָּח</span> · 被兄弟驅逐的私生子 · 士師 · 因魯莽許願而失去女兒的父親</div>
+
+</body>
+</html>

@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>以利 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">以利</h1>
+  <span class="hero-name-en">Eli · עֵלִי</span>
+  <p class="hero-slogan">「耶和華對撒母耳說：「我在以色列中必行一件事，叫聽見的人都必耳鳴……因我告訴他，我必永遠降罰與他的家，因他知道兒子作孽，自招咒詛，卻不禁止他們。」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">約主前十一世紀（士師時代末期）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ISFP · 探險家型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">撒母耳記上 1–4 章</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">示羅的祭司 · 以色列士師 · 撒母耳幼年的導師</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他是撒母耳幼年最重要的屬靈導師，教會了這個孩子如何回應神的呼喚——然而他自己身為父親，卻在管教兩個作惡多端的兒子這件事上，留下了聖經中最沉痛的失職記載之一。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">約主前十一世紀，士師時代末期</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">示羅會幕的祭司，同時兼任以色列的士師</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">示羅</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">子何弗尼、非尼哈（兩人皆行惡，此後同日陣亡）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">撒上 1–4 章</div>
+      </div>
+    </div>
+
+    <p>以利在聖經中的登場，首先透過他與哈拿的一段互動呈現——哈拿在示羅會幕前痛哭禱告求子，因禱告時只動嘴唇卻不出聲，被以利誤認為酒醉，然而當哈拿澄清自己的處境後，以利隨即以祝福回應她：『願以色列的神允准你所求的。』這段互動，展現出以利作為祭司，具備基本的體恤與祝福他人的能力。此後，哈拿依照所許的願，將斷奶後的撒母耳交託給以利撫養、終身事奉耶和華——以利此後便成為撒母耳幼年最重要的屬靈導師，甚至在撒母耳夜間聽見神呼喚卻不明所以時，正是以利教導他如何正確回應：『你當回答說：耶和華啊，請說，僕人敬聽。』</p>
+    <p>然而聖經同樣毫不迴避地記載了以利作為父親最深刻的失職。他的兩個兒子何弗尼與非尼哈，同樣在示羅會幕中擔任祭司，卻『是惡人，不認識耶和華』——他們貪婪地奪取百姓獻祭的肉、甚至與在會幕門口伺候的婦人苟合，行為極其敗壞。以利雖然曾出言責備兩個兒子：『你們為何行這樣的事呢？我從這眾百姓聽見你們的惡行』，卻始終沒有採取任何具體有效的管教行動加以禁止——聖經直接指出，這正是耶和華定意要殺他們的原因。神因此差遣一位無名的神人前來，向以利宣告他的家族將遭受永遠的審判：『我必將你的膀臂和你父家的膀臂全都剪斷……我必為自己立一個忠心的祭司。』此後，耶和華在撒母耳夜間聽見的第一次呼召信息中，再度確認了這則審判：『因他知道兒子作孽，自招咒詛，卻不禁止他們。』這則審判最終在以色列與非利士人的戰役中應驗——何弗尼與非尼哈同日陣亡，神的約櫃更被非利士人擄走。當九十八歲、眼目昏花的以利聽聞約櫃被擄的消息時，『就從他的位上往後跌倒，在門旁折斷頸項而死』，結束了他漫長卻充滿遺憾的一生。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從祝福哈拿、教導年幼撒母耳的慈祥祭司，到明知兒子作惡卻未能真正禁止的失職父親，再到聽聞約櫃被擄而跌死的悲劇終局——以利的一生，是聖經中對『縱容的代價』刻畫得最沉痛的敘事之一。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">祝福哈拿與撫養撒母耳——「耶和華啊，請說，僕人敬聽」</div>
+        <div class="timeline-body">以利在示羅會幕祝福痛苦禱告求子的哈拿，此後接受哈拿將斷奶的撒母耳交託給他撫養事奉；當撒母耳夜間聽見神的呼喚卻不明所以時，正是以利教導他正確回應的方式。</div>
+        <div class="timeline-ref">撒上 1:12–18, 25–28, 3:1–9</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">明知兒子作惡卻未真正禁止——「他知道兒子作孽，卻不禁止他們」</div>
+        <div class="timeline-body">以利的兩個兒子何弗尼、非尼哈在會幕中行惡多端——貪奪祭肉、與伺候的婦人苟合，以利雖曾出言責備，卻始終沒有採取具體有效的管教行動加以禁止，神因此定意要殺他們。</div>
+        <div class="timeline-ref">撒上 2:12–25</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">神人與撒母耳先後宣告審判——「我必為自己立一個忠心的祭司」</div>
+        <div class="timeline-body">一位無名神人前來向以利宣告他家族將遭受永遠的審判；此後年幼的撒母耳在夜間首次領受神的呼召信息時，再度確認了這則針對以利家族的審判。</div>
+        <div class="timeline-ref">撒上 2:27–36, 3:11–14</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">約櫃被擄，以利跌死——「就從他的位上往後跌倒……折斷頸項而死」</div>
+        <div class="timeline-body">以色列與非利士人交戰，何弗尼、非尼哈同日陣亡，神的約櫃也被非利士人擄走。九十八歲、眼目昏花的以利在城門旁焦急等候消息，聽聞噩耗後仰面跌倒，折斷頸項而死，結束了他作以色列士師四十年的統治。</div>
+        <div class="timeline-ref">撒上 4:1–18</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他既是撒母耳幼年最重要的屬靈導師，也是聖經中對『縱容子女行惡卻未真正禁止』描寫得最直接、也最沉痛的父親形象——這種雙重呈現，使他的故事格外發人深省。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">在教導他人（撒母耳）的屬靈事務上展現出智慧，卻在管教自己親生兒子的具體行動上顯露出深刻的軟弱</div>
+          <div class="soul-body">以利能夠敏銳地辨識神向撒母耳說話的徵兆，並正確教導他該如何回應；然而面對自己兒子明顯而持續的惡行，他卻始終未能採取真正果斷有效的管教行動。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">對哈拿的體恤與對撒母耳的悉心栽培</div>
+          <div class="soul-body">他在誤會哈拿之後，願意聆聽她的解釋並給予祝福；此後也悉心教導年幼的撒母耳如何分辨並回應神的呼召，這份對他人（尤其是非親生兒女）的栽培之情，是他性格中值得肯定的一面。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">面對子女的過犯，傾向以言語責備取代具體而有效的管教行動</div>
+          <div class="soul-body">以利對兩個兒子的惡行，僅止於口頭上的責備質問，卻從未真正動用祭司或士師的權柄，採取足以制止他們惡行的具體措施——這種『知而不禁』的行事模式，正是神審判他家族的直接原因。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">明知兒子行惡卻未能真正禁止，這份縱容招致了神最嚴厲的家族審判</div>
+          <div class="soul-body">聖經明確指出，以利家族所遭受的永遠審判，其根源正是他『知道兒子作孽，卻不禁止他們』——這使他成為聖經中，因管教失職而承受最沉重後果的父親典範之一。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">他年邁時聽聞約櫃被擄消息而跌死的方式，與他一生對神聖之事（約櫃）所承擔的祭司職責，形成深刻而諷刺性的呼應</div>
+          <div class="soul-body">以利一生的職分，正是守護與神聖之約櫃相關的敬拜事務，然而他生命的終結，卻正是因為聽聞這神聖之約櫃落入敵人之手的消息而跌死——這個細節，賦予他的死亡一種格外沉痛而具有象徵意義的份量。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">以利的故事，是聖經中對『知道卻不行動的縱容，同樣是一種深刻的失職』刻畫得最直接、也最沉痛的敘事典範。他並非對兒子的惡行毫不知情或毫無反應——聖經明確記載他曾出言責備何弗尼與非尼哈，然而這份責備，始終停留在言語層面，從未轉化為真正足以制止他們惡行的具體行動。神對以利家族的審判，其根源正在於此：不是以利本人親自犯下何弗尼、非尼哈所犯的罪，而是他身為父親與祭司，明知兒子的惡行，卻未能運用自己的權柄與責任，真正加以禁止。這提醒我們，在承擔教養或帶領責任的位置上，『知道問題的存在』與『採取有效的行動加以糾正』之間，存在著決定性的差距——僅止於口頭的責備或表達不悅，若未能轉化為具體而堅定的行動，同樣可能招致深遠的後果。以利對撒母耳的悉心教導，與他對親生兒子的管教失職，形成了一組發人深省的對照，提醒我們，教導他人的智慧，未必自動延伸為管教至親的果決。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ISFP</span>
+      <div class="mbti-name">探險家型 · 知而不禁的祭司</div>
+      <div class="mbti-slogan">「他教會了撒母耳如何回應神的呼喚，卻沒能讓自己的兩個兒子，聽懂父親的責備。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">他對哈拿的體恤、對撒母耳的栽培，都展現出深刻而真摯的內在情感關懷，然而這份情感的柔軟，某種程度上，也可能是他面對兒子過犯時，遲遲無法採取強硬管教行動的部分原因。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Se · 外向實感</span>
+          <div class="mbti-fn-body">他能敏銳地辨識撒母耳夜間所經歷之呼召的具體徵兆，並給予切實可行的具體指導。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">他隱約意識到（或至少被神人與撒母耳明確告知）家族將面臨的長遠審判，卻未能將這份洞察，轉化為足以扭轉局勢的具體行動。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">他面對兒子明顯而持續的惡行，未能運用自己身為祭司與士師應有的具體權柄與紀律手段，採取有效的制止行動，這種在執行果斷管教措施上的明顯不足，反映出劣勢外向思考的特徵。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最深刻的兩種父子式關係——對撒母耳悉心的栽培，與對親生兒子失職的縱容——形成了聖經中最鮮明的教養對照之一。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">撒</div>
+          <div class="relation-name">撒母耳</div>
+          <div class="relation-type-badge">他悉心栽培的養子與繼承其屬靈遺產者</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">以利悉心教導年幼的撒母耳如何分辨並回應神的呼召，撒母耳此後成為以色列末代士師與重要先知——某種程度上，撒母耳的屬靈成就，延續了以利對他悉心栽培的正面遺產。</div>
+          <div class="relation-ref">撒上 3:1–10</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">何</div>
+          <div class="relation-name">何弗尼與非尼哈</div>
+          <div class="relation-type-badge">他明知作惡卻未真正禁止的兩個親生兒子</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">這兩個兒子在會幕中行惡多端，以利雖曾責備卻未能真正禁止，兩人最終在與非利士人的戰役中同日陣亡，成為以利家族審判應驗最直接的具體事件。</div>
+          <div class="relation-ref">撒上 2:12–17, 22–25, 4:11</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">哈</div>
+          <div class="relation-name">哈拿</div>
+          <div class="relation-type-badge">他曾誤會、此後給予祝福的敬虔婦人</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">以利起初誤認哈拿禱告的姿態為酒醉，在澄清後給予她真誠的祝福，這段互動展現出以利性格中體恤與願意聆聽的一面，也促成了此後撒母耳被交託給他撫養的重要安排。</div>
+          <div class="relation-ref">撒上 1:12–18</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「他知道兒子作孽，自招咒詛，卻不禁止他們」——這句對以利的審判宣告，成為聖經中對『知而不行的縱容同樣是嚴重過犯』最直接的神學宣告之一。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「我曾告訴他必永遠降罰與他的家，因他知道兒子作孽，自招咒詛，卻不禁止他們。」</div>
+      <div class="verse-ref">撒母耳記上 3:13</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">כִּהָה</span>
+        <div class="word-transliteration">kihah · 責備而不加禁止 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「（僅止於）責備、斥責」，而未達到『禁止、制止』（עָצַר, atsar）的程度——這兩個字在原文中的差異，精確地指出以利的失職所在。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">希伯來原文清楚區分了『責備』與『真正禁止』這兩種不同層次的管教行動，神對以利的審判，正是因為他僅僅停留在言語責備的層面，卻未能採取足以真正制止兒子惡行的具體行動——這個文字上的細微差異，深刻揭示了『知道問題』與『有效解決問題』之間的重大落差。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">言語上的責備若未轉化為具體行動仍可能構成失職</div>
+      <div class="theology-insight-body">以利並非對兒子的惡行毫無反應，然而神仍然嚴厲地審判他，這確立了聖經中一個重要原則：承擔教養或帶領責任的人，僅止於口頭表達不悅或責備，而未能採取真正有效的具體行動加以糾正，同樣可能構成嚴重的失職。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">屬靈導師的角色與親生父母的管教責任是兩種需要分別盡責的功課</div>
+      <div class="theology-insight-body">以利在栽培撒母耳這位非親生的孩子時展現出智慧與果效，卻在管教自己親生兒子時明顯失職——這提醒我們，一個人在某個角色上的成功，不能替代他在另一個角色（尤其是對至親的責任）上應盡的努力。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">群體性的審判可能因個別領袖的失職而波及整個群體</div>
+      <div class="theology-insight-body">以利家族的審判，不僅止於何弗尼與非尼哈個人的死亡，更影響了整個以色列（約櫃被擄）——這提醒我們，居於領導或教導地位之人的失職，其後果往往超越個人層面，波及整個所託付的群體。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">以利明知兩個兒子在會幕中行惡多端，卻僅止於言語責備而未能真正禁止，最終導致整個家族遭受永遠的審判，甚至波及約櫃被擄的群體性災難</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這則敘事此後成為新約教牧書信中，論及教會監督與長老資格時，特別強調『好好管理自己的家』這一具體要求的重要舊約背景與警示</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">保羅在提摩太前書中明確要求監督必須『好好管理自己的家，使兒女凡事端莊順服……人若不知道管理自己的家，焉能照管神的教會呢』，這正是對以利式失職最直接的神學回應與提醒（提前 3:4–5）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻明知身邊某個至親正在做出錯誤或有害的選擇，卻僅止於口頭表達不悅、未曾真正採取行動——以利的故事，是一則鄭重而誠實的警示。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">以利的故事命中的是每一個此刻明知身邊某個至親（子女、家人）正在做出錯誤或有害的選擇，卻因種種原因（不忍心、缺乏勇氣、或單純的疲憊），僅止於口頭表達不悅、卻未曾真正採取具體行動加以糾正的人。他的故事提醒我們，承擔教養或帶領責任，需要的不僅是『知道問題的存在』或『表達自己的不贊同』，更需要付上具體而堅定的行動，才能真正承擔起這份責任應有的果效。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你此刻是否明知身邊某個至親正在做出錯誤或有害的選擇，卻僅止於口頭上的責備或表達不悅，而未曾採取真正具體的行動？以利的故事，對你此刻的處境，帶來什麼樣的警示？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">以利在栽培撒母耳這位非親生的孩子時展現出智慧，卻在管教親生兒子時明顯失職。你是否也曾發現，自己在某個角色（工作、對外的表現）上做得很好，卻在對待至親時，反而更難拿出同樣的堅定與果決？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">神對以利的審判，波及了整個以色列群體（約櫃被擄）。這對你理解『居於領導或教導地位之人的失職，其後果可能超越個人層面』，帶來什麼樣的提醒？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 以利</span>
+        <div class="gen-title">示範劇本：僅止於言語責備、卻未能真正禁止兒子的惡行，最終招致家族的永遠審判</div>
+        <div class="gen-body">他明知兩個兒子在會幕中行惡多端，卻始終沒有採取足以真正制止他們的具體管教行動，這份縱容，最終招致神對他整個家族最嚴厲的審判。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 撒母耳（他悉心栽培的養子）</span>
+        <div class="gen-title">延續：以利正面的教導遺產，在撒母耳身上結出果實</div>
+        <div class="gen-body">撒母耳此後成為以色列末代士師與重要先知，某種程度上延續了以利悉心教導他如何分辨並回應神呼召的正面遺產，即使以利在管教親生兒子上明顯失職，他對撒母耳的栽培，仍然結出了美好的果實。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在以利的故事中，展現得極為複雜——儘管他的家族因失職而承受了嚴厲的審判，神仍然使用他悉心栽培的撒母耳，成為此後帶領以色列走過重要歷史轉折的關鍵先知。這提醒我們，即使一個人在某個重要責任上徹底失職，神的恩典計畫，仍能透過這個人生命中其他忠心的部分，繼續向前推展。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位教會撒母耳聆聽神、卻沒能讓自己兒子聽懂責備的祭司，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#責備不等於管教</span>
+      <span class="tag">#知道問題不等於解決問題</span>
+      <span class="tag">#教別人的孩子容易教自己的孩子難</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>以利是示羅會幕的祭司，也兼任以色列的士師。他這輩子做過一件很美的事——年幼的撒母耳半夜聽見有聲音叫他的名字，跑來找以利，以為是他叫的，反覆了三次，以利才反應過來：這是神在呼喚這個孩子。他教撒母耳：下次聽到，就回答『請說，僕人敬聽』。</p>
+      <p>但以利自己的兩個兒子，何弗尼跟非尼哈，同樣是會幕裡的祭司，卻壞到骨子裡——他們貪污百姓獻的祭肉，甚至在會幕門口跟婦女亂來。聖經直接說他們『是惡人，不認識耶和華』。</p>
+      <p>以利知道這些事，他也確實去責備了兒子：你們怎麼可以做這種事？我聽到百姓都在說你們的壞話。但責備完之後呢？沒有然後了。他沒有真正動用自己身為祭司、身為士師的權力，去真正制止他們。</p>
+      <p>神因此發出了審判——先是透過一位不知名的神人，後來又透過年幼的撒母耳，宣告以利全家要遭殃。原因寫得很清楚：他知道兒子作孽，卻不禁止他們。</p>
+      <p>後來以色列跟非利士人打仗，何弗尼、非尼哈同一天戰死，神的約櫃也被搶走了。九十八歲的以利，眼睛已經看不清楚，坐在城門邊等消息，聽到噩耗，直接從座位上往後倒，摔斷了脖子，死了。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——以利這塊石頭，教別人家的孩子那一面被雕得溫柔細膩，管教自己孩子那一面，卻始終沒有下刀。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你此刻明知身邊的某個至親正在做錯誤的選擇，而你只是嘴上唸了幾句——以利的故事想提醒你：責備，不等於管教。真正的管教，需要具體的行動。</p>
+      <p style="margin-top:12px;">留意一下，你是不是在工作上、對別人家的孩子，都表現得很有原則，卻在對自己家人的時候，特別容易心軟、特別難堅持？</p>
+      <p style="margin-top:12px;">拖延不解決的問題，很少會自己消失。以利的兒子，最終同一天戰死；他的失職，代價是全家族。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果你知道某件該糾正的事——別只是說說而已，付上真正的行動。</p>
+    </div>
+
+    <div class="insight-box">以利『知而不禁』的故事，持續為當代親職教育與領導力研究中，探討『縱容型教養或管理風格的長遠代價』這一課題，提供了聖經中最直接而深刻的參照案例。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他悉心栽培了撒母耳這位偉大的先知，卻也留下了聖經中對『知而不禁的縱容招致嚴重後果』刻畫得最沉痛的警示記載。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">撒母耳幼年最重要的屬靈導師</div>
+          <div class="legacy-body">他悉心教導年幼的撒母耳如何分辨並回應神的呼召，直接促成了撒母耳此後成為以色列末代士師與重要先知的屬靈成就。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">『知而不禁的縱容同樣是嚴重失職』最直接的警示典範</div>
+          <div class="legacy-body">神對他家族的審判，明確指出其根源在於『知道兒子作孽，卻不禁止他們』，這句宣告持續成為聖經中，闡明『言語責備若未轉化為具體行動仍構成失職』這一原則最直接的例證。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">新約教牧書信『好好管理自己的家』要求的重要舊約背景</div>
+          <div class="legacy-body">他的失職敘事，成為保羅在提摩太前書中，論及教會監督與長老資格時，特別強調管理自己家庭之重要性的關鍵舊約參照。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「以利……就從他的位上往後跌倒，在門旁折斷頸項而死；因為他年紀老邁，身體沉重。他作以色列的士師四十年。」</div>
+      <div class="final-verse-ref">撒母耳記上 4:18</div>
+    </div>
+
+    <div class="final-question">如果你此刻明知身邊某個至親正在做出錯誤或有害的選擇——你願不願意超越單純的口頭責備，付上真正具體而堅定的行動，去承擔起你應盡的責任？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 以利 <span>עֵלִי</span> · 示羅的祭司與士師 · 撒母耳的導師 · 縱容兒子而招致家族審判的父親</div>
+
+</body>
+</html>

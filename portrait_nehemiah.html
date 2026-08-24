@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>尼希米 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">尼希米</h1>
+  <span class="hero-name-en">Nehemiah · נְחֶמְיָה</span>
+  <p class="hero-slogan">「我對貴冑、官長，和其餘的人說：「這工程浩大，我們在城牆上，彼此相離甚遠。你們聽見角聲在哪裡，就聚集到我們那裡去。我們的神必為我們爭戰。」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">約主前445年（波斯王亞達薛西在位第二十年）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ESTJ · 總經理型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">尼希米記全書</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">波斯王亞達薛西的酒政 · 猶大省長 · 耶路撒冷城牆重建的領導者</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他在波斯帝國的宮廷中身居要職，享有王的信任與優渥的地位，卻因為一則關於故鄉城牆荒廢的消息，甘願放下這一切安穩，親自請旨歸回，投入一場看似不可能完成的重建工程。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">約主前445年，波斯王亞達薛西在位第二十年</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">波斯王的酒政（極受信任的宮廷要職），此後成為猶大省長</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">書珊城（波斯宮廷），此後歸回耶路撒冷</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">兄哈拿尼（帶回耶路撒冷荒涼消息的人）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">尼希米記全書</div>
+      </div>
+    </div>
+
+    <p>尼希米記開篇，記載尼希米的兄弟哈拿尼與幾個人從猶大來到書珊城，尼希米問起耶路撒冷倖存猶大人與那城的景況，得到的回答令人心碎：『那些倖存被擄歸回剩下的人，在猶大省遭大難、受凌辱；並且耶路撒冷的城牆拆毀，城門被火焚燒。』這道城牆自巴比倫毀城以來，已經荒廢近一百四十年之久，儘管所羅巴伯與以斯拉先後帶領百姓歸回、重建聖殿，這道保護全城安全與尊嚴的城牆，卻始終未能修復，使耶路撒冷長期暴露在外敵威脅與周遭列國的譏誚之中。尼希米聽聞這個消息，『就坐下哭泣，悲哀幾日，在天上的神面前禁食祈禱』——這段長達數月的禱告，展現出他對故土深沉而真實的負擔。</p>
+    <p>尼希米此後在服事波斯王的宴席上，被王注意到面帶愁容，坦誠地說明自己的哀傷源於祖墳所在的城荒廢、城門被焚——王竟主動詢問他有何請求，尼希米在心中默禱後，具體提出歸回重建城牆的請求，甚至進一步請王賜下詔書與所需的木料，亞達薛西王『照著我神施恩的手幫助我，就允准我所求的』。尼希米歸回耶路撒冷後，先是夜間騎驢巡視城牆的荒廢景況，隨即動員全城百姓、按著各人各族的分工，同心協力展開重建。這場工程遭遇了參巴拉、多比雅、基善等外敵持續的譏誚、威脅、甚至計畫武裝突襲的重重阻撓，尼希米卻展現出禱告與行動並重的智慧——他一面『禱告我們的神，又因這些人的緣故，就派人看守，晝夜防備』，讓百姓一手做工、一手拿兵器，最終僅用五十二天，就完成了這道荒廢近百年的城牆重建，使『我們的仇敵，並四圍的外邦人，都懼怕，愁眉不展；因為見這工作完成，是出乎我們的神』。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從聽聞故鄉荒涼消息而痛哭禁食的宮廷要員，到親自請旨歸回、僅用五十二天完成城牆重建的省長——尼希米的一生，是聖經中對『禱告與具體行動如何完美結合』刻畫得最完整的敘事典範。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">聽聞噩耗，數月禁食禱告——「我就坐下哭泣，悲哀幾日」</div>
+        <div class="timeline-body">尼希米從兄弟哈拿尼口中得知耶路撒冷城牆荒廢、百姓遭受凌辱的消息，深受觸動，展開長達數月的禁食禱告，向神懇切祈求，並具體求問是否有機會能親自前往協助重建。</div>
+        <div class="timeline-ref">尼 1 章</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">向王請旨歸回——「我神施恩的手幫助我」</div>
+        <div class="timeline-body">波斯王亞達薛西注意到尼希米面帶愁容，詢問緣由後，主動詢問他有何請求。尼希米在默禱後，具體提出歸回重建城牆的請求，並進一步求王賜下詔書與木料，王竟一一允准。</div>
+        <div class="timeline-ref">尼 2:1–8</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">夜巡城牆，動員百姓——「你們來吧，我們重建耶路撒冷的城牆」</div>
+        <div class="timeline-body">尼希米歸回後，先夜間騎驢巡視城牆的荒廢景況，掌握具體情況後，召集祭司、貴冑、官長與百姓，動員全城依各人各族分工，同心協力展開重建工程。</div>
+        <div class="timeline-ref">尼 2:11–18, 3 章</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">抵禦外敵威脅，一手做工一手拿兵器——「我們的神必為我們爭戰」</div>
+        <div class="timeline-body">面對參巴拉、多比雅等外敵持續的譏誚、威脅、甚至武裝突襲的計畫，尼希米一面禱告神，一面派人畫夜防備，讓百姓一手做工、一手拿兵器，並宣告『我們的神必為我們爭戰』。</div>
+        <div class="timeline-ref">尼 4 章</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">五十二天完工——「是出乎我們的神」</div>
+        <div class="timeline-body">城牆最終僅用五十二天便完成重建，仇敵與四圍列國因此深感懼怕，承認這項工程『是出乎我們的神』。尼希米此後又推動社會公義改革（解除百姓的債務重擔）、協助以斯拉帶領百姓重新立約遵行律法，並持續擔任猶大省長治理百姓。</div>
+        <div class="timeline-ref">尼 6:15–16, 5 章, 8–10 章</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他是聖經中對『禱告與具體行動如何緊密結合、缺一不可』刻畫得最完整的典範——每一次面對困難，他既懇切禱告，也同時展開周密而果斷的具體部署。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">深信神必親自介入並成就祂子民的重建大業，同時堅信人必須付上具體行動的努力</div>
+          <div class="soul-body">尼希米的信心從不流於空談——他每一次的禱告，幾乎都緊接著具體而周密的行動部署，展現出『信靠神的同時，也竭盡己力』這一信仰實踐的完整範例。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">願意放下宮廷的安穩地位，親身投入一場充滿風險與艱辛的重建使命</div>
+          <div class="soul-body">尼希米原本在波斯宮廷享有極受信任的酒政要職，卻甘願為了故土的重建，親自請旨歸回，承擔起這項充滿外敵威脅與艱鉅挑戰的使命。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">行動前必先詳細勘查、周密規劃，行動時堅持效率與紀律</div>
+          <div class="soul-body">他歸回後不急於召集百姓，而是先夜間親自騎驢勘查城牆的具體荒廢狀況，此後才依據詳實的了解，展開有組織、按分工進行的重建工程。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">（材料呈現複雜面貌——他對敵對者與內部不義者展現出強烈而毫不妥協的態度）</div>
+          <div class="soul-body">尼希米面對外敵的威脅與百姓中放貴取利的不義行為時，展現出極其強硬、毫不留情的處理方式（如公開斥責、甚至動手拔別人的鬍鬚），這種強烈的個人風格，雖然有效地捍衛了改革的成果，卻也顯示出他性格中較為剛烈、不輕易妥協的一面。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">他在整卷書中留下了大量『求你記念我』式的個人禱告，展現出深刻的內在屬靈生活</div>
+          <div class="soul-body">尼希米記多次記載尼希米在完成某項具體工作後，隨即向神獻上簡短卻真摯的禱告，如『我的神啊，求你記念我，施恩於我』——這種將日常具體的治理工作，與持續不斷的個人禱告生活緊密交織的模式，格外深刻動人。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">尼希米的故事，是聖經中對『禱告與行動並非對立、而是必須緊密結合』這一屬靈原則，展現得最完整、也最具體的敘事典範。他聽聞耶路撒冷荒涼的消息後，沒有立即倉促行動，而是先用數月的時間禁食禱告；然而他的禱告，也從未停留在單純的情感宣洩或被動等待，而是具體地向神祈求機會、並在機會來臨時（王詢問他的請求），立即提出周密而具體的計畫。此後整個重建城牆的過程中，這種『禱告與行動並重』的模式反覆出現——面對外敵的威脅，他『禱告我們的神，又派人看守，晝夜防備』；面對內部的不義，他既嚴厲斥責糾正，也隨即向神獻上禱告。尼希米的一生提醒我們，真正成熟的信心，不是在『單靠禱告』與『單憑己力』之間二選一，而是在竭盡己力周密規劃行動的同時，始終將最終的成就與盼望，交託於神自己的介入與掌管——正如他所宣告的：『我們的神必為我們爭戰。』</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ESTJ</span>
+      <div class="mbti-name">總經理型 · 一手拿刀一手拿兵器的建造者</div>
+      <div class="mbti-slogan">「他先用數月禱告，再用五十二天行動——這道城牆的重建，是禱告與效率完美結合的具體見證。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">他極其有效率地組織了整座城牆的重建工程——依各人各族分工、明確劃分每段城牆的負責範圍，並在面對外敵威脅時迅速部署防禦措施，展現出卓越的組織管理與執行能力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Si · 內向感覺</span>
+          <div class="mbti-fn-body">他在展開重建之前，先詳細勘查城牆的具體荒廢狀況，並忠實地依循猶太律法的傳統要求（如解除百姓的債務重擔、協助以斯拉重新立約），顯示出對具體細節與既有規範的忠實依循。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ne · 外向直覺</span>
+          <div class="mbti-fn-body">他能敏銳地洞察敵對者背後真正的策略意圖（如識破參巴拉邀他會面實則欲加害的陰謀），並據此提前布局應對。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">他面對不義之事時，情緒反應極為強烈而直接（如公開斥責、甚至動手拔鬍鬚），這種較為激烈、缺乏細膩緩衝的情感表達方式，反映出劣勢內向情感在壓力下的展現。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最重要的兩種關係——與那位允准他請求的波斯君王，以及與那些持續威脅、譏誚重建工程的外敵——共同構成了他這場重建大業最核心的張力。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">亞</div>
+          <div class="relation-name">波斯王亞達薛西</div>
+          <div class="relation-type-badge">允准他歸回重建的君王</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">亞達薛西王注意到尼希米的愁容，主動詢問緣由，並在他提出具體請求後，一一允准，甚至賜下詔書與木料——這份出乎意料的恩待，尼希米明確地將其歸功於『我神施恩的手幫助我』。</div>
+          <div class="relation-ref">尼 2:1–8</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">參</div>
+          <div class="relation-name">參巴拉、多比雅、基善</div>
+          <div class="relation-type-badge">持續威脅、譏誚重建工程的外敵</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">這幾位外邦官員從一開始便以譏誚嘲笑重建工程，此後更計畫聯合武裝突襲、甚至多次設計誘騙尼希米離開工地以加害於他——尼希米始終保持警覺，識破並化解了這些陰謀。</div>
+          <div class="relation-ref">尼 2:19–20, 4章, 6章</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">以</div>
+          <div class="relation-name">以斯拉</div>
+          <div class="relation-type-badge">與他同工、帶領百姓重新認識律法的祭司文士</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">尼希米在城牆完工後，與祭司文士以斯拉緊密同工，共同帶領百姓聚集聽讀律法書、重新立約遵行神的誡命，兩人的合作，使耶路撒冷的重建不僅止於城牆，更深化至百姓整體的信仰更新。</div>
+          <div class="relation-ref">尼 8 章</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「我們的神必為我們爭戰」——尼希米這句宣告，精準地捕捉了他一生信仰實踐的核心：竭盡己力地行動，同時將最終的得勝，完全交託於神自己的介入。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「不要怕他們，當記念主是大而可畏的，你們要為弟兄、兒女、妻子、家產爭戰。」</div>
+      <div class="verse-ref">尼希米記 4:14</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">זָכַר</span>
+        <div class="word-transliteration">zakar · 記念 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「記念、記住、思念」，尼希米在整卷書中多次以此字向神禱告，求神『記念』自己所做的具體善工。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">尼希米這種反覆出現的『求你記念我』式禱告，展現出一種將日常具體的治理工作，持續帶到神面前、尋求祂的紀念與悅納的深刻屬靈習慣——這提醒我們，即使是看似世俗性的行政與建造工作，同樣可以成為向神獻上的具體服事。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">בַּיָּד הַטּוֹבָה</span>
+        <div class="word-transliteration">bayad hatovah · 施恩的手 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「美善的手、施恩的手」，尼希米反覆用這個意象，形容神在整個重建過程中，如何具體而實際地介入與幫助他。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這個意象貫穿全書，成為尼希米理解自己一切成就之根源的核心神學語言——無論是波斯王的允准，或是重建工程的最終完成，尼希米都將其歸功於『神施恩的手』的具體介入，而非單純的個人才幹或努力。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">禱告與具體行動應當緊密結合而非彼此對立</div>
+      <div class="theology-insight-body">尼希米的一生，展現出禱告與行動並非兩種互相排斥的信仰實踐方式，而是應當緊密結合、缺一不可——這確立了聖經中一個重要的屬靈原則：真正成熟的信心，既竭盡己力行動，也全然倚靠神的介入。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">重建工作可以同時涵蓋物質與屬靈兩個層面</div>
+      <div class="theology-insight-body">尼希米不僅重建了城牆的物質結構，此後更與以斯拉同工，帶領百姓重新認識並委身於律法——這提醒我們，真正完整的群體更新，需要同時涵蓋外在具體處境的重建，與內在信仰生命的深化。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">面對持續的外部威脅需要警醒與信靠並行的智慧</div>
+      <div class="theology-insight-body">尼希米面對參巴拉等人的持續威脅，選擇了『禱告神，又派人看守』的雙重因應方式，這提醒我們，信靠神的同在，不代表可以忽略對現實威脅的具體警覺與防備。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">尼希米放下波斯宮廷的安穩地位，甘願承擔重建耶路撒冷城牆這項充滿艱辛與風險的使命，並最終帶領百姓完成了這項看似不可能的工程</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這種『甘願放下既有的尊榮地位、承擔艱鉅使命以重建神子民之群體』的模式，某種程度上預表了基督道成肉身、甘願放下天上的榮耀、降卑成人以重建神與人之間關係的救贖工作</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">腓立比書描述基督「反倒虛己，取了奴僕的形像……自己卑微，存心順服，以至於死」，這種甘願放下尊榮以成就更大救贖使命的精神，與尼希米的委身有著深刻的呼應（腓 2:6–8）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正面對一項看似艱鉅、甚至充滿外部阻力的重建或改革使命——尼希米的故事，示範了禱告與具體行動如何攜手並進，成就看似不可能的事。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">尼希米的故事命中的是每一個此刻正面對某項看似艱鉅、甚至充滿外部阻力之重建或改革使命的人——無論是修復一段破碎的關係、重建一個陷入困境的組織、或推動某項需要克服重重阻力的改變。他的故事示範了，真正的信心，不是在『單靠禱告』與『單憑己力』之間二選一，而是在竭盡己力進行周密規劃與具體行動的同時，始終保持對神介入與掌管的全然信靠。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你此刻是否正面對某項看似艱鉅、甚至充滿外部阻力的重建或改革使命？尼希米『禱告與行動並重』的模式，對你此刻的處境，帶來什麼樣的具體啟發？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">尼希米在展開行動前，先花時間詳細勘查具體處境（夜巡城牆），才展開周密的規劃。你在面對重大任務時，是否也給予自己足夠的時間，先充分了解實際的處境？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">面對持續的外部威脅與譏誚，尼希米選擇『禱告神，又派人看守』的雙重因應方式。你此刻是否也面對某種持續的阻力或反對？你如何在信靠神與保持警覺之間，找到健康的平衡？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">尼希米反覆向神獻上『求你記念我』的簡短禱告，將日常具體的工作，持續帶到神面前。你的日常工作與服事，是否也保持著這樣持續而真實的禱告習慣？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 尼希米</span>
+        <div class="gen-title">示範劇本：放下安穩的地位，以禱告與具體行動並重的方式，完成看似不可能的重建使命</div>
+        <div class="gen-body">他甘願放下波斯宮廷的優渥地位，親自請旨歸回耶路撒冷，並透過禱告與周密的行動規劃緊密結合，僅用五十二天，就完成了荒廢近百年的城牆重建。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 耶路撒冷的百姓</span>
+        <div class="gen-title">延續：從城牆的重建，到整個群體信仰生命的更新</div>
+        <div class="gen-body">尼希米與以斯拉在城牆完工後，繼續帶領百姓聚集聽讀律法、重新立約——這使耶路撒冷的重建，從單純的物質結構修復，延伸至整個群體屬靈生命的深刻更新。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在尼希米的故事中，展現在神主動感動波斯王的心，允准並資助這項重建工程；也展現在，即使面對外敵持續的威脅與阻撓，神依然使這項看似不可能的工程，僅用五十二天便得以完成。這提醒我們，當我們竭盡己力、同時全然信靠神的時候，祂能夠使用祂子民具體的努力，成就超乎想像的美好工作。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位放棄宮廷安穩生活、五十二天重建了一座荒廢城牆的省長，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#禱告完要行動</span>
+      <span class="tag">#先勘查再規劃</span>
+      <span class="tag">#警醒與信靠並行</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>尼希米在波斯宮廷裡有份很不錯的工作——酒政，一個極受信任、能直接接觸國王的職位。有一天，他哥哥從猶大回來，告訴他耶路撒冷的城牆還是破的，城門還是燒毀的，都過了快一百四十年了都沒修。</p>
+      <p>尼希米聽完，坐下來哭了，禁食禱告了好幾個月。這不是誇張的形容——他是真的花了好幾個月的時間，在神面前懇切祈求。</p>
+      <p>後來他在服侍國王的時候，臉上露出了愁容，國王注意到了，問他怎麼了。尼希米老實說了原因，國王竟然主動問他：那你想要什麼？尼希米心裡先默默禱告了一下，然後具體地提出：讓我回去重建那座城，還請你賜給我詔書跟需要的木材。國王，全部答應了。</p>
+      <p>尼希米回到耶路撒冷，沒有立刻召集大家開工，而是先在半夜自己一個人騎驢，把整段城牆的荒廢情況都看清楚了，才開始動員百姓，按著各人各族分工，一段一段地修。</p>
+      <p>過程中一堆麻煩事——附近的參巴拉、多比雅這些人，先是嘲笑，後來威脅要動武，甚至設計要引誘尼希米出去好加害他。尼希米的做法很直接：一邊禱告神，一邊派人畫夜看守，讓做工的人一手拿工具、一手拿兵器。最後，這道荒廢了近百年的城牆，只用了五十二天就修好了，連敵人都嚇壞了，說這一定是神做的。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——尼希米這塊石頭，被禱告磨得堅定，又被行動雕得扎實，兩者缺一不可。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你此刻正面對一個看起來遙不可及的重建或改革任務——先花時間禱告，然後具體地規劃行動。尼希米沒有只停在禱告，也沒有只顧著蠻幹，他兩者都做了。</p>
+      <p style="margin-top:12px;">行動前先花時間了解實際狀況，就像尼希米半夜騎驢勘查城牆一樣。倉促行動，往往比不上先看清楚再動手。</p>
+      <p style="margin-top:12px;">面對持續的反對或阻力，一邊警醒防備，一邊繼續信靠神——這兩件事不衝突，可以同時進行。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果你正面對一項艱鉅的任務——先禱告，然後動手，兩件事都不能少。</p>
+    </div>
+
+    <div class="insight-box">尼希米的故事，持續是當代組織變革管理與領導力培訓中，被引用頻率最高的聖經典範之一——他展現的『願景設定、周密規劃、危機應對、群眾動員』完整領導流程，至今仍是許多管理學課程用以說明有效變革領導的經典案例。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他從波斯宮廷的酒政，成為僅用五十二天重建耶路撒冷城牆的省長，留下了聖經中『禱告與行動並重』最完整而具體的實踐典範。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">『禱告與具體行動緊密結合』的完整聖經典範</div>
+          <div class="legacy-body">他一生的事奉，展現出禱告與行動並非兩種對立的信仰實踐方式，而是應當緊密結合、缺一不可，成為此後教會歷史中，理解『信心的實踐』時最常被引用的典範之一。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">耶路撒冷城牆重建的關鍵領導者</div>
+          <div class="legacy-body">他帶領百姓僅用五十二天，就完成了荒廢近百年的城牆重建，這項工程直接確保了耶路撒冷此後的安全與尊嚴，成為被擄歸回歷史中最具體的重建成就之一。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">社會公義改革的重要實踐者</div>
+          <div class="legacy-body">他在重建城牆之外，也積極推動解除百姓債務重擔的社會公義改革，展現出真正的屬靈領導，必須同時關注群體的物質處境與公平正義。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">卓越領導力與危機管理的經典案例</div>
+          <div class="legacy-body">他面對外敵威脅、內部糾紛時所展現出的組織能力與應變智慧，持續為後世的領導力研究，提供了極具體而實用的參照範例。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「五十二日，城牆修完了，是六月二十五日。我們一切仇敵、四圍的外邦人聽見了便懼怕，愁眉不展，因為見這工作完成，是出乎我們的神。」</div>
+      <div class="final-verse-ref">尼希米記 6:15–16</div>
+    </div>
+
+    <div class="final-question">如果你此刻正面對一項看似艱鉅、甚至充滿外部阻力的重建或改革使命——你願不願意像尼希米一樣，既竭盡己力周密規劃行動，也全然信靠神親自介入、為你爭戰？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 尼希米 <span>נְחֶמְיָה</span> · 波斯王的酒政 · 耶路撒冷城牆的重建者 · 禱告與行動並重的改革者</div>
+
+</body>
+</html>

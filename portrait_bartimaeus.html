@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>巴底買 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">巴底買</h1>
+  <span class="hero-name-en">Bartimaeus · Βαρτιμαῖος</span>
+  <p class="hero-slogan">「他就丟下衣服，跳起來，走到耶穌那裡。耶穌說：「要我為你做什麼？」瞎子說：「拉波尼，我要能看見。」耶穌說：「你去吧！你的信救了你了。」瞎子立刻看見，就在路上跟隨耶穌。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">約主後30年（耶穌上耶路撒冷過最後的逾越節途中）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ESFP · 表演者型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">馬可福音10:46–52 · 路加福音18:35–43</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">耶利哥城外的瞎眼乞丐 · 蒙耶穌醫治後跟隨主的門徒</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他是耶利哥城外一個坐在路旁討飯的瞎眼乞丐——聖經特別記下了他的名字，這在福音書眾多被耶穌醫治的無名者中，是極為罕見的細節，顯示出這段記載在初代教會中，可能承載著具體而重要的見證意義。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">約主後30年，耶穌上耶路撒冷過最後逾越節的途中</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">底買的兒子，瞎眼的乞丐</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">出生地 / 活動區域</span>
+        <div class="info-cell-value">耶利哥城外，路旁討飯</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">父底買（因此得名『巴底買』，意為『底買之子』）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">可 10:46–52 · 路 18:35–43（路加福音未指名，馬太福音記載為兩個瞎子）</div>
+      </div>
+    </div>
+
+    <p>馬可福音特別記下了這位乞丐的名字與身分：『在耶利哥的時候，耶穌同門徒並許多人出耶利哥的時候，有一個討飯的瞎子，是底買的兒子巴底買，坐在路旁。』這個細節極具意義——在福音書眾多被耶穌醫治、卻多半未被記載姓名的人物之中，巴底買的名字被清楚保留下來，這或許顯示，他此後在初代教會中，成為一位廣為人知、具體而真實的見證人。當他聽見是拿撒勒人耶穌經過，便開始喊叫說：『大衛的子孫耶穌啊，可憐我吧！』這句稱呼『大衛的子孫』極具神學份量——這是對彌賽亞身分的公開宣告，顯示巴底買雖然眼睛看不見，卻對耶穌的身分有著清楚而堅定的屬靈認識。</p>
+    <p>許多人責備他，不許他作聲，然而巴底買『越發大聲喊叫說：大衛的子孫啊，可憐我吧！』——這份不顧眾人反對、堅持不懈的呼喊，最終使耶穌停下腳步，吩咐把他叫過來。馬可福音生動地記載了巴底買回應這個呼喚時的細節：『他就丟下衣服，跳起來，走到耶穌那裡。』對一個以乞討為生的人而言，那件披在身上的外衣，很可能是他最重要、甚至唯一的財產——用來遮蔽風寒、也用來承接人們投下的施捨。他卻毫不猶豫地『丟下』這件衣服，奔向耶穌，這個細節，具體展現出他對即將臨到之醫治的迫切渴望與毫無保留的信心。耶穌問他：『要我為你做什麼？』他回答：『拉波尼，我要能看見。』耶穌說：『你去吧！你的信救了你了。』他立刻看見，聖經以簡短卻意味深長的一句話總結了此後的發展：『就在路上跟隨耶穌。』</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從坐在路旁討飯的瞎眼乞丐，到不顧眾人責備堅持呼喊，再到丟下唯一的外衣奔向耶穌、蒙醫治後在路上跟隨主——巴底買的故事，是福音書中對『堅持不懈的信心如何突破重重阻礙』刻畫得最生動的敘事之一。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">坐在路旁討飯——「有一個討飯的瞎子……坐在路旁」</div>
+        <div class="timeline-body">巴底買因失明而長期以乞討維生，坐在耶利哥城外通往耶路撒冷的路旁，這是他此前生活的日常處境，直到耶穌一行人經過的那一天。</div>
+        <div class="timeline-ref">可 10:46</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">不顧責備堅持呼喊——「他卻越發大聲喊叫」</div>
+        <div class="timeline-body">巴底買聽見耶穌經過，公開喊出『大衛的子孫耶穌啊，可憐我吧』這句帶有彌賽亞宣告意味的呼求，眾人責備他、不許他作聲，他卻不為所動，反而更加大聲喊叫。</div>
+        <div class="timeline-ref">可 10:47–48</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">丟下衣服奔向耶穌——「他就丟下衣服，跳起來」</div>
+        <div class="timeline-body">耶穌停下腳步，吩咐叫他過來，巴底買毫不猶豫地丟下自己身上的外衣（很可能是他最重要的財產），跳起來，奔向耶穌——這個動作，具體展現出他對醫治的迫切渴望與毫無保留的信心。</div>
+        <div class="timeline-ref">可 10:49–50</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">蒙醫治後跟隨耶穌——「立刻看見，就在路上跟隨耶穌」</div>
+        <div class="timeline-body">耶穌應允了他『我要能看見』的請求，宣告『你的信救了你了』，巴底買立刻恢復視力，並選擇此後在路上跟隨耶穌，而非返回自己原本的生活——這個結局，象徵著他生命從此徹底的轉向與委身。</div>
+        <div class="timeline-ref">可 10:51–52</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他是聖經中對『信心如何在他人的反對與質疑中，依然堅持不懈，並最終轉化為毫無保留的委身行動』刻畫得最生動的敘事典範之一。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">堅信耶穌就是那位『大衛的子孫』彌賽亞，並確信祂有能力、也願意憐憫自己</div>
+          <div class="soul-body">巴底買公開宣告耶穌是『大衛的子孫』，這是對彌賽亞身分清楚而堅定的認信，這份信心，成為他此後不顧眾人反對、堅持呼求的核心根基。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">在眾人的責備與反對中，依然堅持不懈，毫不退縮地表達自己的需要</div>
+          <div class="soul-body">面對周遭人群要他噤聲的壓力，巴底買選擇了『越發大聲喊叫』，這種不因他人的否定或反對而放棄表達自己真實需要的堅持，是他性格中最動人的美德。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">一旦機會來臨，便毫不猶豫、全力以赴地把握，即使代價是放下自己僅有的財產</div>
+          <div class="soul-body">他丟下外衣、跳起來奔向耶穌的動作，展現出一種毫無保留、全力以赴的行事風格——一旦確信機會就在眼前，他便立即以最快速、最徹底的方式回應。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">（材料有限——聖經對他此前的具體過犯或掙扎著墨極少，這段簡短卻完整的敘事主要聚焦於他信心的正面展現）</div>
+          <div class="soul-body">福音書對巴底買的記載相對簡潔，敘事重點完全聚焦於他如何堅持呼求並蒙醫治，未見任何負面的性格描寫。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">他蒙醫治後選擇的不是返家團聚或恢復原本的生活，而是『在路上跟隨耶穌』</div>
+          <div class="soul-body">許多福音書中被醫治的人，此後多半返回自己原本的生活或家鄉，巴底買卻選擇立即跟隨耶穌一同上路——這個細節，暗示著他所經歷的，不僅是身體上的醫治，更是生命方向徹底的轉向。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">巴底買的故事，是福音書中對『堅持不懈的信心如何突破他人的反對與質疑，並最終轉化為毫無保留的委身行動』刻畫得最生動的敘事之一。他所面對的處境，充滿了多重的阻礙——身體的殘疾（失明）、社會的邊緣地位（乞丐）、以及周遭群眾直接的否定與壓制（責備他、要他噤聲）。若他因這些重重的阻礙而選擇沉默退縮，這段醫治的故事很可能根本不會發生。然而巴底買展現出一種令人動容的堅持——『他卻越發大聲喊叫』，這句話精確地捕捉了他信心中最寶貴的特質：不因外在的反對或壓力而消減自己表達需要的迫切與堅定，反而在阻礙中更加堅持。當機會終於來臨，他的回應同樣值得深思——他毫不猶豫地丟下自己身為乞丐幾乎僅有的財產（外衣），奔向耶穌，這個具體的行動，展現出他信心中『毫無保留』的份量。而他蒙醫治後選擇在路上跟隨耶穌、而非返回原本的生活，更提醒我們，真正的醫治與恩典，最終應當引向對耶穌更深的跟隨與委身，而不僅止於問題的解決。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ESFP</span>
+      <div class="mbti-name">表演者型 · 越發大聲喊叫的瞎眼乞丐</div>
+      <div class="mbti-slogan">「所有人都叫他閉嘴，他卻喊得更大聲——這一喊，喊來了他重見光明的機會。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Se · 外向實感</span>
+          <div class="mbti-fn-body">他一聽見耶穌經過，便立即以最直接而具體的方式（大聲呼喊）回應這個當下的機會，並在被呼喚時，迅速丟下衣服、跳起來奔向耶穌，這種對眼前具體處境的敏銳反應與立即行動力，正是主導外向實感的典型展現。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">他對自己需要被醫治這件事，懷抱著極其真摯而迫切的內在渴望，這份深刻的個人情感驅動力，是他不顧眾人反對依然堅持呼喊的核心動力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">他清楚而具體地向耶穌表達自己的請求——「我要能看見」，沒有迂迴或含糊，展現出清晰而直接的目標導向溝通能力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">（材料有限——聖經對他在更深層、抽象意義層面的思考著墨較少，他的信心主要透過具體而即時的行動展現，而非長遠的反思或籌劃）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最重要的一次相遇，是與那位在眾人的責備聲中，依然停下腳步、願意聆聽一位瞎眼乞丐呼求的耶穌。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">耶</div>
+          <div class="relation-name">耶穌</div>
+          <div class="relation-type-badge">停下腳步、醫治並接納他跟隨的主</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">耶穌在眾人試圖使巴底買噤聲的處境中，依然選擇停下腳步、吩咐叫他過來，親自詢問他的需要，並應允了他『我要能看見』的請求，宣告『你的信救了你了』。</div>
+          <div class="relation-ref">可 10:49–52</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">眾</div>
+          <div class="relation-name">責備他的眾人</div>
+          <div class="relation-type-badge">試圖使他噤聲、卻未能攔阻他呼求的群眾</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">許多跟隨耶穌的人責備巴底買，不許他作聲，然而這份社會性的壓制，並未能真正攔阻他堅持不懈的呼求，反而使他『越發大聲喊叫』。</div>
+          <div class="relation-ref">可 10:48</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「你的信救了你了」——耶穌對巴底買所說的這句話，成為福音書中對『信心如何直接帶來具體救恩與醫治』最簡潔有力的宣告之一。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「耶穌說：「你去吧！你的信救了你了。」瞎子立刻看見，就在路上跟隨耶穌。」</div>
+      <div class="verse-ref">馬可福音 10:52</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">ῥαββουνί</span>
+        <div class="word-transliteration">rabbouni · 拉波尼 · 希臘文（源自亞蘭文）</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「我的夫子、我的主」，這是比一般『拉比』更為尊崇、更帶有個人親暱意味的稱呼。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">巴底買使用這個帶有特別尊崇意味的稱呼向耶穌表達自己的請求，這個字此後在福音書中僅有另一次出現——復活後的抹大拉馬利亞同樣以這個稱呼認出耶穌（約 20:16），顯示這個字承載著極為深刻的個人性認信與親密。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">σέσωκέν</span>
+        <div class="word-transliteration">sesoken · 救了 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「拯救、醫治」，這個字同時涵蓋身體醫治與屬靈救贖的雙重意涵。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">耶穌對巴底買所說『你的信救了你了』，使用的正是這個帶有雙重意涵的字——這暗示著巴底買所經歷的，不僅止於眼睛的痊癒，更是一場涵蓋身體與靈魂的完整救贖，這也解釋了為何他此後選擇跟隨耶穌，而非僅僅返回原本的生活。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">堅持不懈的信心能夠突破他人的反對與質疑</div>
+      <div class="theology-insight-body">巴底買不顧眾人責備、依然堅持呼喊的態度，確立了聖經中一個重要的信心原則：真誠迫切的信心，不應因他人的否定或壓力而消減，反而應當更加堅定。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">真正的信心最終應當引向對耶穌的跟隨而非僅止於問題的解決</div>
+      <div class="theology-insight-body">巴底買蒙醫治後選擇『在路上跟隨耶穌』，而非返回原本的生活，這提醒我們，恩典與醫治的最終目的，是引導人進入與耶穌更深的委身關係，而非僅止於眼前需要的滿足。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">耶穌願意在眾人的忽視或壓制中依然停下腳步關注邊緣者的呼求</div>
+      <div class="theology-insight-body">耶穌在眾多門徒與跟隨者之中，依然聽見並回應一位被邊緣化之乞丐的呼求，這展現出祂對社會邊緣人物的深刻關注與憐憫。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">巴底買身處黑暗（失明），卻堅持呼喊那位能賜下光明的耶穌，最終蒙祂醫治，得以重見光明，並選擇此後跟隨這道光</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這種『從黑暗呼求光明、蒙拯救後選擇跟隨光的源頭』的模式，深刻呼應了耶穌自己所宣告的『我是世界的光』這一核心身分</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">耶穌宣告「我是世界的光，跟從我的，就不在黑暗裡走，必要得著生命的光」，巴底買從黑暗中呼求、蒙光照、進而跟隨光源的完整歷程，正是這句宣告最具體而生動的敘事印證（約 8:12）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正懷抱著某個迫切的需要向神呼求，卻遭遇周遭人的反對、質疑、或要你安靜下來的壓力——巴底買的故事，鼓勵你越發大聲地呼喊。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">巴底買的故事命中的是每一個此刻正懷抱著某個迫切的需要向神呼求，卻遭遇周遭人的反對、質疑、或無形壓力要求自己噤聲的人。他的故事鼓勵我們，真誠而迫切的信心呼求，不應因他人的否定而消減，反而應當更加堅定地表達出來。他的故事也提醒我們，一旦機會來臨，需要毫不猶豫、全力以赴地把握，並在恩典臨到之後，選擇更深地跟隨施恩的主，而非僅止於問題的解決。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你此刻是否懷抱著某個迫切的需要向神呼求，卻遭遇周遭人（或自己內心）的反對與質疑，要你安靜下來、不要抱太大期望？巴底買『越發大聲喊叫』的堅持，對你此刻的處境，帶來什麼樣的鼓勵？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">巴底買毫不猶豫地丟下自己身為乞丐幾乎僅有的財產（外衣），奔向耶穌。你此刻是否也需要放下某個你緊抓不放的東西，全力以赴地回應神的呼喚？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">他蒙醫治後選擇在路上跟隨耶穌，而非返回原本的生活。你此刻若正經歷神的恩典或醫治，是否也願意選擇更深地跟隨祂，而非僅止於滿足於問題的解決？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 巴底買</span>
+        <div class="gen-title">示範劇本：在眾人的反對中堅持呼求，並在機會來臨時全力以赴地回應，最終選擇跟隨施恩的主</div>
+        <div class="gen-body">他不顧周遭人的責備，堅持呼喊耶穌的憐憫，並在被呼喚時毫不猶豫地丟下自己的外衣奔向耶穌，蒙醫治後選擇在路上跟隨主，而非返回原本的生活。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 此後福音書的讀者</span>
+        <div class="gen-title">延續：他的名字被保留下來，成為歷代信徒堅持信心呼求的具體鼓勵</div>
+        <div class="gen-body">巴底買的名字在福音書中被特別保留下來，這種罕見的具體記載，此後持續鼓勵著歷代信徒，即使身處邊緣或面對他人的反對，依然可以懷抱堅定的信心，向耶穌發出迫切的呼求。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在巴底買的故事中，展現在耶穌即使身處眾多跟隨者之中，依然願意停下腳步，聆聽並回應一位被邊緣化之乞丐的呼求；也展現在，耶穌賜給他的，不僅是身體的醫治，更是『你的信救了你了』這句涵蓋完整救恩的宣告。這提醒我們，神的恩典，願意向每一位堅持呼求的人敞開，無論他們的社會地位或處境如何邊緣。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位所有人都叫他閉嘴、他卻喊得更大聲的瞎眼乞丐，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#別讓別人的反對澆熄你的呼求</span>
+      <span class="tag">#機會來了就全力以赴</span>
+      <span class="tag">#得到恩典後要選擇跟隨</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>巴底買是耶利哥城外一個瞎眼的乞丐，每天坐在路邊討飯。有一天，他聽見人群騷動，一問才知道，是拿撒勒人耶穌經過。他立刻開始喊：大衛的子孫耶穌啊，可憐我吧！</p>
+      <p>旁邊的人覺得他太吵，紛紛叫他閉嘴。換作一般人，可能就這樣被壓下去了。但巴底買沒有，他反而喊得更大聲：大衛的子孫啊，可憐我吧！</p>
+      <p>耶穌停下腳步了。祂叫人把巴底買帶過來。巴底買一聽，立刻把身上的外衣一丟，跳起來，直奔耶穌。要知道，對一個乞丐來說，那件外衣可能是他最重要的財產——晚上禦寒用的，白天鋪在地上收錢用的。他卻毫不猶豫地丟下了。</p>
+      <p>耶穌問他：你要我為你做什麼？巴底買說：拉波尼，我要能看見。耶穌說：去吧，你的信救了你了。他當場就看見了，然後，聖經寫了很重要的一句話——他沒有回家，而是就在路上，跟隨了耶穌。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——巴底買這塊石頭，被眾人的責備聲一路敲打，卻在喊得最大聲的那一刻，被雕出了『看見』的形狀。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你此刻正向神呼求某件事，卻感覺周遭的聲音（或自己心裡的聲音）一直在說『別抱太大期望』、『安靜一點吧』——像巴底買一樣，喊得更大聲一點。</p>
+      <p style="margin-top:12px;">機會來的時候，別猶豫。巴底買連自己最重要的財產都丟下了，全力以赴地奔向那個機會。</p>
+      <p style="margin-top:12px;">得到恩典之後，別忘了下一步——跟隨。巴底買沒有選擇回到原本的生活，而是選擇了一條全新的路。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果有人叫你的呼求安靜下來——喊得更大聲，然後全力以赴地回應機會。</p>
+    </div>
+
+    <div class="insight-box">巴底買的故事，持續為當代討論『在他人反對中堅持自己真實需要』與『恩典之後的委身選擇』這兩個議題，提供了聖經中最生動具體的參照案例。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他從耶利哥城外一個被眾人試圖噤聲的瞎眼乞丐，成為蒙耶穌醫治並選擇跟隨主的門徒，留下了聖經中『堅持呼求終獲回應』最生動的見證。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">福音書中罕見被具名記載的醫治對象</div>
+          <div class="legacy-body">在眾多福音書所記載被耶穌醫治、卻多半未留下姓名的人物中，巴底買的名字被清楚保留下來，顯示這段記載可能承載著具體而重要的初代教會見證意義。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">『堅持不懈的信心突破反對』的經典敘事典範</div>
+          <div class="legacy-body">他不顧眾人責備、越發大聲喊叫的堅持，持續為後世提供了『真誠迫切的信心呼求不應因他人否定而消減』這一屬靈原則最生動的例證。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">『恩典之後選擇跟隨』的重要見證</div>
+          <div class="legacy-body">他蒙醫治後選擇在路上跟隨耶穌而非返回原本生活的抉擇，成為聖經中『真正的恩典應當引向對主更深委身』這一課題的重要敘事範例。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「耶穌說：「你去吧！你的信救了你了。」瞎子立刻看見，就在路上跟隨耶穌。」</div>
+      <div class="final-verse-ref">馬可福音 10:52</div>
+    </div>
+
+    <div class="final-question">如果你此刻正懷抱著某個迫切的需要向神呼求，卻遭遇他人的反對或質疑——你願不願意像巴底買一樣，越發大聲地堅持呼喊，直到恩典臨到？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 巴底買 <span>Βαρτιμαῖος</span> · 耶利哥城外的瞎眼乞丐 · 被責備仍不住喊叫者 · 蒙醫治後跟隨主走上路的人</div>
+
+</body>
+</html>
