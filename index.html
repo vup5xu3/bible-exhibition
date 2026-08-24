@@ -12,6 +12,8 @@
 
 <!-- 靜態人物資料（由 _build/make_static_data.py 產生，見該檔說明如何新增/修改人物） -->
 <script src="data.js"></script>
+<!-- 閱讀紀錄（localStorage，見 progress.js）：兩檔共用同一份 API -->
+<script src="progress.js"></script>
 
 <style>
   :root {
@@ -138,9 +140,45 @@
   .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 11px; letter-spacing: 0.12em; }
   .footer span { color: var(--gold); }
 
+  /* ── 已讀徽章（卡片右上角）── */
+  .char-read-badge { position: absolute; top: 10px; right: 10px; width: 22px; height: 22px; border-radius: 50%; background: var(--teal-deep); color: #fff; font-size: 12px; display: none; align-items: center; justify-content: center; z-index: 2; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
+  .char-card-wrap.is-read .char-read-badge { display: flex; }
+  .char-card-wrap.is-read .char-card { opacity: 0.72; }
+
+  /* ── 頁首小按鈕：閱讀進度快捷 ── */
+  .progress-shortcut { flex-shrink: 0; background: rgba(255,255,255,0.06); border: 1px solid rgba(184,150,46,0.3); border-radius: 20px; color: var(--gold-light); font-family: 'Noto Sans TC', sans-serif; font-size: 11.5px; padding: 6px 14px; margin-left: 10px; cursor: pointer; white-space: nowrap; transition: all 0.18s; display: flex; align-items: center; gap: 5px; }
+  .progress-shortcut:hover { background: rgba(184,150,46,0.2); border-color: var(--gold); }
+  .progress-shortcut b { font-family: 'IM Fell English', serif; color: var(--gold); font-size: 13px; }
+
+  /* ── 閱讀進度 Tab ── */
+  .progress-view { display: none; }
+  .progress-view.visible { display: block; }
+  .progress-toolbar { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 28px; }
+  .progress-btn { background: var(--gold-pale); border: 1px solid var(--border-strong); border-radius: 20px; color: var(--ink-soft); font-family: 'Noto Sans TC', sans-serif; font-size: 12.5px; padding: 8px 18px; cursor: pointer; transition: all 0.18s; }
+  .progress-btn:hover { background: var(--gold-light); color: #fff; }
+  .progress-btn.danger:hover { background: var(--danger); color: #fff; border-color: var(--danger); }
+  .progress-overall { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 26px 28px; margin-bottom: 28px; display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+  .progress-ring-num { font-family: 'IM Fell English', serif; font-size: 42px; color: var(--gold); line-height: 1; }
+  .progress-ring-label { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-top: 6px; }
+  .progress-bar-track { flex: 1; min-width: 180px; height: 10px; background: var(--gold-pale); border-radius: 10px; overflow: hidden; }
+  .progress-bar-fill { height: 100%; background: linear-gradient(90deg, var(--gold), var(--gold-light)); border-radius: 10px; transition: width 0.4s; }
+  .progress-pct { font-family: 'IM Fell English', serif; font-size: 15px; color: var(--ink-soft); min-width: 48px; text-align: right; }
+  .progress-groups { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 14px; }
+  .progress-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+  .progress-card-title { font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink); margin-bottom: 10px; letter-spacing: 0.04em; }
+  .progress-card-row { display: flex; align-items: center; gap: 10px; }
+  .progress-card-track { flex: 1; height: 7px; background: var(--gold-pale); border-radius: 8px; overflow: hidden; }
+  .progress-card-fill { height: 100%; background: var(--gold); border-radius: 8px; transition: width 0.4s; }
+  .progress-card-num { font-size: 11.5px; color: var(--ink-pale); white-space: nowrap; min-width: 54px; text-align: right; }
+  .progress-card-remain { font-size: 11px; color: var(--ink-soft); margin-top: 8px; }
+  .progress-card.done { border-color: var(--border-strong); background: var(--gold-faint); }
+  .progress-file-input { display: none; }
+  .progress-hint { font-size: 11.5px; color: var(--ink-pale); line-height: 1.9; margin-top: -10px; margin-bottom: 24px; }
+
   @media (max-width: 640px) {
     .subfilter-wrap { position: static; }
     .search-box { max-width: none; margin-left: 0; width: 100%; }
+    .progress-shortcut { margin-left: 0; }
   }
 </style>
 </head>
@@ -163,6 +201,9 @@
 <!-- PRIMARY TABS -->
 <div class="filter-wrap">
   <div class="filter-primary" id="filter-primary"></div>
+  <button class="progress-shortcut" id="progress-shortcut" title="查看閱讀進度">
+    📖 已讀 <b id="progress-shortcut-num">0</b>/<span id="progress-shortcut-total">0</span>
+  </button>
 </div>
 
 <!-- SUB FILTER BAR -->
@@ -170,6 +211,7 @@
   <div class="subfilter-row">
     <div class="tier-group" id="tier-group">
       <button class="tier-btn active" data-tier="all">全部</button>
+      <button class="tier-btn" data-tier="common">常見人物</button>
       <button class="tier-btn" data-tier="major">★ 重要人物</button>
     </div>
     <button class="mbti-toggle" id="mbti-toggle" onclick="toggleMbtiPanel()">
@@ -206,6 +248,32 @@
     <span class="empty-state-icon">∅</span>
     <p id="empty-text">此分類尚未收錄人物，敬請期待。</p>
   </div>
+
+  <!-- 閱讀進度 Tab 內容 -->
+  <div class="progress-view" id="progress-view">
+    <div class="progress-toolbar">
+      <button class="progress-btn" id="progress-export-btn">⬇ 匯出進度</button>
+      <button class="progress-btn" id="progress-import-btn">⬆ 匯入進度</button>
+      <button class="progress-btn danger" id="progress-reset-btn">↺ 重設進度</button>
+      <input type="file" accept="application/json" class="progress-file-input" id="progress-file-input">
+    </div>
+    <p class="progress-hint">閱讀紀錄僅儲存在此瀏覽器（localStorage），換裝置或清除瀏覽資料前，記得先「匯出進度」保存成檔案，之後用「匯入進度」還原（匯入採合併，不會覆蓋現有紀錄）。在人物頁右下角可以標記／取消標記已讀。</p>
+
+    <div class="progress-overall">
+      <div>
+        <div class="progress-ring-num" id="progress-overall-num">0/0</div>
+        <div class="progress-ring-label">全站已讀進度</div>
+      </div>
+      <div class="progress-bar-track"><div class="progress-bar-fill" id="progress-overall-fill" style="width:0%"></div></div>
+      <div class="progress-pct" id="progress-overall-pct">0%</div>
+    </div>
+
+    <div class="section-label"><span class="section-label-text">依重要度</span></div>
+    <div class="progress-groups" id="progress-tier-groups"></div>
+
+    <div class="section-label" style="margin-top:28px"><span class="section-label-text">依分類</span></div>
+    <div class="progress-groups" id="progress-cat-groups"></div>
+  </div>
 </main>
 
 <div class="footer">PORTRAIT 聖經人物深度研究 · <span>透過人物，理解聖經大敘事</span></div>
@@ -237,7 +305,11 @@ const TABS = [
     notice: { t: "MBTI 人格圖譜",
               b: "所有已完成人格推導的人物皆自動收錄於此。<br>用上方「人格篩選」先挑維度（想看 I 人、想看 J 人），或直接點選十六型細分。" } },
   { key: "study",     label: "專題研究",              people: false, notice: null },
+  { key: "progress",  label: "閱讀進度",              people: false, notice: null, isProgress: true },
 ];
+
+// 「依分類」進度只統計實際收錄人物的頁籤（排除全部／專題研究／進度本身）
+const PROGRESS_CATEGORY_TABS = ["ot", "nt", "apostle", "genealogy", "mbti"];
 
 const AXES = [
   { key: "EI", label: "傾向", opts: [["I", "內向"], ["E", "外向"]] },
@@ -322,6 +394,35 @@ function bindControls() {
     document.getElementById("search-clear").classList.toggle("visible", si.value !== "");
     renderCards();
   });
+
+  // 頁首小按鈕：直接跳到「閱讀進度」頁籤
+  document.getElementById("progress-shortcut").addEventListener("click", () => {
+    currentTab = "progress";
+    document.querySelectorAll(".tab-btn").forEach(b => b.classList.toggle("active", b.dataset.tab === "progress"));
+    renderCards();
+  });
+
+  // 閱讀進度頁籤：匯出／匯入／重設
+  document.getElementById("progress-export-btn").addEventListener("click", () => {
+    PortraitProgress.exportJSON();
+  });
+  const fileInput = document.getElementById("progress-file-input");
+  document.getElementById("progress-import-btn").addEventListener("click", () => fileInput.click());
+  fileInput.addEventListener("change", () => {
+    const file = fileInput.files && fileInput.files[0];
+    fileInput.value = "";
+    if (!file) return;
+    PortraitProgress.importFile(file, (err, result) => {
+      if (err) { alert("匯入失敗：檔案格式不正確，請確認選擇的是本站匯出的進度檔。"); return; }
+      alert(`匯入完成，新增 ${result.added} 筆已讀紀錄（目前共 ${result.total} 筆）。`);
+      renderCards();
+    });
+  });
+  document.getElementById("progress-reset-btn").addEventListener("click", () => {
+    if (!confirm("確定要清除本瀏覽器上「全部」的閱讀紀錄嗎？此動作無法復原（建議先匯出備份）。")) return;
+    PortraitProgress.resetAll();
+    renderCards();
+  });
 }
 
 // 目前四軸是否恰好構成一個完整的 MBTI 類型
@@ -376,10 +477,16 @@ function matchesSearch(c) {
   return [c.name, c.epithet, c.nameEn, c.desc, c.mbti].concat(c.tags || [])
     .filter(Boolean).join(" ").toLowerCase().includes(searchTerm);
 }
+// 重要度採「累進」語意：全部 ⊇ 常見人物(major+common) ⊇ 重要人物(僅 major)
+function matchesTier(c, tier) {
+  if (tier === "all") return true;
+  if (tier === "common") return c.tier === "major" || c.tier === "common";
+  return c.tier === tier; // "major"
+}
 function applyFilters(tab) {
   return CHARACTERS.filter(c =>
     inTab(c, tab) &&
-    (currentTier === "all" || c.tier === currentTier) &&
+    matchesTier(c, currentTier) &&
     (activeAxisCount() === 0 || matchesAxes(c.mbti)) &&
     matchesSearch(c)
   );
@@ -389,11 +496,25 @@ function renderCards() {
   const grid   = document.getElementById("cards-grid");
   const empty  = document.getElementById("empty-state");
   const notice = document.getElementById("tab-notice");
+  const chips  = document.getElementById("active-chips");
+  const pview  = document.getElementById("progress-view");
   const tabDef = TABS.find(t => t.key === currentTab);
 
+  updateReadShortcut();
+
   grid.innerHTML = ""; empty.classList.remove("visible"); notice.classList.remove("visible");
-  grid.style.display = "grid";
   document.getElementById("section-label-text").textContent = tabDef.label;
+
+  if (tabDef.isProgress) {
+    grid.style.display = "none"; chips.style.display = "none";
+    document.getElementById("subfilter-wrap").style.display = "none";
+    document.getElementById("section-count").textContent = "";
+    pview.classList.add("visible");
+    renderProgressView();
+    return;
+  }
+  pview.classList.remove("visible"); chips.style.display = "";
+  grid.style.display = "grid";
 
   // 專題研究不是人物，隱藏重要度與人格篩選
   document.getElementById("subfilter-wrap").style.display = tabDef.people ? "block" : "none";
@@ -421,9 +542,11 @@ function renderCards() {
     return;
   }
 
+  const readMap = PortraitProgress.load();
   filtered.forEach(c => {
     const wrap = document.createElement("div");
-    wrap.className = "char-card-wrap" + (c.tier === "major" ? " is-major" : "");
+    const isRead = !!readMap[c.id];
+    wrap.className = "char-card-wrap" + (c.tier === "major" ? " is-major" : "") + (isRead ? " is-read" : "");
 
     const card = document.createElement("a");
     card.className = "char-card"; card.href = c.file;
@@ -444,6 +567,9 @@ function renderCards() {
       <div class="char-desc">${esc(c.desc)}</div>
       <div class="char-tags">${tagsHTML}${mbtiTag}</div>`;
     wrap.appendChild(card);
+    const badge = document.createElement("span");
+    badge.className = "char-read-badge"; badge.title = "已讀"; badge.textContent = "✓";
+    wrap.appendChild(badge);
     grid.appendChild(wrap);
   });
 }
@@ -453,18 +579,71 @@ function esc(s) {
     ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m]));
 }
 
-// 每個頁籤右上角的收錄筆數
+// 每個頁籤右上角的收錄筆數（閱讀進度不是人物清單，不顯示筆數）
 function updateTabCounts() {
   TABS.forEach(t => {
     const el = document.getElementById("tabn-" + t.key);
-    if (el) el.textContent = CHARACTERS.filter(c => inTab(c, t.key)).length;
+    if (el) el.textContent = t.isProgress ? "" : CHARACTERS.filter(c => inTab(c, t.key)).length;
   });
+}
+
+// 頁首小按鈕：全站已讀 / 總人數（不含專題研究）
+function updateReadShortcut() {
+  const total = CHARACTERS.filter(c => !c.categories.includes("study")).length;
+  const read = CHARACTERS.filter(c => !c.categories.includes("study") && PortraitProgress.isRead(c.id)).length;
+  document.getElementById("progress-shortcut-num").textContent = read;
+  document.getElementById("progress-shortcut-total").textContent = total;
+}
+
+// ── 閱讀進度頁籤：依重要度 / 依分類，各自算出已讀與總數 ──
+function progressCardHTML(label, readN, totalN) {
+  const pct = totalN ? Math.round((readN / totalN) * 100) : 0;
+  const done = totalN > 0 && readN >= totalN;
+  const remain = totalN - readN;
+  return `
+    <div class="progress-card${done ? " done" : ""}">
+      <div class="progress-card-title">${esc(label)}</div>
+      <div class="progress-card-row">
+        <div class="progress-card-track"><div class="progress-card-fill" style="width:${pct}%"></div></div>
+        <div class="progress-card-num">${readN}/${totalN}</div>
+      </div>
+      <div class="progress-card-remain">${done ? "✓ 已全部讀完" : `還差 ${remain} 位未讀`}</div>
+    </div>`;
+}
+
+function renderProgressView() {
+  const readMap = PortraitProgress.load();
+  const isRead = c => !!readMap[c.id];
+  const pool = CHARACTERS.filter(c => !c.categories.includes("study"));
+
+  const totalAll = pool.length;
+  const readAll = pool.filter(isRead).length;
+  const pctAll = totalAll ? Math.round((readAll / totalAll) * 100) : 0;
+  document.getElementById("progress-overall-num").textContent = `${readAll}/${totalAll}`;
+  document.getElementById("progress-overall-fill").style.width = pctAll + "%";
+  document.getElementById("progress-overall-pct").textContent = pctAll + "%";
+
+  // 依重要度：全部 ⊇ 常見人物 ⊇ 重要人物
+  const tierGroups = [
+    ["★ 重要人物", pool.filter(c => c.tier === "major")],
+    ["常見人物（含重要人物）", pool.filter(c => c.tier === "major" || c.tier === "common")],
+    ["全部人物", pool],
+  ];
+  document.getElementById("progress-tier-groups").innerHTML = tierGroups.map(([label, list]) =>
+    progressCardHTML(label, list.filter(isRead).length, list.length)).join("");
+
+  // 依分類：與主頁籤一致（十二使徒、舊約、新約、家譜、MBTI）
+  document.getElementById("progress-cat-groups").innerHTML = PROGRESS_CATEGORY_TABS.map(key => {
+    const tabDef = TABS.find(t => t.key === key);
+    const list = CHARACTERS.filter(c => inTab(c, key));
+    return progressCardHTML(tabDef.label, list.filter(isRead).length, list.length);
+  }).join("");
 }
 
 // 十六型藥丸上的即時人數，讓「哪一型有人」一目了然
 function updatePillCounts() {
   const pool = CHARACTERS.filter(c =>
-    inTab(c, currentTab) && (currentTier === "all" || c.tier === currentTier));
+    inTab(c, currentTab) && matchesTier(c, currentTier));
   MBTI_GROUPS.forEach(g => g.types.forEach(t => {
     const el = document.getElementById("pilln-" + t);
     if (!el) return;
@@ -477,6 +656,7 @@ function renderActiveChips() {
   const box = document.getElementById("active-chips");
   const chips = [];
   if (currentTier === "major") chips.push(["★ 重要人物", "tier"]);
+  else if (currentTier === "common") chips.push(["常見人物", "tier"]);
   const exact = currentMbtiType();
   if (exact) chips.push([exact, "mbti"]);
   else AXES.forEach(ax => { if (mbtiFilter[ax.key]) chips.push([ax.label + "：" + mbtiFilter[ax.key], "axis:" + ax.key]); });
