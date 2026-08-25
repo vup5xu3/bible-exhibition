@@ -3,3 +3,7 @@
 
 # 已作廢的 Supabase／SQL 遷移檔（網站已改為純靜態 data.js，見 _build/make_static_data.py）
 _db/
+
+# Python 執行時產生的快取
+__pycache__/
+*.pyc

@@ -18,13 +18,16 @@
   "normal" 其餘人物 — 主要為家譜連結／單次提及／篇幅極短，缺乏獨立情節（如家譜中的父子鏈、單一經節人物）
   新增人物 JSON 時請依此標準指定 tier；index.html 的「常見人物」篩選鈕會自動包含 major。
 """
-import io, json, os
+import io, json, os, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BUILD = os.path.dirname(os.path.abspath(__file__))
 PEOPLE = os.path.join(BUILD, "people")
 LEGACY = os.path.join(BUILD, "legacy_cards.json")
 OUT = os.path.join(ROOT, "data.js")
+
+sys.path.insert(0, BUILD)
+from books import BOOK_ORDER, PERSON_BOOK  # noqa: E402
 
 # ── 卡片顯示順序：依人物在聖經敘事中首次出現的先後（創世記→...→使徒書信），
 #    唯一例外是 zhu_hongen（末後首位使徒）依使用者要求固定排在最前面。
@@ -78,6 +81,7 @@ def card_from_person_json(pid, d):
         "categories": d.get("categories", []),
         "tags": d.get("tags", []),
         "tier": d.get("tier", "normal"),
+        "book": PERSON_BOOK.get(pid),
     }
 
 
@@ -93,6 +97,7 @@ def main():
             "description": r["description"], "mbti": r.get("mbti"),
             "file_name": r["file_name"], "categories": r["categories"],
             "tags": r.get("tags", []), "tier": r.get("tier", "normal"),
+            "book": PERSON_BOOK.get(r["id"]),
         })
 
     # 2. 本次擴充的人物（依檔名字母序，穩定排序）
@@ -111,12 +116,26 @@ def main():
     for i, c in enumerate(cards, start=1):
         c["sort_order"] = i
 
+    # 朱虹恩非聖經人物，book 欄位保持 None（前端「依聖經卷別」統計會自動略過）；
+    # 其餘若忘記在 books.py 補上對照，同樣印出提醒但不中斷產生流程。
+    unbooked = sorted(c["id"] for c in cards if c["book"] is None and c["id"] != "zhu_hongen"
+                       and "study" not in c["categories"])
+    if unbooked:
+        print("⚠ 尚未加入 books.py 的 PERSON_BOOK，「依聖經卷別」統計會略過：%s" % ", ".join(unbooked))
+
+    books_js = [{"id": b, "name": zh, "target": t} for b, zh, t in BOOK_ORDER]
+
     js = (
         "// 本檔由 _build/make_static_data.py 自動產生，請勿手動編輯。\n"
         "// 如需新增/修改人物：編輯 _build/people/*.json 或 _build/legacy_cards.json，\n"
         "// 然後重新執行 python _build/make_static_data.py 覆蓋本檔。\n"
         "window.BIBLE_CHARACTERS = "
         + json.dumps(cards, ensure_ascii=False, indent=2)
+        + ";\n\n"
+        "// 聖經 66 卷書的顯示順序與「預估有情節人物數」，供閱讀進度頁籤的\n"
+        "// 「依聖經卷別」區塊使用（估算方式見 _build/books.py 檔頭說明）。\n"
+        "window.BIBLE_BOOKS = "
+        + json.dumps(books_js, ensure_ascii=False, indent=2)
         + ";\n"
     )
     io.open(OUT, "w", encoding="utf-8", newline="\n").write(js)

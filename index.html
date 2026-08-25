@@ -175,6 +175,18 @@
   .progress-file-input { display: none; }
   .progress-hint { font-size: 11.5px; color: var(--ink-pale); line-height: 1.9; margin-top: -10px; margin-bottom: 24px; }
 
+  /* ── 依聖經卷別 ── */
+  .progress-book-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(148px, 1fr)); gap: 8px; }
+  .progress-book-card { background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 9px 11px; }
+  .progress-book-card.empty { background: transparent; border-style: dashed; opacity: 0.6; }
+  .progress-book-name-row { display: flex; justify-content: space-between; align-items: baseline; gap: 6px; margin-bottom: 6px; }
+  .progress-book-name { font-family: 'Noto Serif TC', serif; font-size: 12px; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .progress-book-target { font-family: 'IM Fell English', serif; font-size: 10.5px; color: var(--ink-pale); flex-shrink: 0; }
+  .progress-book-bar-track { position: relative; height: 8px; background: var(--gold-pale); border-radius: 6px; overflow: hidden; margin-bottom: 5px; }
+  .progress-book-bar-collected { position: absolute; inset: 0; background: rgba(184,150,46,0.4); border-radius: 6px; }
+  .progress-book-bar-read { position: absolute; left: 0; top: 0; bottom: 0; background: var(--gold); border-radius: 6px; }
+  .progress-book-nums { font-size: 10px; color: var(--ink-pale); }
+
   @media (max-width: 640px) {
     .subfilter-wrap { position: static; }
     .search-box { max-width: none; margin-left: 0; width: 100%; }
@@ -273,6 +285,16 @@
 
     <div class="section-label" style="margin-top:28px"><span class="section-label-text">依分類</span></div>
     <div class="progress-groups" id="progress-cat-groups"></div>
+
+    <div class="section-label" style="margin-top:28px">
+      <span class="section-label-text">依聖經卷別</span>
+      <span class="section-count" id="progress-book-summary">— 0 / 0 / 0</span>
+    </div>
+    <p class="progress-hint" style="margin-bottom:16px">每卷書由左至右：<span style="color:var(--gold)">■</span> 已讀　<span style="color:rgba(184,150,46,0.4)">■</span> 已收錄未讀　空白 = 本站尚未收錄（估計數見卷名右側）。估計數是本站依「有完整情節才收錄」標準自行估算，會隨擴充逐步校正，並非學術定論。</p>
+    <div class="section-label" style="margin-bottom:10px"><span class="section-label-text" style="font-size:11px">舊約 39 卷</span></div>
+    <div class="progress-book-grid" id="progress-book-ot"></div>
+    <div class="section-label" style="margin:20px 0 10px"><span class="section-label-text" style="font-size:11px">新約 27 卷</span></div>
+    <div class="progress-book-grid" id="progress-book-nt"></div>
   </div>
 </main>
 
@@ -287,8 +309,12 @@ const CHARACTERS = (window.BIBLE_CHARACTERS || []).map(d => ({
   id: d.id, name: d.name, nameEn: d.name_en, avatar: d.avatar,
   desc: d.description, mbti: d.mbti, file: d.file_name,
   categories: d.categories || [], tags: d.tags || [], sort_order: d.sort_order,
-  epithet: d.epithet || "", tier: d.tier || "normal"
+  epithet: d.epithet || "", tier: d.tier || "normal", book: d.book || null
 }));
+
+// 聖經 66 卷書的顯示順序與「預估有情節人物數」（見 _build/books.py）
+const BIBLE_BOOKS = window.BIBLE_BOOKS || [];
+const OT_BOOK_IDS = new Set(BIBLE_BOOKS.slice(0, 39).map(b => b.id));
 
 // ── 分類定義（單一資料來源：頁籤由此產生）──
 const TABS = [
@@ -638,6 +664,51 @@ function renderProgressView() {
     const list = CHARACTERS.filter(c => inTab(c, key));
     return progressCardHTML(tabDef.label, list.filter(isRead).length, list.length);
   }).join("");
+
+  renderBookProgress(pool, isRead);
+}
+
+// 依聖經卷別：每卷書顯示「已讀 / 已收錄 / 本站預估有情節人物數」三個數字疊成一條長條圖
+function progressBookCardHTML(book, readN, collectedN) {
+  const target = Math.max(book.target, collectedN); // 若實際收錄已超過原估算，長條圖不失真
+  const collectedPct = target ? Math.round((collectedN / target) * 100) : 0;
+  const readPct = target ? Math.round((readN / target) * 100) : 0;
+  const empty = collectedN === 0;
+  return `
+    <div class="progress-book-card${empty ? " empty" : ""}" title="${esc(book.name)}：已讀 ${readN} · 已收錄 ${collectedN} · 本站預估 ${book.target}">
+      <div class="progress-book-name-row">
+        <span class="progress-book-name">${esc(book.name)}</span>
+        <span class="progress-book-target">${book.target}</span>
+      </div>
+      <div class="progress-book-bar-track">
+        <div class="progress-book-bar-collected" style="width:${collectedPct}%"></div>
+        <div class="progress-book-bar-read" style="width:${readPct}%"></div>
+      </div>
+      <div class="progress-book-nums">${readN} / ${collectedN}</div>
+    </div>`;
+}
+
+function renderBookProgress(pool, isRead) {
+  const byBook = {};
+  pool.forEach(c => {
+    if (!c.book) return;
+    (byBook[c.book] = byBook[c.book] || []).push(c);
+  });
+
+  let sumTarget = 0, sumCollected = 0, sumRead = 0;
+  const otHTML = [], ntHTML = [];
+  BIBLE_BOOKS.forEach(book => {
+    const list = byBook[book.id] || [];
+    const readN = list.filter(isRead).length;
+    sumTarget += book.target; sumCollected += list.length; sumRead += readN;
+    const html = progressBookCardHTML(book, readN, list.length);
+    (OT_BOOK_IDS.has(book.id) ? otHTML : ntHTML).push(html);
+  });
+
+  document.getElementById("progress-book-summary").textContent =
+    `— 已讀 ${sumRead} ／ 已收錄 ${sumCollected} ／ 本站預估 ${sumTarget}`;
+  document.getElementById("progress-book-ot").innerHTML = otHTML.join("");
+  document.getElementById("progress-book-nt").innerHTML = ntHTML.join("");
 }
 
 // 十六型藥丸上的即時人數，讓「哪一型有人」一目了然

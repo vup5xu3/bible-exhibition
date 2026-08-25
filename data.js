@@ -19,6 +19,7 @@ window.BIBLE_CHARACTERS = [
       "神之子基督教會"
     ],
     "tier": "major",
+    "book": null,
     "sort_order": 1
   },
   {
@@ -39,6 +40,7 @@ window.BIBLE_CHARACTERS = [
       "洪水審判"
     ],
     "tier": "normal",
+    "book": "genesis",
     "sort_order": 2
   },
   {
@@ -59,6 +61,7 @@ window.BIBLE_CHARACTERS = [
       "諸民之父"
     ],
     "tier": "major",
+    "book": "genesis",
     "sort_order": 3
   },
   {
@@ -78,6 +81,7 @@ window.BIBLE_CHARACTERS = [
       "從懷疑的笑到應許的笑"
     ],
     "tier": "major",
+    "book": "genesis",
     "sort_order": 4
   },
   {
@@ -97,6 +101,7 @@ window.BIBLE_CHARACTERS = [
       "義人羅得為那些惡人淫行憂傷"
     ],
     "tier": "common",
+    "book": "genesis",
     "sort_order": 5
   },
   {
@@ -116,6 +121,7 @@ window.BIBLE_CHARACTERS = [
       "無父，無母，無族譜，無生之始，無命之終"
     ],
     "tier": "common",
+    "book": "genesis",
     "sort_order": 6
   },
   {
@@ -135,6 +141,7 @@ window.BIBLE_CHARACTERS = [
       "神開了夏甲的眼睛，她就看見一口水井"
     ],
     "tier": "common",
+    "book": "genesis",
     "sort_order": 7
   },
   {
@@ -155,6 +162,7 @@ window.BIBLE_CHARACTERS = [
       "立約承繼者"
     ],
     "tier": "major",
+    "book": "genesis",
     "sort_order": 8
   },
   {
@@ -174,6 +182,7 @@ window.BIBLE_CHARACTERS = [
       "在井邊一口答應的果斷少女，卻在家中親手策劃了欺騙"
     ],
     "tier": "major",
+    "book": "genesis",
     "sort_order": 9
   },
   {
@@ -193,6 +202,7 @@ window.BIBLE_CHARACTERS = [
       "以掃跑來迎接他，將他抱住，又摟著他的頸項親嘴"
     ],
     "tier": "common",
+    "book": "genesis",
     "sort_order": 10
   },
   {
@@ -213,6 +223,7 @@ window.BIBLE_CHARACTERS = [
       "立約先祖"
     ],
     "tier": "major",
+    "book": "genesis",
     "sort_order": 11
   },
   {
@@ -234,6 +245,7 @@ window.BIBLE_CHARACTERS = [
       "這回我要讚美耶和華"
     ],
     "tier": "common",
+    "book": "genesis",
     "sort_order": 12
   },
   {
@@ -254,6 +266,7 @@ window.BIBLE_CHARACTERS = [
       "難產而死，卻留下便雅憫之名"
     ],
     "tier": "common",
+    "book": "genesis",
     "sort_order": 13
   },
   {
@@ -273,6 +286,7 @@ window.BIBLE_CHARACTERS = [
       "污穢了我的榻，這名分就歸了別人"
     ],
     "tier": "common",
+    "book": "genesis",
     "sort_order": 14
   },
   {
@@ -293,6 +307,7 @@ window.BIBLE_CHARACTERS = [
       "彌賽亞先祖"
     ],
     "tier": "major",
+    "book": "genesis",
     "sort_order": 15
   },
   {
@@ -312,6 +327,7 @@ window.BIBLE_CHARACTERS = [
       "彌賽亞血脈守護者"
     ],
     "tier": "major",
+    "book": "genesis",
     "sort_order": 16
   },
   {
@@ -332,6 +348,7 @@ window.BIBLE_CHARACTERS = [
       "彌賽亞血祖"
     ],
     "tier": "normal",
+    "book": "genesis",
     "sort_order": 17
   },
   {
@@ -352,6 +369,7 @@ window.BIBLE_CHARACTERS = [
       "長子標記承載者"
     ],
     "tier": "normal",
+    "book": "genesis",
     "sort_order": 18
   },
   {
@@ -372,6 +390,7 @@ window.BIBLE_CHARACTERS = [
       "氏族政治建構者"
     ],
     "tier": "normal",
+    "book": "genesis",
     "sort_order": 19
   },
   {
@@ -391,6 +410,7 @@ window.BIBLE_CHARACTERS = [
       "從深坑到寶座的完整弧線"
     ],
     "tier": "major",
+    "book": "genesis",
     "sort_order": 20
   },
   {
@@ -410,6 +430,7 @@ window.BIBLE_CHARACTERS = [
       "我們的父親年紀老邁，還有他老年所生的一個小孩子"
     ],
     "tier": "common",
+    "book": "genesis",
     "sort_order": 21
   },
   {
@@ -429,6 +450,7 @@ window.BIBLE_CHARACTERS = [
       "在灰燼中依然堅持與神對話的人"
     ],
     "tier": "major",
+    "book": "job",
     "sort_order": 22
   },
   {
@@ -448,6 +470,7 @@ window.BIBLE_CHARACTERS = [
       "面對面說話"
     ],
     "tier": "major",
+    "book": "exodus",
     "sort_order": 23
   },
   {
@@ -468,6 +491,7 @@ window.BIBLE_CHARACTERS = [
       "他先脫下所穿的聖衣，給他兒子以利亞撒穿上"
     ],
     "tier": "major",
+    "book": "exodus",
     "sort_order": 24
   },
   {
@@ -487,6 +511,7 @@ window.BIBLE_CHARACTERS = [
       "從河邊機智的姊姊到長大痲瘋的先知"
     ],
     "tier": "common",
+    "book": "exodus",
     "sort_order": 25
   },
   {
@@ -506,6 +531,7 @@ window.BIBLE_CHARACTERS = [
       "驢對巴蘭說：我向你行了什麼，你竟打我這三次呢"
     ],
     "tier": "common",
+    "book": "numbers",
     "sort_order": 26
   },
   {
@@ -526,6 +552,7 @@ window.BIBLE_CHARACTERS = [
       "猶大王室直系先祖"
     ],
     "tier": "normal",
+    "book": "ruth",
     "sort_order": 27
   },
   {
@@ -545,6 +572,7 @@ window.BIBLE_CHARACTERS = [
       "沉默鉚釘"
     ],
     "tier": "normal",
+    "book": "numbers",
     "sort_order": 28
   },
   {
@@ -565,6 +593,7 @@ window.BIBLE_CHARACTERS = [
       "開路先鋒"
     ],
     "tier": "normal",
+    "book": "numbers",
     "sort_order": 29
   },
   {
@@ -584,6 +613,7 @@ window.BIBLE_CHARACTERS = [
       "如今我八十五歲了，我還是強壯，能出能入，能爭能戰"
     ],
     "tier": "common",
+    "book": "numbers",
     "sort_order": 30
   },
   {
@@ -603,6 +633,7 @@ window.BIBLE_CHARACTERS = [
       "我和我家必定事奉耶和華"
     ],
     "tier": "major",
+    "book": "joshua",
     "sort_order": 31
   },
   {
@@ -623,6 +654,7 @@ window.BIBLE_CHARACTERS = [
       "從死亡之城到家譜之首"
     ],
     "tier": "common",
+    "book": "joshua",
     "sort_order": 32
   },
   {
@@ -642,6 +674,7 @@ window.BIBLE_CHARACTERS = [
       "以色列人在當滅的物上犯了罪"
     ],
     "tier": "common",
+    "book": "joshua",
     "sort_order": 33
   },
   {
@@ -661,6 +694,7 @@ window.BIBLE_CHARACTERS = [
       "國中太平八十年"
     ],
     "tier": "common",
+    "book": "judges",
     "sort_order": 34
   },
   {
@@ -680,6 +714,7 @@ window.BIBLE_CHARACTERS = [
       "坐在棕樹下審判以色列的女先知"
     ],
     "tier": "major",
+    "book": "judges",
     "sort_order": 35
   },
   {
@@ -699,6 +734,7 @@ window.BIBLE_CHARACTERS = [
       "婦女中最為有福的"
     ],
     "tier": "common",
+    "book": "judges",
     "sort_order": 36
   },
   {
@@ -718,6 +754,7 @@ window.BIBLE_CHARACTERS = [
       "從躲藏的懦夫到三百人的統帥"
     ],
     "tier": "major",
+    "book": "judges",
     "sort_order": 37
   },
   {
@@ -738,6 +775,7 @@ window.BIBLE_CHARACTERS = [
       "他向耶和華許願"
     ],
     "tier": "common",
+    "book": "judges",
     "sort_order": 38
   },
   {
@@ -757,6 +795,7 @@ window.BIBLE_CHARACTERS = [
       "耶和華若要殺我們，必不從我們手裡收納燔祭和素祭"
     ],
     "tier": "normal",
+    "book": "judges",
     "sort_order": 39
   },
   {
@@ -776,6 +815,7 @@ window.BIBLE_CHARACTERS = [
       "頭髮被剃就軟弱像別人一樣"
     ],
     "tier": "common",
+    "book": "judges",
     "sort_order": 40
   },
   {
@@ -795,6 +835,7 @@ window.BIBLE_CHARACTERS = [
       "每天用話催逼他，甚至他心裡厭煩要死"
     ],
     "tier": "common",
+    "book": "judges",
     "sort_order": 41
   },
   {
@@ -815,6 +856,7 @@ window.BIBLE_CHARACTERS = [
       "耶和華使她懷孕，生了一個兒子"
     ],
     "tier": "common",
+    "book": "ruth",
     "sort_order": 42
   },
   {
@@ -834,6 +876,7 @@ window.BIBLE_CHARACTERS = [
       "在麥地拾取麥穗"
     ],
     "tier": "common",
+    "book": "ruth",
     "sort_order": 43
   },
   {
@@ -854,6 +897,7 @@ window.BIBLE_CHARACTERS = [
       "在律法的邊界裡活出超越律法的慈愛"
     ],
     "tier": "common",
+    "book": "ruth",
     "sort_order": 44
   },
   {
@@ -874,6 +918,7 @@ window.BIBLE_CHARACTERS = [
       "被忽略的那一個，卻是神揀選的那一個"
     ],
     "tier": "normal",
+    "book": "ruth",
     "sort_order": 45
   },
   {
@@ -894,6 +939,7 @@ window.BIBLE_CHARACTERS = [
       "約櫃被擄，以利仰面跌倒折斷頸項而死"
     ],
     "tier": "common",
+    "book": "1samuel",
     "sort_order": 46
   },
   {
@@ -913,6 +959,7 @@ window.BIBLE_CHARACTERS = [
       "無聲的禱告勝過喧嚷的言語"
     ],
     "tier": "common",
+    "book": "1samuel",
     "sort_order": 47
   },
   {
@@ -932,6 +979,7 @@ window.BIBLE_CHARACTERS = [
       "從獻上的孩子到膏立君王的先知"
     ],
     "tier": "major",
+    "book": "1samuel",
     "sort_order": 48
   },
   {
@@ -951,6 +999,7 @@ window.BIBLE_CHARACTERS = [
       "從躲在器具中的謙卑少年到追殺大衛的偏執君王"
     ],
     "tier": "major",
+    "book": "1samuel",
     "sort_order": 49
   },
   {
@@ -970,6 +1019,7 @@ window.BIBLE_CHARACTERS = [
       "你必作以色列的王，我也作你的宰相"
     ],
     "tier": "major",
+    "book": "1samuel",
     "sort_order": 50
   },
   {
@@ -989,6 +1039,7 @@ window.BIBLE_CHARACTERS = [
       "和解途中倒下的人"
     ],
     "tier": "common",
+    "book": "1samuel",
     "sort_order": 51
   },
   {
@@ -1009,6 +1060,7 @@ window.BIBLE_CHARACTERS = [
       "米甲從窗戶裡看見大衛王踴躍跳舞，心裡就輕視他"
     ],
     "tier": "common",
+    "book": "1samuel",
     "sort_order": 52
   },
   {
@@ -1028,6 +1080,7 @@ window.BIBLE_CHARACTERS = [
       "耶和華攔阻你親手報仇，流無辜人的血"
     ],
     "tier": "common",
+    "book": "1samuel",
     "sort_order": 53
   },
   {
@@ -1047,6 +1100,7 @@ window.BIBLE_CHARACTERS = [
       "耶和華擊打拿八，他就死了"
     ],
     "tier": "normal",
+    "book": "1samuel",
     "sort_order": 54
   },
   {
@@ -1067,6 +1121,7 @@ window.BIBLE_CHARACTERS = [
       "求你為我造清潔的心"
     ],
     "tier": "major",
+    "book": "2samuel",
     "sort_order": 55
   },
   {
@@ -1086,6 +1141,7 @@ window.BIBLE_CHARACTERS = [
       "一句話活出對君王的忠誠"
     ],
     "tier": "common",
+    "book": "2samuel",
     "sort_order": 56
   },
   {
@@ -1106,6 +1162,7 @@ window.BIBLE_CHARACTERS = [
       "從烏利亞之妻到所羅門之母的漫長重建"
     ],
     "tier": "major",
+    "book": "2samuel",
     "sort_order": 57
   },
   {
@@ -1126,6 +1183,7 @@ window.BIBLE_CHARACTERS = [
       "大衛在信內寫著說：要派烏利亞前進至陣勢極險之處"
     ],
     "tier": "common",
+    "book": "2samuel",
     "sort_order": 58
   },
   {
@@ -1145,6 +1203,7 @@ window.BIBLE_CHARACTERS = [
       "先支持建殿的異象，隔夜卻收回轉達不同的神諭"
     ],
     "tier": "common",
+    "book": "2samuel",
     "sort_order": 59
   },
   {
@@ -1164,6 +1223,7 @@ window.BIBLE_CHARACTERS = [
       "從沉默兩年的復仇到懸掛橡樹的悲劇終局"
     ],
     "tier": "common",
+    "book": "2samuel",
     "sort_order": 60
   },
   {
@@ -1183,6 +1243,7 @@ window.BIBLE_CHARACTERS = [
       "他瑪就住在她胞兄押沙龍家裡，甚是淒涼"
     ],
     "tier": "common",
+    "book": "2samuel",
     "sort_order": 61
   },
   {
@@ -1202,6 +1263,7 @@ window.BIBLE_CHARACTERS = [
       "押沙龍的僕人就照押沙龍所吩咐的，向暗嫩行了"
     ],
     "tier": "common",
+    "book": "2samuel",
     "sort_order": 62
   },
   {
@@ -1222,6 +1284,7 @@ window.BIBLE_CHARACTERS = [
       "約押在耶和華的帳幕裡拿住壇的角"
     ],
     "tier": "common",
+    "book": "2samuel",
     "sort_order": 63
   },
   {
@@ -1242,6 +1305,7 @@ window.BIBLE_CHARACTERS = [
       "虛空的虛空"
     ],
     "tier": "major",
+    "book": "1kings",
     "sort_order": 64
   },
   {
@@ -1261,6 +1325,7 @@ window.BIBLE_CHARACTERS = [
       "見證之後心中再沒有靈氣"
     ],
     "tier": "common",
+    "book": "1kings",
     "sort_order": 65
   },
   {
@@ -1280,6 +1345,7 @@ window.BIBLE_CHARACTERS = [
       "被歷史定名為罪的君王"
     ],
     "tier": "common",
+    "book": "1kings",
     "sort_order": 66
   },
   {
@@ -1300,6 +1366,7 @@ window.BIBLE_CHARACTERS = [
       "一句話分裂了一個國度"
     ],
     "tier": "common",
+    "book": "1kings",
     "sort_order": 67
   },
   {
@@ -1320,6 +1387,7 @@ window.BIBLE_CHARACTERS = [
       "在位僅三年卻留下一篇重要宣講"
     ],
     "tier": "normal",
+    "book": "1kings",
     "sort_order": 68
   },
   {
@@ -1340,6 +1408,7 @@ window.BIBLE_CHARACTERS = [
       "前半生的信心與後半生的軟弱"
     ],
     "tier": "common",
+    "book": "1kings",
     "sort_order": 69
   },
   {
@@ -1360,6 +1429,7 @@ window.BIBLE_CHARACTERS = [
       "敬虔卻與惡王結親的複雜遺產"
     ],
     "tier": "common",
+    "book": "1kings",
     "sort_order": 70
   },
   {
@@ -1380,6 +1450,7 @@ window.BIBLE_CHARACTERS = [
       "父親約沙法聯姻決定的直接惡果"
     ],
     "tier": "normal",
+    "book": "1kings",
     "sort_order": 71
   },
   {
@@ -1399,6 +1470,7 @@ window.BIBLE_CHARACTERS = [
       "他就悶悶不樂地回宮，臉面轉向一邊，也不吃飯"
     ],
     "tier": "common",
+    "book": "1kings",
     "sort_order": 72
   },
   {
@@ -1418,6 +1490,7 @@ window.BIBLE_CHARACTERS = [
       "狗必在耶斯列田裡吃耶洗別的肉"
     ],
     "tier": "common",
+    "book": "1kings",
     "sort_order": 73
   },
   {
@@ -1437,6 +1510,7 @@ window.BIBLE_CHARACTERS = [
       "羅騰樹下求死"
     ],
     "tier": "major",
+    "book": "1kings",
     "sort_order": 74
   },
   {
@@ -1456,6 +1530,7 @@ window.BIBLE_CHARACTERS = [
       "罈內的麵不減，瓶裡的油不缺"
     ],
     "tier": "common",
+    "book": "1kings",
     "sort_order": 75
   },
   {
@@ -1475,6 +1550,7 @@ window.BIBLE_CHARACTERS = [
       "沉默的義人也能撼動王國"
     ],
     "tier": "common",
+    "book": "1kings",
     "sort_order": 76
   },
   {
@@ -1494,6 +1570,7 @@ window.BIBLE_CHARACTERS = [
       "求你不要撇下我"
     ],
     "tier": "common",
+    "book": "2kings",
     "sort_order": 77
   },
   {
@@ -1513,6 +1590,7 @@ window.BIBLE_CHARACTERS = [
       "我在自己百姓中安居無事"
     ],
     "tier": "common",
+    "book": "2kings",
     "sort_order": 78
   },
   {
@@ -1532,6 +1610,7 @@ window.BIBLE_CHARACTERS = [
       "大人物需要小女孩指路才能得醫治"
     ],
     "tier": "common",
+    "book": "2kings",
     "sort_order": 79
   },
   {
@@ -1551,6 +1630,7 @@ window.BIBLE_CHARACTERS = [
       "白白得來的也要白白捨去"
     ],
     "tier": "common",
+    "book": "2kings",
     "sort_order": 80
   },
   {
@@ -1570,6 +1650,7 @@ window.BIBLE_CHARACTERS = [
       "他的趕車無人能及"
     ],
     "tier": "common",
+    "book": "2kings",
     "sort_order": 81
   },
   {
@@ -1589,6 +1670,7 @@ window.BIBLE_CHARACTERS = [
       "尼尼微城的悔改，卻換來先知的憤怒"
     ],
     "tier": "major",
+    "book": "jonah",
     "sort_order": 82
   },
   {
@@ -1608,6 +1690,7 @@ window.BIBLE_CHARACTERS = [
       "從婚姻的破碎到重新買贖的活生生比喻"
     ],
     "tier": "common",
+    "book": "hosea",
     "sort_order": 83
   },
   {
@@ -1627,6 +1710,7 @@ window.BIBLE_CHARACTERS = [
       "他被藐視被人厭棄"
     ],
     "tier": "major",
+    "book": "isaiah",
     "sort_order": 84
   },
   {
@@ -1647,6 +1731,7 @@ window.BIBLE_CHARACTERS = [
       "強盛卻在權力頂峰跨越了界線"
     ],
     "tier": "common",
+    "book": "2kings",
     "sort_order": 85
   },
   {
@@ -1667,6 +1752,7 @@ window.BIBLE_CHARACTERS = [
       "父親的教訓成了他一生的借鏡"
     ],
     "tier": "normal",
+    "book": "2kings",
     "sort_order": 86
   },
   {
@@ -1687,6 +1773,7 @@ window.BIBLE_CHARACTERS = [
       "以賽亞在他面前發出以馬內利的預言"
     ],
     "tier": "common",
+    "book": "2kings",
     "sort_order": 87
   },
   {
@@ -1707,6 +1794,7 @@ window.BIBLE_CHARACTERS = [
       "在毀滅邊緣重建信仰的王"
     ],
     "tier": "major",
+    "book": "2kings",
     "sort_order": 88
   },
   {
@@ -1727,6 +1815,7 @@ window.BIBLE_CHARACTERS = [
       "聖經中最戲劇性的悔改敘事之一"
     ],
     "tier": "common",
+    "book": "2kings",
     "sort_order": 89
   },
   {
@@ -1747,6 +1836,7 @@ window.BIBLE_CHARACTERS = [
       "只學了父親的罪，沒學父親的悔改"
     ],
     "tier": "normal",
+    "book": "2kings",
     "sort_order": 90
   },
   {
@@ -1767,6 +1857,7 @@ window.BIBLE_CHARACTERS = [
       "撕裂衣服，痛悔認罪的少年王"
     ],
     "tier": "major",
+    "book": "2kings",
     "sort_order": 91
   },
   {
@@ -1786,6 +1877,7 @@ window.BIBLE_CHARACTERS = [
       "心中彷彿有燒著的火"
     ],
     "tier": "major",
+    "book": "jeremiah",
     "sort_order": 92
   },
   {
@@ -1807,6 +1899,7 @@ window.BIBLE_CHARACTERS = [
       "被擄前的先知咒詛與被擄後的恩慈"
     ],
     "tier": "normal",
+    "book": "2kings",
     "sort_order": 93
   },
   {
@@ -1826,6 +1919,7 @@ window.BIBLE_CHARACTERS = [
       "枯骨也能重新站立"
     ],
     "tier": "major",
+    "book": "ezekiel",
     "sort_order": 94
   },
   {
@@ -1845,6 +1939,7 @@ window.BIBLE_CHARACTERS = [
       "一日三次禱告"
     ],
     "tier": "major",
+    "book": "daniel",
     "sort_order": 95
   },
   {
@@ -1864,6 +1959,7 @@ window.BIBLE_CHARACTERS = [
       "我若死就死吧"
     ],
     "tier": "major",
+    "book": "esther",
     "sort_order": 96
   },
   {
@@ -1883,6 +1979,7 @@ window.BIBLE_CHARACTERS = [
       "為別人立的木架，自己先掛上去"
     ],
     "tier": "common",
+    "book": "esther",
     "sort_order": 97
   },
   {
@@ -1902,6 +1999,7 @@ window.BIBLE_CHARACTERS = [
       "從坐在朝門的猶太人到僅次於王的宰相"
     ],
     "tier": "common",
+    "book": "esther",
     "sort_order": 98
   },
   {
@@ -1922,6 +2020,7 @@ window.BIBLE_CHARACTERS = [
       "被擄之地誕生的應許血脈"
     ],
     "tier": "normal",
+    "book": "ezra",
     "sort_order": 99
   },
   {
@@ -1942,6 +2041,7 @@ window.BIBLE_CHARACTERS = [
       "在廢墟中重新立起根基的人"
     ],
     "tier": "common",
+    "book": "ezra",
     "sort_order": 100
   },
   {
@@ -1961,6 +2061,7 @@ window.BIBLE_CHARACTERS = [
       "在異象破碎後帶領百姓重新委身律法"
     ],
     "tier": "common",
+    "book": "ezra",
     "sort_order": 101
   },
   {
@@ -1980,6 +2081,7 @@ window.BIBLE_CHARACTERS = [
       "五十二天重建城牆的禱告實踐家"
     ],
     "tier": "major",
+    "book": "nehemiah",
     "sort_order": 102
   },
   {
@@ -2000,6 +2102,7 @@ window.BIBLE_CHARACTERS = [
       "僅存其名，卻從未被遺漏"
     ],
     "tier": "normal",
+    "book": "matthew",
     "sort_order": 103
   },
   {
@@ -2019,6 +2122,7 @@ window.BIBLE_CHARACTERS = [
       "兩個都是義人，只是沒有孩子"
     ],
     "tier": "major",
+    "book": "luke",
     "sort_order": 104
   },
   {
@@ -2038,6 +2142,7 @@ window.BIBLE_CHARACTERS = [
       "他必興旺我必衰微"
     ],
     "tier": "major",
+    "book": "luke",
     "sort_order": 105
   },
   {
@@ -2057,6 +2162,7 @@ window.BIBLE_CHARACTERS = [
       "七劍穿心"
     ],
     "tier": "major",
+    "book": "luke",
     "sort_order": 106
   },
   {
@@ -2077,6 +2183,7 @@ window.BIBLE_CHARACTERS = [
       "沉默卻堅定的順服者"
     ],
     "tier": "major",
+    "book": "matthew",
     "sort_order": 107
   },
   {
@@ -2096,6 +2203,7 @@ window.BIBLE_CHARACTERS = [
       "又禁食祈求，晝夜事奉神"
     ],
     "tier": "common",
+    "book": "luke",
     "sort_order": 108
   },
   {
@@ -2116,6 +2224,7 @@ window.BIBLE_CHARACTERS = [
       "教會磐石"
     ],
     "tier": "major",
+    "book": "matthew",
     "sort_order": 109
   },
   {
@@ -2136,6 +2245,7 @@ window.BIBLE_CHARACTERS = [
       "帶人來見主"
     ],
     "tier": "major",
+    "book": "matthew",
     "sort_order": 110
   },
   {
@@ -2156,6 +2266,7 @@ window.BIBLE_CHARACTERS = [
       "首位殉道使徒"
     ],
     "tier": "major",
+    "book": "matthew",
     "sort_order": 111
   },
   {
@@ -2176,6 +2287,7 @@ window.BIBLE_CHARACTERS = [
       "雷子"
     ],
     "tier": "major",
+    "book": "matthew",
     "sort_order": 112
   },
   {
@@ -2196,6 +2308,7 @@ window.BIBLE_CHARACTERS = [
       "算不出來的信心"
     ],
     "tier": "common",
+    "book": "matthew",
     "sort_order": 113
   },
   {
@@ -2216,6 +2329,7 @@ window.BIBLE_CHARACTERS = [
       "無花果樹下"
     ],
     "tier": "common",
+    "book": "matthew",
     "sort_order": 114
   },
   {
@@ -2236,6 +2350,7 @@ window.BIBLE_CHARACTERS = [
       "我的主我的神"
     ],
     "tier": "major",
+    "book": "john",
     "sort_order": 115
   },
   {
@@ -2256,6 +2371,7 @@ window.BIBLE_CHARACTERS = [
       "福音書作者"
     ],
     "tier": "major",
+    "book": "matthew",
     "sort_order": 116
   },
   {
@@ -2276,6 +2392,7 @@ window.BIBLE_CHARACTERS = [
       "隱沒的使徒"
     ],
     "tier": "common",
+    "book": "matthew",
     "sort_order": 117
   },
   {
@@ -2296,6 +2413,7 @@ window.BIBLE_CHARACTERS = [
       "一句提問"
     ],
     "tier": "common",
+    "book": "matthew",
     "sort_order": 118
   },
   {
@@ -2316,6 +2434,7 @@ window.BIBLE_CHARACTERS = [
       "與稅吏同席"
     ],
     "tier": "common",
+    "book": "matthew",
     "sort_order": 119
   },
   {
@@ -2336,6 +2455,7 @@ window.BIBLE_CHARACTERS = [
       "賣主者"
     ],
     "tier": "major",
+    "book": "matthew",
     "sort_order": 120
   },
   {
@@ -2355,6 +2475,7 @@ window.BIBLE_CHARACTERS = [
       "重生"
     ],
     "tier": "common",
+    "book": "john",
     "sort_order": 121
   },
   {
@@ -2374,6 +2495,7 @@ window.BIBLE_CHARACTERS = [
       "第一位跨文化宣教士"
     ],
     "tier": "common",
+    "book": "john",
     "sort_order": 122
   },
   {
@@ -2393,6 +2515,7 @@ window.BIBLE_CHARACTERS = [
       "不要怕，只要信"
     ],
     "tier": "common",
+    "book": "mark",
     "sort_order": 123
   },
   {
@@ -2412,6 +2535,7 @@ window.BIBLE_CHARACTERS = [
       "女兒，你的信救了你，平平安安地回去吧"
     ],
     "tier": "common",
+    "book": "mark",
     "sort_order": 124
   },
   {
@@ -2431,6 +2555,7 @@ window.BIBLE_CHARACTERS = [
       "婦人，你的信心是大的"
     ],
     "tier": "common",
+    "book": "matthew",
     "sort_order": 125
   },
   {
@@ -2450,6 +2575,7 @@ window.BIBLE_CHARACTERS = [
       "喜歡聽約翰講道"
     ],
     "tier": "common",
+    "book": "mark",
     "sort_order": 126
   },
   {
@@ -2469,6 +2595,7 @@ window.BIBLE_CHARACTERS = [
       "被指責的真相令她無法忍受"
     ],
     "tier": "common",
+    "book": "mark",
     "sort_order": 127
   },
   {
@@ -2488,6 +2615,7 @@ window.BIBLE_CHARACTERS = [
       "他就憂憂愁愁地走了，因為他的產業很多"
     ],
     "tier": "common",
+    "book": "matthew",
     "sort_order": 128
   },
   {
@@ -2507,6 +2635,7 @@ window.BIBLE_CHARACTERS = [
       "我信你是基督"
     ],
     "tier": "common",
+    "book": "john",
     "sort_order": 129
   },
   {
@@ -2526,6 +2655,7 @@ window.BIBLE_CHARACTERS = [
       "打破玉瓶"
     ],
     "tier": "common",
+    "book": "john",
     "sort_order": 130
   },
   {
@@ -2545,6 +2675,7 @@ window.BIBLE_CHARACTERS = [
       "死了四天"
     ],
     "tier": "major",
+    "book": "john",
     "sort_order": 131
   },
   {
@@ -2564,6 +2695,7 @@ window.BIBLE_CHARACTERS = [
       "四倍償還"
     ],
     "tier": "common",
+    "book": "luke",
     "sort_order": 132
   },
   {
@@ -2584,6 +2716,7 @@ window.BIBLE_CHARACTERS = [
       "他就丟下衣服，跳起來，走到耶穌那裡"
     ],
     "tier": "common",
+    "book": "mark",
     "sort_order": 133
   },
   {
@@ -2603,6 +2736,7 @@ window.BIBLE_CHARACTERS = [
       "起來，走吧！你的信救了你了"
     ],
     "tier": "common",
+    "book": "luke",
     "sort_order": 134
   },
   {
@@ -2622,6 +2756,7 @@ window.BIBLE_CHARACTERS = [
       "復活第一見證人"
     ],
     "tier": "major",
+    "book": "john",
     "sort_order": 135
   },
   {
@@ -2641,6 +2776,7 @@ window.BIBLE_CHARACTERS = [
       "信心沒有行為是死的"
     ],
     "tier": "major",
+    "book": "acts",
     "sort_order": 136
   },
   {
@@ -2660,6 +2796,7 @@ window.BIBLE_CHARACTERS = [
       "為真道竭力爭辯"
     ],
     "tier": "common",
+    "book": "acts",
     "sort_order": 137
   },
   {
@@ -2679,6 +2816,7 @@ window.BIBLE_CHARACTERS = [
       "無心的預言"
     ],
     "tier": "common",
+    "book": "matthew",
     "sort_order": 138
   },
   {
@@ -2698,6 +2836,7 @@ window.BIBLE_CHARACTERS = [
       "真理是什麼呢"
     ],
     "tier": "common",
+    "book": "matthew",
     "sort_order": 139
   },
   {
@@ -2717,6 +2856,7 @@ window.BIBLE_CHARACTERS = [
       "有一個人代替我被釋放了"
     ],
     "tier": "common",
+    "book": "matthew",
     "sort_order": 140
   },
   {
@@ -2736,6 +2876,7 @@ window.BIBLE_CHARACTERS = [
       "就是亞歷山大和魯孚的父親"
     ],
     "tier": "common",
+    "book": "mark",
     "sort_order": 141
   },
   {
@@ -2755,6 +2896,7 @@ window.BIBLE_CHARACTERS = [
       "壯膽進去見彼拉多，求耶穌的身體"
     ],
     "tier": "common",
+    "book": "john",
     "sort_order": 142
   },
   {
@@ -2775,6 +2917,7 @@ window.BIBLE_CHARACTERS = [
       "抽籤揀選"
     ],
     "tier": "common",
+    "book": "acts",
     "sort_order": 143
   },
   {
@@ -2794,6 +2937,7 @@ window.BIBLE_CHARACTERS = [
       "給第二次機會"
     ],
     "tier": "major",
+    "book": "acts",
     "sort_order": 144
   },
   {
@@ -2813,6 +2957,7 @@ window.BIBLE_CHARACTERS = [
       "私自留下幾分"
     ],
     "tier": "common",
+    "book": "acts",
     "sort_order": 145
   },
   {
@@ -2832,6 +2977,7 @@ window.BIBLE_CHARACTERS = [
       "為眾百姓所敬重的教法師"
     ],
     "tier": "common",
+    "book": "acts",
     "sort_order": 146
   },
   {
@@ -2851,6 +2997,7 @@ window.BIBLE_CHARACTERS = [
       "面貌如同天使"
     ],
     "tier": "major",
+    "book": "acts",
     "sort_order": 147
   },
   {
@@ -2871,6 +3018,7 @@ window.BIBLE_CHARACTERS = [
       "新約書信作者"
     ],
     "tier": "major",
+    "book": "acts",
     "sort_order": 148
   },
   {
@@ -2890,6 +3038,7 @@ window.BIBLE_CHARACTERS = [
       "曠野的路"
     ],
     "tier": "common",
+    "book": "acts",
     "sort_order": 149
   },
   {
@@ -2909,6 +3058,7 @@ window.BIBLE_CHARACTERS = [
       "驚奇之後未必是真信"
     ],
     "tier": "common",
+    "book": "acts",
     "sort_order": 150
   },
   {
@@ -2929,6 +3079,7 @@ window.BIBLE_CHARACTERS = [
       "歡歡喜喜地走路"
     ],
     "tier": "common",
+    "book": "acts",
     "sort_order": 151
   },
   {
@@ -2948,6 +3099,7 @@ window.BIBLE_CHARACTERS = [
       "兄弟掃羅"
     ],
     "tier": "common",
+    "book": "acts",
     "sort_order": 152
   },
   {
@@ -2968,6 +3120,7 @@ window.BIBLE_CHARACTERS = [
       "彼得叫她起來"
     ],
     "tier": "common",
+    "book": "acts",
     "sort_order": 153
   },
   {
@@ -2987,6 +3140,7 @@ window.BIBLE_CHARACTERS = [
       "外邦宣教先驅"
     ],
     "tier": "major",
+    "book": "acts",
     "sort_order": 154
   },
   {
@@ -3006,6 +3160,7 @@ window.BIBLE_CHARACTERS = [
       "從中途拋下同工到保羅臨終前特別點名要見的人"
     ],
     "tier": "common",
+    "book": "acts",
     "sort_order": 155
   },
   {
@@ -3025,6 +3180,7 @@ window.BIBLE_CHARACTERS = [
       "被打傷仍歌唱"
     ],
     "tier": "common",
+    "book": "acts",
     "sort_order": 156
   },
   {
@@ -3044,6 +3200,7 @@ window.BIBLE_CHARACTERS = [
       "無偽的信心"
     ],
     "tier": "major",
+    "book": "acts",
     "sort_order": 157
   },
   {
@@ -3063,6 +3220,7 @@ window.BIBLE_CHARACTERS = [
       "歐洲第一位信徒"
     ],
     "tier": "common",
+    "book": "acts",
     "sort_order": 158
   },
   {
@@ -3082,6 +3240,7 @@ window.BIBLE_CHARACTERS = [
       "他和屬乎他的人立時都受了洗"
     ],
     "tier": "common",
+    "book": "acts",
     "sort_order": 159
   },
   {
@@ -3101,6 +3260,7 @@ window.BIBLE_CHARACTERS = [
       "更詳細地講解"
     ],
     "tier": "common",
+    "book": "acts",
     "sort_order": 160
   },
   {
@@ -3120,6 +3280,7 @@ window.BIBLE_CHARACTERS = [
       "澆灌的人"
     ],
     "tier": "common",
+    "book": "acts",
     "sort_order": 161
   },
   {
@@ -3139,6 +3300,7 @@ window.BIBLE_CHARACTERS = [
       "不要發慌，他的靈魂還在身上"
     ],
     "tier": "common",
+    "book": "acts",
     "sort_order": 162
   },
   {
@@ -3158,6 +3320,7 @@ window.BIBLE_CHARACTERS = [
       "在革哩底招聚長老"
     ],
     "tier": "normal",
+    "book": "titus",
     "sort_order": 163
   },
   {
@@ -3177,6 +3340,7 @@ window.BIBLE_CHARACTERS = [
       "求你們接待她，合乎聖徒的體統"
     ],
     "tier": "normal",
+    "book": "romans",
     "sort_order": 164
   },
   {
@@ -3196,6 +3360,7 @@ window.BIBLE_CHARACTERS = [
       "不再是奴僕"
     ],
     "tier": "common",
+    "book": "philemon",
     "sort_order": 165
   },
   {
@@ -3215,6 +3380,342 @@ window.BIBLE_CHARACTERS = [
       "我們就"
     ],
     "tier": "major",
+    "book": "acts",
     "sort_order": 166
+  }
+];
+
+// 聖經 66 卷書的顯示順序與「預估有情節人物數」，供閱讀進度頁籤的
+// 「依聖經卷別」區塊使用（估算方式見 _build/books.py 檔頭說明）。
+window.BIBLE_BOOKS = [
+  {
+    "id": "genesis",
+    "name": "創世記",
+    "target": 28
+  },
+  {
+    "id": "exodus",
+    "name": "出埃及記",
+    "target": 10
+  },
+  {
+    "id": "leviticus",
+    "name": "利未記",
+    "target": 2
+  },
+  {
+    "id": "numbers",
+    "name": "民數記",
+    "target": 9
+  },
+  {
+    "id": "deuteronomy",
+    "name": "申命記",
+    "target": 1
+  },
+  {
+    "id": "joshua",
+    "name": "約書亞記",
+    "target": 6
+  },
+  {
+    "id": "judges",
+    "name": "士師記",
+    "target": 15
+  },
+  {
+    "id": "ruth",
+    "name": "路得記",
+    "target": 5
+  },
+  {
+    "id": "1samuel",
+    "name": "撒母耳記上",
+    "target": 20
+  },
+  {
+    "id": "2samuel",
+    "name": "撒母耳記下",
+    "target": 18
+  },
+  {
+    "id": "1kings",
+    "name": "列王紀上",
+    "target": 20
+  },
+  {
+    "id": "2kings",
+    "name": "列王紀下",
+    "target": 20
+  },
+  {
+    "id": "1chronicles",
+    "name": "歷代志上",
+    "target": 2
+  },
+  {
+    "id": "2chronicles",
+    "name": "歷代志下",
+    "target": 3
+  },
+  {
+    "id": "ezra",
+    "name": "以斯拉記",
+    "target": 4
+  },
+  {
+    "id": "nehemiah",
+    "name": "尼希米記",
+    "target": 4
+  },
+  {
+    "id": "esther",
+    "name": "以斯帖記",
+    "target": 5
+  },
+  {
+    "id": "job",
+    "name": "約伯記",
+    "target": 5
+  },
+  {
+    "id": "psalms",
+    "name": "詩篇",
+    "target": 1
+  },
+  {
+    "id": "proverbs",
+    "name": "箴言",
+    "target": 1
+  },
+  {
+    "id": "ecclesiastes",
+    "name": "傳道書",
+    "target": 1
+  },
+  {
+    "id": "songofsongs",
+    "name": "雅歌",
+    "target": 2
+  },
+  {
+    "id": "isaiah",
+    "name": "以賽亞書",
+    "target": 3
+  },
+  {
+    "id": "jeremiah",
+    "name": "耶利米書",
+    "target": 5
+  },
+  {
+    "id": "lamentations",
+    "name": "耶利米哀歌",
+    "target": 1
+  },
+  {
+    "id": "ezekiel",
+    "name": "以西結書",
+    "target": 1
+  },
+  {
+    "id": "daniel",
+    "name": "但以理書",
+    "target": 6
+  },
+  {
+    "id": "hosea",
+    "name": "何西阿書",
+    "target": 2
+  },
+  {
+    "id": "joel",
+    "name": "約珥書",
+    "target": 1
+  },
+  {
+    "id": "amos",
+    "name": "阿摩司書",
+    "target": 2
+  },
+  {
+    "id": "obadiah",
+    "name": "俄巴底亞書",
+    "target": 1
+  },
+  {
+    "id": "jonah",
+    "name": "約拿書",
+    "target": 2
+  },
+  {
+    "id": "micah",
+    "name": "彌迦書",
+    "target": 1
+  },
+  {
+    "id": "nahum",
+    "name": "那鴻書",
+    "target": 1
+  },
+  {
+    "id": "habakkuk",
+    "name": "哈巴谷書",
+    "target": 1
+  },
+  {
+    "id": "zephaniah",
+    "name": "西番雅書",
+    "target": 1
+  },
+  {
+    "id": "haggai",
+    "name": "哈該書",
+    "target": 1
+  },
+  {
+    "id": "zechariah",
+    "name": "撒迦利亞書",
+    "target": 2
+  },
+  {
+    "id": "malachi",
+    "name": "瑪拉基書",
+    "target": 1
+  },
+  {
+    "id": "matthew",
+    "name": "馬太福音",
+    "target": 8
+  },
+  {
+    "id": "mark",
+    "name": "馬可福音",
+    "target": 3
+  },
+  {
+    "id": "luke",
+    "name": "路加福音",
+    "target": 8
+  },
+  {
+    "id": "john",
+    "name": "約翰福音",
+    "target": 8
+  },
+  {
+    "id": "acts",
+    "name": "使徒行傳",
+    "target": 30
+  },
+  {
+    "id": "romans",
+    "name": "羅馬書",
+    "target": 3
+  },
+  {
+    "id": "1corinthians",
+    "name": "哥林多前書",
+    "target": 2
+  },
+  {
+    "id": "2corinthians",
+    "name": "哥林多後書",
+    "target": 2
+  },
+  {
+    "id": "galatians",
+    "name": "加拉太書",
+    "target": 1
+  },
+  {
+    "id": "ephesians",
+    "name": "以弗所書",
+    "target": 1
+  },
+  {
+    "id": "philippians",
+    "name": "腓立比書",
+    "target": 2
+  },
+  {
+    "id": "colossians",
+    "name": "歌羅西書",
+    "target": 2
+  },
+  {
+    "id": "1thessalonians",
+    "name": "帖撒羅尼迦前書",
+    "target": 1
+  },
+  {
+    "id": "2thessalonians",
+    "name": "帖撒羅尼迦後書",
+    "target": 1
+  },
+  {
+    "id": "1timothy",
+    "name": "提摩太前書",
+    "target": 2
+  },
+  {
+    "id": "2timothy",
+    "name": "提摩太後書",
+    "target": 2
+  },
+  {
+    "id": "titus",
+    "name": "提多書",
+    "target": 2
+  },
+  {
+    "id": "philemon",
+    "name": "腓利門書",
+    "target": 2
+  },
+  {
+    "id": "hebrews",
+    "name": "希伯來書",
+    "target": 1
+  },
+  {
+    "id": "james",
+    "name": "雅各書",
+    "target": 1
+  },
+  {
+    "id": "1peter",
+    "name": "彼得前書",
+    "target": 1
+  },
+  {
+    "id": "2peter",
+    "name": "彼得後書",
+    "target": 1
+  },
+  {
+    "id": "1john",
+    "name": "約翰一書",
+    "target": 1
+  },
+  {
+    "id": "2john",
+    "name": "約翰二書",
+    "target": 1
+  },
+  {
+    "id": "3john",
+    "name": "約翰三書",
+    "target": 2
+  },
+  {
+    "id": "jude",
+    "name": "猶大書",
+    "target": 1
+  },
+  {
+    "id": "revelation",
+    "name": "啟示錄",
+    "target": 3
   }
 ];
