@@ -683,6 +683,25 @@ window.BIBLE_CHARACTERS = [
     "sort_order": 35
   },
   {
+    "id": "jael",
+    "name": "雅億",
+    "epithet": null,
+    "name_en": "Jael",
+    "avatar": "雅",
+    "description": "迦南元帥西西拉戰敗逃入她的帳篷尋求庇護，她卻用奶餵他安心入睡，趁他熟睡之際，親手拿橛子釘入他的鬢角——這位游牧民族的婦人，就此終結了以色列受迦南欺壓二十年的苦難",
+    "mbti": "ISTP",
+    "file_name": "portrait_jael.html",
+    "categories": [
+      "ot"
+    ],
+    "tags": [
+      "帳篷裡的驚人一擊",
+      "婦女中最為有福的"
+    ],
+    "tier": "common",
+    "sort_order": 36
+  },
+  {
     "id": "gideon",
     "name": "基甸",
     "epithet": null,
@@ -699,7 +718,7 @@ window.BIBLE_CHARACTERS = [
       "從躲藏的懦夫到三百人的統帥"
     ],
     "tier": "major",
-    "sort_order": 36
+    "sort_order": 37
   },
   {
     "id": "jephthah",
@@ -719,7 +738,7 @@ window.BIBLE_CHARACTERS = [
       "他向耶和華許願"
     ],
     "tier": "common",
-    "sort_order": 37
+    "sort_order": 38
   },
   {
     "id": "manoah",
@@ -738,7 +757,7 @@ window.BIBLE_CHARACTERS = [
       "耶和華若要殺我們，必不從我們手裡收納燔祭和素祭"
     ],
     "tier": "normal",
-    "sort_order": 38
+    "sort_order": 39
   },
   {
     "id": "samson",
@@ -757,7 +776,7 @@ window.BIBLE_CHARACTERS = [
       "頭髮被剃就軟弱像別人一樣"
     ],
     "tier": "common",
-    "sort_order": 39
+    "sort_order": 40
   },
   {
     "id": "delilah",
@@ -776,7 +795,7 @@ window.BIBLE_CHARACTERS = [
       "每天用話催逼他，甚至他心裡厭煩要死"
     ],
     "tier": "common",
-    "sort_order": 40
+    "sort_order": 41
   },
   {
     "id": "naomi",
@@ -796,7 +815,7 @@ window.BIBLE_CHARACTERS = [
       "耶和華使她懷孕，生了一個兒子"
     ],
     "tier": "common",
-    "sort_order": 41
+    "sort_order": 42
   },
   {
     "id": "ruth",
@@ -815,7 +834,7 @@ window.BIBLE_CHARACTERS = [
       "在麥地拾取麥穗"
     ],
     "tier": "common",
-    "sort_order": 42
+    "sort_order": 43
   },
   {
     "id": "boaz",
@@ -835,7 +854,7 @@ window.BIBLE_CHARACTERS = [
       "在律法的邊界裡活出超越律法的慈愛"
     ],
     "tier": "common",
-    "sort_order": 43
+    "sort_order": 44
   },
   {
     "id": "jesse",
@@ -855,7 +874,7 @@ window.BIBLE_CHARACTERS = [
       "被忽略的那一個，卻是神揀選的那一個"
     ],
     "tier": "normal",
-    "sort_order": 44
+    "sort_order": 45
   },
   {
     "id": "eli",
@@ -875,7 +894,7 @@ window.BIBLE_CHARACTERS = [
       "約櫃被擄，以利仰面跌倒折斷頸項而死"
     ],
     "tier": "common",
-    "sort_order": 45
+    "sort_order": 46
   },
   {
     "id": "hannah",
@@ -894,7 +913,7 @@ window.BIBLE_CHARACTERS = [
       "無聲的禱告勝過喧嚷的言語"
     ],
     "tier": "common",
-    "sort_order": 46
+    "sort_order": 47
   },
   {
     "id": "samuel",
@@ -913,7 +932,7 @@ window.BIBLE_CHARACTERS = [
       "從獻上的孩子到膏立君王的先知"
     ],
     "tier": "major",
-    "sort_order": 47
+    "sort_order": 48
   },
   {
     "id": "saul_king",
@@ -932,7 +951,7 @@ window.BIBLE_CHARACTERS = [
       "從躲在器具中的謙卑少年到追殺大衛的偏執君王"
     ],
     "tier": "major",
-    "sort_order": 48
+    "sort_order": 49
   },
   {
     "id": "jonathan",
@@ -951,7 +970,26 @@ window.BIBLE_CHARACTERS = [
       "你必作以色列的王，我也作你的宰相"
     ],
     "tier": "major",
-    "sort_order": 49
+    "sort_order": 50
+  },
+  {
+    "id": "abner",
+    "name": "押尼珥",
+    "epithet": null,
+    "name_en": "Abner",
+    "avatar": "押",
+    "description": "他是掃羅王朝軍隊的元帥，掃羅死後仍苦撐擁立掃羅之子伊施波設對抗大衛，最終卻在權力鬥爭中與伊施波設決裂、轉而促成南北兩國的合一——就在他即將完成這場歷史性和解的前夕，卻死在約押的私仇之下",
+    "mbti": "ESTJ",
+    "file_name": "portrait_abner.html",
+    "categories": [
+      "ot"
+    ],
+    "tags": [
+      "權力的最後一搏",
+      "和解途中倒下的人"
+    ],
+    "tier": "common",
+    "sort_order": 51
   },
   {
     "id": "michal",
@@ -971,7 +1009,7 @@ window.BIBLE_CHARACTERS = [
       "米甲從窗戶裡看見大衛王踴躍跳舞，心裡就輕視他"
     ],
     "tier": "common",
-    "sort_order": 50
+    "sort_order": 52
   },
   {
     "id": "abigail",
@@ -990,7 +1028,7 @@ window.BIBLE_CHARACTERS = [
       "耶和華攔阻你親手報仇，流無辜人的血"
     ],
     "tier": "common",
-    "sort_order": 51
+    "sort_order": 53
   },
   {
     "id": "nabal",
@@ -1009,7 +1047,7 @@ window.BIBLE_CHARACTERS = [
       "耶和華擊打拿八，他就死了"
     ],
     "tier": "normal",
-    "sort_order": 52
+    "sort_order": 54
   },
   {
     "id": "david",
@@ -1029,7 +1067,7 @@ window.BIBLE_CHARACTERS = [
       "求你為我造清潔的心"
     ],
     "tier": "major",
-    "sort_order": 53
+    "sort_order": 55
   },
   {
     "id": "mephibosheth",
@@ -1048,7 +1086,7 @@ window.BIBLE_CHARACTERS = [
       "一句話活出對君王的忠誠"
     ],
     "tier": "common",
-    "sort_order": 54
+    "sort_order": 56
   },
   {
     "id": "bathsheba",
@@ -1068,7 +1106,7 @@ window.BIBLE_CHARACTERS = [
       "從烏利亞之妻到所羅門之母的漫長重建"
     ],
     "tier": "major",
-    "sort_order": 55
+    "sort_order": 57
   },
   {
     "id": "uriah",
@@ -1088,7 +1126,7 @@ window.BIBLE_CHARACTERS = [
       "大衛在信內寫著說：要派烏利亞前進至陣勢極險之處"
     ],
     "tier": "common",
-    "sort_order": 56
+    "sort_order": 58
   },
   {
     "id": "nathan_prophet",
@@ -1107,7 +1145,7 @@ window.BIBLE_CHARACTERS = [
       "先支持建殿的異象，隔夜卻收回轉達不同的神諭"
     ],
     "tier": "common",
-    "sort_order": 57
+    "sort_order": 59
   },
   {
     "id": "absalom",
@@ -1126,7 +1164,7 @@ window.BIBLE_CHARACTERS = [
       "從沉默兩年的復仇到懸掛橡樹的悲劇終局"
     ],
     "tier": "common",
-    "sort_order": 58
+    "sort_order": 60
   },
   {
     "id": "tamar_david",
@@ -1145,7 +1183,7 @@ window.BIBLE_CHARACTERS = [
       "他瑪就住在她胞兄押沙龍家裡，甚是淒涼"
     ],
     "tier": "common",
-    "sort_order": 59
+    "sort_order": 61
   },
   {
     "id": "amnon",
@@ -1164,7 +1202,7 @@ window.BIBLE_CHARACTERS = [
       "押沙龍的僕人就照押沙龍所吩咐的，向暗嫩行了"
     ],
     "tier": "common",
-    "sort_order": 60
+    "sort_order": 62
   },
   {
     "id": "joab",
@@ -1184,7 +1222,7 @@ window.BIBLE_CHARACTERS = [
       "約押在耶和華的帳幕裡拿住壇的角"
     ],
     "tier": "common",
-    "sort_order": 61
+    "sort_order": 63
   },
   {
     "id": "solomon",
@@ -1204,7 +1242,7 @@ window.BIBLE_CHARACTERS = [
       "虛空的虛空"
     ],
     "tier": "major",
-    "sort_order": 62
+    "sort_order": 64
   },
   {
     "id": "queen_of_sheba",
@@ -1223,7 +1261,7 @@ window.BIBLE_CHARACTERS = [
       "見證之後心中再沒有靈氣"
     ],
     "tier": "common",
-    "sort_order": 63
+    "sort_order": 65
   },
   {
     "id": "jeroboam",
@@ -1242,7 +1280,7 @@ window.BIBLE_CHARACTERS = [
       "被歷史定名為罪的君王"
     ],
     "tier": "common",
-    "sort_order": 64
+    "sort_order": 66
   },
   {
     "id": "rehoboam",
@@ -1262,7 +1300,7 @@ window.BIBLE_CHARACTERS = [
       "一句話分裂了一個國度"
     ],
     "tier": "common",
-    "sort_order": 65
+    "sort_order": 67
   },
   {
     "id": "abijah_king",
@@ -1282,7 +1320,7 @@ window.BIBLE_CHARACTERS = [
       "在位僅三年卻留下一篇重要宣講"
     ],
     "tier": "normal",
-    "sort_order": 66
+    "sort_order": 68
   },
   {
     "id": "asa",
@@ -1302,7 +1340,7 @@ window.BIBLE_CHARACTERS = [
       "前半生的信心與後半生的軟弱"
     ],
     "tier": "common",
-    "sort_order": 67
+    "sort_order": 69
   },
   {
     "id": "jehoshaphat",
@@ -1322,7 +1360,7 @@ window.BIBLE_CHARACTERS = [
       "敬虔卻與惡王結親的複雜遺產"
     ],
     "tier": "common",
-    "sort_order": 68
+    "sort_order": 70
   },
   {
     "id": "joram_king",
@@ -1342,7 +1380,7 @@ window.BIBLE_CHARACTERS = [
       "父親約沙法聯姻決定的直接惡果"
     ],
     "tier": "normal",
-    "sort_order": 69
+    "sort_order": 71
   },
   {
     "id": "ahab",
@@ -1361,7 +1399,7 @@ window.BIBLE_CHARACTERS = [
       "他就悶悶不樂地回宮，臉面轉向一邊，也不吃飯"
     ],
     "tier": "common",
-    "sort_order": 70
+    "sort_order": 72
   },
   {
     "id": "jezebel",
@@ -1380,26 +1418,7 @@ window.BIBLE_CHARACTERS = [
       "狗必在耶斯列田裡吃耶洗別的肉"
     ],
     "tier": "common",
-    "sort_order": 71
-  },
-  {
-    "id": "naboth",
-    "name": "拿伯",
-    "epithet": null,
-    "name_en": "Naboth",
-    "avatar": "拿",
-    "description": "他只是耶斯列一位擁有一片葡萄園的平民，卻在亞哈王開口要買地時，堅定回絕：「萬不敢將我先人留下的產業給你」——這句話最終為他招來耶洗別一手策劃的誣告與石刑，他的死卻也成為壓垮亞哈王朝的最後一根稻草",
-    "mbti": "ISTJ",
-    "file_name": "portrait_naboth.html",
-    "categories": [
-      "ot"
-    ],
-    "tags": [
-      "祖業不是用來交易的",
-      "沉默的義人也能撼動王國"
-    ],
-    "tier": "common",
-    "sort_order": 72
+    "sort_order": 73
   },
   {
     "id": "elijah",
@@ -1418,7 +1437,45 @@ window.BIBLE_CHARACTERS = [
       "羅騰樹下求死"
     ],
     "tier": "major",
-    "sort_order": 73
+    "sort_order": 74
+  },
+  {
+    "id": "widow_zarephath",
+    "name": "撒勒法的寡婦",
+    "epithet": null,
+    "name_en": "Widow of Zarephath",
+    "avatar": "撒",
+    "description": "大旱之年，她正準備用僅剩的一把麵為自己與兒子做最後一餐，卻被以利亞要求先為他做一個小餅——她順服照做，罈內的麵果然沒有減少，瓶裡的油也沒有缺短；此後她的兒子病死，以利亞禱告求告，孩子竟然復活",
+    "mbti": "ISFJ",
+    "file_name": "portrait_widow_zarephath.html",
+    "categories": [
+      "ot"
+    ],
+    "tags": [
+      "最後一把麵先給了先知",
+      "罈內的麵不減，瓶裡的油不缺"
+    ],
+    "tier": "common",
+    "sort_order": 75
+  },
+  {
+    "id": "naboth",
+    "name": "拿伯",
+    "epithet": null,
+    "name_en": "Naboth",
+    "avatar": "拿",
+    "description": "他只是耶斯列一位擁有一片葡萄園的平民，卻在亞哈王開口要買地時，堅定回絕：「萬不敢將我先人留下的產業給你」——這句話最終為他招來耶洗別一手策劃的誣告與石刑，他的死卻也成為壓垮亞哈王朝的最後一根稻草",
+    "mbti": "ISTJ",
+    "file_name": "portrait_naboth.html",
+    "categories": [
+      "ot"
+    ],
+    "tags": [
+      "祖業不是用來交易的",
+      "沉默的義人也能撼動王國"
+    ],
+    "tier": "common",
+    "sort_order": 76
   },
   {
     "id": "elisha",
@@ -1437,7 +1494,26 @@ window.BIBLE_CHARACTERS = [
       "求你不要撇下我"
     ],
     "tier": "common",
-    "sort_order": 74
+    "sort_order": 77
+  },
+  {
+    "id": "shunammite_woman",
+    "name": "書念婦人",
+    "epithet": null,
+    "name_en": "Shunammite Woman",
+    "avatar": "書",
+    "description": "她主動在自家屋頂為常經過的先知以利沙預備一間小樓，不求任何回報——以利沙執意要為她求些好處，她卻只求「安居無事」；此後她奇蹟得子，孩子卻在成長後暴斃，她強忍悲痛趕赴迦密山求告先知，孩子最終復活",
+    "mbti": "ESTJ",
+    "file_name": "portrait_shunammite_woman.html",
+    "categories": [
+      "ot"
+    ],
+    "tags": [
+      "不求額外恩惠只求安穩度日",
+      "我在自己百姓中安居無事"
+    ],
+    "tier": "common",
+    "sort_order": 78
   },
   {
     "id": "naaman",
@@ -1456,7 +1532,7 @@ window.BIBLE_CHARACTERS = [
       "大人物需要小女孩指路才能得醫治"
     ],
     "tier": "common",
-    "sort_order": 75
+    "sort_order": 79
   },
   {
     "id": "gehazi",
@@ -1475,7 +1551,7 @@ window.BIBLE_CHARACTERS = [
       "白白得來的也要白白捨去"
     ],
     "tier": "common",
-    "sort_order": 76
+    "sort_order": 80
   },
   {
     "id": "jehu",
@@ -1494,7 +1570,7 @@ window.BIBLE_CHARACTERS = [
       "他的趕車無人能及"
     ],
     "tier": "common",
-    "sort_order": 77
+    "sort_order": 81
   },
   {
     "id": "jonah",
@@ -1513,7 +1589,7 @@ window.BIBLE_CHARACTERS = [
       "尼尼微城的悔改，卻換來先知的憤怒"
     ],
     "tier": "major",
-    "sort_order": 78
+    "sort_order": 82
   },
   {
     "id": "hosea",
@@ -1532,7 +1608,7 @@ window.BIBLE_CHARACTERS = [
       "從婚姻的破碎到重新買贖的活生生比喻"
     ],
     "tier": "common",
-    "sort_order": 79
+    "sort_order": 83
   },
   {
     "id": "isaiah",
@@ -1551,7 +1627,7 @@ window.BIBLE_CHARACTERS = [
       "他被藐視被人厭棄"
     ],
     "tier": "major",
-    "sort_order": 80
+    "sort_order": 84
   },
   {
     "id": "uzziah",
@@ -1571,7 +1647,7 @@ window.BIBLE_CHARACTERS = [
       "強盛卻在權力頂峰跨越了界線"
     ],
     "tier": "common",
-    "sort_order": 81
+    "sort_order": 85
   },
   {
     "id": "jotham",
@@ -1591,7 +1667,7 @@ window.BIBLE_CHARACTERS = [
       "父親的教訓成了他一生的借鏡"
     ],
     "tier": "normal",
-    "sort_order": 82
+    "sort_order": 86
   },
   {
     "id": "ahaz",
@@ -1611,7 +1687,7 @@ window.BIBLE_CHARACTERS = [
       "以賽亞在他面前發出以馬內利的預言"
     ],
     "tier": "common",
-    "sort_order": 83
+    "sort_order": 87
   },
   {
     "id": "hezekiah",
@@ -1631,7 +1707,7 @@ window.BIBLE_CHARACTERS = [
       "在毀滅邊緣重建信仰的王"
     ],
     "tier": "major",
-    "sort_order": 84
+    "sort_order": 88
   },
   {
     "id": "manasseh",
@@ -1651,7 +1727,7 @@ window.BIBLE_CHARACTERS = [
       "聖經中最戲劇性的悔改敘事之一"
     ],
     "tier": "common",
-    "sort_order": 85
+    "sort_order": 89
   },
   {
     "id": "amon",
@@ -1671,7 +1747,7 @@ window.BIBLE_CHARACTERS = [
       "只學了父親的罪，沒學父親的悔改"
     ],
     "tier": "normal",
-    "sort_order": 86
+    "sort_order": 90
   },
   {
     "id": "josiah",
@@ -1691,7 +1767,7 @@ window.BIBLE_CHARACTERS = [
       "撕裂衣服，痛悔認罪的少年王"
     ],
     "tier": "major",
-    "sort_order": 87
+    "sort_order": 91
   },
   {
     "id": "jeremiah",
@@ -1710,7 +1786,7 @@ window.BIBLE_CHARACTERS = [
       "心中彷彿有燒著的火"
     ],
     "tier": "major",
-    "sort_order": 88
+    "sort_order": 92
   },
   {
     "id": "jeconiah",
@@ -1731,7 +1807,7 @@ window.BIBLE_CHARACTERS = [
       "被擄前的先知咒詛與被擄後的恩慈"
     ],
     "tier": "normal",
-    "sort_order": 89
+    "sort_order": 93
   },
   {
     "id": "ezekiel",
@@ -1750,7 +1826,7 @@ window.BIBLE_CHARACTERS = [
       "枯骨也能重新站立"
     ],
     "tier": "major",
-    "sort_order": 90
+    "sort_order": 94
   },
   {
     "id": "daniel",
@@ -1769,7 +1845,7 @@ window.BIBLE_CHARACTERS = [
       "一日三次禱告"
     ],
     "tier": "major",
-    "sort_order": 91
+    "sort_order": 95
   },
   {
     "id": "esther",
@@ -1788,7 +1864,7 @@ window.BIBLE_CHARACTERS = [
       "我若死就死吧"
     ],
     "tier": "major",
-    "sort_order": 92
+    "sort_order": 96
   },
   {
     "id": "haman",
@@ -1807,7 +1883,7 @@ window.BIBLE_CHARACTERS = [
       "為別人立的木架，自己先掛上去"
     ],
     "tier": "common",
-    "sort_order": 93
+    "sort_order": 97
   },
   {
     "id": "mordecai",
@@ -1826,7 +1902,7 @@ window.BIBLE_CHARACTERS = [
       "從坐在朝門的猶太人到僅次於王的宰相"
     ],
     "tier": "common",
-    "sort_order": 94
+    "sort_order": 98
   },
   {
     "id": "shealtiel",
@@ -1846,7 +1922,7 @@ window.BIBLE_CHARACTERS = [
       "被擄之地誕生的應許血脈"
     ],
     "tier": "normal",
-    "sort_order": 95
+    "sort_order": 99
   },
   {
     "id": "zerubbabel",
@@ -1866,7 +1942,7 @@ window.BIBLE_CHARACTERS = [
       "在廢墟中重新立起根基的人"
     ],
     "tier": "common",
-    "sort_order": 96
+    "sort_order": 100
   },
   {
     "id": "ezra",
@@ -1885,7 +1961,7 @@ window.BIBLE_CHARACTERS = [
       "在異象破碎後帶領百姓重新委身律法"
     ],
     "tier": "common",
-    "sort_order": 97
+    "sort_order": 101
   },
   {
     "id": "nehemiah",
@@ -1904,7 +1980,7 @@ window.BIBLE_CHARACTERS = [
       "五十二天重建城牆的禱告實踐家"
     ],
     "tier": "major",
-    "sort_order": 98
+    "sort_order": 102
   },
   {
     "id": "genealogy_silent_nine",
@@ -1924,7 +2000,7 @@ window.BIBLE_CHARACTERS = [
       "僅存其名，卻從未被遺漏"
     ],
     "tier": "normal",
-    "sort_order": 99
+    "sort_order": 103
   },
   {
     "id": "zechariah_elizabeth",
@@ -1943,7 +2019,7 @@ window.BIBLE_CHARACTERS = [
       "兩個都是義人，只是沒有孩子"
     ],
     "tier": "major",
-    "sort_order": 100
+    "sort_order": 104
   },
   {
     "id": "john_baptist",
@@ -1962,7 +2038,7 @@ window.BIBLE_CHARACTERS = [
       "他必興旺我必衰微"
     ],
     "tier": "major",
-    "sort_order": 101
+    "sort_order": 105
   },
   {
     "id": "mary_mother",
@@ -1981,7 +2057,7 @@ window.BIBLE_CHARACTERS = [
       "七劍穿心"
     ],
     "tier": "major",
-    "sort_order": 102
+    "sort_order": 106
   },
   {
     "id": "joseph_husband",
@@ -2001,7 +2077,7 @@ window.BIBLE_CHARACTERS = [
       "沉默卻堅定的順服者"
     ],
     "tier": "major",
-    "sort_order": 103
+    "sort_order": 107
   },
   {
     "id": "simeon_anna",
@@ -2020,7 +2096,7 @@ window.BIBLE_CHARACTERS = [
       "又禁食祈求，晝夜事奉神"
     ],
     "tier": "common",
-    "sort_order": 104
+    "sort_order": 108
   },
   {
     "id": "peter",
@@ -2040,7 +2116,7 @@ window.BIBLE_CHARACTERS = [
       "教會磐石"
     ],
     "tier": "major",
-    "sort_order": 105
+    "sort_order": 109
   },
   {
     "id": "andrew",
@@ -2060,7 +2136,7 @@ window.BIBLE_CHARACTERS = [
       "帶人來見主"
     ],
     "tier": "major",
-    "sort_order": 106
+    "sort_order": 110
   },
   {
     "id": "james_zebedee",
@@ -2080,7 +2156,7 @@ window.BIBLE_CHARACTERS = [
       "首位殉道使徒"
     ],
     "tier": "major",
-    "sort_order": 107
+    "sort_order": 111
   },
   {
     "id": "john_apostle",
@@ -2100,7 +2176,7 @@ window.BIBLE_CHARACTERS = [
       "雷子"
     ],
     "tier": "major",
-    "sort_order": 108
+    "sort_order": 112
   },
   {
     "id": "philip_apostle",
@@ -2120,7 +2196,7 @@ window.BIBLE_CHARACTERS = [
       "算不出來的信心"
     ],
     "tier": "common",
-    "sort_order": 109
+    "sort_order": 113
   },
   {
     "id": "bartholomew",
@@ -2140,7 +2216,7 @@ window.BIBLE_CHARACTERS = [
       "無花果樹下"
     ],
     "tier": "common",
-    "sort_order": 110
+    "sort_order": 114
   },
   {
     "id": "thomas",
@@ -2160,7 +2236,7 @@ window.BIBLE_CHARACTERS = [
       "我的主我的神"
     ],
     "tier": "major",
-    "sort_order": 111
+    "sort_order": 115
   },
   {
     "id": "matthew",
@@ -2180,7 +2256,7 @@ window.BIBLE_CHARACTERS = [
       "福音書作者"
     ],
     "tier": "major",
-    "sort_order": 112
+    "sort_order": 116
   },
   {
     "id": "james_alphaeus",
@@ -2200,7 +2276,7 @@ window.BIBLE_CHARACTERS = [
       "隱沒的使徒"
     ],
     "tier": "common",
-    "sort_order": 113
+    "sort_order": 117
   },
   {
     "id": "thaddaeus",
@@ -2220,7 +2296,7 @@ window.BIBLE_CHARACTERS = [
       "一句提問"
     ],
     "tier": "common",
-    "sort_order": 114
+    "sort_order": 118
   },
   {
     "id": "simon_zealot",
@@ -2240,7 +2316,7 @@ window.BIBLE_CHARACTERS = [
       "與稅吏同席"
     ],
     "tier": "common",
-    "sort_order": 115
+    "sort_order": 119
   },
   {
     "id": "judas_iscariot",
@@ -2260,7 +2336,7 @@ window.BIBLE_CHARACTERS = [
       "賣主者"
     ],
     "tier": "major",
-    "sort_order": 116
+    "sort_order": 120
   },
   {
     "id": "nicodemus",
@@ -2279,7 +2355,7 @@ window.BIBLE_CHARACTERS = [
       "重生"
     ],
     "tier": "common",
-    "sort_order": 117
+    "sort_order": 121
   },
   {
     "id": "samaritan_woman",
@@ -2298,7 +2374,7 @@ window.BIBLE_CHARACTERS = [
       "第一位跨文化宣教士"
     ],
     "tier": "common",
-    "sort_order": 118
+    "sort_order": 122
   },
   {
     "id": "jairus",
@@ -2317,7 +2393,7 @@ window.BIBLE_CHARACTERS = [
       "不要怕，只要信"
     ],
     "tier": "common",
-    "sort_order": 119
+    "sort_order": 123
   },
   {
     "id": "bleeding_woman",
@@ -2336,7 +2412,7 @@ window.BIBLE_CHARACTERS = [
       "女兒，你的信救了你，平平安安地回去吧"
     ],
     "tier": "common",
-    "sort_order": 120
+    "sort_order": 124
   },
   {
     "id": "canaanite_woman",
@@ -2355,7 +2431,7 @@ window.BIBLE_CHARACTERS = [
       "婦人，你的信心是大的"
     ],
     "tier": "common",
-    "sort_order": 121
+    "sort_order": 125
   },
   {
     "id": "herod_antipas",
@@ -2374,7 +2450,26 @@ window.BIBLE_CHARACTERS = [
       "喜歡聽約翰講道"
     ],
     "tier": "common",
-    "sort_order": 122
+    "sort_order": 126
+  },
+  {
+    "id": "herodias",
+    "name": "希羅底",
+    "epithet": null,
+    "name_en": "Herodias",
+    "avatar": "希",
+    "description": "她原是希律家族內部複雜聯姻中的一員，離棄丈夫改嫁小叔希律安提帕，卻因施洗約翰公開指責這樁婚姻不合乎律法而懷恨在心——她教唆女兒在安提帕的生日宴上跳舞討喜，趁機要求取施洗約翰的頭，親手促成了這場駭人聽聞的處決",
+    "mbti": "ENTJ",
+    "file_name": "portrait_herodias.html",
+    "categories": [
+      "nt"
+    ],
+    "tags": [
+      "一句怨恨換來一顆人頭",
+      "被指責的真相令她無法忍受"
+    ],
+    "tier": "common",
+    "sort_order": 127
   },
   {
     "id": "rich_young_ruler",
@@ -2393,7 +2488,7 @@ window.BIBLE_CHARACTERS = [
       "他就憂憂愁愁地走了，因為他的產業很多"
     ],
     "tier": "common",
-    "sort_order": 123
+    "sort_order": 128
   },
   {
     "id": "martha",
@@ -2412,7 +2507,7 @@ window.BIBLE_CHARACTERS = [
       "我信你是基督"
     ],
     "tier": "common",
-    "sort_order": 124
+    "sort_order": 129
   },
   {
     "id": "mary_bethany",
@@ -2431,7 +2526,7 @@ window.BIBLE_CHARACTERS = [
       "打破玉瓶"
     ],
     "tier": "common",
-    "sort_order": 125
+    "sort_order": 130
   },
   {
     "id": "lazarus",
@@ -2450,7 +2545,7 @@ window.BIBLE_CHARACTERS = [
       "死了四天"
     ],
     "tier": "major",
-    "sort_order": 126
+    "sort_order": 131
   },
   {
     "id": "zacchaeus",
@@ -2469,7 +2564,7 @@ window.BIBLE_CHARACTERS = [
       "四倍償還"
     ],
     "tier": "common",
-    "sort_order": 127
+    "sort_order": 132
   },
   {
     "id": "bartimaeus",
@@ -2489,7 +2584,7 @@ window.BIBLE_CHARACTERS = [
       "他就丟下衣服，跳起來，走到耶穌那裡"
     ],
     "tier": "common",
-    "sort_order": 128
+    "sort_order": 133
   },
   {
     "id": "samaritan_leper",
@@ -2508,7 +2603,7 @@ window.BIBLE_CHARACTERS = [
       "起來，走吧！你的信救了你了"
     ],
     "tier": "common",
-    "sort_order": 129
+    "sort_order": 134
   },
   {
     "id": "mary_magdalene",
@@ -2527,7 +2622,7 @@ window.BIBLE_CHARACTERS = [
       "復活第一見證人"
     ],
     "tier": "major",
-    "sort_order": 130
+    "sort_order": 135
   },
   {
     "id": "james_brother",
@@ -2546,7 +2641,7 @@ window.BIBLE_CHARACTERS = [
       "信心沒有行為是死的"
     ],
     "tier": "major",
-    "sort_order": 131
+    "sort_order": 136
   },
   {
     "id": "jude_brother",
@@ -2565,7 +2660,7 @@ window.BIBLE_CHARACTERS = [
       "為真道竭力爭辯"
     ],
     "tier": "common",
-    "sort_order": 132
+    "sort_order": 137
   },
   {
     "id": "caiaphas",
@@ -2584,7 +2679,7 @@ window.BIBLE_CHARACTERS = [
       "無心的預言"
     ],
     "tier": "common",
-    "sort_order": 133
+    "sort_order": 138
   },
   {
     "id": "pontius_pilate",
@@ -2603,7 +2698,7 @@ window.BIBLE_CHARACTERS = [
       "真理是什麼呢"
     ],
     "tier": "common",
-    "sort_order": 134
+    "sort_order": 139
   },
   {
     "id": "barabbas",
@@ -2622,7 +2717,7 @@ window.BIBLE_CHARACTERS = [
       "有一個人代替我被釋放了"
     ],
     "tier": "common",
-    "sort_order": 135
+    "sort_order": 140
   },
   {
     "id": "simon_cyrene",
@@ -2641,7 +2736,7 @@ window.BIBLE_CHARACTERS = [
       "就是亞歷山大和魯孚的父親"
     ],
     "tier": "common",
-    "sort_order": 136
+    "sort_order": 141
   },
   {
     "id": "joseph_arimathea",
@@ -2660,7 +2755,7 @@ window.BIBLE_CHARACTERS = [
       "壯膽進去見彼拉多，求耶穌的身體"
     ],
     "tier": "common",
-    "sort_order": 137
+    "sort_order": 142
   },
   {
     "id": "matthias",
@@ -2680,7 +2775,7 @@ window.BIBLE_CHARACTERS = [
       "抽籤揀選"
     ],
     "tier": "common",
-    "sort_order": 138
+    "sort_order": 143
   },
   {
     "id": "barnabas",
@@ -2699,7 +2794,7 @@ window.BIBLE_CHARACTERS = [
       "給第二次機會"
     ],
     "tier": "major",
-    "sort_order": 139
+    "sort_order": 144
   },
   {
     "id": "ananias_sapphira",
@@ -2718,7 +2813,7 @@ window.BIBLE_CHARACTERS = [
       "私自留下幾分"
     ],
     "tier": "common",
-    "sort_order": 140
+    "sort_order": 145
   },
   {
     "id": "gamaliel",
@@ -2737,7 +2832,7 @@ window.BIBLE_CHARACTERS = [
       "為眾百姓所敬重的教法師"
     ],
     "tier": "common",
-    "sort_order": 141
+    "sort_order": 146
   },
   {
     "id": "stephen",
@@ -2756,7 +2851,7 @@ window.BIBLE_CHARACTERS = [
       "面貌如同天使"
     ],
     "tier": "major",
-    "sort_order": 142
+    "sort_order": 147
   },
   {
     "id": "paul",
@@ -2776,7 +2871,7 @@ window.BIBLE_CHARACTERS = [
       "新約書信作者"
     ],
     "tier": "major",
-    "sort_order": 143
+    "sort_order": 148
   },
   {
     "id": "philip_evangelist",
@@ -2795,7 +2890,7 @@ window.BIBLE_CHARACTERS = [
       "曠野的路"
     ],
     "tier": "common",
-    "sort_order": 144
+    "sort_order": 149
   },
   {
     "id": "simon_magus",
@@ -2814,7 +2909,7 @@ window.BIBLE_CHARACTERS = [
       "驚奇之後未必是真信"
     ],
     "tier": "common",
-    "sort_order": 145
+    "sort_order": 150
   },
   {
     "id": "ethiopian_eunuch",
@@ -2834,7 +2929,7 @@ window.BIBLE_CHARACTERS = [
       "歡歡喜喜地走路"
     ],
     "tier": "common",
-    "sort_order": 146
+    "sort_order": 151
   },
   {
     "id": "ananias_damascus",
@@ -2853,7 +2948,7 @@ window.BIBLE_CHARACTERS = [
       "兄弟掃羅"
     ],
     "tier": "common",
-    "sort_order": 147
+    "sort_order": 152
   },
   {
     "id": "dorcas",
@@ -2873,7 +2968,7 @@ window.BIBLE_CHARACTERS = [
       "彼得叫她起來"
     ],
     "tier": "common",
-    "sort_order": 148
+    "sort_order": 153
   },
   {
     "id": "cornelius",
@@ -2892,7 +2987,7 @@ window.BIBLE_CHARACTERS = [
       "外邦宣教先驅"
     ],
     "tier": "major",
-    "sort_order": 149
+    "sort_order": 154
   },
   {
     "id": "john_mark",
@@ -2911,7 +3006,7 @@ window.BIBLE_CHARACTERS = [
       "從中途拋下同工到保羅臨終前特別點名要見的人"
     ],
     "tier": "common",
-    "sort_order": 150
+    "sort_order": 155
   },
   {
     "id": "silas",
@@ -2930,7 +3025,7 @@ window.BIBLE_CHARACTERS = [
       "被打傷仍歌唱"
     ],
     "tier": "common",
-    "sort_order": 151
+    "sort_order": 156
   },
   {
     "id": "timothy",
@@ -2949,7 +3044,7 @@ window.BIBLE_CHARACTERS = [
       "無偽的信心"
     ],
     "tier": "major",
-    "sort_order": 152
+    "sort_order": 157
   },
   {
     "id": "lydia",
@@ -2968,7 +3063,7 @@ window.BIBLE_CHARACTERS = [
       "歐洲第一位信徒"
     ],
     "tier": "common",
-    "sort_order": 153
+    "sort_order": 158
   },
   {
     "id": "philippian_jailer",
@@ -2987,7 +3082,7 @@ window.BIBLE_CHARACTERS = [
       "他和屬乎他的人立時都受了洗"
     ],
     "tier": "common",
-    "sort_order": 154
+    "sort_order": 159
   },
   {
     "id": "priscilla_aquila",
@@ -3006,7 +3101,7 @@ window.BIBLE_CHARACTERS = [
       "更詳細地講解"
     ],
     "tier": "common",
-    "sort_order": 155
+    "sort_order": 160
   },
   {
     "id": "apollos",
@@ -3025,7 +3120,26 @@ window.BIBLE_CHARACTERS = [
       "澆灌的人"
     ],
     "tier": "common",
-    "sort_order": 156
+    "sort_order": 161
+  },
+  {
+    "id": "eutychus",
+    "name": "猶推古",
+    "epithet": null,
+    "name_en": "Eutychus",
+    "avatar": "猶",
+    "description": "保羅在特羅亞講道直到半夜，坐在窗臺上的青年猶推古熬不住睡意沉沉睡去，竟從三層樓上跌落，被扶起時已經死了——保羅下樓伏在他身上抱著他，宣告「他的靈魂還在身上」，眾人就把活活的青年人帶去，得了不小的安慰",
+    "mbti": "ISFP",
+    "file_name": "portrait_eutychus.html",
+    "categories": [
+      "nt"
+    ],
+    "tags": [
+      "打瞌睡也能成為神蹟的舞台",
+      "不要發慌，他的靈魂還在身上"
+    ],
+    "tier": "common",
+    "sort_order": 162
   },
   {
     "id": "titus",
@@ -3044,7 +3158,7 @@ window.BIBLE_CHARACTERS = [
       "在革哩底招聚長老"
     ],
     "tier": "normal",
-    "sort_order": 157
+    "sort_order": 163
   },
   {
     "id": "phoebe",
@@ -3063,7 +3177,7 @@ window.BIBLE_CHARACTERS = [
       "求你們接待她，合乎聖徒的體統"
     ],
     "tier": "normal",
-    "sort_order": 158
+    "sort_order": 164
   },
   {
     "id": "onesimus",
@@ -3082,7 +3196,7 @@ window.BIBLE_CHARACTERS = [
       "不再是奴僕"
     ],
     "tier": "common",
-    "sort_order": 159
+    "sort_order": 165
   },
   {
     "id": "luke",
@@ -3101,6 +3215,6 @@ window.BIBLE_CHARACTERS = [
       "我們就"
     ],
     "tier": "major",
-    "sort_order": 160
+    "sort_order": 166
   }
 ];

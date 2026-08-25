@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>書念婦人 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">書念婦人</h1>
+  <span class="hero-name-en">Shunammite Woman · הָאִשָּׁה הַשּׁוּנַמִּית</span>
+  <p class="hero-slogan">「婦人回答說：<br>「我在我本鄉安居無事。」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">以利沙事奉期間，約主前九世紀中葉</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ESTJ · 總經理型（統帥型）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">列王紀下 4:8–37 · 8:1–6</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">書念城的尊貴婦人 · 殷勤款待先知、經歷失而復得之子的母親</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">她不像撒勒法寡婦那樣一無所有，經文特意稱她為「大戶」，家境殷實——然而正是這樣一位無所求的婦人，成為以利沙生命中最深刻的接待者與最艱難的試煉見證者。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">以利沙事奉期間，約主前九世紀中葉</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">書念城的尊貴婦人（原文作「大戶的婦人」）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">活動區域</span>
+        <div class="info-cell-value">書念城，位於耶斯列平原</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">丈夫年紀已老；此後奇蹟得一子</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">列王紀下 4:8–37 · 8:1–6</div>
+      </div>
+    </div>
+
+    <p>書念婦人的登場，帶著一種與撒勒法寡婦截然不同的氣質：經文稱她為「大戶」的婦人，顯示她家境殷實、社會地位不低。她主動邀請常經過書念的以利沙進她家吃飯，此後更向丈夫提議：「我看出那常從我們這裡經過的是聖潔的神人，我們可以為他在牆上蓋一間小樓，在其中安放床榻、桌子、椅子、燈臺，他來到我們這裡，就可以住在其中。」這個提議極具份量——她不是被動地款待偶然到訪的客人，而是主動、有系統地為先知預備一個持續性的棲身之處，展現出她對屬靈事工深刻的敬重與慷慨。</p>
+    <p>以利沙深受感動，欲透過僕人基哈西為她在王面前或元帥面前說項，她卻淡然回應：「我在我本鄉安居無事。」這句回答，與此後許多聖經人物迫切向神或先知求告恩惠的態度形成鮮明對比——她所求的，不是地位的提升或額外的恩惠，而僅僅是現有平安生活的持續。這種毫無所求的款待，恰恰為此後以利沙宣告她必得一子的應許，增添了格外動人的意涵：這份祝福，完全出於以利沙與神的主動賜予，而非她主動求取的結果。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從主動為先知蓋一間小樓的殷勤款待，到抱著暴斃的兒子奔向迦密山的強忍悲痛，書念婦人的故事，是一部關於「毫無所求的付出，如何在至深試煉中仍持守信心」的敘事。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">殷勤款待</span>
+        <div class="timeline-title">為先知蓋一間小樓——毫無所求的付出</div>
+        <div class="timeline-body">書念婦人主動邀請以利沙用飯，並向丈夫提議為他在牆上蓋一間小樓、安放床榻桌椅燈臺，使他每次經過都能有棲身之處；以利沙欲為她說項求好處，她卻只答「我在我本鄉安居無事」。</div>
+        <div class="timeline-ref">列王紀下 4:8–13</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">應許得子——「明年這時候，你必抱一個兒子」</div>
+        <div class="timeline-body">以利沙的僕人基哈西指出她沒有兒子、丈夫也老邁；以利沙便應許她明年這時候必抱一個兒子，她起初半信半疑地回應「神人哪，不要那樣欺哄婢女」，此後卻果然懷孕生子，正如以利沙所說的。</div>
+        <div class="timeline-ref">列王紀下 4:14–17</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">至深試煉</span>
+        <div class="timeline-title">孩子暴斃——「我的頭啊，我的頭啊」</div>
+        <div class="timeline-body">孩子長大後，一日隨父親在田間收割時忽然喊頭疼，被抱回家後在母親膝上躺到晌午就死了；她將孩子的屍身抱上樓、放在神人的床上，隨即關上門出去。</div>
+        <div class="timeline-ref">列王紀下 4:18–21</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">強忍趕赴</span>
+        <div class="timeline-title">迦密山求告——「我在此並沒有平安」</div>
+        <div class="timeline-body">她不告訴丈夫實情，只說要去見神人便回來，隨即快馬加鞭趕往迦密山；以利沙遠遠見她，差基哈西前去問安，她只回答「平安」；直到近前抱住以利沙的腳，才道出「我在此並沒有平安」的真相。</div>
+        <div class="timeline-ref">列王紀下 4:22–28</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">復活終局</span>
+        <div class="timeline-title">以利沙伏在孩子身上——孩子打噴嚏，睜開眼睛</div>
+        <div class="timeline-body">以利沙親自趕到她家，關上門獨自禱告，兩次伏在孩子身上使自己的口眼手與孩子相對，孩子的身體漸漸溫和，終於連打七個噴嚏，睜開了眼睛；婦人俯伏在以利沙腳前，抱起兒子出去。</div>
+        <div class="timeline-ref">列王紀下 4:29–37</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">她面對兒子暴斃這樣至深的喪痛，沒有崩潰哭喊，而是異常冷靜、甚至近乎壓抑地策劃一場緊急求助的行動——這種強悍的行動力，貫穿她整個故事。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">款待與付出，不需要以換取回報為前提</div>
+          <div class="soul-body">她主動為以利沙預備小樓，面對回報的提議卻只求現有生活的安穩持續——這種毫無交換心態的慷慨款待，是她性格中極其罕見而珍貴的特質。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">在至深的悲痛中，仍保持異常清醒的判斷與行動力</div>
+          <div class="soul-body">兒子暴斃後，她沒有陷入癱瘓性的悲慟，而是迅速做出決定：將孩子安放在神人的床上、不告訴丈夫實情、立刻快馬趕往迦密山——這種在劇變中仍能冷靜規劃行動的能力，令人印象深刻。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">務實、直接、不拐彎抹角</div>
+          <div class="soul-body">從「我在我本鄉安居無事」的簡潔回應，到見以利沙時直言「我在此並沒有平安」，她始終以最直接、不加修飾的方式表達自己真實的處境與需求。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">在最深的痛苦中，選擇獨自承擔而非求助身邊的人</div>
+          <div class="soul-body">她刻意不將孩子的死訊告訴丈夫，也對以利沙差來的僕人基哈西隱瞞實情，只在直接面對以利沙本人時才道出真相——這種近乎孤軍奮戰的應對方式，也顯示她在至深痛苦中，習慣獨自承受而非尋求身邊人立即的支持。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">她對神人身份的敏銳屬靈洞察力</div>
+          <div class="soul-body">她一開始便看出以利沙是「聖潔的神人」，此後在孩子復活後又見於列王紀下八章，向王親自述說神人為她所行的一切大事——她的生命，因與以利沙的相遇，深刻交織進了以色列先知歷史的記載之中。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">書念婦人的故事，與撒勒法寡婦的故事構成了聖經中一組極具對照意義的敘事——一位是一無所有、被要求先擺上僅存所有的外邦寡婦；另一位則是家境殷實、主動慷慨付出、卻在毫無所求之後同樣經歷喪子之痛與復活神蹟的以色列婦人。這提醒我們，苦難與神蹟的臨到，並不按著人的社會地位或既有的富足程度而有所區別。而她面對兒子死訊時展現出的驚人鎮定與行動力——不慌亂哭喊，而是精準地策劃一場求助行動——同樣揭示了她性格中堅毅而務實的核心。她「我在此並沒有平安」這句話，是全書唯一一次她卸下鎮定外表、坦露內心真實痛楚的時刻，這種在堅強表象之下仍然真實存在的脆弱，使她的形象格外立體而動人。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ESTJ</span>
+      <div class="mbti-name">總經理型（統帥型） · 危機中冷靜行動的款待者</div>
+      <div class="mbti-slogan">「她毫無所求地款待先知，又在喪子之痛中異常冷靜地策劃求助——務實與堅毅，是她一貫的底色。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">她主動提議為以利沙蓋一間具體、實用的小樓（床榻、桌子、椅子、燈臺一應俱全），此後在兒子暴斃的危機中，迅速擬定並執行一套具體的求助行動方案，展現出高度目標導向、注重實際效率的執行力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Si · 內向感覺</span>
+          <div class="mbti-fn-body">她對家中款待客旅的既有慣例與規矩有著清楚的認知與堅持，並在孩子死後將屍身妥善安放在神人的床上，這種依循既定、合宜方式處理事務的傾向，反映出一定程度的內向感覺運作。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ne · 外向直覺</span>
+          <div class="mbti-fn-body">她敏銳看出以利沙是「聖潔的神人」，並主動構思出為他蓋一間小樓這個此前未曾有過的具體提議，顯示出一定的創意與前瞻性思考能力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">面對兒子的死，她選擇隱瞞丈夫、對基哈西也只淡然回應「平安」，直到與以利沙本人直接對話才吐露真實的痛苦，這種對深層個人情感的壓抑與延遲表達，反映出劣勢內向情感的特徵。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">她一生最重要的關係，是與那位她主動接待、此後又在她最深的絕望中，親自伏在她孩子身上為他禱告的先知以利沙。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">以</div>
+          <div class="relation-name">以利沙</div>
+          <div class="relation-type-badge">她殷勤款待、也是為她孩子禱告復活的先知</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">她主動為以利沙預備一間小樓，以利沙也應許她必得一子；此後孩子暴斃，正是以利沙親自趕到她家、兩次伏在孩子身上懇切禱告，使孩子從死裡復活。</div>
+          <div class="relation-ref">列王紀下 4:8–37</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">基</div>
+          <div class="relation-name">基哈西</div>
+          <div class="relation-type-badge">以利沙的僕人，居間傳話的角色</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">基哈西多次在書念婦人與以利沙之間居間傳話——包括提議為她說項求好處、以及她趕來時先被差去問安——他此後也曾親口向王述說以利沙叫這位婦人的兒子復活的事蹟。</div>
+          <div class="relation-ref">列王紀下 4:12–14, 25–26 · 8:1–6</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">子</div>
+          <div class="relation-name">她的兒子</div>
+          <div class="relation-type-badge">應許而生、暴斃又復活的孩子</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">她的兒子是以利沙應許賜下的孩子，成長後忽然頭疼暴斃，此後蒙以利沙懇切禱告從死裡復活——這段經歷，成為她生命中最深的試煉，也是最有力的神蹟見證。</div>
+          <div class="relation-ref">列王紀下 4:17–37</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">王</div>
+          <div class="relation-name">以色列王</div>
+          <div class="relation-type-badge">此後歸還她田地房屋的君王</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">此後饑荒期間她離鄉避難七年，歸回後向王申訴索回自己的房屋田地，恰逢基哈西正在向王述說以利沙叫她兒子復活的事，王因此不僅歸還她的產業，更賠上這些年田地的出產。</div>
+          <div class="relation-ref">列王紀下 8:1–6</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「我在我本鄉安居無事」——這句毫無所求的回答，成為聖經中詮釋「無所求的付出」最動人的一句宣告。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「婦人回答說：我在我本鄉安居無事。」</div>
+      <div class="verse-ref">列王紀下 4:13</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">עֲלִיַּת קִיר קְטַנָּה</span>
+        <div class="word-transliteration">aliyat-kir qetanah · 牆上的小樓 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">指建於房屋牆垣之上、獨立於主屋起居空間的小型樓房，是書念婦人特意為以利沙預備、使其能持續棲身安歇之處。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">她為以利沙所預備的，不僅是一頓飯的款待，更是一個持續性、有尊嚴的棲身之所——這反映出聖經中對「款待」概念的深刻理解：真正的款待，不僅止於臨時的施捨，更包含為對方預備一個能長久安歇之處的用心與規劃。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">無所求的付出，成為蒙福的土壤</div>
+      <div class="theology-insight-body">書念婦人主動款待以利沙，卻毫無所求，僅願「安居無事」——這種不帶交換心態的慷慨，恰恰為此後神主動賜下遠超她所求（得子）的祝福，預備了合宜的心田。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">物質的富足，不能豁免生命中至深的試煉</div>
+      <div class="theology-insight-body">書念婦人家境殷實、丈夫健在，與一無所有的撒勒法寡婦形成鮮明對照，然而她仍同樣經歷了喪子之痛——這提醒我們，苦難的臨到，從不因個人的社會地位或物質條件而有所豁免。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">向對的人求告，是走出絕境的關鍵一步</div>
+      <div class="theology-insight-body">她面對僕人基哈西的問安只淡然回答「平安」，卻在見到以利沙本人時才坦露真相、緊抱他的腳求告——這示範了在至深的痛苦中，找到並直接向真正能夠介入、施行拯救的源頭求告的重要性。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">書念婦人的兒子暴斃，以利沙親自伏在孩子身上、使自己的口眼手與孩子相對，懇切禱告，使孩子的身體重新溫和、從死裡復活</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這段先知親身伏臥在死者身上、以自己的生命力與神的大能介入死亡的敘事，與此後以利亞使撒勒法寡婦之子復活的記載彼此呼應，共同構成舊約中神有能力勝過死亡的重要見證脈絡</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督親自道成肉身、進入人的死亡處境，並以自己從死裡復活的大能，成就了凡信靠祂之人終將復活的確據，使舊約中先知伏臥禱告使人復活的個別神蹟，指向這終極而普世的復活盼望（約 11:25 · 林前 15:20–22）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正經歷一場突如其來的至深試煉——這一頁想問你：在最痛的時刻，你會向誰、以什麼方式求告？</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">書念婦人的故事命中每一個曾經歷突如其來的劇變、卻選擇異常冷靜地應對，而非陷入癱瘓性崩潰的人。她的經歷提醒我們，堅強的外表之下，往往仍藏著真實的脆弱與痛楚——重要的不是永遠保持鎮定，而是最終願意找到對的對象，坦露真實的處境並求告幫助。她毫無所求的款待，同時也提醒我們，慷慨與付出最純粹的樣式，不是為了換取回報，而是單純出於對他人與屬靈事工的敬重與看重。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你是否也曾像書念婦人一樣，付出時毫無所求，只盼望現有的平安生活能持續下去？這種不帶交換心態的付出，如何塑造你與他人的關係？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">面對突如其來的劇變，你的第一反應是崩潰癱瘓，還是像書念婦人一樣異常冷靜地策劃行動？這兩種反應各自的利弊是什麼？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">她對僕人只說『平安』，卻在見到以利沙本人時才吐露真相。你是否也習慣對『代理人』維持表面的堅強，卻只在對的人面前才卸下防備？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">書念婦人家境殷實卻仍經歷喪子之痛。這如何挑戰你『物質富足能豁免苦難』的既定假設？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 書念婦人</span>
+        <div class="gen-title">示範劇本：無所求的慷慨款待，與至深試煉中的堅毅行動力</div>
+        <div class="gen-body">她主動為以利沙預備棲身之所、不求任何回報，此後在兒子暴斃的至深試煉中，展現出異常冷靜的判斷與行動力，最終親自向以利沙求告，見證孩子從死裡復活。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 她的兒子</span>
+        <div class="gen-title">延續：從應許而生，到死裡復活的完整見證</div>
+        <div class="gen-body">她的兒子從以利沙應許而生，經歷暴斃又復活，此後她更在列王紀下八章向王親自述說神人為她所行的一切大事——她一家的經歷，成為以利沙先知職事最完整、最動人的見證之一。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在書念婦人的故事中，展現在神主動賜下遠超她所求所想的祝福——她本只求現有生活的安穩，神卻賜給她一個兒子；她的兒子雖曾一度死去，神卻透過先知的懇切代求，使他從死裡復活。這提醒我們，神的恩典從不受限於我們所求的範圍，祂樂意在我們毫無所求之處，成就超乎想像的作為。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位毫無所求款待先知、又在喪子之痛中異常冷靜求助的書念婦人，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#付出不必求回報</span>
+      <span class="tag">#堅強底下也有脆弱</span>
+      <span class="tag">#向對的人求告</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>書念婦人跟前面提到的撒勒法寡婦不一樣，她家境不錯，經文特別註明她是『大戶』。她主動幫常經過的先知以利沙蓋了一間專屬的小房間，床、桌子、椅子、燈，一應俱全，純粹因為她看出這個人『是聖潔的神人』。</p>
+      <p>以利沙想幫她在上面說幾句好話、求點好處，她的回答很乾脆：『不用，我在這裡過得挺好的。』她要的不是額外的好處，只是希望現有的平靜生活能一直持續下去。</p>
+      <p>後來以利沙硬是給了她一個她根本沒開口要的祝福——一個兒子。孩子長大後，有一天在田裡忽然喊頭痛，抱回家沒多久就死了。</p>
+      <p>接下來這段，是整個故事最厲害的地方：她沒有崩潰大哭，她把孩子的屍體抱上樓放好，跟丈夫說她要出門一趟，然後快馬加鞭直奔以利沙那裡。半路上以利沙的僕人來問她『家裡都好嗎』，她只回一個字：『好。』直到真正見到以利沙本人，她才整個人崩潰，抱住他的腳說：『我心裡一點都不好。』</p>
+      <p>以利沙趕到她家，把自己整個人伏在孩子身上禱告，孩子最後打了七個噴嚏，睜開了眼睛。這位一路都很堅強、很有行動力的母親，故事裡唯一一次真正卸下防備，是在她確定終於找對人的那一刻。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——書念婦人這塊石頭，被雕刻出的形狀，是一句提醒：『堅強不是問題，但別忘了，你需要一個能真正卸下防備的對象』。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你正在為某個人或某件事付出，卻不求任何回報，書念婦人想告訴你：這種付出本身，就已經足夠珍貴。</p>
+      <p style="margin-top:12px;">遇到劇變時異常冷靜不是壞事，但別忘了，最終還是要找到那個可以說『我心裡一點都不好』的對象。</p>
+      <p style="margin-top:12px;">她面對僕人只說『平安』，面對以利沙才說真話——想想看，你生命中誰是那個值得你卸下防備、說真話的人？</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，找一個你信任的對象，練習說一句你一直用『平安』掩蓋過去的真心話。</p>
+    </div>
+
+    <div class="insight-box">書念婦人「安居無事」的回應，在當代基督教靈修材料中，常被引用作為闡述『知足與無所求之心志』的重要典範；她面對危機時展現的冷靜與行動力，也持續在探討悲傷應對模式與危機處理的講道與輔導材料中，被視為深具啟發性的聖經案例。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">她以毫無所求的款待迎接先知，又以異常堅毅的行動力面對喪子之痛，最終見證了神超乎所求所想的祝福與復活的大能。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">「無所求的款待」典範</div>
+          <div class="legacy-body">她主動為以利沙預備棲身之所、卻不求任何回報的行動，成為聖經中詮釋純粹、不帶交換心態之慷慨款待最動人的敘事範例。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">物質富足不豁免苦難的重要提醒</div>
+          <div class="legacy-body">她家境殷實卻仍經歷喪子之痛的故事，與一無所有的撒勒法寡婦相互對照，共同見證苦難的臨到不因人的社會地位而有所區別。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">危機應對與堅毅行動力的敘事典範</div>
+          <div class="legacy-body">她面對兒子暴斃時展現的冷靜判斷與果斷行動，持續為後世探討危機處理與悲傷應對模式的討論，提供深具啟發性的聖經參照。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">先知職事真實性的重要見證</div>
+          <div class="legacy-body">她一家從應許得子、喪子到復活的完整經歷，此後更在王面前被親口述說，成為以利沙先知職分最完整、最有力的歷史見證之一。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「婦人就進去，在神人面前俯伏於地，抱起她兒子出去了。」</div>
+      <div class="final-verse-ref">列王紀下 4:37</div>
+    </div>
+
+    <div class="final-question">如果你此刻正戴著一副堅強的面具面對至深的痛苦，你是否願意像書念婦人一樣，找到那個對的人，說出「我心裡並沒有平安」？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 書念婦人 <span>הָאִשָּׁה הַשּׁוּנַמִּית</span> · 殷勤款待以利沙的尊貴婦人</div>
+
+<!-- 閱讀紀錄（localStorage，見 progress.js）：右下角標記已讀按鈕 -->
+<script src="progress.js"></script>
+
+</body>
+</html>

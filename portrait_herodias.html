@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>希羅底 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">希羅底</h1>
+  <span class="hero-name-en">Herodias · Ἡρῳδιάς</span>
+  <p class="hero-slogan">「希羅底的女兒被母親所使，就說：<br>「請把施洗約翰的頭放在盤子裡，拿來給我。」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">耶穌傳道期間，約主後28–30年</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ENTJ · 統帥型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">馬太福音 14:1–12 · 馬可福音 6:14–29</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">希律安提帕之妻 · 施洗約翰被斬首的直接策劃者</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">她的婚姻本身就是一場糾纏著家族權力與倫理爭議的複雜聯姻——而正是這樁婚姻，招來了施洗約翰公開而尖銳的指責，也點燃了她此後策劃處決先知的殺機。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">耶穌傳道期間，約主後28–30年</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">大希律的孫女，先嫁希律腓力，後改嫁其兄弟希律安提帕</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">活動區域</span>
+        <div class="info-cell-value">加利利，希律安提帕的宮廷</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">女兒撒羅米（傳統認定的名字，福音書未直接點名）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">馬太福音 14:1–12 · 馬可福音 6:14–29 · 路加福音 3:19–20</div>
+      </div>
+    </div>
+
+    <p>希羅底的身世，本身就交織著希律王朝內部錯綜複雜的權力與婚姻關係：她是大希律之子亞里斯多布勒的女兒，起初嫁給自己的叔父希律腓力，此後卻離棄腓力，改嫁另一位叔父、時任加利利分封王的希律安提帕——而安提帕本人，也是為了娶她而休棄了自己原本的妻子。這樁婚姻在猶太律法的框架下極具爭議，因為按利未記的規定，人不可娶兄弟之妻（除非透過利未拉特婚姻的特殊情況），這使她與安提帕的結合，從一開始便帶著明顯違背摩西律法的性質。</p>
+    <p>施洗約翰對此毫不避諱，公開指責安提帕：「你娶你兄弟的妻子是不合理的。」這句直言不諱的指責，觸怒的不僅是安提帕本人，更深深激怒了希羅底——經文特意記載「於是希羅底懷恨他，想要殺他，只是不能」，顯示她對約翰的殺意，遠比安提帕本人更加堅決而持久。安提帕雖然將約翰下在監裡，卻因懼怕百姓、也因知道約翰是義人聖人而對他有所保護，甚至喜歡聽他講論；然而希羅底卻一直在等待一個能夠繞過丈夫這份保護、親手除去約翰的機會。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從一樁引發約翰公開指責的爭議婚姻，到女兒盤子裡那顆施洗約翰的頭，希羅底的故事，是一部關於「未經處理的怨恨如何醞釀成一場精心策劃的謀殺」的敘事。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">怨恨萌生</span>
+        <div class="timeline-title">約翰的指責——「你娶你兄弟的妻子是不合理的」</div>
+        <div class="timeline-body">施洗約翰公開指責希律安提帕娶希羅底這樁婚姻不合律法，希羅底因此懷恨在心，一直想要殺他，卻因安提帕的保護而遲遲無法下手。</div>
+        <div class="timeline-ref">馬可福音 6:17–20</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">機會等待</span>
+        <div class="timeline-title">安提帕的猶豫——既懼怕又喜歡聽他講論</div>
+        <div class="timeline-body">安提帕雖將約翰下監，卻知道他是義人聖人，對他有所保護，甚至喜歡聽他講論，內心因此十分猶豫困惑——這份猶豫，恰恰使希羅底的殺機遲遲無法得逞。</div>
+        <div class="timeline-ref">馬可福音 6:19–20</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">生日宴上的舞蹈——「隨你向我求什麼，就是國的一半，我也必給你」</div>
+        <div class="timeline-body">安提帕生日設宴，希羅底的女兒進來跳舞，使安提帕與同席的人都甚喜歡，安提帕便起誓要照她所求的給她，甚至許諾國的一半。</div>
+        <div class="timeline-ref">馬可福音 6:21–23</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">陰謀成形</span>
+        <div class="timeline-title">希羅底的教唆——「求施洗約翰的頭」</div>
+        <div class="timeline-body">女兒出去問母親當求什麼，希羅底毫不猶豫地指示她求施洗約翰的頭；女兒立刻回來向安提帕求：「我願王立時把施洗約翰的頭放在盤子裡給我。」</div>
+        <div class="timeline-ref">馬可福音 6:24–25</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">殺害終局</span>
+        <div class="timeline-title">約翰被斬——盤子裡的頭</div>
+        <div class="timeline-body">安提帕雖然憂愁，卻因所起的誓與同席的人，不肯推辭，隨即差人去監裡斬了約翰，將頭放在盤子裡拿來給女孩，女孩又給了她母親——施洗約翰的性命，就這樣終結在希羅底一手策劃的宴會陰謀之中。</div>
+        <div class="timeline-ref">馬可福音 6:26–28</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">她面對一句公開的道德指責，選擇的不是反省或辯駁，而是耐心等待、精準策劃，最終借用女兒的舞蹈與丈夫一時的誓言，親手促成了一場處決。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">受到指責時，唯有徹底除去指責者才能真正解決問題</div>
+          <div class="soul-body">面對施洗約翰對她婚姻合法性的公開質疑，她選擇的回應不是反思或辯護，而是徹底除滅這位指責者本人——這種將問題根源等同於「指出問題的人」的思維模式，是她性格中最危險的核心。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">外顯的能力</span>
+          <div class="soul-title">極其耐心且精準地等待並把握機會</div>
+          <div class="soul-body">她的殺意持續存在已久，卻因安提帕的保護而遲遲無法下手；她沒有魯莽躁進，而是耐心等待，直到生日宴這個安提帕情緒高漲、公開起誓的關鍵時刻，才精準出手，展現出高度的策略耐性。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">善於利用他人（包括自己的女兒與丈夫）達成目的</div>
+          <div class="soul-body">她指使女兒在宴會上跳舞討安提帕歡心，又巧妙利用安提帕在眾人面前起誓、顧及顏面不願食言的心理弱點，展現出精於操縱他人情境與心理的行事風格。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">無法承受任何對自身處境合法性的質疑</div>
+          <div class="soul-body">她對約翰的恨意之深、之持久，遠超一般人面對批評的反應——這揭示她內心深處，可能對自己這樁婚姻的正當性存在著某種難以承受的不安，因而必須徹底消滅那個公開說出真相的聲音。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">歷史定位</span>
+          <div class="soul-title">她的名字，此後與施洗約翰的殉道緊密相連</div>
+          <div class="soul-body">希羅底策劃處決約翰的行動，使她成為新約中少數幾位因直接促成先知殉道而被永遠記念的反面人物，她的名字此後也常被引用為「權勢者無法容忍真理指責」的代名詞。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">希羅底的故事，是新約中探討「無法承受被指出真相的怨恨，如何演變為蓄意謀殺」最鮮明的案例之一。施洗約翰對她的指責，本質上是一句忠於律法與道德的公開陳述，而非出於私人恩怨的攻擊——然而她的反應，卻是將這句指責視為必須以性命清算的深仇大恨。這種反應模式的核心，或許正在於她清楚知道約翰所言不虛，而正是這份「無可辯駁的真實」，使她無法單純地忽視或反駁，只能訴諸徹底除滅指責者本身。她的耐心等待與精心策劃，也展現出她絕非一時衝動行事的人，而是深謀遠慮、善於運用他人（女兒的舞蹈、丈夫的虛榮與誓言）來達成自己目的的策劃者——這使施洗約翰的死，不僅是安提帕一時軟弱下的悲劇決定，更是希羅底長期蓄意謀劃的殺人事件。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ENTJ</span>
+      <div class="mbti-name">統帥型 · 耐心策劃處決的王后</div>
+      <div class="mbti-slogan">「她無法容忍一句指出真相的公開指責，於是耐心等待、精準策劃，最終借他人之手，除去了那個說出真話的聲音。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">她清楚意識到直接殺害約翰在當時的政治處境下窒礙難行（安提帕的保護、百姓的觀感），於是耐心等待一個能夠繞過這些障礙的具體時機，並在生日宴這個關鍵場合精準策劃、一擊成功。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">她能敏銳洞察安提帕在眾人面前公開起誓、顧及顏面不願食言的心理弱點，並預先佈局讓女兒在恰當的時機提出這個要求，顯示出對局勢與人性弱點深刻的長遠洞察力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Se · 外向感官</span>
+          <div class="mbti-fn-body">她善用當下具體的宴會場景與女兒的舞蹈表演，將這個原本歡樂的社交場合，轉化為執行自己蓄謀已久之計畫的舞台，展現出對當下情境高度的掌控與運用能力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">她完全無法從內在道德層面反思約翰指責的合理性，反而讓外在的怨恨與報復欲望，主導了自己所有的判斷與行動，這種內在道德省思的嚴重缺失，正是劣勢內向情感的具體展現。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">她生命中最深的糾葛，牽動著丈夫、女兒與一位公開指責她的先知——三重關係交織，最終促成了一場駭人聽聞的謀殺。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">安</div>
+          <div class="relation-name">希律安提帕</div>
+          <div class="relation-type-badge">她的丈夫，也是下令處決約翰的分封王</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">希羅底離棄前夫改嫁安提帕，二人的婚姻招致施洗約翰的公開指責；安提帕雖對約翰有所保護與敬重，最終卻因宴會上顧全顏面而不得不依希羅底的策劃下令將他斬首。</div>
+          <div class="relation-ref">馬可福音 6:17–28</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">約</div>
+          <div class="relation-name">施洗約翰</div>
+          <div class="relation-type-badge">公開指責她婚姻、最終被她策劃處死的先知</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">施洗約翰因公開指責希羅底這樁婚姻不合律法，招致她的深恨；她耐心等待多時，最終藉女兒之口向安提帕求得約翰的頭，親手促成了這場先知的殉道。</div>
+          <div class="relation-ref">馬可福音 6:17–28</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">女</div>
+          <div class="relation-name">希羅底的女兒</div>
+          <div class="relation-type-badge">被她教唆、成為處決工具的女兒</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">希羅底的女兒在安提帕生日宴上跳舞討喜，得王應許可隨意求賞；她問過母親後，依母親的教唆向王索求施洗約翰的頭，成為母親謀劃殺害約翰的直接執行者。</div>
+          <div class="relation-ref">馬可福音 6:22–25</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「希羅底懷恨他，想要殺他，只是不能」——這句經文，揭示了她內心深藏已久、卻苦於無法立即得逞的殺機，也預告了此後那場終將爆發的悲劇。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「於是希羅底懷恨他，想要殺他，只是不能；因為希律知道約翰是義人，是聖人，所以敬畏他，保護他。」</div>
+      <div class="verse-ref">馬可福音 6:19–20</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">ἐνεῖχεν</span>
+        <div class="word-transliteration">eneichen · 懷恨 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">原文有「緊抓不放、持續懷有敵意」的意涵，形容希羅底對約翰的恨意，並非一時的情緒反應，而是一種長期蓄積、持續存在的深刻怨毒。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這個字精準刻畫了希羅底怨恨的持久性與蓄意性——她並非在宴會當下一時興起殺機，而是早已懷抱這份殺意多時，僅僅是在等待一個能夠付諸行動的合適時機，這使她的行動帶有明確的預謀性質，而非單純的一時衝動。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">無法承受真相的指責，可能演變為蓄意的傷害</div>
+      <div class="theology-insight-body">希羅底對約翰指責的反應，不是反思自身處境，而是徹底除滅指出真相的人——這警示我們，當一個人對批評的反應是持續蓄積的怨恨與報復欲望，而非誠實面對，往往預示著更深層的危機。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">權勢者的軟弱，可能成為惡行得逞的破口</div>
+      <div class="theology-insight-body">安提帕明知約翰是義人，卻仍因顧全在眾人面前起誓的顏面，而不肯推辭希羅底所設的局——這提醒我們，領袖或掌權者若因虛榮或顏面而妥協原則，往往為心懷惡意之人打開作惡的大門。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">先知因傳講真理而付上生命代價的預表</div>
+      <div class="theology-insight-body">施洗約翰因忠於指出不合神心意的行為而遭處死，這預先呼應了此後歷代先知與使徒、乃至基督自己，同樣因傳講真理而遭受逼迫甚至殉道的命運。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">希羅底因無法承受施洗約翰對她婚姻不合律法之真相的公開指責，蓄意策劃並促成了這位先知的殉道</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">施洗約翰作為彌賽亞道路預備者的殉道，預先呼應了此後那位他所預告、道路預備的對象——耶穌基督，同樣因傳講真理而遭受宗教與政治權勢聯手迫害、最終被釘十字架的命運</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督同樣因揭露當代宗教領袖表裡不一的悖逆而招致殺機，最終在看似合法的審判程序下被處死——先知殉道的模式，在祂身上得到最深刻、也最終極的印證與成就（太 21:33–39 · 徒 7:52）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果此刻有人指出你生命中一個你不願面對的真相——這一頁想問你：你的第一反應，是反思，還是想辦法除去那個說出真話的聲音？</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">希羅底的故事命中每一個在面對他人指出自己過犯或處境問題時，選擇攻擊、報復指責者，而非誠實面對真相的人。她的悲劇提醒我們，未經處理的怨恨若持續蓄積，可能演變成遠超原本衝突程度的傷害性行動。她的故事同時也警醒掌權者或有影響力的人——安提帕的軟弱與妥協，提醒我們顏面與虛榮，絕不該成為犧牲他人性命或公義原則的理由。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">當有人指出你生命中一個你不願面對的真相時，你的第一反應通常是什麼？是像希羅底一樣心生怨恨，還是願意誠實反思？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">希羅底的殺意持續蓄積多時，才終於等到機會爆發。你是否也曾任由某個未經處理的怨恨，在心裡持續醞釀，直到它變得比原本的衝突更加危險？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">安提帕明知約翰是義人，卻因顧全顏面而妥協。你是否也曾因為在意他人眼光或自己的形象，而在關鍵時刻放棄了原本該堅守的原則？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">施洗約翰為了說出真相付上了生命的代價。你是否也曾因為害怕後果，而選擇對某個該說的真相保持沉默？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 希羅底</span>
+        <div class="gen-title">警示劇本：讓未經處理的怨恨，蓄積成蓄意的謀殺策劃</div>
+        <div class="gen-body">她因施洗約翰公開指責自己的婚姻，長期心懷殺意，最終耐心等待並精心策劃，藉由女兒的舞蹈與丈夫的虛榮誓言，促成了這位先知的斬首處決。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 施洗約翰的門徒</span>
+        <div class="gen-title">延續：約翰的殉道，成為此後福音敘事的重要伏筆</div>
+        <div class="gen-body">約翰的門徒此後收殮他的屍首，將這事告訴耶穌——約翰的死，某種程度上也預示並加深了耶穌自己此後同樣將面對宗教與政治權勢聯手迫害、走向十字架的道路。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">即便在希羅底這樣徹頭徹尾的負面敘事中，恩典仍以另一種方式顯明——施洗約翰至死忠於自己所傳講的真理，不因權勢威脅而妥協，他的殉道成為此後歷代信徒願意為真理付代價的重要典範。這提醒我們，即便邪惡一時得逞，神的真理與見證，終不會因此被真正抹殺或消音。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位因無法承受一句公開指責、耐心策劃處決先知的王后，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#被戳中真相時的反應</span>
+      <span class="tag">#顏面不該成為妥協原則的理由</span>
+      <span class="tag">#怨恨會蓄積成更大的傷害</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>希羅底的婚姻本身就有點複雜——她先嫁一個叔叔，後來又改嫁另一個叔叔（也就是後來的加利利分封王安提帕）。這樁婚姻按當時的律法，明顯有問題。</p>
+      <p>施洗約翰沒有選擇沉默，他公開講：這樁婚姻不合理。這句話講得沒錯，但希羅底的反應不是反省，是記恨——而且記恨了很久，經文特別寫『她一直想殺他，只是找不到機會』。</p>
+      <p>機會終於來了：安提帕生日宴會，希羅底的女兒上場跳舞，跳得安提帕很開心，當眾承諾『你要什麼我都給你，就算是半個國家也行』。女兒跑去問媽媽該要什麼，希羅底想都沒想：要約翰的頭。</p>
+      <p>安提帕當下其實很猶豫——他知道約翰是義人，甚至滿喜歡聽他講道。但他已經在眾人面前誇下海口，拉不下臉反悔，最後還是照做了。一顆頭，放在盤子裡，就這樣送了出去。</p>
+      <p>這整件事最讓人不寒而慄的地方，不是安提帕一時衝動，而是希羅底那份『等了很久、算計很久』的耐心。她不是被一時的情緒沖昏頭，她是精心策劃了一整場謀殺。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——希羅底這塊石頭，被雕刻出的形狀，是一個扎心的警示：『被指出真相時的反應，暴露一個人真正的樣子』。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果有人指出你不想面對的真相，希羅底的故事想提醒你：先問自己，是想反駁事實，還是想除掉說出事實的人。</p>
+      <p style="margin-top:12px;">未經處理的怨恨不會自己消失，它只會安靜地等待一個爆發的機會——希羅底的故事，就是這種等待最極端的示範。</p>
+      <p style="margin-top:12px;">如果你正因為顏面或形象，猶豫要不要在某件事上妥協原則，想想安提帕那句『因為所起的誓，就不好推辭』——這句話，值得每個人警惕。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，誠實面對一個你曾經想『反擊』而不是『反思』的指責——試著換一種回應方式。</p>
+    </div>
+
+    <div class="insight-box">希羅底與莎樂美（傳統認定她女兒的名字）的故事，此後在西方藝術、文學與歌劇中被反覆演繹——王爾德的劇作《莎樂美》與理查·史特勞斯同名歌劇最為知名，這個故事持續激發後世對權力、慾望與道德淪喪等主題的藝術想像與詮釋。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">她因無法承受一句公開的道德指責，耐心策劃了一場處決，最終成為新約中權勢者無法容忍真理、進而蓄意迫害的鮮明反面例證。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">施洗約翰殉道敘事的核心策劃者</div>
+          <div class="legacy-body">她長期蓄積的怨恨與精心策劃的謀害行動，是施洗約翰殉道敘事中最關鍵的驅動力量，深刻影響了福音書對這段歷史的記載方式。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">「無法承受真相指責」的警世典型</div>
+          <div class="legacy-body">她面對約翰指責時選擇除滅指責者、而非反思自身的反應模式，成為聖經中警戒世人正視、而非報復性攻擊他人善意批評的重要負面案例。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">「顏面凌駕原則」的警世提醒</div>
+          <div class="legacy-body">安提帕因顧全誓言顏面而妥協原則、下令處決他所敬重的約翰，這段記載持續為後世探討領袖決策中虛榮與原則之間的張力，提供深刻的歷史參照。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">西方藝術與文學的重要靈感源頭</div>
+          <div class="legacy-body">她與女兒的故事，此後在戲劇、繪畫、歌劇等藝術形式中被反覆演繹，成為西方文化史上探討權力與道德淪喪主題最具代表性的聖經素材之一。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「約翰的門徒聽見了，就來把他的屍首領去，葬在墳墓裡。」</div>
+      <div class="final-verse-ref">馬可福音 6:29</div>
+    </div>
+
+    <div class="final-question">當有人指出你生命中一個不願面對的真相時，你願不願意選擇誠實反思，而不是像希羅底一樣，把怨恨蓄積成一場終將爆發的傷害？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 希羅底 <span>Ἡρῳδιάς</span> · 分封王希律安提帕的妻子 · 施洗約翰之死的策劃者</div>
+
+<!-- 閱讀紀錄（localStorage，見 progress.js）：右下角標記已讀按鈕 -->
+<script src="progress.js"></script>
+
+</body>
+</html>

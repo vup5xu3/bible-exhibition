@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>猶推古 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">猶推古</h1>
+  <span class="hero-name-en">Eutychus · Εὔτυχος</span>
+  <p class="hero-slogan">「保羅下去，伏在他身上，抱著他，說：<br>「你們不要發慌，他的靈魂還在身上。」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">保羅第三次宣教旅程末期，約主後57年</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ISFP · 探險家型（藝術家型）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">使徒行傳 20:7–12</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">特羅亞教會的青年信徒 · 從墜樓死亡到復活的見證者</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他只是一個坐在三樓窗臺上、熬不過夜半睡意的普通青年，卻在意外墜樓的瞬間，成為保羅宣教旅程中一次意義深遠之神蹟的核心見證。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">保羅第三次宣教旅程末期，約主後57年</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">特羅亞教會的青年信徒</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">活動區域</span>
+        <div class="info-cell-value">特羅亞，小亞細亞西北岸的港口城市</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">經文未載</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">使徒行傳 20:7–12</div>
+      </div>
+    </div>
+
+    <p>猶推古的故事，發生在保羅第三次宣教旅程即將結束、預備啟程前往耶路撒冷的最後階段。當時的教會習慣在七日的第一日（主日）聚集擘餅，保羅因隔日就要起行，便向會眾講道直到半夜——這場聚會的長度與強度，本身就說明了保羅對這次道別聚會的重視，他深知此去耶路撒冷後可能不再有機會與特羅亞的信徒相聚。</p>
+    <p>經文特別交代了現場的環境細節：「我們聚會的那座樓上，有好些燈燭」，這暗示了聚會場所因眾多燈燭燃燒而可能悶熱、空氣稀薄；猶推古坐在窗臺上，或許正是為了透氣。經文接著用近乎白描的筆法，記下了這場意外：「有一個少年人，名叫猶推古，坐在窗臺上，困倦沉睡。保羅講了多時，少年人睡熟了，就從三層樓上掉下去；扶起他來，已經死了。」這幾句話的節奏，帶著近乎紀實般的冷靜——沒有誇張的渲染，卻讓讀者清楚感受到這場意外發生的猝不及防。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從窗臺上熬不住的睡意，到墜樓身亡又被保羅抱起復活，猶推古的故事，是一部發生在一場漫長告別聚會中、卻帶來意外神蹟見證的敘事。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">背景鋪陳</span>
+        <div class="timeline-title">保羅講道直到半夜——即將啟程的告別聚會</div>
+        <div class="timeline-body">七日的第一日，門徒聚會擘餅，保羅因次日就要起行，便向他們講道，直講到半夜；聚會的樓上點著許多燈燭，猶推古坐在窗臺上聽道。</div>
+        <div class="timeline-ref">使徒行傳 20:7–8</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">意外墜樓</span>
+        <div class="timeline-title">困倦沉睡，從三層樓上掉下去</div>
+        <div class="timeline-body">保羅講論的時間過長，猶推古熬不住睡意，沉沉睡熟，竟從三層樓的窗臺上掉了下去；眾人將他扶起時，他已經死了。</div>
+        <div class="timeline-ref">使徒行傳 20:9</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">保羅下樓伏在他身上——「他的靈魂還在身上」</div>
+        <div class="timeline-body">保羅下樓，伏在猶推古身上，將他抱住，向驚慌的眾人宣告：「你們不要發慌，他的靈魂還在身上。」</div>
+        <div class="timeline-ref">使徒行傳 20:10</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">圓滿終局</span>
+        <div class="timeline-title">聚會繼續，眾人帶著活著的青年得安慰</div>
+        <div class="timeline-body">保羅隨後回到樓上，繼續擘餅、用飯，又談論了許久，直到天亮才離開；眾人把活活的少年人帶去，心裡得了不小的安慰。</div>
+        <div class="timeline-ref">使徒行傳 20:11–12</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他在整個敘事中沒有留下一句台詞，只有一個令人心疼卻又莞爾的細節——他不是不願意聽道，只是身體最終不敵深夜的疲倦。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">已知處境</span>
+          <div class="soul-title">在悶熱擁擠的聚會中，坐上窗臺尋求一絲涼意</div>
+          <div class="soul-body">經文特別交代聚會的樓上點著許多燈燭，暗示空間悶熱擁擠，猶推古坐在窗臺，很可能正是出於尋求透氣涼爽的實際考量，這個細節使他的處境顯得格外真實而貼近人性。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">並非不敬虔的表現</span>
+          <div class="soul-title">身體的疲倦，不等於對真道的輕視</div>
+          <div class="soul-body">猶推古的沉睡並非因為對保羅的講道漠不關心，而是深夜漫長聚會下人體自然的生理反應——經文並未因此譴責或貶低他，這提醒讀者不應將身體的軟弱簡單等同於屬靈的冷淡。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">敘事中的位置</span>
+          <div class="soul-title">意外的主角，卻也成為神蹟的見證者</div>
+          <div class="soul-body">他從一個幾乎在敘事背景中不起眼的聽眾，因這場意外墜樓，瞬間成為整段記載的焦點，並最終成為保羅所行神蹟中，「靈魂仍在身上」這句宣告最直接的見證者。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">敘事留白</span>
+          <div class="soul-title">（材料有限——聖經未記載他復活後的言語或反應）</div>
+          <div class="soul-body">經文對猶推古復活後的心情、反應或此後的生命軌跡完全沒有記載，這種留白使他的故事更聚焦於保羅所行神蹟本身，而非個人此後的故事發展。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">意外的祝福</span>
+          <div class="soul-title">他的墜樓，反而延長了教會與保羅相聚的時光</div>
+          <div class="soul-body">這場意外發生後，保羅繼續留下擘餅、用飯、談論直到天亮——猶推古的意外，某種程度上意外延長了這場告別聚會的時光，使特羅亞的信徒得以與保羅有更長久的相聚與教導。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">猶推古的故事，是新約中一則極具人情味、卻又蘊含深刻神蹟見證的敘事。他的沉睡與墜樓，帶著一種近乎荒謬的意外性——這不是一場精心設計的考驗或懲罰，而是深夜漫長聚會下，人體自然疲憊所導致的一場單純意外。然而正是這樣一個毫無預兆、甚至帶著些許戲劇性荒謬的事件，成為保羅在特羅亞這場告別聚會中，最令人難忘的一幕。保羅「不要發慌，他的靈魂還在身上」這句宣告，語氣鎮定而充滿權柄，展現出使徒在面對突發危機時的沉穩信心。而猶推古此後被「活活地」帶去、使眾人「得了不小的安慰」，這個結局，讓一場原本可能徹底破壞聚會氣氛的悲劇意外，轉化為堅固眾人信心的神蹟見證，也為保羅即將遠行、可能與特羅亞信徒訣別的沉重氛圍，注入了一份意外的盼望與安慰。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ISFP</span>
+      <div class="mbti-name">探險家型（藝術家型） · 在漫長聚會中不敵睡意的青年</div>
+      <div class="mbti-slogan">「他只是想找個透氣的位置聽道，卻在意外中墜樓身亡，又意外地成為保羅神蹟中最令人難忘的見證。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">他選擇留在悶熱擁擠的聚會現場、坐上窗臺繼續聆聽保羅講道，而非直接離席，這種即便身體不適仍選擇留下參與、重視聚會與群體的內在態度，反映出一定程度的內向情感傾向；此處材料極其有限，僅能從其行為背景推測。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Se · 外向感官</span>
+          <div class="mbti-fn-body">他直覺地選擇窗臺這個能感受到涼風、緩解悶熱不適的具體位置，顯示出對當下身體感受與環境條件的敏銳回應——只是這份對舒適的追求，最終間接導致了意外的發生。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">經文材料完全未記載他個人的內在思考或長遠考量，此項功能的推論極為有限，僅能就其身處漫長聚會、選擇留下聆聽的整體處境進行極保守的推測。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">他未能有效管理自己的睡意與所處位置的風險（窗臺、三層樓高），這種對當下具體風險評估與自我管理的不足，反映出劣勢外向思考的特徵，然而此處材料同樣十分有限。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他唯一被記載的重大互動，是與那位在他墜樓死亡後，親自下樓抱住他、宣告他仍活著的使徒保羅。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">保</div>
+          <div class="relation-name">保羅</div>
+          <div class="relation-type-badge">使他從死裡復活的使徒</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">保羅講道直到半夜，猶推古因此沉睡墜樓身亡；保羅隨即下樓伏在他身上，抱著他宣告「他的靈魂還在身上」，使他從死裡復活，隨後繼續留下與特羅亞信徒相聚直到天亮。</div>
+          <div class="relation-ref">使徒行傳 20:9–11</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">眾</div>
+          <div class="relation-name">特羅亞教會的信徒</div>
+          <div class="relation-type-badge">與他一同經歷這場意外與神蹟的會眾</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">特羅亞教會的信徒在猶推古墜樓死亡時想必極度驚慌，此後見他活活地被帶去，經文記載他們「得了不小的安慰」，顯示這場意外與隨後的神蹟，深刻堅固了整個特羅亞教會的信心。</div>
+          <div class="relation-ref">使徒行傳 20:12</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「你們不要發慌，他的靈魂還在身上」——保羅這句鎮定的宣告，在一場驟然而至的死亡意外中，成為對神大能與信心最直接的見證。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「保羅下去，伏在他身上，抱著他，說：你們不要發慌，他的靈魂還在身上。」</div>
+      <div class="verse-ref">使徒行傳 20:10</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">Εὔτυχος</span>
+        <div class="word-transliteration">Eutychos · 猶推古 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">這個名字在希臘文中意為「幸運的」或「好運的」（由 eu「好」與 tyche「命運」組成）。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這個名字的意涵，與他的遭遇形成一種意味深長的反諷與應驗——他確實以最戲劇化的方式，經歷了一場「不幸中的大幸」：從墜樓身亡到蒙保羅使其復活，他的名字彷彿預示了這場意外最終指向的，正是神蹟性的保守與復甦。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">身體的軟弱不等於屬靈的失敗</div>
+      <div class="theology-insight-body">猶推古的沉睡是人體自然的生理反應，聖經並未因此譴責他，這提醒我們不應將身體的疲憊、軟弱，簡單等同於信心或委身程度的缺失。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">使徒的職事，延續了耶穌賜下勝過死亡的大能</div>
+      <div class="theology-insight-body">保羅使猶推古從死裡復活的行動，延續了耶穌基督與舊約先知以利亞、以利沙所行的復活神蹟，見證使徒的職事同樣承接著神勝過死亡的大能與應許。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">意外的危機，可能成為堅固信心的契機</div>
+      <div class="theology-insight-body">猶推古的意外墜樓，原本可能為這場告別聚會蒙上悲傷的陰影，卻因神蹟性的復活，反而使特羅亞的信徒「得了不小的安慰」——這提醒我們，神有能力在意外的危機中，成就超乎預期的堅固與安慰。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">猶推古在保羅講道的聚會中意外墜樓身亡，保羅隨即伏在他身上、抱著他，宣告他的靈魂仍在身上，使他從死裡復活</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這個場景與舊約中以利亞、以利沙伏在死者身上使其復活的敘事遙相呼應，共同見證神持續透過祂所差遣的僕人，在歷史的不同階段彰顯勝過死亡的大能</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督親自從死裡復活，成為凡信靠祂之人身體終將復活最確實的憑據與初熟的果子——舊約先知與新約使徒所行個別的復活神蹟，最終都指向這終極而普世的復活盼望（林前 15:20–22）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正因一時的軟弱或意外而感到懊悔——這一頁想讓你看見，神能在最意外的危機中，成就超乎預期的恩典與安慰。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">猶推古的故事命中每一個曾因身體的疲憊、注意力的失神，或一時的意外而感到懊悔自責的人。他的經歷提醒我們，人性的軟弱是真實存在的，神並不因這份軟弱而苛責我們，反而樂意在意外與危機中，親自介入、成就超乎預期的恢復與安慰。這個故事也邀請我們反思：我們是否也曾在某個聚會、某段學習或某項責任中，因疲憊而缺席了重要的時刻——而神的恩典，是否也能在我們的軟弱與意外之後，帶來意想不到的恢復？</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你是否也曾因為身體的疲憊或一時的失神，而錯過或搞砸了某個重要的時刻？猶推古的故事如何幫助你以更寬容的眼光看待這些人性的軟弱？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">保羅面對這場意外死亡，展現出鎮定而充滿信心的宣告。你面對突發的危機或意外時，通常是驚慌失措，還是能像保羅一樣冷靜依靠神的大能？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">猶推古的意外，反而成為堅固特羅亞教會信心的契機。你生命中是否也有一場原本看似負面的意外，最終卻成為信心被建造的轉機？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">這個故事提醒我們身體的軟弱不等於屬靈的失敗。你是否也曾對自己（或他人）因疲憊而產生的失誤，過度苛責？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 猶推古</span>
+        <div class="gen-title">示範劇本：即便身處軟弱與意外之中，仍能成為神蹟恩典的見證</div>
+        <div class="gen-body">他因深夜聚會的疲憊而沉睡墜樓身亡，卻蒙保羅奉主的大能使他從死裡復活，成為特羅亞教會信心被堅固的重要見證。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 特羅亞教會</span>
+        <div class="gen-title">延續：一場意外，成為整個教會信心的堅固</div>
+        <div class="gen-body">猶推古復活後被活活地帶去，特羅亞教會的信徒「得了不小的安慰」——這場原本可能重創聚會氣氛的悲劇意外，最終轉化為整個群體信心被建造的重要時刻。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在猶推古的故事中，展現在神並不苛責人性自然的軟弱與疲憊，反而樂意在意外與危機之中，親自介入、成就超乎預期的恢復。這提醒我們，神的恩典從不因我們一時的失神或軟弱而收回，祂總能在最意外的處境中，將危機轉化為堅固信心的契機。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位在漫長聚會中熬不住睡意、意外墜樓又蒙保羅救回的青年，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#軟弱不等於失敗</span>
+      <span class="tag">#意外也能成為恩典的舞台</span>
+      <span class="tag">#冷靜面對突發危機</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>猶推古的故事，讀起來有種說不出的親切感——誰沒有在一場很長的聚會、演講或會議裡，硬撐著眼皮，卻還是不小心睡著過？只是他運氣（或者說，不走運）特別差：他坐的位置是三樓的窗臺，睡著之後，直接摔了下去，摔死了。</p>
+      <p>保羅當時正在講道，講了整整一個晚上——他隔天就要離開，這大概是他跟特羅亞信徒相聚的最後機會，所以講得特別久、特別捨不得停。猶推古大概不是不想聽，是真的撐不住了。</p>
+      <p>接下來的畫面很直接：保羅下樓，抱住已經斷氣的猶推古，說了一句很鎮定的話：『別慌，他還活著。』然後，猶推古真的活了過來。</p>
+      <p>更有意思的是後續：保羅沒有因為這場意外就結束聚會，他上樓繼續擘餅、用飯，又講了很久，一直講到天亮才走。整個特羅亞教會，因為這場『意外復活』，反而得到了『不小的安慰』。</p>
+      <p>這個故事沒有給猶推古安排任何『金句』或後續發展，他就只是一個因為太累而睡著、又剛好被神使用來見證大能的普通青年。有時候，神蹟發生的舞台，就是這麼平凡、這麼不完美。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——猶推古這塊石頭，被雕刻出的形狀，帶著一點荒謬又溫暖的味道：『就算你在最不該打瞌睡的時候睡著了，神的恩典依然能接住你』。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你最近因為疲憊而錯過或搞砸了什麼重要的時刻，猶推古的故事想告訴你：人性的軟弱是真實的，神不會因此就放棄你。</p>
+      <p style="margin-top:12px;">面對突發的危機，保羅選擇的是鎮定而不是驚慌——這份『不要發慌』的信心，是可以練習的。</p>
+      <p style="margin-top:12px;">有時候，最平凡、甚至有點狼狽的意外，反而會成為神彰顯恩典最意想不到的舞台。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，對一個你曾因『不小心失誤』而苛責自己的時刻，練習給自己一點猶推古式的寬容。</p>
+    </div>
+
+    <div class="insight-box">猶推古的故事，因其貼近人性、帶有些許幽默感的細節，在講道與主日學教材中經常被引用作為輕鬆而深刻的教學素材——特別常用於探討「身體軟弱與屬靈委身之間的張力」、以及「神如何在意外與危機中彰顯恩典」等主題，是新約中少數兼具戲劇性與人情味的短篇敘事之一。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他因一時的睡意墜樓身亡，卻在保羅的抱持與宣告中重獲生命，成為新約中一則充滿人情味、卻同樣見證神大能的復活敘事。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">身體軟弱不等於屬靈失敗的重要提醒</div>
+          <div class="legacy-body">他的沉睡墜樓，成為聖經中少見以帶有生活感、甚至些許戲劇荒謬性的方式，提醒讀者不應將身體的疲憊軟弱簡單等同於屬靈的冷淡或失敗。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">使徒延續復活大能的重要見證</div>
+          <div class="legacy-body">保羅使他從死裡復活的行動，延續了舊約先知與耶穌基督所行的復活神蹟，見證使徒職事同樣承接著神勝過死亡的應許與大能。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">意外危機轉化為信心堅固之契機的敘事範例</div>
+          <div class="legacy-body">他的意外墜樓與復活，使特羅亞教會的信徒得著「不小的安慰」，成為聖經中「危機可能轉化為信心建造之契機」的具體例證。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">新約中兼具人情味與神蹟見證的獨特敘事</div>
+          <div class="legacy-body">他的故事因貼近日常生活經驗、帶有輕鬆幽默的細節，成為新約中兼具生活真實感與神蹟震撼力的獨特短篇敘事，持續在教學與講道中被引用。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「有人把那童子活活地領來，得的安慰不小。」</div>
+      <div class="final-verse-ref">使徒行傳 20:12</div>
+    </div>
+
+    <div class="final-question">如果你此刻正因一時的軟弱或意外而懊悔不已，你是否願意相信，神的恩典依然能在這樣的處境中，成就超乎你預期的恢復與安慰？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 猶推古 <span>Εὔτυχος</span> · 特羅亞聚會中打瞌睡墜樓的青年</div>
+
+<!-- 閱讀紀錄（localStorage，見 progress.js）：右下角標記已讀按鈕 -->
+<script src="progress.js"></script>
+
+</body>
+</html>

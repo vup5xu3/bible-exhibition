@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>雅億 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">雅億</h1>
+  <span class="hero-name-en">Jael · יָעֵל</span>
+  <p class="hero-slogan">「底波拉的歌唱道：<br>「願基尼人希百的妻雅億比眾婦人多得福氣，比住帳棚的婦人更蒙福祉。」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">士師記中期，約主前十二世紀</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ISTP · 鑑賞家型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">士師記 4–5 章</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">游牧民族婦人 · 終結迦南二十年欺壓的關鍵人物</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">她不是以色列人，甚至不是戰場上的一員——她只是一位游牧民族首領的妻子，卻在自己帳篷的門口，親手終結了以色列受迦南欺壓二十年的苦難。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">士師記中期，約主前十二世紀</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">基尼人希百的妻子，游牧民族婦人</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">活動區域</span>
+        <div class="info-cell-value">撒拿音的橡樹旁，靠近基低斯</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">丈夫希百，基尼人（摩西岳父何巴的後裔）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">士師記 4:17–22 · 5:24–27</div>
+      </div>
+    </div>
+
+    <p>雅億登場的背景，是以色列在迦南王耶賓、及其元帥西西拉統治下受盡欺壓二十年之後，女先知底波拉與巴拉率軍在基順河邊擊潰迦南九百輛鐵車的軍隊——這場戰役的細節極具戲劇性：耶和華使敵軍在巴拉面前潰亂，西西拉見大勢已去，棄車步行逃命。而雅億所屬的基尼族，此時恰與迦南王耶賓和好，這使西西拉逃難時，理所當然地認為雅億的帳篷會是一處安全的庇護所。</p>
+    <p>然而雅億所做的，卻完全出乎西西拉的預料。她主動出來迎接這位落難的元帥，安撫他「不要懼怕」，請他進入帳篷、用被子將他遮蓋；西西拉求水解渴，她卻拿出奶來給他喝——這個細節格外意味深長：奶比水更容易使人昏昏欲睡，雅億的每一個舉動，看似是無微不至的款待，實則正一步步為接下來的行動鋪路。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從一次看似尋常的收留庇護，到親手拿橛子釘入敵軍元帥鬢角的驚人一擊，雅億的故事，是一部關於「一位邊緣婦人如何憑一己之力終結長年欺壓」的敘事。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">背景鋪陳</span>
+        <div class="timeline-title">基順河之役——迦南軍隊潰敗</div>
+        <div class="timeline-body">女先知底波拉與巴拉奉命率軍出戰，耶和華使迦南元帥西西拉的軍隊在基順河邊潰亂，西西拉棄車步行逃命，以色列軍隊乘勝追擊，殲滅了迦南全軍。</div>
+        <div class="timeline-ref">士師記 4:12–16</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">西西拉逃入雅億的帳篷——「不要懼怕」</div>
+        <div class="timeline-body">西西拉逃難時來到雅億的帳篷，因基尼族與迦南王耶賓和好，以為此處安全；雅億出來迎接，安撫他不要懼怕，請他進入帳篷、用被子遮蓋，並在他求水時拿奶給他喝，使他安心入睡。</div>
+        <div class="timeline-ref">士師記 4:17–19</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">驚人一擊</span>
+        <div class="timeline-title">拿橛子釘入鬢角——「西西拉就死了」</div>
+        <div class="timeline-body">西西拉疲憊沉睡之際，雅億拿了帳棚的橛子，手裡拿錘子，輕悄悄地到他旁邊，將橛子從他的鬢角釘進去、直透地面，西西拉就這樣死了。</div>
+        <div class="timeline-ref">士師記 4:21</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終局</span>
+        <div class="timeline-title">巴拉追至——底波拉之歌的頌讚</div>
+        <div class="timeline-body">巴拉隨後追到雅億的帳篷，雅億出來迎接他，讓他看見西西拉已死；此後底波拉與巴拉所唱的凱歌，特意用大段篇幅讚頌雅億「比眾婦人多得福氣」，將她的行動與神拯救以色列的作為緊密相連。</div>
+        <div class="timeline-ref">士師記 4:22 · 5:24–27</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">她沒有軍隊、沒有兵器，只有一頂帳篷、一些奶、一根橛子與一把錘子——卻用這幾件游牧生活中最尋常的物品，完成了整場戰役中最關鍵的一擊。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">機會出現時，毫不猶豫地把握</div>
+          <div class="soul-body">當西西拉毫無防備地出現在她的帳篷時，她沒有猶豫或恐懼，而是迅速判斷情勢，並精準地執行了一連串安撫、款待、等待時機、最終出手的完整行動。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">以看似柔弱的身份，完成了決定性的行動</div>
+          <div class="soul-body">作為一位游牧民族的婦人，她理應是戰爭中最無力介入的角色之一，卻憑著冷靜與果敢，親手終結了以色列二十年來最大的軍事威脅，這種在弱勢處境中展現出的驚人行動力，是她最動人的特質。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">用具體、實際的行動掌握局勢，而非空談或猶豫</div>
+          <div class="soul-body">從安撫、遮蓋、餵奶到最後致命的一擊，她每一步都極其具體、務實，沒有絲毫多餘的猶豫或情緒化的反應，展現出高度的行動導向特質。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">道德爭議</span>
+          <div class="soul-title">她的行動涉及違背款待之責的道德複雜性</div>
+          <div class="soul-body">在古代近東文化中，主動收留庇護一位逃難者，通常伴隨著不可背棄的款待之責；雅億表面上履行了這份款待，卻在對方毫無防備時將其殺害，這使她的行動在傳統款待倫理的框架下，帶有相當程度的道德爭議與複雜性。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">她的行動被底波拉之歌賦予崇高的屬靈意義</div>
+          <div class="soul-body">儘管她的手段引發道德爭議，底波拉與巴拉所唱的凱歌，卻毫不保留地將她譽為「比眾婦人多得福氣」的人物，把她的行動直接連結於神拯救以色列脫離欺壓的偉大作為。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">雅億的故事，是聖經中「非傳統的拯救者」最令人印象深刻的案例之一。士師記整卷書反覆呈現一個主題：神所使用來拯救以色列的人物，往往不是社會期待中理所當然的英雄——年幼的基甸、左手便利的以笏、女先知底波拉，而雅億更進一步：她甚至不是以色列人，只是一位游牧民族的婦人，卻在戰場之外的私人帳篷中，完成了整場戰役最具決定性的一擊。她的行動確實涉及背棄款待之責的道德複雜性，這也是聖經敘事誠實之處——它並未迴避這個張力，而是讓底波拉之歌毫不保留地頌讚她，同時也讓讀者自行面對這份道德的複雜性。這種敘事上的坦誠，恰恰提醒我們，神拯救祂百姓的方式，有時會透過我們預期之外、甚至帶著道德灰色地帶的途徑成就，而這並不減損祂拯救作為本身的真實與偉大。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ISTP</span>
+      <div class="mbti-name">鑑賞家型 · 帳篷裡的沉靜行動者</div>
+      <div class="mbti-slogan">「她沒有軍隊，只有一頂帳篷與幾件尋常的工具，卻在最關鍵的時刻，完成了整場戰役最決定性的一擊。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Ti · 內向思考</span>
+          <div class="mbti-fn-body">她面對西西拉突然出現的處境，迅速在心中盤算出一套完整的行動邏輯——先安撫取信、再藉由餵奶使其昏睡、最後把握時機下手，展現出高度冷靜、精準的內在邏輯判斷能力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Se · 外向感官</span>
+          <div class="mbti-fn-body">她精確運用帳篷中觸手可及的具體工具——被子、奶、橛子、錘子——完成整個行動，這種對當下環境與可用資源的高度敏銳掌握，是她成功的關鍵。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">她似乎預先洞察到西西拉逃難至此可能帶來的長遠意涵——無論是危險或機會——並據此展開一連串精心佈局的行動，顯示出一定程度對局勢深層意義的洞察力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Fe · 外向情感</span>
+          <div class="mbti-fn-body">她的行動中幾乎不見對西西拉個人處境的同情或猶豫，也未見她事後對這場殺戮的情感反應被記載，這種在重大行動中，人際情感考量相對弱化的傾向，反映出劣勢外向情感的特徵。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">她唯一被記載的重大互動，是與那位逃入她帳篷、卻再也沒能活著離開的迦南元帥——這場相遇，徹底改寫了以色列的命運。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">西</div>
+          <div class="relation-name">西西拉</div>
+          <div class="relation-type-badge">逃入她帳篷、被她親手擊殺的迦南元帥</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">西西拉戰敗逃難至雅億的帳篷尋求庇護，卻在她的款待中放下戒心、沉沉睡去，最終被雅億親手用橛子釘死——這場相遇，是整個士師記中最富戲劇張力的轉折之一。</div>
+          <div class="relation-ref">士師記 4:17–21</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">底</div>
+          <div class="relation-name">底波拉</div>
+          <div class="relation-type-badge">在凱歌中盛讚她的女先知</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">底波拉在戰後所唱的凱歌中，用大段篇幅描述並讚頌雅億的行動，稱她「比眾婦人多得福氣」，將她的行動與神拯救以色列的作為緊密相連，賦予她崇高的歷史地位。</div>
+          <div class="relation-ref">士師記 5:24–27</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">巴</div>
+          <div class="relation-name">巴拉</div>
+          <div class="relation-type-badge">追至她帳篷、見證西西拉已死的以色列將領</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">巴拉在追擊西西拉的過程中來到雅億的帳篷，雅億親自出來迎接，讓他看見西西拉已死的結局——這使巴拉原本追擊的軍事行動，最終在雅億的帳篷前劃下句點。</div>
+          <div class="relation-ref">士師記 4:22</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「願基尼人希百的妻雅億比眾婦人多得福氣」——底波拉之歌毫不保留地將這位游牧民族婦人的行動，寫進了以色列救贖歷史最重要的凱歌之中。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「願基尼人希百的妻雅億比眾婦人多得福氣，比住帳棚的婦人更蒙福祉。」</div>
+      <div class="verse-ref">士師記 5:24</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">יָתֵד</span>
+        <div class="word-transliteration">yated · 橛子 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">指游牧民族用以固定帳篷的木橛，是雅億帳篷中最尋常、最不起眼的日常工具，卻成為她終結西西拉性命的致命武器。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這個字的選用格外深刻——聖經敘事一貫的主題之一，正是神樂於使用最尋常、最不被看重的器皿與工具，成就祂最重大的拯救作為；一根用來固定帳篷的木橛，最終成為終結以色列二十年苦難的關鍵器具。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">神拯救的工具，常常出乎人的預料</div>
+      <div class="theology-insight-body">士師記反覆展現一個主題：神使用左手便利的以笏、年幼的基甸、女先知底波拉、以及一位非以色列的游牧婦人雅億，來成就祂的拯救——這提醒我們，神從不受限於人以為理所當然的「合適人選」。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">聖經誠實呈現道德複雜的敘事，不迴避張力</div>
+      <div class="theology-insight-body">雅億的行動涉及違背款待之責的道德爭議，聖經並未迴避或美化這個張力，而是讓底波拉之歌坦然頌讚她的同時，也讓讀者自行面對其中的道德複雜性——這種敘事上的誠實，正是聖經文學獨特而深刻之處。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">婦女在神的拯救歷史中扮演關鍵角色</div>
+      <div class="theology-insight-body">從底波拉的先知與士師身份，到雅億親手完成致命一擊，士師記這段敘事清楚見證，神在以色列的拯救歷史中，屢屢使用被當代社會視為邊緣或弱勢的婦女，成就祂重大的拯救作為。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">雅億以看似柔弱、毫無威脅的姿態接近敵軍元帥，卻在對方毫無防備之際，完成了致命的一擊，終結了以色列長年的欺壓</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這種「以看似脆弱之姿，成就決定性勝利」的敘事模式，此後在聖經中反覆出現，成為理解神拯救作為常常透過看似微小、意外之途徑成就的重要敘事原型</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督同樣以看似軟弱、被釘十字架而死的姿態，卻在這看似徹底的失敗中，成就了勝過罪惡與死亡權勢的終極勝利，印證了神拯救的大能，往往透過世人眼中看為軟弱的途徑彰顯出來（林前 1:27 · 西 2:15）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻覺得自己毫無資源、毫無份量，不可能對重大的局勢帶來任何改變——這一頁想讓你看見，一根帳篷橛子也能終結二十年的苦難。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">雅億的故事命中每一個曾因自己身處邊緣、資源有限、或不被視為「合適人選」，而覺得自己無力改變重大局勢的人。她的故事提醒我們，神拯救的作為，從不受限於人以為理所當然的資格或身份——一位游牧民族的婦人，憑著手邊最尋常的工具與果敢的行動，成就了整場戰役最關鍵的轉折。她的故事同時也邀請我們誠實面對行動中可能存在的道德複雜性，不簡化地評斷，而是在張力中學習分辨。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你是否也曾因為覺得自己資源有限、身份邊緣，而認定自己無法對某個重大局勢帶來實質的改變？雅億的故事如何挑戰這個假設？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">雅億在機會出現時毫不猶豫地把握行動。你是否也曾在關鍵時刻因猶豫不決，而錯失了原本可以把握的機會？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">她的行動涉及道德上的複雜性——你如何理解聖經誠實呈現這種張力、而非簡化評斷的敘事方式？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">底波拉之歌毫不保留地頌讚一位非以色列的邊緣婦人。這如何挑戰你對『誰能被神重用』的既定想像？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 雅億</span>
+        <div class="gen-title">示範劇本：以看似柔弱的身份，完成戰局最關鍵的行動</div>
+        <div class="gen-body">她以款待收留西西拉，卻在對方毫無防備之際，親手用橛子將他釘死，終結了以色列受迦南欺壓二十年的苦難，成為整場戰役中最具決定性的人物。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 底波拉與巴拉</span>
+        <div class="gen-title">延續：她的行動被寫進以色列最重要的凱歌之中</div>
+        <div class="gen-body">底波拉與巴拉在戰後所唱的凱歌，用大段篇幅頌讚雅億的行動，使她的故事此後與以色列脫離二十年欺壓的拯救歷史，永遠緊密相連。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在雅億的故事中，展現在神願意使用一位身處邊緣、甚至非以色列的婦人，成就祂拯救全以色列脫離欺壓的重大作為。這提醒我們，神的拯救從不按著人的資格或身份設限，凡願意在關鍵時刻挺身而出的人，都可能成為神手中成就大事的器皿。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位用帳篷橛子終結一場二十年苦難的游牧婦人，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#機會來臨時把握行動</span>
+      <span class="tag">#尋常的工具也能成就大事</span>
+      <span class="tag">#誠實面對道德的複雜</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>雅億不是軍人，不是以色列人，她只是一個游牧家庭的女主人。故事發生的那天，她大概就是在自己的帳篷裡，過著再普通不過的一天，直到一個滿身狼狽、剛打了敗仗的敵軍元帥，跑來敲她的帳篷求庇護。</p>
+      <p>她做的第一件事，是把對方安撫下來——別怕，進來，我幫你蓋好被子。西西拉討水喝，她給的是奶，這個小細節很關鍵，奶比水更容易讓人昏昏欲睡。西西拉徹底放下戒心，睡著了。</p>
+      <p>接下來的畫面，聖經寫得毫不掩飾：雅億拿起帳篷的橛子和錘子，走到熟睡的西西拉旁邊，一錘下去，直接釘穿了他的鬢角。就這樣，這場延續二十年的欺壓，畫下句點。</p>
+      <p>這個故事讀起來會讓人有點不舒服——她表面上是在款待客人，實際上是在設局。聖經沒有幫她掩飾這一點，但底波拉戰後唱的凱歌，卻毫不猶豫地把她捧成『比眾婦人多得福氣』的人。</p>
+      <p>雅億的故事最特別的地方，或許就是它的不完美和真實——聖經沒有把她寫成一個道德無瑕的完人，卻仍然承認，在那個關鍵時刻，是她一個人的行動，改變了整個以色列的命運。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——雅億這塊石頭，被雕刻出的形狀，帶著銳利的稜角：『你不需要完美，也可能在關鍵時刻，成為改變局勢的那個人』。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你正覺得自己毫無份量、無法對眼前的大局帶來任何改變，雅億的故事想告訴你：有時候，改變局勢的，只是一根你手邊最尋常的『橛子』。</p>
+      <p style="margin-top:12px;">機會出現的時候，別讓猶豫拖垮你——雅億從安撫到出手，整個過程果斷而迅速。</p>
+      <p style="margin-top:12px;">這個故事不簡單、不舒服，但聖經選擇誠實地記下來。有時候，人生的抉擇也是這樣複雜，別急著把每件事都簡化成非黑即白。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，想一件你手邊看似『尋常』的資源或能力——它會不會，正是神要你用來成就一件大事的工具？</p>
+    </div>
+
+    <div class="insight-box">雅億的故事，在女性主義聖經詮釋學與文學批評領域中，是被討論極多的文本之一——學者們反覆探討她的行動如何顛覆傳統性別角色與款待倫理的預期，也持續激發關於「聖經敘事如何呈現道德複雜性、而非簡單二元評斷」的深刻討論。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">她用一根帳篷橛子，終結了以色列二十年來最沉重的欺壓，成為士師記中最令人難忘、也最引發討論的人物之一。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">「非傳統拯救者」敘事模式的鮮明例證</div>
+          <div class="legacy-body">她作為一位非以色列的游牧婦人，卻完成了整場戰役最關鍵的一擊，深化了士師記反覆呈現「神使用意外人選成就拯救」的核心主題。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">底波拉之歌中永遠被記念的人物</div>
+          <div class="legacy-body">她的行動被寫進以色列最重要的凱歌之一，與底波拉、巴拉的名字一同被後世反覆傳頌，成為以色列脫離迦南欺壓歷史記憶中不可或缺的一部分。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">聖經敘事誠實呈現道德複雜性的重要案例</div>
+          <div class="legacy-body">她的故事涉及款待倫理的爭議，聖經並未迴避這個張力，成為後世探討「聖經如何處理道德灰色地帶」時經常被引用的重要文本。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">婦女在拯救歷史中角色的重要見證</div>
+          <div class="legacy-body">她與底波拉共同構成士師記中婦女在神拯救以色列歷史中扮演關鍵角色的鮮明例證，持續啟發後世對聖經中女性角色的重新認識與討論。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「這樣，神使迦南王耶賓被以色列人制伏了。」</div>
+      <div class="final-verse-ref">士師記 4:23</div>
+    </div>
+
+    <div class="final-question">如果神此刻把一件看似微不足道的『帳篷橛子』放在你手中，你是否願意像雅億一樣，在關鍵時刻毫不猶豫地把握，成就一件遠超你想像的大事？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 雅億 <span>יָעֵל</span> · 基尼人希百之妻 · 擊殺西西拉的婦人</div>
+
+<!-- 閱讀紀錄（localStorage，見 progress.js）：右下角標記已讀按鈕 -->
+<script src="progress.js"></script>
+
+</body>
+</html>
