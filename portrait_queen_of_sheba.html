@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>示巴女王 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">示巴女王</h1>
+  <span class="hero-name-en">Queen of Sheba · מַלְכַּת־שְׁבָא</span>
+  <p class="hero-slogan">「示巴女王對所羅門王說：<br>「你的智慧、你的福分，實在超過我所聽見的風聲。」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">所羅門在位中期，約主前十世紀中葉</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ENTJ · 統帥型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">列王紀上 10:1–13；歷代志下 9:1–12</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">阿拉伯半島南部的外邦女王 · 遠道試驗智慧的求問者</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">在所羅門統治最鼎盛的年月，一位素未謀面的外邦女王，帶著整支載滿香料黃金的駱駝隊，跨越數千里的沙漠，只為親自驗證一個聽來的傳聞是否屬實。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">所羅門在位中期，約主前十世紀中葉</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">示巴王國的女王，統治阿拉伯半島南部（今葉門一帶）的富庶貿易古國</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">活動區域</span>
+        <div class="info-cell-value">示巴故土，此行親赴耶路撒冷</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">經文未載</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">列王紀上 10:1–13 · 歷代志下 9:1–12</div>
+      </div>
+    </div>
+
+    <p>示巴女王的登場，帶著整部列王紀中少見的異國色彩與外交規格：她「聽見所羅門因耶和華之名所得的名聲，就來要用難解的話試問所羅門」——她此行並非單純的朝聖或觀光，而是一場經過精心籌劃、帶著明確目的的智慧驗證之旅。經文特別記載她「帶著香料、寶石與極多金子」，隨行更有為數眾多的僕從，這種規格，顯示她此行同時具有國家層級的外交與貿易意涵：示巴地處香料之路的樞紐，與所羅門王國建立友好的貿易關係，對雙方都具有實質的經濟利益。</p>
+    <p>然而經文著墨最深的，仍是她「用難解的話」試驗所羅門智慧的過程——「所羅門將她所問的都答上了，沒有一句不明白、不能答的」。她此行最動人的細節，在於她並非帶著預設立場而來，而是真心懷抱著求問與驗證的態度：她親眼見識所羅門宮室的富麗、席上的珍饈、群臣的排列、酒政的衣着、以及他在耶和華殿裡所獻的燔祭，種種景象疊加起來，使她「詫異得神不守舍」（原文直譯為「心中再沒有靈氣」）——這是一種被徹底折服、幾乎喘不過氣的震撼反應。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從遙遠國度聽聞一則名聲的風聲，到親眼見證之後心中再沒有靈氣，示巴女王的故事，是一部關於「傳聞如何在親身驗證後被證實、甚至遠遠超越」的敘事。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">聽聞名聲——遠方傳來的風聲</div>
+        <div class="timeline-body">示巴女王聽聞所羅門因耶和華之名所得的智慧與名聲，決定親自前來，用難解的話試問他，要親身驗證這名聲是否名副其實。</div>
+        <div class="timeline-ref">列王紀上 10:1</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">跋涉而來——帶著香料寶石與極多金子</div>
+        <div class="timeline-body">她率領龐大的隨行隊伍，帶著大量香料、寶石與黃金，跨越數千里路程來到耶路撒冷，將心中所存的難題一一向所羅門提出。</div>
+        <div class="timeline-ref">列王紀上 10:2</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">所羅門盡都答上——無一不能答的</div>
+        <div class="timeline-body">所羅門將她所問的難題盡都回答，「沒有一句不明白、不能答的」，顯示他的智慧經得起最嚴苛的外來驗證。</div>
+        <div class="timeline-ref">列王紀上 10:3</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">震撼終局</span>
+        <div class="timeline-title">心中再沒有靈氣——見證遠超所聞</div>
+        <div class="timeline-body">她親眼見識所羅門宮室的富麗、席上的擺設、群臣的次序與衣着、以及他在聖殿所獻的燔祭，種種景象使她詫異得心中再沒有靈氣，並坦言：「你的智慧、你的福分，實在超過我所聽見的風聲」；她隨後將帶來的香料寶石金子盡數獻上，所羅門也照王的厚意回贈於她，她便啟程歸回本國。</div>
+        <div class="timeline-ref">列王紀上 10:4–13</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">她本可以只憑遠方傳來的名聲下判斷——無論選擇相信或懷疑，都無需親自跋涉千里——她卻選擇了最耗費心力、卻也最誠實的一條路：親自驗證。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">重大的傳聞，值得親自驗證而非道聽塗說</div>
+          <div class="soul-body">她不滿足於間接聽聞的名聲，而是親自率隊跋涉遠道而來，用難解的問題直接試驗——這種對真相一絲不苟的求證精神，是她整個故事最核心的性格印記。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">見證真相之後，坦然承認遠超預期</div>
+          <div class="soul-body">多數帶著懷疑或挑戰心態而來的人，即便被說服，也可能礙於顏面而輕描淡寫；她卻毫無保留地承認「超過我所聽見的風聲」，展現出罕見的坦誠與謙遜。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">以難解之題直接檢驗智慧的真偽</div>
+          <div class="soul-body">她試驗所羅門的方式，不是空泛的讚美或質疑，而是具體、有難度的提問——這種務實、直接訴諸實際檢驗的行事風格，貫穿她整個故事。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">（材料有限——聖經未直接記載她個人的過犯或掙扎）</div>
+          <div class="soul-body">經文對她此行的記載，聚焦在外交規格與智慧驗證的過程，並未記載她個人的性格缺陷，這也使她成為列王紀中少見、幾乎全然正面呈現的外邦人物。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">她的到訪，此後成為外邦人認識真神的重要象徵</div>
+          <div class="soul-body">她千里跋涉只為驗證所羅門智慧的舉動，此後被耶穌親自引用為「南方的女王」，用以對比那些身邊就有更大智慧、卻不肯回應的同代人。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">示巴女王的故事，核心命題是「誠實面對真相的勇氣」。她大可以選擇活在傳聞之中——無論選擇相信或不相信所羅門的名聲，都不需要付上跋涉千里的代價；她卻選擇了最誠實、也最費力的一條路：親自去驗證。而更難能可貴的是，當驗證的結果遠超她原先的預期時，她沒有選擇淡化或沉默，而是毫不保留地公開承認自己的震撼與折服。這種「願意親自求證、並在證據面前坦誠回應」的態度，使她的故事超越了單純的宮廷外交記載，成為聖經中探討「如何面對超乎自己理解之真理」時，一個極具份量的正面範例——也正因如此，耶穌此後才會引用她的例子，責備那些身邊就有「比所羅門更大」的智慧與真理、卻毫不回應的世代。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ENTJ</span>
+      <div class="mbti-name">統帥型 · 跋涉千里只為求證的女王</div>
+      <div class="mbti-slogan">「她帶著整支駱駝隊與滿腹難題遠道而來，只為親自驗證一個關於智慧的傳聞——結果得到的，遠超她原先所能想像。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">她不滿足於間接聽聞，而是主動籌劃一場跨國遠行，帶著具體、有難度的問題親自試驗所羅門的智慧——這種以行動、以可驗證的具體方式追求真相的效率導向思維，是主導外向思考最鮮明的展現。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">她敏銳意識到，遠方傳來的名聲若屬實，將對自己的國家與統治帶來深遠的意義（無論在外交或屬靈層面），這種對事物長遠重要性的洞察，促使她願意付上跋涉千里的代價親自求證。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Se · 外向感官</span>
+          <div class="mbti-fn-body">她此行的規格極其講究——龐大的隨行隊伍、豐厚的香料寶石黃金——顯示她深諳如何在具體、可見的外交場合中，展現出與自己身份相稱的排場與誠意。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">她的記載聚焦於外交規格與智慧驗證的理性過程，個人內在情感的著墨甚少，僅在見證所羅門的智慧與福分後，坦率而直接地表達出強烈的震撼與折服。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">她此生唯一被記載的重要關係，是一場跨越千里、卻只維持短暫時日的外交會面——然而這場會面，卻在往後的歷史與神學敘事中，留下了深遠的迴響。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">所</div>
+          <div class="relation-name">所羅門</div>
+          <div class="relation-type-badge">她遠道而來試驗智慧的以色列王</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">她此行的唯一目的，便是親自驗證所羅門因耶和華之名所得的智慧名聲；所羅門將她所問的難題盡都回答，並以厚重的禮物回贈於她，二人的會面，成為以色列與示巴兩國友好邦交的具體見證。</div>
+          <div class="relation-ref">列王紀上 10:1–13</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">耶</div>
+          <div class="relation-name">耶穌</div>
+          <div class="relation-type-badge">此後引用她為榜樣、責備同代人的主</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">耶穌在傳道時親自引用她為例，稱她為「南方的女王」，指出她從地極而來要聽所羅門的智慧話，如今在此有一人比所羅門更大，卻仍有人不肯回應——她的求真精神，因此成為耶穌用以對比、責備當代人剛硬心態的正面典範。</div>
+          <div class="relation-ref">馬太福音 12:42 · 路加福音 11:31</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「你的智慧、你的福分，實在超過我所聽見的風聲」——這句由外邦君王親口說出的讚嘆，成為所羅門智慧最有力的外部見證。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「我先不信那些話，及至我來親眼見了，才知道人所告訴我的還不到一半。你的智慧、你的福分，實在超過我所聽見的風聲。」</div>
+      <div class="verse-ref">列王紀上 10:7</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">חִידוֹת</span>
+        <div class="word-transliteration">chidot · 難解的話 / 謎語 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">指刻意設計、帶有考驗性質的難題或謎語，示巴女王正是用這類問題來試驗所羅門智慧的真偽深淺。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這個字同時也出現在士師記參孫向非利士人所出的謎語之中——經文特意選用這個字，強調示巴女王此行絕非泛泛的請益，而是帶著嚴謹、甚至略帶挑戰性質的智力較量，這使所羅門「盡都答上」的結果更顯份量。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">外邦人對真智慧的渴慕，不受族裔界線限制</div>
+      <div class="theology-insight-body">示巴女王作為一位外邦女王，甘願跋涉千里只為驗證以色列王的智慧，這預先呼應了舊約中「萬國要因亞伯拉罕的後裔得福」的應許——真智慧與真神的作為，從一開始就向著萬邦敞開，吸引真心尋求的人。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">親身驗證勝過道聽塗說</div>
+      <div class="theology-insight-body">她拒絕僅憑傳聞下判斷，堅持親自跋涉查驗——這樹立了聖經中「信仰與真理經得起誠實檢驗」的重要原則，也呼應了此後保羅稱許庇哩亞人「甘心領受這道，天天考查聖經，要曉得這道是與不是」的精神。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">耶穌以她為例，指向自己遠超所羅門的身份</div>
+      <div class="theology-insight-body">耶穌親自引用示巴女王的例子，宣告「在這裡有一人比所羅門更大」，這句話直接指向自己作為彌賽亞、遠超一切舊約智慧代表的身份，也藉此對比並責備那些身邊便有更大啟示、卻毫無回應的同代人。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">示巴女王聽聞所羅門智慧的名聲，甘願跋涉千里親自查驗，最終見證的真相遠超她原先所聽聞的傳言</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">耶穌親自引用這段敘事，宣告自己正是那位「比所羅門更大」的一位，將這段舊約典故直接接連於自己的身份與使命</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督親自成就了遠超所羅門智慧的救贖啟示，凡真心尋求祂的人，所要見證的真理與恩典，也必遠超他們原先所能想像（太 12:42 · 西 2:3）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正對某個關於信仰或真理的傳聞半信半疑——這一頁想問你：你願不願意付上代價，親自去查驗？</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">示巴女王的故事命中每一個在面對重大真理或傳聞時，習慣停留在「聽說」層面、卻不願付上代價親自查驗的人。她的榜樣提醒我們，真正重要的事，值得我們付上時間、精力甚至財富去親自求證，而不是滿足於二手的傳聞或猜測。她的故事同時也提醒我們，當親身驗證的結果超出預期時，我們是否也願意像她一樣，誠實而毫不保留地承認自己的震撼與折服，而非因為顏面或立場而輕描淡寫。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你生命中是否有某個關於信仰、真理或某個人的傳聞，你只停留在『聽說』的層面，卻從未親自去查驗？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">示巴女王願意付上跋涉千里的代價去求證。你願意為了認識真理，付上多大的代價？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">當她親眼見證的結果遠超所聞時，她毫不保留地公開承認。你是否也曾在被說服之後，仍礙於顏面而不肯承認自己原先的判斷有誤？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">耶穌說『在這裡有一人比所羅門更大』。你此刻是否也像那些身邊有更大真理、卻不肯回應的同代人一樣，對近在眼前的福音無動於衷？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 示巴女王</span>
+        <div class="gen-title">示範劇本：親自查驗傳聞，並在證據面前誠實回應</div>
+        <div class="gen-body">她不滿足於遠方傳來的名聲，親自跋涉千里查驗所羅門的智慧，並在見證遠超所聞的真相後，毫不保留地公開承認自己的折服。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 歷代閱讀她故事的人</span>
+        <div class="gen-title">延續：被耶穌引用為榜樣的求真典範</div>
+        <div class="gen-body">耶穌親自引用她的故事，責備那些身邊有更大真理卻不願回應的同代人——她一次誠實求證的旅程，此後持續被引用來挑戰歷代讀者面對真理的態度。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在示巴女王的故事中，展現在神願意讓一位外邦女王，單單因著誠實求真的心，便得以親眼見證祂賜給所羅門的智慧與福分。這提醒我們，神從不將真理隱藏起來，凡真心尋求的人，無論族裔或背景，都能尋見遠超所望的豐盛。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位帶著滿隊駱駝與滿腹難題、跨越千里只為求真的女王，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#聽說不如親自查驗</span>
+      <span class="tag">#被說服了就大方承認</span>
+      <span class="tag">#真理經得起檢驗</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>示巴女王聽到一個傳聞：有個叫所羅門的以色列王，智慧好到不可思議。換作是你，大概頂多轉發一下這則消息就算了。她沒有，她直接組了一支載滿香料、寶石、黃金的駱駝隊，跨越幾千公里的沙漠，親自跑去查證。</p>
+      <p>而且她不是去聽好話的，她是帶著一堆刁鑽的問題去的，就是要看看這個『智慧』到底是不是真材實料。結果所羅門全部答上來，一題都沒有被考倒。</p>
+      <p>接下來最精彩的地方是她的反應：她沒有因為輸了面子就假裝沒事，也沒有嘴硬說『還好而已』，她直接說：『我本來還半信半疑，親眼見到之後才發現，聽到的連一半都不到，你的智慧和福分，遠遠超過我聽到的傳聞。』</p>
+      <p>這種『被說服了，就大方承認』的態度，其實比智慧本身更難得。</p>
+      <p>後來耶穌講道的時候還特地提到她——說這位『南方的女王』當年願意跑那麼遠去聽所羅門的智慧話，如今眼前明明有一位比所羅門更大的，卻有人視若無睹。這句話，聽起來像是在問每一個當代的聽眾：你，願意像她一樣認真查證嗎？</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——示巴女王這塊石頭，被雕刻出的形狀，恰好是『聽說不算數，親自查證，才算數』。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你對某個關於信仰或真理的說法，一直停留在『聽說』的階段，示巴女王想問你：你願意付出多少代價去親自查證？</p>
+      <p style="margin-top:12px;">如果查證的結果讓你發現自己原本的判斷錯了，別急著找台階下，大方承認，是她留給我們最珍貴的示範。</p>
+      <p style="margin-top:12px;">她跑了幾千公里去見證一個人的智慧。你身邊如果有一個『比所羅門更大』的真理，你打算什麼時候動身？</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，找一個你只『聽說』卻從未親自查證的信仰疑問，花點時間，真正去查一查。</p>
+    </div>
+
+    <div class="insight-box">示巴女王的故事，在跨文化與跨宗教研究中同樣佔有重要地位——伊斯蘭教《古蘭經》與衣索比亞的傳統史詩中，都留有關於她的豐富記載與傳說，使她成為少數同時活躍於猶太教、基督教與伊斯蘭教敘事傳統中的舊約人物，持續激發後世對智慧、求真與跨文化交流主題的想像與討論。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">她從遙遠的示巴跋涉而來，只為驗證一則關於智慧的傳聞，最終卻留下了一段跨越信仰傳統、歷久不衰的故事。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">親身求證精神的聖經典範</div>
+          <div class="legacy-body">她拒絕僅憑傳聞下判斷、堅持親自查驗的態度，成為聖經中鼓勵信徒認真查考真理、而非人云亦云的重要範例。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">耶穌親自引用的正面榜樣</div>
+          <div class="legacy-body">耶穌在教導中親自以她為例，稱許她千里求問的誠意，並藉此對比、責備那些身邊有更大啟示卻毫無回應的同代人，使她的故事跨越舊約進入新約敘事之中。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">外邦人渴慕真智慧的重要見證</div>
+          <div class="legacy-body">她作為外邦女王卻甘心跋涉千里查驗以色列王的智慧，預先示範了神的智慧與作為向萬邦敞開的普世性格局。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">跨宗教傳統中共同流傳的敘事人物</div>
+          <div class="legacy-body">她的故事同時見於猶太教、基督教與伊斯蘭教的經典與傳說之中，成為少數跨越多個信仰傳統、持續被傳頌的舊約人物之一。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「於是女王將自己帶來的一百二十他連得金子，與寶石和極多的香料，送給所羅門王；他所送給示巴女王的香料，以後奉來的不再有這樣多。」</div>
+      <div class="final-verse-ref">列王紀上 10:10</div>
+    </div>
+
+    <div class="final-question">如果你聽聞了一個關於真理的傳聞，你願不願意像示巴女王一樣，付上代價親自查驗——並在證據面前，誠實地承認它遠超你原先所想？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 示巴女王 <span>מַלְכַּת־שְׁבָא</span> · 遠道而來試驗所羅門智慧的外邦女王</div>
+
+<!-- 閱讀紀錄（localStorage，見 progress.js）：右下角標記已讀按鈕 -->
+<script src="progress.js"></script>
+
+</body>
+</html>

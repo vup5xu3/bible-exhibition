@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>哈拿 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">哈拿</h1>
+  <span class="hero-name-en">Hannah · חַנָּה</span>
+  <p class="hero-slogan">「哈拿說：<br>「這孩子是我禱告耶和華得來的。所以我將這孩子歸與耶和華，使他終身歸與耶和華。」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">士師記末期，約主前十一世紀中葉</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">INFJ · 提倡者型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">撒母耳記上 1–2 章</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">以利加拿的愛妻 · 撒母耳之母 · 敬拜詩歌的先聲</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">在士師記那個「各人任意而行」的混亂尾聲，一位不孕的婦人在聖所門口的無聲禱告，悄悄開啟了以色列從士師邁向君王時代的樞紐。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">士師記末期，約主前十一世紀中葉</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">以法蓮人以利加拿的妻子（之一）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">活動區域</span>
+        <div class="info-cell-value">以法蓮山地的拉瑪瑣非；每年上示羅獻祭</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">丈夫以利加拿；另一位妻子毘尼拿；此後生撒母耳，及三子二女</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">撒母耳記上 1–2 章</div>
+      </div>
+    </div>
+
+    <p>哈拿的故事，開始於一個在古代近東社會中足以定義一個女人全部價值的殘缺：她不能生育。她的丈夫以利加拿深愛她——「將雙份給哈拿，因為他愛哈拿」——但這份格外的愛，換不回她所渴望的孩子，反而成為另一位妻子毘尼拿嫉妒攻擊的箭靶。經文用一句極其節制卻極其沉重的話總結她每年的處境：「毘尼拿見耶和華不使哈拿生育，就年年惹她發怒，使她哭泣不吃飯」——這不是一次性的傷害，而是年復一年、隨著全家上示羅獻祭的節期準時到來的凌辱。</p>
+    <p>然而哈拿真正被記念的，不是她所承受的苦楚，而是她處理苦楚的方式。她沒有向毘尼拿還擊，沒有向丈夫哭訴索求更多的補償，而是在極度痛苦中，起身走到耶和華殿的門框旁，「心裡愁苦，就痛痛哭泣，切切禱告」。祭司以利起初誤以為她喝醉了酒——因為她「只動嘴唇，不出聲音」，這個細節本身就极具畫面感：一個被喧鬧的家庭衝突與社會偏見層層包圍的女人，最終把自己最深的渴望，收進了一種外人幾乎察覺不到、卻極其激烈的無聲禱告裡。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從聖所門框旁一場被誤解的無聲禱告，到親手把三歲的孩子交還給神，哈拿的故事，是一部關於「如何把最渴望的東西真正交出去」的敘事。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">預設常態</span>
+        <div class="timeline-title">年年上示羅——無法止息的譏誚</div>
+        <div class="timeline-body">哈拿因不能生育，每年隨全家上示羅獻祭時，都要承受毘尼拿的譏誚，以致哭泣不能吃飯；丈夫以利加拿雖深愛她，卻無法真正明白她的痛苦，只能問她「我不比十個兒子還好嗎？」</div>
+        <div class="timeline-ref">撒母耳記上 1:1–8</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">聖所門框旁的許願——「將這孩子歸與耶和華」</div>
+        <div class="timeline-body">哈拿在示羅聖所門框旁痛哭禱告，只動嘴唇不出聲音，被祭司以利誤認為醉酒；她澄清自己是「心裡愁苦」，並向耶和華許願：若賜她一個兒子，必使這孩子終身歸與耶和華，不用剃頭刀剃他的頭——這是一個拿細耳人式的終身奉獻之願。</div>
+        <div class="timeline-ref">撒母耳記上 1:9–18</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">應許成就——撒母耳出生</div>
+        <div class="timeline-body">耶和華顧念哈拿，她懷孕生子，給他起名叫撒母耳，「因為這是我從耶和華那裡求來的」。她暫不隨丈夫上示羅獻祭，直等孩子斷奶後才要將他帶去，使他永遠留在耶和華面前。</div>
+        <div class="timeline-ref">撒母耳記上 1:19–23</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">還願與頌歌——把孩子交還，把心獻上</div>
+        <div class="timeline-body">撒母耳斷奶後，哈拿親自帶他上示羅，將他交給以利，說「我將這孩子歸與耶和華」；隨即獻上一篇讚美耶和華、扶持卑微人的頌歌（撒上二章），此後耶和華再賜她三子二女，撒母耳則在聖所中事奉耶和華，日漸長大。</div>
+        <div class="timeline-ref">撒母耳記上 1:24–2:21</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">她一生只在經文中留下兩章的篇幅，卻在其中同時展現了最深的痛苦、最激烈的禱告，與最徹底的交託——三者環環相扣，缺一不可。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">苦難不是拿來抱怨的材料，而是拿來禱告的燃料</div>
+          <div class="soul-body">面對毘尼拿年復一年的譏誚與丈夫善意卻無效的安慰，哈拿沒有選擇報復或麻木，而是把所有的委屈與渴望，直接帶到耶和華面前——她的痛苦，最終沒有變成怨毒，而是變成了禱告。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">許願之後，真的還願</div>
+          <div class="soul-body">許多人在困境中都曾向神許下宏大的願，一旦渡過難關便悄然遺忘；哈拿卻在孩子斷奶、正是母親最捨不得放手的年紀，親手把撒母耳交給以利，完整地履行了她在絕望中所許的願。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">把最私密的痛苦，帶到最公開的聖所門前</div>
+          <div class="soul-body">她沒有把禱告藏在私下的角落，而是選擇在示羅聖所的門框旁，在眾人來去的公開場合中，向神傾心吐意——這種在脆弱中仍願意站在神面前的姿態，貫穿她整個故事。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">長年隱忍的委屈，幾乎被誤解為失序</div>
+          <div class="soul-body">她無聲卻激烈的禱告，被祭司以利誤認為醉酒失態——這個細節側面顯示，她長年壓抑在心底、未曾對人言說的痛苦，累積到近乎失控的臨界點，才終於在神面前傾瀉而出。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">她的頌歌，預告了一個尚未出現的君王</div>
+          <div class="soul-body">哈拿在撒母耳記上二章的禱告詞中，說出「耶和華必賜力量給所立的王，高舉受膏者的角」——此時以色列尚未有王，這句話帶著超乎她個人處境的先知性視野，此後更成為路加福音中馬利亞頌歌的重要藍本。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">哈拿的故事之所以動人，不僅在於神最終應允了她的祈求，更在於她處理「未得應允之痛苦」與「應允之後如何回應」的方式，都同樣經得起檢視。多年的不孕與譏誚，沒有把她變成一個苦毒或麻木的人；而當神終於賜下撒母耳，她也沒有像許多人那樣，把應許悄悄據為己有——她選擇在孩子最需要母親陪伴的年紀，把他徹底交還。這種「求的時候徹底交託，得的時候也徹底交還」的完整弧線，使哈拿不只是一位母親，更成為聖經中「如何正確地渴望、如何正確地獻上」的典範人物。她無聲卻激烈的禱告姿態，也預告了此後撒母耳將要承接的先知職分——一個從無聲禱告中誕生的孩子，日後將成為向以色列全會眾說話的先知。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">INFJ</span>
+      <div class="mbti-name">提倡者型 · 無聲禱告中的先知性母親</div>
+      <div class="mbti-slogan">「她的痛苦深藏在無人察覺的沉默裡，她的禱告卻帶著足以預告一個尚未出現之君王的視野。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">她在撒母耳記上二章的頌歌中，說出遠超自己當下處境的先知性話語——論及耶和華將扶持受膏的王，這種超越眼前個人遭遇、望向更宏大屬靈圖景的洞察力，正是主導內向直覺最典型的展現。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Fe · 外向情感</span>
+          <div class="mbti-fn-body">儘管長期承受譏誚與委屈，她從未以言語傷害毘尼拿或苛責丈夫，反而始終維持家庭關係的和諧，並在還願之後持續參與家族每年上示羅獻祭的敬拜傳統，顯示她對群體與關係和諧的高度重視。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ti · 內向思考</span>
+          <div class="mbti-fn-body">她在以利面前為自己辯白時，條理清晰、用詞精準——「我不是喝醉了酒，我是心裡愁苦」——展現出在情緒激動之下，仍能清楚分析並表達自己內在狀態的能力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Se · 外向感官</span>
+          <div class="mbti-fn-body">她的禱告方式是內斂而安靜的，「只動嘴唇不出聲音」，鮮少透過外顯激烈的肢體或言語表達情緒，這種將強烈情感收束於內在、而非訴諸外在感官表現的傾向，反映出劣勢外向感官的特徵。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">她生命中最深的張力，來自一段三角關係中的委屈；她生命中最深的交託，卻獻給了聖所中一位年邁的祭司，與從未謀面的耶和華。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">以</div>
+          <div class="relation-name">以利加拿</div>
+          <div class="relation-type-badge">她深愛卻無法完全體會她痛苦的丈夫</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">以利加拿雖然格外疼愛哈拿、每年將雙份祭肉分給她，卻始終未能真正理解她因不育所承受的社會性羞辱與內在痛苦，他善意卻略顯無力的安慰「我不比十個兒子還好嗎」，反映出愛與理解之間的落差。</div>
+          <div class="relation-ref">撒母耳記上 1:4–8</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">毘</div>
+          <div class="relation-name">毘尼拿</div>
+          <div class="relation-type-badge">年年譏誚她的另一位妻子</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">毘尼拿有兒女，卻年復一年地藉此譏誚哈拿的不育，這種長期而蓄意的言語傷害，成為哈拿故事中最直接的苦難來源，也使她的禱告帶著格外沉重的情感重量。</div>
+          <div class="relation-ref">撒母耳記上 1:6–7</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">以</div>
+          <div class="relation-name">以利</div>
+          <div class="relation-type-badge">起初誤解她、後來為她祝福的祭司</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">以利起初見她嘴唇動卻不出聲，誤以為她醉酒而責備她，得知真相後隨即轉為祝福：「願以色列的神允准你向他所求的」；此後哈拿將撒母耳交給他撫養、事奉耶和華，二人此後亦師徒相繫。</div>
+          <div class="relation-ref">撒母耳記上 1:12–18 · 1:24–28</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">撒</div>
+          <div class="relation-name">撒母耳</div>
+          <div class="relation-type-badge">她禱告求來、此後獻還給神的兒子</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">撒母耳是哈拿多年禱告的結晶，也是她獻願的具體實踐；他此後成為以色列歷史上承先啟後的先知與士師，親自膏立掃羅與大衛為王，哈拿的禱告與交託，因此深刻影響了整個以色列的君王歷史。</div>
+          <div class="relation-ref">撒母耳記上 1:20–28 · 3 章</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「我將這孩子歸與耶和華」——哈拿把最渴望得著的，變成最甘願獻上的，這句話濃縮了她整個生命故事的神學重量。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「我將這孩子歸與耶和華，使他終身歸與耶和華。」</div>
+      <div class="verse-ref">撒母耳記上 1:28</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">שָׁאַל</span>
+        <div class="word-transliteration">sha'al · 求 / 求問 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">「求」或「求問」，是哈拿為兒子命名「撒母耳」時所用的字根，意指「我從耶和華那裡求來的」。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這個字根同時也與掃羅（Sha'ul，意為「求來的」）的名字相關，形成一個微妙的文字呼應——哈拿「求」來的撒母耳，日後將親手膏立那位同樣意為「求來的」的掃羅為以色列第一位王，兩個因「求」而生的名字，在歷史舞台上交織在一起。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">苦難中的禱告，可以既無聲又激烈</div>
+      <div class="theology-insight-body">哈拿「只動嘴唇不出聲音」的禱告方式，顛覆了人們對「懇切禱告」必然伴隨外顯激動言語或動作的想像——她示範了一種內斂卻毫不減其激烈程度的祈求姿態，這種禱告觀對後世信徒的靈修傳統影響深遠。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">許願的完整性：求的時候懇切，還的時候徹底</div>
+      <div class="theology-insight-body">許多人在困境中許下宏願，脫困之後卻悄然淡忘；哈拿卻在最捨不得放手的時刻——孩子剛斷奶、正是最惹人疼愛的年紀——親手完整履行了自己的誓言，這使她的敬虔具有極高的道德重量與說服力。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">卑微者的頌歌，預告君王時代的來臨</div>
+      <div class="theology-insight-body">哈拿在撒母耳記上二章所獻上的頌歌，主題是耶和華扶持卑微、傾覆驕傲的大能作為，並首次在經文中提及「受膏者」與「王」——這篇禱告詞不僅是個人感恩，更帶有預告以色列即將邁入君王時代的先知性視野，此後亦成為路加福音中馬利亞尊主頌的重要文學與神學藍本。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">哈拿在多年不育、飽受譏誚的絕境中，仍堅持向耶和華懇切禱告，並在應允之後徹底履行獻上愛子的誓言</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這種「在絕境中懇切呼求、在得著之後甘願獻上」的生命樣式，此後在路加福音中，藉由馬利亞面對懷孕耶穌的處境與尊主頌的用詞呼應，被進一步映照與延伸</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">馬利亞的尊主頌幾乎直接呼應哈拿的頌歌用詞與主題——神扶持卑微、使飢餓的得飽足、使富足的空手回去，兩位母親的禱告詞，共同見證神一貫透過卑微者成就宏大救贖計畫的作為（路 1:46–55）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正懷抱著一個多年未能實現、甚至讓你在人前感到羞愧的渴望，這一頁想問你：你把它帶到哪裡去了？</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">哈拿的故事命中每一個曾在長期未得應允的渴望中，感到羞愧、憤怒、或逐漸麻木的人。她的處境提醒我們，苦難本身並不會自動塑造出美好的品格——真正決定性的，是我們如何處理苦難：是任由它變成怨毒與冷漠，還是像哈拿一樣，把它帶到神面前，變成禱告的燃料。她的故事同時也向我們發出另一個更艱難的提問：當渴望終於得著應允，我們是否還記得自己曾經許下的承諾？是選擇把恩典據為己有，還是像哈拿一樣，即使在最捨不得的時刻，也甘願把最珍貴的獻上。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你此刻是否也懷抱著某個多年未得應允、甚至讓你在他人面前感到羞愧或自卑的渴望？你習慣把這份渴望帶到哪裡去？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">哈拿的禱告方式是無聲卻激烈的。你的禱告，是否也曾因為過度在意他人眼光，而變得越來越淺、越來越少？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">當你曾經在困境中向神許下的願，如今處境已經改變，你是否還記得、並且願意履行它？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">哈拿的頌歌從個人的感恩，延伸到對整個以色列命運的展望。你的感恩，是否也能超越個人得失，看見神在更大群體與歷史中的作為？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 哈拿</span>
+        <div class="gen-title">示範劇本：把最深的渴望帶到神面前，把最珍貴的獻回神手中</div>
+        <div class="gen-body">她在多年委屈與不育的痛苦中，選擇不斷向神懇切禱告；當應許終於成就，她也在孩子最惹人疼愛的年紀，親手把他交還給耶和華，完整地活出「求」與「還」的信仰弧線。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 撒母耳（她的兒子）</span>
+        <div class="gen-title">延續：從無聲禱告中誕生的先知</div>
+        <div class="gen-body">撒母耳自幼在聖所中事奉耶和華，此後成為以色列歷史上承先啟後的先知與士師，親自膏立掃羅與大衛為王——哈拿一次私密的禱告與交託，深刻影響了整個以色列君王歷史的走向。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在哈拿的故事中，展現在神願意垂聽一個在社會邊緣、飽受譏誚之婦人無聲的禱告，並透過她所獻上的兒子，開啟以色列歷史新的一頁。這提醒我們，神從不輕看任何一個在隱密處向祂傾心吐意的靈魂，即使那禱告安靜到幾乎無人察覺。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位在聖所門框旁無聲落淚、卻許下終身大願的母親，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#把渴望帶到對的地方</span>
+      <span class="tag">#許願之後要記得還願</span>
+      <span class="tag">#安靜卻不代表不激烈</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>哈拿的處境，用現代的話講，大概是：長期不孕，還被家裡另一個「有生」的女人年年當面奚落，丈夫是愛她，但那種「我不比十個兒子還好嗎」的安慰，聽起來更像沒聽懂重點。</p>
+      <p>她沒有在飯桌上吵架，也沒有到處訴苦，她做了一件很多人覺得「沒用」的事：一個人跑去聖所，站在門框旁邊，嘴唇動、聲音不出來，把整個人的委屈和渴望，直接倒給神聽。安靜到旁邊的祭司以為她喝醉了。</p>
+      <p>重點來了：神應允了，她真的懷孕生子。故事如果到這裡結束，也算是個不錯的勵志故事。但哈拿沒有把撒母耳留下來自己養大——孩子剛斷奶，正是最黏媽媽、最捨不得放手的年紀，她就把他帶回聖所，交給那位曾經誤會過她的老祭司，說：「我把這孩子還給耶和華了。」</p>
+      <p>很多人求東西的時候很懇切，拿到手之後，當初許的願，通常就悄悄忘了。哈拿沒有。她把最想要留住的，在最捨不得的時候，真的交出去了。</p>
+      <p>後來呢？撒母耳長大成為以色列最重要的先知之一，親手膏立了掃羅、又膏立了大衛。一個女人在聖所門口一次安靜到被誤會的禱告，最後牽動了整個以色列的王朝歷史。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——哈拿這塊石頭，被雕刻出的形狀，恰好是『把最想留住的，真的交出去』。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你正懷著一個多年沒被回應、甚至讓你在人前抬不起頭的渴望，哈拿想告訴你：把它帶到對的地方去，安靜地、但不要停止。</p>
+      <p style="margin-top:12px;">如果那個渴望有一天真的實現了，記得回頭看看，你當初是不是也曾在絕望裡許過什麼願——然後，去把它還了。</p>
+      <p style="margin-top:12px;">禱告不一定要很大聲，也不一定要讓誰看見，哈拿的禱告只動嘴唇，卻是聖經裡最激烈的禱告之一。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，把一個你藏了很久的渴望，安靜地帶到神面前——然後，記得答應過的事，要還。</p>
+    </div>
+
+    <div class="insight-box">哈拿的頌歌與禱告方式，在當代教會的敬拜傳統與女性靈修材料中，經常被引用作為「安靜卻有力量」的祈禱典範，也被廣泛視為理解路加福音馬利亞尊主頌的重要背景文本。她「求而後獻」的完整生命弧線，至今仍是探討委身與奉獻主題時，最常被引用的舊約敘事之一。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">她在示羅聖所門框旁一次無聲的禱告，最終開啟了以色列從士師時代邁向君王時代的樞紐篇章。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">「求而後還」信仰典範的原型</div>
+          <div class="legacy-body">她懇切求子、又在應允之後徹底獻還的生命弧線，成為此後聖經中理解「奉獻」與「還願」最具體、最完整的敘事範例。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">安靜禱告的神學典範</div>
+          <div class="legacy-body">她「只動嘴唇不出聲音」的禱告方式，為後世信徒示範了一種毋須外顯激動、卻同樣真實懇切的祈禱姿態，深刻影響了猶太與基督教的默禱傳統。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">馬利亞尊主頌的舊約藍本</div>
+          <div class="legacy-body">她在撒母耳記上二章的頌歌，主題與用詞都與路加福音中馬利亞的尊主頌高度呼應，使她的禱告詞在救贖歷史的宏觀敘事中，成為承先啟後的重要文學與神學橋樑。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">以色列君王時代的隱形推手</div>
+          <div class="legacy-body">她所求、所獻的兒子撒母耳，此後親手膏立了掃羅與大衛——哈拿一次私密的禱告與交託，深刻牽動了整個以色列君王歷史的開端。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「婦人說：我主啊，我指著你活著的日子起誓，我是那曾在你這裡站着祈求耶和華的婦人……我將這孩子歸與耶和華，使他終身歸與耶和華。」</div>
+      <div class="final-verse-ref">撒母耳記上 1:26–28</div>
+    </div>
+
+    <div class="final-question">如果神此刻應允了你心中那個藏得最深的渴望，你是否也願意像哈拿一樣，在最捨不得的時刻，把它甘願獻回神的手中？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 哈拿 <span>חַנָּה</span> · 以利加拿之妻 · 撒母耳之母</div>
+
+<!-- 閱讀紀錄（localStorage，見 progress.js）：右下角標記已讀按鈕 -->
+<script src="progress.js"></script>
+
+</body>
+</html>

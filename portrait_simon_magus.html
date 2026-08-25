@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>西門 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">西門・行邪術的</h1>
+  <span class="hero-name-en">Simon Magus · Σίμων ὁ μάγος</span>
+  <p class="hero-slogan">「彼得說：<br>「你的銀子和你一同滅亡吧！因你想神的恩賜是可以用錢買的。」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">使徒行傳初期，約主後35年前後</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ENTP · 辯論家型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">使徒行傳 8:9–24</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">撒瑪利亞行邪術者 · 信而受洗、卻試圖用錢購買恩賜的人</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他曾是撒瑪利亞城中無人能及的焦點人物——行邪術使全城大小驚奇，自稱是「神的大能者」——直到腓利的傳講，讓城中的目光第一次從他身上轉移。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">使徒行傳初期，約主後35年前後</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">行邪術者，在撒瑪利亞城享有極高的聲望與跟隨者</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">活動區域</span>
+        <div class="info-cell-value">撒瑪利亞城</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">經文未載</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">使徒行傳 8:9–24</div>
+      </div>
+    </div>
+
+    <p>西門的登場，經文用簡潔卻極具份量的幾筆勾勒：「有一個人，名叫西門，向來在那城裡行邪術，妄自尊大，使撒瑪利亞的百姓驚奇；無論大小都聽從他，說：這人就是那稱為神的大能者。」在腓利到來之前，西門顯然是撒瑪利亞城中無可爭議的宗教與精神焦點——他的邪術與言辭，使他贏得了近乎神格化的敬仰。這樣的背景，使他此後的信主受洗顯得格外引人注目：當腓利傳講神國的福音、又行了許多神蹟醫治病人趕出污鬼，「西門自己也信了，既受了洗，就常與腓利在一處，看見他所行的神蹟和大異能，就甚驚奇。」</p>
+    <p>然而真正暴露他信仰深淺的關鍵時刻，發生在使徒彼得與約翰從耶路撒冷前來、按手在撒瑪利亞信徒身上、眾人便受了聖靈之後。西門「看見使徒按手，便有聖靈賜下，就拿錢給使徒，說：把這權柄也給我，叫我手按著誰，誰就可以受聖靈。」這句請求，赤裸裸地揭示了他信仰認知中一個根本性的錯置：他把神最寶貴、無法用金錢衡量的恩賜，當成了一項可以透過交易取得的「權柄」或「技能」——這與他過去以邪術謀取聲望與跟隨者的思維模式，其實一脈相承。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從撒瑪利亞城中無人能及的邪術大師，到當眾懇求彼得為他代求免受咒詛的懼怕之人，西門的故事，是一部關於「表面的信而受洗，如何仍可能包藏著未曾更新的舊思維」的敘事。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">背景鋪陳</span>
+        <div class="timeline-title">行邪術妄自尊大——全城驚奇跟從</div>
+        <div class="timeline-body">西門向來在撒瑪利亞城裡行邪術，妄自尊大，使城中百姓無論大小都驚奇跟從，稱他為「神的大能者」，在腓利到來之前，是全城公認的精神權威人物。</div>
+        <div class="timeline-ref">使徒行傳 8:9–11</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">腓利傳福音——西門也信而受洗</div>
+        <div class="timeline-body">腓利在撒瑪利亞傳講基督、行了許多神蹟醫治，眾人聽見看見就同心聽從；西門自己也信了，受洗之後常與腓利在一處，對他所行的神蹟大異能感到十分驚奇。</div>
+        <div class="timeline-ref">使徒行傳 8:12–13</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">信仰試煉</span>
+        <div class="timeline-title">企圖用錢購買聖靈的權柄</div>
+        <div class="timeline-body">使徒彼得、約翰從耶路撒冷下來，按手在撒瑪利亞信徒身上，眾人就受了聖靈；西門看見這事，竟拿錢給使徒，要求買下這份能使人按手便受聖靈的權柄。</div>
+        <div class="timeline-ref">使徒行傳 8:14–19</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">嚴厲斥責</span>
+        <div class="timeline-title">彼得的斥責——「你的銀子和你一同滅亡吧」</div>
+        <div class="timeline-body">彼得嚴厲斥責西門，指出他心懷不正、想用金錢買神的恩賜，宣告他在這道上無份無關，並勸他悔改祈求主，或者他心裡的意念可得赦免——因彼得看出他正被苦膽、被罪惡的捆索纏繞。</div>
+        <div class="timeline-ref">使徒行傳 8:20–23</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">懼怕求告</span>
+        <div class="timeline-title">「請你們為我求主」——他的最後回應</div>
+        <div class="timeline-body">西門聽見彼得的嚴厲斥責後，回應道：「願你們為我求主，叫你們所說的沒有一樣臨到我身上。」他的回應顯示出對審判後果的懼怕，卻未見經文進一步記載他是否真正悔改。</div>
+        <div class="timeline-ref">使徒行傳 8:24</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他從眾人敬拜的焦點，轉變為使徒面前接受悔改呼召的對象——這場轉變本應是他生命最深的更新，經文卻留下一個意味深長的懸念作結。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">地位與影響力，可以透過超自然能力來取得與維繫</div>
+          <div class="soul-body">他過去以邪術贏得全城的敬仰，這種思維模式在他信主之後並未完全消失——見到使徒按手便有聖靈降下的能力，他所想到的，仍是如何取得並運用這份能力，而非單純敬畏地領受。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">外顯的特質</span>
+          <div class="soul-title">對超自然現象有著高度的敏銳與興趣</div>
+          <div class="soul-body">無論是他自己過去行邪術、或是此後對腓利所行神蹟的驚奇反應，都顯示他對超自然能力與異象抱有強烈的好奇與追求，這份特質貫穿他信主前後的生命軌跡。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">習慣用交易與掌控的邏輯理解權力與能力</div>
+          <div class="soul-body">他請求用金錢購買按手叫人受聖靈的權柄，顯示他仍然用過去經營邪術聲望時「付出代價、換取能力」的交易邏輯，來理解聖靈這份完全出於恩典、無法交易的恩賜。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">外在的信而受洗，未必等同於內心的真實悔改</div>
+          <div class="soul-body">彼得直言看出他「心懷不正」、「被苦膽和罪惡的捆索纏繞」，這揭示了他雖然經歷了受洗這個外在儀式，內心深處那套追逐地位與掌控的舊思維，卻尚未真正被福音更新。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">懸而未決的結局</span>
+          <div class="soul-title">他懼怕審判，卻未必真正悔改</div>
+          <div class="soul-body">他請求使徒為他代求，顯示他確實對彼得的斥責感到懼怕，然而經文並未如浪子回頭或掃羅悔改那樣，明確記載他此後生命的轉變，留下一個發人深省的開放式結局。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">西門的故事，是新約中探討「信而受洗，是否等同於內心真正被更新」最尖銳的案例之一。他不是一個拒絕福音的懷疑者，經文明確記載他「自己也信了，既受了洗」——然而真正的試煉，發生在他見到聖靈恩賜彰顯的那一刻：他所展現出的第一反應，不是敬畏或渴慕神自己，而是渴望取得那份「能力」，並用他過去熟悉的交易邏輯去換取。這揭示了一個深刻的屬靈提醒：一個人外在的宗教行為（相信、受洗、跟隨）可以相當真誠，內心深處某些未被福音真正觸及、更新的舊思維模式，卻仍可能在關鍵時刻暴露出來。彼得的斥責之所以如此嚴厲，正是因為他看出，若不處理這個「用交易邏輯理解恩典」的根本錯置，西門的信仰終將建立在一個危險的地基之上。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ENTP</span>
+      <div class="mbti-name">辯論家型 · 渴望取得能力的邪術師</div>
+      <div class="mbti-slogan">「他曾是全城驚奇跟從的焦點人物，信主之後，仍不自覺地想用舊有的交易邏輯，換取神最寶貴的恩賜。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Ne · 外向直覺</span>
+          <div class="mbti-fn-body">他長年以行邪術謀取聲望，此後又迅速被腓利所行的神蹟大異能吸引、感到「甚驚奇」，顯示出他對各種新奇的可能性與超自然現象，抱有高度敏銳而活躍的興趣與探索欲望。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Ti · 內向思考</span>
+          <div class="mbti-fn-body">他企圖用金錢購買按手叫人受聖靈的能力，顯示出他習慣用一套內在的邏輯體系（能力可以透過某種代價交換取得）來理解並嘗試複製他所觀察到的現象。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Fe · 外向情感</span>
+          <div class="mbti-fn-body">他過去善於營造使百姓驚奇跟從、視他為「神的大能者」的群眾魅力，顯示出一定程度能夠敏銳掌握並操縱群體情感反應的能力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Si · 內向感覺</span>
+          <div class="mbti-fn-body">他未能真正扎根、消化並內化福音所帶來的價值體系轉變，反而在關鍵時刻仍沿用過去經營邪術聲望時的舊思維模式，這種對既有信仰傳統與內在價值缺乏深刻沉澱與持守的傾向，反映出劣勢內向感覺的特徵。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他生命中最關鍵的兩重關係，一重是那位讓全城目光首次從他身上轉移的傳道人腓利，另一重，是那位一語道破他內心真實光景的使徳彼得。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">腓</div>
+          <div class="relation-name">腓利</div>
+          <div class="relation-type-badge">使他信而受洗的傳道人</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">腓利在撒瑪利亞傳講基督、行了諸多神蹟醫治，西門也在其中信而受洗，並常與腓利同在，對他所行的神蹟大異能感到十分驚奇——腓利的傳道，是西門生命轉折最初的起點。</div>
+          <div class="relation-ref">使徒行傳 8:5–13</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">彼</div>
+          <div class="relation-name">彼得</div>
+          <div class="relation-type-badge">嚴厲斥責他企圖購買聖靈恩賜的使徒</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">彼得從耶路撒冷前來按手叫撒瑪利亞信徒受聖靈，面對西門拿錢購買這份權柄的請求，嚴厲指出他心懷不正、被苦膽和罪惡的捆索纏繞，並呼籲他悔改祈求主。</div>
+          <div class="relation-ref">使徒行傳 8:18–23</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">撒</div>
+          <div class="relation-name">撒瑪利亞城的百姓</div>
+          <div class="relation-type-badge">曾經跟從他、此後轉而歸向福音的群眾</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">撒瑪利亞城的百姓原本無論大小都驚奇跟從西門的邪術，此後卻在腓利的傳講與神蹟中，同心聽從福音的信息——這反映出西門過去所享有的群眾影響力，最終在福音真理面前被徹底取代。</div>
+          <div class="relation-ref">使徒行傳 8:6, 9–11</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「你想神的恩賜是可以用錢買的」——彼得這句斥責，成為新約中警戒「恩典商品化」最直接、也最嚴厲的一次宣告。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「彼得說：你的銀子和你一同滅亡吧！因你想神的恩賜是可以用錢買的。」</div>
+      <div class="verse-ref">使徒行傳 8:20</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">σιμωνία</span>
+        <div class="word-transliteration">simony · 買賣聖職罪 · 希臘文（後世衍生詞）</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">此後教會歷史中，「買賣聖職」（simony）一詞，正是直接以西門的名字命名，用以指稱任何企圖用金錢購買教會職分、聖禮或屬靈恩賜的行為。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這個詞語的形成，說明西門這次企圖用錢購買聖靈權柄的事件，對此後教會歷史產生了極其深遠而具體的影響——它成為教會法與神學傳統中，界定並譴責一切「將神聖之事商品化」行為的核心術語與歷史源頭。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">神的恩賜無法用任何形式的代價交換取得</div>
+      <div class="theology-insight-body">彼得嚴厲斥責西門的核心，正在於他徹底顛覆了恩典的本質——神的恩賜是白白賜下的禮物，一旦被視為可以用金錢或其他代價換取的商品，便從根本上扭曲了恩典的意義。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">外在的信而受洗，仍需要內心真實悔改的印證</div>
+      <div class="theology-insight-body">西門信而受洗，卻在關鍵時刻暴露出未被更新的舊思維，彼得因此呼籲他要「悔改」、「祈求主」——這提醒我們，外在宗教儀式的參與，仍需要透過持續的悔改與內心更新，才能真正結出與信仰相稱的果子。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">對聖靈恩賜的錯誤渴求，源於對神本身認識的偏差</div>
+      <div class="theology-insight-body">西門所渴望的，是「按手叫人受聖靈」的能力本身，而非賜下聖靈的神——這提醒我們，屬靈追求若只聚焦在能力、恩賜或超自然現象本身，而非真正認識並敬畏賜下這一切的神，很容易導致本末倒置的錯誤渴求。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">西門企圖用金錢購買使徒按手叫人受聖靈的權柄，將神白白賜下的恩典，錯誤地當成一項可以透過交易取得的商品</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">他的故事與舊約中同樣企圖將神的恩典兌換為個人利益的先知僕人基哈西遙相呼應，二者共同構成聖經中警戒「恩典商品化」最重要的一組敘事對照</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">使徒保羅教導信徒，聖靈的恩賜是本乎恩、藉著信白白領受的禮物，「並不是出於行為，免得有人自誇」，徹底否定了任何形式將神的恩典化約為交易或功績的錯誤觀念（弗 2:8–9）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正渴望某種屬靈的能力、恩賜或影響力——這一頁想問你：你所渴望的，究竟是那份能力本身，還是賜下這一切的神？</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">西門的故事命中每一個曾經渴望屬靈恩賜、影響力或能力，卻未曾深究自己內心真正渴望對象的人。他的故事提醒我們，外在的信主、受洗、參與宗教活動，並不自動保證我們內心深處對權力、地位或掌控的舊思維已被徹底更新——這需要持續的悔改與省察。他的經歷同時也警醒我們，任何試圖將神的恩典、呼召或屬靈恩賜「商品化」、視為可以透過金錢、人脈或某種交易取得的心態，都與福音的核心精神背道而馳。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你是否也曾渴望某種屬靈的能力、恩賜或影響力，卻未曾深究自己渴望的，究竟是那份能力，還是賜下這一切的神自己？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">西門信而受洗，內心卻仍保留著舊有的交易邏輯。你是否也曾在某些外在的宗教行為之下，藏著尚未被福音真正觸及、更新的舊思維模式？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">彼得呼籲他要『悔改』、『祈求主』。你是否願意像西門一樣，誠實面對自己內心那些尚待處理的錯誤渴求，並向神坦承尋求赦免？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">『買賣聖職罪』這個詞至今仍被使用。你觀察到（或自己是否曾參與）哪些將屬靈事物商品化、工具化的現象？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 西門</span>
+        <div class="gen-title">警示劇本：外在信而受洗，卻在關鍵時刻暴露未被更新的舊思維</div>
+        <div class="gen-body">他信而受洗、追隨腓利，卻在見證聖靈恩賜彰顯時，企圖用金錢購買這份權柄，暴露出他內心深處仍未被福音徹底更新的交易邏輯，遭彼得嚴厲斥責。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 「買賣聖職罪」（Simony）</span>
+        <div class="gen-title">延續：他的名字成為教會歷史的警世術語</div>
+        <div class="gen-body">他的名字此後被教會歷史直接借用為「買賣聖職罪」的專有名詞，持續提醒歷代教會警戒任何企圖將神聖之事商品化的行為，深刻影響教會法與神學倫理傳統。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在西門的故事中，展現在彼得雖然嚴厲斥責他的錯誤，卻並未將他一棍打死、徹底棄絕，反而呼召他悔改祈求主，並暗示他心裡的意念仍有可能得赦免。這提醒我們，即便我們的信仰摻雜著尚未被處理的舊思維與錯誤渴求，神仍然為悔改敞開道路，恩典的大門，從未真正對誠心回轉的人關閉。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位曾是全城焦點、卻在信主後想用錢買下聖靈能力的邪術師，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#信了不等於全部更新了</span>
+      <span class="tag">#恩典不是可以購買的商品</span>
+      <span class="tag">#渴望能力不等於渴望神</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>西門在信耶穌之前，是撒瑪利亞城裡的頂流人物——會一些常人做不到的把戲，全城的人不分老少都服他，甚至稱他是『神的大能者』。這種等級的知名度，換算成現代語境，大概是某種擁有大量死忠粉絲的網紅或大師。</p>
+      <p>後來腓利來傳福音，行了很多神蹟，西門看了也信了，還受了洗。到這裡，故事看起來像個標準的信主見證。</p>
+      <p>轉折點出現在使徒彼得、約翰來按手、聖靈降在信徒身上的那一刻。西門看到這個場面，第一反應不是敬畏，而是：這個技能我也想要，多少錢？他直接掏錢，想跟使徒買下『按手叫人受聖靈』這個能力。</p>
+      <p>彼得的反應非常直接：『你的錢跟你一起完蛋吧，神的恩賜是能用錢買的嗎？』一句話戳破了西門信仰裡最大的破綻——他把神最珍貴、白白給的禮物，當成了一項可以交易的商品，跟他過去靠邪術賺聲望的邏輯，其實沒什麼兩樣。</p>
+      <p>西門聽完的反應是：『那……麻煩你們幫我禱告，別讓你說的事發生在我身上。』故事就停在這裡，聖經沒有告訴我們，他後來到底有沒有真的想通。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——西門這塊石頭，被雕刻到一半就停筆了，留下一個至今仍在提醒我們的問題：『信了，不代表舊的思維方式已經全部換過了』。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你此刻很渴望某種屬靈的恩賜、影響力或能力，西門的故事想問你：你要的，是那個能力，還是賜下能力的神？</p>
+      <p style="margin-top:12px;">『信了』只是起點，不是終點。西門的故事提醒我們，總有一些舊的思維習慣，需要在信主之後持續被檢視、被更新。</p>
+      <p style="margin-top:12px;">如果你發現自己內心某個角落，正用『交易』的邏輯看待神的恩典，也許今天就是誠實面對它、把它帶到神面前的時候。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，誠實檢視一個你正在『用交易邏輯』看待的信仰處境，然後把它換成單純的敬畏與感恩。</p>
+    </div>
+
+    <div class="insight-box">西門的名字此後衍生出「買賣聖職罪」（simony）這個沿用至今的教會法術語，用以指稱任何以金錢或利益交換聖職、聖禮或屬靈恩賜的行為，在教會歷史上曾多次成為重大改革運動（如中世紀教會改革）所要對付的核心弊病之一，至今仍是神學倫理與教會治理討論中的重要參照案例。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他從撒瑪利亞城中無人能及的焦點人物，成為新約中警戒「恩典不可交易」最鮮明的歷史案例，他的名字甚至因此被寫進了教會法的術語之中。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">「買賣聖職罪」術語的歷史源頭</div>
+          <div class="legacy-body">他企圖用金錢購買聖靈恩賜的行動，使他的名字此後成為教會歷史中警戒一切將屬靈事物商品化行為的專有術語，影響深遠且沿用至今。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">「信而受洗不等於全然更新」的重要提醒</div>
+          <div class="legacy-body">他信主受洗、卻在關鍵時刻暴露出未被福音觸及的舊思維，成為新約中探討外在宗教行為與內心真實更新之間可能落差的重要案例。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">恩典無法商品化的神學宣告</div>
+          <div class="legacy-body">彼得對他的嚴厲斥責，成為新約中最直接、也最具份量的一次宣告：神的恩賜是白白賜下的禮物，任何試圖將其兌換為交易的企圖，都與恩典的本質背道而馳。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">基哈西舊約先聲的新約呼應</div>
+          <div class="legacy-body">他的故事與舊約中同樣企圖將恩典兌換為個人利益的基哈西遙相呼應，共同構成聖經中警戒「恩典商品化」跨越新舊約的重要敘事對照。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「西門說：願你們為我求主，叫你們所說的沒有一樣臨到我身上。」</div>
+      <div class="final-verse-ref">使徒行傳 8:24</div>
+    </div>
+
+    <div class="final-question">如果神此刻把一份完全出於恩典、無法用任何代價換取的禮物擺在你面前，你會像西門一樣想著如何『取得』它，還是單單以敬畏與感恩領受？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 西門 <span>Σίμων ὁ μάγος</span> · 撒瑪利亞行邪術者 · 企圖用錢購買聖靈恩賜的人</div>
+
+<!-- 閱讀紀錄（localStorage，見 progress.js）：右下角標記已讀按鈕 -->
+<script src="progress.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>哈曼 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">哈曼</h1>
+  <span class="hero-name-en">Haman · הָמָן</span>
+  <p class="hero-slogan">「哈曼心裡說：<br>「見末底改一人不向他跪拜，他就是想加害於末底改一人，還以為輕小，就要滅絕亞哈隨魯王通國所有的猶大人，就是末底改的本族。」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">波斯帝國亞哈隨魯王在位期間，約主前五世紀中葉</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ENTJ · 統帥型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">以斯帖記 3–7 章</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">波斯宰相 · 猶太人滅族計謀的主謀 · 因驕傲招致自我毀滅的反派</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他從一介朝臣被王高升至萬人之上、僅次於王的宰相之位，卻因一個人不肯向他下拜，親手策劃了一場足以毀滅一整個民族的復仇計謀——最終，他所預備的絞刑架，成了自己的葬身之地。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">波斯帝國亞哈隨魯王在位期間，約主前五世紀中葉</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">亞甲族哈米大他的兒子，波斯帝國宰相</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">活動區域</span>
+        <div class="info-cell-value">波斯京城書珊城</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">妻細利斯；十個兒子，此後盡數被殺</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">以斯帖記 3–9 章</div>
+      </div>
+    </div>
+
+    <p>哈曼的登場，是以斯帖記中最典型的宮廷政治縮影：亞哈隨魯王將他高升至眾首領之上，王吩咐宮門的臣僕都要跪拜哈曼——唯獨末底改一人不跪不拜。經文特意記載，眾臣僕曾多次詢問末底改為何違抗王命，末底改卻始終不從；當這事傳到哈曼耳中，「哈曼滿心惱怒」，然而他心裡所盤算的報復，卻遠遠超出了對末底改個人的怨恨：「他以為下手害末底改一人是小事，就要滅絕亞哈隨魯王通國所有的猶大人。」一個人的自尊受挫，就這樣被他放大成一整個民族的滅頂之災。</p>
+    <p>哈曼隨即透過抽籤（普珥）選定月份，向王進讒言，指控猶大人「守的例與萬民不同，也不守王的律例，容留他們與王無益」，並願捐一萬他連得銀子入國庫，換取王頒布滅絕猶太人的諭旨。王未加深究便將戒指交給哈曼，任他隨意處置——一紙詔書，就這樣以帝國律法的名義，將全國猶太人的性命，交在了一個因私人恩怨而心生殺意之人的手中。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從末底改一次不肯下拜開始，到自己被掛在為對方預備的木架上結束，哈曼的故事，是一部關於「驕傲的復仇如何反噬自身」最戲劇性的敘事。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">怨恨萌生</span>
+        <div class="timeline-title">末底改不跪不拜——哈曼滿心惱怒</div>
+        <div class="timeline-body">王吩咐眾臣僕跪拜哈曼，唯獨末底改因猶太人的信仰堅持不肯下拜；哈曼得知後滿心惱怒，卻不甘只加害末底改一人，決意要滅絕全國的猶大人。</div>
+        <div class="timeline-ref">以斯帖記 3:1–6</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">陰謀成形</span>
+        <div class="timeline-title">抽籤定期，進讒滅族——詔書頒行全國</div>
+        <div class="timeline-body">哈曼以抽籤定下滅族的月份，向王進讒言指控猶大人不守王的律例，並願捐銀入國庫換取滅族的諭旨；王將戒指交給哈曼，一道以王命寫成、要在一日之內剪除全國猶大人的詔書，就此頒行各省。</div>
+        <div class="timeline-ref">以斯帖記 3:7–15</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">得意忘形</span>
+        <div class="timeline-title">王后設宴——他自以為尊榮無比</div>
+        <div class="timeline-body">以斯帖首次設宴款待王與哈曼，哈曼歡喜快樂地離開；然而在宮門前再次見到不跪不拜的末底改，怒氣未消，回家後聽從妻子建議，預備了五丈高的木架，要在次日求王將末底改掛上去。</div>
+        <div class="timeline-ref">以斯帖記 5:9–14</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">命運逆轉</span>
+        <div class="timeline-title">王命他尊榮末底改——極大的羞辱</div>
+        <div class="timeline-body">王夜間睡不着，命人讀歷史紀錄，想起末底改曾告發謀害王命之事未獲獎賞；次日王問哈曼當如何尊榮王所喜悅的人，哈曼誤以為說的是自己，盛大建議之後，卻被王吩咐親自牽馬引導末底改遊行全城——羞辱與尊榮徹底錯位。</div>
+        <div class="timeline-ref">以斯帖記 6 章</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">自食惡果</span>
+        <div class="timeline-title">掛在自己所預備的木架上</div>
+        <div class="timeline-body">以斯帖在第二次筵席上向王指控哈曼要滅絕自己與本族的性命；王大怒離席，回來見哈曼伏在以斯帖所靠的榻上求情，誤以為他要凌辱王后，盛怒之下命人將哈曼掛在他為末底改所預備的五丈高木架上。</div>
+        <div class="timeline-ref">以斯帖記 7 章</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他手握帝國最高的權柄，唯獨無法忍受一個人不肯向他下拜——這份無法承受的自尊，最終讓他親手為自己搭建了絞刑的木架。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">個人的尊嚴受損，必須用壓倒性的報復來平反</div>
+          <div class="soul-body">面對末底改一人的不跪不拜，他所選擇的回應方式，不是與這一人正面理論或加以懲處，而是策劃一場針對其整個民族的滅絕計謀——這種將個人受辱無限放大為集體毀滅行動的心態，是他性格中最危險的核心。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">外顯的能力</span>
+          <div class="soul-title">精於權謀算計，善用制度與程序達成目的</div>
+          <div class="soul-body">他懂得利用抽籤來包裝決策的「神聖性」，懂得用金錢利誘、用律法漏洞的指控來說服王頒布詔令——這種精於操縱制度與程序、以達成個人目的的能力，使他一度幾乎成功。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">極度在意他人眼中的尊榮與排場</div>
+          <div class="soul-body">從要求眾人跪拜，到向妻子與朋友誇耀自己的財富與尊榮，再到誤以為王要特別尊榮的對象就是自己——他幾乎每一個決策，都圍繞著對外在尊榮與地位的渴求打轉。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">極端的自我中心，使他完全無法看清局勢的真相</div>
+          <div class="soul-body">他在毫無查證的情況下，理所當然地認定王要尊榮的對象是自己；他也未曾料到，自己一手策劃的滅族詔書，最終會與自己深愛的王后身份直接衝突——這種自我中心到近乎盲目的狀態，一步步將他推向毀滅。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">反諷結局</span>
+          <div class="soul-title">為別人預備的刑具，成了自己的葬身之地</div>
+          <div class="soul-body">他聽從妻子建議搭建的五丈高木架，本是要用來羞辱、處決末底改，最終卻在一夕之間，成為自己被掛上去的地方——這種戲劇性的因果反轉，是整部以斯帖記最鮮明的敘事高潮。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">哈曼的故事，是聖經中「驕傲如何一步步將人推向自我毀滅」最完整、最戲劇化的敘事範例。他的墮落並非始於一件驚天動地的大惡，而是始於一個極其微小的觸發點——一個人沒有向他下拜。然而正是這個微小的傷害，在他被驕傲餵養的自尊心中，被放大扭曲成足以吞噬一整個民族性命的滔天計謀。整部以斯帖記的敘事結構極具反諷張力：他在王面前誤以為王要尊榮的人是自己，結果卻淪為親手牽馬引導末底改遊街的僕役；他為末底改預備的木架，最終卻成了自己被掛上去的地方。這種「自己為他人所設的陷阱，最終成為自己的墳墓」的敘事模式，深刻印證了箴言所言：「驕傲在敗壞以先，狂心在跌倒之前」——哈曼的整個故事，正是這句古老箴言最具體、最令人警醒的歷史演繹。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ENTJ</span>
+      <div class="mbti-name">統帥型 · 被自尊心吞噬的宰相</div>
+      <div class="mbti-slogan">「他策劃了一場足以滅絕一整個民族的宏大陰謀，卻栽在自己對尊榮近乎盲目的渴求之中。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">面對末底改的不敬，他迅速將個人的怨恨轉化為一套具體、有系統的行動方案——抽籤定期、進讒遊說、捐款換取詔令——展現出高效率、目標導向的執行力，只是這份能力被導向了極其邪惡的方向。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">他能預見透過操縱王的決策、以帝國律法的形式包裝私人復仇，能達成遠比直接加害末底改個人更徹底、更具毀滅性的效果，顯示出一定程度對局勢佈局的長遠洞察力，只是這份洞察最終未能預見自己的敗亡。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Se · 外向感官</span>
+          <div class="mbti-fn-body">他極度重視當下具體可見的排場與尊榮——盛大的木架、眾人的跪拜、王賜予的戒指與衣袍——這種對外在具體象徵物的高度重視，貫穿他整個故事。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">他完全無法從內在真實的道德省思出發，看清自己行動對無數無辜生命所造成的傷害，反而讓外在的權力與虛榮，主導了自己所有的判斷，這種內在道德判斷力的嚴重缺失，正是劣勢內向情感的具體展現。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生的命運，被兩個人徹底左右——一個是他無論如何都無法讓其屈服的末底改，另一個，是他渾然不知、卻正是末底改養女的王后以斯帖。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">末</div>
+          <div class="relation-name">末底改</div>
+          <div class="relation-type-badge">唯一不肯向他下拜、也是他滅族計謀的針對對象</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">末底改因信仰堅持不肯向哈曼下拜，成為哈曼滿心惱怒、進而策劃全國性滅族計謀的導火線；然而最終正是末底改，取代哈曼成為王所尊榮、並繼任宰相之位的人。</div>
+          <div class="relation-ref">以斯帖記 3:1–6 · 8:1–2</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">以</div>
+          <div class="relation-name">以斯帖</div>
+          <div class="relation-type-badge">揭發他陰謀、促成其敗亡的王后</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">以斯帖冒著生命危險未蒙召見便進去見王，並在兩次精心安排的筵席中，向王揭發哈曼要滅絕自己與本族性命的陰謀——她的勇敢揭發，是扭轉整個滅族危機、也是導致哈曼敗亡的關鍵轉折。</div>
+          <div class="relation-ref">以斯帖記 7:1–10</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">亞</div>
+          <div class="relation-name">亞哈隨魯王</div>
+          <div class="relation-type-badge">曾高升他、最終下令處決他的王</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">王起初將哈曼高升至眾首領之上、甚至輕易將戒指交給他任意處置猶大人的性命，卻在得知哈曼的真實陰謀後勃然大怒，當場下令將他掛在他為末底改所預備的木架上。</div>
+          <div class="relation-ref">以斯帖記 3:10–11 · 7:9–10</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">細</div>
+          <div class="relation-name">細利斯</div>
+          <div class="relation-type-badge">他的妻子，建議搭建木架的人</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">細利斯與哈曼的智慧人朋友建議他搭建五丈高的木架來羞辱處決末底改，這個建議最終卻反過來成為哈曼自己的死刑架，她此後也曾預言哈曼在末底改面前必然敗落，因末底改是猶大人的緣故。</div>
+          <div class="relation-ref">以斯帖記 5:14 · 6:13</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「你在猶大人末底改面前始露敗落，必不能勝他，你在他面前總要敗落」——連哈曼自己家中的智慧人與妻子，都預先看見了他必敗的結局。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「哈曼的妻細利斯和他的众朋友对他说：你在猶大人末底改面前始露敗落，你必不能勝他，終必在他面前敗落。」</div>
+      <div class="verse-ref">以斯帖記 6:13</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">פּוּר</span>
+        <div class="word-transliteration">pur · 普珥（籤） · 波斯文（借入希伯來文）</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">指哈曼用以決定滅絕猶大人之月份與日期的占卜用籤，此後猶太人為紀念這場危機的化解，將每年紀念這事件的節期定名為「普珥節」，直譯即「籤子節」。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">哈曼倚靠抽籤來決定一整個民族的生死，本意是要藉占卜的「命定感」為自己的惡謀增添正當性；然而歷史的結局卻徹底顛覆了這個籤——原本用來決定猶太人滅亡之日的「籤」，最終卻成為猶太人紀念自己蒙拯救、哈曼反倒滅亡的年度節期名稱，深刻諷刺了人的算計終究無法勝過神的護理。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">驕傲在敗壞以先</div>
+      <div class="theology-insight-body">哈曼因一人不跪拜而策劃滅族大計，其毀滅的種子，早在他無法承受些微的自尊受損時便已種下——箴言所言「驕傲在敗壞以先，狂心在跌倒之前」，在他身上得到最具體的歷史印證。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">神的護理，即便在祂的名字未被提及之處仍在運作</div>
+      <div class="theology-insight-body">以斯帖記全書從未直接提及神的名字，然而從末底改恰巧聽見謀害王命的陰謀、到王恰巧夜間失眠翻閱史記、再到哈曼的計謀徹底逆轉——一連串環環相扣的「巧合」，清楚見證神的護理即便隱而未顯，仍在歷史的細節中確實運作。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">為他人所設的陷阱，常常成為自己的網羅</div>
+      <div class="theology-insight-body">哈曼為末底改預備的木架，最終成了自己的刑場——這個結局呼應了詩篇中「他掘了坑，又深挖了，竟掉在自己所挖的阱裡」的智慧文學傳統，成為聖經中「自食惡果」主題最戲劇化的具體例證。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">哈曼因一己私仇，策劃了一場針對整個猶太民族的滅絕計謀，卻在神隱藏卻確實的護理介入下，計謀徹底逆轉，反倒使猶太人得解救、自己遭滅亡</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這場針對神選民全體的滅絕危機及其驚險的化解，此後在猶太人的集體記憶中被反覆記念，也預示了此後歷史中，凡試圖毀滅神應許之百姓的勢力，終將在神的護理下歸於徒然</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">神持續信實地護理祂與亞伯拉罕、大衛所立的應許家系，即便在看似神隱身其後的黑暗處境中，仍為著彌賽亞終將從這血脈而出的應許，親自介入保守，使一切企圖毀滅這應許的勢力終必落空（創 12:3 · 太 1 章）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果此刻有一個人的輕視或不敬，正在你心裡發酵成一股遠遠超出比例的怒氣——這一頁想問你：你打算讓這股怒氣把你帶到哪裡？</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">哈曼的故事命中每一個曾因他人一次微小的輕視或冒犯，而在心裡醞釀出遠遠超出比例之報復念頭的人。他的墮落提醒我們，未被處理的自尊創傷，若任由它在心裡持續發酵，最終可能扭曲我們的判斷，甚至驅使我們做出傷害無辜者的決定。他的敗亡同時也提醒我們，即便一時的權勢與計謀看似即將得逞，神的護理始終在歷史的細節中運作——為他人所設的陷阱，最終往往成為自己的網羅。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你是否也曾因為某個人一次微小的輕視或不敬，而在心裡醞釀出遠遠超出比例的怨恨或報復念頭？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">哈曼把對末底改個人的怨恨，擴大成對整個民族的殺意。你是否也曾把對某一個人的不滿，錯誤地遷怒到與此人相關的一整群人身上？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">哈曼極度看重他人眼中的尊榮與排場，最終卻因此看不清局勢的真相。你是否也曾因為太在意外在的地位或他人的肯定，而做出後來後悔的決定？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">以斯帖記全書沒有一次直接提到神的名字，卻處處可見祂護理的痕跡。你的生命中，是否也能回顧出一連串『看似巧合』、實則是神介入保守的印記？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 哈曼</span>
+        <div class="gen-title">警示劇本：讓未經處理的自尊創傷，扭曲成毀滅性的復仇計謀</div>
+        <div class="gen-body">他因末底改一人不肯下拜而滿心惱怒，策劃了一場針對全國猶太人的滅族計謀，最終卻在神隱藏卻確實的護理介入下，計謀徹底逆轉，自己反倒被掛在為對方預備的木架上。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 普珥節</span>
+        <div class="gen-title">延續：猶太人年年紀念的蒙拯救之日</div>
+        <div class="gen-body">猶太人此後將哈曼原本用以決定滅族之日的「籤」（普珥），轉化為紀念自己蒙神拯救、哈曼陰謀落空的年度節期——這使哈曼的惡謀，反倒成為此後歷代猶太人紀念神信實護理的具體提醒。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在哈曼的故事中，展現在神即便在自己的名字全然隱藏的敘事背景下，仍透過一連串看似平凡的「巧合」，親自介入拯救祂的百姓脫離滅族的危機。這提醒我們，即便在最黑暗、看似神完全缺席的處境中，神的護理與信實，仍在歷史的細節中默默運作。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位因一個人不肯下拜、就策劃滅族大計的宰相，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#別讓自尊心綁架你的判斷</span>
+      <span class="tag">#為別人挖的坑常常自己先掉進去</span>
+      <span class="tag">#巧合背後可能是護理</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>哈曼的故事，起點小到有點荒謬：辦公室裡有一個人，每次見到他都不肯鞠躬。就這樣。哈曼的反應，卻完全不成比例——他沒有去找這個人理論，也沒有去投訴，他直接開始策劃：怎麼把這個人的整個民族都滅掉。</p>
+      <p>而且他還真的差點成功了。他用了很聰明的操作：包裝成王命、找了個冠冕堂皇的理由（『這群人不守我們的規矩』）、還主動捐錢，讓整件事看起來合法又體面。</p>
+      <p>接下來的劇情反轉，堪稱教科書等級：他以為王要特別表揚的人是自己，興高采烈準備了一整套排場，結果發現，那個要被表揚的人，是他最痛恨的末底改，而執行表揚的人——是他自己，牽著馬，走在街上。</p>
+      <p>更絕的是結局：他聽老婆的建議，蓋了一個很高的絞刑架，準備隔天把末底改掛上去。結果隔天，掛上去的人是他自己。</p>
+      <p>整個故事最諷刺的地方在於：哈曼從頭到尾都覺得自己在『掌控局面』，直到最後一刻才發現，自己一直在替自己挖坑。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——哈曼這塊石頭，被雕刻出的形狀，是一句古老箴言最赤裸的示範：『驕傲在敗壞以先』。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果有人的一句話、一個態度，正在你心裡發酵成越來越大的怒氣，哈曼想提醒你：先按下暫停鍵，別讓這股情緒替你做決定。</p>
+      <p style="margin-top:12px;">留意那些你正在『為別人準備』的東西——報復、陷害、計謀，它們有時候會用一種你意想不到的方式，繞回到你自己身上。</p>
+      <p style="margin-top:12px;">以斯帖記整卷書沒有提到神的名字一次，但處處是祂在場的痕跡。你這週是否也能留意一下，生活裡那些『剛好』發生的事？</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，放下一個你正在心裡醞釀、遠超對方過犯的報復念頭。</p>
+    </div>
+
+    <div class="insight-box">哈曼的故事與普珥節的由來，至今仍是猶太人每年最重要的節慶紀念之一，人們透過誦讀以斯帖記全卷、每念到哈曼的名字便發出噓聲的傳統儀式，具體紀念這場民族存亡危機的化解；他的故事也持續在領導力與組織倫理討論中，被引用作為『個人情緒如何扭曲重大決策』的經典警世案例。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他策劃了聖經歷史中規模最大的種族滅絕陰謀之一，最終卻死在自己為敵人預備的木架上，成為「自食惡果」最戲劇化的歷史範例。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">普珥節由來的核心反派</div>
+          <div class="legacy-body">他企圖滅絕猶太人的陰謀及其徹底的逆轉，成為猶太人每年紀念普珥節、誦讀以斯帖記的核心歷史事件，深刻影響猶太文化與宗教節期傳統。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">「驕傲在敗壞以先」的具體演繹</div>
+          <div class="legacy-body">他因無法承受一人不跪拜的自尊創傷，一步步策劃出毀滅性的滅族計謀，最終反遭自己所設的陷阱吞噬，成為箴言智慧文學最鮮明的歷史印證。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">神隱藏護理的重要見證</div>
+          <div class="legacy-body">以斯帖記全書未直接提及神的名字，哈曼陰謀的徹底逆轉卻處處見證神在幕後的護理與介入，成為理解「神的同在不必總是顯而易見」這項神學原則的重要案例。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">反猶太主義歷史源頭的重要參照</div>
+          <div class="legacy-body">他企圖對整個民族進行種族滅絕的計謀，此後在猶太民族歷經多次迫害的歷史記憶中，反覆被引為理解仇視與滅族企圖如何萌生、又如何被抵抗的重要歷史參照。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「眾人就把哈曼掛在他為末底改所預備的木架上，王的忿怒這才止息。」</div>
+      <div class="final-verse-ref">以斯帖記 7:10</div>
+    </div>
+
+    <div class="final-question">如果此刻有一份未經處理的怨恨，正在你心裡悄悄醞釀成一場你尚未察覺的『滅族計謀』——你願意在它徹底發酵之前，就先放下它嗎？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 哈曼 <span>הָמָן</span> · 亞哈隨魯王的宰相 · 猶太人滅絕計謀的策劃者</div>
+
+<!-- 閱讀紀錄（localStorage，見 progress.js）：右下角標記已讀按鈕 -->
+<script src="progress.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,5 @@
+# 本機工具設定，與網站內容無關
+.claude/
+
+# 已作廢的 Supabase／SQL 遷移檔（網站已改為純靜態 data.js，見 _build/make_static_data.py）
+_db/

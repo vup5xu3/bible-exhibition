@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>以西結 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">以西結</h1>
+  <span class="hero-name-en">Ezekiel · יְחֶזְקֵאל</span>
+  <p class="hero-slogan">「耶和華的靈降在我身上，對我說：<br>「人子啊，這些骸骨能復活嗎？……你要向這些骸骨發預言，對他們說：枯乾的骸骨啊，要聽耶和華的話。」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">被擄巴比倫時期，約主前593–571年</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">INTJ · 建築師型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">以西結書全書</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">被擄祭司 · 異象與啟示性先知 · 個人責任神學的宣講者</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他不是在耶路撒冷聖殿中事奉的祭司，而是在異鄉河邊，親眼看見神的榮耀寶座從聖殿中出走——他的整個先知生涯，都是在「家鄉已失、聖殿將毀」的廢墟感中展開的。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">被擄巴比倫時期，約主前593–571年</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">布西的兒子，祭司家族出身，被擄後蒙召為先知</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">活動區域</span>
+        <div class="info-cell-value">巴比倫，迦巴魯河邊的被擄社群提勒亞畢</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">已婚，妻子在異象中被預告將驟然離世</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">以西結書 1–48 章</div>
+      </div>
+    </div>
+
+    <p>以西結的呼召，發生在一個地理與神學上都極不尋常的位置：不是耶路撒冷聖殿，而是巴比倫的迦巴魯河邊——他與約雅斤王（耶哥尼雅）一同在主前597年被擄，此時距耶路撒冷城最終陷落還有整整十一年。他的異象，用極其繁複而震撼的意象展開：狂風、火焰、四個活物、輪中套輪、寶座之上有彷彿人的形狀，「這就是耶和華榮耀的形像」。這個異象最深刻的神學意涵在於：神的榮耀並未被困鎖在耶路撒冷聖殿之中，祂親自「出走」，向著被擄異鄉的子民顯現——對一群以為自己已被神拋棄的流亡者而言，這是極具顛覆性的安慰與警戒。</p>
+    <p>此後的以西結，成為聖經中最頻繁使用「行為預言」（enacted prophecy）的先知：他被吩咐在磚上畫出耶路撒冷被圍困的景象；側身而臥，左側三百九十日、右側四十日，象徵背負以色列與猶大的罪孽；剃去頭髮鬍鬚，分為三份，分別焚燒、用刀砍、任風吹散，象徵城破之後百姓的三種命運。他不只是用言語傳講神的話，更是用整個身體、整整數年的生活方式，把神的信息活生生地演給百姓看——這種近乎行為藝術的先知職事，在整本聖經中獨樹一格。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從迦巴魯河邊那個令人目眩的寶座異象，到枯骨滿谷重新站立成為極大的軍隊，以西結的先知生涯，是一部從「審判必然臨到」走向「復興終必成就」的完整敘事弧線。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">蒙召異象</span>
+        <div class="timeline-title">迦巴魯河邊的寶座異象——先知職分的開始</div>
+        <div class="timeline-body">被擄第五年，以西結在迦巴魯河邊看見諸天開啟，四活物、輪中套輪、寶座上彷彿人的形狀顯現——「這就是耶和華榮耀的形像」；他俯伏在地，領受吞食書卷的異象與作以色列家守望者的呼召。</div>
+        <div class="timeline-ref">以西結書 1–3 章</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">行為預言</span>
+        <div class="timeline-title">側身而臥與剃髮分堆——用身體演出審判</div>
+        <div class="timeline-body">他被吩咐在磚上畫出被圍困的耶路撒冷，並側身而臥三百九十加四十日，象徵背負以色列與猶大的罪孽；此後又奉命剃去頭髮鬍鬚分為三份，分別焚燒、用刀砍、隨風吹散，預表城破之後百姓的三種命運。</div>
+        <div class="timeline-ref">以西結書 4–5 章</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">聖殿中的異象——耶和華的榮耀離開聖殿</div>
+        <div class="timeline-body">在異象中，以西結被帶到耶路撒冷聖殿，目睹殿中種種可憎的偶像崇拜，隨後親眼看見耶和華的榮耀逐漸離開至聖所、離開聖殿、離開耶路撒冷城——這是聖經中最令人心碎的畫面之一，象徵神的同在因百姓的悖逆而撤離。</div>
+        <div class="timeline-ref">以西結書 8–11 章</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">至深試煉</span>
+        <div class="timeline-title">妻子驟逝——「不可哀哭」的預表</div>
+        <div class="timeline-body">神告訴以西結，他眼目所喜愛的妻子將在一夕之間離世，而他不可為她哀哭流淚、不可行常俗的喪禮——次日清晨，他的妻子果然去世，他遵命而行，此後百姓詢問緣由，他解釋這是預表耶路撒冷聖殿被毀時，百姓將因震驚過度而無法照常哀哭。</div>
+        <div class="timeline-ref">以西結書 24:15–27</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">轉向盼望</span>
+        <div class="timeline-title">枯骨谷的異象——「這些骸骨能復活嗎？」</div>
+        <div class="timeline-body">耶城陷落之後，以西結的信息開始從審判轉向復興；他在異象中被帶到遍滿枯骨的平原，奉命向骸骨發預言，骸骨便彼此連結、長出肌肉皮膚、氣息進入其中，成為極大的軍隊——這異象直接宣告以色列全家必要從被擄之地復活歸回。</div>
+        <div class="timeline-ref">以西結書 37 章</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終章</span>
+        <div class="timeline-title">未來聖殿的異象——「耶和華的所在」</div>
+        <div class="timeline-body">以西結書的最後九章，以極其精密的度量描繪一座尚未存在的理想聖殿，並見證耶和華的榮耀從東方歸回、再次充滿聖殿；全書以一個意義深遠的城名作結：「從此以後，這城的名字必稱為『耶和華的所在』。」</div>
+        <div class="timeline-ref">以西結書 40–48 章</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他所領受的呼召，要求他把自己的整個身體、婚姻、甚至喪妻之痛，都變成神向百姓說話的媒介——這種毫無保留的獻上，貫穿了他整個先知生涯。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">神的話語必須被看見，而不只是被聽見</div>
+          <div class="soul-body">他一次又一次被吩咐用行為、用生活方式演出神的信息——側臥、剃髮、築牆掘洞、甚至喪妻不哭——顯示他對「先知職分」的理解，遠遠超越單純的言語宣講，而是整個生命都成為信息的載體。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">在極大的個人代價前，仍然完全順服</div>
+          <div class="soul-body">面對妻子驟逝卻被吩咐不可哀哭這樣近乎殘酷的命令，他仍選擇順服到底——這種即便代價高昂仍不退縮的順服，是他先知職事中最沉重也最動人的部分。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">以極其精密、系統化的方式描述異象與藍圖</div>
+          <div class="soul-body">從活物與輪子的精細結構，到書末聖殿建築近乎工程圖等級的度量描述，他傳達異象的方式，展現出一種罕見的、近乎建築師般的系統性思維。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">呼召本身帶來的沉重孤獨</div>
+          <div class="soul-body">他被神稱為「以色列家的守望者」，卻常常獨自承受異象的震撼與百姓的悖逆麻木——經文記載他曾在異象後「驚訝憂悶」地坐了七日，顯示這份呼召所帶來的巨大心理與情感負荷。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">他的異象語彙，深刻影響了此後啟示文學的想像</div>
+          <div class="soul-body">他所見的活物、輪子、寶座、枯骨、聖殿藍圖，這些高度象徵性的意象，此後持續迴響在但以理書與啟示錄的異象語言之中，成為聖經啟示文學傳統最重要的源頭之一。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">以西結的先知職事，核心命題是「個人責任」與「神榮耀的動態同在」。在他之前，許多以色列人習慣引用一句諺語為自己的困境開脫：「父親吃了酸葡萄，兒子的牙酸倒了」，暗示自己是在承受祖先罪孽的苦果、與己無關；以西結卻奉命鄭重宣告：「所有的人都是屬我的……惟犯罪的，他必死亡」——每個人都要為自己的抉擇向神負責，這徹底扭轉了被擄群體「我們只是代罪羔羊」的集體心態，將悔改的責任與盼望，重新交還到每個個體手中。同時，他所見證的「神的榮耀離開聖殿、又終將歸回」這條完整的異象弧線，也宣告了一個深刻的神學真理：神的同在，從來不被綁定在任何一座建築物之中，祂的離開是審判，祂的歸回卻是恩典從未收回的證明。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">INTJ</span>
+      <div class="mbti-name">建築師型 · 異象中的藍圖繪製者</div>
+      <div class="mbti-slogan">「他所看見的，是輪中套輪的精密結構、與尚未存在之聖殿的精確度量——一位用系統與藍圖傳講盼望的先知。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">他所領受的每一個異象，都指向遠超眼前處境的宏大圖景——從枯骨復活預告以色列的整體復興，到聖殿藍圖預表神榮耀終將歸回，這種洞察深層意義、望向長遠未來的能力，是他先知職事的核心。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">他傳達異象時展現出高度的結構性與精確度——聖殿的度量精密如工程藍圖，行為預言的天數（三百九十日、四十日）也經過清楚計算——這種將抽象異象轉化為具體、可執行細節的能力十分突出。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">面對妻子驟逝仍需壓抑哀傷以完成先知使命，他內心承受著極深的個人痛苦，這種在公開職責之下仍存在、卻不輕易外顯的深刻內在情感，顯示出一定程度的內向情感運作。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Se · 外向感官</span>
+          <div class="mbti-fn-body">他傳講信息的方式高度依賴象徵性的異象與行為演示，而非訴諸當下感官化、直接激昂的言語煽動；這種偏好透過抽象意象與系統性演示、而非即時感官衝擊來傳達信息的傾向，反映出劣勢外向感官的特徵。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最深的兩重關係，一重是與那位不斷向他顯現異象、也不斷向他發出艱難吩咐的神；另一重，是那位在異象預告中驟然離世、卻仍被他深愛的妻子。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">耶</div>
+          <div class="relation-name">耶利米</div>
+          <div class="relation-type-badge">同時代在耶路撒冷宣講審判的先知</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">以西結在巴比倫、耶利米在耶路撒冷，二人幾乎同時對即將臨到的審判發出警告，彼此的信息相互呼應——這種被擄地與故土兩地同步發出的先知見證，加強了審判信息的權威與迫切性。</div>
+          <div class="relation-ref">以西結書 1–24 章 · 耶利米書 21–39 章</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">但</div>
+          <div class="relation-name">但以理</div>
+          <div class="relation-type-badge">同在巴比倫被擄的先知</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">以西結書中兩次提及但以理的名字，將他與挪亞、約伯並列為義人的典範——顯示兩位同時期被擄的先知，彼此的名聲與見證在被擄群體中已廣為人知。</div>
+          <div class="relation-ref">以西結書 14:14, 20 · 28:3</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">妻</div>
+          <div class="relation-name">以西結的妻子</div>
+          <div class="relation-type-badge">他眼目所喜愛、卻被神預告將驟逝的妻子</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">神預告她將在一夕之間離世，並吩咐以西結不可為她舉行常俗的哀悼——她的死亡與丈夫被迫壓抑的哀傷，成為預表耶路撒冷聖殿被毀、百姓將震驚到無法哭泣的活生生記號。</div>
+          <div class="relation-ref">以西結書 24:15–27</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">被</div>
+          <div class="relation-name">被擄群體的長老們</div>
+          <div class="relation-type-badge">常來坐在他面前求問耶和華話語的聽眾</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">被擄社群的長老們時常前來坐在以西結面前，表面上求問神的旨意，內心卻仍戀慕偶像——以西結多次因此被神吩咐要向這種「口說愛慕、心卻遠離」的宗教虛偽直接發出責備。</div>
+          <div class="relation-ref">以西結書 14:1–11 · 20:1–3</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「我必賜給你們一個新心，將新靈放在你們裡面」——以西結所宣講最深的盼望，不是外在處境的翻轉，而是人內在生命的徹底更新。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「我也要賜給你們一個新心，將新靈放在你們裡面，又從你們的肉體中除掉石心，賜給你們肉心。」</div>
+      <div class="verse-ref">以西結書 36:26</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">כְּבוֹד יְהוָה</span>
+        <div class="word-transliteration">kevod YHWH · 耶和華的榮耀 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">指耶和華可見、具象化的同在顯現，是以西結書中反覆出現、貫穿全書結構的核心意象——從開卷寶座異象的顯現，到中段榮耀離開聖殿，再到末了榮耀歸回，構成全書最重要的神學骨架。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">以西結對「耶和華榮耀」動態進出聖殿的描寫，徹底扭轉了被擄群體「神已被困在耶路撒冷、如今聖殿被毀神也隨之消失」的絕望想像——他清楚見證，神的榮耀同在，從不受限於任何一座建築物，祂能親自向著異鄉被擄之地的子民顯現，也應許終必再次歸回。</div>
+      </div>
+
+      <div class="word-card">
+        <span class="word-original">בֶּן־אָדָם</span>
+        <div class="word-transliteration">ben-adam · 人子 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">神在以西結書中呼喚先知時反覆使用的稱謂，逾九十次出現，字面意思僅是「人類的兒子」，強調說話對象純粹的人性與受造性，與神自身的超越形成強烈對比。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這個稱謂持續提醒以西結（也提醒讀者）：先知不過是一個必朽的受造者，之所以能承受如此震撼的異象與呼召，完全出於神的揀選與賦權，而非自身有何特殊資格——這個用語後來也成為新約中耶穌最常用來自稱的頭銜之一，帶著豐富的神學迴響。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">個人責任神學：每個人要為自己的抉擇向神負責</div>
+      <div class="theology-insight-body">以西結書十八章徹底駁斥「父親吃酸葡萄、兒子牙酸倒」的宿命論心態，鄭重宣告義人的義歸自己、惡人的惡也歸自己——這將悔改的可能性與責任，重新交還到每個個體手中，是聖經倫理學極其重要的一次神學轉折。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">神的同在具有動態性，離開是審判，歸回是恩典</div>
+      <div class="theology-insight-body">從榮耀離開聖殿的心碎異象，到全書結尾榮耀歸回、城名改為「耶和華的所在」，以西結完整呈現了神同在「可以撤離、也必要歸回」的動態性——審判從不是神最終的心意，恩典的歸回才是故事真正的終局。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">枯骨的復活：絕望盡頭仍有神所應許的新生命</div>
+      <div class="theology-insight-body">枯骨谷異象向一群自認「骨頭枯乾、指望失去、我們滅絕淨盡」的被擄群體，宣告神有能力使看似徹底死絕的處境重新獲得生命氣息——這異象此後也成為基督教盼望復活、聖靈更新生命最重要的舊約意象之一。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">以西結在異象中親眼見證耶和華的榮耀離開被玷污的聖殿，又在全書末了見證榮耀從東方重新歸回、充滿一座全新的聖殿</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這幅「神的同在因罪離開、卻終必藉著潔淨與更新重新歸回」的完整異象弧線，此後在新約中，藉由基督道成肉身、以及聖靈降臨內住信徒生命的方式，得到更深刻而終極的成就</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">神的榮耀不再局限於磚石建造的聖殿，而是藉著基督「道成肉身住在我們中間」，此後更藉聖靈內住於每一位信徒生命之中，使人成為神榮耀真正的居所（約 1:14 · 林前 6:19）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正身處一個看似徹底枯竭、了無指望的處境——這一頁想讓你看見，枯骨谷從來不是故事的終點。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">以西結的故事命中每一個在艱難、流離、甚至喪失一切熟悉根基的處境中，質疑神是否還在意自己的人。他所領受的異象提醒我們，神的同在從不受限於我們熟悉的環境或制度——即使在最異鄉、最荒涼的處境中，神仍然能夠向我們顯現。他所宣講的個人責任神學，同時也提醒我們，無論過去承受了多少代人的傷害或困境，我們此刻仍然握有選擇悔改與更新的自由與責任，不必被宿命論的無力感捆綁。而枯骨谷的異象，更向每一個覺得自己（或某段關係、某個處境）已經「骨頭枯乾」的人宣告：復活，從來不是人力所能成就的奇蹟，而是神樂意賜下的應許。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你此刻是否也身處一個感覺遠離熟悉根基、甚至懷疑神是否仍與你同在的異鄉處境？以西結的異象如何挑戰或安慰你對這處境的理解？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">你是否也曾用『這是別人造成的』來逃避自己該負的責任？以西結宣講的個人責任神學，如何挑戰你重新面對自己的抉擇？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">以西結願意讓自己的身體、婚姻、甚至喪妻之痛，都成為神話語的載體。你的生命中，是否也有一個看似私人的處境，其實正在向周遭的人見證著神的信實？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">你生命中是否有一片『骸骨枯乾』、看似毫無指望的領域？枯骨谷的異象，如何重新點燃你對這個領域仍抱持盼望的可能？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 以西結</span>
+        <div class="gen-title">示範劇本：在異鄉的廢墟感中，仍忠心見證神的榮耀與應許</div>
+        <div class="gen-body">他在被擄異鄉親眼見證神榮耀離開聖殿的審判，也親眼見證枯骨重新站立、聖殿榮耀終必歸回的應許，並用整個身體與生命，把這兩重信息完整地傳講給百姓。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 被擄歸回的以色列群體</span>
+        <div class="gen-title">延續：從枯骨到歸回的實際應驗</div>
+        <div class="gen-body">以西結所宣告的復興異象，此後藉由波斯王古列的諭旨、以及所羅巴伯與以斯拉、尼希米所帶領的歸回與重建，在歷史中得到具體的實現——枯骨谷的異象，並非僅止於象徵，而是真實地在歷史中應驗。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在以西結的異象中，展現在神即便因百姓的悖逆而讓自己的榮耀暫時離開聖殿，卻從未真正放棄祂的子民——祂差遣先知在異鄉持續說話、持續應許，並最終應允榮耀的歸回。這提醒我們，神的審判從來不是祂話語的終點，恩典與復興的應許，始終在審判的盡頭等待著回轉的人。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位用整個身體演出神話語、又親眼見證枯骨重新站立的被擄先知，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#神的同在不被綁在特定地方</span>
+      <span class="tag">#為自己的選擇負責</span>
+      <span class="tag">#絕望盡頭仍有生命</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>以西結被擄到巴比倫的時候，故鄉還沒滅亡，但他已經被連根拔起，活在一個完全陌生的地方。換作是你，大概也會覺得：神是不是只在耶路撒冷才管用？我現在算是被丟在外面了嗎？</p>
+      <p>結果他在河邊看見一個超乎想像的異象——神的榮耀，親自出現在異鄉。這個畫面在講一件很重要的事：神沒有被鎖在某個建築物、某個熟悉的地方，祂能出現在任何你以為祂不會來的地方。</p>
+      <p>接下來以西結接了一份很不好受的差事：神要他用自己的身體演出接下來要發生的事——側躺一年多、剃頭髮分三份、甚至妻子過世那天，神吩咐他不准照習俗哭。他沒有argue，他做了。</p>
+      <p>他還講了一句話，直接打臉當時流行的一種說法：『不是我的錯，是我爸媽那一代造成的。』以西結說：不對，你自己的選擇，自己負責。這句話聽起來嚴厲，其實是給每個人重新拿回主導權的機會——你不必永遠活在別人欠下的債裡。</p>
+      <p>最厲害的畫面在後面：一整片枯骨的山谷，乾到不能再乾，神叫他對著骨頭說預言。結果骨頭真的重新連起來、長肉、有氣息，站起來成了一支大軍。這不是奇蹟秀，這是在告訴一群覺得自己徹底完了的人：你以為死透的東西，在神手裡還沒完。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——以西結這塊石頭，被雕刻出的形狀，恰好是『用整個生命，見證神能在最荒涼之處重新賜下生命』。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你此刻覺得自己被丟在一個很陌生、很荒涼的處境，以西結想告訴你：那不代表神不在，祂的同在，從來不被地點綁住。</p>
+      <p style="margin-top:12px;">如果你一直用『這是別人造成的』來逃避某個該面對的選擇，以西結會很直接地說：那是你的責任，也是你的機會。</p>
+      <p style="margin-top:12px;">如果你生命中有一片看起來『骨頭都枯了』的領域，別急著判它死刑——枯骨谷的故事，就是在講這種處境。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，對著你生命中那片看似枯乾的骨頭，練習說一句相信復活的話。</p>
+    </div>
+
+    <div class="insight-box">以西結的異象語彙——特別是枯骨復活與新心新靈的應許——在當代基督教靈修與詩歌創作中被廣泛引用，成為描寫個人生命更新與群體復興最具畫面感的聖經意象之一；他所提出的個人責任神學，也持續為當代探討代際創傷與個人自主抉擇的討論，提供重要的信仰視角。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他在異鄉河邊看見的，不只是一個令人目眩的異象，更是一整套關於「神的同在如何離開又必歸回」的完整神學敘事。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">啟示文學傳統的重要源頭</div>
+          <div class="legacy-body">他所見的活物、輪子、寶座等高度象徵性異象語彙，深刻影響了此後但以理書與啟示錄的異象書寫方式，奠定了聖經啟示文學的重要基礎。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">個人責任神學的奠基者</div>
+          <div class="legacy-body">他駁斥「父債子還」式的宿命論心態、宣告各人要為己身抉擇負責的教導，成為聖經倫理學中理解個人悔改與責任極其重要的神學轉折點。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">神同在動態性的神學範例</div>
+          <div class="legacy-body">他完整見證神的榮耀離開聖殿又終必歸回的敘事弧線，深刻塑造了此後基督教對「神的同在不受限於特定地點、卻終必信實歸回」的理解。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">枯骨復活異象的盼望象徵</div>
+          <div class="legacy-body">他所見證的枯骨重新站立成軍的異象，此後成為聖經中描繪絕境中重獲新生盼望最具代表性的意象，持續激勵歷代在艱難處境中的信徒。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「從此以後，這城的名字必稱為「耶和華的所在」。」</div>
+      <div class="final-verse-ref">以西結書 48:35</div>
+    </div>
+
+    <div class="final-question">如果你此刻正身處某個看似神已遠離的荒涼異鄉，你是否願意像以西結一樣，仍舊相信神的榮耀終必再次臨到、枯骨終必重新站立？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 以西結 <span>יְחֶזְקֵאל</span> · 被擄祭司 · 異象先知</div>
+
+<!-- 閱讀紀錄（localStorage，見 progress.js）：右下角標記已讀按鈕 -->
+<script src="progress.js"></script>
+
+</body>
+</html>
