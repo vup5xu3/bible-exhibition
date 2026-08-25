@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>葉忒羅 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">葉忒羅</h1>
+  <span class="hero-name-en">Jethro · יִתְרוֹ</span>
+  <p class="hero-slogan">「葉忒羅說：<br>「你這做的不好。你和這些百姓必都疲憊，因為這事太重，你獨自一人辦理不了。」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">出埃及前後，約主前十三世紀</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ISTJ · 物流師型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">出埃及記 2:15–22 · 3:1 · 18 章</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">米甸祭司 · 摩西的岳父 · 治理體制的關鍵建言者</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他在摩西人生最卑微、最無所適從的逃亡歲月裡收留了他，四十年後，又在摩西身為以色列領袖幾乎被繁重事務壓垮之際，提出了一個徹底改變整個治理架構的關鍵建議。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">出埃及前後，約主前十三世紀</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">米甸的祭司（經文中也稱流珥、何巴，可能是同一人或家族不同稱謂）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">活動區域</span>
+        <div class="info-cell-value">米甸曠野</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">七個女兒，其中西坡拉嫁給摩西，生革舜、以利以謝</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">出埃及記 2:15–22 · 3:1 · 4:18 · 18 章</div>
+      </div>
+    </div>
+
+    <p>葉忒羅第一次登場，是在摩西人生最狼狽的時刻——他因打死欺壓同胞的埃及人，被迫逃離埃及，來到米甸曠野。他在井旁幫助了葉忒羅的七個女兒打水飲羊，免受牧羊人的欺負，葉忒羅得知後便邀他到家中作客，此後更將女兒西坡拉嫁給他。這段收留，不僅為摩西提供了此後四十年牧羊生活的棲身之處，更讓他在米甸曠野的歲月中，累積了此後帶領以色列人穿越曠野所需的實際牧養經驗。</p>
+    <p>真正讓葉忒羅在以色列歷史上留下深刻印記的，卻是出埃及記十八章的記載。以色列人出埃及後，葉忒羅聽聞神為摩西和以色列百姓所行的一切大事，便帶著西坡拉與兩個外孫，親自來到摩西安營之處與他相會。他親眼目睹摩西「從早到晚」獨自坐著審判百姓的爭訟，百姓從早到晚排隊等候在他面前——葉忒羅看見這個景象後，直接向摩西提出了尖銳的評語：「你這做的不好。你和這些百姓必都疲憊，因為這事太重，你獨自一人辦理不了。」</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從井旁收留一位逃亡的異鄉人，到親眼見證他成為帶領百萬百姓出埃及的領袖、進而提出關鍵的治理建言，葉忒羅的故事，是一部關於「智慧的旁觀者如何在關鍵時刻扭轉危局」的敘事。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">背景鋪陳</span>
+        <div class="timeline-title">收留逃亡的摩西——「你們今日為何來得這麼快呢？」</div>
+        <div class="timeline-body">摩西逃離埃及來到米甸，在井旁幫助葉忒羅的女兒們打水飲羊；葉忒羅得知後邀他到家中作客，此後將女兒西坡拉嫁給他，摩西在此牧羊四十年。</div>
+        <div class="timeline-ref">出埃及記 2:15–22</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">祝福差遣</span>
+        <div class="timeline-title">應允摩西回埃及——「你可以平平安安地去吧」</div>
+        <div class="timeline-body">摩西在何烈山蒙神呼召後，回去見岳父葉忒羅，請求准他回埃及探望仍然存活的親人；葉忒羅應允並祝福他平平安安地去。</div>
+        <div class="timeline-ref">出埃及記 4:18</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">帶著西坡拉來會合——親眼見證神的大能作為</div>
+        <div class="timeline-body">以色列人出埃及後，葉忒羅聽聞神為摩西和以色列所行的一切事，便帶著西坡拉與兩個外孫來到曠野與摩西相會；摩西向他述說神所行的一切，葉忒羅甚是歡喜，稱頌耶和華並獻祭。</div>
+        <div class="timeline-ref">出埃及記 18:1–12</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">關鍵建言</span>
+        <div class="timeline-title">「你獨自一人辦理不了」——設立千夫長百夫長的建議</div>
+        <div class="timeline-body">葉忒羅目睹摩西從早到晚獨自審判百姓的重擔，直言這樣做不好，建議摩西從百姓中揀選有才能、敬畏神、誠實無妄的人，設立千夫長、百夫長、五十夫長、十夫長，分擔審判的職責，只有大事才呈到摩西面前。</div>
+        <div class="timeline-ref">出埃及記 18:13–23</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終局</span>
+        <div class="timeline-title">摩西聽從建議——治理體制的建立</div>
+        <div class="timeline-body">摩西聽從岳父的話，照著他所說的一切去行，從以色列人中揀選了有才能的人，立他們為百姓的首領，分擔審判的重擔；葉忒羅此後便回本地去了。</div>
+        <div class="timeline-ref">出埃及記 18:24–27</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他不是以色列人，卻在關鍵時刻，用旁觀者清晰的眼光，看出了摩西身陷其中卻渾然未覺的治理危機。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心特質</span>
+          <div class="soul-title">具備敏銳的觀察力，能一眼看穿制度性的問題</div>
+          <div class="soul-body">他到訪僅僅一天，便從摩西從早到晚獨自審判百姓的景象中，準確診斷出這套運作模式在長遠上必然導致摩西與百姓雙方疲憊不堪的結構性問題。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">願意誠實而直接地向位高權重的女婿提出批評</div>
+          <div class="soul-body">面對身為以色列最高領袖的摩西，葉忒羅沒有選擇沉默或委婉迴避，而是直接指出「你這做的不好」，這種不畏權位、誠實進言的勇氣，是他性格中極其珍貴的部分。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">提出具體、可執行的解決方案，而非空泛的批評</div>
+          <div class="soul-body">他不僅指出問題，更提出了一套詳細具體的解決方案——按才能與品格揀選千夫長、百夫長等各級首領，分層負責不同規模的爭訟——這種務實而具體的建言方式，貫穿他整個故事。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">外邦身份</span>
+          <div class="soul-title">他並非以色列人，卻對耶和華的作為有著真實的敬畏與信心</div>
+          <div class="soul-body">作為米甸的祭司，葉忒羅本身有著自己的宗教身份，然而經文記載他在聽聞神的作為後「甚是歡喜」，稱頌耶和華「超乎萬神之上」，並親自獻祭敬拜——這顯示他對真神的認識與敬畏，超越了單純的家族情誼。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">深遠影響</span>
+          <div class="soul-title">他的建議，此後成為以色列律法與治理體制的重要基礎</div>
+          <div class="soul-body">葉忒羅所建議設立的分層審判體系，此後在申命記中被進一步發展為以色列律法制度的重要基礎，他的智慧建言，深刻影響了以色列此後數百年的治理架構。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">葉忒羅的故事，是聖經中「旁觀者的智慧如何解救當局者的困境」最經典的敘事範例之一。摩西身為以色列的最高領袖，身處在日復一日、從早到晚審判百姓爭訟的忙碌之中，很可能早已習以為常，未曾意識到這套運作模式本身潛藏的巨大危機——摩西自己會被拖垮，百姓也會因久候而疲憊。正是葉忒羅這位外部、卻懷著真誠關心的旁觀者，以清晰的眼光看出了這個結構性的問題，並提出了具體可行的解決方案。這個故事深刻提醒我們，即便是蒙神揀選、承擔重大使命的領袖，仍然需要願意接受他人（即便是家人、即便是「外人」）誠實建言的謙卑，而真正智慧的建言者，也不會止步於指出問題，更會進一步提供具體、可執行的解決之道。葉忒羅的建議，此後深刻塑造了以色列的治理體制，證明了一個看似簡單的管理智慧，同樣可以是神賜下祝福、成就祂子民長遠益處的重要途徑。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ISTJ</span>
+      <div class="mbti-name">物流師型 · 看穿治理危機的岳父</div>
+      <div class="mbti-slogan">「他一眼看出女婿正被繁重的事務壓垮，隨即提出了一套此後深刻影響以色列治理體制的具體建議。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Si · 內向感覺</span>
+          <div class="mbti-fn-body">他透過親眼觀察摩西實際審判百姓的具體過程，準確評估出這套運作模式所帶來的實際負擔與風險，這種基於具體觀察與既有經驗做出判斷的方式，是主導內向感覺的典型展現。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">他提出的解決方案極其具體而有條理——按不同規模層級設立首領、明確劃分職責範圍——展現出高度組織化、講求實際效率的外向思考能力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">他對摩西與百姓可能因這套運作模式而疲憊受苦的處境，展現出真實的關切，這種源於內在價值判斷的關懷，促使他願意直接向摩西提出誠實的建言。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Ne · 外向直覺</span>
+          <div class="mbti-fn-body">他的建議聚焦於改善既有的具體運作流程，而非提出全新、天馬行空的治理模式，這種立足於現有框架、務實漸進的改善思維，反映出劣勢外向直覺的特徵。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最重要的兩重關係，一重是收留並嫁女於逃亡中的摩西，另一重，是在關鍵時刻以旁觀者的智慧，扭轉了整個以色列的治理危局。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">摩</div>
+          <div class="relation-name">摩西</div>
+          <div class="relation-type-badge">他收留並嫁女的女婿，也是接受他關鍵建言的領袖</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">葉忒羅在摩西逃亡米甸時收留了他，將女兒西坡拉嫁給他；四十年後，他又親自前來探望已成為以色列領袖的女婿，並提出設立分層審判體系的關鍵建議，摩西全盤採納並付諸實行。</div>
+          <div class="relation-ref">出埃及記 2:21 · 18:13–27</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">西</div>
+          <div class="relation-name">西坡拉</div>
+          <div class="relation-type-badge">他的女兒，摩西之妻</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">西坡拉是葉忒羅的女兒，嫁給摩西並生下二子；葉忒羅此後帶著她與兩個外孫一同前來與摩西相會，象徵著這個跨越埃及與米甸兩個世界的家庭，終於在曠野中重新團聚。</div>
+          <div class="relation-ref">出埃及記 2:21 · 18:2–6</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">以</div>
+          <div class="relation-name">以色列百姓</div>
+          <div class="relation-type-badge">因他的建議而免於審判制度崩潰之苦的群體</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">葉忒羅的建言，直接使以色列百姓免於因單一領袖審判制度而導致的長期疲憊與延誤，此後所建立的分層治理體系，成為以色列律法制度的重要基礎，惠及全體百姓。</div>
+          <div class="relation-ref">出埃及記 18:23, 26</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「這事太重，你獨自一人辦理不了」——葉忒羅這句直言，成為聖經中論及分工治理、避免領袖過勞最重要的智慧教導之一。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「又要從百姓中揀選有才能的人，就是敬畏神、誠實無妄、恨不義之財的人，派他們作千夫長、百夫長、五十夫長、十夫長，管理百姓。」</div>
+      <div class="verse-ref">出埃及記 18:21</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">כָּבֵד</span>
+        <div class="word-transliteration">kaved · 沉重 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">葉忒羅形容摩西所擔負的事務「太重」，使用的正是這個字根——同一個字根也用於形容法老「心裡剛硬」，暗示著某種難以承受、甚至可能導致崩潰的沉重負荷。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這個字的選用，精準傳達出葉忒羅對摩西處境的深刻理解——他不是單純批評摩西做得不好，而是看出這份重擔本身的份量，已經超出了一個人所能長期承受的範圍，這也使他此後提出的解決方案，帶著真誠的關懷而非苛責的意味。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">分工治理是神賜下的智慧，而非對領袖能力的否定</div>
+      <div class="theology-insight-body">葉忒羅的建議，並非質疑摩西的領導能力，而是指出即便是蒙神揀選的領袖，同樣需要透過分工合作來承擔重大的責任——這確立了聖經中重要的治理原則：健康的群體治理，需要建立在適當分工與委任的基礎之上。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">屬靈品格是揀選治理者的核心標準</div>
+      <div class="theology-insight-body">葉忒羅建議揀選的首領，標準是「敬畏神、誠實無妄、恨不義之財」，而非單純的能力或人脈——這提醒我們，任何形式的治理與管理職分，屬靈品格與道德操守，應當是首要的揀選考量。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">外邦人的智慧，同樣可以成為神百姓的祝福</div>
+      <div class="theology-insight-body">葉忒羅作為米甸的祭司、非以色列人，他的建言卻深刻塑造了以色列此後的治理體制——這提醒我們，神的智慧與祝福，有時會透過祂選民群體之外的人物臨到，我們應當保持謙卑，願意領受來自任何管道的真實智慧。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">葉忒羅看出摩西獨自承擔審判重擔的處境不可持續，建議他按才能與品格分派眾首領分擔職責，使治理的重擔得以合理分工承擔</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這種「分工承擔重任、彼此配搭服事」的治理智慧，此後在新約教會論中，藉由使徒行傳七位執事的設立與保羅論身體肢體彼此配搭的教導，得到進一步的神學闡述與延伸應用</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">使徒們同樣意識到自己不能獨自承擔教會所有的服事重擔，因此設立執事分擔飯食供給的職責，使自己專心於禱告與傳道——教會如同身體，各按各職彼此配搭，才能健康運作、持續擴展（徒 6:1–4 · 林前 12:12–27）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正被過多的責任與事務壓得喘不過氣——這一頁想問你：你是否也需要一位像葉忒羅一樣，願意誠實提醒你的人？</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">葉忒羅的故事命中每一個因為承擔過多責任、不懂得或不願意分工授權，而逐漸被壓垮的人——無論是在職場、事奉、或家庭之中。他的建言提醒我們，真正智慧的領導，不是凡事親力親為，而是懂得辨識並揀選值得信任的人，適當地分工授權，讓群體中的每個人都能在合宜的崗位上發揮功用。他的故事同時也提醒身處領導位置的人，要謙卑地敞開自己，願意接受身邊人（即便是看似「外人」）誠實而具體的建言，而非固守著「凡事都要自己來」的慣性思維。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你此刻是否也像出埃及記十八章的摩西一樣，正獨自承擔著超出自己能力所能負荷的重擔？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">葉忒羅不僅指出問題，更提出具體可行的解決方案。你在給予他人建言時，是停留在批評，還是也願意提供具體的幫助？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">摩西謙卑地聽從了岳父的建議，並全盤採納實行。你面對他人（尤其是家人或看似『外行』的人）的建言時，通常是防衛還是願意虛心考量？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">葉忒羅建議揀選首領的標準是『敬畏神、誠實無妄』。你在委任或選擇合作夥伴時，是否也將品格置於能力之上的優先位置？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 葉忒羅</span>
+        <div class="gen-title">示範劇本：以旁觀者的智慧，看出並解決當局者未察覺的結構性危機</div>
+        <div class="gen-body">他看出摩西獨自審判百姓的處境不可長久持續，主動提出設立分層首領、分工承擔審判重擔的具體建議，深刻改變了以色列此後的治理體制。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 以色列的治理體制</span>
+        <div class="gen-title">延續：他的建言，成為此後以色列律法制度的重要基礎</div>
+        <div class="gen-body">葉忒羅所建議的分層審判架構，此後在申命記中被進一步發展、確立為以色列律法制度的重要組成部分，深刻影響了以色列此後數百年的治理運作方式。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在葉忒羅的故事中，展現在神願意透過一位身處以色列群體之外的智慧長者，賜下對祂百姓長遠有益的治理智慧。這提醒我們，神的恩典與智慧，常常透過我們意想不到的管道臨到——重要的是，我們是否願意像摩西一樣，保持謙卑受教的心，領受這些真實而寶貴的提醒。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位一眼看穿女婿正被繁重事務壓垮、進而提出關鍵建議的岳父，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#別什麼都自己來</span>
+      <span class="tag">#旁觀者的話值得聽</span>
+      <span class="tag">#分工是一種智慧</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>葉忒羅來探望摩西那天，看到的畫面大概是這樣：摩西一個人坐著，百姓從早排隊排到晚，就為了讓摩西一個一個親自處理他們的爭執和糾紛。</p>
+      <p>換作是大部分人，看到自己的女婿身居高位、日理萬機，大概會覺得『哇，好厲害，好辛苦』，然後閉嘴。葉忒羅沒有，他直接說：『你這樣做不對，你會累垮，百姓也會拖垮。』</p>
+      <p>重點是，他不是只出一張嘴批評，他馬上給了一個具體的解決方案：挑一些有能力、品格好的人，分層負責——小事情下面的人處理，大事情才交給你。</p>
+      <p>摩西的反應很值得注意：他沒有因為『你算老幾』而生氣，也沒有因為『我是神揀選的領袖』而覺得不需要聽外人的意見，他直接照做了。</p>
+      <p>這個建議後來變成整個以色列治理制度的基礎，一路影響到後來的律法架構。一個簡單的『你不能什麼事都自己做』，最後變成了改變整個民族運作方式的關鍵決定。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——葉忒羅這塊石頭，被雕刻出的形狀，是一句務實到不能再務實的提醒：『你一個人辦不了，找人分擔吧』。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你正覺得自己什麼事都要親自處理、快被壓垮了，葉忒羅想問你：你是不是也需要找幾個『千夫長、百夫長』來分擔？</p>
+      <p style="margin-top:12px;">聽進別人誠實的建議，尤其是那些看起來『不是專家』的人，有時候他們的旁觀者視角，比你自己看得更清楚。</p>
+      <p style="margin-top:12px;">好的建言不只是指出問題，還要能給出具體可行的方案——這也是葉忒羅留給我們的示範。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，找一件你正『獨自扛著』的事，想想看，有沒有可以分工出去的部分。</p>
+    </div>
+
+    <div class="insight-box">葉忒羅的建言，在當代組織管理與領導力研究中，經常被引用作為「授權管理」（delegation）與「分層負責制」最早的歷史範例之一——他所提出「按才能與品格揀選中層管理者、只將重大事務上呈最高決策者」的架構，與現代企業管理理論中的分層授權原則高度呼應，持續是管理學教材中援引的聖經案例。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他收留了逃亡的摩西，此後又在關鍵時刻提出了一套此後深刻塑造以色列治理體制的智慧建言，成為聖經中「旁觀者智慧」最重要的典範。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">「分工治理」原則的聖經源頭</div>
+          <div class="legacy-body">他建議設立千夫長、百夫長分擔審判重擔的具體方案，成為此後以色列律法制度、乃至新約教會論中分工配搭原則的重要源頭。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">敢於直言建言的典範</div>
+          <div class="legacy-body">他不畏摩西身為以色列最高領袖的地位，誠實直接地指出問題並提供解決方案，成為聖經中「敢於向掌權者說真話」最正面的典範人物之一。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">外邦智慧祝福神百姓的重要見證</div>
+          <div class="legacy-body">他作為米甸祭司、非以色列人，其智慧建言卻深刻造福了整個以色列群體，成為神的祝福不受族裔界線限制、可透過任何管道臨到祂百姓的重要見證。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">現代管理學經常引用的歷史範例</div>
+          <div class="legacy-body">他所提出的分層授權治理模式，持續在當代組織管理與領導力研究中被引用，成為跨越三千多年仍具實用價值的治理智慧典範。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「於是摩西聽從他岳父的話，按著他所說的去行。」</div>
+      <div class="final-verse-ref">出埃及記 18:24</div>
+    </div>
+
+    <div class="final-question">如果此刻有一位像葉忒羅一樣的人，願意誠實地告訴你「這事太重，你獨自一人辦理不了」，你是否願意像摩西一樣，謙卑地聽從並付諸行動？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 葉忒羅 <span>יִתְרוֹ</span> · 米甸的祭司 · 摩西的岳父</div>
+
+<!-- 閱讀紀錄（localStorage，見 progress.js）：右下角標記已讀按鈕 -->
+<script src="progress.js"></script>
+
+</body>
+</html>

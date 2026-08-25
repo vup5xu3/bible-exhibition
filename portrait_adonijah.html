@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>亞多尼雅 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">亞多尼雅</h1>
+  <span class="hero-name-en">Adonijah · אֲדֹנִיָּה</span>
+  <p class="hero-slogan">「亞多尼雅擅自尊大，說：<br>「我必作王」，就為自己預備車輛、馬兵，又派五十人在他前頭奔走。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">大衛在位末年，約主前十世紀初</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ESTP · 企業家型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">列王紀上 1–2 章</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">大衛之子 · 企圖搶先自立為王的王子</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他是大衛年邁時排行居長的在世兒子，容貌俊美，經文特別註明父親「素來沒有使他憂悶，說『你是做甚麼呢？』」——這種毫無管教約束的成長環境，某種程度上，也預示了他此後未經徵求父親同意便擅自稱王的行動。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">大衛在位末年，約主前十世紀初</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">大衛與哈及所生的兒子，暗嫩、基利押、押沙龍死後排行居長的在世兒子</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">活動區域</span>
+        <div class="info-cell-value">耶路撒冷</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">父大衛、母哈及</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">列王紀上 1–2 章</div>
+      </div>
+    </div>
+
+    <p>亞多尼雅的處境，本身便帶著一種微妙的合理性：按照長子繼承的傳統慣例，隨著暗嫩、押沙龍等兄長相繼死去，他已是大衛在世兒子中排行最長的一位，某種程度上，他自認理應是王位最合乎邏輯的繼承人。然而經文清楚記載，神透過先知拿單，早已向拔示巴與大衛宣告，真正要繼承王位的，是拔示巴所生的所羅門——這使亞多尼雅的行動，從一開始便帶著與神既定心意背道而馳的性質。</p>
+    <p>他的行動極具野心與規模：他為自己預備車輛、馬兵，又派五十人在他前頭奔走，並聯合軍隊元帥約押與祭司亞比亞他一同支持他，在隱羅結旁宰殺牛羊、肥犢，請了王的眾子和所有作王臣僕的猶大人參加宴會，卻刻意不邀請先知拿單、祭司撒督、比拿雅、勇士，以及他的兄弟所羅門——這種精心策劃、卻又刻意排除異己的行動模式，顯示他清楚知道自己的計畫若被這些人知曉，必然遭到強烈反對。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從趁父親年邁病弱、私下自立為王的野心行動，到此後因一項看似無害的請求再度招致殺身之禍，亞多尼雅的故事，是一部關於「未經節制的野心，終將付上生命代價」的敘事。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">擅自尊大——「我必作王」</div>
+        <div class="timeline-body">亞多尼雅趁大衛年邁病重之際，為自己預備車輛馬兵，聯合約押與亞比亞他，在隱羅結宴請支持者，宣告自立為王，卻刻意不邀請拿單、撒督、比拿雅與所羅門。</div>
+        <div class="timeline-ref">列王紀上 1:5–10</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">陰謀揭露</span>
+        <div class="timeline-title">拿單與拔示巴聯手揭發——大衛立即行動</div>
+        <div class="timeline-body">先知拿單得知此事，指示拔示巴前去提醒大衛他先前立所羅門為王的應許，隨後拿單也進去印證；大衛立即下令膏立所羅門為王，昭告全城。</div>
+        <div class="timeline-ref">列王紀上 1:11–40</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">計畫落空</span>
+        <div class="timeline-title">宴會被打斷——眾人驚慌四散</div>
+        <div class="timeline-body">亞多尼雅與眾賓客宴會正歡時，聽見城中因所羅門受膏為王而發出的歡呼與號筒聲，約押聽見號聲便驚問何故，眾賓客隨即恐懼四散逃跑。</div>
+        <div class="timeline-ref">列王紀上 1:41–49</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">暫時赦免</span>
+        <div class="timeline-title">抓住祭壇的角——所羅門暫且饒他不死</div>
+        <div class="timeline-body">亞多尼雅懼怕所羅門，起來抓住祭壇的角尋求庇護；所羅門應允，只要他顯出自己是個忠義的人，就不會傷害他一根頭髮，若行惡必被治死，隨即打發他回家。</div>
+        <div class="timeline-ref">列王紀上 1:50–53</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">殺身終局</span>
+        <div class="timeline-title">求娶亞比煞——再度招致殺身之禍</div>
+        <div class="timeline-body">大衛死後，亞多尼雅透過拔示巴向所羅門求娶大衛的侍妾亞比煞為妻；所羅門認為這項請求形同再次覬覦王位，勃然大怒，下令將他處死。</div>
+        <div class="timeline-ref">列王紀上 2:13–25</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他自認理所當然的王位繼承權，最終在神既定的心意與弟弟所羅門的果斷行動面前，顯出徹底的落空——而他此後未能徹底放下的執念，更直接招致了自己的殺身之禍。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">長子的身份，理應賦予他繼承王位的正當性</div>
+          <div class="soul-body">他自認作為大衛在世兒子中排行最長者，繼承王位是理所當然的權利，卻未曾正視神已透過拿單清楚宣告所羅門才是蒙揀選的繼承人這一事實。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">外顯的能力</span>
+          <div class="soul-title">具備一定的組織動員與拉攏支持者的能力</div>
+          <div class="soul-body">他成功拉攏軍隊元帥約押與資深祭司亞比亞他的支持，並籌辦了一場規模不小的宴會，顯示他確實具備相當程度的政治操作與人脈經營能力。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">傾向速戰速決、先斬後奏的行動模式</div>
+          <div class="soul-body">他選擇在大衛尚未表態、局勢仍不明朗之際，便搶先採取行動、自立為王，而非耐心等候或正式徵詢父親的意願，這種急於搶佔先機的行事風格，貫穿他整個故事。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">自幼缺乏管教，養成毫無節制的自我抬舉傾向</div>
+          <div class="soul-body">經文特別記載大衛「素來沒有使他憂悶」，這種毫無約束的成長環境，某種程度上助長了他此後未經徵求同意便擅自行動的傲慢與衝動。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">致命的盲點</span>
+          <div class="soul-title">在明顯的警訊之後，仍未能徹底放下對王位的執念</div>
+          <div class="soul-body">即便在自立為王的計畫徹底落空、並蒙所羅門暫時赦免之後，他仍透過求娶亞比煞這個帶有政治意涵的請求，再度觸碰所羅門的底線，顯示他始終未能真正認清並接受局勢已定的事實。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">亞多尼雅的故事，是聖經中「未經節制的野心，如何在一次次警訊之後仍不知收手，最終招致徹底毀滅」的深刻案例。他的第一次行動——擅自稱王——某種程度上還能被理解為對長子繼承傳統的一種（錯誤的）堅持與自信；然而在計畫徹底落空、且蒙所羅門格外開恩饒他一命之後，他理應徹底放下對王位的一切念想，安分度日。然而他此後求娶大衛侍妾亞比煞的舉動，在古代近東的政治文化中，帶有極其明確的政治意涵——迎娶前王的妃嬪，往往被視為宣示王位繼承正當性的一種手段（如押沙龍公開與大衛妃嬪同寢的行動）。這顯示他即便在最明顯的警訊與寬容之後，內心深處仍未真正放下對王位的執念，這種執迷不悟，最終將他推向了徹底的毀滅。他的故事深刻提醒我們，一次失敗的野心行動或許能被原諒，但若不能真正從根本上悔改、放下錯誤的執念，類似的悲劇很可能會以更嚴重的形式再次上演。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ESTP</span>
+      <div class="mbti-name">企業家型 · 搶先稱王卻執迷不悟的王子</div>
+      <div class="mbti-slogan">「他趁父親年邁搶先自立為王，計畫落空又蒙赦免後，卻仍未能徹底放下對王位的執念，最終因此招致殺身之禍。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Se · 外向感官</span>
+          <div class="mbti-fn-body">他敏銳察覺大衛年邁病重、王位繼承懸而未決的時機，迅速採取具體行動——籌備車馬儀仗、聯合支持者、公開設宴宣告——這種對當下時機的高度敏感與立即付諸行動的反應模式，是主導外向感官最鮮明的展現。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Ti · 內向思考</span>
+          <div class="mbti-fn-body">他精心策劃了整場自立為王的行動，包括刻意排除可能反對的關鍵人物，顯示出一定程度的邏輯規劃與風險評估能力，只是這份能力的方向從一開始便偏離了正確的道路。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Fe · 外向情感</span>
+          <div class="mbti-fn-body">他成功拉攏約押與亞比亞他等具有影響力的人物加入自己的陣營，顯示出一定的人際關係經營與號召能力，能夠說服他人與自己站在同一陣線。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">他未能從第一次計畫落空與蒙赦免的經歷中，深刻反思並徹底調整自己的長遠處境認知，反而再度做出觸碰所羅門底線的舉動，這種對深層局勢與長遠後果洞察力的嚴重不足，正是劣勢內向直覺的具體展現。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生的命運，被三重關係所牽動——毫無管教的父親、蒙神揀選的弟弟，以及那位果斷向父親揭露他野心的先知。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">大</div>
+          <div class="relation-name">大衛</div>
+          <div class="relation-type-badge">從未管教過他、卻在關鍵時刻果斷立所羅門為王的父親</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">大衛素來沒有管教約束亞多尼雅，這種放任某種程度上助長了他此後擅自稱王的行動；然而當大衛得知此事，仍立即果斷地依照先前的應許，膏立所羅門為王，粉碎了亞多尼雅的圖謀。</div>
+          <div class="relation-ref">列王紀上 1:6, 28–40</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">所</div>
+          <div class="relation-name">所羅門</div>
+          <div class="relation-type-badge">蒙神揀選繼位、也是最終下令處死他的弟弟</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">所羅門是神透過拿單所宣告、真正蒙揀選繼承王位的兒子；他起初饒恕了亞多尼雅擅自稱王的行動，卻在亞多尼雅此後求娶亞比煞時，認定這是再度覬覦王位的舉動，下令將他處死。</div>
+          <div class="relation-ref">列王紀上 1:29–30 · 2:22–25</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">拿</div>
+          <div class="relation-name">拿單</div>
+          <div class="relation-type-badge">揭發他陰謀、促成所羅門即位的先知</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">先知拿單得知亞多尼雅擅自稱王的消息後，主動指示拔示巴前去提醒大衛先前的應許，並親自進宮印證此事，成為粉碎亞多尼雅圖謀最關鍵的推手。</div>
+          <div class="relation-ref">列王紀上 1:11–27</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「我父所立的王是誰呢？」——所羅門這句反問，道出了亞多尼雅始終未能真正接受、神已透過先知清楚宣告之王位歸屬的根本問題。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「所羅門王起誓說：我若不使亞多尼雅喪命，願神重重地降罰與我。」</div>
+      <div class="verse-ref">列王紀上 2:23</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">מִתְנַשֵּׂא</span>
+        <div class="word-transliteration">mitnasse · 擅自尊大 / 自高 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">這個反身語態的動詞，形容一種主動、自發地將自己抬舉到某個地位的行動，經文用這個字精準地描述亞多尼雅自立為王的舉動——並非受人擁立，而是他自己主動抬舉自己。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這個用詞的選擇，清楚指出亞多尼雅的問題核心，不在於他是否具備王位候選人的資格，而在於他選擇了「自己抬舉自己」，而非等候並順服神透過先知所宣告的既定心意，這種自我抬舉的行動模式，正是他此後一連串悲劇的根源。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">神揀選的心意，不因人的長幼順序或自我認定而改變</div>
+      <div class="theology-insight-body">亞多尼雅自認長子身份理應繼承王位，神卻早已透過拿單宣告所羅門才是蒙揀選者——這提醒我們，神的揀選與計畫，不受限於人間慣例或個人的自我認定，順服神既定的心意，遠比堅持自己認為理所當然的權利更加重要。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">寬容之後仍不知悔改，終將招致更嚴重的後果</div>
+      <div class="theology-insight-body">所羅門起初饒恕了亞多尼雅擅自稱王的行動，然而他此後未能真正悔改、放下對王位的執念，最終招致殺身之禍——這提醒我們，蒙受寬容與恩典之後，若不能真正悔改回轉，類似的悲劇往往會以更嚴重的形式重演。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">未經節制的野心，最終反噬自身</div>
+      <div class="theology-insight-body">亞多尼雅一連串的行動，始終圍繞著對王位的渴求展開，這種未經節制、也不願順服神既定心意的野心，最終不僅未能使他得著所渴望的王位，反而徹底奪走了他的性命。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">亞多尼雅自認長子身份理應繼承王位，未經神的揀選與差遣便擅自抬舉自己為王，最終在神所揀選的所羅門面前徹底落空並招致滅亡</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">他的故事與此後聖經中反覆出現「人的自我抬舉終必在神所揀選、差遣的對象面前顯出徒然」這一敘事模式相互呼應，提醒讀者真正的權柄與地位，唯有出於神的揀選與差遣才能真正堅立</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">唯有基督是神所親自揀選、膏立、賜下一切權柄的君王，凡不是出於神的揀選、卻試圖僭越自我抬舉為王者，終將在祂真正的權柄面前顯出虛空，唯有謙卑順服神所命定之計畫的人，才能承受祂永遠的國度（腓 2:9–11 · 詩 2:1–6）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正認為某個位置、機會或榮耀理所當然屬於你——這一頁想問你：你是否曾停下來，確認這真的是神為你預備的道路？</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">亞多尼雅的故事命中每一個因為自己的年資、身份或既有的優勢地位，而認定某個位置或機會理所當然屬於自己、進而未經確認便貿然搶先行動的人。他的悲劇提醒我們，即便某件事在人的邏輯或慣例中看似理所當然，仍需要謙卑地確認這是否真正是神的心意，而非單憑自己的假設便貿然行動。他此後未能真正放下執念、最終招致殺身之禍的結局，更提醒我們，蒙受一次寬容與恩典之後，若不能真正悔改回轉、放下錯誤的執念，往往會為自己招來更嚴重的後果。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你是否也曾因為自己的資歷、身份或某種『理所當然』的邏輯，而在未經確認神心意的情況下，貿然搶先採取行動？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">亞多尼雅蒙所羅門饒恕後，仍未能真正放下對王位的執念。你生命中是否也有某個『已經放下卻其實還沒真正放下』的執念，正悄悄影響你的判斷？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">大衛從未管教亞多尼雅，這種放任某種程度上助長了他此後的悲劇。你在教養或帶領他人時，是否也需要重新思考『適度管教』的重要性？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">所羅門果斷處理了這場王位之爭。你面對可能威脅到你所領受之呼召或位分的挑戰時，是否也能像所羅門一樣，既有恩典的空間，也有堅定的底線？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 亞多尼雅</span>
+        <div class="gen-title">警示劇本：未經神的揀選便自我抬舉，且在蒙寬容後仍不知悔改</div>
+        <div class="gen-body">他趁大衛年邁搶先自立為王，計畫落空後蒙所羅門饒恕，卻仍未能徹底放下對王位的執念，此後因求娶亞比煞再度觸碰底線，最終被所羅門下令處死。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 所羅門</span>
+        <div class="gen-title">延續：神揀選的心意，最終在所羅門身上完全成就</div>
+        <div class="gen-body">神透過先知拿單所宣告、要賜給所羅門的王位應許，儘管一度面臨亞多尼雅的挑戰，最終仍完全按著神的心意成就，所羅門穩固地承接了大衛的王位，並此後建成聖殿，成就了神向大衛所立的應許。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在亞多尼雅的故事中，最初以所羅門格外的寬容顯明——即便亞多尼雅犯下擅自稱王的重罪，所羅門仍給予他悔改與安分度日的機會。這提醒我們，神與神所膏立的掌權者，總是願意給予悖逆者悔改的空間；然而恩典若被辜負、被視為理所當然，終將面臨公義的審判。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位趁父親年邁搶先稱王、卻在蒙赦免後仍不知收手的王子，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#理所當然未必是神的心意</span>
+      <span class="tag">#蒙寬容後要真正放下</span>
+      <span class="tag">#野心需要被節制</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>亞多尼雅的邏輯其實不難理解：爸爸年紀大了，前面幾個哥哥都死了，論資排輩，現在輪到我了。於是他自己搞了一場儀式，弄了車馬儀仗，找了軍隊和祭司的支持，直接宣布：我要當王了。</p>
+      <p>問題是，神早就透過先知拿單告訴大衛，真正要繼承王位的是所羅門。亞多尼雅的『理所當然』，從一開始就跟神的安排對不上。</p>
+      <p>他還很聰明地避開了幾個關鍵人物——先知拿單、祭司撒督、還有所羅門本人，都沒被邀請參加他的加冕宴會。這說明他心裡很清楚，這件事如果讓對的人知道，一定會被攔下來。</p>
+      <p>結果宴會辦到一半，城裡傳來號角聲和歡呼——所羅門已經被正式膏立為王了。整場宴會瞬間崩潰，賓客一哄而散，亞多尼雅嚇得跑去抓住祭壇的角求饒。所羅門大方地放過了他，只說：只要你安分守己，就沒事。</p>
+      <p>照理說，這應該是個學到教訓、重新做人的機會。結果亞多尼雅過沒多久，又去要求娶大衛留下的一位妃子——這個動作在當時等於是在宣告『我還有資格當王』。所羅門這次沒再手軟，直接下令處死了他。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——亞多尼雅這塊石頭，被雕刻出的形狀，是一句直白的教訓：『蒙了一次寬容，如果沒有真正放下，代價只會更重』。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你正覺得某個位置或機會『理所當然』屬於你，亞多尼雅的故事想提醒你：先確認這是不是真的是神的安排，而不是自己的假設。</p>
+      <p style="margin-top:12px;">如果你曾經因為某個錯誤蒙了恩典、被原諒過一次，記得：那不是『可以再犯一次』的許可證。</p>
+      <p style="margin-top:12px;">野心不是壞事，但沒有節制的野心，就像亞多尼雅一樣，最後往往會反過來吞掉自己。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，誠實檢視一個你覺得『理所當然屬於我』的位置或機會——花點時間，確認這是否真的是神為你預備的。</p>
+    </div>
+
+    <div class="insight-box">亞多尼雅企圖搶先稱王的故事，在探討王位繼承正當性與宮廷政治的歷史與文學研究中，經常被引用作為古代近東王權交接時期典型權力鬥爭模式的案例——他刻意排除關鍵反對者、藉宴會宣告即位的手法，與同一時期眾多古代近東王室政變的歷史記載有著高度相似的行動模式。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他趁父親年邁搶先自立為王，計畫落空後蒙寬容卻仍不知悔改，最終因執迷不悟而付上了生命的代價。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">「自我抬舉終必落空」的警世典型</div>
+          <div class="legacy-body">他未經神的揀選便擅自稱王的行動，成為聖經中警戒世人不可自我抬舉、僭越神所命定之揀選與差遣最鮮明的案例。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">「蒙寬容後仍需真正悔改」的重要提醒</div>
+          <div class="legacy-body">他在蒙所羅門饒恕後仍未能徹底放下對王位的執念，最終招致殺身之禍，深刻提醒後世恩典若被辜負，終將面臨更嚴重的後果。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">所羅門王位穩固歷程的重要對照人物</div>
+          <div class="legacy-body">他的挑戰與失敗，成為凸顯所羅門王位真正出於神揀選、且此後得以穩固建立的重要敘事對照，深化了列王紀開篇王位交接歷史的戲劇張力。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">古代近東宮廷政治的典型案例</div>
+          <div class="legacy-body">他搶先稱王、刻意排除異己的行動模式，成為古代近東王權交接時期宮廷政治鬥爭研究中經常被引用的重要歷史案例。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「於是王差遣耶何耶大的兒子比拿雅去，將亞多尼雅殺死。」</div>
+      <div class="final-verse-ref">列王紀上 2:25</div>
+    </div>
+
+    <div class="final-question">如果你此刻正緊抓著某個你認為『理所當然屬於自己』的位置或渴望，你願不願意像所羅門所期待的那樣，真正安分而謙卑地順服神所命定的道路？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 亞多尼雅 <span>אֲדֹנִיָּה</span> · 大衛之子 · 企圖搶先稱王的王子</div>
+
+<!-- 閱讀紀錄（localStorage，見 progress.js）：右下角標記已讀按鈕 -->
+<script src="progress.js"></script>
+
+</body>
+</html>

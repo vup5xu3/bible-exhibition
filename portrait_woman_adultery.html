@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>行淫時被拿的婦人 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">行淫時被拿的婦人</h1>
+  <span class="hero-name-en">Woman Caught in Adultery · γυνὴ ἐπὶ μοιχείᾳ κατειλημμένη</span>
+  <p class="hero-slogan">「耶穌對她說：<br>「婦人，那些人在哪裡呢？沒有人定你的罪嗎？」……<br>「我也不定你的罪。去吧，從此不要再犯罪了！」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">耶穌傳道後期，約主後30年</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ISFP · 探險家型（藝術家型）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">約翰福音 8:1–11</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">被文士法利賽人利用作為試探耶穌工具的婦人</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">她被帶到耶穌面前的方式，本身就充滿了羞辱與不公——文士和法利賽人真正在意的，從來不是她的罪，而是想藉著她的處境，設下一個能夠定耶穌罪的圈套。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">耶穌傳道後期，約主後30年</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">被指控行淫時被拿的婦人，身份與姓名經文未載</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">活動區域</span>
+        <div class="info-cell-value">耶路撒冷聖殿</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">經文未載</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">約翰福音 8:1–11</div>
+      </div>
+    </div>
+
+    <p>這段經文的場景，發生在耶穌清晨來到聖殿教導眾人之際，文士和法利賽人「帶著一個行淫時被拿的婦人來，叫她站在當中」——經文用詞極其直接，她是「正行淫時被拿」的，這意味著她被抓的過程本身，可能就帶著某種刻意的安排或監視。更值得注意的是，摩西律法中關於行淫之罪的懲處，理當同時涉及姦夫與淫婦二人（利未記二十10），然而在這場公開的指控中，只有她一人被帶出來示眾，那位與她同罪的男子卻始終未被提及，這種選擇性的執法，本身便暗示了整起事件背後另有目的。</p>
+    <p>文士和法利賽人向耶穌陳明：「摩西在律法上吩咐我們，把這樣的婦人用石頭打死。你說該把她怎麼樣呢？」約翰福音明確指出他們此舉的真正動機：「他們說這話，乃試探耶穌，要得著告他的把柄。」若耶穌回答應當按律法用石頭打死她，便可能觸犯羅馬帝國禁止猶太人擅自行刑的法律；若耶穌回答不應處死她，則可被控告違背摩西律法——這位婦人的處境，就這樣被淪為文士法利賽人手中，用來陷害耶穌的一枚棋子。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從被公開帶到耶穌面前、面臨石刑的死亡威脅，到獨自站在耶穌面前聽見「我也不定你的罪」，這位婦人的故事，是一部關於「恩典如何在最公開的羞辱中悄然臨到」的敘事。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">公開羞辱</span>
+        <div class="timeline-title">被帶到眾人面前——「叫她站在當中」</div>
+        <div class="timeline-body">文士和法利賽人把一個行淫時被拿的婦人帶到耶穌面前，叫她公開站在眾人當中，準備藉此試探耶穌，要得著控告祂的把柄。</div>
+        <div class="timeline-ref">約翰福音 8:2–4</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">兩難試探</span>
+        <div class="timeline-title">「摩西吩咐把這樣的婦人用石頭打死」</div>
+        <div class="timeline-body">文士法利賽人向耶穌陳明摩西律法的吩咐，逼問祂該如何處置這位婦人，企圖無論耶穌如何回答，都能藉此找到控告祂的理由。</div>
+        <div class="timeline-ref">約翰福音 8:5–6</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">耶穌彎腰寫字——「誰是沒有罪的，誰就先拿石頭打她」</div>
+        <div class="timeline-body">耶穌起初不理會他們，只是彎著腰用指頭在地上寫字；面對眾人繼續逼問，祂直起腰來說：「你們中間誰是沒有罪的，誰就可以先拿石頭打她」，隨後又彎腰繼續寫字。</div>
+        <div class="timeline-ref">約翰福音 8:6–8</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">眾人退去</span>
+        <div class="timeline-title">從老到少一一離去——「只剩下耶穌一人」</div>
+        <div class="timeline-body">眾人聽見這話，就從老到少一個一個地都出去了，最終只剩下耶穌一人，那婦人仍站在當中。</div>
+        <div class="timeline-ref">約翰福音 8:9</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">恩典終局</span>
+        <div class="timeline-title">「我也不定你的罪」——去吧，不要再犯罪了</div>
+        <div class="timeline-body">耶穌直起腰來，問婦人那些指控她的人在哪裡、沒有人定她的罪嗎；婦人回答沒有人，耶穌便對她說：「我也不定你的罪。去吧，從此不要再犯罪了！」</div>
+        <div class="timeline-ref">約翰福音 8:10–11</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">她在整段敘事中幾乎沒有主動的言語或行動，卻在耶穌一句「我也不定你的罪」中，經歷了從公開示眾、面臨死刑，到全然赦免、重獲新生的巨大翻轉。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">所處境遇</span>
+          <div class="soul-title">被公開羞辱、淪為他人陷害計謀的工具</div>
+          <div class="soul-body">她被帶到眾人面前站在當中，這種公開示眾的方式本身便帶著極大的羞辱，而她真正的處境——無論罪責輕重——完全被文士法利賽人用作陷害耶穌的工具，她自己的尊嚴與感受，在這場算計中幾乎不被考慮。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">沉默的等候</span>
+          <div class="soul-title">在生死交關之際，僅能沉默地等候他人的判決</div>
+          <div class="soul-body">從被帶到眾人面前，到眾人一一離去，整段過程她幾乎沒有一句台詞——她的命運完全懸繫在耶穌接下來要說的話語之上，這種在極度脆弱處境中的沉默等候，格外令人心疼。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">唯一的回應</span>
+          <div class="soul-title">誠實地回答耶穌的問題——「沒有」</div>
+          <div class="soul-body">當耶穌問她是否還有人定她的罪時，她只誠實地回答「沒有，主啊」，這句簡短的回應，是她在整段敘事中唯一一次主動的言語，卻恰恰是承接恩典最關鍵的一刻。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">真實的處境</span>
+          <div class="soul-title">經文並未否認她確實犯了罪</div>
+          <div class="soul-body">耶穌雖然沒有定她的罪，卻也明確吩咐她「從此不要再犯罪了」——這顯示耶穌的赦免，並非否認她行為的過犯，而是在承認罪責的同時，仍然選擇賜下憐憫與新生的機會。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">恩典的具體臨到</span>
+          <div class="soul-title">她成為耶穌「我也不定你的罪」這句宣告的直接領受者</div>
+          <div class="soul-body">在整本福音書中，耶穌親口對一個人說出如此清晰而具體的赦免宣告的場景並不多見，這使她的故事，成為理解耶穌恩典與憐憫最直接、也最動人的敘事範例之一。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">這位婦人的故事，是新約中「恩典如何在最公開的羞辱與定罪威脅中悄然臨到」最深刻的敘事範例。她被帶到眾人面前的方式，充滿了不公——律法本要求姦夫淫婦一同受審，她卻獨自一人承受公開的羞辱；而更諷刺的是，那些高舉律法、要用石頭打她的人，真正的目的並非執行公義，而是要利用她的處境來陷害耶穌。耶穌的回應，展現出令人驚嘆的智慧與憐憫：祂沒有否認律法的要求，也沒有直接赦免她的罪責，而是將審判的鏡子轉向那些自認義人的控告者——「你們中間誰是沒有罪的，誰就可以先拿石頭打她」。這句話，讓每一位在場的控告者，都必須誠實面對自己內心深處的罪，最終「從老到少」一一離去，暗示著年紀越長的人，越清楚自己同樣不配站在審判者的位置上。而耶穌對這位婦人最終所說的話——「我也不定你的罪。去吧，從此不要再犯罪了」——精準地平衡了恩典與真理：祂沒有輕看她的罪，卻也沒有讓法利賽人式的定罪羞辱成為她此後生命的終局。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ISFP</span>
+      <div class="mbti-name">探險家型（藝術家型） · 在公開羞辱中領受恩典的婦人</div>
+      <div class="mbti-slogan">「她被帶到眾人面前、面臨石刑的死亡威脅，卻在耶穌一句「我也不定你的罪」中，經歷了徹底的赦免與新生。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">她在生死交關的極度脆弱處境中，仍能誠實而真實地回應耶穌的提問，這種即便在最艱難的處境中仍保持真誠的內在特質，反映出主導內向情感的核心，儘管經文對她的著墨十分有限。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Se · 外向感官</span>
+          <div class="mbti-fn-body">她清楚意識到眼前具體的處境——控告她的人是否還在場、耶穌的回應是什麼——並據此做出即時而準確的回應，顯示出對當下具體情境的敏銳覺察。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">經文未直接記載她對這場經歷背後深層意義的反思，此項功能的推論極為有限，僅能就她此後領受「不要再犯罪」這句囑咐、可能開啟生命更新道路的整體處境進行極保守的推測。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">她在整段敘事中完全沒有機會主導或掌控事件的發展，一切決定權都掌握在控告者與耶穌手中，這種對外在局勢缺乏主導能力的處境，反映出劣勢外向思考的特徵，然而此處材料同樣受限於敘事本身的沉默。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">她生命中最深刻的相遇，是與那位本可以按律法定她死罪、卻選擇賜下赦免與新生機會的耶穌。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">耶</div>
+          <div class="relation-name">耶穌</div>
+          <div class="relation-type-badge">拒絕定她的罪、賜她赦免與新生機會的主</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">耶穌以智慧化解了文士法利賽人企圖藉她陷害自己的圈套，並在眾人離去後，親口對她說出「我也不定你的罪」這句清晰而具體的赦免宣告，同時囑咐她從此不要再犯罪。</div>
+          <div class="relation-ref">約翰福音 8:7–11</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">文</div>
+          <div class="relation-name">文士和法利賽人</div>
+          <div class="relation-type-badge">把她當作陷害耶穌之工具的控告者</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">文士和法利賽人把她帶到耶穌面前，表面上引用摩西律法要求用石頭打死她，實則是要藉此試探耶穌、尋找控告祂的把柄；耶穌一句話使他們從老到少一一羞愧離去。</div>
+          <div class="relation-ref">約翰福音 8:3–9</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「我也不定你的罪。去吧，從此不要再犯罪了」——耶穌這句話，精準地平衡了恩典與真理，成為新約中理解基督如何處理罪與赦免最動人的示範。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「耶穌對她說：我也不定你的罪。去吧，從此不要再犯罪了！」</div>
+      <div class="verse-ref">約翰福音 8:11</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">κατακρίνω</span>
+        <div class="word-transliteration">katakrino · 定罪 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">指法庭上正式宣告有罪、判處刑罰的行動，耶穌用這個字明確宣告祂不對這位婦人做出定罪的判決，即便她的罪行本身確實存在。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這個字的選用，清楚區分了「赦免罪責的懲罰」與「否認罪的存在」二者的不同——耶穌並未說她沒有犯罪，而是選擇不施加律法所要求的刑罰，這種恩典的宣告，此後也呼應了羅馬書中「如今那些在基督耶穌裡的，就不定罪了」這一核心的因信稱義教義。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">審判他人之前，先誠實面對自己的罪</div>
+      <div class="theology-insight-body">耶穌那句「你們中間誰是沒有罪的，誰就可以先拿石頭打她」，成為聖經中最有力地提醒世人不可輕易論斷他人、卻忽視自己同樣需要恩典的經文之一，深刻挑戰一切自以為義的定罪心態。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">恩典與真理並存，缺一不可</div>
+      <div class="theology-insight-body">耶穌既不輕看她的罪（吩咐她不要再犯罪），也不施加法利賽人所要求的定罪懲罰（宣告不定她的罪）——這種恩典與真理並存而不偏廢的處理方式，成為新約中理解基督位格與救贖工作核心特質最重要的敘事範例之一。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">恩典的臨到，往往伴隨著悔改的呼召</div>
+      <div class="theology-insight-body">耶穌的赦免並非沒有附帶的期待——「從此不要再犯罪了」——這提醒我們，真正的恩典從不縱容罪繼續發生，而是賜下力量與機會，使人得以在赦免中邁向真實的生命更新。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">這位婦人在文士法利賽人企圖藉她定耶穌罪的陷害計謀中，本應按律法被石頭打死，卻因耶穌一句智慧的回應，使控告者一一退去，自己也蒙耶穌親口宣告赦免</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這場「本該被定罪的人，因中保者智慧的介入而得蒙赦免」的場景，深刻預表了此後基督在十字架上，親自承擔世人罪責、使凡因信靠祂的人得以脫離律法定罪之刑罰的救贖工作</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">基督親自成為信靠祂之人與神公義審判之間的中保，使一切本該被定罪的罪人，因祂在十字架上所成就的救贖，得以像這位婦人一樣，聽見「不定你的罪」這句永遠有效的赦免宣告（羅 8:1 · 提前 2:5）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正被自己的過犯所定罪、甚至被他人拿著放大鏡檢視——這一頁想讓你聽見，耶穌同樣願意對你說：我也不定你的罪。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">這位婦人的故事命中每一個曾因自己的過犯而深感羞愧、甚至被他人公開指責論斷的人。她的經歷提醒我們，耶穌的恩典，不是對罪視而不見，而是在誠實面對罪的同時，仍然選擇賜下赦免與重新開始的機會。她的故事同時也提醒每一位習慣論斷他人的人——在我們急於拿起石頭指責別人之前，是否也願意先誠實面對自己內心深處同樣需要恩典的罪。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你是否也曾像這位婦人一樣，因自己的過犯而感到深深的羞愧，甚至覺得自己不配得到任何憐憫？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">耶穌那句『誰是沒有罪的，誰就可以先拿石頭打她』如何挑戰你論斷他人時的態度？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">耶穌的赦免伴隨著『不要再犯罪』的囑咐。你是否也曾誤以為恩典等於對罪的縱容，還是明白恩典同時呼召我們邁向真實的生命更新？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">文士法利賽人把這位婦人當作陷害耶穌的工具，完全不顧她的尊嚴。你是否曾見過（或自己曾參與）把他人的困境當作達成自己目的之工具的情況？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 行淫時被拿的婦人</span>
+        <div class="gen-title">示範劇本：在最深的羞愧與定罪威脅中，誠實領受耶穌的恩典</div>
+        <div class="gen-body">她被文士法利賽人公開帶到耶穌面前、面臨石刑的死亡威脅，卻在耶穌智慧的回應與控告者的退去之後，親耳聽見「我也不定你的罪」，重新獲得生命的機會。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 歷代領受赦免的信徒</span>
+        <div class="gen-title">延續：她的故事，成為歷代罪人領受基督赦免的重要典範</div>
+        <div class="gen-body">她所領受的赦免宣告——「我也不定你的罪」——此後持續迴響在教會歷史中，成為無數信徒理解基督恩典如何具體臨到每一個誠實面對自己過犯之人生命中最重要的敘事範本。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在這段敘事中，以最直接、最具體的方式顯明——耶穌沒有否認她的罪，卻也拒絕讓她在公眾的羞辱與定罪中喪命，祂親口宣告赦免，並賜下重新開始的機會。這提醒我們，真正的恩典，從不是對罪的縱容，而是在誠實面對罪的同時，仍然選擇賜下憐憫、赦免與生命更新的可能。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位在公開羞辱與死刑威脅中、卻聽見『我也不定你的罪』的婦人，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#恩典不等於縱容罪</span>
+      <span class="tag">#審判別人之前先看自己</span>
+      <span class="tag">#赦免帶來新生的機會</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>這位婦人被抓的方式其實很有問題——按規定，通姦這種事應該是兩個人一起被抓、一起受審，結果現場只有她一個人，那個男的完全沒被提到。這已經說明，整件事的重點根本不是『執行公義』。</p>
+      <p>文士和法利賽人把她拖到耶穌面前，說：『按摩西律法，這種女人該用石頭打死，你怎麼說？』這是個精心設計的陷阱——耶穌說『打死她』，就違反了羅馬法律；說『別打』，就違反了摩西律法。不管怎麼回答，都能被抓把柄。</p>
+      <p>耶穌的反應很出人意料：祂沒有直接回答，只是蹲下來，用手指在地上寫字。眾人繼續逼問，祂才慢慢站起來，說了一句話：『你們當中誰沒有犯過罪，誰就可以先拿石頭打她。』說完又蹲下去繼續寫字。</p>
+      <p>接下來的畫面很安靜也很震撼：一個一個人開始離開，從年紀最大的先走。也許年紀越大，越清楚自己這輩子做過多少見不得人的事。最後，現場只剩下耶穌和這位婦人。</p>
+      <p>耶穌抬起頭問她：『那些指控你的人呢？沒有人定你的罪嗎？』她說：『沒有，主啊。』耶穌說：『我也不定你的罪。去吧，別再犯罪了。』——這句話，既沒有假裝她沒犯錯，也沒有把她釘死在過去的錯誤裡。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——這位沒有留下名字的婦人，被雕刻出的形狀，是一句至今仍在迴響的宣告：『我也不定你的罪』。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你正因為某個過犯而深深自責，覺得自己不配被原諒，這句『我也不定你的罪』，同樣是對你說的。</p>
+      <p style="margin-top:12px;">下次想拿起『石頭』論斷別人之前，先問問自己：我真的『沒有罪』嗎？</p>
+      <p style="margin-top:12px;">恩典不是叫你繼續犯錯，是給你一個『從此』重新開始的機會——這兩件事，缺一不可。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，把一個你一直用來論斷別人的『石頭』放下，也把一個你一直用來論斷自己的『石頭』放下。</p>
+    </div>
+
+    <div class="insight-box">這段經文（約翰福音 7:53–8:11）在古卷傳統中的位置與真實性，一直是新約文本鑑別學界持續討論的議題——多數古老抄本並未收錄這段經文，或將其置於不同位置，然而這段記載因其深刻展現耶穌恩典與智慧的敘事張力，長久以來仍被教會傳統廣泛接納並珍視，「我也不定你的罪」這句話，也成為基督教文化中家喻戶曉、經常被引用的恩典宣告。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">她被文士法利賽人當作陷害耶穌的工具帶到眾人面前，卻意外地成為新約中領受基督恩典宣告最直接、也最動人的見證者。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">「我也不定你的罪」——恩典宣告的經典典範</div>
+          <div class="legacy-body">耶穌對她所說的這句話，成為基督教文化中最廣為人知、最常被引用的恩典宣告之一，深刻塑造了教會對赦免與憐憫的理解。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">「先審視自己再論斷他人」的重要提醒</div>
+          <div class="legacy-body">耶穌那句「誰是沒有罪的，誰就可以先拿石頭打她」，持續成為聖經中警戒世人不可輕易論斷他人、卻忽視自身同樣需要恩典的核心教導。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">恩典與真理並存的神學典範</div>
+          <div class="legacy-body">耶穌既不輕看她的罪、也不施加定罪的刑罰的處理方式，成為新約中理解恩典與真理如何並存而不偏廢最重要的敘事範例之一。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">羅馬書因信稱義教義的敘事印證</div>
+          <div class="legacy-body">耶穌對她「不定罪」的宣告，成為此後保羅在羅馬書中闡述「在基督耶穌裡就不定罪了」這一核心因信稱義教義最生動具體的敘事印證。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「耶穌對她說：我也不定你的罪。去吧，從此不要再犯罪了！」</div>
+      <div class="final-verse-ref">約翰福音 8:11</div>
+    </div>
+
+    <div class="final-question">如果耶穌此刻也對你說「我也不定你的罪」，你願不願意帶著這份赦免，真正邁向祂所呼召的「從此不要再犯罪」的新生命？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 行淫時被拿的婦人 <span>γυνὴ ἐπὶ μοιχείᾳ κατειλημμένη</span> · 被文士法利賽人帶到耶穌面前的婦人</div>
+
+<!-- 閱讀紀錄（localStorage，見 progress.js）：右下角標記已讀按鈕 -->
+<script src="progress.js"></script>
+
+</body>
+</html>

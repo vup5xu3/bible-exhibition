@@ -165,6 +165,27 @@ window.BIBLE_CHARACTERS = [
     "sort_order": 8
   },
   {
+    "id": "ishmael",
+    "name": "以實瑪利",
+    "epithet": null,
+    "name_en": "Ishmael",
+    "avatar": "以",
+    "description": "他是亞伯拉罕出於人的方法、透過使女夏甲所生的長子，卻不是神應許中要承接約的那一位——當撒拉最終生下以撒後，他與母親被逐出家門，在曠野瀕臨渴死之際，神卻親自向夏甲顯現，應許必使這孩子成為大國",
+    "mbti": "ESTP",
+    "file_name": "portrait_ishmael.html",
+    "categories": [
+      "ot",
+      "genealogy"
+    ],
+    "tags": [
+      "應許之外仍蒙眷顧的孩子",
+      "神聽見了苦情"
+    ],
+    "tier": "common",
+    "book": "genesis",
+    "sort_order": 9
+  },
+  {
     "id": "isaac",
     "name": "以撒",
     "epithet": null,
@@ -183,7 +204,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "major",
     "book": "genesis",
-    "sort_order": 9
+    "sort_order": 10
   },
   {
     "id": "rebekah",
@@ -203,7 +224,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "major",
     "book": "genesis",
-    "sort_order": 10
+    "sort_order": 11
   },
   {
     "id": "esau",
@@ -223,7 +244,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "genesis",
-    "sort_order": 11
+    "sort_order": 12
   },
   {
     "id": "jacob",
@@ -244,7 +265,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "major",
     "book": "genesis",
-    "sort_order": 12
+    "sort_order": 13
   },
   {
     "id": "leah",
@@ -266,7 +287,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "genesis",
-    "sort_order": 13
+    "sort_order": 14
   },
   {
     "id": "rachel",
@@ -287,7 +308,27 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "genesis",
-    "sort_order": 14
+    "sort_order": 15
+  },
+  {
+    "id": "dinah",
+    "name": "底拿",
+    "epithet": null,
+    "name_en": "Dinah",
+    "avatar": "底",
+    "description": "她出去查看當地的女子，卻被示劍城主的兒子看見、玷污了她——她的哥哥西緬和利未假意答應和親的條件，誘使示劍全城男丁受割禮，趁他們傷痛未癒之際，血洗全城為妹妹復仇，這場報復也招致父親雅各終生的責備",
+    "mbti": "ISFP",
+    "file_name": "portrait_dinah.html",
+    "categories": [
+      "ot"
+    ],
+    "tags": [
+      "一次出遊招來的家族血案",
+      "沉默的受害者"
+    ],
+    "tier": "common",
+    "book": "genesis",
+    "sort_order": 16
   },
   {
     "id": "reuben",
@@ -307,7 +348,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "genesis",
-    "sort_order": 15
+    "sort_order": 17
   },
   {
     "id": "judah",
@@ -328,7 +369,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "major",
     "book": "genesis",
-    "sort_order": 16
+    "sort_order": 18
   },
   {
     "id": "tamar_judah",
@@ -348,7 +389,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "major",
     "book": "genesis",
-    "sort_order": 17
+    "sort_order": 19
   },
   {
     "id": "perez",
@@ -369,7 +410,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "normal",
     "book": "genesis",
-    "sort_order": 18
+    "sort_order": 20
   },
   {
     "id": "zerah",
@@ -390,7 +431,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "normal",
     "book": "genesis",
-    "sort_order": 19
+    "sort_order": 21
   },
   {
     "id": "hezron",
@@ -411,7 +452,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "normal",
     "book": "genesis",
-    "sort_order": 20
+    "sort_order": 22
   },
   {
     "id": "joseph_patriarch",
@@ -431,7 +472,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "major",
     "book": "genesis",
-    "sort_order": 21
+    "sort_order": 23
   },
   {
     "id": "benjamin",
@@ -451,7 +492,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "genesis",
-    "sort_order": 22
+    "sort_order": 24
   },
   {
     "id": "job",
@@ -471,7 +512,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "major",
     "book": "job",
-    "sort_order": 23
+    "sort_order": 25
   },
   {
     "id": "moses",
@@ -491,7 +532,27 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "major",
     "book": "exodus",
-    "sort_order": 24
+    "sort_order": 26
+  },
+  {
+    "id": "jethro",
+    "name": "葉忒羅",
+    "epithet": null,
+    "name_en": "Jethro",
+    "avatar": "葉",
+    "description": "摩西逃亡米甸時投靠了這位祭司，娶了他的女兒西坡拉；四十年後，葉忒羅聽聞神為以色列所行的一切，親自帶著女兒女婿一家前來會合，並向摩西提出一個看似簡單卻影響深遠的建議：設立千夫長、百夫長分擔審判的重擔，別讓自己一人被壓垮",
+    "mbti": "ISTJ",
+    "file_name": "portrait_jethro.html",
+    "categories": [
+      "ot"
+    ],
+    "tags": [
+      "一句忠告改變了整個治理體制",
+      "這事太重，你獨自一人辦理不了"
+    ],
+    "tier": "common",
+    "book": "exodus",
+    "sort_order": 27
   },
   {
     "id": "aaron",
@@ -512,7 +573,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "major",
     "book": "exodus",
-    "sort_order": 25
+    "sort_order": 28
   },
   {
     "id": "miriam",
@@ -532,7 +593,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "exodus",
-    "sort_order": 26
+    "sort_order": 29
   },
   {
     "id": "korah",
@@ -552,7 +613,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "numbers",
-    "sort_order": 27
+    "sort_order": 30
   },
   {
     "id": "balaam",
@@ -572,7 +633,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "numbers",
-    "sort_order": 28
+    "sort_order": 31
   },
   {
     "id": "ram",
@@ -593,7 +654,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "normal",
     "book": "ruth",
-    "sort_order": 29
+    "sort_order": 32
   },
   {
     "id": "amminadab",
@@ -613,7 +674,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "normal",
     "book": "numbers",
-    "sort_order": 30
+    "sort_order": 33
   },
   {
     "id": "nahshon",
@@ -634,7 +695,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "normal",
     "book": "numbers",
-    "sort_order": 31
+    "sort_order": 34
   },
   {
     "id": "caleb",
@@ -654,7 +715,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "numbers",
-    "sort_order": 32
+    "sort_order": 35
   },
   {
     "id": "joshua",
@@ -674,7 +735,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "major",
     "book": "joshua",
-    "sort_order": 33
+    "sort_order": 36
   },
   {
     "id": "rahab",
@@ -695,7 +756,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "joshua",
-    "sort_order": 34
+    "sort_order": 37
   },
   {
     "id": "achan",
@@ -715,7 +776,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "joshua",
-    "sort_order": 35
+    "sort_order": 38
   },
   {
     "id": "ehud",
@@ -735,7 +796,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "judges",
-    "sort_order": 36
+    "sort_order": 39
   },
   {
     "id": "deborah",
@@ -755,7 +816,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "major",
     "book": "judges",
-    "sort_order": 37
+    "sort_order": 40
   },
   {
     "id": "jael",
@@ -775,7 +836,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "judges",
-    "sort_order": 38
+    "sort_order": 41
   },
   {
     "id": "gideon",
@@ -795,7 +856,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "major",
     "book": "judges",
-    "sort_order": 39
+    "sort_order": 42
   },
   {
     "id": "jephthah",
@@ -816,7 +877,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "judges",
-    "sort_order": 40
+    "sort_order": 43
   },
   {
     "id": "manoah",
@@ -836,7 +897,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "normal",
     "book": "judges",
-    "sort_order": 41
+    "sort_order": 44
   },
   {
     "id": "samson",
@@ -856,7 +917,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "judges",
-    "sort_order": 42
+    "sort_order": 45
   },
   {
     "id": "delilah",
@@ -876,7 +937,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "judges",
-    "sort_order": 43
+    "sort_order": 46
   },
   {
     "id": "naomi",
@@ -897,7 +958,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "ruth",
-    "sort_order": 44
+    "sort_order": 47
   },
   {
     "id": "ruth",
@@ -917,7 +978,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "ruth",
-    "sort_order": 45
+    "sort_order": 48
   },
   {
     "id": "boaz",
@@ -938,7 +999,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "ruth",
-    "sort_order": 46
+    "sort_order": 49
   },
   {
     "id": "jesse",
@@ -959,7 +1020,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "normal",
     "book": "ruth",
-    "sort_order": 47
+    "sort_order": 50
   },
   {
     "id": "eli",
@@ -980,7 +1041,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "1samuel",
-    "sort_order": 48
+    "sort_order": 51
   },
   {
     "id": "hannah",
@@ -1000,7 +1061,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "1samuel",
-    "sort_order": 49
+    "sort_order": 52
   },
   {
     "id": "samuel",
@@ -1020,7 +1081,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "major",
     "book": "1samuel",
-    "sort_order": 50
+    "sort_order": 53
   },
   {
     "id": "saul_king",
@@ -1040,7 +1101,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "major",
     "book": "1samuel",
-    "sort_order": 51
+    "sort_order": 54
   },
   {
     "id": "jonathan",
@@ -1060,7 +1121,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "major",
     "book": "1samuel",
-    "sort_order": 52
+    "sort_order": 55
   },
   {
     "id": "abner",
@@ -1080,7 +1141,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "1samuel",
-    "sort_order": 53
+    "sort_order": 56
   },
   {
     "id": "rizpah",
@@ -1100,7 +1161,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "2samuel",
-    "sort_order": 54
+    "sort_order": 57
   },
   {
     "id": "michal",
@@ -1121,7 +1182,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "1samuel",
-    "sort_order": 55
+    "sort_order": 58
   },
   {
     "id": "abigail",
@@ -1141,7 +1202,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "1samuel",
-    "sort_order": 56
+    "sort_order": 59
   },
   {
     "id": "nabal",
@@ -1161,7 +1222,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "normal",
     "book": "1samuel",
-    "sort_order": 57
+    "sort_order": 60
   },
   {
     "id": "david",
@@ -1182,7 +1243,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "major",
     "book": "2samuel",
-    "sort_order": 58
+    "sort_order": 61
   },
   {
     "id": "mephibosheth",
@@ -1202,7 +1263,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "2samuel",
-    "sort_order": 59
+    "sort_order": 62
   },
   {
     "id": "bathsheba",
@@ -1223,7 +1284,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "major",
     "book": "2samuel",
-    "sort_order": 60
+    "sort_order": 63
   },
   {
     "id": "uriah",
@@ -1244,7 +1305,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "2samuel",
-    "sort_order": 61
+    "sort_order": 64
   },
   {
     "id": "nathan_prophet",
@@ -1264,27 +1325,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "2samuel",
-    "sort_order": 62
-  },
-  {
-    "id": "absalom",
-    "name": "押沙龍",
-    "epithet": null,
-    "name_en": "Absalom",
-    "avatar": "押",
-    "description": "他因妹妹他瑪被同父異母的哥哥暗嫩玷污，卻遲遲得不到父親大衛的公義處置——沉默兩年後，他親手策劃了對暗嫩的復仇，此後更起兵叛變，篡奪父親的王位",
-    "mbti": "ENTJ",
-    "file_name": "portrait_absalom.html",
-    "categories": [
-      "ot"
-    ],
-    "tags": [
-      "我兒押沙龍啊！我恨不得替你死",
-      "從沉默兩年的復仇到懸掛橡樹的悲劇終局"
-    ],
-    "tier": "common",
-    "book": "2samuel",
-    "sort_order": 63
+    "sort_order": 65
   },
   {
     "id": "tamar_david",
@@ -1304,7 +1345,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "2samuel",
-    "sort_order": 64
+    "sort_order": 66
   },
   {
     "id": "amnon",
@@ -1324,7 +1365,47 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "2samuel",
-    "sort_order": 65
+    "sort_order": 67
+  },
+  {
+    "id": "absalom",
+    "name": "押沙龍",
+    "epithet": null,
+    "name_en": "Absalom",
+    "avatar": "押",
+    "description": "他因妹妹他瑪被同父異母的哥哥暗嫩玷污，卻遲遲得不到父親大衛的公義處置——沉默兩年後，他親手策劃了對暗嫩的復仇，此後更起兵叛變，篡奪父親的王位",
+    "mbti": "ENTJ",
+    "file_name": "portrait_absalom.html",
+    "categories": [
+      "ot"
+    ],
+    "tags": [
+      "我兒押沙龍啊！我恨不得替你死",
+      "從沉默兩年的復仇到懸掛橡樹的悲劇終局"
+    ],
+    "tier": "common",
+    "book": "2samuel",
+    "sort_order": 68
+  },
+  {
+    "id": "ahithophel",
+    "name": "亞希多弗",
+    "epithet": null,
+    "name_en": "Ahithophel",
+    "avatar": "亞",
+    "description": "他曾是大衛最倚重的謀士，「那時亞希多弗所出的主意，好像人求問神的話一樣」——押沙龍叛變時他卻轉而效忠，獻上足以致大衛於死地的毒計；當這條計謀被戶篩以巧言攔阻、未被採納時，他預見叛變終將失敗，便回家料理家務後自縊而死",
+    "mbti": "INTJ",
+    "file_name": "portrait_ahithophel.html",
+    "categories": [
+      "ot"
+    ],
+    "tags": [
+      "智謀被復仇的心蒙蔽",
+      "計謀不被採納便自縊"
+    ],
+    "tier": "common",
+    "book": "2samuel",
+    "sort_order": 69
   },
   {
     "id": "joab",
@@ -1345,7 +1426,27 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "2samuel",
-    "sort_order": 66
+    "sort_order": 70
+  },
+  {
+    "id": "adonijah",
+    "name": "亞多尼雅",
+    "epithet": null,
+    "name_en": "Adonijah",
+    "avatar": "亞",
+    "description": "他是大衛年邁時排行居長的在世兒子，趁父親臥病、王位懸而未決之際，私下聚集人馬、宰殺牛羊，自立為王——先知拿單與拔示巴聯手向大衛揭露此事，大衛立即膏立所羅門為王，粉碎了他的圖謀；此後他又因求娶大衛的侍妾亞比煞，被所羅門視為再度覬覦王位而處死",
+    "mbti": "ESTP",
+    "file_name": "portrait_adonijah.html",
+    "categories": [
+      "ot"
+    ],
+    "tags": [
+      "趁父親年邁自立為王",
+      "貫徹到底的自我抬舉終致殺身"
+    ],
+    "tier": "common",
+    "book": "1kings",
+    "sort_order": 71
   },
   {
     "id": "solomon",
@@ -1366,7 +1467,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "major",
     "book": "1kings",
-    "sort_order": 67
+    "sort_order": 72
   },
   {
     "id": "queen_of_sheba",
@@ -1386,7 +1487,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "1kings",
-    "sort_order": 68
+    "sort_order": 73
   },
   {
     "id": "jeroboam",
@@ -1406,7 +1507,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "1kings",
-    "sort_order": 69
+    "sort_order": 74
   },
   {
     "id": "rehoboam",
@@ -1427,7 +1528,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "1kings",
-    "sort_order": 70
+    "sort_order": 75
   },
   {
     "id": "abijah_king",
@@ -1448,7 +1549,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "normal",
     "book": "1kings",
-    "sort_order": 71
+    "sort_order": 76
   },
   {
     "id": "asa",
@@ -1469,7 +1570,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "1kings",
-    "sort_order": 72
+    "sort_order": 77
   },
   {
     "id": "jehoshaphat",
@@ -1490,7 +1591,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "1kings",
-    "sort_order": 73
+    "sort_order": 78
   },
   {
     "id": "joram_king",
@@ -1511,7 +1612,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "normal",
     "book": "1kings",
-    "sort_order": 74
+    "sort_order": 79
   },
   {
     "id": "ahab",
@@ -1531,7 +1632,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "1kings",
-    "sort_order": 75
+    "sort_order": 80
   },
   {
     "id": "jezebel",
@@ -1551,7 +1652,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "1kings",
-    "sort_order": 76
+    "sort_order": 81
   },
   {
     "id": "elijah",
@@ -1571,7 +1672,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "major",
     "book": "1kings",
-    "sort_order": 77
+    "sort_order": 82
   },
   {
     "id": "widow_zarephath",
@@ -1591,7 +1692,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "1kings",
-    "sort_order": 78
+    "sort_order": 83
   },
   {
     "id": "naboth",
@@ -1611,7 +1712,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "1kings",
-    "sort_order": 79
+    "sort_order": 84
   },
   {
     "id": "elisha",
@@ -1631,7 +1732,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "2kings",
-    "sort_order": 80
+    "sort_order": 85
   },
   {
     "id": "shunammite_woman",
@@ -1651,7 +1752,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "2kings",
-    "sort_order": 81
+    "sort_order": 86
   },
   {
     "id": "naaman",
@@ -1671,7 +1772,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "2kings",
-    "sort_order": 82
+    "sort_order": 87
   },
   {
     "id": "gehazi",
@@ -1691,7 +1792,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "2kings",
-    "sort_order": 83
+    "sort_order": 88
   },
   {
     "id": "jehu",
@@ -1711,7 +1812,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "2kings",
-    "sort_order": 84
+    "sort_order": 89
   },
   {
     "id": "athaliah",
@@ -1731,7 +1832,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "2kings",
-    "sort_order": 85
+    "sort_order": 90
   },
   {
     "id": "jonah",
@@ -1751,7 +1852,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "major",
     "book": "jonah",
-    "sort_order": 86
+    "sort_order": 91
   },
   {
     "id": "hosea",
@@ -1771,7 +1872,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "hosea",
-    "sort_order": 87
+    "sort_order": 92
   },
   {
     "id": "isaiah",
@@ -1791,7 +1892,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "major",
     "book": "isaiah",
-    "sort_order": 88
+    "sort_order": 93
   },
   {
     "id": "uzziah",
@@ -1812,7 +1913,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "2kings",
-    "sort_order": 89
+    "sort_order": 94
   },
   {
     "id": "jotham",
@@ -1833,7 +1934,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "normal",
     "book": "2kings",
-    "sort_order": 90
+    "sort_order": 95
   },
   {
     "id": "ahaz",
@@ -1854,7 +1955,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "2kings",
-    "sort_order": 91
+    "sort_order": 96
   },
   {
     "id": "hezekiah",
@@ -1875,7 +1976,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "major",
     "book": "2kings",
-    "sort_order": 92
+    "sort_order": 97
   },
   {
     "id": "manasseh",
@@ -1896,7 +1997,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "2kings",
-    "sort_order": 93
+    "sort_order": 98
   },
   {
     "id": "amon",
@@ -1917,7 +2018,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "normal",
     "book": "2kings",
-    "sort_order": 94
+    "sort_order": 99
   },
   {
     "id": "josiah",
@@ -1938,7 +2039,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "major",
     "book": "2kings",
-    "sort_order": 95
+    "sort_order": 100
   },
   {
     "id": "jeremiah",
@@ -1958,7 +2059,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "major",
     "book": "jeremiah",
-    "sort_order": 96
+    "sort_order": 101
   },
   {
     "id": "jeconiah",
@@ -1980,7 +2081,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "normal",
     "book": "2kings",
-    "sort_order": 97
+    "sort_order": 102
   },
   {
     "id": "ezekiel",
@@ -2000,7 +2101,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "major",
     "book": "ezekiel",
-    "sort_order": 98
+    "sort_order": 103
   },
   {
     "id": "daniel",
@@ -2020,7 +2121,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "major",
     "book": "daniel",
-    "sort_order": 99
+    "sort_order": 104
   },
   {
     "id": "esther",
@@ -2040,7 +2141,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "major",
     "book": "esther",
-    "sort_order": 100
+    "sort_order": 105
   },
   {
     "id": "haman",
@@ -2060,7 +2161,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "esther",
-    "sort_order": 101
+    "sort_order": 106
   },
   {
     "id": "mordecai",
@@ -2080,7 +2181,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "esther",
-    "sort_order": 102
+    "sort_order": 107
   },
   {
     "id": "shealtiel",
@@ -2101,7 +2202,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "normal",
     "book": "ezra",
-    "sort_order": 103
+    "sort_order": 108
   },
   {
     "id": "zerubbabel",
@@ -2122,7 +2223,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "ezra",
-    "sort_order": 104
+    "sort_order": 109
   },
   {
     "id": "ezra",
@@ -2142,7 +2243,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "ezra",
-    "sort_order": 105
+    "sort_order": 110
   },
   {
     "id": "nehemiah",
@@ -2162,7 +2263,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "major",
     "book": "nehemiah",
-    "sort_order": 106
+    "sort_order": 111
   },
   {
     "id": "genealogy_silent_nine",
@@ -2183,7 +2284,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "normal",
     "book": "matthew",
-    "sort_order": 107
+    "sort_order": 112
   },
   {
     "id": "zechariah_elizabeth",
@@ -2203,7 +2304,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "major",
     "book": "luke",
-    "sort_order": 108
+    "sort_order": 113
   },
   {
     "id": "john_baptist",
@@ -2223,7 +2324,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "major",
     "book": "luke",
-    "sort_order": 109
+    "sort_order": 114
   },
   {
     "id": "mary_mother",
@@ -2243,7 +2344,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "major",
     "book": "luke",
-    "sort_order": 110
+    "sort_order": 115
   },
   {
     "id": "joseph_husband",
@@ -2264,7 +2365,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "major",
     "book": "matthew",
-    "sort_order": 111
+    "sort_order": 116
   },
   {
     "id": "simeon_anna",
@@ -2284,7 +2385,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "luke",
-    "sort_order": 112
+    "sort_order": 117
   },
   {
     "id": "peter",
@@ -2305,7 +2406,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "major",
     "book": "matthew",
-    "sort_order": 113
+    "sort_order": 118
   },
   {
     "id": "andrew",
@@ -2326,7 +2427,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "major",
     "book": "matthew",
-    "sort_order": 114
+    "sort_order": 119
   },
   {
     "id": "james_zebedee",
@@ -2347,7 +2448,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "major",
     "book": "matthew",
-    "sort_order": 115
+    "sort_order": 120
   },
   {
     "id": "john_apostle",
@@ -2368,7 +2469,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "major",
     "book": "matthew",
-    "sort_order": 116
+    "sort_order": 121
   },
   {
     "id": "philip_apostle",
@@ -2389,7 +2490,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "matthew",
-    "sort_order": 117
+    "sort_order": 122
   },
   {
     "id": "bartholomew",
@@ -2410,7 +2511,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "matthew",
-    "sort_order": 118
+    "sort_order": 123
   },
   {
     "id": "thomas",
@@ -2431,7 +2532,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "major",
     "book": "john",
-    "sort_order": 119
+    "sort_order": 124
   },
   {
     "id": "matthew",
@@ -2452,7 +2553,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "major",
     "book": "matthew",
-    "sort_order": 120
+    "sort_order": 125
   },
   {
     "id": "james_alphaeus",
@@ -2473,7 +2574,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "matthew",
-    "sort_order": 121
+    "sort_order": 126
   },
   {
     "id": "thaddaeus",
@@ -2494,7 +2595,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "matthew",
-    "sort_order": 122
+    "sort_order": 127
   },
   {
     "id": "simon_zealot",
@@ -2515,7 +2616,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "matthew",
-    "sort_order": 123
+    "sort_order": 128
   },
   {
     "id": "judas_iscariot",
@@ -2536,7 +2637,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "major",
     "book": "matthew",
-    "sort_order": 124
+    "sort_order": 129
   },
   {
     "id": "centurion_capernaum",
@@ -2556,7 +2657,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "matthew",
-    "sort_order": 125
+    "sort_order": 130
   },
   {
     "id": "nicodemus",
@@ -2576,7 +2677,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "john",
-    "sort_order": 126
+    "sort_order": 131
   },
   {
     "id": "samaritan_woman",
@@ -2596,7 +2697,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "john",
-    "sort_order": 127
+    "sort_order": 132
   },
   {
     "id": "jairus",
@@ -2616,7 +2717,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "mark",
-    "sort_order": 128
+    "sort_order": 133
   },
   {
     "id": "bleeding_woman",
@@ -2636,7 +2737,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "mark",
-    "sort_order": 129
+    "sort_order": 134
   },
   {
     "id": "canaanite_woman",
@@ -2656,7 +2757,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "matthew",
-    "sort_order": 130
+    "sort_order": 135
   },
   {
     "id": "herod_antipas",
@@ -2676,7 +2777,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "mark",
-    "sort_order": 131
+    "sort_order": 136
   },
   {
     "id": "herodias",
@@ -2696,7 +2797,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "mark",
-    "sort_order": 132
+    "sort_order": 137
   },
   {
     "id": "rich_young_ruler",
@@ -2716,7 +2817,27 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "matthew",
-    "sort_order": 133
+    "sort_order": 138
+  },
+  {
+    "id": "woman_adultery",
+    "name": "行淫時被拿的婦人",
+    "epithet": null,
+    "name_en": "Woman Caught in Adultery",
+    "avatar": "婦",
+    "description": "文士和法利賽人把她正行淫時被拿的實情帶到耶穌面前，引用摩西律法要用石頭打死她，企圖藉此試探耶穌——耶穌卻彎腰在地上寫字，說「你們中間誰是沒有罪的，誰就可以先拿石頭打她」，眾人從老到少一一離去，最終只剩耶穌對她說：「我也不定你的罪，去吧，從此不要再犯罪了」",
+    "mbti": "ISFP",
+    "file_name": "portrait_woman_adultery.html",
+    "categories": [
+      "nt"
+    ],
+    "tags": [
+      "用石頭定罪之前先看看自己",
+      "我也不定你的罪"
+    ],
+    "tier": "common",
+    "book": "john",
+    "sort_order": 139
   },
   {
     "id": "martha",
@@ -2736,7 +2857,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "john",
-    "sort_order": 134
+    "sort_order": 140
   },
   {
     "id": "mary_bethany",
@@ -2756,7 +2877,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "john",
-    "sort_order": 135
+    "sort_order": 141
   },
   {
     "id": "lazarus",
@@ -2776,7 +2897,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "major",
     "book": "john",
-    "sort_order": 136
+    "sort_order": 142
   },
   {
     "id": "zacchaeus",
@@ -2796,7 +2917,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "luke",
-    "sort_order": 137
+    "sort_order": 143
   },
   {
     "id": "bartimaeus",
@@ -2817,7 +2938,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "mark",
-    "sort_order": 138
+    "sort_order": 144
   },
   {
     "id": "samaritan_leper",
@@ -2837,7 +2958,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "luke",
-    "sort_order": 139
+    "sort_order": 145
   },
   {
     "id": "mary_magdalene",
@@ -2857,7 +2978,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "major",
     "book": "john",
-    "sort_order": 140
+    "sort_order": 146
   },
   {
     "id": "james_brother",
@@ -2877,7 +2998,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "major",
     "book": "acts",
-    "sort_order": 141
+    "sort_order": 147
   },
   {
     "id": "jude_brother",
@@ -2897,7 +3018,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "acts",
-    "sort_order": 142
+    "sort_order": 148
   },
   {
     "id": "caiaphas",
@@ -2917,7 +3038,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "matthew",
-    "sort_order": 143
+    "sort_order": 149
   },
   {
     "id": "pontius_pilate",
@@ -2937,7 +3058,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "matthew",
-    "sort_order": 144
+    "sort_order": 150
   },
   {
     "id": "barabbas",
@@ -2957,7 +3078,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "matthew",
-    "sort_order": 145
+    "sort_order": 151
   },
   {
     "id": "simon_cyrene",
@@ -2977,7 +3098,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "mark",
-    "sort_order": 146
+    "sort_order": 152
   },
   {
     "id": "joseph_arimathea",
@@ -2997,7 +3118,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "john",
-    "sort_order": 147
+    "sort_order": 153
   },
   {
     "id": "matthias",
@@ -3018,7 +3139,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "acts",
-    "sort_order": 148
+    "sort_order": 154
   },
   {
     "id": "barnabas",
@@ -3038,7 +3159,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "major",
     "book": "acts",
-    "sort_order": 149
+    "sort_order": 155
   },
   {
     "id": "ananias_sapphira",
@@ -3058,7 +3179,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "acts",
-    "sort_order": 150
+    "sort_order": 156
   },
   {
     "id": "gamaliel",
@@ -3078,7 +3199,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "acts",
-    "sort_order": 151
+    "sort_order": 157
   },
   {
     "id": "stephen",
@@ -3098,7 +3219,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "major",
     "book": "acts",
-    "sort_order": 152
+    "sort_order": 158
   },
   {
     "id": "paul",
@@ -3119,7 +3240,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "major",
     "book": "acts",
-    "sort_order": 153
+    "sort_order": 159
   },
   {
     "id": "philip_evangelist",
@@ -3139,7 +3260,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "acts",
-    "sort_order": 154
+    "sort_order": 160
   },
   {
     "id": "simon_magus",
@@ -3159,7 +3280,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "acts",
-    "sort_order": 155
+    "sort_order": 161
   },
   {
     "id": "ethiopian_eunuch",
@@ -3180,7 +3301,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "acts",
-    "sort_order": 156
+    "sort_order": 162
   },
   {
     "id": "ananias_damascus",
@@ -3200,7 +3321,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "acts",
-    "sort_order": 157
+    "sort_order": 163
   },
   {
     "id": "dorcas",
@@ -3221,7 +3342,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "acts",
-    "sort_order": 158
+    "sort_order": 164
   },
   {
     "id": "cornelius",
@@ -3241,7 +3362,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "major",
     "book": "acts",
-    "sort_order": 159
+    "sort_order": 165
   },
   {
     "id": "herod_agrippa_i",
@@ -3261,7 +3382,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "acts",
-    "sort_order": 160
+    "sort_order": 166
   },
   {
     "id": "john_mark",
@@ -3281,7 +3402,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "acts",
-    "sort_order": 161
+    "sort_order": 167
   },
   {
     "id": "silas",
@@ -3301,7 +3422,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "acts",
-    "sort_order": 162
+    "sort_order": 168
   },
   {
     "id": "timothy",
@@ -3321,7 +3442,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "major",
     "book": "acts",
-    "sort_order": 163
+    "sort_order": 169
   },
   {
     "id": "lydia",
@@ -3341,7 +3462,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "acts",
-    "sort_order": 164
+    "sort_order": 170
   },
   {
     "id": "philippian_jailer",
@@ -3361,7 +3482,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "acts",
-    "sort_order": 165
+    "sort_order": 171
   },
   {
     "id": "priscilla_aquila",
@@ -3381,7 +3502,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "acts",
-    "sort_order": 166
+    "sort_order": 172
   },
   {
     "id": "apollos",
@@ -3401,7 +3522,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "acts",
-    "sort_order": 167
+    "sort_order": 173
   },
   {
     "id": "eutychus",
@@ -3421,7 +3542,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "acts",
-    "sort_order": 168
+    "sort_order": 174
   },
   {
     "id": "titus",
@@ -3441,7 +3562,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "normal",
     "book": "titus",
-    "sort_order": 169
+    "sort_order": 175
   },
   {
     "id": "phoebe",
@@ -3461,7 +3582,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "normal",
     "book": "romans",
-    "sort_order": 170
+    "sort_order": 176
   },
   {
     "id": "onesimus",
@@ -3481,7 +3602,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "common",
     "book": "philemon",
-    "sort_order": 171
+    "sort_order": 177
   },
   {
     "id": "luke",
@@ -3501,7 +3622,7 @@ window.BIBLE_CHARACTERS = [
     ],
     "tier": "major",
     "book": "acts",
-    "sort_order": 172
+    "sort_order": 178
   }
 ];
 

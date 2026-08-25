@@ -89,14 +89,14 @@ BOOK_TARGET = {b: t for b, zh, t in BOOK_ORDER}
 PERSON_BOOK = {
     # ── 創世記 ──
     "abraham": "genesis", "sarah": "genesis", "lot": "genesis", "melchizedek": "genesis",
-    "hagar": "genesis", "isaac": "genesis", "rebekah": "genesis", "esau": "genesis",
-    "jacob": "genesis", "leah": "genesis", "rachel": "genesis", "reuben": "genesis",
+    "hagar": "genesis", "ishmael": "genesis", "isaac": "genesis", "rebekah": "genesis", "esau": "genesis",
+    "jacob": "genesis", "leah": "genesis", "rachel": "genesis", "dinah": "genesis", "reuben": "genesis",
     "judah": "genesis", "tamar_judah": "genesis", "perez": "genesis", "zerah": "genesis",
     "hezron": "genesis", "joseph_patriarch": "genesis", "benjamin": "genesis",
     "genesis_primeval": "genesis", "enoch": "genesis",
 
     # ── 出埃及記／民數記 ──
-    "moses": "exodus", "aaron": "exodus", "miriam": "exodus",
+    "moses": "exodus", "jethro": "exodus", "aaron": "exodus", "miriam": "exodus",
     "korah": "numbers", "balaam": "numbers", "amminadab": "numbers", "nahshon": "numbers", "caleb": "numbers",
 
     # ── 約書亞記 ──
@@ -117,10 +117,10 @@ PERSON_BOOK = {
     # ── 撒母耳記下 ──
     "david": "2samuel", "mephibosheth": "2samuel", "rizpah": "2samuel", "bathsheba": "2samuel", "uriah": "2samuel",
     "nathan_prophet": "2samuel", "absalom": "2samuel", "tamar_david": "2samuel", "amnon": "2samuel",
-    "joab": "2samuel",
+    "ahithophel": "2samuel", "joab": "2samuel",
 
     # ── 列王紀上 ──
-    "solomon": "1kings", "queen_of_sheba": "1kings", "jeroboam": "1kings", "rehoboam": "1kings",
+    "adonijah": "1kings", "solomon": "1kings", "queen_of_sheba": "1kings", "jeroboam": "1kings", "rehoboam": "1kings",
     "abijah_king": "1kings", "asa": "1kings", "jehoshaphat": "1kings", "joram_king": "1kings",
     "ahab": "1kings", "jezebel": "1kings", "elijah": "1kings", "widow_zarephath": "1kings",
     "naboth": "1kings",
@@ -165,7 +165,7 @@ PERSON_BOOK = {
     "bartimaeus": "mark", "simon_cyrene": "mark",
 
     # ── 約翰福音 ──
-    "nicodemus": "john", "samaritan_woman": "john", "martha": "john", "mary_bethany": "john",
+    "nicodemus": "john", "samaritan_woman": "john", "woman_adultery": "john", "martha": "john", "mary_bethany": "john",
     "lazarus": "john", "thomas": "john", "mary_magdalene": "john", "joseph_arimathea": "john",
 
     # ── 使徒行傳 ──

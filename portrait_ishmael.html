@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>以實瑪利 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">以實瑪利</h1>
+  <span class="hero-name-en">Ishmael · יִשְׁמָעֵאל</span>
+  <p class="hero-slogan">「神對夏甲說：<br>「起來！把童子抱在懷中，我必使他的後裔成為大國。」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">族長時代，約主前二十世紀</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ESTP · 企業家型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">創世記 16, 17, 21, 25 章</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">亞伯拉罕的長子 · 應許之外、卻仍蒙神眷顧的後裔</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他的出生，本是撒拉為了「幫助」神應許實現而想出的人為方法，卻在此後的家族敘事中，成為一段充滿張力、卻同樣被神親自眷顧的生命故事。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">族長時代，約主前二十世紀</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">亞伯拉罕與使女夏甲所生的長子</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">活動區域</span>
+        <div class="info-cell-value">出生於希伯崙一帶，此後在巴蘭曠野成長，定居於此</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">父亞伯拉罕、母夏甲；娶埃及女子為妻，生十二個兒子，成為十二族長</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">創世記 16 章 · 17:18–20 · 21:8–21 · 25:12–18</div>
+      </div>
+    </div>
+
+    <p>以實瑪利的出生，源於撒拉因遲遲未能懷孕、便依循當時的習俗，將使女夏甲給亞伯拉罕為妾，盼望能藉此得子——這個決定，本質上是人試圖用自己的方法，加速或確保神應許實現的一次嘗試。以實瑪利出生時，亞伯拉罕已經八十六歲，此後神應許以撒的出生仍要再等上十四年之久，這段漫長的等待期，充分顯示以實瑪利的誕生，並非神起初應許中原本的計畫。</p>
+    <p>然而經文並未因此將以實瑪利描繪成一個毫無價值或被神棄絕的角色。在他尚未出生之前，夏甲因撒拉的苦待逃入曠野，耶和華的使者已親自向她顯現，應許她的後裔必極其繁多，甚至為這尚未出生的孩子取名「以實瑪利」，意為「神聽見」，因為「耶和華聽見了你的苦情」。此後亞伯拉罕求神讓以實瑪利活在神面前，神應允祝福他、使他昌盛繁多、成為大國的首領，儘管神堅立的約仍要歸給以撒——這種「雖不在核心應許之內、卻仍蒙神眷顧祝福」的雙重敘事，貫穿了以實瑪利的整個故事。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從一次人為加速應許實現的嘗試，到曠野中神親自介入拯救的眷顧，以實瑪利的故事，是一部關於「應許之外，神仍不遺忘」的敘事。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">背景鋪陳</span>
+        <div class="timeline-title">撒拉將夏甲給亞伯拉罕——人為方法求子</div>
+        <div class="timeline-body">撒拉因遲遲未能懷孕，依循當時習俗將使女夏甲給亞伯拉罕為妾；夏甲懷孕後看不起撒拉，撒拉苦待她，夏甲便逃入曠野，耶和華的使者在那裡向她顯現，應許為即將出生的孩子取名以實瑪利。</div>
+        <div class="timeline-ref">創世記 16 章</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">父親的代求</span>
+        <div class="timeline-title">亞伯拉罕為他求福——神應允祝福卻不立約</div>
+        <div class="timeline-body">神向亞伯拉罕宣告要與以撒立約時，亞伯拉罕求神讓以實瑪利也活在神面前；神應允祝福以實瑪利、使他生十二個族長、成為大國，但堅立的約仍要歸給尚未出生的以撒。</div>
+        <div class="timeline-ref">創世記 17:18–21</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">被逐出家門</span>
+        <div class="timeline-title">以撒斷奶的筵席——夏甲與以實瑪利被趕出</div>
+        <div class="timeline-body">以撒斷奶那日，撒拉見以實瑪利戲笑，便要求亞伯拉罕把使女和她兒子趕出去，「因為這使女的兒子不可與我的兒子以撒一同承受產業」；亞伯拉罕雖甚憂愁，仍照神的吩咐行了。</div>
+        <div class="timeline-ref">創世記 21:8–14</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">曠野瀕死——「神聽見了童子的聲音」</div>
+        <div class="timeline-body">夏甲與以實瑪利在別是巴的曠野中water用盡，夏甲把孩子撇在小樹下，自己走開痛哭，不忍見孩子死；神的使者從天上呼叫夏甲，應許必使這孩子成為大國，並開她的眼睛，使她看見一口水井。</div>
+        <div class="timeline-ref">創世記 21:15–19</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終局</span>
+        <div class="timeline-title">在曠野成長興旺——十二族長之父</div>
+        <div class="timeline-body">以實瑪利在巴蘭的曠野長大，成為弓箭手，母親從埃及地為他娶了妻子；他後來生了十二個兒子，成為十二族的族長，正如神向夏甲所應許的；此後與以撒一同安葬了父親亞伯拉罕。</div>
+        <div class="timeline-ref">創世記 21:20–21 · 25:9, 12–18</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他一生都活在「應許之子」以撒的陰影之下，卻在自己被排除於核心應許之外的處境中，仍然真實地經歷了神的看顧與祝福。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心特質</span>
+          <div class="soul-title">在艱難的處境中展現出頑強的生命力</div>
+          <div class="soul-body">從曠野瀕死邊緣的孩童，到成長為弓箭手、建立起十二族長的龐大後裔，以實瑪利的一生展現出一種在逆境中仍能堅韌求生、甚至興旺繁衍的生命力。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">應得的祝福</span>
+          <div class="soul-title">雖不承接核心之約，卻仍領受神實質的祝福</div>
+          <div class="soul-body">神雖將堅立的約歸給以撒，卻仍應允亞伯拉罕的代求，實質地祝福以實瑪利使他昌盛繁多、成為大國的族長——這顯示神的眷顧，並不因不在核心應許之列而完全缺席。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">處境張力</span>
+          <div class="soul-title">自幼便活在被邊緣化、卻仍蒙神眷顧的雙重身份中</div>
+          <div class="soul-body">他既是亞伯拉罕的親生長子，卻因家族制度的安排，終究無法承接產業與應許之約；這種身份上的深刻張力，塑造了他此後在曠野中另闢天地、建立自己族系的生命軌跡。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">「戲笑」以撒的舉動，引發了此後被逐的危機</div>
+          <div class="soul-body">創世記記載他在以撒斷奶的筵席上「戲笑」，這個舉動（此後保羅在加拉太書中將其解讀為某種形式的逼迫）成為撒拉要求將他們母子驅逐的直接導火線。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">名字的意義</span>
+          <div class="soul-title">他的名字本身，就是神垂聽苦情的見證</div>
+          <div class="soul-body">「以實瑪利」意為「神聽見」，這個名字在他出生之前便已由神的使者親自命定，此後在他曠野瀕死之際，經文又再次記載「神聽見了童子的聲音」——他的名字，貫穿他一生兩次瀕危時刻，成為神垂聽困苦人呼求最具體的見證。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">以實瑪利的故事，是聖經中「不在核心應許之內，卻仍真實蒙神眷顧」最完整的敘事範例。他的存在，本身便是人試圖用自己的方法加速神應許實現所結出的果子——然而神並未因此棄絕或忽視他，反而兩次在他與母親瀕臨絕境之際親自介入拯救，並實質地應允亞伯拉罕的代求、祝福他昌盛繁多。這種「應許的核心歸屬」與「神實際的眷顧看顧」二者並存、卻又清楚有別的敘事模式，深刻提醒我們：神救贖計畫中特定的揀選與應許，與神對每一個個體生命（無論是否在那個特定應許的核心之內）的看顧慈愛，是兩個相關卻不完全等同的層次。以實瑪利雖然不是那位承接彌賽亞血脈應許的兒子，他的生命卻同樣真實地被神所紀念、所祝福。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ESTP</span>
+      <div class="mbti-name">企業家型 · 曠野中堅韌求生的長子</div>
+      <div class="mbti-slogan">「他不是應許之子，卻在被逐出家門的曠野中，憑著神的眷顧與自己頑強的生命力，建立起十二族長的龐大後裔。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Se · 外向感官</span>
+          <div class="mbti-fn-body">他在曠野嚴酷的生存環境中成長，成為熟練的弓箭手，展現出對當下具體環境高度的適應能力與行動力，這種在艱困處境中憑本能求生存的能力，是主導外向感官的典型展現。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Ti · 內向思考</span>
+          <div class="mbti-fn-body">他此後成功在巴蘭曠野建立起自己的生存體系、娶妻生子，並發展成十二族長的龐大後裔，顯示出一定程度務實的組織與生存策略能力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Fe · 外向情感</span>
+          <div class="mbti-fn-body">他在以撒斷奶的筵席上「戲笑」的舉動，某種程度上可能反映出他對自己身份地位可能被邊緣化的情緒反應，儘管經文對此著墨有限，僅能作保守推測。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">經文未記載他對自己身份與命運有任何深刻的內在反思或長遠規劃，他的生命軌跡更多呈現為對當下處境的直接回應與適應，而非對未來意義的深度思考，此處材料同樣有限。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最深的張力，來自於與同父異母的弟弟以撒之間，那條由神親自劃定、卻始終牽動著整個家族命運的應許界線。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">亞</div>
+          <div class="relation-name">亞伯拉罕</div>
+          <div class="relation-type-badge">他的父親，曾為他向神代求祝福</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">亞伯拉罕雖然順服神的吩咐將以實瑪利母子逐出家門，內心卻甚是憂愁，並曾懇切為以實瑪利向神代求祝福，此後二人也一同在亞伯拉罕死後安葬了他。</div>
+          <div class="relation-ref">創世記 17:18 · 21:11 · 25:9</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">夏</div>
+          <div class="relation-name">夏甲</div>
+          <div class="relation-type-badge">他的母親，兩次在曠野蒙神拯救的女子</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">夏甲在懷他之前與生他之後，兩次因與撒拉的衝突而逃入或被逐至曠野，兩次都蒙神的使者親自介入拯救與應許，母子二人的命運緊密相繫。</div>
+          <div class="relation-ref">創世記 16 章 · 21:8–21</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">以</div>
+          <div class="relation-name">以撒</div>
+          <div class="relation-type-badge">承接神應許之約的同父異母弟弟</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">以撒是神應許中真正要承接立約血脈的兒子，以實瑪利與他之間的關係，充滿著身份、產業與應許歸屬的張力；然而二人此後仍一同出現在安葬父親亞伯拉罕的記載中，顯示血緣親情並未因應許的區分而徹底斷絕。</div>
+          <div class="relation-ref">創世記 21:10 · 25:9</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「神聽見了童子的聲音」——這句話，成為以實瑪利故事中最深刻的神學宣告：即便不在核心應許之內，神仍然垂聽困苦人的呼求。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「神聽見童子的聲音；神的使者從天上呼叫夏甲說：夏甲，你為何這樣呢？不要害怕，神已經聽見童子的聲音了。」</div>
+      <div class="verse-ref">創世記 21:17</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">יִשְׁמָעֵאל</span>
+        <div class="word-transliteration">Yishma'el · 以實瑪利 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">這個名字由 shama（聽見）與 El（神）組成，字面意為「神聽見」，是耶和華的使者在夏甲懷孕逃亡期間親自命定的名字。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這個名字貫穿他一生兩次瀕危的關鍵時刻——出生之前神應許夏甲、以及曠野瀕死之際神親自介入——每一次，「神聽見」這個名字所承載的應許，都在具體的處境中真實應驗，成為神垂聽困苦呼求最具體的見證。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">神的眷顧，不侷限於祂特定揀選的應許家系</div>
+      <div class="theology-insight-body">以實瑪利雖不在承接彌賽亞應許的血脈之內，神仍實質地應允亞伯拉罕的代求、祝福並拯救他——這提醒我們，神對人類的慈愛與眷顧，遠比祂特定的救贖計畫應許範圍更加廣闊。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">人為的方法無法取代神應許的時間表</div>
+      <div class="theology-insight-body">以實瑪利的出生，源於撒拉試圖用人的方法加速神應許實現的嘗試，最終神仍按著自己所定的時間，透過以撒成就祂原本的應許——這提醒我們，急於用自己的方法「幫助」神成就應許，往往帶來意想不到的後續張力與複雜性。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">困苦人的呼求，神必垂聽</div>
+      <div class="theology-insight-body">無論是夏甲懷孕逃亡時的苦情，或是以實瑪利曠野瀕死時的哭聲，神都親自介入垂聽並拯救——這確立了聖經中一項重要的神學原則：神看顧一切在困境中呼求祂的人，不論他們是否身處祂救贖計畫的核心敘事之中。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">以實瑪利出於人的方法而生，不承接神應許的核心之約，卻仍在困苦中蒙神親自垂聽拯救，並實質領受祝福昌盛的應許</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">使徒保羅在加拉太書中，以以實瑪利與以撒的對比，闡述「憑血氣生的」與「憑應許生的」兩種生命樣式的根本差異，藉此教導律法之下的奴僕與因信稱義之應許兒女的屬靈區別</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">凡因信靠基督而蒙恩得救的人，如同以撒一樣，是憑著應許、而非憑著人的血氣或行為而生的應許之子，得以承受神永遠國度的產業（加 4:22–31）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻覺得自己不在某個「核心應許」或群體的中心位置——這一頁想讓你看見，神的眷顧，遠比你以為的核心圈子更加廣闊。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">以實瑪利的故事命中每一個曾因自己不在某個核心圈子、應許或計畫之中，而感到被邊緣化甚至被遺忘的人。他的經歷提醒我們，即便不在神救贖計畫最核心的敘事線上，神依然真實地看顧、垂聽並祝福每一個在困境中向祂呼求的生命。他的故事同時也提醒我們，不要試圖用人為的方法搶先實現或加速神的應許，這樣的嘗試往往帶來意想不到的複雜與張力，唯有耐心等候神自己所定的時間，才是真正合宜的道路。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你是否也曾因為自己不在某個核心的計畫、應許或群體之中，而感到被邊緣化或不被神看重？以實瑪利的故事如何挑戰這個假設？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">撒拉試圖用人的方法加速神應許的實現，最終帶來了長遠的家族張力。你生命中是否也曾因為不耐等候，而用自己的方法『幫助』神成就某件事，卻帶來意外的後果？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">神兩次在夏甲與以實瑪利瀕臨絕境時親自介入拯救。你是否也曾在絕望的處境中，經歷神超乎預期的看顧與供應？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">以實瑪利與以撒最終仍一同安葬了父親亞伯拉罕。這如何提醒你，即便存在著應許或身份上的張力，血緣與家族的情感連結仍然可以被珍視與保留？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 以實瑪利</span>
+        <div class="gen-title">示範劇本：即便不在核心應許之內，仍真實蒙神眷顧與拯救</div>
+        <div class="gen-body">他因人為方法而出生，不承接亞伯拉罕之約的核心應許，卻兩度在絕境中蒙神親自介入拯救，並實質領受祝福昌盛、成為大國族長的應許。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 以實瑪利的十二個兒子</span>
+        <div class="gen-title">延續：神應許的昌盛，真實地在他的後裔中應驗</div>
+        <div class="gen-body">以實瑪利生了十二個兒子，成為十二族的族長，正如神向夏甲所應許的「必使他的後裔成為大國」——這條家族血脈的興旺繁衍，成為神信實應驗祝福應許最具體的歷史見證。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在以實瑪利的故事中，展現在神即便清楚劃定了應許之約的核心歸屬，仍然沒有忘記或棄絕不在這核心之內的生命——祂親自垂聽困苦人的呼求，並信實地成就祂所應允的每一句祝福。這提醒我們，神的恩典遠比我們以為的「核心圈子」更加寬廣深厚。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位不是應許之子、卻兩度在絕境中蒙神眷顧拯救的長子，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#不在核心也能被看見</span>
+      <span class="tag">#神聽見困苦人的呼求</span>
+      <span class="tag">#別急著用自己的方法搶跑</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>以實瑪利的出生，說白了是一場『等不及』的產物——撒拉遲遲沒懷孕，乾脆把使女夏甲給了亞伯拉罕，想用自己的方法加速神的應許實現。以實瑪利就這樣來到世上，卻不是神原本計畫要應許的那個孩子。</p>
+      <p>這種身份很尷尬：他是亞伯拉罕的親生兒子，卻註定拿不到家族真正的『繼承權』。等到以撒出生、斷奶那天，撒拉一句話，他和媽媽就被趕出了家門，帶著一點乾糧和一皮袋水，走進曠野。</p>
+      <p>水喝完了，夏甲把孩子放在樹蔭下，自己走開痛哭，不忍心看他死。就在這個最絕望的時刻，神出手了——祂的使者從天上呼叫，說『神已經聽見童子的聲音了』，然後開了夏甲的眼睛，讓她看見一口水井。</p>
+      <p>有意思的是，『以實瑪利』這個名字，本身就是『神聽見』的意思——這不是巧合，是神在他出生之前就已經取好的名字，然後在他快要死的時候，這個名字的意義，真實地應驗了。</p>
+      <p>他後來在曠野長大，成了弓箭手，娶妻生子，最後生了十二個兒子，變成十二個族的族長。他不是應許之子，卻活出了一個同樣被神紀念、被神祝福的人生。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——以實瑪利這塊石頭，被雕刻出的形狀，是一句溫柔的提醒：『不在核心，不代表不被看見』。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你覺得自己不在某個『重要的圈子』裡，以實瑪利的故事想告訴你：神聽見的，從來不只是核心圈子裡的聲音。</p>
+      <p style="margin-top:12px;">撒拉當年『幫忙』神實現應許，結果製造出更多複雜的問題。如果你正在等一件事，也許可以問問自己：是不是也在急著自己動手？</p>
+      <p style="margin-top:12px;">他的名字意思是『神聽見』——你此刻若正在曠野中，別忘了，這個名字對你也一樣有效。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果你正覺得自己被邊緣化或遺忘，練習相信：神聽見了。</p>
+    </div>
+
+    <div class="insight-box">以實瑪利在伊斯蘭教傳統中被視為極其重要的先知，被認為是亞伯拉罕（易卜拉欣）在麥加建造天房（克爾白）的協助者，這使他成為猶太教、基督教與伊斯蘭教三大亞伯拉罕系宗教共同追溯的重要人物，他的故事也持續是探討跨宗教對話與共同祖源議題時經常被引用的聖經與古蘭經共通素材。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他不是應許之子，卻兩度在絕境中蒙神親自拯救，並成為十二族長之父，留下了一段「應許之外仍蒙眷顧」的深刻見證。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">「神聽見困苦人呼求」的具體見證</div>
+          <div class="legacy-body">他的名字與兩次瀕死蒙拯救的經歷，成為聖經中神垂聽困苦人呼求最直接、最具體的敘事範例。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">「應許之子」與「血氣之子」對比的神學典範</div>
+          <div class="legacy-body">保羅在加拉太書中以他與以撒的對比，闡明因信稱義與憑血氣行事之間的根本差異，使他的故事成為新約重要神學論述的舊約基礎。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">十二族長之父的歷史地位</div>
+          <div class="legacy-body">他生了十二個兒子成為十二族的族長，正如神所應許的「成為大國」，這使他的後裔在古代近東歷史中佔有重要的地位。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">跨宗教共同追溯的重要人物</div>
+          <div class="legacy-body">他在伊斯蘭教傳統中被視為極其重要的先知，使他成為猶太教、基督教、伊斯蘭教三大亞伯拉罕系宗教共同重視的人物，持續影響跨宗教對話的討論。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「神保佑童子，他就漸長，住在曠野，成了弓箭手。」</div>
+      <div class="final-verse-ref">創世記 21:20</div>
+    </div>
+
+    <div class="final-question">如果你此刻覺得自己不在某個核心的應許或計畫之中，你願不願意相信，神依然如同垂聽以實瑪利的呼求一樣，聽見你此刻的心聲？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 以實瑪利 <span>יִשְׁמָעֵאל</span> · 亞伯拉罕與夏甲所生的長子</div>
+
+<!-- 閱讀紀錄（localStorage，見 progress.js）：右下角標記已讀按鈕 -->
+<script src="progress.js"></script>
+
+</body>
+</html>

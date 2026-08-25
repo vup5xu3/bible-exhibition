@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>亞希多弗 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">亞希多弗</h1>
+  <span class="hero-name-en">Ahithophel · אֲחִיתֹפֶל</span>
+  <p class="hero-slogan">「那時亞希多弗所出的主意，好像人求問神的話一樣；<br>他昔日給大衛、今日給押沙龍所出的主意，都是這樣。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">大衛在位晚期，約主前十世紀初</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">INTJ · 建築師型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">撒母耳記下 15–17 章</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">大衛的首席謀士 · 押沙龍叛變的核心策劃者</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他的智謀曾被形容為「好像人求問神的話一樣」，是大衛王朝中最受倚重的智囊——然而正是這份無人能及的智慧，最終被用來策劃一場足以致大衛於死地的政變。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">大衛在位晚期，約主前十世紀初</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">基羅人以連之父，大衛的謀士</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">活動區域</span>
+        <div class="info-cell-value">耶路撒冷；此後歸回本鄉基羅</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">子以連（大衛勇士之一）；經文暗示他可能是拔示巴的祖父（撒下十一3提及拔示巴是以連的女兒）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">撒母耳記下 15:12, 31–37 · 16:15–23 · 17:1–23</div>
+      </div>
+    </div>
+
+    <p>亞希多弗在經文中的地位，被賦予極高的評價：「那時亞希多弗所出的主意，好像人求問神的話一樣」——這句評語，將他的智謀提升到一種近乎先知性啟示的高度，顯示他在大衛朝中所享有的權威與信任，遠超一般的謀臣。然而正是這位深受倚重的智者，在押沙龍發動叛變、大衛倉皇出逃時，選擇了背叛——經文記載大衛得知亞希多弗也在叛黨之中時，立即禱告：「耶和華啊，求你使亞希多弗的計謀變為愚拙。」這句禱告的迫切程度，本身便反映出大衛對這位昔日謀士智慧的深切忌憚。</p>
+    <p>有釋經傳統推測，亞希多弗轉而背叛大衛的動機，可能與拔示巴事件有關——若他確實是拔示巴的祖父，那麼大衛當年奪人妻室、害死烏利亞的行為，便直接傷害了他自己的家族，這使他此後倒戈支持押沙龍的行動，帶上了一層個人復仇的陰影。無論動機為何，他一加入押沙龍陣營，便立即展現出驚人的謀略——他建議押沙龍公開與大衛的妃嬪同寢，徹底斷絕父子和解的可能，並主動請纓親率一萬二千精兵，趁大衛疲憊無力之際連夜追殺，一舉終結這場叛變。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從大衛朝中無人能及的首席謀士，到背叛加入叛變、卻在計謀落空後自縊而死，亞希多弗的故事，是一部關於「智慧若被復仇之心蒙蔽，終將反噬己身」的敘事。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">重大背叛</span>
+        <div class="timeline-title">轉投押沙龍——大衛迫切的禱告</div>
+        <div class="timeline-body">押沙龍在希伯崙發動叛變，亞希多弗也在其中；大衛得知後立即禱告求神使亞希多弗的計謀變為愚拙，顯示他對這位昔日謀士智慧的深切忌憚。</div>
+        <div class="timeline-ref">撒母耳記下 15:12, 31</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">毒辣建議</span>
+        <div class="timeline-title">獻策羞辱大衛——徹底斷絕和解的可能</div>
+        <div class="timeline-body">亞希多弗建議押沙龍公開與大衛留下看守宮殿的妃嬪同寢，使以色列眾人都知道押沙龍與父親已勢不兩立，藉此堅固追隨者的決心。</div>
+        <div class="timeline-ref">撒母耳記下 16:20–23</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">獻上致命計謀——「今夜我就起身追趕大衛」</div>
+        <div class="timeline-body">亞希多弗向押沙龍提議，讓他親率一萬二千精兵，當夜就起身追趕疲憊困乏的大衛，趁其毫無防備之際擊殺他一人，使眾民歸順——這是一個極其精準、幾乎必能致大衛於死地的軍事計謀。</div>
+        <div class="timeline-ref">撒母耳記下 17:1–4</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">計謀落空</span>
+        <div class="timeline-title">戶篩的巧言攔阻——押沙龍改採緩兵之計</div>
+        <div class="timeline-body">押沙龍也召來戶篩（大衛暗中安插的內應）詢問意見，戶篩巧妙地以誇大大衛勇士之勇猛、建議應徵集以色列全軍再行決戰為由，說服押沙龍放棄了亞希多弗連夜奇襲的計謀。</div>
+        <div class="timeline-ref">撒母耳記下 17:5–14</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">自縊終局</span>
+        <div class="timeline-title">「見不依從他的計謀，就備上驢，起身回本城」</div>
+        <div class="timeline-body">亞希多弗見自己的計謀不被採納，便料定叛變終將失敗，於是備上驢回到本城，留下遺言、料理家務，然後自縊而死，葬在他父親的墳墓裡。</div>
+        <div class="timeline-ref">撒母耳記下 17:23</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他擁有近乎先知性的謀略智慧，卻在人生最後的抉擇中，展現出一種近乎冷酷的理性——當局勢不再對自己有利，便毫不猶豫地選擇結束自己的生命。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心特質</span>
+          <div class="soul-title">謀略精準到近乎能預見全局的發展</div>
+          <div class="soul-body">他所獻的每一條計謀——羞辱大衛的妃嬪、連夜追殺的奇襲策略——都展現出對局勢極其精準的判斷力，這種謀略天賦，正是「所出的主意好像人求問神的話一樣」這句評語的具體印證。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">行動的理性</span>
+          <div class="soul-title">一旦判斷局勢不利，便毫不猶豫地做出果斷抉擇</div>
+          <div class="soul-body">當他發現自己精心策劃的奇襲計謀被戶篩的緩兵之計取代時，他沒有繼續留在押沙龍陣營中掙扎周旋，而是立即判斷叛變必將失敗，隨即採取行動——這種近乎冷酷的理性判斷力，貫穿他人生最後的抉擇。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">計謀的殘酷程度，反映出深藏的憤怒與決絕</div>
+          <div class="soul-body">他建議押沙龍公開羞辱大衛的妃嬪、並親自請纓要「擊殺王一人」，這些計謀的殘酷與精準程度，遠超單純的政治謀略，更像是帶著個人恩怨的深刻報復。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">極度自尊，無法承受自己的謀略被輕視或否決</div>
+          <div class="soul-body">他自縊而死的直接導火線，是自己精心策劃的計謀被否決、轉而採用戶篩的建議——這種因謀略不被採納便選擇了結生命的反應，顯示他將自己的智慧與尊嚴，緊密綁定在一起到近乎極端的程度。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">歷史迴響</span>
+          <div class="soul-title">他的背叛與結局，此後被視為對大衛極深的傷害</div>
+          <div class="soul-body">詩篇中大衛哀嘆「連我知己的朋友，我所倚靠、吃過我飯的人，也用腳踢我」，此後多被詮釋為正是指向亞希多弗這場刻骨銘心的背叛，其影響深遠地烙印在大衛此後的詩篇創作之中。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">亞希多弗的故事，是聖經中「頂尖的智慧若被復仇的心所驅動，最終將走向自我毀滅」最深刻的悲劇範例之一。他所展現的謀略能力，確實配得上「好像人求問神的話一樣」這句崇高的評語——他所獻的每一條計策，都精準地指向如何最有效率地擊潰大衛。然而，正是這份極致的智慧，被用在了背叛與復仇的道路上，這使他的悲劇顯得格外沉重：一個原本能夠持續造福大衛王朝的智慧生命，卻選擇將自己畢生的謀略才華，投注在摧毀昔日主人的行動之中。而他人生最後的抉擇——在計謀不被採納後，不是繼續設法挽回局勢，而是直接判定失敗已成定局、隨即自縊——同樣展現出一種近乎機械化的理性計算，卻也因此更加凸顯出，一個缺乏悔改與盼望的智慧生命，最終只能走向絕望的終局。這提醒我們，才智本身並不能保證一個人生命的美好結局，唯有將智慧用在合宜的道路上，並持守一顆願意悔改回轉的心，才能真正避免智慧反噬己身的悲劇。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">INTJ</span>
+      <div class="mbti-name">建築師型 · 智謀近乎先知卻走向自毀的謀士</div>
+      <div class="mbti-slogan">「他的智慧被形容為「好像人求問神的話一樣」，卻在復仇的驅使下背叛效忠，最終在計謀落空之際，選擇了自縊終結一切。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">他能精準預見軍事行動的最佳時機與策略——趁大衛疲憊困乏、連夜奇襲、只擊殺王一人——這種對局勢發展近乎先知性的深刻洞察與長遠布局能力，是主導內向直覺最極致的展現。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">他清晰而有條理地向押沙龍闡述自己的戰略邏輯，並在計謀不被採納後，迅速而果斷地評估局勢、採取行動（回鄉自縊），展現出高度目標導向、講求效率的外向思考運作。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">他背叛大衛的行動，很可能摻雜著深刻的個人恩怨與情感創傷（若確與拔示巴事件相關），這種深藏卻強烈的內在情感驅動，某種程度上主導了他此後一連串的抉擇。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Se · 外向感官</span>
+          <div class="mbti-fn-body">他在計謀被否決後，並未嘗試透過其他當下具體的行動來挽回局勢或另尋出路，而是直接判定大局已定、選擇結束生命，這種對當下具體處境缺乏彈性應變的僵化反應，反映出劣勢外向感官的特徵。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最深的兩重關係，一重是他曾竭誠效忠、此後卻背叛的大衛，另一重，是那位以巧言攔阻了他必勝之計謀的戶篩。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">大</div>
+          <div class="relation-name">大衛</div>
+          <div class="relation-type-badge">他曾竭誠效忠、此後背叛的王</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">亞希多弗曾是大衛最倚重的謀士，此後卻在押沙龍叛變時選擇背叛，獻上足以致大衛於死地的計謀；大衛得知他背叛的消息後，立即迫切禱告求神使他的計謀變為愚拙。</div>
+          <div class="relation-ref">撒母耳記下 15:12, 31</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">押</div>
+          <div class="relation-name">押沙龍</div>
+          <div class="relation-type-badge">他轉而效忠、卻未採納其致命計謀的叛變者</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">亞希多弗全心投入輔佐押沙龍的叛變行動，獻上羞辱大衛妃嬪與連夜追殺的計謀；然而押沙龍最終被戶篩的說詞打動，放棄了亞希多弗這條原本近乎必勝的策略。</div>
+          <div class="relation-ref">撒母耳記下 17:1–14</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">戶</div>
+          <div class="relation-name">戶篩</div>
+          <div class="relation-type-badge">以巧言攔阻其計謀、間接促成他自縊的內應</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">戶篩是大衛暗中安插在押沙龍陣營中的內應，他以誇大大衛勇士之勇猛為由，成功說服押沙龍放棄亞希多弗連夜奇襲的計謀，這場言辭上的較量，直接導致了亞希多弗此後自縊的結局。</div>
+          <div class="relation-ref">撒母耳記下 17:5–14</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「耶和華啊，求你使亞希多弗的計謀變為愚拙」——大衛這句迫切的禱告，最終在戶篩的巧言與神的護理之下得蒙應允。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「大衛聽見亞希多弗也在叛黨之中，就禱告說：耶和華啊，求你使亞希多弗的計謀變為愚拙。」</div>
+      <div class="verse-ref">撒母耳記下 15:31</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">עֵצָה</span>
+        <div class="word-transliteration">etsah · 計謀 / 忠告 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">這個字反覆出現在整段敘事之中，既用來形容亞希多弗昔日「好像求問神的話一樣」的智謀，也用來描述他此後獻給押沙龍、企圖致大衛於死地的計策。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">同一個字所形容的智慧，可以被用於造福，也可以被用於毀滅——這個字在敘事中的反覆出現，深刻凸顯出智慧本身是中性的工具，真正決定其果效的，是使用智慧之人的心志與方向；亞希多弗的悲劇，正在於他將神所賜的過人智慧，轉而投入了背叛與復仇的用途。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">禱告能夠攔阻看似無可抵擋的人為謀略</div>
+      <div class="theology-insight-body">面對亞希多弗近乎必勝的軍事計謀，大衛所能做的，唯有迫切的禱告；而神也確實藉著戶篩的巧言，使這條原本精準到位的計謀最終落空——這見證了神的護理，能夠勝過人間最頂尖的智謀算計。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">才智本身不能保證美好的生命結局</div>
+      <div class="theology-insight-body">亞希多弗擁有近乎先知性的智慧，卻因將這份才智投入背叛與復仇的道路，最終走向自我毀滅的結局——這提醒我們，才智若缺乏正確的方向與悔改回轉的心，同樣可能成為毀滅自己的工具。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">背叛帶來的傷害，深刻烙印在受害者此後的生命書寫之中</div>
+      <div class="theology-insight-body">大衛在多篇詩篇中，反覆哀嘆知己好友的背叛，這段創傷此後也深刻影響了大衛對苦難與信靠神的神學反思，使亞希多弗的背叛，成為理解大衛詩篇中「被密友出賣」這一主題最重要的歷史背景。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">亞希多弗曾是大衛最親密倚重的謀士，「吃過我飯的人」，卻在關鍵時刻背叛他、參與策劃足以致其於死地的陰謀</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這段被至親密友背叛的經歷，此後在耶穌被自己最親近的門徒之一猶大出賣的敘事中，得到更深刻而終極的呼應與應驗，詩篇中「同我吃飯的人用腳踢我」的哀嘆，也被引用來預表這場更大的背叛</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">耶穌同樣被自己親自揀選、與祂同席用飯的門徒猶大所出賣，祂在最後的晚餐中親口引用詩篇的話語，宣告這場背叛正應驗了經上所記的話，然而祂也藉著十字架上的犧牲，最終勝過了這場背叛所帶來的死亡權勢（約 13:18 · 詩 41:9）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻擁有某種過人的才智或能力——這一頁想問你：你打算把它用在造福他人，還是用在報復與傷害之上？</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">亞希多弗的故事命中每一個擁有過人才智、能力或影響力，卻可能因未經處理的怨恨而將這份能力導向錯誤方向的人。他的悲劇提醒我們，才智本身是中性的工具，真正決定其價值的，是使用它的心志與方向——同樣的智慧，可以用來祝福他人，也可以用來策劃傷害。他自縊而死的結局，同時也提醒我們，當計畫落空、局勢不再對自己有利時，選擇絕望了結，遠不如選擇謙卑悔改、尋求與神與人和好的道路。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你是否也擁有某種過人的才智、能力或影響力？你此刻正將它導向造福他人的方向，還是可能正被某種未處理的怨恨所驅動？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">亞希多弗因計謀被否決便選擇自縊，展現出一種『非黑即白』的絕望反應。你面對計畫落空或被否決時，是否也容易陷入類似的絕望，而非尋求其他的可能性？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">大衛面對近乎必勝的敵謀，選擇的回應是迫切禱告。你面對生命中看似無可抵擋的困境時，是否也習慣先尋求神的介入？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">大衛詩篇中對『被密友背叛』的哀嘆，深刻反映出這段傷害的重量。你是否也曾經歷過被至親好友背叛的傷痛？你如何處理這份傷痛？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 亞希多弗</span>
+        <div class="gen-title">警示劇本：讓過人的智慧被復仇之心驅使，最終走向自我毀滅</div>
+        <div class="gen-body">他曾是大衛最倚重的謀士，卻在押沙龍叛變時選擇背叛，獻上近乎必勝的致命計謀；當計謀被否決、局勢不再對自己有利時，他選擇了自縊終結一切。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 大衛</span>
+        <div class="gen-title">延續：這場背叛的傷痛，深刻烙印在大衛此後的詩篇創作之中</div>
+        <div class="gen-body">大衛此後在多篇詩篇中反覆哀嘆知己好友的背叛，這段刻骨銘心的傷痛，成為他此後信靠神、學習在至深傷害中仍持守盼望之信仰歷程的重要組成部分。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在這段悲劇敘事中，展現在神垂聽大衛迫切的禱告，藉著戶篩的巧言使亞希多弗近乎必勝的計謀落空，保守了大衛的性命與應許血脈的延續。這提醒我們，即便面對人間最頂尖的智謀與最深的背叛，神的護理與信實，始終能夠介入並扭轉看似無可挽回的局勢。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位智謀近乎先知、卻因背叛與計謀落空而自縊的謀士，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#才智是把雙面刃</span>
+      <span class="tag">#計畫落空不是世界末日</span>
+      <span class="tag">#背叛留下的傷痕</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>亞希多弗有多厲害？聖經給他的評價是：『他出的主意，就跟去問神一樣準。』這種等級的謀士，放在任何一個朝代，都會是核心中的核心人物。</p>
+      <p>問題是，押沙龍發動政變要奪權的時候，亞希多弗選擇了倒戈——他不是被脅迫，是主動加入，還立刻獻上了一條幾乎必勝的計策：趁大衛現在又累又慌，連夜追上去，只殺他一個人，其他人不用動。這條計謀精準到，大衛自己得知消息後，第一反應是趕緊禱告，求神讓這個計謀『變成愚蠢的』。</p>
+      <p>後來押沙龍找了另一個人（其實是大衛安插的臥底）問意見，那個人講了一堆聽起來更穩妥、實際上是拖延戰術的話，押沙龍居然被說服了，放棄了亞希多弗的方案。</p>
+      <p>亞希多弗一看自己的計謀沒被採用，直接做出一個判斷：這場叛變輸定了。他沒有留下來想辦法補救，也沒有考慮回頭認錯，他騎驢回家，把家裡的事安排好，然後上吊自殺了。</p>
+      <p>這個結局讀起來特別冷——一個頭腦這麼清楚的人，用同樣清楚的邏輯，判定自己沒有退路，然後選擇了最極端的方式結束一切。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——亞希多弗這塊石頭，被雕刻出的形狀，是一個沉重的提醒：『再厲害的頭腦，如果被復仇心綁架，最後可能連自己都算計進去』。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你正擁有某種讓別人羨慕的能力或智慧，亞希多弗的故事想問你：你打算用它來成就什麼？</p>
+      <p style="margin-top:12px;">計畫落空的時候，別急著判定『一切都完了』——亞希多弗的邏輯很清晰，卻也很致命，因為他沒有給自己留任何轉圜的餘地。</p>
+      <p style="margin-top:12px;">如果你曾被至親好友背叛，大衛的詩篇（那些哀嘆『同我吃飯的人用腳踢我』的句子）告訴你：這種痛，聖經沒有假裝它不存在。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果你正因某個計畫落空而感到絕望，練習給自己留一條『回頭』的路，而不是關上所有的門。</p>
+    </div>
+
+    <div class="insight-box">亞希多弗與此後出賣耶穌的猶大，經常在基督教講道與神學著作中被相提並論，作為「被至親密友背叛」這一主題的舊約與新約對照典型——詩篇四十一篇9節「連我知己的朋友，我所倚靠、吃過我飯的人，也用腳踢我」，被廣泛認為同時指向亞希多弗的背叛，並在約翰福音中被耶穌親自引用以預表猶大的出賣，使這兩段相隔千年的背叛敘事，在聖經神學傳統中緊密相連。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他曾擁有近乎先知性的智謀，卻因背叛與復仇之心，最終走向自我毀滅的悲劇結局，成為聖經中才智被誤用最深刻的警世案例。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">「才智需要正確方向」的深刻警示</div>
+          <div class="legacy-body">他近乎先知性的謀略天賦，最終被用於背叛與復仇，成為聖經中警戒世人才智本身無法保證美好生命結局的重要案例。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">大衛詩篇「被密友背叛」主題的歷史背景</div>
+          <div class="legacy-body">他對大衛的背叛，成為大衛此後多篇詩篇中反覆哀嘆知己出賣之痛的重要歷史背景，深刻影響了這些詩篇的神學詮釋傳統。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">猶大出賣耶穌的舊約預表</div>
+          <div class="legacy-body">他作為大衛親近謀士卻背叛主人的角色，此後被詩篇與新約引用，成為理解猶大出賣耶穌這一終極背叛事件的重要舊約預表人物。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">神護理勝過人間頂尖謀略的見證</div>
+          <div class="legacy-body">大衛迫切禱告求神使他的計謀變為愚拙、並果然藉戶篩之口得蒙應允的敘事，成為聖經中神的護理如何勝過人間最精準謀略最鮮明的歷史見證。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「亞希多弗見不依從他的計謀，就備上驢，起身回本城，到了家，留下遺言，便吊死了，葬在他父親的墳墓裡。」</div>
+      <div class="final-verse-ref">撒母耳記下 17:23</div>
+    </div>
+
+    <div class="final-question">如果你此刻擁有某種過人的才智或能力，你願意把它用來造福他人、榮耀神，還是任由未經處理的怨恨，將它導向摧毀自己與他人的方向？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 亞希多弗 <span>אֲחִיתֹפֶל</span> · 大衛的謀士 · 背叛加入押沙龍叛變的智者</div>
+
+<!-- 閱讀紀錄（localStorage，見 progress.js）：右下角標記已讀按鈕 -->
+<script src="progress.js"></script>
+
+</body>
+</html>
