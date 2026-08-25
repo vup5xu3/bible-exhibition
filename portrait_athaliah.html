@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>亞他利雅 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">亞他利雅</h1>
+  <span class="hero-name-en">Athaliah · עֲתַלְיָה</span>
+  <p class="hero-slogan">「亞他利雅見兒子死了，就起來剿滅王室。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">猶大王國，約主前九世紀中葉，篡位在位6年</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ENTJ · 統帥型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">列王紀下 11 章 · 歷代志下 22–23 章</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">亞哈與耶洗別之女 · 猶大唯一一位篡位的女性統治者</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">她把北國以色列耶洗別式的政治手腕，直接帶進了猶大的王宮——當自己的兒子被弒身亡，她做出的第一個決定，竟是殺盡整個猶大王室，包括自己的親孫子們。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">猶大王國，約主前九世紀中葉，篡位在位6年</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">亞哈王與耶洗別之女，嫁給猶大王約蘭，此後篡位為太后統治者</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">活動區域</span>
+        <div class="info-cell-value">耶路撒冷，猶大王宮</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">夫約蘭（猶大王）；子亞哈謝（猶大王，被耶戶所殺）；孫約阿施（唯一倖存、此後復位的王室後裔）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">列王紀下 8:18, 26 · 11 章 · 歷代志下 22–23 章</div>
+      </div>
+    </div>
+
+    <p>亞他利雅的出身，本身就註定了她此後行事的風格：她是北國以色列惡名昭彰的亞哈與耶洗別之女，卻透過政治聯姻嫁給了猶大王約沙法之子約蘭——這樁婚姻本是南北兩國修好的政治安排，卻也將耶洗別式的巴力崇拜與權謀手段，一併帶進了原本敬拜耶和華的猶大王室。經文記載約蘭「行以色列諸王的道，與亞哈家一樣；因他娶了亞哈的女兒為妻，行耶和華眼中看為惡的事」，明確將猶大此後的信仰敗壞，直接歸因於她的影響。</p>
+    <p>真正讓她在歷史上留下最深烙印的，是她兒子亞哈謝的死。亞哈謝在位僅一年，便在探望舅舅約蘭（北國以色列王，與她同名）時，被耶戶在清洗亞哈全家的行動中一併殺死。消息傳回耶路撒冷，經文用一句冷酷至極的話記載了亞他利雅的反應：「亞他利雅見她兒子死了，就起來剿滅王室。」她所剿滅的「王室」，不是別人的家族，正是自己丈夫與兒子所留下的、屬於她自己孫輩的整個猶大王室血脈——這種為了鞏固自己權位、不惜親手滅絕自己親生骨肉後裔的殘暴，在整部聖經歷史中都極為罕見。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從一樁修好南北兩國的政治聯姻，到親手下令剿滅整個王室血脈以篡奪王位，亞他利雅的故事，是一部關於「權力慾望如何吞噬一切、包括自己血親」的敘事。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">背景鋪陳</span>
+        <div class="timeline-title">政治聯姻——耶洗別的影響力滲入猶大</div>
+        <div class="timeline-body">亞他利雅嫁給猶大王約蘭，經文記載約蘭因娶了亞哈的女兒為妻，行耶和華眼中看為惡的事，猶大的信仰因此受到北國巴力崇拜的深刻影響。</div>
+        <div class="timeline-ref">列王紀下 8:18</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">驚人手段</span>
+        <div class="timeline-title">兒子被弒——她下令剿滅整個王室</div>
+        <div class="timeline-body">亞他利雅的兒子亞哈謝在探望舅舅時被耶戶一併殺死；消息傳來，亞他利雅立即起來剿滅猶大王室，包括自己的親孫子們，企圖徹底掌控王位。</div>
+        <div class="timeline-ref">列王紀下 11:1</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">約阿施被藏匿——王室血脈一線僅存</div>
+        <div class="timeline-body">亞哈謝的妹妹約示巴（祭司耶何耶大之妻）暗中將尚在襁褓的約阿施從即將被殺的王子中偷出，藏在聖殿的臥房裡達六年之久，使猶大大衛家的王室血脈得以一線僅存。</div>
+        <div class="timeline-ref">列王紀下 11:2–3</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">篡位統治</span>
+        <div class="timeline-title">亞他利雅統治猶大六年</div>
+        <div class="timeline-body">在約阿施被暗中撫養的這六年間，亞他利雅以太后身份公開統治猶大全地，成為猶大歷史上唯一一位篡位的女性統治者。</div>
+        <div class="timeline-ref">列王紀下 11:3</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">審判終局</span>
+        <div class="timeline-title">耶何耶大的政變——「反叛啊！反叛啊！」</div>
+        <div class="timeline-body">第七年，祭司耶何耶大策劃政變，將七歲的約阿施公開膏立為王；亞他利雅聽見喧嚷聲趕來，撕裂衣服喊道「反叛啊！反叛啊！」，卻被耶何耶大下令拉出聖殿處死，猶大大衛家的王位就此恢復。</div>
+        <div class="timeline-ref">列王紀下 11:4–16</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">她面對權力可能旁落的威脅時，選擇的手段之殘酷——親手剿滅自己孫輩血脈——即便在整部充滿權謀鬥爭的列王紀中，也顯得格外驚心動魄。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">權力的鞏固，優先於一切血緣與親情</div>
+          <div class="soul-body">面對兒子驟逝、王位可能落入他人之手的處境，她選擇的第一反應，不是哀悼或尋求繼承秩序，而是徹底剿滅所有可能挑戰她權位的王室血脈——即便那是自己的親孫子。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">外顯的能力</span>
+          <div class="soul-title">具備延續耶洗別式強悍統治風格的政治手腕</div>
+          <div class="soul-body">她能在一場血腥政變後，仍成功掌控猶大政權長達六年之久，顯示她確實具備相當程度的政治操控與統治能力，這與她母親耶洗別的強勢作風一脈相承。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">面對威脅時採取最極端、最徹底的清除手段</div>
+          <div class="soul-body">無論是剿滅王室血脈以鞏固自己的權位，或是此後聽聞政變時立即撕裂衣服公開喊出「反叛」以圖激起支持，她一貫展現出面對危機時直接訴諸最激烈手段的行事風格。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">為了權力，不惜親手滅絕自己的血親後裔</div>
+          <div class="soul-body">她所剿滅的「王室」，正是自己丈夫與兒子留下的骨肉血脈——這種將權力慾望凌駕於最基本的血緣親情之上的殘暴，是她性格中最令人不寒而慄的核心。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">歷史定位</span>
+          <div class="soul-title">大衛家王朝血脈幾乎因她而徹底斷絕</div>
+          <div class="soul-body">她剿滅王室的行動，一度使神應許大衛「你的家和你的國必在我面前永遠堅立」的約定，面臨幾乎斷絕的危機，唯獨約阿施一人倖存，成為這條應許血脈得以延續的關鍵一線生機。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">亞他利雅的故事，是聖經中「權力慾望如何徹底泯滅人性最基本情感」最極端的案例。她的殘暴不僅止於一般宮廷政變中對異己的清除，而是進一步指向自己至親骨肉的滅絕——這使她的行動，超越了單純的政治鬥爭，成為一種近乎自我吞噬的權力偏執。更深刻的是，她的行動一度將神向大衛所立、關乎彌賽亞家系永遠堅立的應許，推向了幾乎徹底斷絕的懸崖邊緣——若非約示巴冒著生命危險藏匿了尚在襁褓的約阿施，大衛的王室血脈很可能就此終結。這使亞他利雅的故事，不僅是一則個人野心導致毀滅的警世寓言，更成為整部救贖歷史中，神的應許如何在人性最極端的惡行威脅下，仍憑著祂自己的信實得以存續的關鍵敘事。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ENTJ</span>
+      <div class="mbti-name">統帥型 · 為權力不惜滅親的太后</div>
+      <div class="mbti-slogan">「面對王位可能旁落的威脅，她選擇了最極端的手段——親手剿滅自己的孫輩血脈。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">她在兒子驟逝、王位面臨繼承危機的當下，迅速做出剿滅整個王室血脈這個極端卻高效的決斷，並成功掌控猶大政權長達六年，展現出高度目標導向、不擇手段的執行力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">她清楚意識到任何存活的王室血脈都可能對自己的權位構成長遠威脅，因此選擇一次性徹底清除的手段，而非逐步應對，顯示出對局勢長遠風險的深刻洞察與提前佈局。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Se · 外向感官</span>
+          <div class="mbti-fn-body">她在政變爆發的當下，立即撕裂衣服、公開喊出「反叛啊」，試圖以最直接、最具戲劇張力的方式激起在場群眾的反應，顯示出對當下具體情境的即時掌控意圖。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">她完全未能從內在道德與血緣情感的角度反思剿滅自己孫輩血脈這個行動，反而讓純粹的權力慾望主導了所有判斷，這種內在道德與親情省思的徹底缺失，是劣勢內向情感最極端的展現。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">她一生的行動軌跡，深受母親耶洗別的強勢作風影響，最終也在自己家族最幽微的角落，遭遇了一個她始料未及的反撲。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">耶</div>
+          <div class="relation-name">耶洗別</div>
+          <div class="relation-type-badge">她的母親，統治風格的直接源頭</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">亞他利雅是耶洗別之女，她強勢而不擇手段的統治風格，明顯延續了母親耶洗別在北國以色列扶植巴力崇拜、剷除異己的行事模式，將這種風格帶進了猶大王室。</div>
+          <div class="relation-ref">列王紀下 8:18, 26</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">亞</div>
+          <div class="relation-name">亞哈謝</div>
+          <div class="relation-type-badge">她的兒子，被耶戶所殺的猶大王</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">亞哈謝在位僅一年便被耶戶所殺，這場死亡直接觸發了亞他利雅剿滅整個猶大王室、篡位奪權的行動。</div>
+          <div class="relation-ref">列王紀下 9:27–29 · 11:1</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">約</div>
+          <div class="relation-name">約示巴</div>
+          <div class="relation-type-badge">冒死藏匿她孫子約阿施的姑母</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">約示巴是亞哈謝的妹妹、祭司耶何耶大之妻，在亞他利雅剿滅王室之際，冒著生命危險將尚在襁褓的約阿施偷出藏匿，使大衛家的王室血脈得以延續。</div>
+          <div class="relation-ref">列王紀下 11:2</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">耶</div>
+          <div class="relation-name">耶何耶大</div>
+          <div class="relation-type-badge">策劃政變、終結她統治的祭司</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">耶何耶大在約阿施七歲那年策劃政變，公開膏立他為王，並下令將亞他利雅拉出聖殿處死，終結了她長達六年的篡位統治，恢復了大衛家的合法王位。</div>
+          <div class="relation-ref">列王紀下 11:4–16</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「反叛啊！反叛啊！」——亞他利雅在自己的篡位統治即將終結時所喊出的這句話，帶著極其諷刺的意味：她自己正是那場最徹底的反叛的始作俑者。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「亞他利雅見兒子死了，就起來剿滅王室……唯有約示巴……將亞哈謝的兒子約阿施從那被殺的王子中偷出來，把他和他的乳母都藏在臥房裡，躲避亞他利雅，免得被殺。」</div>
+      <div class="verse-ref">列王紀下 11:1–2</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">קֶשֶׁר</span>
+        <div class="word-transliteration">qesher · 反叛 / 陰謀 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">亞他利雅被耶何耶大的政變推翻時所喊出的字，原意為「密謀反叛」；然而深具反諷意味的是，她自己奪取王位的行動，本質上正是對大衛家合法王統最徹底的「反叛」。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這個字的反覆使用，形成一種尖銳的敘事反諷——真正的「反叛者」在她被推翻的那一刻，卻指控他人是反叛者；這提醒讀者，篡奪者往往傾向於將維護正統秩序的行動，扭曲指控為對自己的背叛，這種話語上的顛倒，本身就是聖經敘事對不義掌權者的深刻批判。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">神的應許即便面臨滅絕的威脅，仍憑祂自己的信實得以存續</div>
+      <div class="theology-insight-body">亞他利雅剿滅王室的行動，一度使神向大衛所立「你的國必在我面前永遠堅立」的應許面臨斷絕的危機，唯獨約阿施一人倖存——這清楚見證，神的應許不因人的惡行而落空，祂總能在最危急的時刻，保守祂救贖計畫的延續。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">權力慾望能徹底扭曲人性最基本的親情</div>
+      <div class="theology-insight-body">亞他利雅不惜剿滅自己的孫輩以鞏固權位，這種極端行為警示我們，未經節制的權力慾望，能夠腐蝕甚至摧毀人性中最基本、最應當堅守的血緣與親情連結。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">正義的伸張，有時需要冒死的堅持與等待</div>
+      <div class="theology-insight-body">約示巴冒著生命危險藏匿約阿施長達六年，耶何耶大也謹慎籌劃、等待時機成熟才發動政變——這示範了在面對不義掌權的漫長歲月中，堅持護衛正確之事、耐心等待神所命定之時刻的重要性。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">亞他利雅企圖剿滅整個大衛家王室血脈，一度使彌賽亞應許家系面臨徹底斷絕的危機，卻因約示巴冒死藏匿約阿施而得以一線僅存</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這段大衛家血脈幾乎斷絕、卻在神的護理下奇蹟般存續的歷史，此後在希律王企圖藉伯利恆嬰孩大屠殺剷除新生的彌賽亞、卻同樣未能得逞的敘事中，再次得到鮮明的呼應</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">神持續信實地保守祂向大衛所立、關乎彌賽亞永遠國度的應許，即便面對人間權勢一次又一次企圖剿滅這條應許血脈的惡行，祂的計畫終究藉著約瑟帶著聖嬰逃往埃及等護理作為，得以完整成就（太 2:13–15 · 撒下 7:16）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正緊抓著某種權力、地位或掌控感不放——這一頁想問你：為了守住它，你願意犧牲到什麼地步？</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">亞他利雅的故事命中每一個在面對自己權力、地位或既得利益可能受到威脅時，容易做出極端、甚至傷害至親之決定的人。她的悲劇提醒我們，未經節制的權力慾望，能夠一步步侵蝕我們最基本的道德底線，甚至扭曲我們對待至親的方式。她的故事同時也提醒我們，即便在最黑暗、看似毫無盼望的處境中——如同約示巴冒死藏匿約阿施那樣——仍然有人願意堅守正義，為此付上代價，而神的信實與應許，終將在這樣的堅持中得以存續。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你是否也曾在面對權力、地位或利益可能受損的威脅時，做出讓自己事後後悔、甚至傷害他人的決定？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">亞他利雅將權力慾望凌駕於血緣親情之上。你生命中是否也有某種『慾望』，正在悄悄凌駕於你最應該珍視的關係之上？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">約示巴冒著生命危險堅持護衛正確的事，即便要等待六年之久。你是否也曾因為堅持某個正確的立場，而需要付出漫長而艱難的代價？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">亞他利雅在被揭穿時喊『反叛啊』，把自己塑造成受害者。你是否曾見過（或自己曾經）用類似的話術，扭曲責任的歸屬？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 亞他利雅</span>
+        <div class="gen-title">警示劇本：為鞏固權力，不惜剿滅自己的血脈後裔</div>
+        <div class="gen-body">她在兒子亞哈謝被殺後，立即起來剿滅整個猶大王室，篡奪王位統治六年，最終在祭司耶何耶大策劃的政變中被推翻處死。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 約阿施</span>
+        <div class="gen-title">延續：僅存的一線血脈，恢復了大衛家的王位</div>
+        <div class="gen-body">唯一倖存的約阿施在約示巴的冒死藏匿與耶何耶大的謹慎籌劃下，於七歲那年重登王位，使大衛家的王室血脈與神向大衛所立的永遠國度應許，得以延續下去。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在這段黑暗的敘事中，展現在神即便面對亞他利雅企圖徹底剿滅祂應許家系的惡行，仍透過約示巴一人的冒死義行，保守了這條血脈的存續。這提醒我們，無論人間的惡行看似多麼徹底、多麼令人絕望，神的信實與應許，總能在祂所預備的關鍵時刻與關鍵人物身上，找到存續與翻轉的契機。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位為了權力、不惜剿滅自己孫輩血脈的猶大太后，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#權力慾望可以吞噬親情</span>
+      <span class="tag">#黑暗中仍有人堅守正義</span>
+      <span class="tag">#話術扭曲不了真相</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>亞他利雅的背景其實不難理解——她媽是耶洗別，那個以強勢和不擇手段聞名的北國王后。她嫁到猶大王室之後，把同一套作風也帶了過來。</p>
+      <p>真正讓她被寫進歷史黑名單的，是她兒子被殺之後的反應。換作正常人，第一反應大概是悲傷。她的反應是：立刻動手，把整個王室——包括自己的親孫子——全部殺光，自己坐上王位。</p>
+      <p>唯一躲過這場屠殺的，是她一個還在襁褓中的孫子約阿施，被姑姑約示巴冒著生命危險偷偷藏了起來，一藏就是六年。</p>
+      <p>這六年裡，亞他利雅就這樣光明正大地統治著猶大，沒有人知道王室血脈其實還留著一線生機。直到約阿施七歲那年，祭司耶何耶大覺得時機成熟，發動政變，當眾把小男孩立為王。</p>
+      <p>亞他利雅聽到動靜衝出來，看到眼前的一切，喊了一句：『反叛啊！反叛啊！』——這句話特別諷刺，因為真正搞反叛、篡奪正統王位的人，正是她自己。喊完沒多久，她就被拖出去處決了。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——亞他利雅這塊石頭，被雕刻出的形狀，是一個徹底的警示：『權力慾望一旦失控，連血緣都攔不住』。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你正緊抓著某個位置、身份或掌控感不放，亞他利雅的故事想問你：為了守住它，你願意付出什麼代價？</p>
+      <p style="margin-top:12px;">六年的等待，對約示巴和耶何耶大來說一定很漫長。如果你正在堅持一件正確卻看不到盡頭的事，這個故事想告訴你：時候到了，翻轉可能就在眼前。</p>
+      <p style="margin-top:12px;">留意那些用『你才是壞人』來反控他人的話術——亞他利雅喊反叛的那一刻，正是最赤裸的示範。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，誠實檢視一個你正緊抓不放的『位置』——問問自己，如果它受到威脅，你會做出什麼樣的反應？</p>
+    </div>
+
+    <div class="insight-box">亞他利雅作為聖經中唯一一位篡位統治猶大的女性君王，在探討古代近東女性統治者與權力政治的歷史研究中，經常被拿來與埃及的哈特謝普蘇特等其他古代女性統治者相互比較討論；她企圖剿滅整個王室血脈的行動，也持續是探討「權力如何腐蝕人性」這一主題時最常被引用的聖經案例之一。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">她為了鞏固權位，親手剿滅自己的血脈後裔，一度將神向大衛所立的永遠應許推向斷絕的邊緣，卻也在自己的殘暴中，種下了六年後徹底覆滅的結局。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">權力慾望吞噬人性的極端警世案例</div>
+          <div class="legacy-body">她不惜剿滅自己孫輩血脈以鞏固權位的行動，成為聖經中警戒世人權力慾望如何徹底腐蝕人性最極端、也最令人震驚的負面典型。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">大衛家應許血脈幾乎斷絕又奇蹟存續的關鍵敘事</div>
+          <div class="legacy-body">她剿滅王室的行動，一度使神向大衛所立永遠國度的應許面臨徹底斷絕的危機，唯獨約阿施一人倖存，成為理解神應許如何在極端惡行威脅下仍得以存續的重要歷史見證。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">「反叛」話術反諷的深刻提醒</div>
+          <div class="legacy-body">她被推翻時反指控他人「反叛」的场景，成為聖經敘事中揭露不義掌權者慣常話術操作最鮮明的例證，持續提醒後世辨識類似的責任扭曲手法。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">猶大唯一女性篡位者的歷史定位</div>
+          <div class="legacy-body">她是猶大王國歷史上唯一一位篡位的女性統治者，這段獨特的歷史記載，持續為古代近東女性統治與權力政治的研究，提供重要的參照案例。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「眾民都歡樂，閤城安靜；眾人已將亞他利雅在王宮那裡用刀殺了。」</div>
+      <div class="final-verse-ref">列王紀下 11:20</div>
+    </div>
+
+    <div class="final-question">如果你此刻正緊抓著某種權力、地位或掌控感不放，你願不願意誠實檢視：這份執著，是否正悄悄地讓你付出比你所知更沉重的代價？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 亞他利雅 <span>עֲתַלְיָה</span> · 篡奪猶大王位的太后</div>
+
+<!-- 閱讀紀錄（localStorage，見 progress.js）：右下角標記已讀按鈕 -->
+<script src="progress.js"></script>
+
+</body>
+</html>

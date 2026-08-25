@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>希律亞基帕一世 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">希律亞基帕一世</h1>
+  <span class="hero-name-en">Herod Agrippa I · Ἡρῴδης Ἀγρίππας</span>
+  <p class="hero-slogan">「希律不歸榮耀給神，所以主的使者立刻罰他，<br>他被蟲所咬，氣就絕了。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">使徒行傳初期，約主後41–44年</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ESTP · 企業家型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">使徒行傳 12:1–23</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">猶太全地的王 · 逼迫初代教會、殺害使徒雅各的統治者</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他出身希律王朝這個以殘暴與權謀著稱的家族，年輕時因負債累累而流亡，此後卻憑著與羅馬皇室的私人交情，一路攀升重掌大希律當年統治的全部疆域——這條回歸權力頂峰的道路，深刻塑造了他此後討好群眾、鞏固地位不擇手段的統治風格。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">使徒行傳初期，約主後41–44年，統治猶太全地</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">大希律之孫，希律家族第三代統治者</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">活動區域</span>
+        <div class="info-cell-value">耶路撒冷、該撒利亞</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">妻子基普羅；子亞基帕二世；女土西拉、百尼基</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">使徒行傳 12:1–23</div>
+      </div>
+    </div>
+
+    <p>亞基帕一世的統治生涯，充分展現了他對猶太民眾情緒精準而現實的政治判斷力。他深知要鞏固自己剛重新奪回的王權，最有效的方式之一，便是迎合猶太宗教領袖與民眾對初代教會的敵意——經文開篇便直接交代他行動的動機：「希律王下手苦害教會中幾個人，用刀殺了約翰的哥哥雅各。他見這事討猶太人的喜歡，就又去捉拿彼得。」這段記載用極其簡潔卻冷酷的因果邏輯，揭示了他殺害使徒雅各的行動，本質上不是出於任何宗教或個人信念，而是一場精心計算過的政治操作——殺人的目的，是為了討好群眾、鞏固自己的統治基礎。</p>
+    <p>他拘捕彼得後，更是動用了四班兵丁看守，顯然是要確保這次不再重演此前使徒們神蹟般越獄的情形；然而主的使者仍在夜間親自介入，帶領彼得安然脫離監禁與即將面臨的處決。這場失敗的逼迫行動，某種程度上預示了此後亞基帕一世自己命運的急轉直下——一位企圖透過殺戮與逼迫來鞏固權力、討好群眾的統治者，終將在神的主權面前，顯出自己何等的無力與短暫。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從殺害使徒雅各以討好猶太人的政治算計，到接受群眾諂媚歡呼、卻被主的使者當場擊打而死，亞基帕一世的統治，是一部關於「以逼迫鞏固的權力，終究不堪一擊」的敘事。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">血腥逼迫</span>
+        <div class="timeline-title">殺害使徒雅各——「他見這事討猶太人的喜歡」</div>
+        <div class="timeline-body">希律王下手苦害教會中的人，用刀殺了約翰的哥哥、使徒雅各；他見這行動深得猶太人的喜歡，便進一步捉拿彼得，意圖如法炮製。</div>
+        <div class="timeline-ref">使徒行傳 12:1–3</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">加倍防範</span>
+        <div class="timeline-title">拘捕彼得——四班兵丁嚴密看守</div>
+        <div class="timeline-body">正值除酵節期間，希律將彼得下在監裡，交付四班兵丁看守，打算在逾越節後把他提出來，當著百姓辦他，顯示他這次防範之嚴密，正是記取先前使徒越獄的教訓。</div>
+        <div class="timeline-ref">使徒行傳 12:4</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">主的使者救出彼得——逼迫計畫落空</div>
+        <div class="timeline-body">教會為彼得懇切禱告，主的使者在夜間親自介入，帶領彼得安然越過重重看守走出監獄；希律的逼迫計畫徹底落空，他因此下令將看守的兵丁處死。</div>
+        <div class="timeline-ref">使徒行傳 12:5–19</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">驟然殞落</span>
+        <div class="timeline-title">被蟲所咬，氣就絕了——「不歸榮耀給神」</div>
+        <div class="timeline-body">希律在該撒利亞身穿華麗的王袍，坐在寶座上向推羅西頓的使者演講，眾人諂媚地歡呼「這是神的聲音，不是人的聲音」；希律因不歸榮耀給神，主的使者立刻擊打他，他被蟲所咬，當場氣絕身亡。</div>
+        <div class="timeline-ref">使徒行傳 12:20–23</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他一生精於揣摩並迎合群眾的情緒——無論是殺害使徒討好猶太人，或是身穿華服接受群眾的諂媚——這種對群眾心理的精準拿捏，最終卻也成為他驟然殞落的關鍵。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">群眾的支持，是鞏固權力最有效的貨幣</div>
+          <div class="soul-body">他殺害使徒雅各的行動，經文明確指出動機是「討猶太人的喜歡」——這揭示他對權力的理解，高度依賴於精準揣摩並迎合當下群眾情緒的政治算計，而非任何原則性的立場。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">外顯的能力</span>
+          <div class="soul-title">善於運用政治人脈重返並鞏固權力核心</div>
+          <div class="soul-body">他年輕時曾負債流亡，卻憑著與羅馬皇室的私人交情，一路重新奪回大希律當年統治的全部疆域，展現出相當程度的政治手腕與人脈經營能力。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">精於算計當下的政治效益，卻疏於長遠的道德省思</div>
+          <div class="soul-body">從殺害使徒到加派兵丁看守彼得，他的每一步行動都經過精確的政治效益計算，卻始終未曾停下腳步反思這些行動背後的道德重量。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">極度享受並縱容群眾對自己的諂媚崇拜</div>
+          <div class="soul-body">當推羅西頓的使者與百姓歡呼「這是神的聲音，不是人的聲音」時，他沒有絲毫謙遜或推辭，反而坦然接受這種近乎神化自己的諂媚——這種對權力與崇拜毫無節制的貪戀，正是他最終招致審判的直接原因。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">驟逝結局</span>
+          <div class="soul-title">在權力與榮耀的巔峰，被當場擊打而死</div>
+          <div class="soul-body">他死亡的時間點極具戲劇性與警世意味——不是在失敗或衰落之際，而正是在他身穿華服、接受群眾如神明般歡呼的權力頂峰時刻，經文用「被蟲所咬，氣就絕了」這樣近乎羞辱性的描述，記下了他的結局。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">亞基帕一世的故事，是聖經中「以逼迫神百姓來鞏固自己權力的統治者，終將自食其果」最鮮明的案例之一。他一生的行動軌跡，展現出一種高度一致的政治邏輯：無論是殺害使徒雅各、拘捕彼得，或是此後坦然接受群眾近乎神化的諂媚歡呼，核心動機都是對權力與群眾支持毫無節制的渴求。經文對他死因的記載極其簡潔而直接——「希律不歸榮耀給神」——這句話揭示了他真正的問題所在：他不是單純犯了某個具體的罪行，而是從根本上，將本該歸給神的榮耀，據為己有。這種將自己置於近乎神明地位的傲慢，最終招致了神使者當場的擊打與審判。他的故事與此後被他關押、卻蒙神使者拯救的彼得形成鮮明對比——一位企圖透過逼迫神百姓來鞏固權力的統治者，終究無法逃脫神主權之下的審判，而神的教會，卻在他死後「道被神的道日見興旺，越發廣傳」。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ESTP</span>
+      <div class="mbti-name">企業家型 · 以逼迫討好群眾的猶太王</div>
+      <div class="mbti-slogan">「他精準揣摩群眾的情緒、殺人取悅猶太人，最終卻在接受群眾諂媚歡呼的巔峰時刻，被主的使者當場擊打而死。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Se · 外向感官</span>
+          <div class="mbti-fn-body">他敏銳掌握當下群眾情緒與政治局勢，迅速做出殺害使徒雅各、拘捕彼得等具體行動，這種對眼前情境高度敏銳、傾向立即採取行動的反應模式，是主導外向感官最鮮明的展現。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Ti · 內向思考</span>
+          <div class="mbti-fn-body">他精確計算每個政治行動可能帶來的效益——殺人討好猶太人、加派兵丁防範越獄——顯示出一定程度的邏輯分析與策略規劃能力，只是這份能力完全服務於個人權力的鞏固。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Fe · 外向情感</span>
+          <div class="mbti-fn-body">他極度重視並依賴群眾對自己的情感回應與支持，無論是猶太人的喜悅或推羅西頓使者的歡呼諂媚，都直接影響並強化他的行動與自我認知。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">他完全未能預見自己接受群眾神化歡呼背後所隱藏的屬靈危機與長遠後果，這種對深層意義與未來後果洞察力的嚴重缺失，正是劣勢內向直覺的具體展現，也直接導致了他的驟然殞落。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生的行動，圍繞著鞏固自己權力的核心目標展開——無論是對初代教會的逼迫，或是對群眾諂媚的縱容，最終都在神的主權面前顯出徒然。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">雅</div>
+          <div class="relation-name">使徒雅各</div>
+          <div class="relation-type-badge">被他用刀殺害的使徒</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">亞基帕一世為討猶太人的喜歡，用刀殺了約翰的哥哥雅各，這是初代教會歷史中第一位殉道的使徒，也是亞基帕逼迫教會行動的開端。</div>
+          <div class="relation-ref">使徒行傳 12:1–2</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">彼</div>
+          <div class="relation-name">彼得</div>
+          <div class="relation-type-badge">被他拘捕、卻蒙神使者救出的使徒</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">亞基帕一世拘捕彼得，交付四班兵丁嚴密看守，意圖在逾越節後公開處決他；然而主的使者在夜間親自介入，帶領彼得安然越獄，使亞基帕的逼迫計畫徹底落空。</div>
+          <div class="relation-ref">使徒行傳 12:3–19</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">眾</div>
+          <div class="relation-name">推羅西頓的使者與百姓</div>
+          <div class="relation-type-badge">諂媚歡呼他為神的群眾</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">推羅西頓的使者與百姓因與希律有糧食供應上的求和需要，向他極力諂媚，齊聲呼喊「這是神的聲音，不是人的聲音」——這場諂媚，直接促成了亞基帕接受神化歡呼而招致的審判。</div>
+          <div class="relation-ref">使徒行傳 12:20–22</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「希律不歸榮耀給神」——經文用這句簡潔卻沉重的評語，總結了他驟然殞落最根本的屬靈原因。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「希律不歸榮耀給神，所以主的使者立刻罰他，他被蟲所咬，氣就絕了。神的道日見興旺，越發廣傳。」</div>
+      <div class="verse-ref">使徒行傳 12:23–24</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">σκωληκόβρωτος</span>
+        <div class="word-transliteration">skolekobrotos · 被蟲所咬 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">這個罕見的複合字直譯為「被蟲吃掉」，形容一種極其痛苦而羞辱性的死亡方式，古代史家約瑟夫的記載也證實了亞基帕一世死前遭受劇烈腹痛折磨的歷史事實。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這個用詞的選擇，將亞基帕一世的死亡，刻畫成一種近乎諷刺性的審判——一位剛剛身穿華服、接受群眾如神明般歡呼的統治者，轉眼間卻被最卑微、最令人厭惡的蟲蛆所吞噬，這種強烈的反差，深刻宣告了人間權勢在神主權面前的徹底虛空。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">以逼迫神百姓鞏固權力，終將面對神的審判</div>
+      <div class="theology-insight-body">亞基帕一世殺害使徒雅各、拘捕彼得的逼迫行動，最終未能真正鞏固他的統治，反而以他自己驟然而屈辱的死亡收場——這清楚宣告，任何企圖透過逼迫神的百姓來鞏固自身權力的統治者，終將自食其果。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">接受本該歸給神的榮耀，是極其嚴重的屬靈僭越</div>
+      <div class="theology-insight-body">亞基帕一世坦然接受群眾「這是神的聲音」的歡呼而不加以拒絕或歸榮耀給神，這種將自己置於神之地位的傲慢，是他招致立即審判最直接的原因，也呼應了舊約中尼布甲尼撒因驕傲而受懲的先例。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">人的逼迫無法攔阻神的道興旺</div>
+      <div class="theology-insight-body">經文緊接在亞基帕死訊之後，立即宣告「神的道日見興旺，越發廣傳」——這清楚見證，即便面對統治者最嚴厲的逼迫甚至殺害使徒的行動，神的福音工作絲毫不受攔阻，反而持續擴展。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">亞基帕一世企圖透過殺害使徒、逼迫初代教會來鞏固自己的統治權力，卻在接受群眾近乎神化的歡呼時，因不歸榮耀給神而遭受立即而羞辱性的審判</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">他的驟然殞落，與舊約中巴比倫王尼布甲尼撒因驕傲自誇而暫時失去理智、以及伯沙撒因褻瀆聖物而在同一夜被殺的先例遙相呼應，共同構成聖經中警戒統治者不可僭越神之榮耀的重要敘事脈絡</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">唯有基督才是真正配得一切榮耀、尊貴與權柄的君王，凡企圖僭奪本該歸給神之榮耀的世上掌權者，終將在祂的主權審判之下顯出虛空，而神的國度與福音的工作，卻要存到永遠、越發廣傳（但 4:28–37 · 啟 19:16）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果此刻你正享受著他人的讚美與崇拜，甚至默默接受了本不屬於自己的榮耀——這一頁想問你：你是否也正走在亞基帕一世的路上？</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">亞基帕一世的故事命中每一個在享有權力、成就或群眾支持時，容易漸漸把讚美與榮耀據為己有、而非歸給神的人。他的悲劇提醒我們，透過犧牲他人（甚至逼迫神的百姓）來鞏固自己地位的行動，即便短期內看似奏效，終究無法逃脫神公義的審判。他的故事同時也提醒我們，當他人的讚美開始帶有近乎神化的性質時，我們是否有清醒的自覺與謙卑，將這份榮耀歸還給真正配得的神，而非默默接受、甚至樂在其中。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你是否曾為了鞏固自己的地位或利益，而做出傷害他人（甚至是無辜者）的決定？亞基帕一世的故事如何警醒你重新省察這類行動？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">當他人給予你超乎你所應得的讚美或崇拜時，你的第一反應是謙遜地歸榮耀給神，還是像亞基帕一世一樣默默享受？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">亞基帕逼迫教會的行動，最終沒能攔阻神的道興旺廣傳。你生命中是否也曾見證，某個看似強大的攔阻，最終無法阻擋神的工作？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">他的死亡發生在權力與榮耀的巔峰時刻。這如何提醒你，外在的成功與掌聲，未必等同於蒙神喜悅的生命狀態？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 希律亞基帕一世</span>
+        <div class="gen-title">警示劇本：以逼迫神的百姓鞏固權力，卻因不歸榮耀給神而驟然殞落</div>
+        <div class="gen-body">他殺害使徒雅各、拘捕彼得以討好猶太群眾，此後更坦然接受群眾如神明般的歡呼，最終在權力與榮耀的巔峰時刻，被主的使者當場擊打，被蟲所咬而氣絕身亡。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 初代教會</span>
+        <div class="gen-title">延續：逼迫者殞落，神的道卻越發興旺</div>
+        <div class="gen-body">亞基帕一世死後，經文緊接著宣告「神的道日見興旺，越發廣傳」——他企圖透過逼迫攔阻教會發展的行動，最終不僅徹底失敗，反而以自己的殞落，襯托出神的工作何等堅固而不可攔阻。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在這段看似全然是審判的敘事中，展現在神親自介入拯救彼得脫離即將臨到的處決，並讓祂的道在逼迫者殞落之後越發興旺廣傳。這提醒我們，即便世上的權勢一時猖狂逼迫神的百姓，神始終掌權，祂的教會與福音工作，終不會因任何人的惡行而真正被攔阻。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位殺人討好群眾、又在接受神化歡呼時被當場擊打而死的猶太王，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#別人的讚美不是你的功勞</span>
+      <span class="tag">#討好群眾的代價</span>
+      <span class="tag">#逼迫攔阻不了神的工作</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>亞基帕一世的政治操作邏輯其實很直接：殺一個基督徒領袖（使徒雅各），發現猶太人很買帳，於是決定再抓一個（彼得），準備如法炮製。經文用一句話講清楚他的動機：他這麼做，是為了討好群眾。</p>
+      <p>這次計劃沒成功——彼得被關進監獄、派了四班士兵看守，結果一個晚上神的使者直接把他帶了出去。亞基帕的算盤，徹底落空。</p>
+      <p>接下來的場景，是整個故事最諷刺的地方：亞基帕穿著華麗的王袍，坐在寶座上對群眾演講，底下的人開始拍馬屁，喊：『這是神在說話，不是人在說話！』</p>
+      <p>然後呢？他沒有反駁，沒有說『別亂講，我只是個人』，他就這樣接受了這句近乎把自己捧成神的話。經文緊接著寫：因為他沒有把榮耀歸給神，主的使者立刻擊打他，他被蟲咬，當場就死了。</p>
+      <p>整件事最耐人尋味的地方在於：他不是在戰敗或失勢的時候死的，是在他覺得自己權力最大、最風光的那一刻。緊接在他死訊後面的那句話也很重要：『神的道，反而越傳越廣。』</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——亞基帕一世這塊石頭，被雕刻出的形狀，是一句直白的警示：『你可以討好所有人，卻躲不過那位真正掌權的』。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你正享受著別人的稱讚或崇拜，亞基帕一世的故事想提醒你：先確認一下，這份榮耀你有沒有默默地照單全收。</p>
+      <p style="margin-top:12px;">討好群眾、犧牲他人來鞏固自己的地位，這條路走得快，但亞基帕一世告訴我們，它同樣走得很危險。</p>
+      <p style="margin-top:12px;">如果你正經歷某種逼迫或攔阻，別忘了故事的最後一句話：神的道，越傳越廣。逼迫從來攔不住神真正要做的事。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，把一句別人給你的稱讚，誠實地轉手歸還給神——練習不把不屬於自己的榮耀收下。</p>
+    </div>
+
+    <div class="insight-box">亞基帕一世的死因，在古代猶太史家約瑟夫的《猶太古史》中有幾乎平行的獨立記載——兩份文獻各自從不同角度描述了他在該撒利亞慶典上的驟死，這種聖經記載與同時代世俗史料相互印證的情況相當罕見，也使這段敘事成為聖經歷史可靠性研究中經常被引用的重要案例。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他企圖透過殺害使徒、逼迫教會來鞏固自己的統治權力，最終卻在接受群眾神化歡呼的巔峰時刻，被主的使者當場擊打而死。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">使徒殉道歷史的開端</div>
+          <div class="legacy-body">他殺害使徒雅各的行動，是新約記載中第一位使徒殉道的歷史事件，標誌著初代教會此後將持續面對更嚴峻逼迫的開端。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">「不歸榮耀給神」的警世典型</div>
+          <div class="legacy-body">他坦然接受群眾近乎神化的歡呼而招致立即審判的結局，成為聖經中警戒世人不可僭越、據有本該歸給神之榮耀最鮮明的案例。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">逼迫無法攔阻神工作的重要見證</div>
+          <div class="legacy-body">他逼迫教會的行動最終徹底失敗，且緊接在他死訊之後便是「神的道日見興旺」的宣告，清楚見證任何人間權勢都無法真正攔阻神的救贖工作。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">聖經與世俗史料相互印證的重要案例</div>
+          <div class="legacy-body">他的死因在古代史家約瑟夫的著作中有近乎平行的獨立記載，成為聖經歷史可靠性研究中經常被引用的重要參照案例。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「神的道日見興旺，越發廣傳。」</div>
+      <div class="final-verse-ref">使徒行傳 12:24</div>
+    </div>
+
+    <div class="final-question">當他人的讚美開始帶有超乎你所應得的份量時，你是否願意像一位謙卑的僕人，及時將這份榮耀歸還給真正配得的神，而不是像亞基帕一世那樣，默默地收下？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 希律亞基帕一世 <span>Ἡρῴδης Ἀγρίππας</span> · 殺害使徒雅各、逼迫初代教會的猶太王</div>
+
+<!-- 閱讀紀錄（localStorage，見 progress.js）：右下角標記已讀按鈕 -->
+<script src="progress.js"></script>
+
+</body>
+</html>

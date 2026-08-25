@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>利斯巴 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">利斯巴</h1>
+  <span class="hero-name-en">Rizpah · רִצְפָּה</span>
+  <p class="hero-slogan">「從動工割麥的時候直到天降雨在屍身上的時候，<br>利斯巴不容空中的雀鳥白日落在屍身上，也不容田野的走獸夜間前來糟踐。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">大衛在位期間，約主前十世紀初</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ISFJ · 守衛者型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">撒母耳記下 3:7 · 21:1–14</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">掃羅的妃嬪 · 以驚人毅力守護亡子屍身的母親</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">她先是掃羅王朝崩解之際、一場宮廷權力鬥爭中被順帶提及的名字，此後卻在自己兩個兒子成為政治血債之祭品時，用一場長達數月的無聲守夜，讓整個王朝重新正視亡者應得的尊嚴。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">大衛在位期間，約主前十世紀初</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">愛雅的女兒，掃羅的妃嬪</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">活動區域</span>
+        <div class="info-cell-value">基比亞（掃羅的故鄉）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">與掃羅所生二子亞摩尼、米非波設（與約拿單之子米非波設同名，另一人）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">撒母耳記下 3:7 · 21:1–14</div>
+      </div>
+    </div>
+
+    <p>利斯巴第一次出現在經文中，是作為掃羅家與大衛家權力鬥爭中的一個引爆點——押尼珥與伊施波設之間的決裂，正是因為伊施波設指控押尼珥與利斯巴這位掃羅的妃嬪私通。這段記載中，她本人並無任何台詞或行動，僅僅是被當作宮廷政治角力中的一個符號被提及，她自己的意願或處境完全不在敘事的關注範圍之內——這種「被動成為政治籌碼」的處境，恰恰預示了她此後將要承受更沉重的命運。</p>
+    <p>多年後，大衛在位期間，以色列地遭遇連續三年的饑荒，大衛求問耶和華，得知這是因為掃羅在世時曾違背以色列與基遍人所立的和約、殺害基遍人所致。為了平息這樁血債，基遍人要求交出掃羅的七個子孫處死——其中包括利斯巴的兩個兒子亞摩尼與米非波設。他們被殺後，屍體被懸掛曝曬在山上，按當時的習俗，這意味著連基本的安葬尊嚴都被剝奪。正是在這樣殘酷而近乎羞辱性的處境中，利斯巴做出了整段敘事中最令人震撼的舉動。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從一場她毫無置喙餘地的宮廷政治指控，到親自鋪開麻布、日夜守護亡子屍身數月之久，利斯巴的故事，是一部關於「無聲的堅韌如何驚動整個王朝」的敘事。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">被動捲入</span>
+        <div class="timeline-title">宮廷權力鬥爭中的引爆點</div>
+        <div class="timeline-body">伊施波設指控押尼珥與利斯巴私通，這項指控成為押尼珥決裂轉向支持大衛的直接導火線；利斯巴本人在這段記載中沒有任何自己的聲音，僅是被當作政治角力的籌碼提及。</div>
+        <div class="timeline-ref">撒母耳記下 3:7–11</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">至深喪痛</span>
+        <div class="timeline-title">兩子被交出處死——「懸掛在山上」</div>
+        <div class="timeline-body">大衛為平息因掃羅違約殺害基遍人所致的三年饑荒，依基遍人所求，交出掃羅七個子孫處死，其中包括利斯巴的兩個兒子亞摩尼與米非波設；他們的屍體被懸掛曝曬在山上。</div>
+        <div class="timeline-ref">撒母耳記下 21:1–9</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">鋪開麻布——日夜守護屍身數月</div>
+        <div class="timeline-body">利斯巴取麻布為自己在磐石上搭棚，從動工割麥的時候（約四月）直到天降雨在屍身上（約十月雨季），日間不容雀鳥落在屍身上，夜間不容野獸前來糟踐，獨自守護長達數月之久。</div>
+        <div class="timeline-ref">撒母耳記下 21:10</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終局</span>
+        <div class="timeline-title">大衛聞訊——促成王朝對亡者遲來的安葬</div>
+        <div class="timeline-body">大衛聽見利斯巴所行的事，便去收殮掃羅與約拿單的骸骨，以及那些被處死之人的屍骨，一併葬在便雅憫的洗拉、掃羅父親基士的墳墓裡；此後神也垂聽了為那地所獻的祈求。</div>
+        <div class="timeline-ref">撒母耳記下 21:11–14</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">她沒有軍隊、沒有權勢、甚至無法阻止兒子被處死——她唯一能做的，是用自己的身體，日夜守候在再也無法保護的孩子身旁，堅持了整整數月。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">即便無法挽回，仍要以身體守護所愛之人最後的尊嚴</div>
+          <div class="soul-body">她無力阻止兒子被處死，卻拒絕讓他們的屍身繼續遭受飛鳥走獸的糟踐——這種在徹底無力的處境中，仍堅持捍衛所愛之人尊嚴的意志，是她性格中最動人的核心。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">在漫長而孤獨的守護中，展現出驚人的毅力與堅持</div>
+          <div class="soul-body">從割麥時節直到降雨的雨季，她獨自一人在山上守候長達數月之久，這種近乎超乎常人的堅忍與毅力，貫穿她整個故事，也是她最終能驚動整個王朝的關鍵原因。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">以沉默、具體的行動表達最深的哀傷與抗議</div>
+          <div class="soul-body">她沒有向大衛控訴、沒有公開抗議這場處決的不公，而是用鋪開麻布、日夜驅趕鳥獸這樣具體而沉默的行動，讓自己的哀傷與堅持不言自明。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">所受的不公</span>
+          <div class="soul-title">她的兒子，成為政治血債的犧牲品</div>
+          <div class="soul-body">利斯巴的兒子並非因自己的過犯而死，而是為了平息其父掃羅生前所犯之罪所帶來的饑荒審判——這種「子女承擔父輩罪責」的處境，本身便帶有沉重的不公，也使她的守護行動格外令人心疼。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">深遠影響</span>
+          <div class="soul-title">一位無權無勢的母親，撼動了整個王朝的良知</div>
+          <div class="soul-body">她一個人的堅持，最終驚動了大衛王本人，促成他重新收殮掃羅與約拿單的骸骨、以及所有被處死者的屍骨，一併正式安葬——她的行動，改變了整個王朝對待亡者尊嚴的方式。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">利斯巴的故事，是聖經中「無聲的堅韌如何撼動權力核心」最動人的敘事範例之一。她在整個故事中幾乎沒有留下一句台詞，她所做的一切，都是透過具體、持續、近乎苦行般的身體行動來表達——鋪開麻布、日夜驅趕鳥獸、忍受數月的風吹日曬。這種以行動代替言語的哀悼與抗議，某種程度上比任何激烈的控訴都更具穿透力，因為它讓周遭的人不得不親眼目睹一位母親對亡子之愛最赤裸、最持久的具體展現。而她最終的成功——驚動大衛王重新安葬所有亡者的骸骨——也提醒我們，真正的改變，有時不是透過權力或言辭的較量，而是透過一份純粹、堅定、不計代價的愛與堅持，讓那些原本冷漠的權力核心，重新看見自己所忽略的公義與尊嚴。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ISFJ</span>
+      <div class="mbti-name">守衛者型 · 用身體守護亡子尊嚴的母親</div>
+      <div class="mbti-slogan">「她無法挽回兒子的性命，卻用數月如一日的堅持，讓整個王朝重新正視亡者應得的尊嚴。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Si · 內向感覺</span>
+          <div class="mbti-fn-body">她持續數月、日復一日地重複同樣的具體行動——鋪麻布、驅趕鳥獸——這種對一項具體任務堅定不移的忠實執行，是主導內向感覺最鮮明的展現。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Fe · 外向情感</span>
+          <div class="mbti-fn-body">她的整個行動核心，是對亡子尊嚴與情感連結的深刻看重，即便無法挽回他們的性命，仍竭盡所能地維護他們應得的基本尊重，展現出深厚的情感投入與關懷。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ti · 內向思考</span>
+          <div class="mbti-fn-body">她準確判斷出「持續守護屍身直到降雨」這個具體、可行的策略，來達成保護亡子尊嚴的目標，顯示出一定程度的務實邏輯判斷能力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Ne · 外向直覺</span>
+          <div class="mbti-fn-body">她的行動聚焦於眼前具體而立即的守護任務，而非透過遊說、抗議或尋求其他可能途徑來改變處境，這種對多元可能性探索的相對薄弱，反映出劣勢外向直覺的特徵。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">她生命中最深的連結，是與那兩個她再也無法保護、卻仍以身體日夜守護其屍身的兒子；而她的堅持，最終也連結到了那位擁有權柄卻起初未曾留意此事的君王。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">掃</div>
+          <div class="relation-name">掃羅</div>
+          <div class="relation-type-badge">她曾服事的君王，也是這場血債的源頭</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">利斯巴是掃羅的妃嬪，而她兩個兒子之死，正是源於掃羅生前違背與基遍人所立之和約、殺害基遍人所招致的血債審判。</div>
+          <div class="relation-ref">撒母耳記下 21:1–2</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">亞</div>
+          <div class="relation-name">亞摩尼與米非波設</div>
+          <div class="relation-type-badge">她被交出處死、遭曝屍山上的兩個兒子</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">利斯巴與掃羅所生的兩個兒子，因基遍人的血債要求被交出處死，屍體懸掛曝曬在山上——她此後數月的守護，正是為了維護這兩個孩子最後的尊嚴。</div>
+          <div class="relation-ref">撒母耳記下 21:8–10</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">大</div>
+          <div class="relation-name">大衛</div>
+          <div class="relation-type-badge">起初交出她兒子處死、此後被她感動而收殮眾骸骨的王</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">大衛依基遍人所求交出掃羅的子孫處死，卻在聽聞利斯巴的堅守之後，深受感動，親自收殮掃羅、約拿單以及所有被處死者的骸骨，一併正式安葬。</div>
+          <div class="relation-ref">撒母耳記下 21:11–14</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「利斯巴不容空中的雀鳥……也不容田野的走獸」——這句經文，用近乎詩意的重複句式，見證了一位母親對亡者尊嚴至死不渝的守護。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「從動工割麥的時候直到天降雨在屍身上的時候，利斯巴不容空中的雀鳥白日落在屍身上，也不容田野的走獸夜間前來糟踐。」</div>
+      <div class="verse-ref">撒母耳記下 21:10</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">שַׂק</span>
+        <div class="word-transliteration">saq · 麻布 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">指粗糙的麻布，在舊約文化中常用作哀悼、悔改或苦行的象徵性衣著或鋪墊，利斯巴取麻布為自己在磐石上搭棚，正是以最基本、最刻苦的方式展開這場漫長的守護。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">麻布的使用，將利斯巴的守護行動，同時定調為一場持續數月之久的公開哀悼儀式——她不僅是在物理上驅趕鳥獸，更是在向整個群體、乃至向神，具體展現一位母親無法被剝奪的哀傷與愛。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">亡者的尊嚴，值得被鄭重看待</div>
+      <div class="theology-insight-body">利斯巴堅持守護屍身不受鳥獸糟踐的行動，深刻呼應了舊約律法對妥善安葬亡者的重視（如申命記二十一章對被掛之屍當日安葬的規定）——她的堅持，提醒整個群體不可因政治血債而輕忽對亡者基本尊嚴的看顧。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">個人微小的堅持，能夠撼動權力核心的良知</div>
+      <div class="theology-insight-body">利斯巴沒有任何政治權力或發言管道，她純粹透過持續而具體的行動，讓大衛王親自聽聞並深受觸動——這示範了即便身處最無權無勢的處境，一份堅定不移的愛與堅持，仍能帶來超乎預期的深遠影響。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">群體的罪責，不應無限期由後代或無辜者承擔</div>
+      <div class="theology-insight-body">掃羅生前的罪行，最終需要透過交出其子孫的方式平息，這反映出古代社會對血債的處理方式；然而利斯巴的堅持與大衛此後鄭重安葬眾人骸骨的行動，某種程度上也為這段沉重的歷史，賦予了遲來卻真實的尊重與了結。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">利斯巴在毫無權勢、無法挽回兒子性命的處境中，仍以持續數月的具體行動，堅持守護亡者應得的尊嚴，最終感動大衛王親自介入、鄭重安葬眾人的骸骨</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">她這份在絕望處境中仍不放棄、以柔弱身軀持守到底的堅韌，此後與福音書中同樣在十字架下、於絕望中仍不離開耶穌身旁的婦女們（馬利亞等人）的堅守身影遙相呼應</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">那些在耶穌被釘十字架、被埋葬的至暗時刻仍不離不棄、持守到底的婦女們，同樣以看似無力卻堅定不移的陪伴與見證，成為福音書中盼望與復活來臨之前最深刻的忠誠典範（可 15:40–41, 47）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正面對一個你無力挽回、卻仍渴望守護其最後尊嚴的處境——這一頁想讓你看見，堅持本身，就是一種深刻的愛的宣告。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">利斯巴的故事命中每一個曾經歷至親驟然離世、卻連基本的哀悼與尊嚴都難以維護的人；也命中每一個在毫無權勢、無法改變大局的處境中，仍選擇堅持做對的事的人。她的故事提醒我們，真正的愛與忠誠，有時不需要宏大的宣言或激烈的抗爭，只需要持續、具體、不計代價的堅持——這份堅持本身，就足以成為一種有力的見證，甚至能夠感動那些原本冷漠或無暇顧及的權力核心，重新看見被忽略的公義與尊嚴。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你是否也曾面對一個自己毫無權力改變、卻仍渴望守護其中某種尊嚴或公義的處境？利斯巴的堅持如何激勵你？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">她沒有向大衛控訴或公開抗議，而是用持續數月的具體行動表達自己的哀傷與堅持。你是否也能找到類似『用行動說話』的方式，去表達你內心深處的信念？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">她的堅持最終驚動了大衛，帶來遲來卻真實的改變。你生命中是否有一份看似微小的堅持，其實正在悄悄產生你尚未看見的影響？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">利斯巴兒子的死，某種程度上是承擔了父輩的罪責。你如何看待『代際罪責』這個議題，以及利斯巴在其中所展現的抵抗與尊嚴？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 利斯巴</span>
+        <div class="gen-title">示範劇本：在毫無權勢的處境中，用持續的堅持守護亡者的尊嚴</div>
+        <div class="gen-body">她在兩個兒子被處死曝屍山上的至深喪痛中，取麻布鋪在磐石上，日夜守護數月之久，不容鳥獸糟踐屍身，最終驚動大衛王親自介入，鄭重安葬所有亡者的骸骨。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 大衛與整個王朝</span>
+        <div class="gen-title">延續：一位母親的堅持，改變了整個王朝對待亡者的方式</div>
+        <div class="gen-body">大衛因利斯巴的堅守而深受感動，不僅安葬了利斯巴的兒子，更一併收殮了掃羅與約拿單多年前草草埋葬的骸骨，正式安葬在家族墳墓中——她一人的堅持，最終促成了整個王朝對亡者遲來卻鄭重的尊重。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在利斯巴的故事中，展現在神願意讓一位毫無權勢、幾乎被歷史遺忘的母親，透過自己堅定不移的愛與堅持，撼動了整個王朝的良知，帶來遲來卻真實的公義與了結。這提醒我們，神看重每一個看似微小、卻出於真實的愛而持守到底的行動，即便行動者本身毫無地位或權力。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位用麻布鋪在磐石上、日夜守護亡子屍身數月之久的母親，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#堅持本身就是一種宣告</span>
+      <span class="tag">#行動比言語更有力量</span>
+      <span class="tag">#微小的堅持能撼動大局</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>利斯巴的兩個兒子，因為他們父親掃羅生前犯下的罪，被交出去處死，屍體還被吊在山上曝曬——按當時的習俗，這幾乎是對亡者最大的羞辱。</p>
+      <p>她沒有辦法阻止兒子被處死，這件事已經發生，無法挽回。但她做了一件她能力範圍內唯一能做的事：她找了塊麻布，鋪在磐石上，搭了個簡陋的棚子，然後就守在那裡——白天趕走想啄食屍體的鳥，晚上趕走想靠近的野獸。</p>
+      <p>這件事，她一個人做了好幾個月，從割麥的季節（大概四月）一路守到降雨的季節（大概十月）。沒有人幫她，她也沒有到處控訴喊冤，她就是安靜地、日復一日地，守在那裡。</p>
+      <p>後來，這件事傳到了大衛耳裡。大衛被觸動了，不只是為利斯巴的兒子，他還想起了掃羅和約拿單多年前草草掩埋的骸骨，於是把所有人的骸骨都正式、鄭重地重新安葬。</p>
+      <p>利斯巴什麼都沒有——沒有權力，沒有管道，沒有任何能左右局勢的籌碼。她有的，只是幾個月風吹日曬、不肯放棄的堅持。而正是這份堅持，最後撼動了整個王朝。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——利斯巴這塊石頭，被雕刻出的形狀，是一句沉默卻有力的宣告：『堅持，本身就是一種愛的語言』。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你正面對一個自己無力改變的處境，利斯巴想告訴你：即便無法扭轉大局，你依然可以選擇用行動守住某種尊嚴。</p>
+      <p style="margin-top:12px;">她沒有喊口號，沒有寫控訴信，她只是持續地、日復一日地做那件事。有時候，最有力的表達方式，就是不放棄的堅持本身。</p>
+      <p style="margin-top:12px;">如果你覺得自己毫無影響力，利斯巴的故事想提醒你：一份純粹而堅定的堅持，有時候能撼動你完全想像不到的地方。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，想一件你正在『默默堅持』卻覺得沒人看見的事——它可能，比你想像的更有力量。</p>
+    </div>
+
+    <div class="insight-box">利斯巴的故事，在探討喪親哀悼、母愛韌性與弱勢者如何影響權力核心等主題的當代文學與神學著作中，經常被引用作為極具啟發性的聖經案例——她沉默卻堅定的守護形象，也持續激發後世藝術創作中對「無聲抗議」與「堅韌之愛」這類主題的深刻詮釋。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">她用一場長達數月、幾乎無聲的守護，讓整個王朝重新正視了亡者應得的尊嚴，成為聖經中母愛與堅韌最動人的見證之一。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">「行動勝於言語」的堅韌典範</div>
+          <div class="legacy-body">她沒有透過控訴或抗議，而是用持續數月的具體行動表達自己的哀傷與堅持，成為聖經中「以行動為見證」最深刻動人的敘事範例。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">亡者尊嚴不容忽視的重要提醒</div>
+          <div class="legacy-body">她堅持守護屍身不受糟踐的行動，深刻呼應舊約律法對妥善安葬亡者的重視，持續為後世關於逝者尊嚴與哀悼倫理的討論提供重要參照。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">弱勢者撼動權力核心良知的鮮明例證</div>
+          <div class="legacy-body">她一位毫無權勢的母親，單憑堅定不移的堅持感動大衛王親自介入，成為聖經中「微小的堅持能帶來深遠影響」最有力的歷史見證。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">促成王朝血債了結的關鍵推手</div>
+          <div class="legacy-body">她的堅守直接促成大衛鄭重收殮並安葬掃羅、約拿單及眾亡者的骸骨，為這段沉重的家族與王朝歷史，畫下了遲來卻真實的句點。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「此後神為那地垂聽祈求。」</div>
+      <div class="final-verse-ref">撒母耳記下 21:14</div>
+    </div>
+
+    <div class="final-question">如果你此刻正面對一個自己無力挽回、卻仍渴望守住某種尊嚴或公義的處境，你願不願意像利斯巴一樣，用持續而堅定的行動，讓你的堅持成為一種無聲卻有力的宣告？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 利斯巴 <span>רִצְפָּה</span> · 掃羅的妃嬪 · 守護兒子屍身的母親</div>
+
+<!-- 閱讀紀錄（localStorage，見 progress.js）：右下角標記已讀按鈕 -->
+<script src="progress.js"></script>
+
+</body>
+</html>

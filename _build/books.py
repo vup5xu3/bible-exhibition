@@ -93,11 +93,11 @@ PERSON_BOOK = {
     "jacob": "genesis", "leah": "genesis", "rachel": "genesis", "reuben": "genesis",
     "judah": "genesis", "tamar_judah": "genesis", "perez": "genesis", "zerah": "genesis",
     "hezron": "genesis", "joseph_patriarch": "genesis", "benjamin": "genesis",
-    "genesis_primeval": "genesis",
+    "genesis_primeval": "genesis", "enoch": "genesis",
 
     # ── 出埃及記／民數記 ──
     "moses": "exodus", "aaron": "exodus", "miriam": "exodus",
-    "balaam": "numbers", "amminadab": "numbers", "nahshon": "numbers", "caleb": "numbers",
+    "korah": "numbers", "balaam": "numbers", "amminadab": "numbers", "nahshon": "numbers", "caleb": "numbers",
 
     # ── 約書亞記 ──
     "joshua": "joshua", "rahab": "joshua", "achan": "joshua",
@@ -115,7 +115,7 @@ PERSON_BOOK = {
     "nabal": "1samuel",
 
     # ── 撒母耳記下 ──
-    "david": "2samuel", "mephibosheth": "2samuel", "bathsheba": "2samuel", "uriah": "2samuel",
+    "david": "2samuel", "mephibosheth": "2samuel", "rizpah": "2samuel", "bathsheba": "2samuel", "uriah": "2samuel",
     "nathan_prophet": "2samuel", "absalom": "2samuel", "tamar_david": "2samuel", "amnon": "2samuel",
     "joab": "2samuel",
 
@@ -127,7 +127,7 @@ PERSON_BOOK = {
 
     # ── 列王紀下 ──
     "elisha": "2kings", "shunammite_woman": "2kings", "naaman": "2kings", "gehazi": "2kings",
-    "jehu": "2kings", "uzziah": "2kings", "jotham": "2kings", "ahaz": "2kings",
+    "jehu": "2kings", "athaliah": "2kings", "uzziah": "2kings", "jotham": "2kings", "ahaz": "2kings",
     "hezekiah": "2kings", "manasseh": "2kings", "amon": "2kings", "josiah": "2kings",
     "jeconiah": "2kings",
 
@@ -156,6 +156,7 @@ PERSON_BOOK = {
     "james_zebedee": "matthew", "john_apostle": "matthew", "philip_apostle": "matthew",
     "bartholomew": "matthew", "matthew": "matthew", "james_alphaeus": "matthew",
     "thaddaeus": "matthew", "simon_zealot": "matthew", "judas_iscariot": "matthew",
+    "centurion_capernaum": "matthew",
     "canaanite_woman": "matthew", "rich_young_ruler": "matthew", "caiaphas": "matthew",
     "pontius_pilate": "matthew", "barabbas": "matthew",
 
@@ -171,7 +172,8 @@ PERSON_BOOK = {
     "james_brother": "acts", "jude_brother": "acts", "matthias": "acts", "barnabas": "acts",
     "ananias_sapphira": "acts", "gamaliel": "acts", "stephen": "acts", "paul": "acts",
     "philip_evangelist": "acts", "simon_magus": "acts", "ethiopian_eunuch": "acts",
-    "ananias_damascus": "acts", "dorcas": "acts", "cornelius": "acts", "john_mark": "acts",
+    "ananias_damascus": "acts", "dorcas": "acts", "cornelius": "acts", "herod_agrippa_i": "acts",
+    "john_mark": "acts",
     "silas": "acts", "timothy": "acts", "lydia": "acts", "philippian_jailer": "acts",
     "priscilla_aquila": "acts", "apollos": "acts", "eutychus": "acts", "luke": "acts",
 

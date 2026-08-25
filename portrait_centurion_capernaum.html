@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>迦百農百夫長 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">迦百農百夫長</h1>
+  <span class="hero-name-en">Centurion of Capernaum · ἑκατόνταρχος</span>
+  <p class="hero-slogan">「百夫長回答說：<br>「主啊，你到我舍下，我不敢當；只要你說一句話，我的僕人就必好了。」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">耶穌加利利傳道初期，約主後27–29年</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ISTJ · 物流師型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">馬太福音 8:5–13 · 路加福音 7:1–10</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">羅馬佔領軍百夫長 · 耶穌所稱讚信心最大的外邦人</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他是佔領軍中掌管百人的羅馬軍官，理應是猶太百姓眼中壓迫者的象徵，卻在耶穌面前展現出連猶太人中都罕見的謙卑與信心。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">耶穌加利利傳道初期，約主後27–29年</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">駐紮迦百農的羅馬百夫長，統領百人的軍官</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">活動區域</span>
+        <div class="info-cell-value">迦百農，加利利海西北岸</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">有一位他所疼愛、病重快要死的僕人（路加福音記載）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">馬太福音 8:5–13 · 路加福音 7:1–10</div>
+      </div>
+    </div>
+
+    <p>這位百夫長的身份，本身便帶著一種微妙的張力：他是駐紮在猶太人土地上的羅馬軍官，代表著猶太百姓所痛恨的異族統治政權，然而路加福音的記載卻顯示，他與當地猶太社群的關係相當友好——當地的猶太長老甚至主動為他向耶穌求情，說「他愛我們的百姓，給我們建造會堂」。這個細節顯示，他並非典型高高在上、輕視被統治者的殖民軍官，而是一位真心關懷、甚至慷慨資助當地猶太社群信仰生活的外邦人。</p>
+    <p>他前來求耶穌，是為了他一位病重癱瘓、快要死去的僕人。按馬太福音的記載，他親自前來求告；路加福音則記載他透過猶太長老代為傳話。耶穌答應要親自前往醫治，百夫長卻在此刻說出了整段敘事中最動人、也最令耶穌驚訝的一句話：「主啊，你到我舍下，我不敢當；只要你說一句話，我的僕人就必好了。」他接著解釋自己的邏輯：「因為我在人的權下，也有兵在我以下；對這個說『去』，他就去；對那個說『來』，他就來；對我的僕人說『你作這事』，他就去作。」——他以自己在軍隊指揮系統中「一句命令即刻生效」的親身經驗，類比推論耶穌的話語本身，同樣帶著無需親臨現場、便能立即生效的權柄。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從為病重的僕人焦急求助，到說出一句令耶穌都感到驚訝的信心宣告，這位百夫長的故事，是一部關於「權柄的類比如何成就最深刻信心告白」的敘事。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">背景鋪陳</span>
+        <div class="timeline-title">僕人病重——透過猶太長老代為求情</div>
+        <div class="timeline-body">百夫長所疼愛的僕人害癱瘓的病，病得甚重快要死了；他差遣猶太人的幾個長老去見耶穌，求祂來救他的僕人，長老們特別稱讚他愛猶太百姓、曾為他們建造會堂。</div>
+        <div class="timeline-ref">路加福音 7:2–5</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">「主啊，你到我舍下，我不敢當」</div>
+        <div class="timeline-body">耶穌前往的路上將近他家時，百夫長差朋友出來（或親自前來，依馬太記載）說出這句謙卑而深具信心的話：只要耶穌說一句話，他的僕人就必痊癒，無需親自到訪。</div>
+        <div class="timeline-ref">馬太福音 8:7–8 · 路加福音 7:6</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">信心告白</span>
+        <div class="timeline-title">權柄的類比——「對這個說去，他就去」</div>
+        <div class="timeline-body">百夫長以自己在軍中「說一聲去、就去；說一聲來、就來」的權柄經驗為喻，說明他相信耶穌的話語本身便帶著足以使病得醫治的權柄，無需親臨現場。</div>
+        <div class="timeline-ref">馬太福音 8:9</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">傳承終局</span>
+        <div class="timeline-title">耶穌的稱讚——「我在以色列中沒有遇見這麼大的信心」</div>
+        <div class="timeline-body">耶穌聽見這話就希奇，對跟從的人說：「我實在告訴你們，這麼大的信心，就是在以色列中，我也沒有遇見過」，並宣告將有許多從東從西而來的人與亞伯拉罕同席，僕人也在那時候就好了。</div>
+        <div class="timeline-ref">馬太福音 8:10–13</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他手握足以號令百人的軍事權柄，卻在面對耶穌時，展現出連當時的以色列人中都罕見的謙卑與洞察力。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">權柄的運作，不需要親臨現場，只需要話語的效力</div>
+          <div class="soul-body">他從自己在軍隊指揮系統中的實際經驗出發，深刻理解「命令一旦發出便立即生效」這個道理，並將這份理解精準地應用在他對耶穌權柄的認識上。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">在具有社會地位優勢的處境中，仍展現出徹底的謙卑</div>
+          <div class="soul-body">作為統領百人的羅馬軍官，他大可以理所當然地要求耶穌親自登門服務，他卻主動表明「我不敢當」，這種即便身處優勢地位仍選擇謙卑自抑的品格，格外難能可貴。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">以自己最熟悉的專業經驗，類比理解屬靈的真理</div>
+          <div class="soul-body">他運用軍事指揮體系中權柄運作的邏輯，精準地類比並理解耶穌話語所帶有的權柄性質，展現出將日常專業經驗轉化為屬靈洞察的敏銳能力。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">身份張力</span>
+          <div class="soul-title">身為佔領軍官，卻真心關懷並資助被統治的猶太社群</div>
+          <div class="soul-body">他是猶太人眼中代表壓迫的羅馬軍官，卻真心愛護當地百姓、慷慨建造會堂，這種身份與行動之間的反差，使他成為福音書中極具立體感的外邦人物。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神秘面向</span>
+          <div class="soul-title">他是耶穌公開稱讚信心最大的人</div>
+          <div class="soul-body">在耶穌整個公開傳道生涯的記載中，明確被祂稱讚「這麼大的信心，就是在以色列中，我也沒有遇見過」的人物極其罕見，而這份殊榮，竟落在一位外邦軍官身上。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">這位百夫長的故事，是新約中「透過熟悉的日常經驗，領悟深刻屬靈真理」最精彩的敘事範例之一。他沒有神學訓練、也不是以色列人，卻憑著自己身為軍官對指揮權柄運作方式的親身體會，精準地洞察了耶穌話語本身所帶有的權柄性質——這種信心，不是盲目的迷信，而是建立在清晰類比推理基礎上的深刻信靠。更值得注意的是，他的信心與他的謙卑緊密相連：正是因為他清楚知道自己在猶太人眼中「不配」耶穌親自登門的外邦身份，他才更加確信耶穌話語本身的權柄已然足夠，無需任何形式上的親臨。耶穌對他信心的公開稱讚，也預先宣告了此後福音將要傳向萬邦、外邦人將與亞伯拉罕同席領受應許這一救贖歷史的重大轉折。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ISTJ</span>
+      <div class="mbti-name">物流師型 · 以軍事權柄類比信心的百夫長</div>
+      <div class="mbti-slogan">「他用自己最熟悉的指揮邏輯，精準推論出耶穌話語的權柄——謙卑到不敢當，卻信心大到令耶穌驚訝。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Si · 內向感覺</span>
+          <div class="mbti-fn-body">他從自己在軍隊體系中長期累積的具體經驗——命令發出即刻生效——出發，精準地將這份熟悉的既定經驗，類比應用到對耶穌權柄的理解之上，展現出對具體經驗高度忠實的運用能力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">他清楚而有邏輯地向耶穌闡述自己的推論——「我在人的權下，也有兵在我以下」——這種條理分明、具說服力的邏輯表達，反映出一定程度的外向思考運作。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">他對僕人的疼愛與焦急、以及面對耶穌時毫不掩飾的謙卑（「我不敢當」），顯示出他內心深處真實而堅定的情感與價值判斷，儘管經文對此著墨不算太多。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Ne · 外向直覺</span>
+          <div class="mbti-fn-body">他的信心建立在具體、已知的經驗類比之上，而非天馬行空的想像或多元可能性的探索，這種聚焦於既有經驗、而非開放式聯想的思維模式，反映出劣勢外向直覺的特徵。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他透過猶太長老的居間傳話，向那位他深信擁有絕對權柄的耶穌求助——這場相遇，成就了福音書中對外邦人信心最高的公開讚譽。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">耶</div>
+          <div class="relation-name">耶穌</div>
+          <div class="relation-type-badge">稱讚他信心、醫治其僕人的主</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">耶穌被百夫長謙卑而深具洞察力的信心話語所觸動，公開稱讚這是祂在以色列中未曾遇見過的大信心，並應允在原地醫治了他的僕人。</div>
+          <div class="relation-ref">馬太福音 8:10–13</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">僕</div>
+          <div class="relation-name">他的僕人</div>
+          <div class="relation-type-badge">病重將死、蒙耶穌一句話醫治的人</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">百夫長所疼愛的僕人病得癱瘓、快要死了，正是這份對僕人的疼愛，促使他放下身段前來求告耶穌；耶穌應允後，僕人在那時候就好了。</div>
+          <div class="relation-ref">路加福音 7:2–3, 10</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">長</div>
+          <div class="relation-name">猶太長老們</div>
+          <div class="relation-type-badge">代他向耶穌求情的當地社群領袖</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">猶太長老們主動代百夫長向耶穌求情，特別稱讚他愛護猶太百姓、曾出資建造會堂，顯示他與當地社群之間存在著超越征服者與被征服者關係的真實情誼。</div>
+          <div class="relation-ref">路加福音 7:3–5</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「只要你說一句話，我的僕人就必好了」——這句話，成為新約中理解基督話語本身所帶有之權柄與能力最直接的信心宣告。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「耶穌聽見就希奇，對跟從的人說：我實在告訴你們，這麼大的信心，就是在以色列中，我也沒有遇見過。」</div>
+      <div class="verse-ref">馬太福音 8:10</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">ἐξουσία</span>
+        <div class="word-transliteration">exousia · 權柄 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">指合法、具有實際效力的權威與能力，百夫長用這個概念類比自己在軍隊指揮體系中的地位，以此理解耶穌話語所帶有的權柄性質。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這個字精準捕捉了百夫長信心的核心——他所信靠的，不是耶穌需要透過某種儀式性的親臨才能施行醫治，而是耶穌的話語本身，就如同軍事命令一般，具有立即而確實的執行力，這種對「話語即權柄」的深刻理解，呼應了創世記中神說有就有、命立就立的創造大能。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">信心的核心，在於相信話語本身所帶有的權柄</div>
+      <div class="theology-insight-body">百夫長不需要耶穌親臨現場才相信醫治會發生，這示範了一種極其成熟的信心樣式——相信神的話語本身即具有足夠的能力與權柄，無需額外的儀式或形式來驗證。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">外邦人的信心，預告福音將傳向萬邦</div>
+      <div class="theology-insight-body">耶穌公開稱讚這位外邦百夫長的信心超越以色列人，並宣告「從東從西，將有許多人來，在天國裡與亞伯拉罕、以撒、雅各一同坐席」，這預先宣告了福音將要跨越族裔界線、傳向萬邦的救贖歷史轉折。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">謙卑與信心，往往相輔相成</div>
+      <div class="theology-insight-body">百夫長越是謙卑地承認自己「不敢當」耶穌親自到訪，他對耶穌話語權柄的信心便顯得越發真實而深刻——這提醒我們，真正成熟的信心，往往與謙卑的自我認知緊密相連，而非彼此矛盾。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">百夫長身為外邦人，卻憑著對耶穌話語權柄的深刻信心，使遠在家中、未曾親眼見到耶穌的僕人得著醫治</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這種「單憑信靠話語、無需親眼所見便得著應驗」的信心模式，此後在約翰福音中耶穌對多馬所說「那沒有看見就信的，有福了」的教導中得到進一步的神學闡述與延伸</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">凡憑信心領受福音、卻未曾親眼見過在世的耶穌之人，同樣能像這位百夫長一樣，單憑神話語本身的權柄與應許，得著救恩與生命的更新，這正是新約時代信徒信心樣式最重要的典範（約 20:29 · 羅 10:17）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正為某個迫切的需要向神呼求——這一頁想問你：你相信神的話語本身，是否已經足夠帶來改變？</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">這位百夫長的故事命中每一個在為所愛之人迫切代求、卻不確定自己是否有足夠信心的人。他的榜樣提醒我們，真正深刻的信心，不在於要求神以我們預設的方式（親自到場、明顯的神蹟過程）來回應，而在於單純相信神話語本身所帶有的權柄與能力已經足夠。他身處優勢地位卻選擇謙卑自抑的態度，也提醒我們，無論自己擁有多少地位或資源，在神面前，謙卑永遠是通往真實信心最重要的起點。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你是否也曾在為某個迫切需要向神呼求時，暗自要求神必須以特定的方式回應，才願意相信祂已經介入？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">百夫長用自己最熟悉的專業經驗（軍事指揮）來類比理解屬靈的真理。你是否也能從自己熟悉的生活經驗中，找到幫助你更深信靠神的類比或洞察？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">他身為佔領軍官卻選擇謙卑自抑，說『我不敢當』。你在擁有某種優勢地位的處境中，是否也能保持這樣的謙卑？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">耶穌稱讚他的信心超越以色列人。這如何挑戰你對『誰更配得神的稱讚』的既定假設？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 迦百農百夫長</span>
+        <div class="gen-title">示範劇本：以謙卑與洞察，信靠耶穌話語本身所帶有的權柄</div>
+        <div class="gen-body">他身為羅馬軍官，卻在耶穌面前展現出謙卑與深刻的信心，相信耶穌一句話便足以醫治他病重的僕人，蒙耶穌公開稱讚為祂所遇見過最大的信心。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 從東從西而來的萬邦信徒</span>
+        <div class="gen-title">延續：他的信心，預告了福音向萬邦敞開的救贖歷史</div>
+        <div class="gen-body">耶穌藉這位百夫長的信心，宣告將有許多從東從西而來的人與亞伯拉罕同席——這句話預先指向此後福音跨越猶太族裔界線、向萬邦敞開的重大救贖歷史轉折。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在這位百夫長的故事中，展現在神願意讓一位身處族裔與宗教邊緣的外邦軍官，成為耶穌公開稱讚信心典範的對象，並使他所疼愛的僕人得著醫治。這提醒我們，神的恩典從不受限於族裔、身份或宗教背景，凡真心謙卑信靠祂話語權柄的人，都能領受祂豐盛的應允。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位手握軍事權柄、卻在耶穌面前展現極致謙卑與信心的羅馬百夫長，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#相信話語本身就有力量</span>
+      <span class="tag">#地位越高越要謙卑</span>
+      <span class="tag">#用熟悉的經驗理解信心</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>這位百夫長的身份挺微妙的——他是駐紮在猶太地的羅馬軍官，理論上是猶太人痛恨的佔領者，但他人緣意外的好，猶太長老還特地幫他跟耶穌說好話，說他人很好，還出錢幫忙蓋會堂。</p>
+      <p>他有個很疼愛的僕人病得很重，快不行了，他跑去找耶穌求救。耶穌一口答應，說要親自去他家看看。結果百夫長的反應出乎意料：『不用不用，你親自來我家我承擔不起，你只要說一句話，我僕人就會好。』</p>
+      <p>他還解釋了理由，講得很有邏輯：『我自己也是聽命令的人，底下也帶兵——我叫這個去，他就去；叫那個來，他就來。』意思是：命令一出口就生效，不需要人親自到場執行。他把這套軍隊的邏輯，套用在耶穌身上：你的話，本身就有效力。</p>
+      <p>耶穌聽完，反應是『希奇』——這是個很少見的用詞，意思是耶穌自己都被驚到了。祂當場對周圍的人說：『我在以色列，還沒見過信心這麼大的人。』</p>
+      <p>一個外邦軍官，不需要神蹟過程、不需要看到任何畫面，單憑一句話就完全相信——這種信心的純度，連耶穌自己都罕見地公開讚嘆。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——這位百夫長沒有名字，這塊石頭被雕刻出的形狀，卻異常清晰：『相信話語本身，就是最深的信心』。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你正在為一件事迫切禱告，這位百夫長想告訴你：也許你不需要看到過程，只需要相信神說的話已經足夠。</p>
+      <p style="margin-top:12px;">他手握權力卻選擇謙卑，這個順序值得記住——越有能力、越有地位，越需要練習說『我不敢當』。</p>
+      <p style="margin-top:12px;">試著從你最熟悉的生活經驗裡，找一個能幫助你理解信心的類比——就像他用軍隊的邏輯理解耶穌一樣。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，練習相信一句神的話語本身已經足夠，不必等到看見全部的過程。</p>
+    </div>
+
+    <div class="insight-box">這位百夫長的信心告白——「只要你說一句話」——被天主教彌撒禮儀直接採用，成為領聖體前信友共同誦念的禱詞之一（「主，我當不起你到我心裡來，只要你說一句話，我的靈魂就必痊癒」），使他的信心宣告跨越兩千年，持續迴響在當代教會的敬拜生活之中。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他是一位手握軍事權柄的羅馬軍官，卻在耶穌面前展現出令祂公開讚嘆的信心與謙卑，成為新約中外邦人信心最鮮明的典範。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">耶穌公開稱讚信心最大的典範</div>
+          <div class="legacy-body">他是福音書中少數幾位蒙耶穌明確公開稱讚「這麼大的信心」的人物，這份殊榮竟落在一位外邦軍官身上，格外深具意義。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">「相信話語本身即有權柄」的信心典範</div>
+          <div class="legacy-body">他不需要耶穌親臨現場便深信醫治必然發生，這種信心樣式此後持續影響教會對「話語的權柄與應驗」這一屬靈原則的理解。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">福音向萬邦敞開的預告性人物</div>
+          <div class="legacy-body">耶穌藉他的信心宣告萬邦之人將與亞伯拉罕同席，這使他的故事成為福音書中預告救恩跨越猶太族裔界線、傳向萬邦最重要的敘事伏筆之一。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">教會禮儀傳統中持續迴響的信心告白</div>
+          <div class="legacy-body">他「只要你說一句話」的宣告被天主教彌撒禮儀直接採用至今，使他的信心話語跨越兩千年，持續在當代信徒的敬拜生活中被誦念與紀念。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「耶穌對百夫長說：你回去吧！照你的信心，給你成全了。那時，他的僕人就好了。」</div>
+      <div class="final-verse-ref">馬太福音 8:13</div>
+    </div>
+
+    <div class="final-question">如果耶穌此刻對你說「照你的信心，給你成全了」，你的信心，是建立在看見過程，還是單純相信祂話語本身已經足夠？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 迦百農百夫長 <span>ἑκατόνταρχος</span> · 求耶穌醫治僕人的羅馬百夫長</div>
+
+<!-- 閱讀紀錄（localStorage，見 progress.js）：右下角標記已讀按鈕 -->
+<script src="progress.js"></script>
+
+</body>
+</html>
