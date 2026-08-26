@@ -25,6 +25,7 @@ BUILD = os.path.dirname(os.path.abspath(__file__))
 PEOPLE = os.path.join(BUILD, "people")
 LEGACY = os.path.join(BUILD, "legacy_cards.json")
 OUT = os.path.join(ROOT, "data.js")
+QUIZ_OUT = os.path.join(ROOT, "quiz-data.js")
 
 sys.path.insert(0, BUILD)
 from books import BOOK_ORDER, PERSON_BOOK  # noqa: E402
@@ -102,11 +103,14 @@ def main():
             "book": PERSON_BOOK.get(r["id"]),
         })
 
-    # 2. 本次擴充的人物（依檔名字母序，穩定排序）
+    # 2. 本次擴充的人物（依檔名字母序，穩定排序）；順便收集小測驗題目（見 quiz.js）
+    quizzes = {}
     new_ids = sorted(f[:-5] for f in os.listdir(PEOPLE) if f.endswith(".json"))
     for pid in new_ids:
         d = json.load(io.open(os.path.join(PEOPLE, pid + ".json"), encoding="utf-8"))
         cards.append(card_from_person_json(pid, d))
+        if d.get("quiz") and d["quiz"].get("questions"):
+            quizzes[pid] = d["quiz"]["questions"]
 
     # 3. 依 CHRONO_ORDER（聖經敘事出現先後，朱虹恩例外置頂）排序，重新編號 sort_order。
     #    不在清單中的新人物：印出提醒，並依字母序接在最後，不影響其餘人排序。
@@ -142,14 +146,26 @@ def main():
     )
     io.open(OUT, "w", encoding="utf-8", newline="\n").write(js)
 
-    print("已寫出 %s（共 %d 位人物：legacy %d + 新增 %d）" % (
-        os.path.relpath(OUT, ROOT), len(cards), len(legacy), len(new_ids)))
+    # 小測驗題庫獨立輸出成 quiz-data.js（而不是塞進 data.js）：
+    # portrait_*.html 不會載入整份 data.js（那是給 index.html 用的角色清單），
+    # 但每一頁都會載入 quiz.js，所以量體較小的題庫獨立一份，讓 portrait 頁能讀到。
+    quiz_js = (
+        "// 本檔由 _build/make_static_data.py 自動產生，請勿手動編輯。\n"
+        "// 各人物的小測驗題庫，供 quiz.js 使用；只有人物 JSON 內寫了 quiz 欄位才會出現在這裡。\n"
+        "window.BIBLE_QUIZZES = "
+        + json.dumps(quizzes, ensure_ascii=False, indent=2)
+        + ";\n"
+    )
+    io.open(QUIZ_OUT, "w", encoding="utf-8", newline="\n").write(quiz_js)
+
+    print("已寫出 %s（共 %d 位人物：legacy %d + 新增 %d）與 %s" % (
+        os.path.relpath(OUT, ROOT), len(cards), len(legacy), len(new_ids), os.path.relpath(QUIZ_OUT, ROOT)))
     major = sum(1 for c in cards if c["tier"] == "major")
     common = sum(1 for c in cards if c["tier"] == "common")
     normal = sum(1 for c in cards if c["tier"] not in ("major", "common"))
     with_mbti = sum(1 for c in cards if c["mbti"])
-    print("  重要人物(major): %d｜常見人物(common): %d｜其餘(normal): %d｜有 MBTI: %d" % (
-        major, common, normal, with_mbti))
+    print("  重要人物(major): %d｜常見人物(common): %d｜其餘(normal): %d｜有 MBTI: %d｜有小測驗: %d" % (
+        major, common, normal, with_mbti, len(quizzes)))
 
 
 if __name__ == "__main__":

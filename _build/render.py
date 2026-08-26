@@ -314,14 +314,39 @@ def sec_legacy(d):
 """ % (r(s["final_verse"]["text"]), e(s["final_verse"]["ref"]), r(s["final_question"])))
 
 
-def render(d, shell):
+def sec_quiz(d, pid):
+    """小測驗區塊——只有人物 JSON 內有 "quiz" 欄位時才產出；不是八大維度之一，
+    所以刻意不用 class="section"，避免影響 render.py 產生頁面的結構掃描（8 個 section）。
+    題目內容本身不從這裡輸出，只輸出容器骨架；實際題目由 quiz.js 讀 quiz-data.js 內的
+    window.BIBLE_QUIZZES[pid] 動態渲染，維持與 progress.js 一致的靜態網站架構。"""
+    if not d.get("quiz") or not d["quiz"].get("questions"):
+        return ""
+    n = len(d["quiz"]["questions"])
+    return """
+<div class="quiz-section" id="quiz-section" data-person-id="%s" data-quiz-total="%d">
+  <span class="quiz-label">小測驗 · 檢測你的熟悉程度</span>
+  <h3 class="quiz-title">你對「%s」的故事，掌握了多少？</h3>
+  <p class="quiz-desc" id="quiz-desc">共 %d 題，涵蓋文脈、關鍵字、結構、神學主題、常見誤解與應用，每題都有時間限制——答錯或答得淺沒關係，測驗結束後會告訴你哪些地方值得回頭再讀一次。</p>
+  <button class="quiz-btn" id="quiz-start-btn" type="button">開始測驗</button>
+  <div id="quiz-play"></div>
+  <div id="quiz-result"></div>
+</div>
+""" % (pid, n, e(d["name"]), n)
+
+
+def render(d, shell, pid):
     title = "%s · PORTRAIT 聖經人物深度研究報告" % d["name"]
     body = (hero(d) + sec_portrait(d) + sec_timeline(d) + sec_character(d) + sec_relations(d)
             + sec_theology(d) + sec_mirror(d) + sec_voice(d) + sec_legacy(d))
-    footer = ('\n</div>\n\n<div class="footer">\n  PORTRAIT 聖經人物深度研究 · %s '
+    footer = ('\n</div>\n'
+              + sec_quiz(d, pid)
+              + '\n<div class="footer">\n  PORTRAIT 聖經人物深度研究 · %s '
               '<span>%s</span> · %s</div>\n\n'
               '<!-- 閱讀紀錄（localStorage，見 progress.js）：右下角標記已讀按鈕 -->\n'
-              '<script src="progress.js"></script>\n\n</body>\n</html>\n'
+              '<script src="progress.js"></script>\n'
+              '<!-- 小測驗（localStorage，見 quiz.js）：僅在人物 JSON 有 quiz 欄位時作用 -->\n'
+              '<script src="quiz-data.js"></script>\n'
+              '<script src="quiz.js"></script>\n\n</body>\n</html>\n'
               % (e(d["name"]), e(d["original"]), e(d["role"])))
     return shell.replace("__TITLE__", html.escape(title, quote=False)) + "\n<body>\n" + body + footer
 
@@ -337,7 +362,7 @@ def main():
             continue
         d = json.load(io.open(os.path.join(PEOPLE, fn), encoding="utf-8"))
         out = os.path.join(ROOT, "portrait_%s.html" % pid)
-        io.open(out, "w", encoding="utf-8", newline="\n").write(render(d, shell))
+        io.open(out, "w", encoding="utf-8", newline="\n").write(render(d, shell, pid))
         print("  ✓ portrait_%-24s %s  %s" % (pid + ".html", d["name"], d["mbti"]))
         made += 1
     print("\n共產生 %d 頁" % made)
