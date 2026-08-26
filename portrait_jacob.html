@@ -30,6 +30,7 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
 
+  /* ── HERO ── */
   .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
   .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
   .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
@@ -42,6 +43,7 @@
   .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
   .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
 
+  /* ── NAV ── */
   .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
   .nav::-webkit-scrollbar { display: none; }
   .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
@@ -49,8 +51,10 @@
   .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
   .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
 
+  /* ── LAYOUT ── */
   .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
 
+  /* ── SECTION ── */
   .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
   .section:last-child { border-bottom: none; }
   .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
@@ -61,11 +65,13 @@
   p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
   p:last-child { margin-bottom: 0; }
 
+  /* ── INFO GRID ── */
   .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
   .info-cell { background: var(--parchment); padding: 16px 20px; }
   .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
   .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
 
+  /* ── TIMELINE ── */
   .timeline { position: relative; padding-left: 32px; }
   .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
   .timeline-item { position: relative; margin-bottom: 36px; }
@@ -82,6 +88,7 @@
   .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
   .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
 
+  /* ── SOUL GRID ── */
   .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
   .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
   .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
@@ -89,6 +96,7 @@
   .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
   .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
 
+  /* ── MBTI ── */
   .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
   .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
   .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
@@ -99,6 +107,7 @@
   .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
   .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
 
+  /* ── RELATIONS ── */
   .relation-list { display: flex; flex-direction: column; gap: 16px; }
   .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
   .relation-name-block { text-align: center; padding-top: 4px; }
@@ -109,12 +118,13 @@
   .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
   .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
 
+  /* ── THEOLOGY ── */
   .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
   .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
   .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
   .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
   .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
-  .word-original { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; line-height: 1.4; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
   .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
   .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
   .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
@@ -129,6 +139,7 @@
   .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
   .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
 
+  /* ── MIRROR ── */
   .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
   .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
   .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
@@ -143,6 +154,7 @@
   .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
   .gen-body.light { color: var(--sand); opacity: 0.9; }
 
+  /* ── VOICE ── */
   .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
   .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
   .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
@@ -151,6 +163,7 @@
   .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
   .memo-card p { font-size: 14px; color: var(--sand); }
 
+  /* ── LEGACY ── */
   .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
   .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
   .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
@@ -161,8 +174,53 @@
   .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
   .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
 
+  /* ── INSIGHT BOX ── */
   .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
 
+  /* ── QUIZ ── */
+  .quiz-section { max-width: 860px; margin: 0 auto; padding: 56px 32px 64px; border-top: 2px solid var(--gold); }
+  .quiz-label { font-family: 'IM Fell English', serif; font-size: 12px; letter-spacing: 0.25em; color: var(--gold); display: block; margin-bottom: 12px; }
+  .quiz-title { font-family: 'Noto Serif TC', serif; font-size: 21px; color: var(--ink); margin-bottom: 10px; }
+  .quiz-desc { font-size: 13px; color: var(--ink-pale); line-height: 1.85; margin-bottom: 22px; }
+  .quiz-btn { background: var(--ink); color: var(--gold-light); border: 1px solid var(--gold); border-radius: 30px; padding: 12px 30px; font-family: 'Noto Sans TC', sans-serif; font-size: 14px; cursor: pointer; transition: all 0.2s; }
+  .quiz-btn:hover { background: var(--gold); color: var(--ink); }
+  .quiz-btn.secondary { background: transparent; color: var(--ink-soft); border-color: var(--border-strong); }
+  .quiz-btn.secondary:hover { background: var(--gold-faint); color: var(--ink); }
+  .quiz-progress-bar { display: flex; gap: 4px; margin-bottom: 24px; }
+  .quiz-progress-dot { flex: 1; height: 5px; border-radius: 3px; background: var(--gold-pale); transition: background 0.2s; }
+  .quiz-progress-dot.done { background: var(--gold); }
+  .quiz-progress-dot.current { background: var(--gold-light); }
+  .quiz-meta-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+  .quiz-q-num { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold-light); letter-spacing: 0.05em; }
+  .quiz-timer { font-family: 'IM Fell English', serif; font-size: 15px; color: var(--ink-pale); }
+  .quiz-timer.low { color: var(--crimson); }
+  .quiz-category-badge { display: inline-block; font-size: 10.5px; letter-spacing: 0.05em; padding: 3px 12px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); margin-bottom: 14px; }
+  .quiz-question { font-family: 'Noto Serif TC', serif; font-size: 16.5px; color: var(--ink); line-height: 1.85; margin-bottom: 22px; }
+  .quiz-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+  .quiz-option { text-align: left; background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; font-size: 14px; color: var(--ink-mid); cursor: pointer; transition: all 0.15s; font-family: 'Noto Sans TC', sans-serif; }
+  .quiz-option:hover:not(.locked) { border-color: var(--gold); }
+  .quiz-option.selected { border-color: var(--gold); background: var(--gold-faint); }
+  .quiz-option.correct { border-color: var(--teal-deep); background: rgba(26,74,62,0.1); }
+  .quiz-option.wrong { border-color: var(--crimson); background: rgba(122,32,32,0.07); }
+  .quiz-option.locked { cursor: default; }
+  .quiz-explain { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 14px 18px; font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; margin-bottom: 20px; display: none; }
+  .quiz-explain.visible { display: block; }
+  .quiz-actions { display: flex; justify-content: flex-end; }
+  .quiz-result-score { text-align: center; padding: 12px 0 28px; }
+  .quiz-result-num { font-family: 'IM Fell English', serif; font-size: 46px; color: var(--gold); display: block; }
+  .quiz-result-label { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-top: 6px; }
+  .quiz-cat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 24px; }
+  .quiz-cat-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; text-align: center; }
+  .quiz-cat-card.mastered { border-color: var(--teal-deep); background: rgba(26,74,62,0.06); }
+  .quiz-cat-card.weak { border-color: var(--crimson); background: rgba(122,32,32,0.05); }
+  .quiz-cat-name { font-size: 11px; color: var(--ink-soft); margin-bottom: 4px; }
+  .quiz-cat-status { font-size: 12px; font-weight: 500; color: var(--ink-pale); }
+  .quiz-cat-status.mastered-text { color: var(--teal-deep); }
+  .quiz-cat-status.weak-text { color: var(--crimson); }
+  .quiz-next-step { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 22px 26px; font-size: 13.5px; line-height: 1.9; margin-bottom: 24px; }
+  .quiz-next-step-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 10px; }
+
+  /* ── FOOTER ── */
   .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
   .footer span { color: var(--gold); }
 
@@ -176,6 +234,7 @@
     .gen-table { grid-template-columns: 1fr; }
     .typology-item { grid-template-columns: 1fr; }
     .relation-card { grid-template-columns: 1fr; }
+    .quiz-section { padding: 40px 20px 48px; }
     .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
     .relation-avatar { margin: 0; }
     .hero-meta { gap: 20px; }
@@ -183,11 +242,13 @@
   }
 </style>
 </head>
+
 <body>
 
+<!-- HERO -->
 <div class="hero">
   <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
-  <h1 class="hero-name">雅各</h1>
+  <h1 class="hero-name">雅各・以色列</h1>
   <span class="hero-name-en">Jacob · יַעֲקֹב</span>
   <p class="hero-slogan">「他一生都在抓——抓哥哥的腳踵、抓祝福、抓神——直到那個夜晚，神反過來抓住他，把他掰斷，才讓他終於學會倚靠。」</p>
   <div class="hero-meta">
@@ -211,6 +272,7 @@
   <div class="hero-divider"></div>
 </div>
 
+<!-- NAV -->
 <nav class="nav">
   <a class="nav-home" href="index.html">← 返回總目錄</a>
   <a href="#portrait">I · 人物素描</a>
@@ -225,7 +287,6 @@
 
 <div class="container">
 
-  <!-- I · PORTRAIT -->
   <div class="section" id="portrait">
     <div class="section-header">
       <span class="section-roman">I</span>
@@ -261,8 +322,6 @@
     <p>然而，神在此揀選他，並非因為他比以掃更有資格，而恰恰相反——正因為他的渴望本身就是一種悖論的預表。神要藉著一個慣於算計、長於謀略、卻又對應許之物有著狂熱渴望的人，展示恩典不是依附於人的優越性，而是錨定在神的主權揀選之中（羅馬書 9:11–12）。創世記的族長敘事並非英雄史詩，而是一部神如何在最不完美的器皿中，燒製出最深刻救贖印記的陶窯紀錄。</p>
   </div>
 
-
-  <!-- II · TIMELINE -->
   <div class="section" id="timeline">
     <div class="section-header">
       <span class="section-roman">II</span>
@@ -272,7 +331,6 @@
     <p class="section-epigraph">生命不是直線，而是一系列破碎與重建。</p>
 
     <div class="timeline">
-
       <div class="timeline-item">
         <div class="timeline-dot major"></div>
         <span class="timeline-badge badge-major">預設底色</span>
@@ -320,12 +378,9 @@
         <div class="timeline-body">他用血染的外袍欺騙約瑟被殺的假消息——與他當年欺騙父親的方式完全對稱。然而，在埃及與約瑟重遇的那一刻（創世記 46:29），他說：「我既得見你的面，知道你還在，我就可以死了。」他在法老面前的自白：「我一生的年日又少又苦」，不是抱怨，而是一個被神雕刻之人的誠實見證。他以信心祝福十二子，以希伯來書 11:21 描述的姿態——「扶著杖頭敬拜神」——帶著瘸腿，帶著信心，走完了他的一生。</div>
         <div class="timeline-ref">創世記 37 章；46–49 章；希伯來書 11:21</div>
       </div>
-
     </div>
   </div>
 
-
-  <!-- III · CHARACTER -->
   <div class="section" id="character">
     <div class="section-header">
       <span class="section-roman">III</span>
@@ -343,6 +398,7 @@
           <div class="soul-body">雅各從未懷疑神應許的真實性——這使他與以掃根本不同。以掃輕看長子名分（創世記 25:34），但雅各拼了命地渴望。他的核心創傷是對神主權交付的不信任：相信應許，卻不相信神有能力在不需要他「幫忙」的情況下兌現。這種「渴望應許，卻不信任過程」的結構，是他所有謀略的根源，也是神對他進行漫長靈魂教育的手術入口。</div>
         </div>
       </div>
+
       <div class="soul-row">
         <div class="soul-icon">💛</div>
         <div>
@@ -351,6 +407,7 @@
           <div class="soul-body">從買長子名分到雅博渡口「你不給我祝福我就不讓你走」，這種渴望在人的層面顯得貪婪，但在神的視角中，卻是信心的粗糙原礦。希伯來書 11 章把他列在信心英雄名單中，正因為這份頑固的渴望，在被熬煉之後，轉化成了不放神手的倚靠。他對拉結七年等候「不過幾天」（創世記 29:20），也是他深情美德的另一維度。</div>
         </div>
       </div>
+
       <div class="soul-row">
         <div class="soul-icon">⚠️</div>
         <div>
@@ -359,6 +416,7 @@
           <div class="soul-body">雅各最深的陰影有兩層：第一，他無法在關係中保持公平——對拉結的偏愛、對約瑟的偏愛，深深撕裂了家族系統。第二，他慣用迂迴手段而非正面面對——欺騙父親而非坦誠渴望，逃離以掃而非和解。這種迴避正面衝突的模式，根源於對「真實的我」被拒絕的核心恐懼：害怕如果不用技巧與偽裝，本來的樣子不足以獲得所渴望的愛與應許。</div>
         </div>
       </div>
+
       <div class="soul-row">
         <div class="soul-icon">✨</div>
         <div>
@@ -382,16 +440,19 @@
           <span class="mbti-fn-code">Ni · 內向直覺</span>
           <div class="mbti-fn-body">雅各對「應許終局」有強烈的內在確信與長遠視野。他在年幼時便感知到長子名分對應許承繼的關鍵性，能提前謀算，看見模式、感知命運走向的能力貫穿一生，使他不被短期利益框限，始終瞄準那個靈魂深處確信的「將來的位置」。</div>
         </div>
+
         <div class="mbti-fn">
           <span class="mbti-fn-label">輔助功能 Auxiliary</span>
           <span class="mbti-fn-code">Te · 外向思考</span>
           <div class="mbti-fn-body">他將內在直覺轉化為精密的外在行動計劃——羊皮偽裝、豆湯換約、育種謀略。Te 使他務實、有執行力，能在資訊有限的情況下快速分析可行路徑並果斷部署，是他在哈蘭二十年持續累積資產的關鍵能力。</div>
         </div>
+
         <div class="mbti-fn">
           <span class="mbti-fn-label">第三功能 Tertiary</span>
           <span class="mbti-fn-code">Fi · 內向情感</span>
           <div class="mbti-fn-body">雅各有著強烈但高度選擇性的深情——對拉結的癡迷式愛情、對約瑟的偏愛、晚年對便雅憫的過度保護。健康狀態下 Fi 使他有深刻忠誠；在不健康狀態下，Fi 的偏愛卻造成家族系統的嚴重失衡，催生兒子們對約瑟的仇恨。</div>
         </div>
+
         <div class="mbti-fn">
           <span class="mbti-fn-label">劣勢功能 Inferior</span>
           <span class="mbti-fn-code">Se · 外向感知</span>
@@ -401,8 +462,6 @@
     </div>
   </div>
 
-
-  <!-- IV · RELATIONS -->
   <div class="section" id="relations">
     <div class="section-header">
       <span class="section-roman">IV</span>
@@ -412,7 +471,6 @@
     <p class="section-epigraph">沒有人是孤島；他生命的形塑，正是在一段段關係的摩擦與連結中完成。</p>
 
     <div class="relation-list">
-
       <div class="relation-card">
         <div class="relation-name-block">
           <div class="relation-avatar">神</div>
@@ -490,12 +548,9 @@
           <div class="relation-ref">創世記 37 章；45:25–28；46:29–30</div>
         </div>
       </div>
-
     </div>
   </div>
 
-
-  <!-- V · THEOLOGY -->
   <div class="section" id="theology">
     <div class="section-header">
       <span class="section-roman">V</span>
@@ -519,9 +574,10 @@
         <span class="word-section-label">神學重量</span>
         <div class="word-section-body">名字的改變是聖經中最具神學份量的標誌行動之一。從「取代者」到「與神角力者」，不是性格的完全翻轉，而是掙扎方向的根本轉化——他從此成為知道如何在禱告中與神角力的人。以色列這個名字後來成為整個選民群體的稱號，這個破碎之人的轉化，具有集體性的神學代表性。</div>
       </div>
+
       <div class="word-card">
         <span class="word-original">גָּאַל</span>
-        <div class="word-transliteration">gāʾal · 希伯來文（以賽亞書 43:1）</div>
+        <div class="word-transliteration">gāʾal（以賽亞書 43:1） · 希伯來文</div>
         <span class="word-section-label">字面原意</span>
         <div class="word-section-body">至親救贖者（Goel）履行救贖責任的法律行為；買回被賣之人或被奪之地。以賽亞書 43:1「救贖了你」即此動詞。</div>
         <span class="word-section-label">神學重量</span>
@@ -534,10 +590,12 @@
       <div class="theology-insight-title">主權恩典的活體示範</div>
       <div class="theology-insight-body">神在雅各身上最根本的神學彰顯，是「揀選不依附於人的道德表現」（羅馬書 9:11–13）。神在雙胞胎尚未出生、尚未行任何善惡之前，便宣告「大的要服事小的」，這是主權恩典最赤裸的呈現。雅各的人生是一個活生生的反駁：神的救贖計劃，不因人的失敗而失效，也不因人的謀略而加速——它按照神自己的時間表推進。</div>
     </div>
+
     <div class="theology-insight">
       <div class="theology-insight-title">管教與破碎是神精煉選民的核心路徑</div>
       <div class="theology-insight-body">雅各/以色列的身份轉換，在舊約神學中建立了「神透過管教與破碎精煉選民」的核心救贖模式。何西阿書 12:2–4 回顧雅各的摔跤，呼喚北國以色列在流亡前回轉。整個民族的命運，被先知詮釋為與始祖生命弧度的回應與複現——個人的靈魂歷程，成為整個民族屬靈狀態的照鏡。</div>
     </div>
+
     <div class="theology-insight">
       <div class="theology-insight-title">帶傷的信心——瘸腿的敬拜</div>
       <div class="theology-insight-body">希伯來書 11:21 以雅各「扶著杖頭敬拜神」作為信心的終極定義——用破碎的身體，持守完整的信心。羅馬書 9–11 章以雅各的被揀選論證外邦人的加入並非神計劃的失敗，而是神主權的延伸。神的揀選是恩典的起點，而非回報人優越性的獎品。</div>
@@ -545,7 +603,6 @@
 
     <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
     <div class="typology-list">
-
       <div class="typology-item">
         <div class="typology-cell">
           <span class="typology-cell-label">舊約影子 Type</span>
@@ -605,12 +662,9 @@
           <div class="typology-cell-body">耶穌對拿但業說：「你們將要看見天開了，神的使者上去下來在人子身上。」（約翰福音 1:51）——耶穌明確引用雅各異象，宣告自己就是那架天梯</div>
         </div>
       </div>
-
     </div>
   </div>
 
-
-  <!-- VI · MIRROR -->
   <div class="section" id="mirror">
     <div class="section-header">
       <span class="section-roman">VI</span>
@@ -627,14 +681,17 @@
         <span class="question-num">01</span>
         <div class="question-text">你目前正在用哪些「雅各式」的方式——迂迴策略、人設管理、關係算計——去抓取一個你其實可以誠實等待或尋求的東西？</div>
       </div>
+
       <div class="question-card">
         <span class="question-num">02</span>
         <div class="question-text">在你的生命中，哪一個「拉班」出現了——一個讓你嚐到自己慣用手段之苦的人或處境——而你從那段經歷中，看見了什麼關於自己的真相？</div>
       </div>
+
       <div class="question-card">
         <span class="question-num">03</span>
         <div class="question-text">你的「雅博渡口之夜」是什麼？有沒有一個破碎時刻，是神讓你瘸腿、卻同時給你新身份的轉捩點？你允許自己帶著那個瘸腿繼續走，還是還在試圖假裝它不存在？</div>
       </div>
+
       <div class="question-card">
         <span class="question-num">04</span>
         <div class="question-text">你對哪個人（孩子、伴侶、工作、理想）有如此深的偏愛執著，以至於這份愛正在扭曲整個系統，傷害了其他你原本也想珍愛的人？</div>
@@ -661,8 +718,6 @@
     </div>
   </div>
 
-
-  <!-- VII · VOICE -->
   <div class="section" id="voice">
     <div class="section-header">
       <span class="section-roman">VII</span>
@@ -697,8 +752,6 @@
     <div class="insight-box">在現代領導力語境中，雅各的弧線說明了一個深刻的領導轉型命題：從「策略型掌控者」到「承受脆弱、賦能他人的成熟領袖」之間，通常需要一個「雅博渡口時刻」——一個讓你徹底撐不住的危機，迫使你從操控切換到委身。真正帶出十二個支派的雅各，不是那個算計哥哥的年輕人，而是那個瘸腿走過渡口、不再掩藏傷痕的以色列。在家族系統語境中，偏愛（favoritism）是家族系統最隱性的毒藥之一——神的介入路徑不是「修好關係」，而是透過一個願意被神重塑的人，從系統內部引入恩典突變。</div>
   </div>
 
-
-  <!-- VIII · LEGACY -->
   <div class="section" id="legacy">
     <div class="section-header">
       <span class="section-roman">VIII</span>
@@ -708,7 +761,6 @@
     <p class="section-epigraph">一個人死後，他留下的比他的生命更長。</p>
 
     <div class="legacy-list">
-
       <div class="legacy-item">
         <div class="legacy-num">I</div>
         <div>
@@ -748,7 +800,6 @@
           <div class="legacy-body">雅各帶著瘸腿度過餘生，成為聖經中最有力的「帶傷走路之人」的象徵。他的瘸腿宣告：與神的相遇不會讓你完好如初，而是讓你帶著永恆的記號，以不同的步伐行走。希伯來書 11:21 用「扶著杖頭敬拜」作為他信心的終極畫面——傷痕與敬拜同框，這是整部聖經對「真實信仰」最誠實的影像詮釋。</div>
         </div>
       </div>
-
     </div>
 
     <div class="final-verse">
@@ -761,12 +812,23 @@
 
 </div>
 
-<div class="footer">
-  PORTRAIT 聖經人物深度研究 · 雅各 <span>יַעֲקֹב</span> · 以色列十二支派之父 · 立約先祖
+<div class="quiz-section" id="quiz-section" data-person-id="jacob" data-quiz-total="9">
+  <span class="quiz-label">小測驗 · 檢測你的熟悉程度</span>
+  <h3 class="quiz-title">你對「雅各」的故事，掌握了多少？</h3>
+  <p class="quiz-desc" id="quiz-desc">共 9 題，涵蓋文脈、關鍵字、結構、神學主題、常見誤解與應用，每題都有時間限制——答錯或答得淺沒關係，測驗結束後會告訴你哪些地方值得回頭再讀一次。</p>
+  <button class="quiz-btn" id="quiz-start-btn" type="button">開始測驗</button>
+  <div id="quiz-play"></div>
+  <div id="quiz-result"></div>
 </div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 雅各 <span>יַעֲקֹב</span> · 以色列之父 · 立約先祖</div>
 
 <!-- 閱讀紀錄（localStorage，見 progress.js）：右下角標記已讀按鈕 -->
 <script src="progress.js"></script>
+<!-- 小測驗（localStorage，見 quiz.js）：僅在人物 JSON 有 quiz 欄位時作用 -->
+<script src="quiz-data.js"></script>
+<script src="quiz.js"></script>
 
 </body>
 </html>

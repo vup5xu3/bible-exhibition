@@ -30,6 +30,7 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
 
+  /* ── HERO ── */
   .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
   .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
   .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
@@ -42,6 +43,7 @@
   .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
   .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
 
+  /* ── NAV ── */
   .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
   .nav::-webkit-scrollbar { display: none; }
   .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
@@ -49,8 +51,10 @@
   .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
   .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
 
+  /* ── LAYOUT ── */
   .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
 
+  /* ── SECTION ── */
   .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
   .section:last-child { border-bottom: none; }
   .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
@@ -61,11 +65,13 @@
   p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
   p:last-child { margin-bottom: 0; }
 
+  /* ── INFO GRID ── */
   .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
   .info-cell { background: var(--parchment); padding: 16px 20px; }
   .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
   .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
 
+  /* ── TIMELINE ── */
   .timeline { position: relative; padding-left: 32px; }
   .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
   .timeline-item { position: relative; margin-bottom: 36px; }
@@ -82,6 +88,7 @@
   .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
   .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
 
+  /* ── SOUL GRID ── */
   .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
   .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
   .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
@@ -89,6 +96,7 @@
   .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
   .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
 
+  /* ── MBTI ── */
   .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
   .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
   .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
@@ -99,6 +107,7 @@
   .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
   .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
 
+  /* ── RELATIONS ── */
   .relation-list { display: flex; flex-direction: column; gap: 16px; }
   .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
   .relation-name-block { text-align: center; padding-top: 4px; }
@@ -109,6 +118,7 @@
   .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
   .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
 
+  /* ── THEOLOGY ── */
   .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
   .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
   .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
@@ -129,6 +139,7 @@
   .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
   .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
 
+  /* ── MIRROR ── */
   .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
   .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
   .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
@@ -143,6 +154,7 @@
   .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
   .gen-body.light { color: var(--sand); opacity: 0.9; }
 
+  /* ── VOICE ── */
   .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
   .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
   .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
@@ -151,6 +163,7 @@
   .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
   .memo-card p { font-size: 14px; color: var(--sand); }
 
+  /* ── LEGACY ── */
   .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
   .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
   .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
@@ -161,8 +174,53 @@
   .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
   .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
 
+  /* ── INSIGHT BOX ── */
   .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
 
+  /* ── QUIZ ── */
+  .quiz-section { max-width: 860px; margin: 0 auto; padding: 56px 32px 64px; border-top: 2px solid var(--gold); }
+  .quiz-label { font-family: 'IM Fell English', serif; font-size: 12px; letter-spacing: 0.25em; color: var(--gold); display: block; margin-bottom: 12px; }
+  .quiz-title { font-family: 'Noto Serif TC', serif; font-size: 21px; color: var(--ink); margin-bottom: 10px; }
+  .quiz-desc { font-size: 13px; color: var(--ink-pale); line-height: 1.85; margin-bottom: 22px; }
+  .quiz-btn { background: var(--ink); color: var(--gold-light); border: 1px solid var(--gold); border-radius: 30px; padding: 12px 30px; font-family: 'Noto Sans TC', sans-serif; font-size: 14px; cursor: pointer; transition: all 0.2s; }
+  .quiz-btn:hover { background: var(--gold); color: var(--ink); }
+  .quiz-btn.secondary { background: transparent; color: var(--ink-soft); border-color: var(--border-strong); }
+  .quiz-btn.secondary:hover { background: var(--gold-faint); color: var(--ink); }
+  .quiz-progress-bar { display: flex; gap: 4px; margin-bottom: 24px; }
+  .quiz-progress-dot { flex: 1; height: 5px; border-radius: 3px; background: var(--gold-pale); transition: background 0.2s; }
+  .quiz-progress-dot.done { background: var(--gold); }
+  .quiz-progress-dot.current { background: var(--gold-light); }
+  .quiz-meta-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+  .quiz-q-num { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold-light); letter-spacing: 0.05em; }
+  .quiz-timer { font-family: 'IM Fell English', serif; font-size: 15px; color: var(--ink-pale); }
+  .quiz-timer.low { color: var(--crimson); }
+  .quiz-category-badge { display: inline-block; font-size: 10.5px; letter-spacing: 0.05em; padding: 3px 12px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); margin-bottom: 14px; }
+  .quiz-question { font-family: 'Noto Serif TC', serif; font-size: 16.5px; color: var(--ink); line-height: 1.85; margin-bottom: 22px; }
+  .quiz-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+  .quiz-option { text-align: left; background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; font-size: 14px; color: var(--ink-mid); cursor: pointer; transition: all 0.15s; font-family: 'Noto Sans TC', sans-serif; }
+  .quiz-option:hover:not(.locked) { border-color: var(--gold); }
+  .quiz-option.selected { border-color: var(--gold); background: var(--gold-faint); }
+  .quiz-option.correct { border-color: var(--teal-deep); background: rgba(26,74,62,0.1); }
+  .quiz-option.wrong { border-color: var(--crimson); background: rgba(122,32,32,0.07); }
+  .quiz-option.locked { cursor: default; }
+  .quiz-explain { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 14px 18px; font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; margin-bottom: 20px; display: none; }
+  .quiz-explain.visible { display: block; }
+  .quiz-actions { display: flex; justify-content: flex-end; }
+  .quiz-result-score { text-align: center; padding: 12px 0 28px; }
+  .quiz-result-num { font-family: 'IM Fell English', serif; font-size: 46px; color: var(--gold); display: block; }
+  .quiz-result-label { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-top: 6px; }
+  .quiz-cat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 24px; }
+  .quiz-cat-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; text-align: center; }
+  .quiz-cat-card.mastered { border-color: var(--teal-deep); background: rgba(26,74,62,0.06); }
+  .quiz-cat-card.weak { border-color: var(--crimson); background: rgba(122,32,32,0.05); }
+  .quiz-cat-name { font-size: 11px; color: var(--ink-soft); margin-bottom: 4px; }
+  .quiz-cat-status { font-size: 12px; font-weight: 500; color: var(--ink-pale); }
+  .quiz-cat-status.mastered-text { color: var(--teal-deep); }
+  .quiz-cat-status.weak-text { color: var(--crimson); }
+  .quiz-next-step { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 22px 26px; font-size: 13.5px; line-height: 1.9; margin-bottom: 24px; }
+  .quiz-next-step-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 10px; }
+
+  /* ── FOOTER ── */
   .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
   .footer span { color: var(--gold); }
 
@@ -176,6 +234,7 @@
     .gen-table { grid-template-columns: 1fr; }
     .typology-item { grid-template-columns: 1fr; }
     .relation-card { grid-template-columns: 1fr; }
+    .quiz-section { padding: 40px 20px 48px; }
     .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
     .relation-avatar { margin: 0; }
     .hero-meta { gap: 20px; }
@@ -183,13 +242,15 @@
   }
 </style>
 </head>
+
 <body>
 
+<!-- HERO -->
 <div class="hero">
   <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
-  <h1 class="hero-name">他瑪</h1>
+  <h1 class="hero-name">他瑪・猶大之媳</h1>
   <span class="hero-name-en">Tamar · תָּמָר</span>
-  <p class="hero-slogan">「她比我更有義——在制度的廢墟中，她以智慧索回了神的應許」</p>
+  <p class="hero-slogan">「「她比我更有義——在制度的廢墟中，她以智慧索回了神的應許」」</p>
   <div class="hero-meta">
     <div class="hero-meta-item">
       <span class="hero-meta-label">時代</span>
@@ -211,6 +272,7 @@
   <div class="hero-divider"></div>
 </div>
 
+<!-- NAV -->
 <nav class="nav">
   <a class="nav-home" href="index.html">← 返回總目錄</a>
   <a href="#portrait">I · 人物素描</a>
@@ -225,7 +287,6 @@
 
 <div class="container">
 
-  <!-- I · PORTRAIT -->
   <div class="section" id="portrait">
     <div class="section-header">
       <span class="section-roman">I</span>
@@ -265,7 +326,6 @@
     <p>在救贖歷史的宏大脈絡中，他瑪所扮演的角色遠超一般的倫理故事。她是神在最混亂的人類罪惡中，主動介入守護聖約血脈的器皿。若非她以非常規的方式索回其法定權利，猶大支派可能在那一代斷絕後嗣，大衛王朝與彌賽亞降生的血脈預言將面臨夭折。她的故事是聖經中罕見的、以女性的主動智謀延續了神應許的敘事範例。</p>
   </div>
 
-  <!-- II · TIMELINE -->
   <div class="section" id="timeline">
     <div class="section-header">
       <span class="section-roman">II</span>
@@ -275,7 +335,6 @@
     <p class="section-epigraph">她的生命是一連串等待與突破的循環——等待義務被履行，等待自由，最終不再等待，親手打破了死局。</p>
 
     <div class="timeline">
-
       <div class="timeline-item">
         <div class="timeline-dot major"></div>
         <span class="timeline-badge badge-major">嫁入族長家族</span>
@@ -323,11 +382,9 @@
         <div class="timeline-body">他瑪誕下雙生子法勒斯與謝拉。謝拉先伸出手被繫上紅線，但法勒斯「破局而出」率先降生（法勒斯，意即「突破」）。大衛王與耶穌基督均出自法勒斯血脈。謝拉手腕的紅線則在聖經象徵體系中，與喇合的紅線繩索遙相呼應，預表基督寶血的保護與救贖。</div>
         <div class="timeline-ref">創世記 38:27–30 · 馬太福音 1:3</div>
       </div>
-
     </div>
   </div>
 
-  <!-- III · CHARACTER -->
   <div class="section" id="character">
     <div class="section-header">
       <span class="section-roman">III</span>
@@ -345,6 +402,7 @@
           <div class="soul-body">拉比文獻記載她在心中默禱：「寧可被燒死，也不願與外邦人同寢，我必須與以色列的子孫緊緊相連。」她的行動從不是出於情慾或個人利益，而是對神聖應許血脈的極度渴望與守護（創世記 38:25–26）。</div>
         </div>
       </div>
+
       <div class="soul-row">
         <div class="soul-icon">💛</div>
         <div>
@@ -353,6 +411,7 @@
           <div class="soul-body">面臨火刑時，他瑪沒有公開指控猶大或尋求輿論同情，而是私下呈出信物，給予猶大自我省察的空間。這種克制，展現了超越其處境的靈魂高貴——她的目標是讓真相說話，而非讓對方蒙羞（創世記 38:25）。</div>
         </div>
       </div>
+
       <div class="soul-row">
         <div class="soul-icon">⚠️</div>
         <div>
@@ -361,6 +420,7 @@
           <div class="soul-body">他瑪的偽裝策略雖在道德結果上被猶大認可為「義」，但其手段本質上仍是欺騙。這揭示了她在制度完全失效後，選擇了一條道德邊界模糊的路。聖經並未美化這一行為，而是誠實呈現了義人在不義體制下所面臨的道德困境。</div>
         </div>
       </div>
+
       <div class="soul-row">
         <div class="soul-icon">✨</div>
         <div>
@@ -377,23 +437,26 @@
     <div class="mbti-card">
       <span class="mbti-type">INTJ</span>
       <div class="mbti-name">建築師型 · 策略家人格</div>
-      <div class="mbti-slogan">「她能在混沌中看見制度的漏洞，並以令人屏息的冷靜將其轉化為棋局中的致勝一手。」</div>
+      <div class="mbti-slogan">「「她能在混沌中看見制度的漏洞，並以令人屏息的冷靜將其轉化為棋局中的致勝一手。」」</div>
       <div class="mbti-functions">
         <div class="mbti-fn">
           <span class="mbti-fn-label">主導功能 Dominant</span>
           <span class="mbti-fn-code">Ni · 內向直覺</span>
           <div class="mbti-fn-body">她能透過長期觀察，準確預判猶大的行為模式，並在精確的時機點布局——坐在伊拿印路口不是衝動，而是基於深度洞察的戰略部署。</div>
         </div>
+
         <div class="mbti-fn">
           <span class="mbti-fn-label">輔助功能 Auxiliary</span>
           <span class="mbti-fn-code">Te · 外向思考</span>
           <div class="mbti-fn-body">她要求三件信物作為法律憑證的行為，展現了極強的外向思考——她要的不是情感補償，而是不可反駁的實物證據，可在公開審判中作為決定性的法律工具。</div>
         </div>
+
         <div class="mbti-fn">
           <span class="mbti-fn-label">第三功能 Tertiary</span>
           <span class="mbti-fn-code">Fi · 內向情感</span>
           <div class="mbti-fn-body">她在呈出信物時選擇私下進行而非公開羞辱猶大，展現了深沉的內在道德標準——她的目標是讓真相與義得勝，而非個人復仇或對方的難堪。</div>
         </div>
+
         <div class="mbti-fn">
           <span class="mbti-fn-label">劣勢功能 Inferior</span>
           <span class="mbti-fn-code">Se · 外向感知</span>
@@ -403,7 +466,6 @@
     </div>
   </div>
 
-  <!-- IV · RELATIONS -->
   <div class="section" id="relations">
     <div class="section-header">
       <span class="section-roman">IV</span>
@@ -413,7 +475,6 @@
     <p class="section-epigraph">每一段關係都是一場考驗——有人背棄她，有人傷害她，她卻在這些關係的廢墟上，建立了歷史上最重要的家族傳承。</p>
 
     <div class="relation-list">
-
       <div class="relation-card">
         <div class="relation-name-block">
           <div class="relation-avatar">猶</div>
@@ -478,11 +539,9 @@
           <div class="relation-ref">創世記 38:7, 10 · 馬太福音 1:3</div>
         </div>
       </div>
-
     </div>
   </div>
 
-  <!-- V · THEOLOGY -->
   <div class="section" id="theology">
     <div class="section-header">
       <span class="section-roman">V</span>
@@ -492,7 +551,7 @@
     <p class="section-epigraph">在她的故事裡，神的救贖計畫不是在潔白無瑕的聖殿中被製造的，而是在倫理衝突、社會邊緣與破碎人性的廢墟中艱難誕生的。</p>
 
     <div class="verse-block">
-      <div class="verse-text">「她比我更有義，因為我沒有將她給我的兒子示拉。」</div>
+      <div class="verse-text">「「她比我更有義，因為我沒有將她給我的兒子示拉。」」</div>
       <div class="verse-ref">創世記 38:26</div>
     </div>
 
@@ -506,6 +565,7 @@
         <span class="word-section-label">神學重量</span>
         <div class="word-section-body">猶大以此字承認他瑪在聖約關係中的忠實，遠超自己的背信。新約中「因信稱義」（羅馬書 3:22）的「義」同出一脈，指神在基督裡向信者所賜予的盟約地位。</div>
       </div>
+
       <div class="word-card">
         <span class="word-original">פֶּרֶץ</span>
         <div class="word-transliteration">Perez · 希伯來文</div>
@@ -521,10 +581,12 @@
       <div class="theology-insight-title">叔娶嫂制（Yibbum）：法律義務與恩典的張力</div>
       <div class="theology-insight-body">申命記的叔娶嫂制將義務限於亡夫兄弟，但族長時代的古代近東習慣法允許公公代償。猶大既不給予示拉，也未依法宣告釋放他瑪，使她陷入「連鎖婦女」（Agunah）的法律困境。他瑪的行動，正是在人的律法完全失效時，以行動向神尋求應有的義。</div>
     </div>
+
     <div class="theology-insight">
       <div class="theology-insight-title">「剋夫女」（Qatlanit）的迷信與人性的軟弱</div>
       <div class="theology-insight-body">猶大在兩子相繼被神擊殺後，並未反思家族的罪惡，反而對他瑪產生了非理性的「剋夫女」恐懼。這種心理與次經《多比傳》中撒拉七度喪偶的困境互文，揭示了人類如何用迷信的恐懼來合理化對他人的不義，而神的救贖恰恰穿越了這層人性的軟弱。</div>
     </div>
+
     <div class="theology-insight">
       <div class="theology-insight-title">馬太家譜中的革命性神學宣言</div>
       <div class="theology-insight-body">馬太福音第一章刻意在父系家譜中納入他瑪、喇合、路得、拔示巴、馬利亞五位女性，向第一世紀的猶太讀者宣告：彌賽亞的血脈由不完美、甚至充滿爭議的人組成。這是對「救恩出於人的道德潔白」的徹底顛覆，宣告恩典在人類歷史最黑暗的廢墟中，仍能孕育出最耀眼的救贖。</div>
@@ -532,7 +594,6 @@
 
     <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
     <div class="typology-list">
-
       <div class="typology-item">
         <div class="typology-cell">
           <span class="typology-cell-label">舊約影子 Type</span>
@@ -577,11 +638,9 @@
           <div class="typology-cell-body">基督寶血所立的新約（路加福音 22:20），是終極的紅線——凡信靠者，在審判中得著保護與救贖的確據</div>
         </div>
       </div>
-
     </div>
   </div>
 
-  <!-- VI · MIRROR -->
   <div class="section" id="mirror">
     <div class="section-header">
       <span class="section-roman">VI</span>
@@ -598,14 +657,17 @@
         <span class="question-num">01</span>
         <div class="question-text">你是否曾在一個「義務被對方拋棄、自己卻仍受困其中」的關係或處境中？你選擇繼續等待，還是主動尋找突破？你的動機是什麼？</div>
       </div>
+
       <div class="question-card">
         <span class="question-num">02</span>
         <div class="question-text">猶大的恐懼（害怕失去示拉）讓他對他瑪造成了長期的傷害。你是否也曾因自己的恐懼或私利，在不知不覺中讓某個人陷入困境？</div>
       </div>
+
       <div class="question-card">
         <span class="question-num">03</span>
         <div class="question-text">他瑪在生死關頭選擇不公開羞辱猶大，而是私下給他認罪的機會。在你與傷害過你的人的關係中，你如何在伸張公義與保留對方尊嚴之間取得平衡？</div>
       </div>
+
       <div class="question-card">
         <span class="question-num">04</span>
         <div class="question-text">「她比我更有義」——這是整個故事中最震撼的一句話。你人生中，有沒有某個你曾誤解或輕視的人，事後你才意識到：在那件事上，他/她其實比你更有義？</div>
@@ -620,7 +682,7 @@
         <div class="gen-body">猶大在壓力下的固定模式是：逃跑（離開弟兄下去）與轉嫁恐懼（將他瑪視為「剋夫女」）。珥與俄南的惡行未被正面處理，反而被投射在他瑪身上，造成家族不義的累積。</div>
       </div>
       <div class="gen-cell">
-        <span class="gen-label">代際模式 · 欺騙循環</span>
+        <span class="gen-label">第二代 · 代際模式 · 欺騙循環</span>
         <div class="gen-title">不義的精確複製</div>
         <div class="gen-body">俄南繼承了家族的自私模式——他表面上履行義務，實質上卻以欺詐手段剝削了他瑪。這種「外表合規、內心背信」的雙重性，正是代際不義在下一代中的演化版本。</div>
       </div>
@@ -632,7 +694,6 @@
     </div>
   </div>
 
-  <!-- VII · VOICE -->
   <div class="section" id="voice">
     <div class="section-header">
       <span class="section-roman">VII</span>
@@ -642,11 +703,11 @@
     <p class="section-epigraph">如果他瑪今天有一個 Instagram 帳號，她的簡介大概是：「前兩任都不是我的問題。」</p>
 
     <div class="tags">
-      <span class="tag">#被制度辜負過的人</span>
-      <span class="tag">#寧可被燒也不妥協</span>
-      <span class="tag">#她比我更有義</span>
-      <span class="tag">#彌賽亞血脈守門人</span>
-      <span class="tag">#破局而生</span>
+      <span class="tag">##被制度辜負過的人</span>
+      <span class="tag">##寧可被燒也不妥協</span>
+      <span class="tag">##她比我更有義</span>
+      <span class="tag">##彌賽亞血脈守門人</span>
+      <span class="tag">##破局而生</span>
     </div>
 
     <div class="voice-prose">
@@ -654,6 +715,7 @@
       <p>她最令人佩服的地方不是她的膽量，而是她的清醒。她沒有在那個路口哭泣，沒有求神賜她一個順從的公公，沒有寫控訴信投訴猶大的不義。她做了一件事：她把猶大最不可替代的東西握在手裡，然後等真相自己說話。印、帶子、手杖——那不是情話，那是鐵一樣的證據。</p>
       <p>當然，她的方式讓人皺眉。偽裝成廟妓？跟公公睡？如果換作今天，這段新聞的標題恐怕不太好看。聖經也沒有替她洗白，它只是把一切如實說出來，讓讀者自己坐立難安。</p>
       <p>但正是這種誠實，讓他瑪的故事那麼有力量。神沒有選一個潔白無瑕的人來延續彌賽亞血脈，祂選了一個在廢墟裡還能精密計算的女人，一個寧死也不肯讓應許落空的人。</p>
+      <p>聖經的誠實告訴我們：神的救贖計畫從來不是在完美的條件下啟動的，而是在人類最混亂、最不堪的角落，被那些選擇不放棄的人，一點一點地護送向前。</p>
       <p style="font-weight:500; color:var(--ink);">聖經的誠實告訴我們：神的救贖計畫從來不是在完美的條件下啟動的，而是在人類最混亂、最不堪的角落，被那些選擇不放棄的人，一點一點地護送向前。</p>
     </div>
 
@@ -668,7 +730,6 @@
     <div class="insight-box">從現代心理學的角度，他瑪的故事是一則關於「機構性不義」與「個體能動性」的經典案例。她面對的不是單一施害者，而是一整套失靈的社會契約。她的回應——拒絕內化羞辱、保留客觀證據、以尊嚴而非仇恨面對審判——展示了一種在現代創傷研究中被稱為「後創傷成長」（Post-Traumatic Growth）的生命態度：不是假裝傷痛不存在，而是在傷痛中找到了行動的意志。</div>
   </div>
 
-  <!-- VIII · LEGACY -->
   <div class="section" id="legacy">
     <div class="section-header">
       <span class="section-roman">VIII</span>
@@ -678,7 +739,6 @@
     <p class="section-epigraph">她的名字在聖經家譜中只出現了一次，卻是整個彌賽亞血脈最關鍵的那個轉折。</p>
 
     <div class="legacy-list">
-
       <div class="legacy-item">
         <div class="legacy-num">I</div>
         <div>
@@ -718,11 +778,10 @@
           <div class="legacy-body">他瑪迫使猶大說出「她比我更有義」，是猶大人格史上最關鍵的屬靈事件。正是這場深刻的羞辱與認罪，為後來猶大在埃及宮廷中甘願代替便雅憫為奴的無私擔當奠定了基礎（創世記 44:33–34）。他瑪的遺產，不僅是血脈，更是一個家族的靈魂轉化。</div>
         </div>
       </div>
-
     </div>
 
     <div class="final-verse">
-      <div class="final-verse-text">「猶大的後裔啊，我的弟兄和族人哪，你們聽我說……<br>願耶和華使這進入你家的女子，像建立以色列家的拉結、利亞二人一樣。」</div>
+      <div class="final-verse-text">「「猶大的後裔啊，我的弟兄和族人哪，你們聽我說……<br>願耶和華使這進入你家的女子，像建立以色列家的拉結、利亞二人一樣。」」</div>
       <div class="final-verse-ref">路得記 4:11（以他瑪之子法勒斯作為大衛王血脈的起點，被路得記的長老們所引述）</div>
     </div>
 
@@ -731,12 +790,23 @@
 
 </div>
 
-<div class="footer">
-  PORTRAIT 聖經人物深度研究 · 他瑪 <span>תָּמָר · Tamar</span> · 大衛先祖 · 彌賽亞血脈守護者
+<div class="quiz-section" id="quiz-section" data-person-id="tamar_judah" data-quiz-total="9">
+  <span class="quiz-label">小測驗 · 檢測你的熟悉程度</span>
+  <h3 class="quiz-title">你對「他瑪」的故事，掌握了多少？</h3>
+  <p class="quiz-desc" id="quiz-desc">共 9 題，涵蓋文脈、關鍵字、結構、神學主題、常見誤解與應用，每題都有時間限制——答錯或答得淺沒關係，測驗結束後會告訴你哪些地方值得回頭再讀一次。</p>
+  <button class="quiz-btn" id="quiz-start-btn" type="button">開始測驗</button>
+  <div id="quiz-play"></div>
+  <div id="quiz-result"></div>
 </div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 他瑪 <span>תָּמָר</span> · 大衛先祖 · 彌賽亞血脈守護者</div>
 
 <!-- 閱讀紀錄（localStorage，見 progress.js）：右下角標記已讀按鈕 -->
 <script src="progress.js"></script>
+<!-- 小測驗（localStorage，見 quiz.js）：僅在人物 JSON 有 quiz 欄位時作用 -->
+<script src="quiz-data.js"></script>
+<script src="quiz.js"></script>
 
 </body>
 </html>

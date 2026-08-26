@@ -69,7 +69,7 @@ window.BIBLE_CHARACTERS = [
     "epithet": null,
     "name_en": "Abraham",
     "avatar": "亞",
-    "description": "神叫他走，他就走了——連目的地也不知道。七十五歲踏入荒野，成為信心的原",
+    "description": "神叫他走，他就走了——連目的地也不知道。七十五歲踏入荒野，成為信心的原型；神叫他等，他卻先替神動手——這是信心，也是人性",
     "mbti": "INFJ",
     "file_name": "portrait_abraham.html",
     "categories": [
@@ -376,8 +376,8 @@ window.BIBLE_CHARACTERS = [
     "name": "他瑪",
     "epithet": "猶大之媳",
     "name_en": "Tamar",
-    "avatar": "他瑪",
-    "description": "在制度的廢墟中，她以智慧索回了神的應許",
+    "avatar": "他",
+    "description": "她比我更有義——在制度的廢墟中，她以智慧索回了神的應許",
     "mbti": "INTJ",
     "file_name": "portrait_tamar_judah.html",
     "categories": [
@@ -385,6 +385,7 @@ window.BIBLE_CHARACTERS = [
       "genealogy"
     ],
     "tags": [
+      "大衛先祖",
       "彌賽亞血脈守護者"
     ],
     "tier": "major",
@@ -3488,14 +3489,15 @@ window.BIBLE_CHARACTERS = [
   {
     "id": "cornelius",
     "name": "哥尼流",
-    "epithet": null,
+    "epithet": "羅馬百夫長",
     "name_en": "Cornelius",
-    "avatar": "流",
-    "description": "一生忠誠於兩個不接受彼此的世界——帝國的劍與天國的禱告——直到有一天，神親自拆毀了那道牆",
+    "avatar": "哥",
+    "description": "他一生忠誠於兩個不接受彼此的世界——帝國的劍與天國的禱告——直到有一天，神親自拆毀了那道牆",
     "mbti": "ISTJ",
     "file_name": "portrait_cornelius.html",
     "categories": [
-      "nt"
+      "nt",
+      "genealogy"
     ],
     "tags": [
       "羅馬百夫長",

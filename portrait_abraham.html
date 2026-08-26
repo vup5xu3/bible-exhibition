@@ -27,476 +27,124 @@
     --border: rgba(184,150,46,0.25);
     --border-strong: rgba(184,150,46,0.5);
   }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    background: var(--parchment);
-    color: var(--ink);
-    font-family: 'Noto Sans TC', sans-serif;
-    font-weight: 300;
-    line-height: 1.8;
-  }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
 
   /* ── HERO ── */
-  .hero {
-    background: var(--ink);
-    color: var(--gold-pale);
-    padding: 80px 40px 64px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image:
-      repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px),
-      repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px);
-  }
-  .hero-label {
-    font-family: 'IM Fell English', serif;
-    font-size: 13px;
-    letter-spacing: 0.3em;
-    color: var(--gold);
-    margin-bottom: 20px;
-    opacity: 0.9;
-  }
-  .hero-name {
-    font-family: 'Noto Serif TC', serif;
-    font-size: clamp(48px, 8vw, 80px);
-    font-weight: 300;
-    letter-spacing: 0.15em;
-    color: #fff;
-    line-height: 1.1;
-    margin-bottom: 8px;
-  }
-  .hero-name-en {
-    font-family: 'IM Fell English', serif;
-    font-size: 18px;
-    color: var(--gold);
-    letter-spacing: 0.2em;
-    margin-bottom: 32px;
-    display: block;
-  }
-  .hero-slogan {
-    font-family: 'Noto Serif TC', serif;
-    font-size: clamp(14px, 2.2vw, 17px);
-    font-weight: 300;
-    color: var(--sand);
-    max-width: 640px;
-    margin: 0 auto 40px;
-    line-height: 1.9;
-    font-style: italic;
-  }
-  .hero-meta {
-    display: flex;
-    justify-content: center;
-    gap: 32px;
-    flex-wrap: wrap;
-  }
-  .hero-meta-item {
-    text-align: center;
-  }
-  .hero-meta-label {
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    color: var(--ink-pale);
-    display: block;
-    margin-bottom: 4px;
-  }
-  .hero-meta-value {
-    font-size: 14px;
-    color: var(--gold-light);
-    font-weight: 400;
-  }
-  .hero-divider {
-    width: 60px;
-    height: 1px;
-    background: var(--gold);
-    margin: 40px auto 0;
-    opacity: 0.5;
-  }
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
 
   /* ── NAV ── */
-  .nav {
-    background: var(--ink-mid);
-    padding: 0 40px;
-    display: flex;
-    gap: 0;
-    overflow-x: auto;
-    scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
   .nav::-webkit-scrollbar { display: none; }
-  .nav a {
-    color: var(--ink-pale);
-    text-decoration: none;
-    font-size: 12px;
-    letter-spacing: 0.1em;
-    padding: 14px 18px;
-    border-bottom: 2px solid transparent;
-    white-space: nowrap;
-    transition: color 0.2s, border-color 0.2s;
-  }
-  .nav a:hover {
-    color: var(--gold-light);
-    border-bottom-color: var(--gold);
-  }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
   .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
   .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
 
   /* ── LAYOUT ── */
-  .container {
-    max-width: 860px;
-    margin: 0 auto;
-    padding: 0 32px;
-  }
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
 
   /* ── SECTION ── */
-  .section {
-    padding: 64px 0 48px;
-    border-bottom: 1px solid var(--border);
-  }
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
   .section:last-child { border-bottom: none; }
-
-  .section-header {
-    display: flex;
-    align-items: baseline;
-    gap: 16px;
-    margin-bottom: 36px;
-  }
-  .section-roman {
-    font-family: 'IM Fell English', serif;
-    font-size: 13px;
-    color: var(--gold);
-    letter-spacing: 0.15em;
-    min-width: 28px;
-  }
-  .section-title {
-    font-family: 'Noto Serif TC', serif;
-    font-size: 22px;
-    font-weight: 500;
-    color: var(--ink);
-    letter-spacing: 0.05em;
-  }
-  .section-subtitle {
-    font-size: 12px;
-    color: var(--ink-pale);
-    letter-spacing: 0.1em;
-    margin-left: auto;
-  }
-
-  .section-epigraph {
-    font-family: 'Noto Serif TC', serif;
-    font-size: 13px;
-    color: var(--ink-soft);
-    font-style: italic;
-    border-left: 2px solid var(--gold);
-    padding-left: 16px;
-    margin-bottom: 28px;
-    line-height: 1.7;
-  }
-
-  p {
-    font-size: 15px;
-    color: var(--ink-mid);
-    line-height: 1.95;
-    margin-bottom: 16px;
-  }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
   p:last-child { margin-bottom: 0; }
 
   /* ── INFO GRID ── */
-  .info-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    overflow: hidden;
-    margin-bottom: 32px;
-  }
-  .info-cell {
-    background: var(--parchment);
-    padding: 16px 20px;
-  }
-  .info-cell-label {
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    color: var(--gold);
-    display: block;
-    margin-bottom: 5px;
-  }
-  .info-cell-value {
-    font-size: 14px;
-    color: var(--ink-mid);
-    font-weight: 400;
-    line-height: 1.5;
-  }
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
 
   /* ── TIMELINE ── */
   .timeline { position: relative; padding-left: 32px; }
-  .timeline::before {
-    content: '';
-    position: absolute;
-    left: 6px;
-    top: 8px;
-    bottom: 8px;
-    width: 1px;
-    background: var(--border-strong);
-  }
-  .timeline-item {
-    position: relative;
-    margin-bottom: 36px;
-  }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
   .timeline-item:last-child { margin-bottom: 0; }
-  .timeline-dot {
-    position: absolute;
-    left: -28px;
-    top: 8px;
-    width: 13px;
-    height: 13px;
-    border-radius: 50%;
-    border: 2px solid var(--gold);
-    background: var(--parchment);
-  }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
   .timeline-dot.major { background: var(--gold); }
   .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
   .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
-  .timeline-badge {
-    display: inline-block;
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    padding: 3px 10px;
-    border-radius: 20px;
-    margin-bottom: 8px;
-    font-weight: 400;
-  }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
   .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
   .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
   .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
-  .timeline-title {
-    font-family: 'Noto Serif TC', serif;
-    font-size: 17px;
-    font-weight: 500;
-    color: var(--ink);
-    margin-bottom: 8px;
-    letter-spacing: 0.03em;
-  }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
   .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
-  .timeline-ref {
-    font-size: 12px;
-    color: var(--gold);
-    font-style: italic;
-  }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
 
-  /* ── CHARACTER CIRCLE ── */
-  .soul-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    overflow: hidden;
-    margin-bottom: 32px;
-  }
-  .soul-row {
-    background: var(--parchment);
-    padding: 18px 24px;
-    display: flex;
-    gap: 16px;
-    align-items: flex-start;
-  }
-  .soul-icon {
-    font-size: 18px;
-    min-width: 28px;
-    padding-top: 2px;
-  }
-  .soul-label {
-    font-size: 12px;
-    letter-spacing: 0.1em;
-    color: var(--gold);
-    display: block;
-    margin-bottom: 4px;
-  }
-  .soul-title {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--ink);
-    margin-bottom: 6px;
-  }
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
   .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
 
   /* ── MBTI ── */
-  .mbti-card {
-    background: var(--ink);
-    color: var(--gold-pale);
-    border-radius: 10px;
-    padding: 28px 32px;
-    margin-bottom: 24px;
-  }
-  .mbti-type {
-    font-family: 'IM Fell English', serif;
-    font-size: 36px;
-    color: var(--gold);
-    letter-spacing: 0.15em;
-    display: block;
-    margin-bottom: 4px;
-  }
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
   .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
-  .mbti-slogan {
-    font-size: 14px;
-    color: var(--ink-pale);
-    font-style: italic;
-    font-family: 'Noto Serif TC', serif;
-    border-top: 1px solid rgba(184,150,46,0.2);
-    padding-top: 12px;
-    margin-top: 8px;
-  }
-  .mbti-functions {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-top: 20px;
-  }
-  .mbti-fn {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(184,150,46,0.15);
-    border-radius: 8px;
-    padding: 14px 16px;
-  }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
   .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
   .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
   .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
 
   /* ── RELATIONS ── */
   .relation-list { display: flex; flex-direction: column; gap: 16px; }
-  .relation-card {
-    background: var(--parchment);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 20px 24px;
-    display: grid;
-    grid-template-columns: 120px 1fr;
-    gap: 20px;
-    align-items: start;
-  }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
   .relation-name-block { text-align: center; padding-top: 4px; }
-  .relation-avatar {
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
-    background: var(--gold-pale);
-    border: 1px solid var(--border-strong);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Noto Serif TC', serif;
-    font-size: 18px;
-    color: var(--gold);
-    margin: 0 auto 8px;
-  }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
   .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
-  .relation-type-badge {
-    display: inline-block;
-    font-size: 10px;
-    padding: 2px 8px;
-    border-radius: 20px;
-    background: var(--gold-faint);
-    color: var(--gold);
-    border: 1px solid rgba(184,150,46,0.25);
-    margin-top: 4px;
-  }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
   .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
   .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
   .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
 
   /* ── THEOLOGY ── */
-  .verse-block {
-    background: var(--ink-mid);
-    color: var(--gold-pale);
-    border-radius: 10px;
-    padding: 28px 32px;
-    margin-bottom: 28px;
-    text-align: center;
-  }
-  .verse-text {
-    font-family: 'Noto Serif TC', serif;
-    font-size: 18px;
-    font-weight: 300;
-    line-height: 1.9;
-    margin-bottom: 12px;
-  }
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
   .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
-
   .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
-  .word-card {
-    background: var(--parchment);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 20px 22px;
-  }
-  .word-original {
-    font-family: 'IM Fell English', serif;
-    font-size: 28px;
-    color: var(--gold);
-    display: block;
-    margin-bottom: 4px;
-    letter-spacing: 0.05em;
-  }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
   .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
   .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
   .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
-
   .typology-list { display: flex; flex-direction: column; gap: 12px; }
-  .typology-item {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    overflow: hidden;
-  }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
   .typology-cell { background: var(--parchment); padding: 14px 16px; }
   .typology-cell.bridge { background: var(--gold-faint); }
-  .typology-cell-label {
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    color: var(--gold);
-    display: block;
-    margin-bottom: 5px;
-  }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
   .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
 
   /* ── MIRROR ── */
   .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
-  .question-card {
-    background: var(--parchment);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 18px 20px;
-  }
-  .question-num {
-    font-family: 'IM Fell English', serif;
-    font-size: 24px;
-    color: var(--border-strong);
-    display: block;
-    margin-bottom: 8px;
-  }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
   .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
-
-  .gen-table {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    overflow: hidden;
-    margin-bottom: 28px;
-  }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
   .gen-cell { background: var(--parchment); padding: 18px 20px; }
   .gen-cell:nth-child(3) { background: var(--teal-deep); }
   .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
@@ -508,118 +156,73 @@
 
   /* ── VOICE ── */
   .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
-  .tag {
-    font-size: 12px;
-    padding: 4px 14px;
-    border-radius: 20px;
-    background: var(--gold-faint);
-    color: var(--gold);
-    border: 1px solid rgba(184,150,46,0.3);
-  }
-  .voice-prose {
-    background: var(--parchment-dark);
-    border-radius: 10px;
-    padding: 28px 32px;
-    margin-bottom: 20px;
-    font-family: 'Noto Serif TC', serif;
-    font-size: 15px;
-    color: var(--ink-mid);
-    line-height: 2.05;
-    font-weight: 300;
-  }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
   .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
-  .memo-card {
-    background: var(--teal-deep);
-    color: var(--sand);
-    border-radius: 10px;
-    padding: 24px 28px;
-    margin-bottom: 20px;
-    font-size: 14px;
-    line-height: 1.9;
-  }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
   .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
   .memo-card p { font-size: 14px; color: var(--sand); }
 
   /* ── LEGACY ── */
   .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
-  .legacy-item {
-    display: flex;
-    gap: 16px;
-    align-items: flex-start;
-    padding: 18px 20px;
-    background: var(--parchment);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-  }
-  .legacy-num {
-    font-family: 'IM Fell English', serif;
-    font-size: 22px;
-    color: var(--gold);
-    min-width: 28px;
-    line-height: 1.3;
-  }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
   .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
   .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
-
-  .final-verse {
-    text-align: center;
-    padding: 40px 32px;
-    background: var(--ink);
-    border-radius: 12px;
-    margin-bottom: 24px;
-  }
-  .final-verse-text {
-    font-family: 'Noto Serif TC', serif;
-    font-size: 16px;
-    color: var(--gold-pale);
-    line-height: 1.95;
-    margin-bottom: 12px;
-  }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
   .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
-
-  .final-question {
-    text-align: center;
-    padding: 40px 0 20px;
-    font-family: 'Noto Serif TC', serif;
-    font-size: clamp(16px, 3vw, 20px);
-    color: var(--ink-mid);
-    line-height: 1.9;
-    font-style: italic;
-    max-width: 600px;
-    margin: 0 auto;
-    border-top: 1px solid var(--border);
-  }
-
-  /* ── FOOTER ── */
-  .footer {
-    background: var(--ink);
-    color: var(--ink-pale);
-    text-align: center;
-    padding: 28px;
-    font-size: 12px;
-    letter-spacing: 0.1em;
-    margin-top: 0;
-  }
-  .footer span { color: var(--gold); }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
 
   /* ── INSIGHT BOX ── */
-  .insight-box {
-    background: var(--gold-faint);
-    border-left: 3px solid var(--gold);
-    border-radius: 0 8px 8px 0;
-    padding: 16px 20px;
-    margin: 20px 0;
-    font-family: 'Noto Serif TC', serif;
-    font-size: 14px;
-    color: var(--ink-mid);
-    line-height: 1.85;
-    font-style: italic;
-  }
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
 
-  .theology-insight { margin-bottom: 24px; }
-  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
-  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
-  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+  /* ── QUIZ ── */
+  .quiz-section { max-width: 860px; margin: 0 auto; padding: 56px 32px 64px; border-top: 2px solid var(--gold); }
+  .quiz-label { font-family: 'IM Fell English', serif; font-size: 12px; letter-spacing: 0.25em; color: var(--gold); display: block; margin-bottom: 12px; }
+  .quiz-title { font-family: 'Noto Serif TC', serif; font-size: 21px; color: var(--ink); margin-bottom: 10px; }
+  .quiz-desc { font-size: 13px; color: var(--ink-pale); line-height: 1.85; margin-bottom: 22px; }
+  .quiz-btn { background: var(--ink); color: var(--gold-light); border: 1px solid var(--gold); border-radius: 30px; padding: 12px 30px; font-family: 'Noto Sans TC', sans-serif; font-size: 14px; cursor: pointer; transition: all 0.2s; }
+  .quiz-btn:hover { background: var(--gold); color: var(--ink); }
+  .quiz-btn.secondary { background: transparent; color: var(--ink-soft); border-color: var(--border-strong); }
+  .quiz-btn.secondary:hover { background: var(--gold-faint); color: var(--ink); }
+  .quiz-progress-bar { display: flex; gap: 4px; margin-bottom: 24px; }
+  .quiz-progress-dot { flex: 1; height: 5px; border-radius: 3px; background: var(--gold-pale); transition: background 0.2s; }
+  .quiz-progress-dot.done { background: var(--gold); }
+  .quiz-progress-dot.current { background: var(--gold-light); }
+  .quiz-meta-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+  .quiz-q-num { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold-light); letter-spacing: 0.05em; }
+  .quiz-timer { font-family: 'IM Fell English', serif; font-size: 15px; color: var(--ink-pale); }
+  .quiz-timer.low { color: var(--crimson); }
+  .quiz-category-badge { display: inline-block; font-size: 10.5px; letter-spacing: 0.05em; padding: 3px 12px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); margin-bottom: 14px; }
+  .quiz-question { font-family: 'Noto Serif TC', serif; font-size: 16.5px; color: var(--ink); line-height: 1.85; margin-bottom: 22px; }
+  .quiz-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+  .quiz-option { text-align: left; background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; font-size: 14px; color: var(--ink-mid); cursor: pointer; transition: all 0.15s; font-family: 'Noto Sans TC', sans-serif; }
+  .quiz-option:hover:not(.locked) { border-color: var(--gold); }
+  .quiz-option.selected { border-color: var(--gold); background: var(--gold-faint); }
+  .quiz-option.correct { border-color: var(--teal-deep); background: rgba(26,74,62,0.1); }
+  .quiz-option.wrong { border-color: var(--crimson); background: rgba(122,32,32,0.07); }
+  .quiz-option.locked { cursor: default; }
+  .quiz-explain { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 14px 18px; font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; margin-bottom: 20px; display: none; }
+  .quiz-explain.visible { display: block; }
+  .quiz-actions { display: flex; justify-content: flex-end; }
+  .quiz-result-score { text-align: center; padding: 12px 0 28px; }
+  .quiz-result-num { font-family: 'IM Fell English', serif; font-size: 46px; color: var(--gold); display: block; }
+  .quiz-result-label { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-top: 6px; }
+  .quiz-cat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 24px; }
+  .quiz-cat-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; text-align: center; }
+  .quiz-cat-card.mastered { border-color: var(--teal-deep); background: rgba(26,74,62,0.06); }
+  .quiz-cat-card.weak { border-color: var(--crimson); background: rgba(122,32,32,0.05); }
+  .quiz-cat-name { font-size: 11px; color: var(--ink-soft); margin-bottom: 4px; }
+  .quiz-cat-status { font-size: 12px; font-weight: 500; color: var(--ink-pale); }
+  .quiz-cat-status.mastered-text { color: var(--teal-deep); }
+  .quiz-cat-status.weak-text { color: var(--crimson); }
+  .quiz-next-step { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 22px 26px; font-size: 13.5px; line-height: 1.9; margin-bottom: 24px; }
+  .quiz-next-step-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 10px; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
 
   @media (max-width: 600px) {
     .hero { padding: 56px 24px 48px; }
@@ -631,6 +234,7 @@
     .gen-table { grid-template-columns: 1fr; }
     .typology-item { grid-template-columns: 1fr; }
     .relation-card { grid-template-columns: 1fr; }
+    .quiz-section { padding: 40px 20px 48px; }
     .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
     .relation-avatar { margin: 0; }
     .hero-meta { gap: 20px; }
@@ -638,6 +242,7 @@
   }
 </style>
 </head>
+
 <body>
 
 <!-- HERO -->
@@ -682,7 +287,6 @@
 
 <div class="container">
 
-  <!-- I. PORTRAIT -->
   <div class="section" id="portrait">
     <div class="section-header">
       <span class="section-roman">I</span>
@@ -718,7 +322,6 @@
     <p>神選擇在這個歷史節點呼召亞伯蘭，背後有深刻的救贖歷史邏輯。創世記 10–11 章描述巴別塔事件後，人類透過民族分散、語言混亂走向破碎。神的回應不是帝國式的強制統一，而是選擇「一個人」，透過一個家族建立一個「蒙福的管道」，最終使「地上萬族都要因你得福」（創 12:3）。這是從普世墮落轉向特殊揀選的神學大轉彎——亞伯拉罕是神以恩典回應人類集體失敗的第一個答案。</p>
   </div>
 
-  <!-- II. TIMELINE -->
   <div class="section" id="timeline">
     <div class="section-header">
       <span class="section-roman">II</span>
@@ -778,16 +381,14 @@
     </div>
   </div>
 
-  <!-- III. CHARACTER -->
   <div class="section" id="character">
     <div class="section-header">
       <span class="section-roman">III</span>
       <h2 class="section-title">Character · 性格剖析</h2>
-      <span class="section-subtitle">靈魂的層次</span>
+      <span class="section-subtitle">靈魂的輪廓</span>
     </div>
     <p class="section-epigraph">從最深的核心信念到外在表現，層層解構一個複雜的人。</p>
 
-    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin-bottom:16px; letter-spacing:0.05em;">靈魂同心圓拆解</h3>
     <div class="soul-grid">
       <div class="soul-row">
         <div class="soul-icon">🔥</div>
@@ -797,6 +398,7 @@
           <div class="soul-body">亞伯拉罕的終極驅動力是「神是信實的」這一確信。即便現實一次又一次打臉（身體枯乾、妻子不育、等待二十五年），他內心深處仍抓住一個不可動搖的確信：神的話語比自己的眼見更真實。羅馬書 4:18 描述他「在無可指望的時候，因信仍有指望」。</div>
         </div>
       </div>
+
       <div class="soul-row">
         <div class="soul-icon">💡</div>
         <div>
@@ -805,6 +407,7 @@
           <div class="soul-body">他讓羅得先選最好的土地（創 13:9），展現出他對神應許的高度信任，無需透過人際競爭確認自我價值。他也對陌生人（三位使者）展現極致的款待之道（創 18:1–8），反映出中東文化中的「慈愛款待」作為一種神聖美德的體現。</div>
         </div>
       </div>
+
       <div class="soul-row">
         <div class="soul-icon">🎯</div>
         <div>
@@ -813,6 +416,7 @@
           <div class="soul-body">他在聽見神呼召後的行動是立即的、毫不拖延的；面對四王的軍事威脅也是夜間奇襲、迅速決策。但在撒萊的要求面前、在法老的威脅面前，他會退縮為服從而非主動對抗。</div>
         </div>
       </div>
+
       <div class="soul-row">
         <div class="soul-icon">⚠️</div>
         <div>
@@ -821,12 +425,13 @@
           <div class="soul-body">「以妻充妹」事件兩度發生（創 12 章、創 20 章），是他最深的人性裂縫。接受夏甲代孕計劃，表面是「聽妻子的話」，實質是以人的急切取代神的等待。這個軟弱直接產生了以實瑪利，成為跨越數千年的歷史火種。</div>
         </div>
       </div>
+
       <div class="soul-row">
         <div class="soul-icon">✨</div>
         <div>
           <span class="soul-label">神秘面向</span>
           <div class="soul-title">具備超前時代的「復活神學直覺」</div>
-          <div class="soul-body">在複活概念尚未在舊約神學中充分展開的年代，亞伯拉罕已在行動上示範了這個信念。希伯來書詮釋他在摩利亞山的行動邏輯為「以為神能叫人從死裡復活」（來 11:19）。他的信心跨越了自然秩序的邊界，預見了新約神學的核心。</div>
+          <div class="soul-body">在復活概念尚未在舊約神學中充分展開的年代，亞伯拉罕已在行動上示範了這個信念。希伯來書詮釋他在摩利亞山的行動邏輯為「以為神能叫人從死裡復活」（來 11:19）。他的信心跨越了自然秩序的邊界，預見了新約神學的核心。</div>
         </div>
       </div>
     </div>
@@ -844,16 +449,19 @@
           <span class="mbti-fn-code">Ni · 內向直覺</span>
           <div class="mbti-fn-body">整個人生由「尚未實現的異象」所驅動。他能「看見」還不存在的土地、還沒出生的後代，並以此作為行動的燃料。神對他說的每一個應許，都是對他 Ni 感知方式的直接呼喚。</div>
         </div>
+
         <div class="mbti-fn">
           <span class="mbti-fn-label">輔助功能 Auxiliary</span>
           <span class="mbti-fn-code">Fe · 外向情感</span>
           <div class="mbti-fn-body">他與人的連結深且廣：對羅得的慷慨讓步、對使者的熱情款待、為所多瑪居民的大膽代禱（創 18:16–33）。他的 Fe 讓他是一個強烈關心他人命運的人。</div>
         </div>
+
         <div class="mbti-fn">
           <span class="mbti-fn-label">第三功能 Tertiary</span>
           <span class="mbti-fn-code">Ti · 內向思考</span>
           <div class="mbti-fn-body">健康狀態下能冷靜分析情勢；壓力狀態下 Ti 會產生精緻的「自我說服系統」——為「以妻充妹」的謊言邏輯自洽辯護（「她確實是我同父異母的妹妹」），用理性包裝道德逃避。</div>
         </div>
+
         <div class="mbti-fn">
           <span class="mbti-fn-label">劣勢功能 Inferior</span>
           <span class="mbti-fn-code">Se · 外向感知</span>
@@ -863,12 +471,11 @@
     </div>
   </div>
 
-  <!-- IV. RELATIONS -->
   <div class="section" id="relations">
     <div class="section-header">
       <span class="section-roman">IV</span>
       <h2 class="section-title">Relations · 關係網絡</h2>
-      <span class="section-subtitle">愛、忠誠與背叛</span>
+      <span class="section-subtitle">愛、忠誠與張力</span>
     </div>
     <p class="section-epigraph">沒有人是孤島；他生命的形塑，正是在一段段關係的摩擦與連結中完成。</p>
 
@@ -953,7 +560,6 @@
     </div>
   </div>
 
-  <!-- V. THEOLOGY -->
   <div class="section" id="theology">
     <div class="section-header">
       <span class="section-roman">V</span>
@@ -977,6 +583,7 @@
         <span class="word-section-label">神學重量</span>
         <div class="word-section-body">he'emin（使役型態）——字面意思接近「他使自己以耶和華為穩固的根基」。保羅在羅馬書 4:3 直接引用此節，作為「因信稱義」教義的最原始聖經依據，指出律法尚未頒布的年代，人已可因信得稱為義。</div>
       </div>
+
       <div class="word-card">
         <span class="word-original">בְּרִית</span>
         <div class="word-transliteration">bᵉrît · 希伯來文</div>
@@ -992,10 +599,12 @@
       <div class="theology-insight-title">核心立約層面</div>
       <div class="theology-insight-body">亞伯拉罕之約包含三重要素：土地（迦南地）、後裔（多如星塵）、祝福（萬民藉你得福）。這三重應許構成整個舊約救贖歷史的「憲法框架」，後來的摩西之約、大衛之約都在此框架內展開。</div>
     </div>
+
     <div class="theology-insight">
       <div class="theology-insight-title">後續神學發展中的張力</div>
       <div class="theology-insight-body">保羅在加拉太書 3 章指出，在西奈山的律法頒布之後，這個「信心之約」的優先性並未被廢除。律法只是「監護人」（paedagogos），目的是將人帶到基督面前，而基督才是亞伯拉罕的「那一個後裔」（加 3:16，單數）。</div>
     </div>
+
     <div class="theology-insight">
       <div class="theology-insight-title">新約的終極應驗</div>
       <div class="theology-insight-body">加拉太書 3:29 指出，凡屬基督的人，「就是亞伯拉罕的後裔，是照著應許承受產業的人」——民族性的應許在新約中被翻譯為跨種族、跨文化的屬靈包容性，所有因信基督的人都進入這個約的應許框架。</div>
@@ -1017,6 +626,7 @@
           <div class="typology-cell-body">基督從天降至地，道成肉身住在人中間</div>
         </div>
       </div>
+
       <div class="typology-item">
         <div class="typology-cell">
           <span class="typology-cell-label">舊約影子 Type</span>
@@ -1031,6 +641,7 @@
           <div class="typology-cell-body">天父神「沒有愛惜自己的兒子，為我們眾人捨了他」（羅 8:32）</div>
         </div>
       </div>
+
       <div class="typology-item">
         <div class="typology-cell">
           <span class="typology-cell-label">舊約影子 Type</span>
@@ -1045,6 +656,7 @@
           <div class="typology-cell-body">基督在最後晚餐以餅和酒建立新約，「照著麥基洗德的等次永遠為祭司」（詩 110:4）</div>
         </div>
       </div>
+
       <div class="typology-item">
         <div class="typology-cell">
           <span class="typology-cell-label">舊約影子 Type</span>
@@ -1062,7 +674,6 @@
     </div>
   </div>
 
-  <!-- VI. MIRROR -->
   <div class="section" id="mirror">
     <div class="section-header">
       <span class="section-roman">VI</span>
@@ -1079,14 +690,17 @@
         <span class="question-num">01</span>
         <div class="question-text">你人生中有哪一個「夏甲計劃」——你曾經因為等不到神的方法，而替神「想了一個更快的辦法」，最終卻製造了更複雜的傷害？</div>
       </div>
+
       <div class="question-card">
         <span class="question-num">02</span>
         <div class="question-text">你生命中的「以妻充妹」是什麼？在什麼威脅下，你習慣讓最親近的人為你承擔你本應承擔的風險或後果？</div>
       </div>
+
       <div class="question-card">
         <span class="question-num">03</span>
         <div class="question-text">如果神今天要求你「獻上你的以撒」——你最不肯放手的那個應許、那段關係、那個事業——你能分辨你愛的究竟是神，還是神給你的那份禮物？</div>
       </div>
+
       <div class="question-card">
         <span class="question-num">04</span>
         <div class="question-text">你聽見過神的「呼召」卻一直沒有「出發」嗎？是什麼讓你還停留在屬靈的「哈蘭」——已經出發了吾珥，卻沒有走到迦南？</div>
@@ -1113,7 +727,6 @@
     </div>
   </div>
 
-  <!-- VII. VOICE -->
   <div class="section" id="voice">
     <div class="section-header">
       <span class="section-roman">VII</span>
@@ -1146,10 +759,9 @@
       <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">你不需要是一個完美的信心旅行者，才有資格抵達應許之地。你只需要——繼續走。</p>
     </div>
 
-    <div class="insight-box">延伸應用：在現代領導力語境中，亞伯拉罕展示了「願景型領導者」的雙面性：他能帶領龐大的群體走向尚未看見的終點（願景力），卻在組織內部的親密關係管理中屢屢出現盲點。他的故事是跨代際創傷最清晰的聖經案例，提醒每個家庭：信仰的傳承不只是神學命題，更是心理與行為的深層更新工程。</div>
+    <div class="insight-box">在現代領導力語境中，亞伯拉罕展示了「願景型領導者」的雙面性：他能帶領龐大的群體走向尚未看見的終點（願景力），卻在組織內部的親密關係管理中屢屢出現盲點。他的故事是跨代際創傷最清晰的聖經案例，提醒每個家庭：信仰的傳承不只是神學命題，更是心理與行為的深層更新工程。</div>
   </div>
 
-  <!-- VIII. LEGACY -->
   <div class="section" id="legacy">
     <div class="section-header">
       <span class="section-roman">VIII</span>
@@ -1166,6 +778,7 @@
           <div class="legacy-body">亞伯拉罕的信心與神的稱義宣告（創 15:6）成為整個基督教神學「因信稱義」教義的聖經基礎。保羅以他為核心論證，證明稱義從未以律法行為為基礎，而是自創世之初就建立在信心的回應上。他是所有信徒「屬靈的父」（羅 4:11–12），橫跨割禮與未受割禮的所有人。</div>
         </div>
       </div>
+
       <div class="legacy-item">
         <div class="legacy-num">II</div>
         <div>
@@ -1173,6 +786,7 @@
           <div class="legacy-body">他在摩利亞山的行動——預備獻上以撒、神預備替代的羔羊——奠定了整個舊約「贖罪祭」神學的最高影像，並直接成為新約基督受死神學的主要類型（antitype）。沒有摩利亞山，就難以完整理解加略山。</div>
         </div>
       </div>
+
       <div class="legacy-item">
         <div class="legacy-num">III</div>
         <div>
@@ -1180,13 +794,15 @@
           <div class="legacy-body">猶太教、基督教、伊斯蘭教三大一神教都宣稱與亞伯拉罕（Ibrahim）的屬靈或血統繼承關係。無論神學立場如何，他是全人類宗教史上影響最廣泛的單一人物之一——一個從多神教城市走出來的遊牧老人，改變了整個文明的宗教座標。</div>
         </div>
       </div>
+
       <div class="legacy-item">
         <div class="legacy-num">IV</div>
         <div>
-          <div class="legacy-title">待客倫理（Hospitality Theology）的原型</div>
-          <div class="legacy-body">創世記 18 章他對三位使者的款待，成為希伯來傳統 hakhnasat orchim（接待陌生人）倫理的最高範本，希伯來書 13:2 直接引用：「不可忘記用愛心接待客旅；因為曾有接待客旅的，不知不覺就接待了天使。」他的慷慨款待，被神學家詮釋為對神自己的接待。</div>
+          <div class="legacy-title">待客倫理的原型</div>
+          <div class="legacy-body">創世記 18 章他對三位使者的款待，成為希伯來傳統接待陌生人倫理的最高範本，希伯來書 13:2 直接引用：「不可忘記用愛心接待客旅；因為曾有接待客旅的，不知不覺就接待了天使。」他的慷慨款待，被神學家詮釋為對神自己的接待。</div>
         </div>
       </div>
+
       <div class="legacy-item">
         <div class="legacy-num">V</div>
         <div>
@@ -1206,12 +822,23 @@
 
 </div>
 
-<div class="footer">
-  PORTRAIT 聖經人物深度研究 · 亞伯拉罕 <span>אַבְרָהָם</span> · 信心之父
+<div class="quiz-section" id="quiz-section" data-person-id="abraham" data-quiz-total="9">
+  <span class="quiz-label">小測驗 · 檢測你的熟悉程度</span>
+  <h3 class="quiz-title">你對「亞伯拉罕」的故事，掌握了多少？</h3>
+  <p class="quiz-desc" id="quiz-desc">共 9 題，涵蓋文脈、關鍵字、結構、神學主題、常見誤解與應用，每題都有時間限制——答錯或答得淺沒關係，測驗結束後會告訴你哪些地方值得回頭再讀一次。</p>
+  <button class="quiz-btn" id="quiz-start-btn" type="button">開始測驗</button>
+  <div id="quiz-play"></div>
+  <div id="quiz-result"></div>
 </div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 亞伯拉罕 <span>אַבְרָהָם</span> · 信心之父 · 諸民之父</div>
 
 <!-- 閱讀紀錄（localStorage，見 progress.js）：右下角標記已讀按鈕 -->
 <script src="progress.js"></script>
+<!-- 小測驗（localStorage，見 quiz.js）：僅在人物 JSON 有 quiz 欄位時作用 -->
+<script src="quiz-data.js"></script>
+<script src="quiz.js"></script>
 
 </body>
 </html>
