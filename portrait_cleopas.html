@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>革流巴 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">革流巴</h1>
+  <span class="hero-name-en">Cleopas · Κλεόπας</span>
+  <p class="hero-slogan">「他們彼此說：<br>「在路上，他和我們說話、給我們講解聖經的時候，我們的心豈不是火熱的嗎？」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">耶穌復活當日，約主後30年</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">INFP · 調停者型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">路加福音 24:13–35</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">耶穌的門徒 · 以馬忤斯路上認出復活主的見證人</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">在耶穌復活的那個清晨與正午之間，當十一位使徒仍聚集在耶路撒冷、對婦女們所傳的復活消息半信半疑之際，革流巴與他的同伴，已經滿心失望地離城而去，踏上了返回以馬忤斯的七里路。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">耶穌復活當日，約主後30年</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">耶穌的門徒（非十二使徒之一）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">活動區域</span>
+        <div class="info-cell-value">耶路撒冷往以馬忤斯的路上，距城約二十五里</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">經文未載，此後邀請這位陌生人到自己家中住宿</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">路加福音 24:13–35</div>
+      </div>
+    </div>
+
+    <p>革流巴的登場，帶著整卷路加福音復活敘事中格外真摯動人的一幕：正當耶路撒冷城中因空墳墓的消息而議論紛紛之際，他與另一位沒有留下姓名的同伴，正走在離城前往以馬忤斯的路上，「彼此談論所遇見的這一切事」。經文特別記載他們「臉上帶著愁容」——這個細節，真實地捕捉了他們此刻內心深處的失望與困惑：他們原本盼望耶穌就是那位要救贖以色列的彌賽亞，如今祂卻被釘死在十字架上，儘管有婦女來報告空墳墓與天使異象的消息，這一切在他們心中，仍只是令人費解、尚未能真正安慰他們的傳聞。</p>
+    <p>正當他們憂心談論之際，耶穌親自來到，與他們同行，然而「他們的眼睛迷糊了，不認得他」。耶穌問他們正在談論什麼，革流巴（此時尚未表明身份的耶穌問話對象）帶著驚訝的語氣反問：「你在耶路撒冷作客，還不知道這幾天在那裡所出的事嗎？」他接著詳細陳述了耶穌被釘死、以及婦女們報告空墳墓與天使異象的整個經過，話語中流露出深深的失落：「但我們素來所盼望、要贖以色列民的就是他！況且這事成就，現在已經三天了。」</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從滿心愁容、對耶穌之死感到困惑失望的路途談論，到掰餅那一刻眼睛開了、認出同行者正是復活的主，革流巴的故事，是一部關於「復活的主如何在最平凡的旅途中親自向失望的門徒顯現」的敘事。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">滿心愁苦</span>
+        <div class="timeline-title">臉上帶著愁容——走在返鄉的路上</div>
+        <div class="timeline-body">革流巴與同伴在耶穌復活當日，滿心愁容地走在從耶路撒冷往以馬忤斯的路上，彼此談論這幾天所發生令人費解的事。</div>
+        <div class="timeline-ref">路加福音 24:13–17</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">陌生同行</span>
+        <div class="timeline-title">耶穌親自靠近——「他們卻不認得他」</div>
+        <div class="timeline-body">耶穌親自來到，與他們同行，卻因他們的眼睛被迷糊而不被認出；耶穌問起他們談論的內容，革流巴便詳述耶穌受死與婦女報告空墳墓的整個經過。</div>
+        <div class="timeline-ref">路加福音 24:15–24</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">「從摩西和眾先知起，將指著自己的話都講解給他們聽」</div>
+        <div class="timeline-body">耶穌責備他們心裡遲鈍、信得太遲，隨即從摩西和眾先知起，將全部舊約聖經中指著自己的話，都給他們講解明白。</div>
+        <div class="timeline-ref">路加福音 24:25–27</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">熱情款待</span>
+        <div class="timeline-title">強留耶穌同住——「時候晚了，日頭已經平西了」</div>
+        <div class="timeline-body">將近以馬忤斯，耶穌好像還要往前行，二人卻懇切地強留他，說時候已晚，耶穌便進去與他們同住。</div>
+        <div class="timeline-ref">路加福音 24:28–29</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">眼睛開了</span>
+        <div class="timeline-title">掰餅的那一刻——「我們的心豈不是火熱的嗎」</div>
+        <div class="timeline-body">耶穌坐席時拿起餅來祝謝、掰開遞給他們，他們的眼睛忽然開了，認出是耶穌，耶穌卻忽然不見了；二人立時起身，趕回耶路撒冷向十一個使徒報告，彼此見證心中火熱的經歷。</div>
+        <div class="timeline-ref">路加福音 24:30–35</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他滿心愁苦地走在返鄉的路上，卻在與一位陌生同行者的深度交談中，逐漸經歷了從失望困惑到心中火熱的徹底轉變。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心特質</span>
+          <div class="soul-title">誠實地表達內心的失望與困惑，而非強顏歡笑</div>
+          <div class="soul-body">面對耶穌看似不知情的詢問，革流巴毫不掩飾地道出自己與同伴此刻的失落與困惑——這種在傷痛中仍願意誠實表達真實感受，而非故作堅強的特質，是他性格中極其真摯的部分。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">願意接待陌生人、並在交談中敞開心胸</div>
+          <div class="soul-body">他與同伴不僅容許這位陌生人加入同行，更在旅途結束時懇切邀請他留宿——這種對陌生人的款待與開放，最終成為他們得以認出復活之主的關鍵契機。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">重視經文的講解與深度的屬靈對話</div>
+          <div class="soul-body">當耶穌從摩西和眾先知講解指著自己的話時，革流巴與同伴顯然全神貫注地聆聽，此後回顧這段經歷時，特別強調「心中火熱」的感受——顯示他對深度的屬靈教導與經文講解，有著真實的渴慕。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">認知的局限</span>
+          <div class="soul-title">眼睛被迷糊，未能立即認出同行的正是耶穌</div>
+          <div class="soul-body">儘管與耶穌同行交談了相當長的一段路程，革流巴與同伴卻始終未能認出祂的身份，這種認知上的局限，某種程度上反映出人在巨大的悲傷與困惑中，感知能力也可能受到影響。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">行動的果決</span>
+          <div class="soul-title">認出耶穌後，即刻起身連夜趕回耶路撒冷</div>
+          <div class="soul-body">眼睛一開、認出耶穌的那一刻，革流巴與同伴沒有絲毫猶豫，立即起身，在夜色中走回耶路撒冷向使徒們報告這個驚人的消息——這種一旦確信便立即付諸行動的果決，展現出他對這份見證的迫切與看重。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">革流巴的故事，是路加福音復活敘事中最富有人情味、也最深刻描繪「認識復活主」這一屬靈歷程的篇章之一。他與同伴的經歷，展現出一種極具層次感的信心旅程：從滿心的失望與困惑，到與陌生人展開誠實的交談，再到透過經文的講解逐漸被觸動，最終在最平凡的用餐時刻——掰餅——眼睛才真正開了。這段敘事深刻提醒我們，認出復活的主，往往不是透過某種驚天動地的超自然異象，而是透過持續的陪伴、深度的經文講解，以及在日常生活最平凡的時刻（如同席用餐）中，逐漸被觸動、被光照。革流巴此後那句「我們的心豈不是火熱的嗎」，成為新約中描述屬靈覺醒經歷最動人的一句見證——即便他們當下未能立即辨認出耶穌的身份，內心深處卻已經在真理的講解中，經歷了某種確實而真實的觸動與轉化。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">INFP</span>
+      <div class="mbti-name">調停者型 · 在路途對話中心火重燃的門徒</div>
+      <div class="mbti-slogan">「他滿心愁容地走在返鄉的路上，卻在與復活主的深度交談中，經歷了『心中火熱』的徹底轉變。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">他毫不掩飾地向陌生的同行者道出自己內心深處的失望與困惑，這種忠於自己真實情感、不願強顏歡笑掩飾傷痛的特質，是主導內向情感的典型展現。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Ne · 外向直覺</span>
+          <div class="mbti-fn-body">他此後回顧整段旅程時，特別強調「心中火熱」這種對深層意義與屬靈連結的敏銳感受，顯示出對經文講解背後更深層真理的開放與渴慕。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Si · 內向感覺</span>
+          <div class="mbti-fn-body">他懇切邀請這位陌生同行者留宿過夜，展現出對款待傳統與人際情誼的重視，這種對具體、既有社會慣例的忠實遵循，反映出一定程度的內向感覺運作。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">他在整段旅途中未能立即透過外在線索或邏輯推斷認出同行者的真實身份，直到掰餅這個具體行動才恍然大悟，這種對外在客觀線索辨識的相對遲緩，反映出劣勢外向思考的特徵。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他生命中最深刻的一次相遇，是在滿心愁苦的返鄉路上，與一位起初不被認出、最終卻在掰餅那一刻顯明身份的復活主。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">耶</div>
+          <div class="relation-name">復活的耶穌</div>
+          <div class="relation-type-badge">在路上與他同行、最終在掰餅時顯明身份的主</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">耶穌在復活當日親自與革流巴同行，從摩西和眾先知講解指著自己的話，並在他們家中掰餅時顯明自己的身份，使二人的眼睛終於開了，認出祂正是復活的主。</div>
+          <div class="relation-ref">路加福音 24:15–31</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">同</div>
+          <div class="relation-name">同行的門徒</div>
+          <div class="relation-type-badge">與他一同經歷這段旅程、卻沒有留下姓名的同伴</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">與革流巴同行前往以馬忤斯的另一位門徒，經文並未記載其姓名，二人一同經歷了從滿心愁苦到心中火熱的完整旅程，並一同起身趕回耶路撒冷作見證。</div>
+          <div class="relation-ref">路加福音 24:13, 33</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">十</div>
+          <div class="relation-name">十一位使徒與聚集的門徒</div>
+          <div class="relation-type-badge">他趕回耶路撒冷所報告的對象</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">革流巴與同伴認出耶穌後，立即起身趕回耶路撒冷，見到十一位使徒和聚集的人，彼此印證耶穌確實復活、也向西門顯現的消息，並述說自己在路上與掰餅時認出耶穌的經歷。</div>
+          <div class="relation-ref">路加福音 24:33–35</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「我們的心豈不是火熱的嗎」——這句見證，成為新約中描述在經文講解與屬靈相遇中，內心被真理觸動的最動人宣告。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「他們彼此說：在路上，他和我們說話、給我們講解聖經的時候，我們的心豈不是火熱的嗎？」</div>
+      <div class="verse-ref">路加福音 24:32</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">καιομένη</span>
+        <div class="word-transliteration">kaiomene · 火熱的 · 希臘文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">這個字的原意是「燃燒」，形容一種內在被點燃、熾熱的感受，革流巴用這個詞來描述他們在耶穌講解經文時，內心深處被真理觸動、卻尚未能完全辨識來源的強烈感受。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這個字精準捕捉了一種先於理性認知的屬靈覺醒經驗——革流巴與同伴在當下尚未認出耶穌的真實身份，內心卻已經因真理的講解而被觸動、被點燃，這提醒我們，聖靈與真理對人心的觸動，有時先於我們理性上完全的理解與辨識。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">認識復活的主，往往透過持續的陪伴與經文的講解</div>
+      <div class="theology-insight-body">耶穌沒有立即向革流巴顯明自己的身份，而是先花時間與他們同行、傾聽他們的困惑、並詳細講解舊約中指著自己的預言——這示範了認識復活主的歷程，往往需要透過持續的陪伴與深度的真理教導逐漸展開。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">整本舊約聖經都指向基督</div>
+      <div class="theology-insight-body">耶穌「從摩西和眾先知起，凡經上所指著自己的話都給他們講解明白」，這清楚宣告了舊約聖經的核心主線，正是指向基督的受苦、死亡與復活——這為理解整本聖經的統一敘事，提供了耶穌自己親口的詮釋框架。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">日常的款待與掰餅，可能成為遇見主的關鍵時刻</div>
+      <div class="theology-insight-body">革流巴與同伴是在最平凡的用餐、掰餅時刻，眼睛才真正開了、認出耶穌——這提醒我們，神與人相遇的時刻，往往不在於驚天動地的異象，而可能就藏在日常生活最平凡的款待與相聚之中。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">革流巴與同伴在滿心愁苦、未能認出復活主同行的處境中，透過持續的經文講解與最終的掰餅時刻，眼睛終於開了，真正認出耶穌</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這段「透過話語與聖餐而認出主」的完整歷程，此後成為教會禮儀傳統中「道與聖禮」（Word and Sacrament）並重之敬拜模式的重要聖經根基，講道與掰餅二者共同構成信徒認識並經歷復活之主的核心途徑</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">教會此後持續透過宣講神的話語（如耶穌向革流巴講解舊約）與領受聖餐（如耶穌在他們家中掰餅）這兩種核心敬拜行動，使歷代信徒得以持續在聚集敬拜中，經歷復活之主真實的同在與啟示（林前 11:23–26 · 提後 4:2）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正帶著滿心的失望與困惑，走在自己人生的『以馬忤斯路上』——這一頁想讓你看見，復活的主，可能正與你同行，只是你的眼睛尚未認出祂。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">革流巴的故事命中每一個此刻正帶著失望、困惑，甚至懷疑神是否仍在掌權的處境中前行的人。他的經歷提醒我們，即便在我們感覺神彷彿缺席、事情發展不如預期的至暗時刻，復活的主可能正以我們尚未認出的方式，與我們同行。他的故事同時也提醒我們，持續透過神的話語尋求光照、並在日常生活的款待與相聚中保持敞開的心，正是我們得以逐漸認出主同在最重要的途徑——即便一開始，我們可能像革流巴一樣，眼睛仍被迷糊，未能立即辨認。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你此刻是否也正走在自己人生的『以馬忤斯路上』——帶著失望與困惑，卻感覺神彷彿缺席或沉默？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">革流巴誠實地向陌生的同行者道出自己的困惑與失望。你在傷痛與困惑中，是選擇誠實表達，還是習慣強顏歡笑、獨自承受？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">他們是在耶穌講解舊約經文的過程中，內心逐漸『火熱』起來。你是否也曾在讀經或聽道的過程中，經歷過類似『心中火熱』卻尚未完全明白的感受？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">他們是在懇切款待、邀請耶穌同住並一同掰餅的時刻，眼睛才真正開了。你的生命中，是否也能透過對他人（或對神）更多的款待與敞開，創造更多『眼睛open』的機會？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 革流巴</span>
+        <div class="gen-title">示範劇本：在滿心愁苦的旅途中，透過持續的陪伴與經文講解，逐漸認出復活的主</div>
+        <div class="gen-body">他滿心愁容走在返鄉的路上，與看似陌生的耶穌同行交談，透過經文的講解與掰餅的時刻，眼睛終於開了，認出祂正是復活的主，隨即起身趕回耶路撒冷作見證。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 十一位使徒與聚集的門徒</span>
+        <div class="gen-title">延續：他的見證，加添了耶路撒冷教會對復活確據的印證</div>
+        <div class="gen-body">革流巴與同伴連夜趕回耶路撒冷，向聚集的使徒與門徒報告這段經歷，與西門所領受的顯現彼此印證，共同加強了初代教會對耶穌確實復活這一核心信息的堅定確據。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在革流巴的故事中，展現在復活的主親自主動尋找這兩位滿心失望、正要離開耶路撒冷的門徒，陪伴他們走過這段返鄉之路，並透過真理的講解與掰餅的相聚，親自開啟他們的眼睛。這提醒我們，即便在我們自己都未曾察覺、甚至正要放棄盼望轉身離開的時刻，復活的主仍主動尋找並陪伴著我們。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位滿心愁容走在返鄉路上、卻在掰餅那一刻認出復活主的門徒，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#失望中神可能正與你同行</span>
+      <span class="tag">#誠實表達勝過強顏歡笑</span>
+      <span class="tag">#認出主常在平凡時刻</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>革流巴的心情不難想像——他原本以為耶穌就是那位要拯救以色列的救世主，結果耶穌被釘死了，三天過去，雖然有女人說看到空墳墓、還有天使的異象，但這一切聽起來，還是像個沒有定論的傳聞。他跟一個朋友，決定離開耶路撒冷，走回以馬忤斯。</p>
+      <p>路上有個人加入他們，一起走，一起聊。革流巴甚至有點驚訝地問對方：『你是外地來的嗎？這幾天發生的事，你都不知道？』然後把整件事的來龍去脈講了一遍，語氣裡全是失落：『我們原本盼望他就是那位要救贖以色列的……結果都三天了。』</p>
+      <p>他完全不知道，走在自己旁邊的，正是他口中談論的那個人——耶穌本人。耶穌沒有立刻表明身份，而是花時間，從舊約的摩西五經和先知書開始，把所有指向自己的經文，一段一段講解給他們聽。</p>
+      <p>快到家的時候，革流巴很自然地邀請這位『陌生人』留下來過夜，天都晚了嘛。結果吃飯的時候，耶穌拿起餅，祝謝、掰開，遞給他們——就在這個最平凡的動作裡，他們的眼睛突然開了，認出這就是耶穌。下一秒，耶穌就消失了。</p>
+      <p>革流巴事後回想，說了一句很有畫面感的話：『他跟我們講解聖經的時候，我們的心不是一直在發熱嗎？』——原來，早在認出祂之前，那份觸動就已經在發生了。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——革流巴這塊石頭，被雕刻出的形狀，是一句溫柔的提醒：『你以為祂缺席的時候，祂可能正走在你身邊』。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你正走在自己的『以馬忤斯路上』，帶著失望往前走，這個故事想告訴你：復活的主，可能正以你認不出的方式，與你同行。</p>
+      <p style="margin-top:12px;">誠實說出自己的困惑，比強裝沒事更接近真實的信仰——革流巴就是這樣，毫不掩飾地說出自己的失落。</p>
+      <p style="margin-top:12px;">留意那些讓你『心中火熱』卻還說不清楚為什麼的時刻，那可能正是神在對你說話。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果你正經歷失望，練習誠實地把它說出來——然後留意，有沒有一份『心中火熱』的感覺，正悄悄靠近你。</p>
+    </div>
+
+    <div class="insight-box">「以馬忤斯的路」（The Emmaus Road）此後成為西方基督教文化中極具代表性的意象與慣用語，經常被用來形容「在陪伴與對話中逐漸認出神同在」的屬靈經歷，也啟發了無數藝術創作（如卡拉瓦喬的名畫《以馬忤斯的晚餐》）；「我們的心豈不是火熱的嗎」這句經文，也持續是基督教靈修文學中，描述閱讀聖經時內在被觸動之經驗最常被引用的聖經話語之一。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他在滿心愁苦的返鄉路上，與復活的主同行卻未能立即認出，最終在經文的講解與掰餅的相聚中，眼睛真正開了，成為新約中最動人的復活見證之一。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">「道與聖禮」敬拜模式的聖經根基</div>
+          <div class="legacy-body">他透過經文講解與掰餅認出復活主的完整歷程，成為教會此後宣講神話語與領受聖餐並重之敬拜傳統的重要聖經基礎。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">「以馬忤斯的路」文化意象的源頭</div>
+          <div class="legacy-body">他的故事此後衍生出「以馬忤斯的路」這一西方文化中極具代表性的慣用語與藝術主題，持續啟發文學、繪畫與靈修文學的創作。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">舊約指向基督之統一敘事的重要見證</div>
+          <div class="legacy-body">耶穌向他講解摩西和眾先知書中指著自己之預言的行動，成為理解整本舊約聖經核心指向基督這一詮釋原則最重要的聖經根據之一。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">復活確據的重要見證人</div>
+          <div class="legacy-body">他與同伴此後趕回耶路撒冷向使徒作見證的行動，成為初代教會確立耶穌確實復活這一核心信息的重要見證來源之一。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「他們就把路上所遇見，和擘餅的時候怎麼被他們認出來的事，都述說了一遍。」</div>
+      <div class="final-verse-ref">路加福音 24:35</div>
+    </div>
+
+    <div class="final-question">如果復活的主此刻正以你尚未認出的方式，與你同行在你的失望與困惑之中，你是否願意像革流巴一樣，敞開心與祂展開誠實的對話，直到眼睛真正開了？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 革流巴 <span>Κλεόπας</span> · 以馬忤斯路上與復活耶穌同行的門徒</div>
+
+<!-- 閱讀紀錄（localStorage，見 progress.js）：右下角標記已讀按鈕 -->
+<script src="progress.js"></script>
+
+</body>
+</html>

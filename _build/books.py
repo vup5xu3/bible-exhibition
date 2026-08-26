@@ -92,12 +92,12 @@ PERSON_BOOK = {
     "hagar": "genesis", "ishmael": "genesis", "isaac": "genesis", "rebekah": "genesis", "esau": "genesis",
     "jacob": "genesis", "leah": "genesis", "rachel": "genesis", "dinah": "genesis", "reuben": "genesis",
     "judah": "genesis", "tamar_judah": "genesis", "perez": "genesis", "zerah": "genesis",
-    "hezron": "genesis", "joseph_patriarch": "genesis", "benjamin": "genesis",
+    "hezron": "genesis", "joseph_patriarch": "genesis", "potiphars_wife": "genesis", "benjamin": "genesis",
     "genesis_primeval": "genesis", "enoch": "genesis",
 
     # ── 出埃及記／民數記 ──
     "moses": "exodus", "jethro": "exodus", "aaron": "exodus", "miriam": "exodus",
-    "korah": "numbers", "balaam": "numbers", "amminadab": "numbers", "nahshon": "numbers", "caleb": "numbers",
+    "korah": "numbers", "balaam": "numbers", "balak": "numbers", "amminadab": "numbers", "nahshon": "numbers", "caleb": "numbers",
 
     # ── 約書亞記 ──
     "joshua": "joshua", "rahab": "joshua", "achan": "joshua",
@@ -116,7 +116,7 @@ PERSON_BOOK = {
 
     # ── 撒母耳記下 ──
     "david": "2samuel", "mephibosheth": "2samuel", "rizpah": "2samuel", "bathsheba": "2samuel", "uriah": "2samuel",
-    "nathan_prophet": "2samuel", "absalom": "2samuel", "tamar_david": "2samuel", "amnon": "2samuel",
+    "nathan_prophet": "2samuel", "absalom": "2samuel", "tamar_david": "2samuel", "amnon": "2samuel", "shimei": "2samuel",
     "ahithophel": "2samuel", "joab": "2samuel",
 
     # ── 列王紀上 ──
@@ -136,7 +136,7 @@ PERSON_BOOK = {
     "ezekiel": "ezekiel", "daniel": "daniel",
 
     # ── 以斯帖記 ──
-    "esther": "esther", "haman": "esther", "mordecai": "esther",
+    "vashti": "esther", "esther": "esther", "haman": "esther", "mordecai": "esther",
 
     # ── 以斯拉記／尼希米記 ──
     "shealtiel": "ezra", "zerubbabel": "ezra", "ezra": "ezra", "nehemiah": "nehemiah",
@@ -149,7 +149,7 @@ PERSON_BOOK = {
 
     # ── 路加福音（誕生敘事）──
     "zechariah_elizabeth": "luke", "john_baptist": "luke", "mary_mother": "luke",
-    "simeon_anna": "luke", "zacchaeus": "luke", "samaritan_leper": "luke",
+    "simeon_anna": "luke", "zacchaeus": "luke", "samaritan_leper": "luke", "cleopas": "luke",
 
     # ── 馬太福音 ──
     "joseph_husband": "matthew", "peter": "matthew", "andrew": "matthew",
@@ -161,7 +161,7 @@ PERSON_BOOK = {
     "pontius_pilate": "matthew", "barabbas": "matthew",
 
     # ── 馬可福音 ──
-    "jairus": "mark", "bleeding_woman": "mark", "herod_antipas": "mark", "herodias": "mark",
+    "gerasene_demoniac": "mark", "jairus": "mark", "bleeding_woman": "mark", "herod_antipas": "mark", "herodias": "mark",
     "bartimaeus": "mark", "simon_cyrene": "mark",
 
     # ── 約翰福音 ──

@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>巴勒 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">巴勒</h1>
+  <span class="hero-name-en">Balak · בָּלָק</span>
+  <p class="hero-slogan">「巴勒對巴蘭說：<br>「我三次召你來咒詛我的仇敵，你竟三次為他們祝福！」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">曠野漂流末期，約主前十三世紀</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ESTJ · 總經理型（統帥型）</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">民數記 22–24 章</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">摩押王 · 企圖以重金收買咒詛的策劃者</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他眼見以色列百萬大軍在曠野中步步逼近，用盡了自己所能想到最直接的方式——重金聘請一位聲名遠播的先知，企圖用超自然的咒詛，扭轉這場他自認無法用軍事力量抗衡的危機。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">曠野漂流末期，約主前十三世紀</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">西撥的兒子，摩押王</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">活動區域</span>
+        <div class="info-cell-value">摩押平原，靠近耶利哥對面的約旦河東岸</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">經文未載</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">民數記 22–24 章</div>
+      </div>
+    </div>
+
+    <p>巴勒登場時的處境，充滿了現實的恐懼：「摩押人因以色列民甚是懼怕，摩押人竟因以色列民擔憂。」以色列人剛擊敗了亞摩利王西宏，這場軍事上的勝利，使巴勒清楚意識到，若以色列人繼續前進，摩押恐怕難以抵擋。面對這種近乎絕望的軍事劣勢，巴勒選擇了一條非軍事的途徑——他差遣使者，帶著重金與卦金，前往幼發拉底河邊的毗奪，聘請素負盛名、據信具有咒詛與祝福大能的先知巴蘭，前來咒詛以色列人，「因為我知道，你為誰祝福，誰就得福；你咒詛誰，誰就受咒詛」。</p>
+    <p>然而巴勒此後的整個計畫，卻在一連串精心策劃的獻祭儀式中，一次又一次徹底落空。他先後帶巴蘭登上巴末巴力、毗斯迦山頂、毘珥山頂三處不同的高地，每一次都築起七座壇、獻上公牛與公羊，期盼巴蘭能夠開口咒詛以色列——然而巴蘭每一次開口，說出的卻是祝福而非咒詛。巴勒的反應也隨著一次次的落空而愈發激動：從最初的困惑質問，到最終「甚是發怒，就拍起手來」，怒斥巴蘭：「我召你來咒詛我的仇敵，不料，你竟三次為他們祝福！」</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從重金聘請先知咒詛的周密計畫，到三次築壇獻祭卻三次聽見祝福的徹底落空，巴勒的故事，是一部關於「人的計謀終究無法勝過神的美意」的敘事。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">背景鋪陳</span>
+        <div class="timeline-title">懼怕以色列——「摩押人竟因以色列民擔憂」</div>
+        <div class="timeline-body">摩押王巴勒眼見以色列人擊敗亞摩利王西宏、大軍逼近摩押境內，心中充滿懼怕，便與米甸長老商議因應之策。</div>
+        <div class="timeline-ref">民數記 22:2–4</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">重大轉折</span>
+        <div class="timeline-title">重金聘請巴蘭——「你為誰祝福，誰就得福」</div>
+        <div class="timeline-body">巴勒差遣使者帶著卦金前往毗奪聘請先知巴蘭，懇求他前來咒詛以色列人，堅信巴蘭所咒詛的必受咒詛；巴蘭起初因神的禁止而拒絕，此後在神的准許下，附帶條件地隨使者前往。</div>
+        <div class="timeline-ref">民數記 22:5–20</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">首次落空</span>
+        <div class="timeline-title">巴末巴力築壇——「我怎能咒詛神沒有咒詛的呢」</div>
+        <div class="timeline-body">巴勒帶巴蘭上到巴末巴力，築七座壇獻祭；巴蘭卻在神的啟示下開口說出祝福的話，宣告神並未咒詛以色列，巴勒困惑質問，卻仍不死心，帶他前往另一處高地再試一次。</div>
+        <div class="timeline-ref">民數記 22:41–23:12</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">再度落空</span>
+        <div class="timeline-title">毗斯迦山頂與毘珥山頂——三次築壇仍是祝福</div>
+        <div class="timeline-body">巴勒先後帶巴蘭到毗斯迦山頂與毘珥山頂，每次都依樣築七座壇獻祭，盼望能得著不同的結果；然而巴蘭三次開口，說出的都是對以色列的祝福，而非巴勒所期盼的咒詛。</div>
+        <div class="timeline-ref">民數記 23:13–24:9</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">憤怒終局</span>
+        <div class="timeline-title">拍手發怒——空手打發巴蘭離去</div>
+        <div class="timeline-body">巴勒對巴蘭甚是發怒，拍起手來斥責他三次為以色列祝福，宣告要將他原本應許的尊榮收回；巴蘭則進一步預言以色列將來的興旺與摩押的衰敗，此後巴勒便起身回本地去了。</div>
+        <div class="timeline-ref">民數記 24:10–25</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">他手握足夠的財富與王權，能夠聘請一位遠近馳名的先知前來效力，卻始終無法理解——真正的祝福與咒詛，從來不是人所能用金錢收買或操控的。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心信念</span>
+          <div class="soul-title">超自然的咒詛，可以透過足夠的代價換取</div>
+          <div class="soul-body">他重金聘請巴蘭前來咒詛以色列，這個行動本身反映出他深信只要付出足夠的代價，便能操控超自然的祝福與咒詛，為自己所用。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💡</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">面對挫敗時，選擇不斷更換場地重複嘗試</div>
+          <div class="soul-body">面對巴蘭一次又一次說出祝福而非咒詛，他沒有立即放棄，而是接連換了三處不同的高地，反覆嘗試同樣的獻祭儀式，期盼換個地點就能得到不同的結果，這種鍥而不捨卻也顯得徒勞的堅持，貫穿整個故事。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">務實的算計</span>
+          <div class="soul-title">清楚評估自己的軍事劣勢，轉而尋求非軍事的解決方案</div>
+          <div class="soul-body">他準確判斷出以色列軍力已非摩押所能正面抗衡，因此選擇了訴諸超自然力量這條替代路徑，顯示出一定程度務實而靈活的危機應對思維。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">無法接受並尊重神主權高於自己計畫的事實</div>
+          <div class="soul-body">即便巴蘭一再明確告訴他，自己只能說神所吩咐的話、無法憑己意咒詛，巴勒仍不斷施壓，甚至最終遷怒發怒，顯示他始終未能真正理解或接受，神的心意不受人的操控與意願所左右。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">歷史迴響</span>
+          <div class="soul-title">他的圖謀，此後成為以色列歷史中「神保守祂百姓」的重要見證</div>
+          <div class="soul-body">巴勒企圖咒詛以色列的失敗嘗試，此後在申命記與約書亞記中被反覆提及，成為以色列歷史記憶中神親自保守、扭轉仇敵惡意圖謀最鮮明的見證之一。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">巴勒的故事，是聖經中「人的計謀終究無法勝過神既定心意」最生動的敘事範例之一。他所展現的，不是一時衝動的莽撞行動，而是極其周密、甚至可說是不惜血本的策略部署——重金聘請聲名遠播的先知、三次更換場地、每次都依禮數築壇獻祭。這種近乎執著的堅持，恰恰凸顯出整個故事最深刻的神學宣告：無論人的計謀多麼精密、資源多麼充足，都無法扭轉或操控神已經定意要賜福的對象。巴勒最終「甚是發怒」的反應，某種程度上也反映出一種典型的挫敗心理——當精心策劃的計畫一再落空時，人往往傾向於將責任歸咎於執行者（巴蘭），而非重新反思自己計畫本身的可行性與正當性。他的故事，因此成為聖經中警戒世人「不可試圖以人的手段操控或對抗神的旨意」最具體而生動的歷史案例。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ESTJ</span>
+      <div class="mbti-name">總經理型（統帥型） · 重金聘請咒詛卻屢遭落空的君王</div>
+      <div class="mbti-slogan">「他重金聘請一位聲名遠播的先知，三次換地、三次獻祭，換來的卻是三次意料之外的祝福。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">他準確評估軍事劣勢後，迅速轉向尋求非軍事的解決方案——聘請先知施行咒詛——並具體規劃了三次不同場地的獻祭儀式，展現出高度目標導向、講求具體行動方案的執行力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Si · 內向感覺</span>
+          <div class="mbti-fn-body">他嚴格依循既有的宗教儀式規範，每次都築七座壇、獻上公牛公羊，顯示出對既定祭祀傳統與程序一絲不苟的忠實執行。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ne · 外向直覺</span>
+          <div class="mbti-fn-body">面對計畫一再落空，他仍嘗試更換不同的地點與角度重新嘗試，顯示出一定程度探索不同可能性以達成目標的靈活思維，只是這份靈活最終仍未能扭轉神已定的心意。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">他始終未能從內在深層反思自己計畫的正當性、或神主權超越人意的事實，反而在計畫落空時將情緒直接發洩在執行者巴蘭身上，這種內在道德省思的相對薄弱，反映出劣勢內向情感的特徵。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最重要的關係，是與那位他重金聘請、卻始終無法依他心意行事的先知巴蘭——這場合作的徹底失敗，成為整段敘事最核心的張力。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">巴</div>
+          <div class="relation-name">巴蘭</div>
+          <div class="relation-type-badge">他重金聘請、卻三次違背其期望的先知</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">巴勒重金聘請巴蘭前來咒詛以色列，巴蘭卻在神的啟示下，三次開口都說出祝福而非咒詛，使巴勒的整個計畫徹底落空，二人的合作最終在憤怒與失望中不歡而散。</div>
+          <div class="relation-ref">民數記 22:15–20 · 24:10–13</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">以</div>
+          <div class="relation-name">以色列百姓</div>
+          <div class="relation-type-badge">他企圖咒詛、卻蒙神親自保守的對象</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">巴勒所懼怕、企圖咒詛的以色列百姓，全然不知這場在幕後展開的咒詛與祝福之爭，卻在神的保守下，安然無恙地繼續他們前往應許之地的旅程。</div>
+          <div class="relation-ref">民數記 22:2–4 · 24:1</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">「神非人，必不致說謊，也非人子，必不致後悔」——巴蘭在巴勒面前所說的這句話，成為整段敘事中對神信實不變之心意最有力的宣告。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「神非人，必不致說謊，也非人子，必不致後悔。他說話豈不照著行呢？他發言豈不要成就呢？我奉命祝福；神賜福，我不能將它反轉。」</div>
+      <div class="verse-ref">民數記 23:19–20</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">קָלַל</span>
+        <div class="word-transliteration">qalal · 咒詛 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">巴勒反覆要求巴蘭對以色列人施行的行動，這個字根意指使某人或某物變得輕賤、招致厄運，與巴蘭此後所宣告「神賜福，我不能將它反轉」的宣告，形成鮮明而尖銳的對比。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">整段敘事透過「咒詛」與「祝福」這組對立詞彙的反覆張力，深刻凸顯出一項核心神學真理：任何人為的咒詛企圖，都無法凌駕或扭轉神已然賜下的祝福，人所能做的，唯有謙卑地順服並宣告神真實的心意。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">神的祝福不受人的敵意或計謀所動搖</div>
+      <div class="theology-insight-body">巴勒無論如何重金聘請、更換場地、反覆獻祭，都無法使巴蘭說出咒詛以色列的話語——這清楚見證，神向祂百姓所應許的祝福，不受任何外在敵意勢力的操控或扭轉所影響。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">屬靈的權柄不能被金錢或利益所收買</div>
+      <div class="theology-insight-body">巴勒試圖用重金與尊榮收買巴蘭，讓他違背神的心意說話，然而巴蘭最終仍選擇忠於神所啟示的話語，而非屈從於巴勒的利誘與威脅——這提醒我們，真正的屬靈忠誠，不應被任何形式的利益交換所動搖。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">敵擋神百姓的計謀，終將成為神彰顯自己信實的舞台</div>
+      <div class="theology-insight-body">巴勒企圖咒詛以色列的整個計畫，最終反而成為神藉巴蘭之口，向以色列與周遭列國宣告祂信實與祝福之心意最公開、最有力的場合，這見證了神能將人的惡意企圖，轉化為彰顯祂自己榮耀的途徑。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">巴勒重金聘請先知企圖咒詛神所揀選、正邁向應許之地的百姓，卻在一次又一次的嘗試中，眼見這個企圖徹底落空，神的祝福反而透過先知之口被公開宣告</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">這種「敵對勢力企圖咒詛或攔阻神百姓，卻反而成為神彰顯祝福與保守之見證」的敘事模式，此後在以色列歷史中反覆出現，成為理解神持續保守祂應許家系、直到彌賽亞降生這一救贖主線的重要參照</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">正如任何企圖咒詛或攔阻神應許成就的計謀最終都歸於徒然，神向亞伯拉罕後裔所應許、最終在基督裡成就的救贖計畫，同樣不受任何屬世或屬靈敵對勢力的攔阻，終必按著神的心意完全成就（羅 8:31 · 創 12:3）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正試圖用自己的資源或手段，去扭轉一個你認為對自己不利的局勢——這一頁想問你：你是否也在嘗試操控本不該由你掌控的事？</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">巴勒的故事命中每一個在面對困境時，習慣訴諸金錢、權勢或各種手段，試圖操控或扭轉局勢朝自己期望的方向發展的人。他的失敗提醒我們，有些事情——尤其是神既定的心意與祝福——從來不是人的資源或手段所能操控或收買的。他一次又一次更換場地、重複嘗試卻始終落空的堅持，也提醒我們，若一個計畫的方向本身就與神的心意背道而馳，再多的努力與資源投入，終究無法扭轉最終的結果。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你是否也曾試圖用金錢、權勢或各種手段，去操控或扭轉一個你認為對自己不利的局勢？巴勒的故事如何挑戰這種思維？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">巴勒三次更換場地、重複同樣的嘗試，卻始終得不到他想要的結果。你生命中是否也有一件『屢戰屢敗卻仍不放棄』的事，需要停下來重新反思方向是否正確？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">巴蘭最終選擇忠於神的話語，而非屈從巴勒的利誘。你是否也曾面臨類似的處境，需要在忠於原則與屈從利益之間做出選擇？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">巴勒的計謀最終成為神彰顯祝福的舞台。你生命中是否也曾經歷過『原本想攔阻的事，反而成就了更大祝福』的經歷？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 巴勒</span>
+        <div class="gen-title">警示劇本：試圖用金錢與手段操控神的祝福與咒詛，終究徒勞</div>
+        <div class="gen-body">他因懼怕以色列而重金聘請巴蘭前來咒詛，三次更換場地、反覆獻祭，卻三次聽見的都是祝福而非咒詛，最終在憤怒中空手打發巴蘭離去，計畫徹底失敗。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 以色列百姓</span>
+        <div class="gen-title">延續：神的祝福，透過這場失敗的咒詛企圖被公開宣告</div>
+        <div class="gen-body">巴勒企圖咒詛以色列的計畫雖然失敗，巴蘭卻在這個過程中，向摩押、乃至周遭列國，公開宣告了神對以色列堅定不移的祝福與保守，這段記載此後成為以色列歷史記憶中神信實護佑的重要見證。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在這段敘事中，展現在神即便面對敵對勢力精心策劃、不惜重金的咒詛企圖，仍然堅定不移地保守並祝福祂的百姓。這提醒我們，神向祂子民所應許的祝福與同在，不受任何人為的計謀、金錢或惡意企圖所能動搖或扭轉。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把那位重金聘請先知、卻三次換地獻祭仍聽不到咒詛的摩押王，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#有些事錢買不到</span>
+      <span class="tag">#屢戰屢敗該停下來想想</span>
+      <span class="tag">#神的祝福不受操控</span>
+      <span class="tag">#現代應用</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>巴勒的處境很現實：眼看敵不過以色列的軍隊，他沒有選擇正面開戰，而是走了一條『花錢解決問題』的路——重金聘請一位據說能咒詛人的先知巴蘭，希望用超自然的方式，扭轉這場自己打不贏的仗。</p>
+      <p>巴蘭來了，但事情沒有照巴勒的劇本走。第一次築壇獻祭，巴蘭開口說的是祝福，不是咒詛。巴勒有點傻眼，心想，可能是地點不對，換個地方試試。</p>
+      <p>於是換了第二個高地，同樣的流程，同樣築七座壇、獻上牛羊——結果還是祝福。巴勒不死心，又換了第三個地方，第三次，依然是祝福。</p>
+      <p>到這裡，巴勒終於忍不住了，氣得直拍手，罵巴蘭：『我叫你來咒詛我的敵人，你居然連續三次都在祝福他們！』然後把巴蘭轟走了。</p>
+      <p>整個故事最有意思的地方，是巴勒的堅持——換場地、重複嘗試、砸錢，他做了所有『理性上』該做的努力，卻始終沒能改變結果。因為問題根本不在地點或流程，是他想要的東西，從一開始就不是巴蘭（或任何人）能給的。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是完美英雄傳，是原石被雕刻的過程——巴勒這塊石頭，被雕刻出的形狀，是一句直白的提醒：『有些事，砸再多錢也買不到』。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你正花大把時間、金錢想扭轉一件事，卻屢戰屢敗，巴勒的故事想問你：是不是該停下來，想想方向本身對不對？</p>
+      <p style="margin-top:12px;">有些東西不能靠操控或收買得到，神的祝福是其中之一。</p>
+      <p style="margin-top:12px;">屢次失敗後，把情緒發洩在『執行者』身上很容易，但真正該檢視的，往往是最初的計畫本身。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，誠實檢視一件你正『用力過猛』卻始終無法如願的事——也許問題不在方法，是方向。</p>
+    </div>
+
+    <div class="insight-box">巴勒與巴蘭的故事，因西元1967年在約旦河谷代爾阿拉（Deir Alla）出土的一塊古代銘文而獲得重要的考古學印證——這塊約主前八世紀的銘文中，記載了一位名為「比珥之子巴蘭」的先知異象，與聖經中巴蘭的記載有著顯著的呼應，成為聖經敘事中人物歷史真實性研究極少數獲得考古實證支持的重要案例之一。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他重金聘請先知企圖咒詛以色列，卻在一次又一次的嘗試中徹底落空，成為聖經中「人的計謀無法勝過神心意」最生動的歷史見證。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">「神的祝福不可收買」的經典案例</div>
+          <div class="legacy-body">他企圖用重金聘請先知施行咒詛的失敗，成為聖經中警戒世人不可試圖以金錢或利益操控屬靈祝福與咒詛最鮮明的歷史案例。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">神信實保守百姓的重要歷史見證</div>
+          <div class="legacy-body">他企圖咒詛以色列卻反遭祝福公開宣告的敘事，此後在申命記與約書亞記中被反覆提及，成為以色列歷史記憶中神保守祂百姓最重要的見證之一。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">考古學印證聖經敘事真實性的重要案例</div>
+          <div class="legacy-body">約旦出土的代爾阿拉銘文中記載的先知巴蘭異象，與聖經記載高度呼應，使巴勒與巴蘭的故事成為聖經考古學研究中極具份量的參照案例。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">「屢敗屢戰卻不知反思方向」的警世提醒</div>
+          <div class="legacy-body">他三次更換場地、卻始終得不到期望結果的堅持，持續提醒後世在面對持續失敗的處境時，應當反思方向本身是否正確，而非一味重複相同的嘗試。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「於是巴蘭起來，回他本地去；巴勒也回去了。」</div>
+      <div class="final-verse-ref">民數記 24:25</div>
+    </div>
+
+    <div class="final-question">如果你此刻正試圖用自己的資源或手段，扭轉一件其實出於神心意的事，你願不願意像巴勒最終那樣，放下操控的企圖，謙卑地順服神真正的安排？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 巴勒 <span>בָּלָק</span> · 摩押王 · 重金聘請巴蘭咒詛以色列的君王</div>
+
+<!-- 閱讀紀錄（localStorage，見 progress.js）：右下角標記已讀按鈕 -->
+<script src="progress.js"></script>
+
+</body>
+</html>
