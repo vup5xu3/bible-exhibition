@@ -53,7 +53,7 @@ CHRONO_ORDER = [
     "manasseh", "amon", "josiah", "jeremiah", "jeconiah", "ezekiel",
     "daniel", "vashti", "esther", "haman", "mordecai", "shealtiel", "zerubbabel",
     "ezra", "nehemiah", "genealogy_silent_nine",
-    "zechariah_elizabeth", "john_baptist", "mary_mother", "joseph_husband", "simeon_anna", "peter",
+    "zechariah_elizabeth", "john_baptist", "mary_mother", "joseph_husband", "jesus_christ", "simeon_anna", "peter",
     "andrew", "james_zebedee", "john_apostle", "philip_apostle", "bartholomew", "thomas",
     "matthew", "james_alphaeus", "thaddaeus", "simon_zealot", "judas_iscariot", "centurion_capernaum",
     "nicodemus",

@@ -148,7 +148,7 @@ PERSON_BOOK = {
     "genealogy_silent_nine": "matthew",
 
     # ── 路加福音（誕生敘事）──
-    "zechariah_elizabeth": "luke", "john_baptist": "luke", "mary_mother": "luke",
+    "zechariah_elizabeth": "luke", "john_baptist": "luke", "mary_mother": "luke", "jesus_christ": "luke",
     "simeon_anna": "luke", "zacchaeus": "luke", "samaritan_leper": "luke", "cleopas": "luke",
 
     # ── 馬太福音 ──
