@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>戶篩 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── QUIZ ── */
+  .quiz-section { max-width: 860px; margin: 0 auto; padding: 56px 32px 64px; border-top: 2px solid var(--gold); }
+  .quiz-label { font-family: 'IM Fell English', serif; font-size: 12px; letter-spacing: 0.25em; color: var(--gold); display: block; margin-bottom: 12px; }
+  .quiz-title { font-family: 'Noto Serif TC', serif; font-size: 21px; color: var(--ink); margin-bottom: 10px; }
+  .quiz-desc { font-size: 13px; color: var(--ink-pale); line-height: 1.85; margin-bottom: 22px; }
+  .quiz-btn { background: var(--ink); color: var(--gold-light); border: 1px solid var(--gold); border-radius: 30px; padding: 12px 30px; font-family: 'Noto Sans TC', sans-serif; font-size: 14px; cursor: pointer; transition: all 0.2s; }
+  .quiz-btn:hover { background: var(--gold); color: var(--ink); }
+  .quiz-btn.secondary { background: transparent; color: var(--ink-soft); border-color: var(--border-strong); }
+  .quiz-btn.secondary:hover { background: var(--gold-faint); color: var(--ink); }
+  .quiz-progress-bar { display: flex; gap: 4px; margin-bottom: 24px; }
+  .quiz-progress-dot { flex: 1; height: 5px; border-radius: 3px; background: var(--gold-pale); transition: background 0.2s; }
+  .quiz-progress-dot.done { background: var(--gold); }
+  .quiz-progress-dot.current { background: var(--gold-light); }
+  .quiz-meta-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+  .quiz-q-num { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold-light); letter-spacing: 0.05em; }
+  .quiz-timer { font-family: 'IM Fell English', serif; font-size: 15px; color: var(--ink-pale); }
+  .quiz-timer.low { color: var(--crimson); }
+  .quiz-category-badge { display: inline-block; font-size: 10.5px; letter-spacing: 0.05em; padding: 3px 12px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); margin-bottom: 14px; }
+  .quiz-question { font-family: 'Noto Serif TC', serif; font-size: 16.5px; color: var(--ink); line-height: 1.85; margin-bottom: 22px; }
+  .quiz-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+  .quiz-option { text-align: left; background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; font-size: 14px; color: var(--ink-mid); cursor: pointer; transition: all 0.15s; font-family: 'Noto Sans TC', sans-serif; }
+  .quiz-option:hover:not(.locked) { border-color: var(--gold); }
+  .quiz-option.selected { border-color: var(--gold); background: var(--gold-faint); }
+  .quiz-option.correct { border-color: var(--teal-deep); background: rgba(26,74,62,0.1); }
+  .quiz-option.wrong { border-color: var(--crimson); background: rgba(122,32,32,0.07); }
+  .quiz-option.locked { cursor: default; }
+  .quiz-explain { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 14px 18px; font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; margin-bottom: 20px; display: none; }
+  .quiz-explain.visible { display: block; }
+  .quiz-actions { display: flex; justify-content: flex-end; }
+  .quiz-result-score { text-align: center; padding: 12px 0 28px; }
+  .quiz-result-num { font-family: 'IM Fell English', serif; font-size: 46px; color: var(--gold); display: block; }
+  .quiz-result-label { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-top: 6px; }
+  .quiz-cat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 24px; }
+  .quiz-cat-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; text-align: center; }
+  .quiz-cat-card.mastered { border-color: var(--teal-deep); background: rgba(26,74,62,0.06); }
+  .quiz-cat-card.weak { border-color: var(--crimson); background: rgba(122,32,32,0.05); }
+  .quiz-cat-name { font-size: 11px; color: var(--ink-soft); margin-bottom: 4px; }
+  .quiz-cat-status { font-size: 12px; font-weight: 500; color: var(--ink-pale); }
+  .quiz-cat-status.mastered-text { color: var(--teal-deep); }
+  .quiz-cat-status.weak-text { color: var(--crimson); }
+  .quiz-next-step { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 22px 26px; font-size: 13.5px; line-height: 1.9; margin-bottom: 24px; }
+  .quiz-next-step-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 10px; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .quiz-section { padding: 40px 20px 48px; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">戶篩・亞基人</h1>
+  <span class="hero-name-en">Hushai · חוּשַׁי</span>
+  <p class="hero-slogan">「耶和華已經定意破壞亞希多弗的良謀，為要降禍與押沙龍。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">押沙龍叛變期間，大衛作王晚期</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">INTJ · 建築師型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">撒母耳記下 15–17 章</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">大衛的密友 · 潛伏敵營的謀士 · 神旨意的執行工具</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">當大衛最信任的謀士亞希多弗倒戈投靠押沙龍，大衛派出的，不是一支軍隊，而是一位懂得如何潛伏、等待、在對的時刻說出對的話的老朋友。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">押沙龍叛變期間，大衛作王晚期</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">亞基人，經文稱他為「大衛的朋友」（רֵעֶה，可能是宮廷中特定的顧問職銜）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">任務</span>
+        <div class="info-cell-value">假意投靠押沙龍，暗中為大衛傳遞情報、瓦解叛軍軍心</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">撒母耳記下 15:32–37 · 16:15–19 · 17:1–16</div>
+      </div>
+    </div>
+
+    <p>戶篩在聖經中的登場極具戲劇張力：大衛倉皇逃離耶路撒冷、越過橄欖山哭泣禱告之際，戶篩撕裂外袍、頭蒙灰塵前來投奔，展現出典型逃難者的哀慟姿態。然而大衛卻沒有讓他隨行，反而交付他一個更為艱難、也更需要冷靜與智慧的任務：回到耶路撒冷，假意投靠即將進城的押沙龍，成為潛伏在叛軍核心的臥底，設法敗壞亞希多弗的良謀，並透過祭司撒督與亞比亞他的兒子，將叛軍的軍情秘密傳遞給大衛。</p>
+    <p>戶篩不負所託。當押沙龍向他表明疑慮「你為何不隨你朋友去呢」，他巧妙地以「我現在服事誰，就是耶和華和這百姓並以色列眾人所揀選的」這番模稜兩可、卻極具說服力的話，成功取得押沙龍的信任。此後在關鍵的軍事會議上，戶篩以極具說服力的言辭，成功推翻了亞希多弗「立刻追擊、速戰速決」的高明建議，說服押沙龍改採「聚集全以色列大軍、親自率領」的緩兵之策——這個看似更為周全、實則爭取了大衛寶貴逃亡時間的建議，經文明確指出，這一切都出於耶和華的定意：「耶和華已經定意破壞亞希多弗的良謀，為要降禍與押沙龍。」</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從橄欖山上的哀慟投奔，到叛軍會議上力挽狂瀾的建言，戶篩的故事，是一部關於「忠誠可以化身為策略性的耐心與智慧」的精彩敘事。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">哀慟投奔</span>
+        <div class="timeline-title">撕裂外袍、頭蒙灰塵——在橄欖山上迎向逃難的大衛</div>
+        <div class="timeline-body">大衛逃離耶路撒冷、上橄欖山哭泣禱告之際，戶篩撕裂外袍、頭蒙灰塵前來投奔，展現出對大衛遭遇的哀慟與忠誠，卻被大衛委以更艱鉅的臥底任務，而非隨行逃亡。</div>
+        <div class="timeline-ref">撒母耳記下 15:32</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">受命臥底</span>
+        <div class="timeline-title">大衛的密令——「你回城去，敗壞亞希多弗的謀略」</div>
+        <div class="timeline-body">大衛指示戶篩返回耶路撒冷，假意投靠押沙龍，藉此敗壞亞希多弗的良謀，並透過祭司撒督與亞比亞他傳遞叛軍軍情，戶篩依令行事，順利進入耶路撒冷城。</div>
+        <div class="timeline-ref">撒母耳記下 15:33–37</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">取信押沙龍</span>
+        <div class="timeline-title">巧妙應對質疑——「我現在服事誰，是眾人所揀選的」</div>
+        <div class="timeline-body">押沙龍質疑戶篩為何不隨大衛而去，戶篩以模稜兩可卻極具說服力的話語回應，成功化解押沙龍的疑慮，順利取得叛軍核心的信任地位。</div>
+        <div class="timeline-ref">撒母耳記下 16:16–19</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">扭轉戰局</span>
+        <div class="timeline-title">推翻亞希多弗的良謀——爭取大衛逃亡的關鍵時間</div>
+        <div class="timeline-body">亞希多弗建議立刻率軍追擊大衛、速戰速決，戶篩卻以誇大大衛軍隊戰力、強調押沙龍應親自率領全以色列大軍出戰以彰顯威望為由，成功說服押沙龍延緩追擊，為大衛爭取了寶貴的逃亡與整軍時間。</div>
+        <div class="timeline-ref">撒母耳記下 17:1–14</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">密報傳遞</span>
+        <div class="timeline-title">冒險通報軍情——躲過追兵的通風報信</div>
+        <div class="timeline-body">戶篩隨即透過撒督與亞比亞他，將押沙龍陣營的軍議內容秘密傳遞給大衛，儘管過程中送信的少年幾乎被叛軍發現、藏身井中才躲過追捕，最終大衛還是及時收到消息，連夜渡過約旦河脫離危險。</div>
+        <div class="timeline-ref">撒母耳記下 17:15–22</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">戶篩展現的，不是戰場上的英勇，而是一種更需要膽識與智慧的忠誠——潛伏在敵營之中，用言語而非刀劍，扭轉了整個叛亂的走向。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🎭</div>
+        <div>
+          <span class="soul-label">核心特質</span>
+          <div class="soul-title">在敵營中維持冷靜偽裝，同時暗中謀求主人的利益</div>
+          <div class="soul-body">戶篩接受了一項極其危險的任務——深入押沙龍的核心圈子，取得信任，卻始終不忘自己真正效忠的對象，這種在高壓與危險中維持雙重身份的能力，展現出他過人的心理素質。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🗣️</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">運用高超的言語說服技巧，達成軍事無法達成的目的</div>
+          <div class="soul-body">戶篩沒有一兵一卒，卻僅憑一番精心設計的言辭，就成功推翻了亞希多弗更高明的軍事建議，這種以智謀勝過武力的能力，是他最鮮明的才幹。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎯</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">精準拿捏押沙龍的心理，投其所好、量身打造說服策略</div>
+          <div class="soul-body">他建議押沙龍親自率領「從但到別是巴」的全以色列大軍出戰，精準迎合了押沙龍渴望展現王者威儀、鞏固自身正當性的心理需求，這種對人性心理的精準拿捏，是他成功的關鍵。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神聖工具</span>
+          <div class="soul-title">他個人的智謀，成了耶和華成就旨意的具體管道</div>
+          <div class="soul-body">經文明確指出「耶和華已經定意破壞亞希多弗的良謀」，這意味著戶篩雖然憑藉自己的智慧與膽識行動，最終卻是神旨意運行的具體器皿，展現出神如何透過人的智慧與策略成就祂更高的計劃。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">戶篩的故事提出了一個值得深思的觀察：忠誠有時不需要站在戰場最前線揮舞刀劍，反而可能需要潛入最危險的敵營，忍受被誤解、甚至被視為叛徒的處境，只為了在對的時刻，說出那一句能扭轉全局的話。戶篩沒有殺死任何一個敵人，他所憑藉的，僅僅是精準的言語策略與過人的心理洞察力，卻成功瓦解了亞希多弗那套原本必然致命的軍事良謀，為大衛爭取了關鍵的喘息與整軍時間。更深刻的是，經文特別強調這一切背後有耶和華的定意——這提醒我們，即便是最精密的人類智謀（如亞希多弗），若不合神的旨意，終將被神以出人意料的方式敗壞；而神也樂意使用像戶篩這樣願意冒險、憑智慧行動的人，作為成就祂旨意的具體器皿。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">INTJ</span>
+      <div class="mbti-name">建築師型 · 潛伏敵營的策略謀士</div>
+      <div class="mbti-slogan">「他沒有揮動一刀一劍，卻憑一番話，瓦解了整個叛軍最致命的計謀。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">他能在極短時間內洞察押沙龍內心深處對於威望與正當性的渴望，並據此設計出精準打動人心的說服策略，這種對深層心理動機的直覺洞察，是他成功的核心。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">他在軍事會議上有條理地陳述論點——大衛軍隊的戰力被誇大、押沙龍應親自率領全軍以彰顯威望——展現出高度組織化、極具說服力的外向思考能力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">他對大衛的忠誠並非出於表面的效忠，而是源於一種深沉的個人情誼與價值認同，這也是他甘願冒生命危險、深入敵營執行任務的內在驅動力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Se · 外向感覺</span>
+          <div class="mbti-fn-body">他的行動策略高度依賴縝密的言語與心理布局，而非即時的感官反應或行動力，這種相對缺乏的外向感覺功能，也解釋了為何他選擇以謀略而非武力來完成任務。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最重要的兩重關係，一重是他甘願冒死效忠的密友大衛，另一重，是他必須贏得信任、卻終究要瓦解其謀略的敵對陣營押沙龍與亞希多弗。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">大</div>
+          <div class="relation-name">大衛王</div>
+          <div class="relation-type-badge">他甘願冒死效忠的密友與君王</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">大衛在最危急的逃亡時刻，將瓦解叛軍謀略的重任託付給戶篩，這份信任本身就展現出兩人之間深厚的情誼；戶篩也不負所託，成功完成了這項極其危險卻至關重要的臥底任務。</div>
+          <div class="relation-ref">撒母耳記下 15:32–34</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">押</div>
+          <div class="relation-name">押沙龍</div>
+          <div class="relation-type-badge">他假意投靠、實則暗中瓦解其計謀的叛軍首領</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">戶篩成功取得押沙龍的信任，成為其軍事會議中的重要謀士，卻在關鍵時刻以精心設計的言辭，推翻了亞希多弗更為有效的軍事建議，間接導致了押沙龍叛亂的最終失敗。</div>
+          <div class="relation-ref">撒母耳記下 17:1–14</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">亞</div>
+          <div class="relation-name">亞希多弗</div>
+          <div class="relation-type-badge">他在謀略上正面交鋒、最終擊敗的對手</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">亞希多弗原本提出的立即追擊之策，若被押沙龍採納，極可能導致大衛陣營全軍覆沒；戶篩正是在這場謀略的正面交鋒中，成功說服押沙龍捨棄亞希多弗的建議，扭轉了整場叛亂的走向。</div>
+          <div class="relation-ref">撒母耳記下 17:5–14</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">戶篩的故事，是聖經中「神主權介入敗壞人類最精密計謀」最具體而戲劇化的敘事案例之一。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「因為耶和華已經定意破壞亞希多弗的良謀，為要降禍與押沙龍。」</div>
+      <div class="verse-ref">撒母耳記下 17:14</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">神的主權可以透過人的智謀與策略具體運行</div>
+      <div class="theology-insight-body">戶篩的成功並非單純的超自然神蹟，而是他憑藉自己過人的心理洞察與言語策略達成的成果，這提醒我們，神的旨意常常透過人願意冒險、運用智慧的具體行動來成就。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">再精密的人類計謀，若不合神的旨意，終將被敗壞</div>
+      <div class="theology-insight-body">亞希多弗的建議在純軍事策略上被公認更為高明有效，卻仍然被神定意敗壞——這提醒我們，人的智慧無論多麼傑出，終究無法凌駕於神至高的主權之上。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">忠誠有時需要忍受被誤解的孤獨與危險</div>
+      <div class="theology-insight-body">戶篩必須在押沙龍陣營中維持長期的偽裝，忍受隨時可能被識破的風險，卻無法向外界證明自己的真實立場——這種孤獨的忠誠，同樣是聖經中值得被紀念的美德。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正身處一個必須忍受誤解、甚至偽裝自己立場，才能完成使命的處境中——這一頁想邀請你重新思考，忠誠可以有多少種不同的表現方式。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">戶篩的故事映照著每一個曾經為了更大的目標，選擇忍受暫時的誤解、甚至扮演與內心真實立場相反角色的處境——無論是職場中的臥底任務、家庭中的策略性忍耐，或是為了保護他人而暫時隱藏真相的抉擇。他提醒我們反思：忠誠不總是表現為公開而直接的效忠，有時候，最深的忠誠，恰恰需要智慧的耐心與策略性的等待。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你是否曾經歷過必須暫時隱藏自己真實立場、甚至忍受被誤解，才能完成某個更重要目標的處境？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">戶篩憑藉精準的言語策略瓦解了敵對陣營最致命的計謀。你在說服他人時，是否也懂得洞察對方真正的心理需求？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">經文強調神定意敗壞亞希多弗的良謀。你是否曾經歷過，自己精心策劃的計謀，最終被更高的旨意所改變或阻止？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">戶篩的忠誠展現在孤獨而危險的臥底行動中，而非公開的戰場榮耀。你如何看待那些默默無聞、卻同樣關鍵的忠誠付出？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 戶篩</span>
+        <div class="gen-title">示範劇本：以智慧與耐心，完成看似不可能的任務</div>
+        <div class="gen-body">他甘願冒著生命危險潛入敵營，忍受長期偽裝的壓力與孤獨，最終憑藉精準的言語策略，成功扭轉了整場叛亂的走向，展現出一種需要極大智慧與膽識的忠誠形式。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 後世的忠誠典範</span>
+        <div class="gen-title">延續：忠誠不限於公開直接的效忠方式</div>
+        <div class="gen-body">戶篩的故事此後成為聖經敘事中「智謀型忠誠」的重要範例，提醒後世讀者，真正的忠誠可以有多元的表現形式，未必總是表現為公開高調的效忠姿態。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在這個故事中，體現在神願意使用一位普通人的智慧與勇氣，作為成就祂更大旨意的具體工具。戶篩並非先知或祭司，他只是一位「大衛的朋友」，卻在關鍵時刻，成為神扭轉整個國家命運的重要器皿，這提醒我們，神樂意使用每一個願意在關鍵時刻挺身而出、憑智慧行動的普通人。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把這位深入敵營、靠一張嘴瓦解整支叛軍計謀的臥底謀士，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#臥底界的話術大師</span>
+      <span class="tag">#一句話扭轉整場叛變</span>
+      <span class="tag">#忠誠可以是潛伏</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>戶篩的故事，讀起來很像一部諜報片的劇本。大衛倉皇逃亡的時候，戶篩本來也想跟著走，大衛卻對他說：『你跟我走反而是累贅，不如回城裡去，假裝投靠押沙龍，幫我搞破壞。』</p>
+      <p>換作是你，願意接下這種任務嗎？公開被視為背叛主公的叛徒，實際上卻要在敵營裡提心吊膽地過日子，隨時可能被識破，而且沒有人能替你澄清。</p>
+      <p>戶篩做到了，而且做得漂亮。押沙龍軍中最厲害的謀士亞希多弗，提出了一個幾乎必勝的追擊方案——立刻出兵，速戰速決，大衛根本沒有時間喘息。如果這個方案被採納，故事可能就此改寫。</p>
+      <p>戶篩站出來，不是靠武力反對，而是靠一番精心設計的話術：他誇大大衛軍隊的戰力，同時搔到押沙龍的癢處——『你應該親自率領全國的軍隊出征，這樣才有王者的氣勢』。押沙龍聽進去了，追擊被延後，大衛因此撿回了一條命。</p>
+      <p>經文特別補了一句畫龍點睛的話：這一切，其實是耶和華定意要敗壞亞希多弗的良謀。戶篩很聰明，很會說話，但故事最終告訴我們，真正決定結局的，從來不只是人的智慧。</p>
+      <p style="font-weight:500; color:var(--ink);">有時候，最深的忠誠，不是站在陽光下高喊效忠，而是願意走進黑暗與誤解之中，只為了在對的時刻，說出那句能改變一切的話。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你正處在一個必須忍受誤解、甚至暫時隱藏真實立場才能完成使命的處境，記得戶篩的故事——這樣的忠誠，同樣被神所紀念。</p>
+      <p style="margin-top:12px;">說服他人時，真正精準的話術，往往來自對對方內心需求的深刻理解，而非單純的辯論技巧。</p>
+      <p style="margin-top:12px;">無論你的計劃多麼周全，都要謙卑地記得，最終的結局，掌握在比你更高的旨意手中。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果你正面對一個看似不可能達成的任務，想想戶篩——有時候，一番用心設計的話語，比一整支軍隊更有力量。</p>
+    </div>
+
+    <div class="insight-box">戶篩的策略手法，在當代談判與說服心理學研究中，經常被引用作為「精準訴諸對方深層心理需求以扭轉決策」的經典案例——他沒有直接反駁對方論點的邏輯漏洞，而是巧妙地訴諸押沙龍對威望與正當性的渴望，這種洞察並運用對方核心動機的說服策略，至今仍是有效溝通與談判的重要原則。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他沒有留下顯赫的戰功，卻用一番話，改寫了一整場叛亂的結局，成為聖經中「智謀型忠誠」最經典的敘事範例。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">「神敗壞人的良謀」神學命題的具體例證</div>
+          <div class="legacy-body">戶篩成功瓦解亞希多弗良謀的故事，成為聖經中闡述神主權高於一切人類智謀最具體、最戲劇化的敘事案例之一。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">潛伏型忠誠的敘事典範</div>
+          <div class="legacy-body">他甘願忍受長期偽裝與被誤解的孤獨，只為完成使命，成為聖經中少見卻極具啟發性的「非戰場型忠誠」典範。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">精準說服策略的歷史範例</div>
+          <div class="legacy-body">他透過洞察押沙龍內心深處的心理需求、量身打造說服策略的手法，持續被後世援引為精準溝通與談判技巧的重要範例。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「耶和華已經定意破壞亞希多弗的良謀，為要降禍與押沙龍。」</div>
+      <div class="final-verse-ref">撒母耳記下 17:14</div>
+    </div>
+
+    <div class="final-question">如果忠誠有時需要你忍受誤解、甚至暫時隱藏自己的真實立場——你是否願意像戶篩一樣，在對的時刻，說出那句能改變一切的話？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 戶篩 <span>חוּשַׁי</span> · 大衛的密友 · 潛伏在叛軍中的臥底謀士</div>
+
+<!-- 閱讀紀錄（localStorage，見 progress.js）：右下角標記已讀按鈕 -->
+<script src="progress.js"></script>
+<!-- 小測驗（localStorage，見 quiz.js）：僅在人物 JSON 有 quiz 欄位時作用 -->
+<script src="quiz-data.js"></script>
+<script src="quiz.js"></script>
+
+</body>
+</html>

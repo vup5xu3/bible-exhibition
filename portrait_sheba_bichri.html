@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>示巴 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── QUIZ ── */
+  .quiz-section { max-width: 860px; margin: 0 auto; padding: 56px 32px 64px; border-top: 2px solid var(--gold); }
+  .quiz-label { font-family: 'IM Fell English', serif; font-size: 12px; letter-spacing: 0.25em; color: var(--gold); display: block; margin-bottom: 12px; }
+  .quiz-title { font-family: 'Noto Serif TC', serif; font-size: 21px; color: var(--ink); margin-bottom: 10px; }
+  .quiz-desc { font-size: 13px; color: var(--ink-pale); line-height: 1.85; margin-bottom: 22px; }
+  .quiz-btn { background: var(--ink); color: var(--gold-light); border: 1px solid var(--gold); border-radius: 30px; padding: 12px 30px; font-family: 'Noto Sans TC', sans-serif; font-size: 14px; cursor: pointer; transition: all 0.2s; }
+  .quiz-btn:hover { background: var(--gold); color: var(--ink); }
+  .quiz-btn.secondary { background: transparent; color: var(--ink-soft); border-color: var(--border-strong); }
+  .quiz-btn.secondary:hover { background: var(--gold-faint); color: var(--ink); }
+  .quiz-progress-bar { display: flex; gap: 4px; margin-bottom: 24px; }
+  .quiz-progress-dot { flex: 1; height: 5px; border-radius: 3px; background: var(--gold-pale); transition: background 0.2s; }
+  .quiz-progress-dot.done { background: var(--gold); }
+  .quiz-progress-dot.current { background: var(--gold-light); }
+  .quiz-meta-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+  .quiz-q-num { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold-light); letter-spacing: 0.05em; }
+  .quiz-timer { font-family: 'IM Fell English', serif; font-size: 15px; color: var(--ink-pale); }
+  .quiz-timer.low { color: var(--crimson); }
+  .quiz-category-badge { display: inline-block; font-size: 10.5px; letter-spacing: 0.05em; padding: 3px 12px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); margin-bottom: 14px; }
+  .quiz-question { font-family: 'Noto Serif TC', serif; font-size: 16.5px; color: var(--ink); line-height: 1.85; margin-bottom: 22px; }
+  .quiz-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+  .quiz-option { text-align: left; background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; font-size: 14px; color: var(--ink-mid); cursor: pointer; transition: all 0.15s; font-family: 'Noto Sans TC', sans-serif; }
+  .quiz-option:hover:not(.locked) { border-color: var(--gold); }
+  .quiz-option.selected { border-color: var(--gold); background: var(--gold-faint); }
+  .quiz-option.correct { border-color: var(--teal-deep); background: rgba(26,74,62,0.1); }
+  .quiz-option.wrong { border-color: var(--crimson); background: rgba(122,32,32,0.07); }
+  .quiz-option.locked { cursor: default; }
+  .quiz-explain { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 14px 18px; font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; margin-bottom: 20px; display: none; }
+  .quiz-explain.visible { display: block; }
+  .quiz-actions { display: flex; justify-content: flex-end; }
+  .quiz-result-score { text-align: center; padding: 12px 0 28px; }
+  .quiz-result-num { font-family: 'IM Fell English', serif; font-size: 46px; color: var(--gold); display: block; }
+  .quiz-result-label { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-top: 6px; }
+  .quiz-cat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 24px; }
+  .quiz-cat-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; text-align: center; }
+  .quiz-cat-card.mastered { border-color: var(--teal-deep); background: rgba(26,74,62,0.06); }
+  .quiz-cat-card.weak { border-color: var(--crimson); background: rgba(122,32,32,0.05); }
+  .quiz-cat-name { font-size: 11px; color: var(--ink-soft); margin-bottom: 4px; }
+  .quiz-cat-status { font-size: 12px; font-weight: 500; color: var(--ink-pale); }
+  .quiz-cat-status.mastered-text { color: var(--teal-deep); }
+  .quiz-cat-status.weak-text { color: var(--crimson); }
+  .quiz-next-step { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 22px 26px; font-size: 13.5px; line-height: 1.9; margin-bottom: 24px; }
+  .quiz-next-step-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 10px; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .quiz-section { padding: 40px 20px 48px; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">示巴・比基利的兒子</h1>
+  <span class="hero-name-en">Sheba · שֶׁבַע</span>
+  <p class="hero-slogan">「示巴吹角，說：<br>「我們與大衛無分，與耶西的兒子無涉。以色列人哪，各回各家去吧！」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">押沙龍叛變平息後，大衛作王晚期</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ENTJ · 統帥型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">撒母耳記下 20 章</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">便雅憫人 · 叛亂的煽動者 · 部族分裂的催化劑</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">押沙龍的叛亂血跡未乾，示巴的一聲號角，又幾乎將整個以色列再次撕裂——他的故事，揭露了大衛王國內部南北支派之間，那道從未真正癒合的裂痕。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">押沙龍叛變平息後，大衛作王晚期</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">便雅憫人，比基利的兒子</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">性格特徵</span>
+        <div class="info-cell-value">經文稱他為「匪徒」（בְּלִיַּעַל，belial，意為「無用、邪惡之人」）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">撒母耳記下 20:1–22</div>
+      </div>
+    </div>
+
+    <p>示巴登場的時間點極具象徵意義：押沙龍叛變才剛剛平息，大衛正在渡過約旦河、重返耶路撒冷的路上，猶大人與以色列人之間，已因「誰更有資格護送王回京」而爆發了激烈的爭執——猶大人認為自己是王的本族本支，理應優先；以色列其餘支派則抗議自己人數是猶大的十倍，卻在迎王之事上被冷落。這場尚未平息的部族嫌隙，正是示巴登場、煽動叛亂最直接的土壤。</p>
+    <p>示巴抓住了這個裂痕，吹響號角，喊出「我們與大衛無分，與耶西的兒子無涉」的口號，成功煽動以色列眾支派（猶大支派除外）離棄大衛。大衛深知此事若不迅速平息，後果恐怕比押沙龍的叛變更為嚴重，於是先後派亞瑪撒、亞比篩（實際由約押指揮）率軍追擊。約押最終將示巴圍困在北方的亞比拉城中，正當大軍準備摧毀城牆之際，城中一位素以智慧聞名的婦人挺身而出，與約押談判，最終說服城中居民砍下示巴的頭，將其拋出城外，換取了全城的平安——這場幾乎重演押沙龍叛變的危機，就這樣在一位無名智者的斡旋下，以最小的代價迅速平息。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從一聲煽動性的號角，到城牆之上飛出的頭顱，示巴的故事，濃縮了大衛王國晚期南北支派裂痕如何一觸即發、又如何被智慧及時化解的完整過程。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">部族嫌隙</span>
+        <div class="timeline-title">猶大與以色列的迎王之爭——叛亂的溫床</div>
+        <div class="timeline-body">大衛平定押沙龍叛亂、渡約旦河返京之際，猶大人與以色列其餘支派因迎王的優先順序爆發激烈爭執，這股尚未平息的部族嫌隙，成為示巴此後煽動叛亂最直接的社會土壤。</div>
+        <div class="timeline-ref">撒母耳記下 19:41–43</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">號角煽動</span>
+        <div class="timeline-title">「我們與大衛無分」——一聲號角引發的全面分裂</div>
+        <div class="timeline-body">示巴抓住部族嫌隙，吹角高喊「我們與大衛無分，與耶西的兒子無涉，以色列人哪，各回各家去吧」，成功煽動除猶大支派外的以色列眾人離棄大衛，另立門戶。</div>
+        <div class="timeline-ref">撒母耳記下 20:1–2</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">追擊延誤</span>
+        <div class="timeline-title">亞瑪撒逾期未歸——約押趁機重掌兵權</div>
+        <div class="timeline-body">大衛命亞瑪撒在三日內召集猶大人平亂，亞瑪撒卻未能如期完成，大衛改派亞比篩（實際由約押指揮）率軍追擊；途中約押假意問安、暗殺了亞瑪撒，重新奪回軍隊的實際指揮權。</div>
+        <div class="timeline-ref">撒母耳記下 20:4–10</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">圍城對峙</span>
+        <div class="timeline-title">亞比拉城下——約押大軍築壘攻城</div>
+        <div class="timeline-body">示巴一路逃至北方的亞比伯‧瑪迦城，約押率軍緊追不捨，包圍城池並築壘攻打城牆，城中居民面臨滅頂之災，局勢一觸即發。</div>
+        <div class="timeline-ref">撒母耳記下 20:14–15</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">智者斡旋</span>
+        <div class="timeline-title">一位婦人的談判——用一顆頭顱換一座城的平安</div>
+        <div class="timeline-body">城中一位素以智慧聞名的婦人挺身與約押談判，指出攻毀這座「以色列中的大城、和平之母」並非明智之舉；約押表明只求示巴一人，婦人便說服城中居民砍下示巴的頭拋出城外，約押隨即撤兵，全城因此得以保全。</div>
+        <div class="timeline-ref">撒母耳記下 20:16–22</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">示巴的一生，幾乎只被濃縮在一聲號角與一句口號之中——然而正是這短暫的煽動，幾乎再次點燃了足以撕裂整個以色列的戰火。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">📯</div>
+        <div>
+          <span class="soul-label">核心特質</span>
+          <div class="soul-title">敏銳嗅出社會裂痕，並精準抓住時機加以利用</div>
+          <div class="soul-body">示巴精準把握住猶大與以色列剛剛因迎王之爭而產生的嫌隙，立刻吹角煽動叛亂，這種對社會情緒與時機的敏銳嗅覺，是他能在短時間內聚集大批追隨者的關鍵。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🗣️</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">以簡潔而極具煽動性的口號，快速動員群眾</div>
+          <div class="soul-body">「我們與大衛無分，與耶西的兒子無涉」這句口號，簡短有力、直指人心對身份認同與部族尊嚴的敏感神經，展現出他作為煽動者驚人的語言渲染能力。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">經文以『匪徒』稱之，暗示其行動背後缺乏正當的建設性目標</div>
+          <div class="soul-body">與押沙龍尚有奪取王位的具體政治企圖不同，示巴的叛亂更接近純粹的破壞與分裂，經文用「匪徒」（בְּלִיַּעַל）一詞形容他，暗示其行動缺乏任何值得肯定的建設性目標。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">歷史意義</span>
+          <div class="soul-title">他的叛亂，成為此後以色列南北分裂王國的歷史先聲</div>
+          <div class="soul-body">示巴這場僅憑一人煽動、迅速蔓延又迅速平息的叛亂，某種程度上預示了此後所羅門死後、以色列南北兩國正式分裂的歷史裂痕，猶大與以色列之間的嫌隙，並未因大衛在世時的迅速平亂而真正消失。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">示巴的故事提出了一個發人深省的觀察：一個國家或群體內部若存在未被真正處理、只是暫時壓抑的裂痕，即便表面的危機（如押沙龍的叛變）已經平息，這些裂痕仍然可能在極短的時間內，被任何懂得抓住時機的煽動者重新引爆。示巴本人並沒有留下什麼深刻的政治理念或建設性的主張，他所憑藉的，僅僅是一句精準命中部族尊嚴痛點的口號，卻幾乎再次將整個以色列拖入內戰的深淵。這提醒我們，真正穩固的群體團結，需要的不只是危機過後表面的平靜，更需要對深層裂痕進行真誠的處理與修復，否則類似示巴這樣的煽動，隨時可能再次找到可乘之機。同時，這個故事的結局——一位無名婦人憑藉智慧的斡旋，用最小的代價平息了整場危機——也提醒我們，面對即將失控的衝突，冷靜而智慧的介入，往往比訴諸武力更能真正化解危機。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ENTJ</span>
+      <div class="mbti-name">統帥型 · 煽動分裂的號角吹響者</div>
+      <div class="mbti-slogan">「他用一句口號，幾乎讓整個國家再次陷入分裂與戰火。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">他迅速判斷情勢、果斷採取行動——吹角、喊出口號、聚集追隨者——展現出高度目標導向、雷厲風行的外向思考特質，儘管這份行動力最終被用於破壞性的目的。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">他準確洞察到猶大與以色列之間因迎王之爭而產生的深層裂痕，並抓住這個轉瞬即逝的時機發動煽動，展現出敏銳的深層洞察力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Se · 外向感覺</span>
+          <div class="mbti-fn-body">他選擇在最恰當的當下時刻立即行動，而非長期醞釀或籌劃，這種對當下情勢的即時反應與把握，反映出第三功能外向感覺的作用。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">經文完全沒有記載示巴行動背後有任何深刻的個人價值信念或道德訴求，這種缺乏內在價值根基、純粹訴諸群體情緒的煽動方式，正顯示出他劣勢內向情感的匱乏。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最重要的關係，是與那位一路追擊、最終要了他性命的約押，以及那位在城牆之上、用智慧終結了整場危機的無名婦人。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">約</div>
+          <div class="relation-name">約押</div>
+          <div class="relation-type-badge">率軍一路追擊、最終促成他被斬首的統帥</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">約押先是暗殺了被大衛任命平亂的亞瑪撒，重新奪回軍隊指揮權，隨即率軍一路追擊示巴至亞比拉城，展現出他一貫雷厲風行、不擇手段維護局勢穩定的行事風格，最終示巴的死，也標誌著約押再次以武力手段解決了對王權的威脅。</div>
+          <div class="relation-ref">撒母耳記下 20:10–15, 22</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">婦</div>
+          <div class="relation-name">亞比拉的智慧婦人</div>
+          <div class="relation-type-badge">以智慧斡旋、拯救全城免於毀滅的無名智者</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">這位素未留名、卻以智慧聞名的婦人，在約押大軍即將攻毀全城之際挺身而出，透過理性的談判，成功說服城中居民交出示巴的頭顱，以最小的代價換取了全城的平安，成為聖經中「智慧勝過武力」最生動的敘事對照。</div>
+          <div class="relation-ref">撒母耳記下 20:16–22</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">示巴叛亂迅速被平息的故事，成為聖經中「智慧的介入往往比武力更能化解危機」極具說服力的敘事案例。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「婦人說：從前有句古話說，當先在亞比拉求問，然後事就定妥。……眾民就依從那婦人的智慧話去行，割下比基利的兒子示巴的首級，丟給約押。」</div>
+      <div class="verse-ref">撒母耳記下 20:18, 22</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">未被真正修復的裂痕，隨時可能被重新引爆</div>
+      <div class="theology-insight-body">示巴的叛亂緊接在猶大與以色列迎王之爭後迅速爆發，這提醒我們，表面危機的平息，若未伴隨真正的和解與修復，內在的裂痕仍可能在極短時間內被重新點燃。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">智慧的斡旋，往往比武力對抗更能以最小代價化解危機</div>
+      <div class="theology-insight-body">亞比拉婦人的介入，避免了一整座城市因一人之罪而遭受滅頂之災，這提醒我們，在衝突一觸即發之際，冷靜理性的談判與智慧的斡旋，往往能帶來遠比武力鎮壓更為良善的結局。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">個人的煽動足以撼動整個群體的穩定，凸顯群體團結的脆弱性</div>
+      <div class="theology-insight-body">示巴僅憑一人之力、一句口號，便幾乎再次撕裂整個以色列，這提醒我們正視，看似穩固的群體團結，實際上可能相當脆弱，需要持續用心經營與真誠對話來維繫。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你身處的群體或組織中，正存在著某種尚未真正被處理的裂痕——這一頁想提醒你，這樣的裂痕，隨時可能被下一個「示巴」重新引爆。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">示巴的故事映照著每一個曾經歷組織、家庭或群體內部因未被真正處理的嫌隙，而被某個煽動性言論再次點燃衝突的處境。他提醒我們反思：我們所在的群體，是否存在著表面已經平息、實則從未真正修復的裂痕？同時，亞比拉婦人的智慧介入，也提醒我們在面對一觸即發的衝突時，冷靜的對話與理性的斡旋，往往比對抗與武力更能真正化解危機、保全群體的完整。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你所在的家庭、職場或群體中，是否存在某種表面平息、卻從未真正被處理的裂痕？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">示巴僅憑一句口號就煽動了大批追隨者。你是否曾被某種簡短卻極具煽動性的言論所影響，而做出未經深思的選擇？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">亞比拉婦人以冷靜的智慧化解了一場即將爆發的毀滅性衝突。你在面對群體衝突時，通常傾向於激化對抗，還是尋求智慧的斡旋？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">示巴的叛亂預示了此後以色列的南北分裂。你如何看待「暫時壓制的危機」與「真正被修復的裂痕」之間的差異？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 猶大與以色列</span>
+        <div class="gen-title">裂痕劇本：迎王之爭未平，叛亂隨即而起</div>
+        <div class="gen-body">猶大與以色列其餘支派因迎王的優先順序爆發爭執，這股尚未真正化解的部族嫌隙，直接為示巴的叛亂提供了現成的溫床，顯示出未被處理的衝突，往往會迅速找到下一個爆發的出口。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 示巴</span>
+        <div class="gen-title">延續：以煽動性口號，將潛藏的裂痕引爆為公開的叛亂</div>
+        <div class="gen-body">示巴精準抓住這股尚未平息的部族情緒，以一句簡潔而極具煽動性的口號，成功將潛藏的裂痕，迅速轉化為席捲以色列眾支派的公開叛亂。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在這個故事中，體現在神使用一位無名的智慧婦人，及時介入化解了這場幾乎重演押沙龍叛變的危機，避免了更大規模的流血與破壞。這提醒我們，即便群體內部存在深層的裂痕與衝突，神仍然樂意透過看似微小、卻充滿智慧的聲音，帶來意想不到的和平與拯救。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把這位靠一聲號角差點再次撕裂整個國家的煽動者，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#一句口號引爆的分裂</span>
+      <span class="tag">#情緒動員的危險</span>
+      <span class="tag">#智慧婦人才是真英雄</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>示巴這個人，如果活在今天，大概就是那種在社群媒體上一發文就能帶起風向、煽動一堆人跟風出征的帳號。他沒有具體的政見、沒有完整的規劃，他有的，就只是一句抓住大家情緒的口號：『我們跟大衛沒關係，各回各家吧！』</p>
+      <p>問題是，這句話說出來的時機太精準了——猶大跟以色列其他支派，才剛因為『誰更有資格迎接王回來』吵過一架，心裡本來就有疙瘩。示巴等於是在一堆乾柴旁邊，隨手丟了一根火柴，然後火就這樣燒起來了。</p>
+      <p>大衛這邊當然不能坐視不管，畢竟押沙龍那場叛變才剛結束沒多久，如果再讓這場叛亂坐大，後果不堪設想。約押帶著軍隊一路追到北邊一座城，把城團團圍住，眼看就要開打了。</p>
+      <p>結果真正解決問題的，不是刀劍，是一位我們連名字都不知道的婦人。她站到城牆上，跟約押講道理：『你們要毀掉一座這麼重要的城，就為了一個人？』約押說：『我只要示巴的頭。』婦人回去跟大家商量，最後城裡的人自己動手，把示巴的頭砍下來丟出城外，一整座城，就這樣保住了。</p>
+      <p>這個故事很諷刺——真正差點毀掉一個國家的，是一句情緒化的口號；真正救了一整座城的，是一段冷靜理性的對話。</p>
+      <p style="font-weight:500; color:var(--ink);">煽動只需要一句口號，化解卻需要真正的智慧——這個故事，值得每一個容易被情緒動員的時代反覆咀嚼。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你所在的群體正因某個煽動性的言論而蠢蠢欲動，記得問問自己：這股情緒背後，是否有更深層、尚未被真正處理的裂痕？</p>
+      <p style="margin-top:12px;">面對即將爆發的衝突，多一分像亞比拉婦人那樣冷靜對話的智慧，往往比急於對抗更能保全大局。</p>
+      <p style="margin-top:12px;">群體的團結，需要持續用心經營與真誠溝通，而非僅止於表面危機過後的短暫平靜。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果你看到一句情緒化的口號正在煽動群體對立，試著多問一句：這背後真正的問題是什麼？</p>
+    </div>
+
+    <div class="insight-box">示巴的叛亂與亞比拉婦人的智慧介入，在當代衝突管理與組織行為研究中，經常被引用作為「情緒動員的煽動風險」與「第三方理性斡旋的價值」的對照案例——一個未被真正修復的群體裂痕，往往只需要一個精準的煽動者便可能迅速惡化，而及時、理性的第三方介入，則可能以最小的代價化解一觸即發的危機。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他沒有留下任何值得紀念的建樹，卻用自己短暫而破壞性的叛亂，意外襯托出一位無名婦人智慧斡旋的光輝，也為此後以色列南北分裂埋下了歷史的伏筆。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">南北分裂的歷史先聲</div>
+          <div class="legacy-body">示巴這場迅速蔓延又迅速平息的叛亂，某種程度上預示了此後所羅門死後以色列南北兩國正式分裂的歷史裂痕，成為理解以色列內部長期部族張力的重要參照案例。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">「智慧勝過武力」的敘事典範</div>
+          <div class="legacy-body">亞比拉婦人以理性談判化解一場滅城危機的故事，成為聖經中歌頌平凡人物智慧、勝過訴諸武力對抗最動人的敘事範例之一。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">群體裂痕警示的具體案例</div>
+          <div class="legacy-body">示巴僅憑一句口號便幾乎撕裂整個以色列的故事，持續提醒後世讀者正視群體內部未被真正處理的裂痕，可能帶來的巨大風險。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「眾民就依從那婦人的智慧話去行，割下比基利的兒子示巴的首級，丟給約押。約押吹角，眾人就離城散去，各歸各家。」</div>
+      <div class="final-verse-ref">撒母耳記下 20:22</div>
+    </div>
+
+    <div class="final-question">當一句煽動性的口號試圖點燃你身邊群體的裂痕時，你願意成為那個隨之起舞的追隨者，還是那位挺身而出、以智慧化解危機的無名婦人？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 示巴 <span>שֶׁבַע</span> · 便雅憫人 · 叛亂的煽動者</div>
+
+<!-- 閱讀紀錄（localStorage，見 progress.js）：右下角標記已讀按鈕 -->
+<script src="progress.js"></script>
+<!-- 小測驗（localStorage，見 quiz.js）：僅在人物 JSON 有 quiz 欄位時作用 -->
+<script src="quiz-data.js"></script>
+<script src="quiz.js"></script>
+
+</body>
+</html>

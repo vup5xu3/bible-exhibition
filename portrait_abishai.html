@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>亞比篩 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── QUIZ ── */
+  .quiz-section { max-width: 860px; margin: 0 auto; padding: 56px 32px 64px; border-top: 2px solid var(--gold); }
+  .quiz-label { font-family: 'IM Fell English', serif; font-size: 12px; letter-spacing: 0.25em; color: var(--gold); display: block; margin-bottom: 12px; }
+  .quiz-title { font-family: 'Noto Serif TC', serif; font-size: 21px; color: var(--ink); margin-bottom: 10px; }
+  .quiz-desc { font-size: 13px; color: var(--ink-pale); line-height: 1.85; margin-bottom: 22px; }
+  .quiz-btn { background: var(--ink); color: var(--gold-light); border: 1px solid var(--gold); border-radius: 30px; padding: 12px 30px; font-family: 'Noto Sans TC', sans-serif; font-size: 14px; cursor: pointer; transition: all 0.2s; }
+  .quiz-btn:hover { background: var(--gold); color: var(--ink); }
+  .quiz-btn.secondary { background: transparent; color: var(--ink-soft); border-color: var(--border-strong); }
+  .quiz-btn.secondary:hover { background: var(--gold-faint); color: var(--ink); }
+  .quiz-progress-bar { display: flex; gap: 4px; margin-bottom: 24px; }
+  .quiz-progress-dot { flex: 1; height: 5px; border-radius: 3px; background: var(--gold-pale); transition: background 0.2s; }
+  .quiz-progress-dot.done { background: var(--gold); }
+  .quiz-progress-dot.current { background: var(--gold-light); }
+  .quiz-meta-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+  .quiz-q-num { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold-light); letter-spacing: 0.05em; }
+  .quiz-timer { font-family: 'IM Fell English', serif; font-size: 15px; color: var(--ink-pale); }
+  .quiz-timer.low { color: var(--crimson); }
+  .quiz-category-badge { display: inline-block; font-size: 10.5px; letter-spacing: 0.05em; padding: 3px 12px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); margin-bottom: 14px; }
+  .quiz-question { font-family: 'Noto Serif TC', serif; font-size: 16.5px; color: var(--ink); line-height: 1.85; margin-bottom: 22px; }
+  .quiz-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+  .quiz-option { text-align: left; background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; font-size: 14px; color: var(--ink-mid); cursor: pointer; transition: all 0.15s; font-family: 'Noto Sans TC', sans-serif; }
+  .quiz-option:hover:not(.locked) { border-color: var(--gold); }
+  .quiz-option.selected { border-color: var(--gold); background: var(--gold-faint); }
+  .quiz-option.correct { border-color: var(--teal-deep); background: rgba(26,74,62,0.1); }
+  .quiz-option.wrong { border-color: var(--crimson); background: rgba(122,32,32,0.07); }
+  .quiz-option.locked { cursor: default; }
+  .quiz-explain { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 14px 18px; font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; margin-bottom: 20px; display: none; }
+  .quiz-explain.visible { display: block; }
+  .quiz-actions { display: flex; justify-content: flex-end; }
+  .quiz-result-score { text-align: center; padding: 12px 0 28px; }
+  .quiz-result-num { font-family: 'IM Fell English', serif; font-size: 46px; color: var(--gold); display: block; }
+  .quiz-result-label { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-top: 6px; }
+  .quiz-cat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 24px; }
+  .quiz-cat-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; text-align: center; }
+  .quiz-cat-card.mastered { border-color: var(--teal-deep); background: rgba(26,74,62,0.06); }
+  .quiz-cat-card.weak { border-color: var(--crimson); background: rgba(122,32,32,0.05); }
+  .quiz-cat-name { font-size: 11px; color: var(--ink-soft); margin-bottom: 4px; }
+  .quiz-cat-status { font-size: 12px; font-weight: 500; color: var(--ink-pale); }
+  .quiz-cat-status.mastered-text { color: var(--teal-deep); }
+  .quiz-cat-status.weak-text { color: var(--crimson); }
+  .quiz-next-step { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 22px 26px; font-size: 13.5px; line-height: 1.9; margin-bottom: 24px; }
+  .quiz-next-step-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 10px; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .quiz-section { padding: 40px 20px 48px; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">亞比篩・洗魯雅的兒子</h1>
+  <span class="hero-name-en">Abishai · אֲבִישַׁי</span>
+  <p class="hero-slogan">「亞比篩對大衛說：<br>「現在神將你的仇敵交在你手裡，求你容我拿槍將他刺透在地，一刺就成，不用再刺。」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">掃羅末年至大衛作王時期，約主前十一至十世紀</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ESTP · 企業家型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">撒母耳記上 26 章 · 撒母耳記下 2, 3, 10, 16, 18, 20, 21, 23 章</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">大衛的外甥 · 約押之弟 · 三勇士之首</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他是那種在戰場上你最想擁有、在餐桌上你未必想坐在他旁邊的人——衝動、忠誠、殺伐果決，卻也因此數度讓大衛頭疼不已。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">掃羅末年至大衛作王時期，約主前十一至十世紀</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">大衛姊姊洗魯雅之子，約押與亞撒黑之兄弟</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">軍旅地位</span>
+        <div class="info-cell-value">大衛「三勇士」之首，統領三十勇士</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">撒上 26 章 · 撒下 2:18–24 · 3:30 · 10:10–14 · 16:9–12 · 18:2 · 20:6–10 · 21:15–17 · 23:18–19</div>
+      </div>
+    </div>
+
+    <p>亞比篩是大衛姊姊洗魯雅所生的三個兒子之一，與約押、亞撒黑同為兄弟，這個「洗魯雅的兒子們」家族在大衛的軍旅生涯中扮演著舉足輕重、卻也令大衛頗為頭疼的角色——他們驍勇善戰、對大衛忠心耿耿，卻也常常行事剛烈、不受節制，多次讓大衛陷入兩難。亞比篩最早的登場，是在大衛尚未登基、仍被掃羅追殺的曠野歲月：他隨大衛夜探掃羅營帳，見掃羅熟睡，立刻提議「一刺就成，不用再刺」，卻被大衛以「不可伸手害耶和華的受膏者」攔阻。</p>
+    <p>此後在大衛作王期間，亞比篩持續以驍勇的戰功與過度的忠誠交織出他的一生：他曾單獨殺敵三百人，位列大衛三勇士之首；他曾在約押與亞捫、亞蘭聯軍作戰時，率軍夾擊亞捫人，助兄長取得勝利；他也曾在示每咒罵大衛時，兩度請求殺死示每，都被大衛以「由他咒罵吧」攔住。這種一貫的模式——亞比篩總是第一個舉起刀劍，大衛總是第一個伸手攔阻——構成了這對舅甥關係中最鮮明的張力，也讓亞比篩成為聖經中「忠誠若不加上節制，可能帶來反效果」的典型形象。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從曠野夜探掃羅營帳，到晚年沙場上救大衛一命，亞比篩的一生，是一部關於「衝動的忠誠」如何在戰場上大放異彩、卻也在人際關係中屢屢碰壁的故事。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">初試鋒芒</span>
+        <div class="timeline-title">夜探掃羅營——「一刺就成，不用再刺」</div>
+        <div class="timeline-body">大衛仍被掃羅追殺時，亞比篩隨他夜探掃羅營帳，見掃羅熟睡，主動請求動手刺殺，卻被大衛以「不可伸手害耶和華的受膏者」攔阻，兩人只取走掃羅的槍與水瓶作為證明。</div>
+        <div class="timeline-ref">撒母耳記上 26:6–12</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">戰功彪炳</span>
+        <div class="timeline-title">三百人死在他槍下——三勇士之首</div>
+        <div class="timeline-body">亞比篩曾單獨舉槍殺敵三百人，因此戰功位列大衛三十勇士之首，是三勇士中戰績最為顯赫的一位，儘管未能與三位頂級勇士並列。</div>
+        <div class="timeline-ref">撒母耳記下 23:18–19</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">兩線夾擊</span>
+        <div class="timeline-title">亞捫亞蘭聯軍之戰——與約押分兵合擊</div>
+        <div class="timeline-body">亞捫人聯合亞蘭傭兵向以色列宣戰，約押與亞比篩分兵兩路，約押迎戰亞蘭人，亞比篩率軍迎戰亞捫人；兄弟二人約定彼此支援，最終擊退聯軍，展現出亞比篩在正規戰事中的統帥能力。</div>
+        <div class="timeline-ref">撒母耳記下 10:9–14</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">衝動再現</span>
+        <div class="timeline-title">示每咒罵大衛——兩度請求動手都被攔阻</div>
+        <div class="timeline-body">押沙龍叛變期間，示每一路咒罵逃亡中的大衛，亞比篩兩度請求「容我過去，割下他的頭」，大衛卻兩度以「由他咒罵吧，或者耶和華聽見我今日的苦難，就施恩於我」攔阻。</div>
+        <div class="timeline-ref">撒母耳記下 16:9–12 · 19:21–23</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">救主一命</span>
+        <div class="timeline-title">力戰非利士巨人——保住了大衛的性命</div>
+        <div class="timeline-body">大衛年邁時再次出戰非利士人，一名巨人後裔意圖殺害疲憊的大衛，亞比篩及時出手擊殺敵人，救了大衛一命；此後隨從勸大衛不可再出戰，恐「以色列的燈熄滅」，亞比篩的這次救援，成為他一生忠誠的最有力見證。</div>
+        <div class="timeline-ref">撒母耳記下 21:15–17</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">亞比篩的靈魂只有一個節奏：看見威脅，立刻出手——這種本能，在戰場上是無價的資產，在人際關係中卻常常成為代價高昂的衝動。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">⚔️</div>
+        <div>
+          <span class="soul-label">核心特質</span>
+          <div class="soul-title">即戰、即決、絕不遲疑的行動力</div>
+          <div class="soul-body">無論是夜探敵營、單槍匹馬殺敵三百，或是面對咒罵大衛的示每，亞比篩的第一反應永遠是立刻採取行動，這種毫不猶豫的果決，是他區別於其他人物最鮮明的特徵。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🛡️</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">對大衛毫無保留的忠誠，甚至願意主動承擔道德風險</div>
+          <div class="soul-body">亞比篩多次主動提議替大衛除去威脅，即便這意味著他要親自承擔可能違背神旨意的道德責任——這種「願意為主人擋子彈」的忠誠，儘管方式常有問題，其動機卻始終純粹。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">缺乏節制的衝動，常使他成為大衛必須管束的對象</div>
+          <div class="soul-body">無論是刺殺掃羅、殺死示每，或是後來與約押共謀殺害押尼珥（雖然主謀是約押），亞比篩的衝動性格反覆讓大衛陷入必須即刻攔阻他的處境，這也顯示出他在情緒管理上的明顯短板。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">深遠意義</span>
+          <div class="soul-title">他的忠誠與衝動，映照出大衛自身內斂而審慎的領導風格</div>
+          <div class="soul-body">正因為有亞比篩這樣衝動剛烈的性格作為對比，大衛「不可伸手害耶和華的受膏者」「由他咒罵吧」等審慎克制的回應，才顯得格外鮮明，兩人的互動構成了聖經中極具張力的領導者與部屬對照。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">亞比篩的故事提出了一個值得深思的問題：當一個人的忠誠強烈到願意隨時為你「擋刀」，卻同時缺乏審慎與節制時，這樣的忠誠究竟是祝福還是負擔？亞比篩對大衛的忠心從未動搖，他在戰場上屢建奇功，晚年更親手救了大衛一命；然而他同樣的性格特質，也一再讓他成為大衛必須費力攔阻的對象。這提醒我們，忠誠若缺乏智慧與節制的引導，其果效可能適得其反，甚至帶來不必要的罪咎與傷害。亞比篩終其一生都活在兄長約押的陰影之下，卻始終保持著自己鮮明而純粹的性格——這樣一位次要人物，恰恰成為聖經中探討「忠誠與節制如何並存」最生動的案例之一。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ESTP</span>
+      <div class="mbti-name">企業家型 · 衝在第一線的護衛者</div>
+      <div class="mbti-slogan">「他總是第一個舉起刀劍，而大衛總是第一個伸手攔住他。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Se · 外向感覺</span>
+          <div class="mbti-fn-body">他對眼前的威脅有著極其敏銳的即時反應能力，無論是夜探敵營或戰場對敵，總能迅速掌握當下情勢並立刻付諸行動，這種活在當下、即刻反應的特質貫穿他一生的戰功。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Ti · 內向思考</span>
+          <div class="mbti-fn-body">他在戰術層面展現出清晰的邏輯判斷，如與約押分兵夾擊亞捫亞蘭聯軍時精準的戰略部署，顯示他並非全然魯莽，而是在行動導向之下仍具備一定的戰術思考能力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Fe · 外向情感</span>
+          <div class="mbti-fn-body">他對大衛所受的羞辱（如示每的咒罵）表現出強烈的義憤與保護欲，這種在乎團體中他人感受、渴望立刻維護主人尊嚴的傾向，反映出第三功能外向情感的作用。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">他較少展現對長遠後果的深刻洞察與權衡，往往專注於眼前威脅的立即排除，而非大衛所考量的、關於神旨意與長遠聲譽的深層意涵，這正是他劣勢內向直覺的展現。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最重要的兩重關係，一重是他誓死效忠、卻總攔著他的舅舅大衛，另一重，是與他並肩作戰、卻性格更為殘忍的兄長約押。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">大</div>
+          <div class="relation-name">大衛王</div>
+          <div class="relation-type-badge">他誓死效忠、卻屢屢攔阻他衝動舉動的舅舅與君王</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">亞比篩對大衛的忠誠始終如一，從曠野歲月到晚年沙場，他多次主動請纓為大衛除去威脅，卻也一再被大衛以審慎克制的態度攔住；晚年他更親手救了大衛一命，這段關係展現出忠誠與節制之間微妙而深刻的張力。</div>
+          <div class="relation-ref">撒母耳記上 26:8–9 · 撒母耳記下 21:16–17</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">約</div>
+          <div class="relation-name">約押</div>
+          <div class="relation-type-badge">他的兄長，同為軍旅統帥，性格更為冷酷果決</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">亞比篩與約押是並肩作戰的兄弟，兩人性格相近卻程度有別——約押曾為報弟弟亞撒黑之仇而謀殺押尼珥，亞比篩雖同為「洗魯雅的兒子」之一同被大衛評為「性情剛烈」，但經文中並未直接記載他參與謀殺押尼珥的行動，兩兄弟的軍旅生涯始終緊密交織。</div>
+          <div class="relation-ref">撒母耳記下 3:30 · 10:10</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">示</div>
+          <div class="relation-name">示每</div>
+          <div class="relation-type-badge">他兩度想除去、卻被大衛攔阻的咒罵者</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">示每在大衛逃離耶路撒冷時一路咒罵羞辱，亞比篩兩度主動請求動手殺死示每以維護大衛的尊嚴，都被大衛以「由他咒罵吧」的態度攔阻，這段互動成為亞比篩衝動性格最鮮明的寫照。</div>
+          <div class="relation-ref">撒母耳記下 16:9–12 · 19:21–23</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">亞比篩兩度想動手、兩度被大衛攔阻的故事，成為聖經中探討「忠誠是否應當受神的旨意節制」極具張力的敘事案例。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「大衛對亞比篩說：由他咒罵吧！因為這是耶和華吩咐他的。……或者耶和華見我遭遇苦難，就施恩於我，以代替今日這人所加的咒罵。」</div>
+      <div class="verse-ref">撒母耳記下 16:11–12</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">忠誠若缺乏節制，可能與神的主權相牴觸</div>
+      <div class="theology-insight-body">亞比篩兩次主動請求替大衛除去威脅（掃羅、示每），大衛卻兩次以順服神主權的態度攔阻——這提醒我們，人性中急於「動手解決問題」的衝動，有時恰恰與信靠神掌管一切的信心背道而馳。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">審慎克制的領導風格，往往需要在部屬的熱血衝動中被磨煉出來</div>
+      <div class="theology-insight-body">大衛之所以能一再展現出審慎克制的領導智慧，某種程度上正是因為身邊有亞比篩這樣需要被攔阻的衝動部屬——真正成熟的領導力，往往在管理熱血下屬的過程中被反覆試煉、逐漸成形。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">純粹卻不受管束的忠誠，仍是聖約群體中珍貴卻需要被引導的資產</div>
+      <div class="theology-insight-body">亞比篩對大衛始終如一的忠心，儘管方式屢屢需要被糾正，卻也是大衛陣營中不可或缺的力量——這提醒我們，群體中熱血忠誠的成員，需要智慧的引導而非全然的壓制，才能發揮真正的益處。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你身邊有一位像亞比篩一樣、忠誠卻衝動的夥伴——或者你自己就是那個總想「立刻動手解決」的人——這一頁想邀請你重新思考忠誠與節制的關係。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">亞比篩的故事映照著每一個性情剛烈、行動力極強，卻常因缺乏節制而讓親近的人頭疼的人。他提醒我們反思：我們對所愛之人、所效忠對象的保護欲，是否有時反而超越了對方真正的意願與更深的智慧考量？同時，這個故事也提醒身處領導或引導位置的人，如何在不澆熄他人熱忱與忠誠的前提下，適時地攔阻不合宜的衝動行動，如同大衛對亞比篩的一貫態度。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你身邊是否有一位像亞比篩一樣，忠誠卻衝動、總想「立刻動手解決」問題的人？你如何與這樣的人相處？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">你自己是否也曾像亞比篩一樣，因為義憤或保護欲，而急於採取可能並不合宜的行動？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">大衛兩次以「由他咒罵吧」攔阻亞比篩，展現出對神主權的信靠。你在面對羞辱或威脅時，是選擇立刻反擊，還是願意信靠神的掌管？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">亞比篩晚年救了大衛一命，證明了他忠誠的價值。你如何看待一個人身上「衝動」與「忠誠」這兩種特質共存的複雜性？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 亞比篩</span>
+        <div class="gen-title">行動劇本：見威脅即刻出手，不假思索</div>
+        <div class="gen-body">他一生反覆展現出「看見威脅立刻採取行動」的性格模式，這種模式在戰場上屢建奇功，卻在人際關係與屬靈判斷上，多次需要大衛的攔阻與糾正。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 洗魯雅家族</span>
+        <div class="gen-title">延續：剛烈果決的家族性格</div>
+        <div class="gen-body">亞比篩與兄長約押、亞撒黑同樣展現出剛烈果決、行動力極強的家族性格特質，這種性格在約押身上更演化為冷酷無情，形成了大衛陣營中一支戰功彪炳卻也屢屢失控的軍事力量。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在這個故事中，體現在大衛始終沒有因亞比篩的衝動而否定或棄絕他，反而持續信任並倚重他的軍事才能，同時不斷以審慎的態度引導、攔阻他過度的行動。這提醒我們，真正健康的關係，容許彼此性格的差異與磨合，而非要求一方完全改變才能被接納。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把這位動不動就想「一刀解決」的舅甥護衛，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#有仇必報型戰友</span>
+      <span class="tag">#忠誠但控制不住手</span>
+      <span class="tag">#衝動與智慧的拉扯</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>亞比篩就是那種你希望有他在你這邊、卻不太敢讓他自己做決定的隊友。曠野裡看到熟睡的掃羅，他第一反應是「機會來了，一刺就成」；示每一路罵大衛，他兩次舉手說「讓我去把他解決掉」。</p>
+      <p>問題是，大衛從來沒有答應過。兩次都被攔下來，理由差不多：「這不是你該做的決定。」你可以想像亞比篩心裡的那種糾結——我明明是為了你好，你卻不讓我出手。</p>
+      <p>但這傢伙也不是嘴上說說而已。他真的殺過三百個敵人，真的在大衛年邁體衰、快被巨人殺死的那一刻，衝上去救了他一命。所以你很難簡單地說他是個「衝動的問題人物」——他同時也是那個真正在最後關頭挺身而出的人。</p>
+      <p>這種人在現實生活中也不少見：反應快、行動力強、對你死心塌地，但你永遠得替他踩剎車。聖經沒有簡單地批評他，也沒有簡單地讚美他，它只是把這個複雜的人，原原本本地放在那裡。</p>
+      <p style="font-weight:500; color:var(--ink);">忠誠不等於總是做對的事，有時候，最忠誠的表現，反而是願意聽從攔阻自己的那句話。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你身邊有一個像亞比篩一樣衝動卻忠誠的朋友或同事，試著理解他行動背後那份真實的關心，同時也溫柔地成為攔阻他的那個聲音。</p>
+      <p style="margin-top:12px;">如果你自己就是那個容易衝動行事的人，記得大衛的攔阻不是不信任你，而是希望你的忠誠能被更長遠的智慧引導。</p>
+      <p style="margin-top:12px;">面對羞辱與威脅時，立刻反擊未必是唯一的選項，有時候，信靠神的掌管，是更需要勇氣的選擇。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果你感到一股「立刻動手解決」的衝動，先停下來想一想：這真的是最好的方式嗎？</p>
+    </div>
+
+    <div class="insight-box">亞比篩的形象，在當代領導力與團隊管理研究中，常被引用作為「高執行力卻需要引導的團隊成員」的典型案例——這類成員的行動力與忠誠度是團隊的重要資產，但需要在明確的界線與智慧的引導下，才能發揮最大益處而不致造成失控的風險。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他沒有留下驚天動地的宣言，卻用一生的衝動與忠誠，反覆映照出大衛審慎克制的領導智慧，也留下了「忠誠需要節制引導」的深刻提醒。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">「三勇士之首」的軍事榮譽</div>
+          <div class="legacy-body">亞比篩單獨殺敵三百人的戰功，使他位列大衛三十勇士之首，成為聖經中個人英勇戰績最鮮明的記載之一。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">「由他咒罵吧」的信靠典範對照</div>
+          <div class="legacy-body">他兩度請求殺死示每卻被大衛攔阻的故事，成為聖經中「信靠神主權勝過立即報復」這一屬靈功課最生動的敘事對照。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">晚年救主性命的忠誠見證</div>
+          <div class="legacy-body">他在大衛年邁力衰、命懸一線之際及時出手相救，成為他一生忠誠最有力、也最無可爭議的見證。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「洗魯雅的兒子亞比篩幫助王攻擊非利士人，將他殺死。當日跟隨大衛的人向大衛起誓說：以後你不可再與我們一同出戰，恐怕熄滅以色列的燈。」</div>
+      <div class="final-verse-ref">撒母耳記下 21:17</div>
+    </div>
+
+    <div class="final-question">當你心中湧起「立刻動手解決」的衝動時，你願不願意像亞比篩一樣，最終仍然選擇聽從那攔阻你的智慧之聲？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 亞比篩 <span>אֲבִישַׁי</span> · 大衛的外甥 · 三勇士之首 · 忠誠的護衛者</div>
+
+<!-- 閱讀紀錄（localStorage，見 progress.js）：右下角標記已讀按鈕 -->
+<script src="progress.js"></script>
+<!-- 小測驗（localStorage，見 quiz.js）：僅在人物 JSON 有 quiz 欄位時作用 -->
+<script src="quiz-data.js"></script>
+<script src="quiz.js"></script>
+
+</body>
+</html>

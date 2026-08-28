@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>亞瑪撒 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── QUIZ ── */
+  .quiz-section { max-width: 860px; margin: 0 auto; padding: 56px 32px 64px; border-top: 2px solid var(--gold); }
+  .quiz-label { font-family: 'IM Fell English', serif; font-size: 12px; letter-spacing: 0.25em; color: var(--gold); display: block; margin-bottom: 12px; }
+  .quiz-title { font-family: 'Noto Serif TC', serif; font-size: 21px; color: var(--ink); margin-bottom: 10px; }
+  .quiz-desc { font-size: 13px; color: var(--ink-pale); line-height: 1.85; margin-bottom: 22px; }
+  .quiz-btn { background: var(--ink); color: var(--gold-light); border: 1px solid var(--gold); border-radius: 30px; padding: 12px 30px; font-family: 'Noto Sans TC', sans-serif; font-size: 14px; cursor: pointer; transition: all 0.2s; }
+  .quiz-btn:hover { background: var(--gold); color: var(--ink); }
+  .quiz-btn.secondary { background: transparent; color: var(--ink-soft); border-color: var(--border-strong); }
+  .quiz-btn.secondary:hover { background: var(--gold-faint); color: var(--ink); }
+  .quiz-progress-bar { display: flex; gap: 4px; margin-bottom: 24px; }
+  .quiz-progress-dot { flex: 1; height: 5px; border-radius: 3px; background: var(--gold-pale); transition: background 0.2s; }
+  .quiz-progress-dot.done { background: var(--gold); }
+  .quiz-progress-dot.current { background: var(--gold-light); }
+  .quiz-meta-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+  .quiz-q-num { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold-light); letter-spacing: 0.05em; }
+  .quiz-timer { font-family: 'IM Fell English', serif; font-size: 15px; color: var(--ink-pale); }
+  .quiz-timer.low { color: var(--crimson); }
+  .quiz-category-badge { display: inline-block; font-size: 10.5px; letter-spacing: 0.05em; padding: 3px 12px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); margin-bottom: 14px; }
+  .quiz-question { font-family: 'Noto Serif TC', serif; font-size: 16.5px; color: var(--ink); line-height: 1.85; margin-bottom: 22px; }
+  .quiz-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+  .quiz-option { text-align: left; background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; font-size: 14px; color: var(--ink-mid); cursor: pointer; transition: all 0.15s; font-family: 'Noto Sans TC', sans-serif; }
+  .quiz-option:hover:not(.locked) { border-color: var(--gold); }
+  .quiz-option.selected { border-color: var(--gold); background: var(--gold-faint); }
+  .quiz-option.correct { border-color: var(--teal-deep); background: rgba(26,74,62,0.1); }
+  .quiz-option.wrong { border-color: var(--crimson); background: rgba(122,32,32,0.07); }
+  .quiz-option.locked { cursor: default; }
+  .quiz-explain { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 14px 18px; font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; margin-bottom: 20px; display: none; }
+  .quiz-explain.visible { display: block; }
+  .quiz-actions { display: flex; justify-content: flex-end; }
+  .quiz-result-score { text-align: center; padding: 12px 0 28px; }
+  .quiz-result-num { font-family: 'IM Fell English', serif; font-size: 46px; color: var(--gold); display: block; }
+  .quiz-result-label { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-top: 6px; }
+  .quiz-cat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 24px; }
+  .quiz-cat-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; text-align: center; }
+  .quiz-cat-card.mastered { border-color: var(--teal-deep); background: rgba(26,74,62,0.06); }
+  .quiz-cat-card.weak { border-color: var(--crimson); background: rgba(122,32,32,0.05); }
+  .quiz-cat-name { font-size: 11px; color: var(--ink-soft); margin-bottom: 4px; }
+  .quiz-cat-status { font-size: 12px; font-weight: 500; color: var(--ink-pale); }
+  .quiz-cat-status.mastered-text { color: var(--teal-deep); }
+  .quiz-cat-status.weak-text { color: var(--crimson); }
+  .quiz-next-step { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 22px 26px; font-size: 13.5px; line-height: 1.9; margin-bottom: 24px; }
+  .quiz-next-step-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 10px; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .quiz-section { padding: 40px 20px 48px; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">亞瑪撒</h1>
+  <span class="hero-name-en">Amasa · עֲמָשָׂא</span>
+  <p class="hero-slogan">「約押左手拿住亞瑪撒的鬍子，要與他親嘴，說：<br>「我兄弟啊，你好啊！」……約押用刀刺入他的肚腹，他的腸子流在地上，沒有再刺他，就死了。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">大衛作王晚期，約主前十世紀</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ISFJ · 守衛者型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">撒母耳記下 17, 19, 20 章</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">大衛的外甥 · 押沙龍叛軍統帥 · 和解政策下的悲劇人物</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他是大衛家族內戰中最令人唏噓的角色之一——身為外甥卻站在叛軍一方，被赦免後又慘死在另一位表兄弟的刀下，他的一生濃縮了那場家族內戰所留下的所有裂痕與傷痕。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">大衛作王晚期，約主前十世紀</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">大衛姊妹亞比該之子（撒下 17:25），約押、亞比篩的表兄弟</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">軍旅地位</span>
+        <div class="info-cell-value">先為押沙龍叛軍統帥，後受大衛任命為以色列軍隊元帥</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">撒母耳記下 17:25 · 19:13 · 20:4–12</div>
+      </div>
+    </div>
+
+    <p>亞瑪撒與約押、亞比篩同樣是大衛家族的近親——經文記載他的母親亞比該，是大衛的姊妹（撒下 17:25，與拿八之妻同名，非同一人）。然而在押沙龍發動叛變、企圖奪取王位時，亞瑪撒卻選擇站在押沙龍一方，被任命為叛軍的統帥，取代了原本效忠大衛的約押。這個選擇，讓亞瑪撒的名字從一開始，就與大衛家族內部最深的裂痕緊緊纏繞在一起。</p>
+    <p>押沙龍叛變最終失敗，大衛在平定亂事、重返耶路撒冷的過程中，展現出令人意外的政治手腕：他不僅沒有處死亞瑪撒，反而親自向他表達和解之意，稱他為「骨肉之親」，並任命他取代約押成為軍隊元帥——這是大衛試圖修補猶大支派與王室之間裂痕、同時削弱約押勢力的重要政治舉措。然而，這個看似寬容的和解，卻沒有為亞瑪撒帶來平順的結局：當示巴發動新的叛變、亞瑪撒奉命召集猶大人卻未能如期完成任務，約押在追擊示巴途中與亞瑪撒相遇，假意親吻問安，卻趁機用刀刺穿他的肚腹，將他殘忍殺害——這場謀殺，為大衛的和解政策畫下了一個血腥而諷刺的句點。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從叛軍統帥到和解象徵，再到約押刀下的犧牲品，亞瑪撒的一生，是大衛家族內戰餘波未平最沉痛的縮影。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">叛軍統帥</span>
+        <div class="timeline-title">受押沙龍任命——取代約押統領叛軍</div>
+        <div class="timeline-body">押沙龍發動叛變、進佔耶路撒冷後，任命亞瑪撒取代約押，成為叛軍的統帥，這個任命本身也顯示出押沙龍試圖拉攏大衛家族近親、以鞏固自身正當性的政治考量。</div>
+        <div class="timeline-ref">撒母耳記下 17:25</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">叛亂平息</span>
+        <div class="timeline-title">叛變失敗——押沙龍死於約押之手</div>
+        <div class="timeline-body">押沙龍的叛變最終失敗，押沙龍本人被約押親手殺死，亞瑪撒所統領的叛軍隨之潰散，他個人的命運也隨著這場叛亂的失敗而懸而未決。</div>
+        <div class="timeline-ref">撒母耳記下 18:14–15</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">政治和解</span>
+        <div class="timeline-title">大衛不計前嫌——任命亞瑪撒為軍隊元帥</div>
+        <div class="timeline-body">大衛重返耶路撒冷前，主動向亞瑪撒表達和解之意，稱他為「骨肉之親」，並宣告要立他代替約押常作元帥；這個舉動既是修補猶大支派裂痕的政治手腕，也顯示出大衛試圖制衡約押勢力的意圖。</div>
+        <div class="timeline-ref">撒母耳記下 19:13–14</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">延誤失職</span>
+        <div class="timeline-title">召集猶大人逾期——為此後的悲劇埋下伏筆</div>
+        <div class="timeline-body">示巴發動新的叛變，大衛命亞瑪撒在三日之內召集猶大人前來平亂，亞瑪撒卻未能如期完成任務，大衛因此改派亞比篩率領約押的部下先行追擊，約押也隨行其中。</div>
+        <div class="timeline-ref">撒母耳記下 20:4–7</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">假意問安</span>
+        <div class="timeline-title">約押刀下的犧牲——「我兄弟啊，你好啊」</div>
+        <div class="timeline-body">亞瑪撒在基遍的大磐石那裡與約押一行人相遇，約押左手拿住他的鬍子作勢要親嘴問安，右手卻藏著刀，趁其不備刺穿他的肚腹，亞瑪撒當場身亡，約押藉此重新奪回軍隊的統帥地位。</div>
+        <div class="timeline-ref">撒母耳記下 20:8–10</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">亞瑪撒的悲劇不在於他做錯了什麼驚天動地的大事，而在於他兩度站在了錯誤的時間點上——先是選錯了陣營，後是誤信了一個不該信任的親吻。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🤝</div>
+        <div>
+          <span class="soul-label">核心特質</span>
+          <div class="soul-title">在政治動盪中，缺乏足夠的警覺與判斷力</div>
+          <div class="soul-body">無論是最初接受押沙龍的任命，或是後來未能提防約押的暗算，亞瑪撒都展現出某種對複雜政治局勢與人心險惡缺乏足夠警覺的特質，這最終成為他悲劇命運的關鍵因素。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💔</div>
+        <div>
+          <span class="soul-label">命運縮影</span>
+          <div class="soul-title">他的一生，濃縮了大衛家族內戰所留下的裂痕與傷痛</div>
+          <div class="soul-body">作為大衛的外甥卻捲入叛變、又在赦免後死於自家人刀下，亞瑪撒個人的遭遇，恰恰是那場撕裂以色列與大衛家族的內戰，最沉痛也最具體的縮影。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">致命弱點</span>
+          <div class="soul-title">對約押的假意問安毫無防備，最終付出了生命的代價</div>
+          <div class="soul-body">亞瑪撒完全沒有察覺到約押左手拿著他鬍子、右手藏著刀的殺機，這種毫無防備的信任，讓他成為聖經中「表面友善暗藏殺機」最悲慘的受害者之一。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">政治意義</span>
+          <div class="soul-title">他的任命與死亡，共同見證了大衛晚年權力結構的脆弱與動盪</div>
+          <div class="soul-body">大衛試圖藉由任命亞瑪撒來削弱約押勢力、修補家族裂痕，然而約押的謀殺行動，最終證明了大衛晚年對軍隊實際掌控力的有限，也預示了此後所羅門繼位前夕的權力鬥爭。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">亞瑪撒的故事提出了一個沉重的問題：一個善意的政治和解，是否足以真正癒合深刻的裂痕，還是終究會在權力與嫉妒的縫隙中，再次流出鮮血？大衛任命亞瑪撒取代約押，本是一個充滿智慧、試圖修補家族與國家裂痕的舉措，然而約押並未因此收手，反而用一個假意的問安，親手終結了這場和解的可能。亞瑪撒本人在整個故事中，幾乎沒有留下任何屬於自己的聲音或選擇——他先是被押沙龍任命，後又被大衛任命，最終在毫無防備中死於約押刀下，彷彿始終是那場家族內戰中，被動捲入、卻要承擔最沉重代價的一枚棋子。他的遭遇提醒我們，真正的和解需要的不只是位高權重者的一紙任命，更需要所有相關人心真誠的悔改與饒恕，否則善意的政治安排，終究可能在人心的黑暗處，被輕易地摧毀。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ISFJ</span>
+      <div class="mbti-name">守衛者型 · 捲入家族內戰的和解象徵</div>
+      <div class="mbti-slogan">「他先被叛軍任命，後被王室赦免，卻在毫無防備的一個問安中，付出了生命的代價。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Si · 內向感覺</span>
+          <div class="mbti-fn-body">他在整個敘事中展現出一種依循既定角色與任命行事的傾向，無論是接受押沙龍的統帥任命，或是後來履行大衛交付的召集任務，都反映出他傾向於在既有框架內盡忠職守的性格特質。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Fe · 外向情感</span>
+          <div class="mbti-fn-body">他似乎重視與家族、群體之間的關係和諧，這也可能是他在最初被押沙龍任命、後來又坦然接受大衛和解姿態時，展現出的一貫傾向。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ti · 內向思考</span>
+          <div class="mbti-fn-body">經文對他個人的內在思考過程著墨甚少，他更多是在外在情勢與他人任命的推動下行動，這種第三功能的內向思考在敘事中並未得到充分展現。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Ne · 外向直覺</span>
+          <div class="mbti-fn-body">他對約押可能懷有的殺機缺乏預見與警覺，未能洞察表面友善問安背後潛藏的危機，這正是他劣勢外向直覺最致命的展現，也直接導致了他的死亡。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最重要的兩重關係，一重是給了他和解與新生機會的舅舅大衛，另一重，是奪走他生命、也奪回統帥之位的表兄約押。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">大</div>
+          <div class="relation-name">大衛王</div>
+          <div class="relation-type-badge">赦免他叛變之罪、並任命他為元帥的舅舅</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">大衛在押沙龍叛亂平息後，主動向亞瑪撒表達和解之意，稱他為「骨肉之親」，任命他取代約押成為軍隊元帥，這個舉動展現出大衛試圖修補家族裂痕、同時制衡約押勢力的政治智慧，卻也間接為亞瑪撒招來殺身之禍。</div>
+          <div class="relation-ref">撒母耳記下 19:13</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">約</div>
+          <div class="relation-name">約押</div>
+          <div class="relation-type-badge">被他取代統帥之位、最終親手殺害他的表兄</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">約押因大衛任命亞瑪撒取代自己的元帥之位而心懷怨恨，最終藉著假意問安的方式，親手將亞瑪撒殺害，重新奪回軍隊的統帥地位；這場謀殺展現出約押性格中冷酷無情、不擇手段維護自身權力的一面。</div>
+          <div class="relation-ref">撒母耳記下 20:8–10</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">亞瑪撒之死，是聖經中「政治和解未必能癒合人心裂痕」最沉痛的敘事案例之一，也預示了此後大衛臨終前對約押罪責的清算。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「約押左手拿住亞瑪撒的鬍子，要與他親嘴。……約押用刀刺入他的肚腹，他的腸子流在地上，沒有再刺他，就死了。」</div>
+      <div class="verse-ref">撒母耳記下 20:9–10</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">和解需要的不只是位高權重者的一紙任命</div>
+      <div class="theology-insight-body">大衛任命亞瑪撒取代約押，本是充滿智慧的和解舉措，卻無法阻止約押心中的怨恨與殺機——這提醒我們，真正的和解需要涉及各方發自內心的悔改與饒恕，單靠外在的職位安排，未必能真正癒合深層的裂痕。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">罪咎若不及時清算，終將帶來更深遠的後果</div>
+      <div class="theology-insight-body">約押謀殺亞瑪撒的行動，此後成為大衛臨終遺言中特別交代所羅門必須處置的罪責之一（王上 2:5–6），這提醒我們，未受懲治的罪惡，往往會在歷史的長河中，繼續累積並帶來更深遠的後果。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">無辜的旁觀者，常在權力鬥爭中承受最沉重的代價</div>
+      <div class="theology-insight-body">亞瑪撒個人幾乎沒有留下任何主動的選擇或聲音，卻在兩次政治任命與一次謀殺中，承擔了整場家族內戰最直接的代價——這提醒我們正視，權力鬥爭中往往是相對無辜或被動的人物，承受著最沉重的傷害。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正身處一段表面和解、卻暗藏未解怨恨的關係中——這一頁想問你：那份和解，是真心的悔改，還是僅止於表面的安排？</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">亞瑪撒的故事映照著每一個曾經歷組織重組、人事更迭後，看似和解卻仍暗藏敵意的處境。他提醒我們反思：一紙和解的安排或任命，是否真的觸及了人心深處的怨恨與傷痛？同時，這個故事也提醒我們在面對表面友善的接近時，保持適當的警覺與智慧的分辨，正如亞瑪撒未能察覺約押問安背後的殺機，最終付出了生命的代價。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">在你的職場或群體經驗中，是否曾見過表面上的和解安排，最終仍因未解的怨恨而破裂？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">亞瑪撒對約押的問安毫無防備。你在人際關係中，是否也曾因過度信任而忽略了潛藏的危機信號？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">大衛的和解政策展現出智慧，卻未能阻止悲劇發生。你如何看待「善意的安排」與「人心真實的悔改」之間的落差？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">亞瑪撒幾乎沒有留下屬於自己的選擇，卻承受了整場衝突最沉重的代價。你是否曾在群體衝突中，感覺自己是那個被動承受代價的人？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 大衛家族</span>
+        <div class="gen-title">內戰劇本：叛變、平息、看似和解，實則暗流未止</div>
+        <div class="gen-body">押沙龍的叛變雖然平息，但家族內部的裂痕與怨恨並未因此真正化解，亞瑪撒的任命與死亡，正是這股暗流在表面和平之下持續發酵、最終再次爆發的具體展現。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 約押</span>
+        <div class="gen-title">延續：以暴力手段維護自身權力地位</div>
+        <div class="gen-body">約押此前已因報復亞比篩之仇而謀殺押尼珥，如今再度以謀殺的方式除去威脅自己地位的亞瑪撒，顯示出他一貫以暴力手段解決權力威脅的行事模式，這個模式最終也成為大衛臨終前特別囑咐清算的罪責。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在這個故事中，體現在大衛願意主動向曾經站在敵對陣營的亞瑪撒伸出和解之手，這份不計前嫌的胸襟，即便未能阻止悲劇發生，仍然展現出聖經中「饒恕與接納敵對者」的珍貴典範，提醒我們即便結果未必盡如人意，主動尋求和解仍然是值得堅持的道路。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把這位先被叛軍任命、後被王室赦免、最終死於一個假意問安的悲劇人物，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#政治和解的犧牲品</span>
+      <span class="tag">#一個親吻背後的殺機</span>
+      <span class="tag">#選錯陣營又被信錯人</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>亞瑪撒的故事，讀起來有一種說不出的悲涼。他先是站錯了邊——加入了押沙龍的叛軍，成了大衛的敵人；叛亂平息後，大衛卻展現出驚人的政治手腕，不但赦免他，還直接讓他當上了軍隊的最高統帥，取代了原本立下大功的約押。</p>
+      <p>如果故事在這裡結束，這會是一個關於「大人有大量、化敵為友」的溫馨故事。但約押不這麼想。他失去了自己辛苦打下來的位置，心裡的怨恨從沒消失，只是在等一個機會。</p>
+      <p>機會很快就來了。亞瑪撒在追擊叛軍的路上與約押相遇，約押左手抓住他的鬍子，做出要親吻問安的動作——這是當時中東文化裡表達親近與友好的方式——亞瑪撒完全沒有防備，下一秒，約押右手的刀已經刺進了他的肚子。</p>
+      <p>這個畫面之所以讓人不寒而慄，正是因為那個親吻的姿態，跟緊接著的殺機，形成了最刺骨的反差。你以為對方在向你示好，其實他早就決定要你的命。</p>
+      <p>亞瑪撒沒有留下什麼豪言壯語，他甚至沒有機會反應。他的故事提醒我們：政治上的和解，未必能真正化解人心裡的恨；表面上的友善，有時候恰恰是最危險的偽裝。</p>
+      <p style="font-weight:500; color:var(--ink);">一紙任命可以重新分配權力，卻未必能真正洗淨人心裡的怨恨——亞瑪撒的死，是這個殘酷現實最鮮血淋漓的證明。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你此刻正處於一段表面和解、實則暗流未止的關係或處境中，記得亞瑪撒的故事，多一分警覺與智慧的分辨。</p>
+      <p style="margin-top:12px;">如果你是那個握有權力、試圖促成和解的人，記得單靠職位或安排未必足夠，真正的和解需要觸及人心深處的悔改。</p>
+      <p style="margin-top:12px;">面對突如其來的親近與友善，保持基本的判斷力，不代表不信任人，而是對複雜人心保有應有的清醒。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果有人向你釋出善意，帶著感恩去接受，但也別忘了保持清醒的分辨力。</p>
+    </div>
+
+    <div class="insight-box">亞瑪撒的故事，在當代組織變革與權力交接研究中，經常被引用作為「表面和解未觸及深層怨恨」的警示案例——單純的職位調整或人事安排，若未能同時處理相關人員內心真實的情緒與怨懟，很可能在未來以更具破壞性的方式再次爆發。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他沒有留下任何屬於自己的名言或壯舉，卻用自己悲劇性的一生，見證了大衛晚年權力結構的脆弱，以及和解政策若缺乏人心真實悔改所面臨的侷限。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">政治和解侷限性的警示案例</div>
+          <div class="legacy-body">大衛任命亞瑪撒取代約押的和解舉措最終以悲劇收場，成為聖經中提醒讀者「和解需要觸及人心，而非僅止於職位安排」的重要案例。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">約押罪責清算的伏筆</div>
+          <div class="legacy-body">約押謀殺亞瑪撒的行動，此後被列入大衛臨終遺言中特別交代所羅門必須處置的罪責清單，成為串連撒母耳記與列王紀早期政治清算的重要伏筆。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">無辜捲入權力鬥爭者的縮影</div>
+          <div class="legacy-body">亞瑪撒個人幾乎沒有留下主動選擇的空間，卻承擔了整場家族內戰最沉重的代價，成為聖經中「權力鬥爭下無辜承受者」最令人唏噓的縮影之一。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「你知道我所行的，就是約押……他在太平之時流這二人的血，如在爭戰之時一樣……所以你要照你的智慧行，不容他白頭安然下陰間。」</div>
+      <div class="final-verse-ref">列王紀上 2:5–6（大衛臨終前論及約押謀殺亞瑪撒之罪）</div>
+    </div>
+
+    <div class="final-question">當表面的和解安排，遇上人心深處未曾真正化解的怨恨——你認為，真正的和解，究竟需要什麼才能發生？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 亞瑪撒 <span>עֲמָשָׂא</span> · 大衛的外甥 · 押沙龍叛軍統帥 · 和解的犧牲品</div>
+
+<!-- 閱讀紀錄（localStorage，見 progress.js）：右下角標記已讀按鈕 -->
+<script src="progress.js"></script>
+<!-- 小測驗（localStorage，見 quiz.js）：僅在人物 JSON 有 quiz 欄位時作用 -->
+<script src="quiz-data.js"></script>
+<script src="quiz.js"></script>
+
+</body>
+</html>

@@ -117,7 +117,8 @@ PERSON_BOOK = {
     # ── 撒母耳記下 ──
     "david": "2samuel", "mephibosheth": "2samuel", "rizpah": "2samuel", "bathsheba": "2samuel", "uriah": "2samuel",
     "nathan_prophet": "2samuel", "absalom": "2samuel", "tamar_david": "2samuel", "amnon": "2samuel", "shimei": "2samuel",
-    "ahithophel": "2samuel", "joab": "2samuel",
+    "ahithophel": "2samuel", "joab": "2samuel", "ziba": "2samuel", "abishai": "2samuel", "amasa": "2samuel",
+    "hushai": "2samuel", "barzillai": "2samuel", "sheba_bichri": "2samuel",
 
     # ── 列王紀上 ──
     "adonijah": "1kings", "solomon": "1kings", "queen_of_sheba": "1kings", "jeroboam": "1kings", "rehoboam": "1kings",

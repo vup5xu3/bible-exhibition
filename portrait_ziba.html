@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>洗巴 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── QUIZ ── */
+  .quiz-section { max-width: 860px; margin: 0 auto; padding: 56px 32px 64px; border-top: 2px solid var(--gold); }
+  .quiz-label { font-family: 'IM Fell English', serif; font-size: 12px; letter-spacing: 0.25em; color: var(--gold); display: block; margin-bottom: 12px; }
+  .quiz-title { font-family: 'Noto Serif TC', serif; font-size: 21px; color: var(--ink); margin-bottom: 10px; }
+  .quiz-desc { font-size: 13px; color: var(--ink-pale); line-height: 1.85; margin-bottom: 22px; }
+  .quiz-btn { background: var(--ink); color: var(--gold-light); border: 1px solid var(--gold); border-radius: 30px; padding: 12px 30px; font-family: 'Noto Sans TC', sans-serif; font-size: 14px; cursor: pointer; transition: all 0.2s; }
+  .quiz-btn:hover { background: var(--gold); color: var(--ink); }
+  .quiz-btn.secondary { background: transparent; color: var(--ink-soft); border-color: var(--border-strong); }
+  .quiz-btn.secondary:hover { background: var(--gold-faint); color: var(--ink); }
+  .quiz-progress-bar { display: flex; gap: 4px; margin-bottom: 24px; }
+  .quiz-progress-dot { flex: 1; height: 5px; border-radius: 3px; background: var(--gold-pale); transition: background 0.2s; }
+  .quiz-progress-dot.done { background: var(--gold); }
+  .quiz-progress-dot.current { background: var(--gold-light); }
+  .quiz-meta-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+  .quiz-q-num { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold-light); letter-spacing: 0.05em; }
+  .quiz-timer { font-family: 'IM Fell English', serif; font-size: 15px; color: var(--ink-pale); }
+  .quiz-timer.low { color: var(--crimson); }
+  .quiz-category-badge { display: inline-block; font-size: 10.5px; letter-spacing: 0.05em; padding: 3px 12px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); margin-bottom: 14px; }
+  .quiz-question { font-family: 'Noto Serif TC', serif; font-size: 16.5px; color: var(--ink); line-height: 1.85; margin-bottom: 22px; }
+  .quiz-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+  .quiz-option { text-align: left; background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; font-size: 14px; color: var(--ink-mid); cursor: pointer; transition: all 0.15s; font-family: 'Noto Sans TC', sans-serif; }
+  .quiz-option:hover:not(.locked) { border-color: var(--gold); }
+  .quiz-option.selected { border-color: var(--gold); background: var(--gold-faint); }
+  .quiz-option.correct { border-color: var(--teal-deep); background: rgba(26,74,62,0.1); }
+  .quiz-option.wrong { border-color: var(--crimson); background: rgba(122,32,32,0.07); }
+  .quiz-option.locked { cursor: default; }
+  .quiz-explain { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 14px 18px; font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; margin-bottom: 20px; display: none; }
+  .quiz-explain.visible { display: block; }
+  .quiz-actions { display: flex; justify-content: flex-end; }
+  .quiz-result-score { text-align: center; padding: 12px 0 28px; }
+  .quiz-result-num { font-family: 'IM Fell English', serif; font-size: 46px; color: var(--gold); display: block; }
+  .quiz-result-label { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-top: 6px; }
+  .quiz-cat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 24px; }
+  .quiz-cat-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; text-align: center; }
+  .quiz-cat-card.mastered { border-color: var(--teal-deep); background: rgba(26,74,62,0.06); }
+  .quiz-cat-card.weak { border-color: var(--crimson); background: rgba(122,32,32,0.05); }
+  .quiz-cat-name { font-size: 11px; color: var(--ink-soft); margin-bottom: 4px; }
+  .quiz-cat-status { font-size: 12px; font-weight: 500; color: var(--ink-pale); }
+  .quiz-cat-status.mastered-text { color: var(--teal-deep); }
+  .quiz-cat-status.weak-text { color: var(--crimson); }
+  .quiz-next-step { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 22px 26px; font-size: 13.5px; line-height: 1.9; margin-bottom: 24px; }
+  .quiz-next-step-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 10px; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .quiz-section { padding: 40px 20px 48px; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">洗巴</h1>
+  <span class="hero-name-en">Ziba · צִיבָא</span>
+  <p class="hero-slogan">「洗巴對王說：<br>「凡屬米非波設的都歸你了。」王說：「我謝謝你。」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">大衛作王時期，約主前十世紀</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ESTJ · 總經理型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">撒母耳記下 9 章 · 16 章 · 19 章</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">掃羅家的僕人 · 米非波設的管家 · 危機中的告密者</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他兩次出現在大衛面前，兩次都帶著資訊與資源，也兩次都精準地為自己爭取到了最大的利益。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">大衛作王時期，約主前十世紀</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">掃羅家原本的僕人，後受大衛之命管理米非波設的田產</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家庭</span>
+        <div class="info-cell-value">有十五個兒子、二十個僕人（撒下 9:10）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">撒母耳記下 9:2–12 · 16:1–4 · 19:17, 24–30</div>
+      </div>
+    </div>
+
+    <p>洗巴原是掃羅家的僕人，大衛作王後想起與約拿單所立的盟約，四處尋訪掃羅家是否還有倖存的後裔，可以施恩。洗巴被召來見大衛，如實稟告掃羅還有一個兒子米非波設存活，兩腳有殘疾，住在羅底巴。大衛派人接來米非波設，恩待他如同兒子，將掃羅所有的田產都歸還給他，並派洗巴帶著全家十五個兒子、二十個僕人，去替米非波設耕種田地、收取糧食。此時的洗巴，是一位盡忠職守的管家，替主人打理產業。</p>
+    <p>然而，故事在押沙龍叛變、大衛倉皇逃離耶路撒冷時出現了轉折。洗巴帶著一群驢、糧食、酒果迎上前來款待逃難中的大衛，卻在被問及米非波設下落時，捏造了一個對主人極為不利的說法：「他仍在耶路撒冷，因為他心裡說，以色列人今日必將我父的國歸還我。」大衛未經查證便相信了這番話，當場宣告：「凡屬米非波設的都歸你了。」洗巴一句話，換來了原本屬於主人的整份產業——直到大衛平安回京後，米非波設哭訴自己因殘疾而被洗巴欺哄留下，未能同行，大衛才將田地一分為二，各得一半，真相究竟如何，經文留下了耐人尋味的空白。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從盡忠管理到危機告密，洗巴的故事是一部關於「忠誠是否經得起利益考驗」的寫實劇本。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">初次登場</span>
+        <div class="timeline-title">如實稟告——「掃羅家還有一個兒子」</div>
+        <div class="timeline-body">大衛尋訪掃羅家倖存的後裔，召洗巴來問，洗巴如實稟告米非波設尚在羅底巴存活；大衛立刻差人接來米非波設，恩待他如同己出。</div>
+        <div class="timeline-ref">撒母耳記下 9:2–8</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">受命管家</span>
+        <div class="timeline-title">奉命耕種——十五子二十僕的家族管理者</div>
+        <div class="timeline-body">大衛將掃羅所有田產歸還米非波設，並命洗巴帶著全家十五個兒子、二十個僕人，替米非波設耕種收成，米非波設自己則常在王的席上吃飯。</div>
+        <div class="timeline-ref">撒母耳記下 9:9–12</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">危機投機</span>
+        <div class="timeline-title">迎駕獻糧——順勢誣陷主人的關鍵時刻</div>
+        <div class="timeline-body">押沙龍叛變，大衛倉皇逃離耶路撒冷；洗巴帶著糧食酒果迎上前來款待，卻在大衛詢問米非波設下落時，捏造米非波設意圖趁亂復辟掃羅家的說法，未經查證的大衛當場將米非波設的全部產業判給洗巴。</div>
+        <div class="timeline-ref">撒母耳記下 16:1–4</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">真相未明</span>
+        <div class="timeline-title">產業對半分——大衛平反時的耐人尋味判決</div>
+        <div class="timeline-body">大衛平安回京，米非波設哭訴自己因殘疾未能隨行、是被洗巴欺哄留下；大衛面對兩人各執一詞的說法，最終判決將田地一分為二，洗巴與米非波設各得一半，經文未明言究竟誰在說謊。</div>
+        <div class="timeline-ref">撒母耳記下 19:24–30</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">隨行護駕</span>
+        <div class="timeline-title">率眾隨大衛渡約旦河——危機中持續靠攏權力核心</div>
+        <div class="timeline-body">大衛平定叛亂返回時，洗巴率領十五個兒子、二十個僕人，搶先渡過約旦河迎接大衛，繼續展現他在權力更迭中總能站對位置的敏銳嗅覺。</div>
+        <div class="timeline-ref">撒母耳記下 19:17</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">洗巴不是聖經中最顯眼的反派，卻是最貼近現實人性的那種角色——他懂得在對的時間，說對的話，給對的人聽。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🔥</div>
+        <div>
+          <span class="soul-label">核心特質</span>
+          <div class="soul-title">敏銳的處境判斷力，總能精準抓住局勢的轉折點</div>
+          <div class="soul-body">無論是大衛初訪掃羅遺族時如實稟告，或是押沙龍叛變時迎駕獻糧，洗巴總是能準確判斷此刻誰握有實權、什麼樣的訊息與姿態最能討得歡心。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💼</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">務實高效的資源管理者，擅長經營與累積</div>
+          <div class="soul-body">他名下有十五個兒子、二十個僕人，這樣龐大的家族規模，顯示他本身就是一位善於經營、積累資源的能手，這種務實幹練的特質，也貫穿在他處理危機的方式中。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">在忠誠與利益的衝突中，選擇了對自己最有利的說法</div>
+          <div class="soul-body">當押沙龍叛變帶來混亂與不確定，洗巴沒有選擇為主人辯護或保持沉默，而是主動捏造對主人不利的說法，用一句話換取原屬於米非波設的整份產業——這揭示了他忠誠背後，可能始終潛藏著精於計算的利己動機。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">曖昧未明</span>
+          <div class="soul-title">經文刻意留下的懸案，拒絕給出簡單的道德定論</div>
+          <div class="soul-body">撒母耳記下十九章對洗巴與米非波設孰是孰非，並未給出明確的答案，大衛最終選擇各打五十大板的判決，也顯示出即便是智慧的君王，面對人心的複雜與利益的糾葛，同樣難以徹底看透真相。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">洗巴的故事提出了一個令人不安卻極其真實的問題：一個人平日盡忠職守的表現，是否就足以證明他在關鍵時刻不會為了利益而背叛？洗巴前期的形象是稱職的管家，後期卻在主人最脆弱、最需要為自己辯護的時刻，選擇了落井下石。經文沒有明確判定洗巴是否說謊，這種刻意的曖昧，恰恰逼著讀者去正視一個更深層的問題：在資訊不對稱、真相難以查證的處境中，我們是否也常常因為聽信了片面之詞，就對他人做出了不公的論斷？洗巴的形象提醒我們，真正的忠誠禁得起利益的考驗，而智慧的判斷者，也需要在資訊不完整時保留追問與查證的耐心，而非倉促論斷。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ESTJ</span>
+      <div class="mbti-name">總經理型 · 危機中的機會主義管家</div>
+      <div class="mbti-slogan">「他總是在對的時間出現在對的人面前，說出對自己最有利的那句話。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">他善於管理龐大的家族資源、把握現實局勢的變化，並迅速做出對自己最有利的決策與行動，這種高度務實、目標導向的行事風格，貫穿他每一次登場。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Si · 內向感覺</span>
+          <div class="mbti-fn-body">他熟悉掃羅家與米非波設的具體背景細節，能準確運用這些既有的資訊，在關鍵時刻編織出對自己有利、卻難以立即被拆穿的說法。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ne · 外向直覺</span>
+          <div class="mbti-fn-body">他能敏銳察覺局勢變化中潛藏的機會——無論是大衛初次詢問掃羅遺族，或是押沙龍叛變帶來的混亂，他都迅速看出其中對自己有利的可能性。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">他對米非波設可能遭受的不公，似乎缺乏足夠的內在道德約束，這種劣勢的內向情感，使他在利益與忠誠的衝突中，更容易傾向選擇對自己有利的一方。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最重要的關係，是與被他既服事、又可能出賣的主人米非波設，以及那位在資訊不對稱中做出艱難判決的大衛王。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">米</div>
+          <div class="relation-name">米非波設</div>
+          <div class="relation-type-badge">他名義上服事的主人，也是他可能誣陷的對象</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">洗巴受命管理米非波設的田產，本應盡忠職守；然而在押沙龍叛變時，他卻向大衛捏造米非波設意圖復辟的說法，換來了主人原本一半的產業——這段關係，成為聖經中「表面忠誠與內在動機是否一致」最耐人尋味的案例之一。</div>
+          <div class="relation-ref">撒母耳記下 9:9–12 · 16:1–4 · 19:24–30</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">大</div>
+          <div class="relation-name">大衛王</div>
+          <div class="relation-type-badge">他效力並巧妙迎合的君王</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">洗巴兩次在大衛面前登場，都準確拿捏了大衛此刻最需要的東西——尋訪掃羅遺族時的忠實回報，逃難途中的糧食供應與順耳的說法，大衛也因此兩次都給予他實質的回報，儘管後期的判決顯示大衛對真相的掌握，其實並不完全。</div>
+          <div class="relation-ref">撒母耳記下 9:2 · 16:1–4</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">洗巴的故事，提醒讀者聖經敘事並不總是提供簡單的善惡二分，有些真相，經文選擇留給讀者自己去追問與判斷。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「王對洗巴說：凡屬米非波設的都歸你了。洗巴說：我叩拜我主我王，願我在你眼前蒙恩。」</div>
+      <div class="verse-ref">撒母耳記下 16:4</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">עֶבֶד</span>
+        <div class="word-transliteration">eved · 僕人 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">洗巴多次被稱為「掃羅家的僕人」，這個字既可指字面上的奴僕身份，也帶有「效忠、服事」的意涵——他表面上持續效忠著他所服事的家族與君王，然而經文所呈現的行動，卻讓讀者不斷質疑這份效忠的真實深度。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這個稱謂的反覆使用，形成了一種微妙的反諷——一個被反覆稱為「僕人」的角色，卻在關鍵時刻做出了可能損害主人利益的舉動，這提醒讀者，身份頭銜與內在忠誠之間，並不必然劃上等號。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">表面忠誠不等同於內在真誠</div>
+      <div class="theology-insight-body">洗巴長期以「僕人」的身份服事掃羅家與米非波設，然而在危機時刻卻可能選擇了背叛與誣陷——這提醒我們，真正的忠誠需要經得起利益與危機的雙重考驗，而非僅止於表面的職分稱謂。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">資訊不對稱中的公正判斷是何等艱難</div>
+      <div class="theology-insight-body">大衛面對洗巴與米非波設兩種截然不同的說法，最終選擇各打五十大板的判決，這提醒我們，即便是智慧的掌權者，在資訊不完整、真相難辨的處境中，同樣可能做出不夠公正的決定，因此保持查證的耐心格外重要。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">危機是照見人心的鏡子</div>
+      <div class="theology-insight-body">押沙龍叛變的混亂處境，成了洗巴真實動機顯露的契機——聖經中許多次要人物的真實品格，往往正是在危機與壓力之下才被完整揭露出來。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正身處一段「表面忠誠、內心卻另有盤算」的關係中——這一頁想問你：你是那個洗巴，還是那個被誣陷的米非波設？</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">洗巴的故事映照著每一個在職場、家庭或群體關係中，曾經利用他人的脆弱或不在場，為自己謀取利益的處境。他提醒我們反思：我們平日展現的忠誠與盡責，是否真的經得起利益的考驗？當身邊的人陷入困境、無法為自己辯護時，我們是選擇維護他們，還是趁機為自己爭取好處？同時，洗巴的故事也提醒身居權柄的人，面對片面之詞時，保留查證與耐心判斷的空間，何等重要。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">在你過去的關係或職場經驗中，是否曾遇過像洗巴一樣，平日盡責、卻在關鍵時刻選擇利己的人？你當時如何應對？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">你是否曾在他人無法為自己辯護的情況下，利用資訊的不對稱，為自己爭取了不該屬於你的利益？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">大衛在真相不明時選擇各打五十大板。你在面對衝突雙方各執一詞時，通常如何做出判斷？是否給自己足夠的查證空間？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">洗巴的故事沒有明確的道德定論。你是否能接受聖經中有些敘事，就是刻意留白，邀請讀者自己持續追問？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 洗巴</span>
+        <div class="gen-title">危機劇本：在混亂中為自己爭取最大利益</div>
+        <div class="gen-body">他在押沙龍叛變帶來的混亂與不確定中，選擇捏造對主人不利的說法，換取原本不屬於自己的產業，展現出危機處境下人性趨利的一面。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 後世讀者</span>
+        <div class="gen-title">延續：如何面對「無法查證的指控」</div>
+        <div class="gen-body">洗巴與米非波設孰是孰非的懸案，成為後世讀者反思「面對片面之詞該如何判斷」的重要案例，提醒我們在做出論斷前，保留追問與查證的空間。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在這個故事中，體現在大衛即便面對真相不明的處境，仍然選擇了盡可能公平的折衷判決，而非偏聽偏信、全盤採納任何一方的說法。這提醒我們，即便無法徹底查明真相，仍可以選擇不偏頗地對待受爭議的雙方，這本身就是一種對公義的堅持。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把這位平日盡責、危機時刻卻精準爭取利益的管家，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#危機就是機會</span>
+      <span class="tag">#順風的時候忠誠，逆風的時候呢</span>
+      <span class="tag">#資訊落差裡的算計</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>洗巴這個人，如果放在現代職場，大概就是那種平常表現正常、開會準時、任務都完成，卻在公司出狀況、要裁員或重組的時候，第一個跑去跟老闆說『某某某其實一直有問題』的那種同事。</p>
+      <p>他不是完全的壞人，他只是——非常懂得看時機。大衛剛登基想找掃羅後人，他老實回報；大衛落難逃亡，他立刻送糧食、順便補一句對他有利的話。兩次，他都準確地讀懂了局勢，也準確地為自己爭取到了好處。</p>
+      <p>最讓人不舒服的地方在於，我們永遠不知道他說的是不是真話。米非波設事後哭訴自己是被騙、根本沒機會跟上大衛的隊伍；洗巴卻已經拿到了一半的產業。大衛最後選擇各打五十大板，某種程度上，也是在承認：這件事，他也查不清楚。</p>
+      <p>這個故事沒有給我們一個乾淨的結局，也沒有一個明確的『壞人下場』。它比較像是在提醒我們：這個世界很多衝突，本來就沒有那麼容易分辨誰對誰錯，尤其當其中一方沒有機會為自己辯護的時候。</p>
+      <p style="font-weight:500; color:var(--ink);">聖經不是童話故事，它誠實地呈現了人性中那種『危機就是機會』的算計，也誠實地承認，有些真相，連智慧的君王都查不清楚。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你此刻正處於一個必須為自己辯護、卻沒有足夠證據的處境——記得，米非波設的故事最終還是得到了部分的公道，不要因為一時說不清楚，就放棄為自己發聲。</p>
+      <p style="margin-top:12px;">如果你正是那個握有資訊優勢、可以選擇如何描述某個處境的人——洗巴的故事，是一面值得時常照一照的鏡子。</p>
+      <p style="margin-top:12px;">面對衝突中各執一詞的雙方，多一分耐心去查證，少一分急著論斷的衝動。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果你聽到一個對某人不利的片面之詞，試著多問一句：另一方會怎麼說？</p>
+    </div>
+
+    <div class="insight-box">洗巴的故事，在當代組織治理與人力資源管理領域，經常被引用作為「危機處境下人性動機檢驗」的案例——一個人平日的表現，未必能準確預測他在資源稀缺、局勢混亂時的真實選擇，這也是為什麼健全的組織文化，需要建立起不完全仰賴單一舉報或片面之詞的查證機制。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他沒有留下輝煌的功績，卻留下了一個讓後世讀者反覆咀嚼的懸案——忠誠與利益，究竟哪一個才是人心深處真正的驅動力？</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">「表面忠誠」的警示案例</div>
+          <div class="legacy-body">洗巴長期以僕人身份服事，卻在危機時刻可能選擇背叛主人，成為聖經中提醒讀者「忠誠需要經得起利益考驗」最鮮明的案例之一。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">刻意留白的敘事典範</div>
+          <div class="legacy-body">撒母耳記下對洗巴是否說謊未給出明確答案，成為聖經敘事技巧中「刻意留白、邀請讀者自行判斷」的重要範例。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">資訊不對稱下公正判斷的難題</div>
+          <div class="legacy-body">大衛面對洗巴與米非波設各執一詞的處境所做出的折衷判決，持續提醒後世讀者，公正的判斷需要建立在充分查證的基礎之上，而非倉促論斷。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「米非波設對王說：我主我王既平平安安地回宮，任憑洗巴都取了也可以。」</div>
+      <div class="final-verse-ref">撒母耳記下 19:30</div>
+    </div>
+
+    <div class="final-question">如果有一天，你也身處資訊不對稱、真相難辨的處境中，你希望自己是那個謹慎查證的判斷者，還是那個急於論斷的旁觀者？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 洗巴 <span>צִיבָא</span> · 掃羅家的僕人 · 米非波設的管家</div>
+
+<!-- 閱讀紀錄（localStorage，見 progress.js）：右下角標記已讀按鈕 -->
+<script src="progress.js"></script>
+<!-- 小測驗（localStorage，見 quiz.js）：僅在人物 JSON 有 quiz 欄位時作用 -->
+<script src="quiz-data.js"></script>
+<script src="quiz.js"></script>
+
+</body>
+</html>
