@@ -44,6 +44,12 @@ def hero(d):
         '\n      <span class="hero-meta-value">%s</span>'
         '\n    </div>' % (e(k), r(v)) for k, v in m
     )
+    # 只有人物 JSON 內有 "quiz" 欄位時，才在導覽列加上第九項連到 #quiz-section，
+    # 否則使用者得自己滑到頁面最底部才會發現小測驗（見 sec_quiz 的頁尾插入位置）。
+    quiz_nav = (
+        '\n  <a href="#quiz-section" class="nav-quiz">IX · 小測驗</a>'
+        if d.get("quiz") and d["quiz"].get("questions") else ""
+    )
     return """
 <!-- HERO -->
 <div class="hero">
@@ -66,11 +72,11 @@ def hero(d):
   <a href="#theology">V · 神學意義</a>
   <a href="#mirror">VI · 鏡照今日</a>
   <a href="#voice">VII · 現代轉譯</a>
-  <a href="#legacy">VIII · 歷史遺產</a>
+  <a href="#legacy">VIII · 歷史遺產</a>%s
 </nav>
 
 <div class="container">
-""" % (name, e(d["nameEn"]), e(d["original"]), r(d["hero"]["slogan"]), cells)
+""" % (name, e(d["nameEn"]), e(d["original"]), r(d["hero"]["slogan"]), cells, quiz_nav)
 
 
 def head(n, title, subtitle, epigraph):

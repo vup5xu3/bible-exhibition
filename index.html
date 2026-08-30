@@ -12,6 +12,8 @@
 
 <!-- 靜態人物資料（由 _build/make_static_data.py 產生，見該檔說明如何新增/修改人物） -->
 <script src="data.js"></script>
+<!-- 小測驗資料（同一批工具產生）：只用來判斷卡片要不要顯示「測驗」標記，實際作答在各人物頁進行 -->
+<script src="quiz-data.js"></script>
 <!-- 閱讀紀錄（localStorage，見 progress.js）：兩檔共用同一份 API -->
 <script src="progress.js"></script>
 
@@ -129,6 +131,7 @@
   .char-tags { display: flex; gap: 6px; flex-wrap: wrap; }
   .char-tag { font-size: 10px; letter-spacing: 0.1em; padding: 2px 9px; border-radius: 20px; border: 1px solid rgba(184,150,46,0.25); color: var(--gold); background: var(--gold-faint); }
   .char-tag.mbti { background: rgba(26,74,62,0.07); border-color: rgba(26,74,62,0.25); color: var(--teal-deep); font-family: 'IM Fell English', serif; letter-spacing: 0.05em; }
+  .char-tag.quiz { background: var(--gold); border-color: var(--gold); color: #fff; font-weight: 600; }
 
   .empty-state { text-align: center; padding: 80px 20px; color: var(--ink-pale); display: none; }
   .empty-state.visible { display: block; }
@@ -305,11 +308,13 @@
 // 人物資料：來自 data.js 內定義的 window.BIBLE_CHARACTERS（靜態陣列，無需網路請求）。
 // 要新增／修改人物，請見 _build/make_static_data.py 的說明。
 // ══════════════════════════════════════════
+const QUIZZES = window.BIBLE_QUIZZES || {};
 const CHARACTERS = (window.BIBLE_CHARACTERS || []).map(d => ({
   id: d.id, name: d.name, nameEn: d.name_en, avatar: d.avatar,
   desc: d.description, mbti: d.mbti, file: d.file_name,
   categories: d.categories || [], tags: d.tags || [], sort_order: d.sort_order,
-  epithet: d.epithet || "", tier: d.tier || "normal", book: d.book || null
+  epithet: d.epithet || "", tier: d.tier || "normal", book: d.book || null,
+  hasQuiz: !!(QUIZZES[d.id] && QUIZZES[d.id].length)
 }));
 
 // 聖經 66 卷書的顯示順序與「預估有情節人物數」（見 _build/books.py）
@@ -579,6 +584,7 @@ function renderCards() {
 
     const tagsHTML = (c.tags || []).map(t => `<span class="char-tag">${esc(t)}</span>`).join("");
     const mbtiTag  = c.mbti ? `<span class="char-tag mbti">${esc(c.mbti)}</span>` : "";
+    const quizTag  = c.hasQuiz ? `<span class="char-tag quiz" title="這位人物頁面下方有小測驗">📝 小測驗</span>` : "";
     const epithet  = c.epithet ? `<span class="char-epithet">${esc(c.epithet)}</span>` : "";
     const star     = c.tier === "major" ? `<span class="char-star" title="重要人物">★</span>` : "";
 
@@ -591,7 +597,7 @@ function renderCards() {
         </div>
       </div>
       <div class="char-desc">${esc(c.desc)}</div>
-      <div class="char-tags">${tagsHTML}${mbtiTag}</div>`;
+      <div class="char-tags">${tagsHTML}${mbtiTag}${quizTag}</div>`;
     wrap.appendChild(card);
     const badge = document.createElement("span");
     badge.className = "char-read-badge"; badge.title = "已讀"; badge.textContent = "✓";
