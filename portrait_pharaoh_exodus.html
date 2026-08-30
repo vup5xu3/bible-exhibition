@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>法老 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── QUIZ ── */
+  .quiz-section { max-width: 860px; margin: 0 auto; padding: 56px 32px 64px; border-top: 2px solid var(--gold); }
+  .quiz-label { font-family: 'IM Fell English', serif; font-size: 12px; letter-spacing: 0.25em; color: var(--gold); display: block; margin-bottom: 12px; }
+  .quiz-title { font-family: 'Noto Serif TC', serif; font-size: 21px; color: var(--ink); margin-bottom: 10px; }
+  .quiz-desc { font-size: 13px; color: var(--ink-pale); line-height: 1.85; margin-bottom: 22px; }
+  .quiz-btn { background: var(--ink); color: var(--gold-light); border: 1px solid var(--gold); border-radius: 30px; padding: 12px 30px; font-family: 'Noto Sans TC', sans-serif; font-size: 14px; cursor: pointer; transition: all 0.2s; }
+  .quiz-btn:hover { background: var(--gold); color: var(--ink); }
+  .quiz-btn.secondary { background: transparent; color: var(--ink-soft); border-color: var(--border-strong); }
+  .quiz-btn.secondary:hover { background: var(--gold-faint); color: var(--ink); }
+  .quiz-progress-bar { display: flex; gap: 4px; margin-bottom: 24px; }
+  .quiz-progress-dot { flex: 1; height: 5px; border-radius: 3px; background: var(--gold-pale); transition: background 0.2s; }
+  .quiz-progress-dot.done { background: var(--gold); }
+  .quiz-progress-dot.current { background: var(--gold-light); }
+  .quiz-meta-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+  .quiz-q-num { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold-light); letter-spacing: 0.05em; }
+  .quiz-timer { font-family: 'IM Fell English', serif; font-size: 15px; color: var(--ink-pale); }
+  .quiz-timer.low { color: var(--crimson); }
+  .quiz-category-badge { display: inline-block; font-size: 10.5px; letter-spacing: 0.05em; padding: 3px 12px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); margin-bottom: 14px; }
+  .quiz-question { font-family: 'Noto Serif TC', serif; font-size: 16.5px; color: var(--ink); line-height: 1.85; margin-bottom: 22px; }
+  .quiz-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+  .quiz-option { text-align: left; background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; font-size: 14px; color: var(--ink-mid); cursor: pointer; transition: all 0.15s; font-family: 'Noto Sans TC', sans-serif; }
+  .quiz-option:hover:not(.locked) { border-color: var(--gold); }
+  .quiz-option.selected { border-color: var(--gold); background: var(--gold-faint); }
+  .quiz-option.correct { border-color: var(--teal-deep); background: rgba(26,74,62,0.1); }
+  .quiz-option.wrong { border-color: var(--crimson); background: rgba(122,32,32,0.07); }
+  .quiz-option.locked { cursor: default; }
+  .quiz-explain { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 14px 18px; font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; margin-bottom: 20px; display: none; }
+  .quiz-explain.visible { display: block; }
+  .quiz-actions { display: flex; justify-content: flex-end; }
+  .quiz-result-score { text-align: center; padding: 12px 0 28px; }
+  .quiz-result-num { font-family: 'IM Fell English', serif; font-size: 46px; color: var(--gold); display: block; }
+  .quiz-result-label { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-top: 6px; }
+  .quiz-cat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 24px; }
+  .quiz-cat-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; text-align: center; }
+  .quiz-cat-card.mastered { border-color: var(--teal-deep); background: rgba(26,74,62,0.06); }
+  .quiz-cat-card.weak { border-color: var(--crimson); background: rgba(122,32,32,0.05); }
+  .quiz-cat-name { font-size: 11px; color: var(--ink-soft); margin-bottom: 4px; }
+  .quiz-cat-status { font-size: 12px; font-weight: 500; color: var(--ink-pale); }
+  .quiz-cat-status.mastered-text { color: var(--teal-deep); }
+  .quiz-cat-status.weak-text { color: var(--crimson); }
+  .quiz-next-step { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 22px 26px; font-size: 13.5px; line-height: 1.9; margin-bottom: 24px; }
+  .quiz-next-step-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 10px; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .quiz-section { padding: 40px 20px 48px; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">法老・出埃及記中的埃及王</h1>
+  <span class="hero-name-en">Pharaoh · פַּרְעֹה</span>
+  <p class="hero-slogan">「耶和華說：<br>「我要使法老的心剛硬，我也要在埃及地多行神蹟奇事。」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">出埃及事件，約主前十三世紀</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ENTJ · 統帥型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">出埃及記 1–15 章</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">埃及王 · 以色列的壓迫者 · 神拯救大能的映襯者</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他從未被賦予一個具體的名字，卻是整本出埃及記中，與耶和華正面對決次數最多的人類角色——一場人類帝國的意志，與創造宇宙之神的主權，反覆交鋒的漫長拉鋸。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">出埃及事件，約主前十三世紀（確切身份學界仍有爭議，常被認為是拉美西斯二世或其父塞提一世）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">埃及王，統治當時古代近東最強大的帝國之一</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">主要對手</span>
+        <div class="info-cell-value">摩西與亞倫，代表耶和華向他傳達「容我的百姓去」的信息</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">出埃及記 1–15 章</div>
+      </div>
+    </div>
+
+    <p>出埃及記開篇便描述了一位「不認識約瑟」的新王興起，他因懼怕以色列人口日益增多可能帶來的威脅，開始系統性地壓迫奴役以色列百姓，命令希伯來收生婆殺死所有新生的男嬰，甚至下令將男嬰丟進尼羅河。這位法老的統治，正是摩西出生、被棄、又被法老自己的女兒收養的歷史背景。四十年後，摩西奉耶和華差遣回到埃及，向法老傳達「容我的百姓去，在曠野向我守節」的信息，開啟了整卷出埃及記中最富戲劇張力的對抗篇章。</p>
+    <p>法老一次又一次拒絕摩西的請求，耶和華便藉著摩西的手，在埃及降下十災——血災、蛙災、虱災、蠅災、畜疫之災、瘡災、雹災、蝗災、黑暗之災，直至最沉痛的長子之災。經文反覆記載「法老的心剛硬」，同時也記載「耶和華使法老的心剛硬」，這兩種表述交織出現，構成了聖經中關於人的自由意志與神的主權如何並存運作，最深刻也最具爭議的神學文本之一。長子之災降下後，法老終於允准以色列人離開，卻在他們出發後又反悔，率領全部戰車追至紅海，最終在耶和華使紅海分開、以色列人步行過去之後，法老的軍隊隨後追入，海水重新合攏，將法老的全軍盡數淹沒——這場紅海的決定性勝利，成為以色列人此後世世代代傳頌敬拜耶和華的核心敘事。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從系統性壓迫奴役，到十災接連降下，再到紅海全軍覆沒，法老的故事，是一部關於「人的頑梗如何在神的主權面前層層瓦解」的完整敘事。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">系統壓迫</span>
+        <div class="timeline-title">不認識約瑟的新王——奴役以色列、下令殺害男嬰</div>
+        <div class="timeline-body">新王興起，因懼怕以色列人口增多帶來的威脅，開始系統性地奴役壓迫以色列百姓，並命令希伯來收生婆殺死所有新生的男嬰，甚至下令將男嬰丟進尼羅河，這正是摩西出生被棄的歷史背景。</div>
+        <div class="timeline-ref">出埃及記 1:8–22</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">初次對峙</span>
+        <div class="timeline-title">「容我的百姓去」——摩西亞倫的請求與法老的拒絕</div>
+        <div class="timeline-body">摩西奉耶和華差遣回到埃及，與亞倫一同向法老傳達「容我的百姓去，在曠野向我守節」的信息，法老卻反問「耶和華是誰，使我聽他的話」，不僅拒絕請求，還加重了以色列人的勞役。</div>
+        <div class="timeline-ref">出埃及記 5:1–9</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">十災接連</span>
+        <div class="timeline-title">心一次次剛硬——十災降下卻屢屢反悔的循環</div>
+        <div class="timeline-body">耶和華藉摩西之手在埃及降下十災，法老的心一次次剛硬，即便在災難最劇烈時暫時鬆動求饒，災難稍緩後又反悔不肯釋放以色列人，這個循環持續了整整九次災殃。</div>
+        <div class="timeline-ref">出埃及記 7–10 章</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">長子之災</span>
+        <div class="timeline-title">終於允准離開——最沉痛的第十災擊碎了法老的頑梗</div>
+        <div class="timeline-body">耶和華降下最後、也最沉痛的長子之災，擊殺埃及全地頭生的，包括法老自己的長子，法老終於在深夜召見摩西亞倫，允准以色列人立刻離開埃及。</div>
+        <div class="timeline-ref">出埃及記 12:29–32</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">紅海覆滅</span>
+        <div class="timeline-title">反悔追擊——全軍葬身於重新合攏的紅海</div>
+        <div class="timeline-body">以色列人出發後，法老的心再次反悔，率領全部戰車追至紅海；耶和華使紅海分開，以色列人步行過去，法老的軍隊隨後追入，海水重新合攏，將法老的全軍盡數淹沒，這場決定性的勝利成為以色列此後世代傳頌的核心敘事。</div>
+        <div class="timeline-ref">出埃及記 14:5–28</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">法老的性格核心，是一種將自身王權意志置於一切之上的頑梗——即便面對接連而來、日益劇烈的災難證據，他依然一次又一次選擇拒絕承認任何比自己更高的權柄。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">👑</div>
+        <div>
+          <span class="soul-label">核心特質</span>
+          <div class="soul-title">以絕對的王權意志，拒絕承認任何超越自己的權柄</div>
+          <div class="soul-body">法老最初的反應「耶和華是誰，使我聽他的話」，精準揭露了他性格的核心——作為當時古代近東最強大帝國的統治者，他將自身的王權意志視為至高無上，難以接受任何來自外部、尤其是外邦奴隸之神的挑戰。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💔</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">在災難的壓力下暫時屈服，災難稍緩便反悔剛硬</div>
+          <div class="soul-body">法老多次在災難最劇烈時暫時求饒、允諾釋放以色列人，卻在災難緩解後立刻反悔——這種缺乏持久悔改、僅憑一時痛苦而妥協的模式，反映出他內在意志的搖擺與不誠實。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚔️</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">即便面對明顯的失敗徵兆，依然選擇孤注一擲的軍事對抗</div>
+          <div class="soul-body">即便長子之災已徹底擊碎他的抵抗、允准以色列人離開，法老仍在事後反悔，率領全部戰車追擊，這種近乎自我毀滅的頑固姿態，展現出他性格中極端的不願認輸。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">神學功能</span>
+          <div class="soul-title">他的頑梗，成為神彰顯拯救大能最鮮明的舞台背景</div>
+          <div class="soul-body">經文明確指出，法老心剛硬的目的之一，正是要讓耶和華在埃及多行神蹟奇事、讓萬民知道耶和華的名——法老個人的頑固意志，最終成為神拯救大能得以充分彰顯的映襯背景。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">法老的故事，提出了聖經中最深刻也最富爭議的神學問題之一：當經文交替記載「法老的心剛硬」與「耶和華使法老的心剛硬」，這揭示了人的自由意志與神的主權，究竟以何種方式並存運作？從敘事的推進來看，前幾次災殃多記載「法老的心剛硬」，暗示這是他自己選擇的頑梗；然而隨著災殃加劇，經文逐漸轉為記載「耶和華使法老的心剛硬」，這種轉變暗示著，一個人若持續拒絕神多次清楚的啟示與呼召，其剛硬的心終將被神「任憑」，甚至被神使用，成為審判與拯救大能得以彰顯的工具。法老並非單純的反派角色，他是聖經敘事中一個令人不寒而慄的警示：持續拒絕真理的心，終將失去回轉的能力，而神的拯救計劃，即便面對最頑固的抵抗，也終將得勝。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ENTJ</span>
+      <div class="mbti-name">統帥型 · 拒絕承認更高權柄的帝國統治者</div>
+      <div class="mbti-slogan">「他一次次讓步，又一次次反悔，直到紅海的海水重新合攏，終結了他所有的頑梗。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">他系統性地策劃奴役以色列人的政策、部署軍隊追擊逃亡的百姓，展現出高度目標導向、講求實際控制與效率的外向思考特質，儘管這些目標本質上是壓迫性的。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">他敏銳意識到以色列人口增長可能帶來的長遠威脅，並據此制定壓迫政策，展現出對潛在威脅的深層洞察，儘管這份洞察最終導向了不義的決策。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Se · 外向感覺</span>
+          <div class="mbti-fn-body">他在災難最劇烈的當下屢屢做出即時反應——暫時求饒、允諾釋放——卻缺乏將這份反應轉化為持久決心的能力，顯示出對當下感官壓力的高度敏感卻缺乏深度整合。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">他對以色列百姓的苦難、乃至自己百姓所承受的十災之苦，幾乎沒有展現出任何發自內心的悔改或道德省思，這種對他人痛苦的麻木漠視，正顯示出他劣勢內向情感的極度匱乏。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最重要的關係，是與那位奉耶和華差遣、一次次前來傳達「容我的百姓去」信息的摩西，以及那位在災難背後真正掌權的耶和華。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">摩</div>
+          <div class="relation-name">摩西與亞倫</div>
+          <div class="relation-type-badge">他反覆拒絕、卻無法迴避的耶和華使者</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">摩西與亞倫一次又一次來到法老面前，傳達耶和華「容我的百姓去」的信息，並藉神蹟與十災向法老證明耶和華的大能；儘管法老屢屢拒絕、甚至加重迫害，這對兄弟始終堅定地執行耶和華交付的使命，直到法老最終被迫讓步。</div>
+          <div class="relation-ref">出埃及記 5:1 · 7:10 · 10:3</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">耶</div>
+          <div class="relation-name">耶和華</div>
+          <div class="relation-type-badge">真正掌權、藉法老的頑梗彰顯拯救大能的神</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">耶和華藉著十災與紅海的決定性勝利，向法老、向埃及全地、也向以色列百姓，充分彰顯了祂超越一切人間權柄的至高主權；法老的頑固抵抗，最終成為耶和華拯救大能得以被歷史永遠記念的映襯舞台。</div>
+          <div class="relation-ref">出埃及記 9:16 · 14:4, 17–18</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">法老的故事，是聖經中「人的自由意志」與「神的主權掌管」如何交織並存這一深奧神學命題，最具體也最富張力的敘事案例。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「我要使法老的心剛硬，他要追趕他們，我便在法老和他的全軍身上得榮耀；埃及人就知道我是耶和華。」</div>
+      <div class="verse-ref">出埃及記 14:4</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">כָּבֵד</span>
+        <div class="word-transliteration">kaved · 剛硬 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">字根含有「沉重、厚重」之意，用以形容法老的心「剛硬」，暗示著一種逐漸累積、逐漸僵化的心理狀態，而非單一瞬間的決定。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這個字根同時也用於形容「榮耀」（כָּבוֹד，kavod），兩者共享同一字根，這種語言上的呼應，暗示著法老心中越是剛硬抗拒，耶和華的榮耀便越是透過審判與拯救得以彰顯，形成一種深刻的神學反諷。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">人的持續悖逆，終將導向被神「任憑」的剛硬</div>
+      <div class="theology-insight-body">經文對「法老使自己的心剛硬」與「耶和華使法老的心剛硬」交替使用的敘事手法，提醒我們正視一個嚴肅的屬靈原則：持續拒絕神清楚啟示的心，終將失去回轉的能力，甚至被神用以成就審判的旨意。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">神的拯救大能，常在最頑固的抵抗中被充分彰顯</div>
+      <div class="theology-insight-body">耶和華明確宣告要「在法老和他的全軍身上得榮耀」，這提醒我們，神的拯救工作，往往不是在毫無阻力的環境中完成，而是在克服最強大、最頑固的抵抗過程中，得到最充分的彰顯。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">十災與紅海的勝利，構成以色列信仰的核心敘事根基</div>
+      <div class="theology-insight-body">出埃及事件此後成為整本舊約反覆提及、被視為耶和華拯救大能最重要的歷史根基，法老的角色雖是反派，卻不可或缺地構成了這個核心敘事的必要部分。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">法老代表著壓迫神百姓、抵擋神旨意、卻終究在神的審判與拯救大能面前徹底潰敗的世俗權勢</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">聖經反覆呈現「屬世權勢抵擋神旨意，終將在神的救贖計劃面前徹底失敗」這一貫穿救贖史的主題模式</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">啟示錄中所描繪那終將被神徹底審判、潰敗的一切抵擋神旨意的世俗權勢與屬靈仇敵，其最終命運，正如法老的全軍葬身紅海一般，徹底而確定（啟 19:19–21）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正一次次在壓力下暫時屈服、壓力稍緩便故態復萌——這一頁想邀請你，正視法老式頑梗背後真正的危險。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">法老的故事映照著每一個曾在壓力或危機下暫時做出正確決定、卻在壓力緩解後又故態復萌的處境——無論是職場中的道德妥協、關係中的悔改承諾，或是任何形式「痛苦時求饒、舒緩時反悔」的循環模式。他提醒我們反思：我們是否也曾多次清楚意識到自己需要改變的地方，卻一次又一次選擇拒絕，直到內心逐漸失去回轉的能力？</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">法老多次在災難最劇烈時暫時求饒，卻在災難緩解後反悔。你是否也曾有過類似「壓力下承諾改變、壓力一過就故態復萌」的模式？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">法老最初反問「耶和華是誰」，展現出對更高權柄的拒絕承認。你生命中是否也存在某個領域，你一直拒絕承認自己需要順服比自己更高的權柄或標準？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">法老即便面對明顯的失敗徵兆，依然選擇孤注一擲的軍事對抗。你是否曾在明知不可為的情況下，因不願認輸而做出更深陷困境的選擇？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">經文提醒我們，持續拒絕神清楚的啟示，可能導致心逐漸失去回轉的能力。你如何看待「持續悖逆」與「逐漸剛硬」之間的因果關係？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 法老</span>
+        <div class="gen-title">頑梗劇本：一次次拒絕、一次次反悔的循環</div>
+        <div class="gen-body">法老在十災接連降下的過程中，反覆展現出「災難中屈服、災難緩解便反悔」的模式，這種缺乏持久悔改的心理狀態，最終導向了紅海全軍覆沒的毀滅性結局。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 以色列百姓</span>
+        <div class="gen-title">對照：從法老的頑梗中，見證耶和華拯救的信實</div>
+        <div class="gen-body">以色列百姓親眼見證了法老的頑梗如何在耶和華的十災與紅海的大能面前徹底瓦解，這段歷史此後成為他們世世代代傳頌敬拜耶和華、堅固信心的核心敘事根基。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在這個故事中，體現在耶和華即便面對法老一次又一次的悖逆與反覆，仍然持續透過摩西向他發出清楚的呼召與警告，給予他多次悔改的機會，直到審判無可避免地降臨。這提醒我們，神的恩慈給予人充分悔改的空間，然而持續拒絕這份恩慈的心，終將自食其果。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把這位一次次讓步又一次次反悔、最終全軍覆沒於紅海的埃及王，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#嘴上答應心裡不改</span>
+      <span class="tag">#十次機會都不肯回頭</span>
+      <span class="tag">#輸不起的孤注一擲</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>法老的故事，讀起來就像一場漫長的心理拉鋸戰。摩西一次又一次走進王宮，說：『讓我的百姓走。』法老一次又一次拒絕，然後，一場接一場的災難降臨——水變成血、青蛙滿地、蝗蟲吃光莊稼……</p>
+      <p>最讓人無語的地方在於，法老不是完全不受影響。每次災難最痛的時候，他都會鬆口，說『好，你們走吧，只求你們為我禱告』——結果災難一停，他立刻反悔，一切打回原點。這種戲碼，重複了整整九次。</p>
+      <p>直到第十災，他的長子死了，他才真的鬆手了。以色列人終於出發。結果呢？沒過多久，法老又反悔了，帶著整支軍隊追上去。這已經不是理性判斷了，這是一種輸不起、不甘心認錯的固執。</p>
+      <p>故事的結局，你大概也知道：紅海分開，以色列人走過去了，法老的軍隊追進去，海水合起來，全軍覆沒。</p>
+      <p>法老這個角色最讓人不寒而慄的地方，不是他有多壞，而是他一次又一次收到清楚的警告，卻一次又一次選擇不改變——直到他再也沒有機會回頭。</p>
+      <p style="font-weight:500; color:var(--ink);">一顆持續說『不』的心，久而久之，可能連自己都聽不見那個提醒自己該回頭的聲音。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你發現自己也在某件事上，一直是『壓力來就妥協、壓力過就反悔』的模式，法老的故事，是一個值得警醒的提醒。</p>
+      <p style="margin-top:12px;">拒絕改變的心，不會永遠保持柔軟——持續的悖逆，可能讓一顆心逐漸失去回轉的能力。</p>
+      <p style="margin-top:12px;">神的拯救大能，往往在最頑固的抵抗中，得到最徹底的彰顯。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，檢視一下自己是否有某個「說了要改、卻一直沒真的改」的地方，趁還來得及，認真面對它。</p>
+    </div>
+
+    <div class="insight-box">法老一次次在壓力下暫時屈服、壓力緩解便反悔的心理模式，在當代行為心理學研究中，常被引用作為「情境性順服」（situational compliance）而非「真實態度轉變」的經典案例——研究顯示，僅因外在壓力而暫時改變行為、卻未觸及內在信念與價值觀的改變，往往難以形成持久而真實的轉化。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他沒有留下任何值得傳頌的美德，卻用自己一次又一次的頑梗與最終的徹底潰敗，成為整本聖經中神拯救大能最鮮明、也最被反覆傳頌的映襯者。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">「心剛硬」神學命題的核心敘事案例</div>
+          <div class="legacy-body">他的故事成為聖經中探討人的自由意志與神的主權如何交織並存這一深奧神學命題，最具體也最常被引用的敘事案例。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">出埃及事件的核心對照角色</div>
+          <div class="legacy-body">十災與紅海的決定性勝利，此後成為以色列信仰中最重要的歷史根基敘事，法老作為這場救贖歷史的對照角色，其地位不可或缺。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">「屬世權勢終將潰敗於神旨意」的預表原型</div>
+          <div class="legacy-body">他壓迫神百姓、抵擋神旨意、最終徹底潰敗的命運，成為聖經中反覆出現「屬世權勢終將在神的審判面前潰敗」這一主題的重要原型，並在啟示錄的末世異象中得到終極的呼應。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「耶和華在埃及人前這樣使摩西為大，並法老臣僕和百姓的眼中也看他為大。……耶和華將埃及人推翻在海中。」</div>
+      <div class="final-verse-ref">出埃及記 11:3 · 14:27</div>
+    </div>
+
+    <div class="final-question">當清楚的提醒一次又一次向你發出，你會像法老一樣，在壓力下暫時屈服卻始終不肯真正回轉，還是願意在還有機會的時候，徹底轉向？</div>
+  </div>
+
+</div>
+
+<div class="quiz-section" id="quiz-section" data-person-id="pharaoh_exodus" data-quiz-total="9">
+  <span class="quiz-label">小測驗 · 檢測你的熟悉程度</span>
+  <h3 class="quiz-title">你對「法老」的故事，掌握了多少？</h3>
+  <p class="quiz-desc" id="quiz-desc">共 9 題，涵蓋文脈、關鍵字、結構、神學主題、常見誤解與應用，每題都有時間限制——答錯或答得淺沒關係，測驗結束後會告訴你哪些地方值得回頭再讀一次。</p>
+  <button class="quiz-btn" id="quiz-start-btn" type="button">開始測驗</button>
+  <div id="quiz-play"></div>
+  <div id="quiz-result"></div>
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 法老 <span>פַּרְעֹה</span> · 埃及王 · 神拯救大能的映襯者</div>
+
+<!-- 閱讀紀錄（localStorage，見 progress.js）：右下角標記已讀按鈕 -->
+<script src="progress.js"></script>
+<!-- 小測驗（localStorage，見 quiz.js）：僅在人物 JSON 有 quiz 欄位時作用 -->
+<script src="quiz-data.js"></script>
+<script src="quiz.js"></script>
+
+</body>
+</html>

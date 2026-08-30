@@ -97,6 +97,8 @@ PERSON_BOOK = {
 
     # ── 出埃及記／民數記 ──
     "moses": "exodus", "jethro": "exodus", "aaron": "exodus", "miriam": "exodus",
+    "pharaoh_exodus": "exodus", "shiphrah_puah": "exodus", "jochebed": "exodus",
+    "pharaohs_daughter": "exodus", "bezalel": "exodus", "hur": "exodus",
     "korah": "numbers", "balaam": "numbers", "balak": "numbers", "amminadab": "numbers", "nahshon": "numbers", "caleb": "numbers",
 
     # ── 約書亞記 ──

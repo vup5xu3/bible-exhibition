@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>法老的女兒 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── QUIZ ── */
+  .quiz-section { max-width: 860px; margin: 0 auto; padding: 56px 32px 64px; border-top: 2px solid var(--gold); }
+  .quiz-label { font-family: 'IM Fell English', serif; font-size: 12px; letter-spacing: 0.25em; color: var(--gold); display: block; margin-bottom: 12px; }
+  .quiz-title { font-family: 'Noto Serif TC', serif; font-size: 21px; color: var(--ink); margin-bottom: 10px; }
+  .quiz-desc { font-size: 13px; color: var(--ink-pale); line-height: 1.85; margin-bottom: 22px; }
+  .quiz-btn { background: var(--ink); color: var(--gold-light); border: 1px solid var(--gold); border-radius: 30px; padding: 12px 30px; font-family: 'Noto Sans TC', sans-serif; font-size: 14px; cursor: pointer; transition: all 0.2s; }
+  .quiz-btn:hover { background: var(--gold); color: var(--ink); }
+  .quiz-btn.secondary { background: transparent; color: var(--ink-soft); border-color: var(--border-strong); }
+  .quiz-btn.secondary:hover { background: var(--gold-faint); color: var(--ink); }
+  .quiz-progress-bar { display: flex; gap: 4px; margin-bottom: 24px; }
+  .quiz-progress-dot { flex: 1; height: 5px; border-radius: 3px; background: var(--gold-pale); transition: background 0.2s; }
+  .quiz-progress-dot.done { background: var(--gold); }
+  .quiz-progress-dot.current { background: var(--gold-light); }
+  .quiz-meta-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+  .quiz-q-num { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold-light); letter-spacing: 0.05em; }
+  .quiz-timer { font-family: 'IM Fell English', serif; font-size: 15px; color: var(--ink-pale); }
+  .quiz-timer.low { color: var(--crimson); }
+  .quiz-category-badge { display: inline-block; font-size: 10.5px; letter-spacing: 0.05em; padding: 3px 12px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); margin-bottom: 14px; }
+  .quiz-question { font-family: 'Noto Serif TC', serif; font-size: 16.5px; color: var(--ink); line-height: 1.85; margin-bottom: 22px; }
+  .quiz-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+  .quiz-option { text-align: left; background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; font-size: 14px; color: var(--ink-mid); cursor: pointer; transition: all 0.15s; font-family: 'Noto Sans TC', sans-serif; }
+  .quiz-option:hover:not(.locked) { border-color: var(--gold); }
+  .quiz-option.selected { border-color: var(--gold); background: var(--gold-faint); }
+  .quiz-option.correct { border-color: var(--teal-deep); background: rgba(26,74,62,0.1); }
+  .quiz-option.wrong { border-color: var(--crimson); background: rgba(122,32,32,0.07); }
+  .quiz-option.locked { cursor: default; }
+  .quiz-explain { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 14px 18px; font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; margin-bottom: 20px; display: none; }
+  .quiz-explain.visible { display: block; }
+  .quiz-actions { display: flex; justify-content: flex-end; }
+  .quiz-result-score { text-align: center; padding: 12px 0 28px; }
+  .quiz-result-num { font-family: 'IM Fell English', serif; font-size: 46px; color: var(--gold); display: block; }
+  .quiz-result-label { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-top: 6px; }
+  .quiz-cat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 24px; }
+  .quiz-cat-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; text-align: center; }
+  .quiz-cat-card.mastered { border-color: var(--teal-deep); background: rgba(26,74,62,0.06); }
+  .quiz-cat-card.weak { border-color: var(--crimson); background: rgba(122,32,32,0.05); }
+  .quiz-cat-name { font-size: 11px; color: var(--ink-soft); margin-bottom: 4px; }
+  .quiz-cat-status { font-size: 12px; font-weight: 500; color: var(--ink-pale); }
+  .quiz-cat-status.mastered-text { color: var(--teal-deep); }
+  .quiz-cat-status.weak-text { color: var(--crimson); }
+  .quiz-next-step { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 22px 26px; font-size: 13.5px; line-height: 1.9; margin-bottom: 24px; }
+  .quiz-next-step-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 10px; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .quiz-section { padding: 40px 20px 48px; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">法老的女兒</h1>
+  <span class="hero-name-en">Pharaoh's Daughter · בַּת־פַּרְעֹה</span>
+  <p class="hero-slogan">「她打開箱子，看見那孩子。孩子哭了，她就可憐他，說：<br>「這是希伯來人的一個孩子。」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">法老下令殺害希伯來男嬰時期，約主前十三世紀</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ISFP · 探險家型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">出埃及記 2:5–10</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">埃及公主 · 收養摩西的養母 · 憐憫勝過王命的抵抗者</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">她是整個出埃及記敘事中最令人意外的角色之一——身為下令屠殺希伯來男嬰的法老之女，她卻在河邊撿起了一個哭泣的希伯來嬰兒，並選擇違背父親的命令，將他收留、扶養成人。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">法老下令殺害希伯來男嬰時期，約主前十三世紀</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">埃及法老的女兒，經文未記載其確切名字（拉比傳統與部分後世文獻稱她為比提雅，Bithiah）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">行動地點</span>
+        <div class="info-cell-value">尼羅河邊</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">出埃及記 2:5–10 · 使徒行傳 7:21</div>
+      </div>
+    </div>
+
+    <p>法老的女兒登場於整卷出埃及記最富戲劇張力的場景之一：她下到尼羅河邊洗澡，宮女們在河邊行走，她卻在蘆荻中看見了一個蒲草箱。打開箱子，裡面是一個正在哭泣的男嬰——這正是約基別在法老滅絕令下，孤注一擲放入河中的親生兒子摩西。經文用一句極其簡潔卻意義深遠的話，描述了她的反應：「孩子哭了，她就可憐他。」她立刻辨識出這是一個希伯來人的孩子，這意味著，按照她父親剛頒布的命令，這個孩子本應被處死；然而她的憐憫之心，超越了對王命的順從，也超越了埃及與希伯來之間深刻的民族與奴役界線。</p>
+    <p>更值得注意的是，法老的女兒不僅選擇了收留這個孩子，還在米利暗的提議下，同意雇用一位希伯來婦人（正是孩子的親生母親約基別）前來哺乳照顧他，並支付薪水作為報酬——她展現出一種不僅止於一時憐憫、更願意付出實際資源與代價的持續關懷。當孩子斷奶後，約基別將他帶回交給法老的女兒，她正式收養了這個孩子，並「給他起名叫摩西，意思說：因我把他從水裡拉出來」。使徒行傳七章更進一步指出，摩西「學了埃及人一切的學問，說話行事都有才能」，這意味著法老的女兒此後為摩西提供的，不僅是生命的保全，更是埃及王室最頂尖的教育資源——這一切，都為此後神揀選摩西成為拯救以色列的偉大領袖，預備了關鍵的成長背景。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從河邊一個憐憫的瞬間，到正式收養並提供王室教育，法老的女兒的故事，展現出一個人的良知如何能夠超越自己所處的體制與家族命令。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">河邊相遇</span>
+        <div class="timeline-title">發現蒲草箱——「孩子哭了，她就可憐他」</div>
+        <div class="timeline-body">法老的女兒下到尼羅河邊洗澡，在蘆荻中發現了約基別放置的蒲草箱，打開一看是個哭泣的男嬰，經文記載「她就可憐他」，這份憐憫之心成為整個故事的轉折點。</div>
+        <div class="timeline-ref">出埃及記 2:5–6</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">違命收留</span>
+        <div class="timeline-title">「這是希伯來人的一個孩子」——明知身份仍選擇收留</div>
+        <div class="timeline-body">法老的女兒立刻辨識出這是一個希伯來人的孩子，這意味著按父親的命令，這個孩子本應被處死；然而她的憐憫超越了對王命的順從，選擇了收留這個孩子。</div>
+        <div class="timeline-ref">出埃及記 2:6</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">雇用奶媽</span>
+        <div class="timeline-title">接受米利暗的提議——雇用希伯來婦人哺育孩子</div>
+        <div class="timeline-body">米利暗上前提議去叫一位希伯來婦人前來奶孩子，法老的女兒欣然應允，並支付薪水作為報酬，這位受雇的婦人正是孩子的親生母親約基別。</div>
+        <div class="timeline-ref">出埃及記 2:7–9</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">正式收養</span>
+        <div class="timeline-title">孩子斷奶後——正式收養並取名摩西</div>
+        <div class="timeline-body">孩子斷奶後，約基別將他帶回交給法老的女兒，她正式收養了這個孩子，並為他取名摩西，「意思說：因我把他從水裡拉出來」。</div>
+        <div class="timeline-ref">出埃及記 2:10</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">王室教育</span>
+        <div class="timeline-title">提供頂尖教育資源——為此後拯救以色列的使命預備根基</div>
+        <div class="timeline-body">使徒行傳記載摩西「學了埃及人一切的學問，說話行事都有才能」，這意味著法老的女兒此後為摩西提供了埃及王室最頂尖的教育資源，這段成長經歷，也為此後摩西成為拯救以色列的偉大領袖，預備了關鍵的背景與能力。</div>
+        <div class="timeline-ref">使徒行傳 7:21–22</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">法老的女兒展現出一種在整個埃及帝國體制與家族命令的重壓之下，依然選擇跟隨個人良知與憐憫之心的罕見勇氣。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">💗</div>
+        <div>
+          <span class="soul-label">核心特質</span>
+          <div class="soul-title">純粹而立即的憐憫之心，勝過對王命與體制的順從</div>
+          <div class="soul-body">看見一個哭泣的嬰兒，她的第一反應是「可憐他」，而非考量這個孩子的身份可能為她帶來的政治風險，這種未經算計、發自本能的憐憫，是她性格中最動人的核心。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚖️</div>
+        <div>
+          <span class="soul-label">道德勇氣</span>
+          <div class="soul-title">明知孩子的希伯來身份，仍選擇公然違背父親的滅絕令</div>
+          <div class="soul-body">法老的女兒清楚知道「這是希伯來人的一個孩子」，這意味著按照她父親的命令，這個孩子本應被處死；她卻選擇公開收留這個孩子，展現出超越家族與王室利益的道德勇氣。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🎓</div>
+        <div>
+          <span class="soul-label">持續投入</span>
+          <div class="soul-title">收養不只是一時的憐憫，更延伸為長期的資源投入與教育栽培</div>
+          <div class="soul-body">她不僅收留了孩子，還雇用奶媽悉心照顧，並在他成長後提供埃及王室最頂尖的教育資源，這種從一時的憐憫延伸為長期委身的態度，展現出她關懷行動的深度與持續性。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">歷史意義</span>
+          <div class="soul-title">她的收養行動，成為神奇妙護理成就救贖歷史的關鍵環節</div>
+          <div class="soul-body">法老的女兒或許從未想過，自己收養的這個孩子，日後將成為拯救整個以色列民族、帶領他們脫離她父親所代表之壓迫體制的偉大領袖——她的憐憫，成為神救贖計劃中一個意想不到卻不可或缺的環節。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">法老的女兒的故事，提出了一個關於「良知能否超越體制」的深刻問題：一個生於壓迫者家族、身處壓迫體制核心的人，是否可能因著個人的良知與憐憫，做出與自己所處體制截然相反的選擇？法老的女兒的答案是肯定的——她沒有被自己的身份與家族利益所綁架，當她看見一個哭泣的嬰兒時，她選擇了憐憫，而非算計；選擇了收養，而非順從父親的滅絕令。這種個人良知對抗體制性不義的敘事模式，此後在聖經與人類歷史中反覆出現，提醒我們，即便身處最不義的體制之中，個人依然擁有選擇良善與憐憫的自由與責任。更深刻的是，她這份看似個人化的憐憫舉動，最終被神奇妙地編織進整個救贖歷史的宏大敘事之中——她所收養、教育、栽培的這個孩子，日後成為了帶領以色列脫離埃及、脫離她父親所代表之壓迫體制的偉大領袖。這提醒我們，一個人在日常生活中憑良知所做的微小抉擇，可能在神的計劃中，具有超乎想像的深遠意義。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ISFP</span>
+      <div class="mbti-name">探險家型 · 違命撿起希伯來嬰兒的公主</div>
+      <div class="mbti-slogan">「她明知這是父親下令要處死的希伯來嬰兒，卻選擇了憐憫，而非順從。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">她對眼前哭泣嬰兒的憐憫，源自於一種強烈而立即的內在道德感受，這份感受未經算計、也未曾被政治考量所壓制，驅使她做出收留孩子的決定。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Se · 外向感覺</span>
+          <div class="mbti-fn-body">她對眼前具體處境（河邊發現的蒲草箱、哭泣的嬰兒）的即時反應與行動力，展現出高度依賴當下感官經驗、迅速做出回應的性格特質。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">她此後持續投入資源栽培摩西、為他提供王室教育，這種超越當下、著眼於孩子長遠成長的安排，隱約展現出對未來可能性的深層考量。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">她的決定似乎更多出於情感與直覺的驅動，而非對政治風險與體制後果的系統性評估，這種相對缺乏對客觀後果進行邏輯權衡的特質，反映出劣勢外向思考的特徵。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">她一生最重要的關係，是與那位她從河中拯救、收養並栽培成人的摩西，以及那位機智促成雇用安排的女孩米利暗。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">摩</div>
+          <div class="relation-name">摩西</div>
+          <div class="relation-type-badge">她從河中拯救、正式收養並栽培成人的養子</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">法老的女兒收養了摩西，為他取名，並在他成長過程中提供埃及王室最頂尖的教育資源，這段養母子關係，成為此後神揀選摩西、使他具備拯救以色列所需之才能與背景的重要成長根基。</div>
+          <div class="relation-ref">出埃及記 2:10 · 使徒行傳 7:21–22</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">米</div>
+          <div class="relation-name">米利暗</div>
+          <div class="relation-type-badge">機智促成雇用安排的希伯來女孩</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">米利暗在法老女兒發現嬰兒後，機智地提議去叫一位希伯來婦人前來奶孩子，法老的女兒欣然接受這個提議，這段互動展現出即便身處不同民族與身份的兩人，依然能夠因著共同關心孩子的福祉而合作。</div>
+          <div class="relation-ref">出埃及記 2:7–9</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">約</div>
+          <div class="relation-name">約基別</div>
+          <div class="relation-type-badge">她雇用來哺育孩子的希伯來婦人，也是孩子的親生母親</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">法老的女兒雇用約基別哺育這個孩子，並支付薪水作為報酬，儘管她可能並不知道這位婦人正是孩子的親生母親，這段雇傭關係，展現出她願意持續投入資源來照顧這個孩子的用心。</div>
+          <div class="relation-ref">出埃及記 2:8–9</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">法老的女兒的故事，是聖經中「個人的良知與憐憫，能夠超越所處體制之不義」這一主題最動人也最具戲劇張力的敘事案例。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「她打開箱子，看見那孩子。孩子哭了，她就可憐他，說：這是希伯來人的一個孩子。」</div>
+      <div class="verse-ref">出埃及記 2:6</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">個人良知能夠超越所處體制的不義，做出良善的抉擇</div>
+      <div class="theology-insight-body">法老的女兒身處下令屠殺希伯來男嬰的埃及王室核心，卻依然選擇憑著個人的憐憫之心，違背父親的命令，收留了一個希伯來嬰兒，這提醒我們，即便身處最不義的體制之中，個人依然擁有選擇良善的自由與責任。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">神的護理，常巧妙地運用看似與祂子民對立之處境中的人，成就祂的救贖計劃</div>
+      <div class="theology-insight-body">法老的女兒作為壓迫者家族的成員，卻成為神拯救摩西性命、並為他預備成長根基的關鍵人物，這提醒我們，神的護理有時會超越人所預期的敵我界線，巧妙地運用意想不到的人來成就祂的旨意。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">一時的憐憫，若延伸為持續的委身，能結出超乎想像的深遠果實</div>
+      <div class="theology-insight-body">她不僅是一時憐憫收留了摩西，更持續投入資源栽培他、為他提供王室教育，這份從憐憫延伸而來的長期委身，最終為神揀選摩西拯救以色列的偉大使命，預備了不可或缺的成長背景。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正身處一個要求你對某種不義保持沉默或順從的體制之中——這一頁想邀請你，效法法老女兒那份不受體制綁架的憐憫之心。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">法老的女兒的故事映照著每一個生於某種既得利益或壓迫體制之中、卻依然被個人良知觸動、選擇跟隨憐憫而非體制要求的人。她提醒我們反思：我們是否也能像她一樣，在自己所處的家族、組織或社會體制要求我們對某種不義保持沉默或順從時，依然選擇跟隨自己內心的良知與憐憫？同時，她持續投入資源栽培摩西的行動，也提醒我們，真正的憐憫，往往不止於一時的感動，而是願意付出長期的委身與代價。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">法老的女兒身處壓迫者家族的核心，卻依然選擇憐憫一個「敵對」身份的嬰兒。你是否曾在自己所屬的群體要求你排斥或敵視某些人時，依然選擇跟隨自己內心的良知？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">她的憐憫不止於一時的感動，更延伸為持續的資源投入與教育栽培。你對他人的關懷，是停留在一時的同情，還是願意付出長期的委身？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">她收養摩西時，可能並未預見這個孩子日後將成為拯救以色列、直接挑戰她父親王權的偉大領袖。你如何看待「一個微小的良善抉擇，可能帶來超乎想像的深遠影響」這件事？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">米利暗與法老的女兒，儘管身處不同民族與身份，卻因著共同關心孩子的福祉而合作。你如何看待跨越身份差異、為共同良善目標而合作的可能性？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 法老家族</span>
+        <div class="gen-title">壓迫劇本：系統性奴役與滅絕以色列人的體制性不義</div>
+        <div class="gen-body">法老家族代表著整個系統性壓迫以色列人、甚至下令屠殺希伯來男嬰的體制性不義，這個家族的權力與命令，構成了法老的女兒必須違背才能拯救摩西的巨大壓力背景。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 法老的女兒</span>
+        <div class="gen-title">突破：個人良知超越家族體制的不義，選擇憐憫</div>
+        <div class="gen-body">法老的女兒沒有被自己所屬家族的體制性不義所綁架，她憑著個人的憐憫之心，做出了與家族命令截然相反的選擇，這個突破，成為神奇妙護理摩西性命的關鍵環節。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在這個故事中，體現在神奇妙地運用一位身處壓迫者家族核心的人，成為拯救未來以色列領袖性命、並為他預備成長根基的關鍵角色。這提醒我們，神的恩典與護理，有時會超越人所預期的敵我界線，透過意想不到的人與處境，成就祂救贖歷史中最關鍵的環節。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把這位明知是敵對民族的孩子、卻選擇收養他的埃及公主，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#違背爸爸命令救了一個孩子</span>
+      <span class="tag">#從公主變成單親媽媽</span>
+      <span class="tag">#體制內的良心覺醒</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>法老的女兒，她的處境其實蠻尷尬的——她爸爸剛下了一道命令，說所有希伯來男嬰一出生就要被殺掉。結果，她在河邊洗澡的時候，看到一個籃子，打開一看，是個正在哭的希伯來男嬰。</p>
+      <p>換作是你，站在她的立場——你是公主，你爸是國王，你爸的命令就是法律——你會怎麼做？大部分人大概會選擇假裝沒看見，或者按規定處理。</p>
+      <p>她沒有這樣做。經文只用了一句話形容她的反應：『孩子哭了，她就可憐他。』就這樣，她決定收留這個孩子，即便她清楚知道，這是一個『不該存在』的希伯來孩子。</p>
+      <p>更厲害的是，她不是三分鐘熱度。她請了一個奶媽（其實就是孩子的親生媽媽，只是她不知道），付錢雇用，然後養大這個孩子，還讓他接受了當時埃及最頂尖的教育——這在使徒行傳裡有記載，說摩西後來『學了埃及人一切的學問，說話行事都有才能』。</p>
+      <p>她大概想不到，自己收養的這個孩子，長大後會直接回來對抗她的父親，帶領整個希伯來民族離開埃及。歷史有時候就是這麼諷刺——最頑固的壓迫體制，可能就是被體制內部一個人的一念之仁，種下了瓦解的種子。</p>
+      <p style="font-weight:500; color:var(--ink);">你所屬的體制或家族要求你怎麼做，不代表那就是你唯一的選擇——良知，永遠是你可以選擇跟隨的另一條路。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你此刻身處某個要求你對不義保持沉默或順從的環境，記得法老的女兒——良知，永遠是你可以選擇的另一條路。</p>
+      <p style="margin-top:12px;">真正的關懷，不只是一時的心軟，而是願意持續投入時間與資源去栽培、去陪伴。</p>
+      <p style="margin-top:12px;">你今天一個微小的良善抉擇，可能在未來，帶來你此刻完全無法想像的深遠影響。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果你看見某個需要憐憫的處境，即便這與你所屬群體的期待不同，試著跟隨你內心的良知去回應。</p>
+    </div>
+
+    <div class="insight-box">法老的女兒違背父命收養摩西的行動，在當代倫理學研究中，常被引用作為「道德良知超越制度性角色」（moral conscience transcending institutional role）的重要歷史敘事案例——她展現出，即便一個人身處某個不義體制的核心位置、承擔著特定的家族或制度角色，個人的良知依然能夠成為抵抗與突破的關鍵力量。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">她沒有留下自己的名字，卻用一個河邊憐憫的瞬間，以及此後持續投入的養育與教育，成為神奇妙護理摩西性命與成長歷程中不可或缺的一環。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">摩西存活與成長的關鍵守護者</div>
+          <div class="legacy-body">她的收養行動不僅保全了摩西的性命，更為他此後提供了埃及王室最頂尖的教育資源，成為神揀選摩西成為拯救以色列偉大領袖過程中，不可或缺的成長背景。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">「良知超越體制」的敘事典範</div>
+          <div class="legacy-body">她身處壓迫者家族核心，卻憑良知做出與家族命令相反的抉擇，成為聖經中「個人良知能夠超越所處體制之不義」這一主題最動人的敘事典範。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">神奇妙護理跨越敵我界線的具體見證</div>
+          <div class="legacy-body">她作為法老的女兒卻成為拯救未來以色列領袖性命的關鍵角色，見證了神的護理有時會超越人所預期的敵我界線，成就祂救贖歷史中最關鍵的環節。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「孩子漸長，婦人把他帶到法老的女兒那裡，就作了她的兒子。她給孩子起名叫摩西，意思說：因我把他從水裡拉出來。」</div>
+      <div class="final-verse-ref">出埃及記 2:10</div>
+    </div>
+
+    <div class="final-question">當你所屬的家族、組織或體制要求你對某種不義保持沉默或順從，你是否也願意像法老的女兒一樣，選擇跟隨自己內心的憐憫與良知？</div>
+  </div>
+
+</div>
+
+<div class="quiz-section" id="quiz-section" data-person-id="pharaohs_daughter" data-quiz-total="9">
+  <span class="quiz-label">小測驗 · 檢測你的熟悉程度</span>
+  <h3 class="quiz-title">你對「法老的女兒」的故事，掌握了多少？</h3>
+  <p class="quiz-desc" id="quiz-desc">共 9 題，涵蓋文脈、關鍵字、結構、神學主題、常見誤解與應用，每題都有時間限制——答錯或答得淺沒關係，測驗結束後會告訴你哪些地方值得回頭再讀一次。</p>
+  <button class="quiz-btn" id="quiz-start-btn" type="button">開始測驗</button>
+  <div id="quiz-play"></div>
+  <div id="quiz-result"></div>
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 法老的女兒 <span>בַּת־פַּרְעֹה</span> · 埃及公主 · 收養摩西的養母</div>
+
+<!-- 閱讀紀錄（localStorage，見 progress.js）：右下角標記已讀按鈕 -->
+<script src="progress.js"></script>
+<!-- 小測驗（localStorage，見 quiz.js）：僅在人物 JSON 有 quiz 欄位時作用 -->
+<script src="quiz-data.js"></script>
+<script src="quiz.js"></script>
+
+</body>
+</html>

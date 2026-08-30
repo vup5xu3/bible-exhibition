@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>約基別 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── QUIZ ── */
+  .quiz-section { max-width: 860px; margin: 0 auto; padding: 56px 32px 64px; border-top: 2px solid var(--gold); }
+  .quiz-label { font-family: 'IM Fell English', serif; font-size: 12px; letter-spacing: 0.25em; color: var(--gold); display: block; margin-bottom: 12px; }
+  .quiz-title { font-family: 'Noto Serif TC', serif; font-size: 21px; color: var(--ink); margin-bottom: 10px; }
+  .quiz-desc { font-size: 13px; color: var(--ink-pale); line-height: 1.85; margin-bottom: 22px; }
+  .quiz-btn { background: var(--ink); color: var(--gold-light); border: 1px solid var(--gold); border-radius: 30px; padding: 12px 30px; font-family: 'Noto Sans TC', sans-serif; font-size: 14px; cursor: pointer; transition: all 0.2s; }
+  .quiz-btn:hover { background: var(--gold); color: var(--ink); }
+  .quiz-btn.secondary { background: transparent; color: var(--ink-soft); border-color: var(--border-strong); }
+  .quiz-btn.secondary:hover { background: var(--gold-faint); color: var(--ink); }
+  .quiz-progress-bar { display: flex; gap: 4px; margin-bottom: 24px; }
+  .quiz-progress-dot { flex: 1; height: 5px; border-radius: 3px; background: var(--gold-pale); transition: background 0.2s; }
+  .quiz-progress-dot.done { background: var(--gold); }
+  .quiz-progress-dot.current { background: var(--gold-light); }
+  .quiz-meta-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+  .quiz-q-num { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold-light); letter-spacing: 0.05em; }
+  .quiz-timer { font-family: 'IM Fell English', serif; font-size: 15px; color: var(--ink-pale); }
+  .quiz-timer.low { color: var(--crimson); }
+  .quiz-category-badge { display: inline-block; font-size: 10.5px; letter-spacing: 0.05em; padding: 3px 12px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); margin-bottom: 14px; }
+  .quiz-question { font-family: 'Noto Serif TC', serif; font-size: 16.5px; color: var(--ink); line-height: 1.85; margin-bottom: 22px; }
+  .quiz-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+  .quiz-option { text-align: left; background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; font-size: 14px; color: var(--ink-mid); cursor: pointer; transition: all 0.15s; font-family: 'Noto Sans TC', sans-serif; }
+  .quiz-option:hover:not(.locked) { border-color: var(--gold); }
+  .quiz-option.selected { border-color: var(--gold); background: var(--gold-faint); }
+  .quiz-option.correct { border-color: var(--teal-deep); background: rgba(26,74,62,0.1); }
+  .quiz-option.wrong { border-color: var(--crimson); background: rgba(122,32,32,0.07); }
+  .quiz-option.locked { cursor: default; }
+  .quiz-explain { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 14px 18px; font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; margin-bottom: 20px; display: none; }
+  .quiz-explain.visible { display: block; }
+  .quiz-actions { display: flex; justify-content: flex-end; }
+  .quiz-result-score { text-align: center; padding: 12px 0 28px; }
+  .quiz-result-num { font-family: 'IM Fell English', serif; font-size: 46px; color: var(--gold); display: block; }
+  .quiz-result-label { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-top: 6px; }
+  .quiz-cat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 24px; }
+  .quiz-cat-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; text-align: center; }
+  .quiz-cat-card.mastered { border-color: var(--teal-deep); background: rgba(26,74,62,0.06); }
+  .quiz-cat-card.weak { border-color: var(--crimson); background: rgba(122,32,32,0.05); }
+  .quiz-cat-name { font-size: 11px; color: var(--ink-soft); margin-bottom: 4px; }
+  .quiz-cat-status { font-size: 12px; font-weight: 500; color: var(--ink-pale); }
+  .quiz-cat-status.mastered-text { color: var(--teal-deep); }
+  .quiz-cat-status.weak-text { color: var(--crimson); }
+  .quiz-next-step { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 22px 26px; font-size: 13.5px; line-height: 1.9; margin-bottom: 24px; }
+  .quiz-next-step-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 10px; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .quiz-section { padding: 40px 20px 48px; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">約基別・利未女子</h1>
+  <span class="hero-name-en">Jochebed · יוֹכֶבֶד</span>
+  <p class="hero-slogan">「他母親暗暗地把他藏了三個月……取了一個蒲草箱，抹上石漆和石油，將孩子放在裡頭，把箱子擱在河邊的蘆荻中。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">法老下令殺害希伯來男嬰時期，約主前十三世紀</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ISFJ · 守衛者型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">出埃及記 2:1–10 · 6:20 · 民數記 26:59</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">摩西之母 · 利未女子 · 在死亡威脅下守護信心的母親</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">在整本出埃及記最黑暗的死亡威脅之下，一位母親做出了一個看似瘋狂、卻充滿信心的決定——與其讓孩子死在自己懷中，不如將他交託給河流與神的護理。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">法老下令殺害希伯來男嬰時期，約主前十三世紀</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">利未支派女子，暗蘭之妻</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">子女</span>
+        <div class="info-cell-value">米利暗、亞倫、摩西</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">出埃及記 2:1–10 · 6:20 · 民數記 26:59 · 希伯來書 11:23</div>
+      </div>
+    </div>
+
+    <p>約基別的登場，正值法老下令「凡希伯來人所生的男孩，都要丟在河裡」這道死亡命令生效的最黑暗時期。她懷胎生下摩西，經文記載「他母親見他俊美，就藏了他三個月」——這短短的一句話，濃縮了三個月裡母親每一天都要面對的恐懼：任何一聲嬰兒的哭啼，都可能招致滅頂之災。希伯來書十一章更進一步指出，約基別與丈夫「因著信，把孩子藏了三個月，並不怕王命」，將這個看似只是母愛本能的行動，提升到信心壯舉的高度。</p>
+    <p>當孩子的哭聲再也無法隱藏，約基別做出了一個極其大膽、也充滿智慧的決定：她編織了一個蒲草箱，抹上石漆和石油以防止河水滲入，將孩子放在箱裡，擱在尼羅河邊的蘆荻叢中——她並非拋棄孩子，而是選擇了字面意義上遵守法老「把男孩丟在河裡」的命令，同時將孩子的生死，完全交託在神的護理之中。她安排女兒米利暗遠遠站著觀望，看法老的女兒下河洗澡時會如何處理這個箱子。當法老的女兒發現嬰兒、心生憐憫時，米利暗機智地上前，提議去叫一個希伯來婦人來為她奶孩子——那位婦人，正是約基別本人。約基別因此得以在法老女兒的正式雇用與付薪之下，親手哺育自己的親生兒子，直到他斷奶，再將他正式交還給法老的女兒，成為她的兒子，取名摩西。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從三個月的秘密藏匿，到一場孤注一擲的蒲草箱計劃，再到親手哺育自己被收養的兒子，約基別的故事，是信心母親在絕境中守護下一代最動人的敘事。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">死亡威脅</span>
+        <div class="timeline-title">法老的滅絕令——「凡希伯來人所生的男孩，都要丟在河裡」</div>
+        <div class="timeline-body">約基別懷胎生下摩西之時，正值法老下令將所有希伯來新生男嬰丟入尼羅河淹死的死亡威脅時期，這道命令，讓每一個希伯來母親的懷孕與生產，都籠罩在極其黑暗的恐懼之中。</div>
+        <div class="timeline-ref">出埃及記 1:22</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">三月藏匿</span>
+        <div class="timeline-title">「見他俊美，就藏了他三個月」——並不怕王命的信心</div>
+        <div class="timeline-body">約基別見孩子俊美，便暗暗將他藏了三個月，希伯來書特別指出，這是她與丈夫「因著信」所做的抉擇，並不怕王命，展現出信心在極端壓力下所結出的堅韌果實。</div>
+        <div class="timeline-ref">出埃及記 2:2 · 希伯來書 11:23</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">孤注一擲</span>
+        <div class="timeline-title">蒲草箱計劃——將孩子的生死交託給河流與神的護理</div>
+        <div class="timeline-body">當孩子的哭聲再也無法隱藏，約基別編織了一個蒲草箱，抹上石漆和石油，將孩子放在箱裡，擱在河邊的蘆荻中，並安排女兒米利暗遠遠觀望，這個計劃是母愛與信心交織而成的孤注一擲之舉。</div>
+        <div class="timeline-ref">出埃及記 2:3–4</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">意外相聚</span>
+        <div class="timeline-title">受雇奶育親生兒子——米利暗的機智促成的重逢</div>
+        <div class="timeline-body">法老的女兒發現嬰兒、心生憐憫，米利暗機智地提議去叫一個希伯來婦人來奶孩子，約基別因此得以在正式的雇用與付薪之下，親手哺育自己的親生兒子。</div>
+        <div class="timeline-ref">出埃及記 2:5–9</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">交還撫養</span>
+        <div class="timeline-title">孩子漸長——交還給法老的女兒，正式取名摩西</div>
+        <div class="timeline-body">約基別哺育摩西直到他斷奶，便將他正式交還給法老的女兒，摩西自此在埃及王宮中成長，被取名為「摩西」（意為「從水裡拉出來」），約基別此後的生平經文未再詳細記載。</div>
+        <div class="timeline-ref">出埃及記 2:10</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">約基別的偉大，不在於她做了什麼驚天動地的壯舉，而在於她在絕望的處境中，依然選擇用信心與智慧，為兒子的生命尋找一條出路。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">💗</div>
+        <div>
+          <span class="soul-label">核心特質</span>
+          <div class="soul-title">深切的母愛，驅使她在絕境中依然堅持守護孩子的生命</div>
+          <div class="soul-body">在法老滅絕令的死亡威脅下，約基別沒有選擇放棄或絕望，而是想方設法、竭盡所能地為孩子的存活尋找出路，這種源自母愛的堅韌意志，是她性格中最動人的核心。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🕊️</div>
+        <div>
+          <span class="soul-label">信心壯舉</span>
+          <div class="soul-title">希伯來書特別紀念她「因著信」的抉擇，並不怕王命</div>
+          <div class="soul-body">希伯來書十一章的信心偉人榜中，特別提及約基別與丈夫「因著信，把孩子藏了三個月，並不怕王命」，將她這份看似只是母愛本能的行動，提升到聖經信心典範的高度。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🧺</div>
+        <div>
+          <span class="soul-label">創造性智慧</span>
+          <div class="soul-title">在絕境中設計出一個既遵守表面法令、又保全孩子性命的巧妙方案</div>
+          <div class="soul-body">約基別將孩子放入蒲草箱、擱在河邊蘆荻中的做法，某種程度上是在字面意義上「遵守」法老把男孩丟進河裡的命令，卻又透過精心的準備（防水的石漆石油）與女兒的守望，將孩子的生死交託給神的護理，展現出令人驚嘆的創造性智慧。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">恩典迴環</span>
+          <div class="soul-title">神的護理，讓她意外地重新獲得親手哺育親生兒子的機會</div>
+          <div class="soul-body">約基別原本要面對永遠失去孩子的可能性，神卻透過法老女兒的憐憫與米利暗的機智，讓她得以在正式的雇用之下，重新親手哺育自己的兒子，這個恩典的迴環，是整個故事中最令人動容的轉折。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">約基別的故事提出了一個深刻的問題：當一個母親竭盡所能之後，依然無法完全掌控孩子的命運時，她該如何回應？約基別沒有選擇絕望地束手待斃，也沒有天真地以為自己能夠永遠隱藏孩子，她做的，是竭盡所能地運用手邊所有的智慧與資源——藏匿、編織防水的蒲草箱、安排女兒守望——然後，在做完自己能做的一切之後，將孩子最終的命運，交託在神的護理之中。這種「盡己所能、然後交託」的態度，正是希伯來書所紀念的「信心」的具體展現——信心不是被動的等待，而是在竭盡人事之後，仍然願意相信神掌管著那超出自己能力範圍的部分。約基別的故事也提醒我們，看似微小、甚至帶著孤注一擲成分的抉擇，可能正是神成就祂偉大救贖計劃的關鍵起點——若非約基別當年那個蒲草箱裡的決定，日後拯救以色列出埃及的摩西，或許根本沒有機會存活下來。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ISFJ</span>
+      <div class="mbti-name">守衛者型 · 在死亡威脅下守護信心的母親</div>
+      <div class="mbti-slogan">「她把兒子放進蒲草箱、交給尼羅河的那一刻，是絕望，也是她一生中最深的信心宣告。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Si · 內向感覺</span>
+          <div class="mbti-fn-body">她對孩子生命安危的具體細節（藏匿的時間、蒲草箱的防水處理、放置的位置）展現出高度務實而細膩的關注，這種紮根於具體實務、竭盡所能保護所愛之人的特質，是她主導內向感覺的展現。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Fe · 外向情感</span>
+          <div class="mbti-fn-body">她深切關懷孩子的生命與福祉，並動員女兒米利暗一同參與這場守護計劃，展現出強烈的情感連結與家庭凝聚力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ti · 內向思考</span>
+          <div class="mbti-fn-body">她設計蒲草箱防水處理、安排女兒守望的整套計劃，展現出一定程度的邏輯規劃與問題解決能力，儘管這一切都是在極端壓力下臨場構思而成。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Ne · 外向直覺</span>
+          <div class="mbti-fn-body">她的行動聚焦於當下具體而迫切的生存需要，而非對未來各種可能性的探索或冒險，這種務實而聚焦當下的行事風格，反映出劣勢外向直覺的特徵。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">她一生最重要的關係，是與那位她竭盡所能守護、最終成為以色列偉大領袖的兒子摩西，以及那位機智促成母子重聚的女兒米利暗。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">摩</div>
+          <div class="relation-name">摩西</div>
+          <div class="relation-type-badge">她竭盡所能守護、最終拯救以色列的兒子</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">約基別在法老的死亡威脅下藏匿摩西三個月，此後又透過蒲草箱的計劃保全他的性命，甚至意外地得以親手哺育他，這段母子關係雖然短暫（僅止於哺乳期），卻為此後摩西成為拯救以色列的偉大領袖，奠定了生命最初的根基。</div>
+          <div class="relation-ref">出埃及記 2:2–10</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">米</div>
+          <div class="relation-name">米利暗</div>
+          <div class="relation-type-badge">她的女兒，機智促成母子重聚的關鍵推手</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">米利暗奉母親之命遠遠觀望蒲草箱的下落，在法老女兒發現嬰兒後，機智地提議去叫一位希伯來婦人前來奶孩子，這個提議促成了約基別得以重新哺育自己的親生兒子，展現出這對母女之間默契而堅定的合作。</div>
+          <div class="relation-ref">出埃及記 2:4, 7–8</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">法</div>
+          <div class="relation-name">法老的女兒</div>
+          <div class="relation-type-badge">收養摩西、也雇用約基別哺育親生兒子的埃及公主</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">法老的女兒發現蒲草箱中的嬰兒，心生憐憫，收養了他，並在米利暗的提議下，雇用約基別哺育這個孩子，這段跨越身份與民族界線的關係，成為神奇妙護理的具體展現。</div>
+          <div class="relation-ref">出埃及記 2:5–10</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">約基別的故事，是聖經中「信心不是消極的等待，而是竭盡人事之後仍願意交託神主權」這一屬靈原則，最具體而動人的敘事案例。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「摩西生下來，他的父母因著信，把他藏了三個月，並不怕王命；他們看見孩子俊美，就不怕王命。」</div>
+      <div class="verse-ref">希伯來書 11:23</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">信心具體展現於在絕境中竭盡所能、然後交託神主權的行動</div>
+      <div class="theology-insight-body">約基別的信心，不是消極地等待神蹟發生，而是主動運用她手邊所有的智慧與資源，竭盡人事之後，才將孩子最終的命運交託給神的護理，這提醒我們，真實的信心，往往體現在具體而積極的行動之中。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">神的護理，常在人竭盡所能之後的絕境中，以出人意料的方式介入</div>
+      <div class="theology-insight-body">約基別原本要面對永遠失去孩子的可能性，神卻透過法老女兒的憐憫與米利暗的機智，讓她意外重新獲得哺育親生兒子的機會，這提醒我們，神的護理往往在人的能力盡頭，以超乎預期的方式彰顯。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">看似微小的個人抉擇，可能成為神成就偉大救贖計劃的關鍵起點</div>
+      <div class="theology-insight-body">若非約基別當年那個蒲草箱裡的決定，日後拯救以色列出埃及的摩西，或許根本沒有機會存活下來，這提醒我們，一個人在絕境中憑信心所做的微小抉擇，可能在神的計劃中，具有超乎想像的深遠意義。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正面對一個似乎完全超出自己能力所能掌控的處境——這一頁想邀請你，效法約基別「竭盡人事，然後交託」的信心姿態。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">約基別的故事映照著每一個曾在極端困境中，竭盡所能守護所愛之人、卻終究必須將最終結果交託給超乎自己掌控之力量的處境——無論是面對重大疾病的家人、身處險境的孩子，或任何形式我們窮盡一切努力後，依然無法完全確保結果的處境。她提醒我們反思：我們是否也願意像她一樣，先竭盡所能地運用智慧與資源，然後在盡力之後，依然選擇相信並交託？</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">約基別在竭盡所能守護孩子的同時，最終仍將孩子的命運交託給神的護理。你是否曾經歷過類似「盡己所能、然後交託」的處境？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">希伯來書特別紀念約基別夫婦「因著信，並不怕王命」的抉擇。你如何理解「信心」不是消極等待、而是具體行動的屬靈原則？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">約基別動員女兒米利暗一同參與守護摩西的計劃。你在面對困境時，是否懂得尋求身邊親人的協助與合作？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">神透過法老女兒的憐憫，讓約基別意外重獲哺育親生兒子的機會。你生命中是否也曾經歷過類似「絕境中出人意料的恩典介入」？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 約基別</span>
+        <div class="gen-title">示範劇本：竭盡所能守護生命，同時將結果交託神的護理</div>
+        <div class="gen-body">她在法老滅絕令的死亡威脅下，運用智慧與資源竭力守護孩子的性命，最終將孩子的命運交託給神的護理，展現出信心與行動並存的生命典範。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 摩西</span>
+        <div class="gen-title">延續：從被守護的嬰孩，成長為拯救以色列的領袖</div>
+        <div class="gen-body">約基別當年竭盡所能守護的這個孩子，此後成長為神親自呼召、拯救以色列出埃及的偉大領袖，這段從個人母愛的守護延伸至整個民族救贖歷史的敘事，展現出神奇妙而深遠的護理計劃。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在這個故事中，體現在神不僅保守了摩西的性命，更透過奇妙的安排，讓約基別得以親手哺育自己的兒子，甚至獲得正式的薪酬——這份恩典的迴環，遠遠超出約基別當初孤注一擲時所能想像的最好結果，提醒我們，神的護理，常常超越我們所求所想。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把這位在死亡威脅下把孩子放進蒲草箱、交給尼羅河的母親，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#史上最孤注一擲的育兒計劃</span>
+      <span class="tag">#把兒子交給河流的信心</span>
+      <span class="tag">#意外重新當回自己孩子的保姆</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>約基別的處境，大概是每個母親能想像最恐怖的情境之一：政府下了一道命令，說只要是男嬰，一出生就要被殺掉。她剛好在這個時候，生下了一個兒子。</p>
+      <p>她做的第一件事，是把孩子藏起來，藏了整整三個月。你可以想像那三個月裡，每一次孩子快要哭出聲，做母親的心臟大概都要跳出來。</p>
+      <p>藏不住了怎麼辦？她做了一個聽起來瘋狂、卻極其聰明的決定：她編了一個籃子，抹上防水的瀝青，把孩子放進去，順著尼羅河邊的蘆葦叢，把籃子放進水裡。</p>
+      <p>注意，她不是隨便把孩子丟掉，她是精心準備、選好地點，然後叫女兒米利暗遠遠地盯著，看接下來會發生什麼事。</p>
+      <p>結果呢？法老的女兒剛好來河邊洗澡，發現了這個籃子，動了憐憫的心。米利暗立刻衝上前說：『要不要我幫你找個奶媽？』然後，她找來的『奶媽』，就是約基別自己。</p>
+      <p>換句話說，約基別不但保住了兒子的命，還被雇來，領著薪水，親手把自己的孩子養大。這個轉折，比任何劇本寫得都精彩。</p>
+      <p style="font-weight:500; color:var(--ink);">有時候，我們能為所愛的人做的，就是竭盡所能地準備好一切，然後，把剩下無法掌控的部分，交給比我們更大的手。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你此刻正面對一個超出自己能力所能掌控的處境，記得約基別——竭盡所能之後，把結果交託出去，也是一種信心。</p>
+      <p style="margin-top:12px;">看似孤注一擲的決定，有時候，正是神在你生命中預備出路的方式。</p>
+      <p style="margin-top:12px;">不要低估你為所愛之人所做的每一個微小努力，它可能在未來，帶來超乎你想像的祝福。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果你正竭盡所能地守護某個你所愛的人或處境，繼續努力，然後也記得，把無法掌控的部分，交託出去。</p>
+    </div>
+
+    <div class="insight-box">約基別在絕境中設計蒲草箱、動員家人共同守護孩子生命的行動，在當代危機管理與家庭韌性研究中，常被引用作為「在資源極度受限下的創造性問題解決」（creative problem-solving under extreme constraint）的重要敘事案例——她展現出的，是竭盡所能運用有限資源、同時保持開放接受意外轉機的雙重智慧。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">她沒有留下任何顯赫的功績記載，卻用一個蒲草箱裡的孤注一擲，為此後拯救整個以色列民族的偉大領袖，保住了最初存活的機會。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">信心偉人榜中的母親典範</div>
+          <div class="legacy-body">希伯來書十一章特別紀念她「因著信」的抉擇，使她成為聖經信心偉人榜中，少數以母親身份被明確紀念的女性典範之一。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">摩西存活歷史的關鍵起點</div>
+          <div class="legacy-body">她在法老滅絕令下竭盡所能守護孩子性命的行動，成為此後摩西得以存活、成長，並最終拯救以色列出埃及這整段救贖歷史的關鍵起點。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">「竭盡人事、交託神主權」信心典範的敘事範例</div>
+          <div class="legacy-body">她的故事成為聖經中「信心不是消極等待，而是竭盡所能之後仍願意交託神主權」這一屬靈原則，最具體動人的敘事範例。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「摩西生下來，他的父母因著信，把他藏了三個月，並不怕王命。」</div>
+      <div class="final-verse-ref">希伯來書 11:23</div>
+    </div>
+
+    <div class="final-question">當你已經竭盡所能，卻依然無法完全掌控所愛之人的命運，你是否願意像約基別一樣，將剩下的部分，交託在神的護理之中？</div>
+  </div>
+
+</div>
+
+<div class="quiz-section" id="quiz-section" data-person-id="jochebed" data-quiz-total="9">
+  <span class="quiz-label">小測驗 · 檢測你的熟悉程度</span>
+  <h3 class="quiz-title">你對「約基別」的故事，掌握了多少？</h3>
+  <p class="quiz-desc" id="quiz-desc">共 9 題，涵蓋文脈、關鍵字、結構、神學主題、常見誤解與應用，每題都有時間限制——答錯或答得淺沒關係，測驗結束後會告訴你哪些地方值得回頭再讀一次。</p>
+  <button class="quiz-btn" id="quiz-start-btn" type="button">開始測驗</button>
+  <div id="quiz-play"></div>
+  <div id="quiz-result"></div>
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 約基別 <span>יוֹכֶבֶד</span> · 摩西之母 · 藏子三個月的信心母親</div>
+
+<!-- 閱讀紀錄（localStorage，見 progress.js）：右下角標記已讀按鈕 -->
+<script src="progress.js"></script>
+<!-- 小測驗（localStorage，見 quiz.js）：僅在人物 JSON 有 quiz 欄位時作用 -->
+<script src="quiz-data.js"></script>
+<script src="quiz.js"></script>
+
+</body>
+</html>

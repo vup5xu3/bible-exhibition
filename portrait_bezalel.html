@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>比撒列 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── QUIZ ── */
+  .quiz-section { max-width: 860px; margin: 0 auto; padding: 56px 32px 64px; border-top: 2px solid var(--gold); }
+  .quiz-label { font-family: 'IM Fell English', serif; font-size: 12px; letter-spacing: 0.25em; color: var(--gold); display: block; margin-bottom: 12px; }
+  .quiz-title { font-family: 'Noto Serif TC', serif; font-size: 21px; color: var(--ink); margin-bottom: 10px; }
+  .quiz-desc { font-size: 13px; color: var(--ink-pale); line-height: 1.85; margin-bottom: 22px; }
+  .quiz-btn { background: var(--ink); color: var(--gold-light); border: 1px solid var(--gold); border-radius: 30px; padding: 12px 30px; font-family: 'Noto Sans TC', sans-serif; font-size: 14px; cursor: pointer; transition: all 0.2s; }
+  .quiz-btn:hover { background: var(--gold); color: var(--ink); }
+  .quiz-btn.secondary { background: transparent; color: var(--ink-soft); border-color: var(--border-strong); }
+  .quiz-btn.secondary:hover { background: var(--gold-faint); color: var(--ink); }
+  .quiz-progress-bar { display: flex; gap: 4px; margin-bottom: 24px; }
+  .quiz-progress-dot { flex: 1; height: 5px; border-radius: 3px; background: var(--gold-pale); transition: background 0.2s; }
+  .quiz-progress-dot.done { background: var(--gold); }
+  .quiz-progress-dot.current { background: var(--gold-light); }
+  .quiz-meta-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+  .quiz-q-num { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold-light); letter-spacing: 0.05em; }
+  .quiz-timer { font-family: 'IM Fell English', serif; font-size: 15px; color: var(--ink-pale); }
+  .quiz-timer.low { color: var(--crimson); }
+  .quiz-category-badge { display: inline-block; font-size: 10.5px; letter-spacing: 0.05em; padding: 3px 12px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); margin-bottom: 14px; }
+  .quiz-question { font-family: 'Noto Serif TC', serif; font-size: 16.5px; color: var(--ink); line-height: 1.85; margin-bottom: 22px; }
+  .quiz-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+  .quiz-option { text-align: left; background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; font-size: 14px; color: var(--ink-mid); cursor: pointer; transition: all 0.15s; font-family: 'Noto Sans TC', sans-serif; }
+  .quiz-option:hover:not(.locked) { border-color: var(--gold); }
+  .quiz-option.selected { border-color: var(--gold); background: var(--gold-faint); }
+  .quiz-option.correct { border-color: var(--teal-deep); background: rgba(26,74,62,0.1); }
+  .quiz-option.wrong { border-color: var(--crimson); background: rgba(122,32,32,0.07); }
+  .quiz-option.locked { cursor: default; }
+  .quiz-explain { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 14px 18px; font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; margin-bottom: 20px; display: none; }
+  .quiz-explain.visible { display: block; }
+  .quiz-actions { display: flex; justify-content: flex-end; }
+  .quiz-result-score { text-align: center; padding: 12px 0 28px; }
+  .quiz-result-num { font-family: 'IM Fell English', serif; font-size: 46px; color: var(--gold); display: block; }
+  .quiz-result-label { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-top: 6px; }
+  .quiz-cat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 24px; }
+  .quiz-cat-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; text-align: center; }
+  .quiz-cat-card.mastered { border-color: var(--teal-deep); background: rgba(26,74,62,0.06); }
+  .quiz-cat-card.weak { border-color: var(--crimson); background: rgba(122,32,32,0.05); }
+  .quiz-cat-name { font-size: 11px; color: var(--ink-soft); margin-bottom: 4px; }
+  .quiz-cat-status { font-size: 12px; font-weight: 500; color: var(--ink-pale); }
+  .quiz-cat-status.mastered-text { color: var(--teal-deep); }
+  .quiz-cat-status.weak-text { color: var(--crimson); }
+  .quiz-next-step { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 22px 26px; font-size: 13.5px; line-height: 1.9; margin-bottom: 24px; }
+  .quiz-next-step-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 10px; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .quiz-section { padding: 40px 20px 48px; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">比撒列・戶珥之孫</h1>
+  <span class="hero-name-en">Bezalel · בְּצַלְאֵל</span>
+  <p class="hero-slogan">「我也以我的靈充滿了他，使他有智慧，有聰明，有知識，能做各樣的工。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">曠野建造會幕時期，約主前十三世紀</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ISTP · 鑑賞家型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">出埃及記 31:1–11 · 35:30–35 · 36–39 章</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">會幕總工師 · 被聖靈充滿的工藝匠師</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">在整本聖經第一次明確記載「被神的靈充滿」的人，不是先知，不是祭司，也不是士師，而是一位負責雕刻與鑄造的工匠——這個安排本身，便訴說著一個深刻的信息：屬靈的恩賜，遠比人們想像的更加多元而具體。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">曠野建造會幕時期，約主前十三世紀</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">猶大支派戶珥的孫子，烏利的兒子</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">專長</span>
+        <div class="info-cell-value">雕刻寶石、雕刻木頭，能製各樣的巧工</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">職責</span>
+        <div class="info-cell-value">會幕與其中一切器具的總工師</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">出埃及記 31:1–11 · 35:30–35 · 36–39 章</div>
+      </div>
+    </div>
+
+    <p>比撒列的登場，是在摩西從西奈山領受了會幕建造的詳細指示之後——耶和華親自向摩西宣告：「我提名召了猶大支派中戶珥的孫子、烏利的兒子比撒列，並且我以神的靈充滿了他，使他有智慧、有聰明、有知識，能做各樣的工，能想出巧工，用金、銀、銅製造各物，又能刻寶石，可以鑲嵌，能雕刻木頭，能做各樣的工。」這段宣告極其特別——它不僅是一次職務的委任，更是聖經中第一次明確記載一個人「被神的靈充滿」，而這個充滿的果效，具體展現在藝術與工藝技能之上，而非傳統意義上的先知講道或超自然神蹟。</p>
+    <p>比撒列此後與另一位工匠亞何利亞伯（但支派人）一同承擔起會幕與其中一切器具——約櫃、施恩座、桌子、燈台、香壇、祭壇、洗濯盆、聖幕的幔子與各樣的柱子座——的具體製造工作。經文用整整四章（出埃及記 36–39 章）的篇幅，詳細記載了他們如何按照耶和華向摩西所指示的樣式，精確地完成了這座象徵神與以色列人同住之處所的每一項細節。這種將如此大量的經文篇幅，用於記載一位工匠精確執行藝術與建築工作的過程，在聖經中極為罕見，深刻彰顯了神對敬拜場所之精美與精確，抱持著何等的重視。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從被神提名呼召，到被聖靈充滿賜下巧藝，再到完成會幕一切器具的精確建造，比撒列的故事，展現出屬靈恩賜如何具體地在工藝與創造力中彰顯。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">被提名呼召</span>
+        <div class="timeline-title">「我提名召了……比撒列」——耶和華親自揀選的工匠</div>
+        <div class="timeline-body">耶和華在西奈山上向摩西宣告，親自提名召了猶大支派中戶珥的孫子比撒列，承擔會幕建造的重任，這是聖經中少見地記載神直接、具體地提名呼召一位工匠的敘事。</div>
+        <div class="timeline-ref">出埃及記 31:1–2</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">聖靈充滿</span>
+        <div class="timeline-title">「我以神的靈充滿了他」——聖經第一次明確記載的聖靈充滿</div>
+        <div class="timeline-body">耶和華宣告以祂的靈充滿比撒列，使他有智慧、聰明、知識，能作各樣的巧工，這是整本聖經中第一次明確記載一個人「被神的靈充滿」，而這份充滿具體展現在工藝與創造力之上。</div>
+        <div class="timeline-ref">出埃及記 31:3</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">夥伴同工</span>
+        <div class="timeline-title">與亞何利亞伯搭檔——共同承擔會幕建造的重任</div>
+        <div class="timeline-body">耶和華同時派定但支派人亞何利亞伯與比撒列同工，兩人與眾多有智慧心的工匠一同，承擔起會幕與其中一切器具的具體製造工作。</div>
+        <div class="timeline-ref">出埃及記 31:6 · 35:34–35</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">精確建造</span>
+        <div class="timeline-title">約櫃、燈台、祭壇——按耶和華指示的樣式精確完成</div>
+        <div class="timeline-body">經文用整整四章的篇幅，詳細記載比撒列與亞何利亞伯如何按照耶和華向摩西所指示的樣式，精確地完成了約櫃、施恩座、桌子、燈台、香壇、祭壇、洗濯盆等會幕一切器具的建造。</div>
+        <div class="timeline-ref">出埃及記 36–39 章</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">工程完竣</span>
+        <div class="timeline-title">會幕建成——摩西按耶和華所吩咐的一切察看並祝福</div>
+        <div class="timeline-body">會幕與其中一切器具終於完工，摩西按著耶和華所吩咐的一切，逐項察看這些工作，見他們都做齊了，就給他們祝福，這座象徵神與以色列人同住之處所，此後成為以色列敬拜生活的核心。</div>
+        <div class="timeline-ref">出埃及記 39:32–43</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">比撒列的一生提醒我們，屬靈的恩賜遠比人們慣常想像的更加多元——精湛的工藝與創造力，同樣是神的靈充滿一個人的具體彰顯。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🎨</div>
+        <div>
+          <span class="soul-label">核心特質</span>
+          <div class="soul-title">卓越的工藝技能與美感直覺，能將抽象的敬拜意涵化為具體的藝術形式</div>
+          <div class="soul-body">比撒列的天賦展現在他能夠準確理解並執行耶和華所指示的複雜設計，將約櫃、燈台等承載深刻神學意涵的器具，轉化為精美而精確的實體工藝品。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🕊️</div>
+        <div>
+          <span class="soul-label">屬靈根源</span>
+          <div class="soul-title">他的巧藝，明確地被歸因於神的靈的充滿，而非單純的個人天賦</div>
+          <div class="soul-body">經文清楚宣告「我以神的靈充滿了他」，將比撒列的工藝才能直接連結於神的靈的工作，這提醒我們，即便是看似世俗的技能與才幹，同樣可以是神所賜、被神使用的屬靈恩賜。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🤝</div>
+        <div>
+          <span class="soul-label">團隊合作</span>
+          <div class="soul-title">與亞何利亞伯及眾工匠同工，共同完成一項超越個人能力的宏大工程</div>
+          <div class="soul-body">比撒列並非獨力完成會幕的建造，而是與亞何利亞伯以及眾多有智慧心的工匠一同協作，這種樂於與他人同工、共同成就神所託付使命的態度，展現出他性格中謙遜合作的一面。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">敬拜意義</span>
+          <div class="soul-title">他的工藝，最終服事於一個更大的目的——建造神與人同住的處所</div>
+          <div class="soul-body">比撒列所有的技藝與心血，都指向一個更宏大的目標：建造會幕，使神得以在以色列人中間同住，這提醒我們，卓越的技藝與創造力，其最深的意義，在於服事並彰顯神的榮耀。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">比撒列的故事，對「什麼樣的才能能被神使用」這個問題，提供了一個極具突破性的答案：不只是講道、預言或行神蹟的能力，精湛的工藝、美感與創造力，同樣是神的靈充滿一個人時，所結出的具體果子。在一個容易將屬靈恩賜狹隘地定義為講台上的講道或戲劇性神蹟的信仰群體中，比撒列的故事提醒我們，神看重並使用的才能，涵蓋著遠比我們想像更為寬廣的範疇——雕刻、設計、建築、藝術，這些看似「世俗」的技能，同樣可以在神的手中，成為建造祂與人同住之處所的重要器皿。比撒列的名字「בְּצַלְאֵל」，字面意思是「在神的蔭下」，這個名字本身，或許正預示著他一生工作的本質——他所有精湛的技藝，最終都是在神的蔭庇與充滿之下，為要建造那個使神的同在得以與人同住的神聖處所。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ISTP</span>
+      <div class="mbti-name">鑑賞家型 · 被聖靈充滿的巧匠</div>
+      <div class="mbti-slogan">「他的雙手雕刻的不只是金銀寶石，更是神與人同住的具體處所。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Ti · 內向思考</span>
+          <div class="mbti-fn-body">他能精準理解並執行耶和華向摩西所指示的複雜設計細節，將抽象的指示轉化為具體而精確的工藝成品，展現出高度精密的邏輯分析與技術理解能力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Se · 外向感覺</span>
+          <div class="mbti-fn-body">他對材質、形狀、色彩與具體工藝技巧的敏銳掌握，展現出高度活在當下、精於實際操作的感官能力，這正是他能夠完成如此精美工藝品的關鍵。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">他能夠將整座會幕的宏大設計藍圖，內化為具體可執行的建造步驟，展現出對整體工程進展與最終成果的深層洞察能力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Fe · 外向情感</span>
+          <div class="mbti-fn-body">經文對他個人的情感表達或人際互動著墨甚少，他更多是透過具體的工藝成果來表達自己的委身與才能，這種相對含蓄的情感表達方式，反映出劣勢外向情感的特徵。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最重要的關係，是與那位親自提名呼召並以靈充滿他的耶和華，以及與他一同承擔會幕建造重任的夥伴亞何利亞伯。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">耶</div>
+          <div class="relation-name">耶和華</div>
+          <div class="relation-type-badge">親自提名呼召、並以靈充滿他的神</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">耶和華親自提名召了比撒列，並以祂的靈充滿他，賜給他智慧、聰明、知識，使他能做各樣的巧工，這段關係展現出神如何具體而直接地揀選並裝備一個人，去完成祂所託付的特定使命。</div>
+          <div class="relation-ref">出埃及記 31:1–3</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">亞</div>
+          <div class="relation-name">亞何利亞伯</div>
+          <div class="relation-type-badge">與他同工的但支派工匠夥伴</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">亞何利亞伯與比撒列一同承擔起會幕建造的重任，兩人各展所長、彼此配搭，共同帶領眾多有智慧心的工匠，完成了這項超越個人能力的宏大工程。</div>
+          <div class="relation-ref">出埃及記 31:6 · 35:34–35</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">摩</div>
+          <div class="relation-name">摩西</div>
+          <div class="relation-type-badge">傳達耶和華指示、並最終祝福他工作成果的領袖</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">摩西向比撒列傳達了耶和華在西奈山上所指示的會幕建造樣式，並在工程完成後，逐項察看這些工作，見他們都做齊了，就給比撒列與眾工匠祝福。</div>
+          <div class="relation-ref">出埃及記 39:42–43</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">比撒列的故事，是聖經中「屬靈恩賜涵蓋工藝與創造力」這一主題最具體而深刻的敘事見證，也是聖經第一次明確記載聖靈充滿的敘事。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「我以神的靈充滿了他，使他有智慧，有聰明，有知識，能做各樣的工，能想出巧工，用金、銀、銅製造各物，又能刻寶石，可以鑲嵌，能雕刻木頭，能做各樣的工。」</div>
+      <div class="verse-ref">出埃及記 31:3–5</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">בְּצַלְאֵל</span>
+        <div class="word-transliteration">Betzalel · 比撒列 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">字面意思為「在神的蔭下」或「在神的影子裡」，由 be（在……之中）、tzel（蔭、影）、El（神）三部分組成。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這個名字本身，深刻預示著比撒列一生工作的本質——他所有精湛的技藝與創造力，都是在神的蔭庇與同在之下所展現，最終服事於建造那個使神的同在得以與以色列人同住的神聖處所。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">屬靈恩賜的範疇，遠比講道或神蹟更為寬廣多元</div>
+      <div class="theology-insight-body">比撒列是聖經中第一位被明確記載「被神的靈充滿」的人，而這份充滿具體展現在工藝與美感創造力之上，這提醒我們，神所賜下並使用的才能，涵蓋著遠比人們慣常想像更為寬廣的範疇。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">敬拜場所的精美與精確，反映出神對敬拜的高度重視</div>
+      <div class="theology-insight-body">經文用整整四章的篇幅詳細記載會幕建造的每一項細節，這種罕見的敘事篇幅，深刻彰顯了神對敬拜場所之精美與精確，抱持著何等的重視，也提醒我們敬拜的外在形式同樣值得用心對待。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">神的裝備與呼召，往往精準地對應著祂所託付的具體使命</div>
+      <div class="theology-insight-body">耶和華提名呼召比撒列、並以靈充滿他，正是為了完成會幕建造這個具體而特定的使命，這提醒我們，神對每個人的呼召與裝備，往往有著精準而具體的對應關係。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">
+      <div class="typology-item">
+        <div class="typology-cell">
+          <span class="typology-cell-label">舊約影子 Type</span>
+          <div class="typology-cell-body">比撒列被神的靈充滿，使他有智慧、聰明、知識，能完成建造會幕（神與人同住之處所）的精細工藝</div>
+        </div>
+        <div class="typology-cell bridge">
+          <span class="typology-cell-label">神學救贖連結</span>
+          <div class="typology-cell-body">舊約中會幕的建造，預表著神渴望與祂的百姓同住；聖靈充滿賦予人完成神聖工作所需之恩賜的模式，貫穿整部聖經救贖歷史</div>
+        </div>
+        <div class="typology-cell">
+          <span class="typology-cell-label">新約應驗 Antitype</span>
+          <div class="typology-cell-body">新約中，聖靈同樣充滿信徒，賜下各樣屬靈恩賜，使教會（新約中神與人同住的「活石建造成的靈宮」，彼前 2:5）得以被建造起來，成就神與祂子民同住的終極心意</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正懷疑自己的專業技能或創造力，是否真的能在神的國度中有份——這一頁想邀請你，重新認識比撒列的故事。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">比撒列的故事映照著每一個擁有工藝、設計、藝術或其他「非傳統宗教」技能的人，他們可能常常懷疑自己的才能，是否真的能在信仰群體中被視為屬靈恩賜。他提醒我們反思：我們是否也曾狹隘地將「屬靈恩賜」侷限於講道、預言或戲劇性的神蹟，而忽略了神同樣看重並使用工藝、創造力等更為多元的才能？</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你是否曾因自己的專業技能（如設計、工藝、建築、藝術）看似「世俗」，而懷疑它是否真的能被神使用？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">比撒列的名字「在神的蔭下」，提醒他所有的技藝都是在神的同在中展現。你如何看待自己的專業能力與神的同在之間的關係？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">比撒列與亞何利亞伯及眾工匠同工，共同完成超越個人能力的宏大工程。你在自己的工作或服事中，是否也懂得與他人協作，而非單打獨鬥？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">會幕建造的每一項細節都被神看重且精確要求。你在自己的工作中，是否也願意用心對待每一個看似微小的細節？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 比撒列</span>
+        <div class="gen-title">示範劇本：被神的靈充滿，將工藝才能完全獻上服事神</div>
+        <div class="gen-body">他蒙神提名呼召、被聖靈充滿，運用自己精湛的工藝技能，完成了會幕建造這項承載深刻神學意涵的宏大工程，展現出屬靈恩賜與專業技能完美結合的典範。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 後世的工藝與藝術服事者</span>
+        <div class="gen-title">延續：工藝與創造力持續被視為服事神的重要方式</div>
+        <div class="gen-body">比撒列的故事此後成為聖經中肯定工藝與藝術創造力可以是屬靈恩賜的重要根基，持續鼓舞著後世每一位以自己的專業技能服事神、建造敬拜場所與器具的匠人。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在這個故事中，體現在神親自提名揀選並以靈充滿一位工匠，肯定並使用他看似「世俗」的專業技能，來完成建造祂與人同住之處所這項神聖使命。這提醒我們，神的恩典臨到每一個願意將自己的才能全然獻上的人，無論這份才能屬於哪一個領域。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把這位聖經中第一位被神的靈充滿、卻是靠雙手雕刻金銀寶石的工匠，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#聖靈充滿不只是講道</span>
+      <span class="tag">#把神學刻進金銀寶石裡</span>
+      <span class="tag">#神的第一位御用設計師</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>如果你以為『被聖靈充滿』只會發生在先知或使徒身上，比撒列的故事會讓你重新思考這件事。他是聖經裡第一個被明確寫下『被神的靈充滿』的人——而他被充滿之後做的事，是雕刻、鑲嵌寶石、打造金銀器皿。</p>
+      <p>換句話說，神對比撒列說的不是『去傳道』，而是『去把約櫃做出來，做得漂亮、做得精確』。這在當時的宗教想像裡，其實蠻顛覆的——工藝，居然可以是神親自充滿一個人的具體展現。</p>
+      <p>比撒列這個名字，意思是『在神的蔭下』。這其實蠻美的一個畫面：他一輩子的手藝，都是在神的蔭庇裡完成的，而他做出來的每一件器具，最終目的都是要讓神可以『住』在祂百姓的中間。</p>
+      <p>如果你是設計師、工程師、廚師、木工，或者任何一種需要動手、動腦、講究精確與美感的職業——比撒列想告訴你：你的技藝，不比講台上的講道次一等。神親自提名呼召的第一位『被聖靈充滿』的人，做的就是你正在做的這種事。</p>
+      <p style="font-weight:500; color:var(--ink);">神的靈充滿一個人，未必只長出講道的口才，也可能長出一雙精準而有創造力的手。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你曾懷疑自己的專業技能是否『不夠屬靈』，比撒列的故事，是為你寫的。</p>
+      <p style="margin-top:12px;">你的工作，不管是設計、建造、或任何一種需要用心與技藝的職業，都可以是你服事神的具體方式。</p>
+      <p style="margin-top:12px;">團隊合作不是能力不足的表現——比撒列也是與亞何利亞伯及眾工匠一同完成這項偉大的工程。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，把你手邊正在做的專業工作，當作一次獻給神的具體服事，用心去完成它。</p>
+    </div>
+
+    <div class="insight-box">比撒列的故事，在當代神學與職場信仰整合（faith and work integration）研究中，經常被引用作為「所有正當職業都能成為屬靈呼召」這一觀念最重要的聖經根基之一——他打破了將屬靈恩賜狹隘侷限於宗教職事的迷思，肯定了工藝、設計、藝術等專業技能，同樣能夠是神所賜、被神使用來成就祂旨意的重要恩賜。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他沒有留下任何講道或預言的記載，卻用一雙精湛的巧手，建造了以色列曠野歲月中神與人同住的具體處所，成為聖經中「工藝即屬靈恩賜」最鮮明的見證。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">聖經第一位明確記載被聖靈充滿的人</div>
+          <div class="legacy-body">他的故事成為整本聖經中第一次明確記載一個人「被神的靈充滿」，而這份充滿具體展現在工藝技能之上，為後世對屬靈恩賜多元性的理解，奠定了重要的敘事根基。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">會幕建造工程的核心總工師</div>
+          <div class="legacy-body">他與亞何利亞伯共同完成了會幕與其中一切器具的精確建造，這座敬拜場所此後成為以色列曠野歲月信仰生活的核心，他的工藝成就，具體服事並彰顯了神的榮耀。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">「工藝即屬靈服事」神學命題的重要根基</div>
+          <div class="legacy-body">他的故事此後在信仰與職場整合的神學討論中，持續被引用作為肯定工藝、藝術等專業技能同樣是神所賜屬靈恩賜的重要聖經根基。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「這一切都是照耶和華所吩咐摩西的，以色列人都照樣做了。摩西看見一切的工都做成了，就給他們祝福。」</div>
+      <div class="final-verse-ref">出埃及記 39:42–43</div>
+    </div>
+
+    <div class="final-question">如果你手中的技藝，正是神所賜、渴望使用來建造祂榮耀之處所的恩賜，你今天願意如何將它獻上？</div>
+  </div>
+
+</div>
+
+<div class="quiz-section" id="quiz-section" data-person-id="bezalel" data-quiz-total="9">
+  <span class="quiz-label">小測驗 · 檢測你的熟悉程度</span>
+  <h3 class="quiz-title">你對「比撒列」的故事，掌握了多少？</h3>
+  <p class="quiz-desc" id="quiz-desc">共 9 題，涵蓋文脈、關鍵字、結構、神學主題、常見誤解與應用，每題都有時間限制——答錯或答得淺沒關係，測驗結束後會告訴你哪些地方值得回頭再讀一次。</p>
+  <button class="quiz-btn" id="quiz-start-btn" type="button">開始測驗</button>
+  <div id="quiz-play"></div>
+  <div id="quiz-result"></div>
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 比撒列 <span>בְּצַלְאֵל</span> · 會幕總工師 · 被聖靈充滿的工藝匠師</div>
+
+<!-- 閱讀紀錄（localStorage，見 progress.js）：右下角標記已讀按鈕 -->
+<script src="progress.js"></script>
+<!-- 小測驗（localStorage，見 quiz.js）：僅在人物 JSON 有 quiz 欄位時作用 -->
+<script src="quiz-data.js"></script>
+<script src="quiz.js"></script>
+
+</body>
+</html>

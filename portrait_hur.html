@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>戶珥 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── QUIZ ── */
+  .quiz-section { max-width: 860px; margin: 0 auto; padding: 56px 32px 64px; border-top: 2px solid var(--gold); }
+  .quiz-label { font-family: 'IM Fell English', serif; font-size: 12px; letter-spacing: 0.25em; color: var(--gold); display: block; margin-bottom: 12px; }
+  .quiz-title { font-family: 'Noto Serif TC', serif; font-size: 21px; color: var(--ink); margin-bottom: 10px; }
+  .quiz-desc { font-size: 13px; color: var(--ink-pale); line-height: 1.85; margin-bottom: 22px; }
+  .quiz-btn { background: var(--ink); color: var(--gold-light); border: 1px solid var(--gold); border-radius: 30px; padding: 12px 30px; font-family: 'Noto Sans TC', sans-serif; font-size: 14px; cursor: pointer; transition: all 0.2s; }
+  .quiz-btn:hover { background: var(--gold); color: var(--ink); }
+  .quiz-btn.secondary { background: transparent; color: var(--ink-soft); border-color: var(--border-strong); }
+  .quiz-btn.secondary:hover { background: var(--gold-faint); color: var(--ink); }
+  .quiz-progress-bar { display: flex; gap: 4px; margin-bottom: 24px; }
+  .quiz-progress-dot { flex: 1; height: 5px; border-radius: 3px; background: var(--gold-pale); transition: background 0.2s; }
+  .quiz-progress-dot.done { background: var(--gold); }
+  .quiz-progress-dot.current { background: var(--gold-light); }
+  .quiz-meta-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+  .quiz-q-num { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold-light); letter-spacing: 0.05em; }
+  .quiz-timer { font-family: 'IM Fell English', serif; font-size: 15px; color: var(--ink-pale); }
+  .quiz-timer.low { color: var(--crimson); }
+  .quiz-category-badge { display: inline-block; font-size: 10.5px; letter-spacing: 0.05em; padding: 3px 12px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); margin-bottom: 14px; }
+  .quiz-question { font-family: 'Noto Serif TC', serif; font-size: 16.5px; color: var(--ink); line-height: 1.85; margin-bottom: 22px; }
+  .quiz-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+  .quiz-option { text-align: left; background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; font-size: 14px; color: var(--ink-mid); cursor: pointer; transition: all 0.15s; font-family: 'Noto Sans TC', sans-serif; }
+  .quiz-option:hover:not(.locked) { border-color: var(--gold); }
+  .quiz-option.selected { border-color: var(--gold); background: var(--gold-faint); }
+  .quiz-option.correct { border-color: var(--teal-deep); background: rgba(26,74,62,0.1); }
+  .quiz-option.wrong { border-color: var(--crimson); background: rgba(122,32,32,0.07); }
+  .quiz-option.locked { cursor: default; }
+  .quiz-explain { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 14px 18px; font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; margin-bottom: 20px; display: none; }
+  .quiz-explain.visible { display: block; }
+  .quiz-actions { display: flex; justify-content: flex-end; }
+  .quiz-result-score { text-align: center; padding: 12px 0 28px; }
+  .quiz-result-num { font-family: 'IM Fell English', serif; font-size: 46px; color: var(--gold); display: block; }
+  .quiz-result-label { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-top: 6px; }
+  .quiz-cat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 24px; }
+  .quiz-cat-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; text-align: center; }
+  .quiz-cat-card.mastered { border-color: var(--teal-deep); background: rgba(26,74,62,0.06); }
+  .quiz-cat-card.weak { border-color: var(--crimson); background: rgba(122,32,32,0.05); }
+  .quiz-cat-name { font-size: 11px; color: var(--ink-soft); margin-bottom: 4px; }
+  .quiz-cat-status { font-size: 12px; font-weight: 500; color: var(--ink-pale); }
+  .quiz-cat-status.mastered-text { color: var(--teal-deep); }
+  .quiz-cat-status.weak-text { color: var(--crimson); }
+  .quiz-next-step { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 22px 26px; font-size: 13.5px; line-height: 1.9; margin-bottom: 24px; }
+  .quiz-next-step-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 10px; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .quiz-section { padding: 40px 20px 48px; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">戶珥</h1>
+  <span class="hero-name-en">Hur · חוּר</span>
+  <p class="hero-slogan">「摩西的手發沉，他們就搬石頭來，放在他以下，他就坐在上面。亞倫與戶珥扶著他的手，一個在這邊，一個在那邊，他的手就穩住，直到日落的時候。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">出埃及後的曠野時期，與亞瑪力人交戰時</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ISFJ · 守衛者型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">出埃及記 17:8–13 · 24:14</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">摩西與亞倫的同工 · 安靜卻關鍵的支持者</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">他在聖經中留下的，不是一句話語，而是一雙托住他人疲憊雙手的手——這雙沉默的手，卻直接決定了一場戰爭的勝敗。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">出埃及後的曠野時期，以色列人剛離開埃及不久</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">與亞倫並列的以色列領袖之一（拉比傳統認為他可能是米利暗之夫，或迦勒之祖父）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">主要事蹟</span>
+        <div class="info-cell-value">與亞倫一同扶住摩西的手，助以色列人擊敗亞瑪力人</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">出埃及記 17:8–13 · 24:14</div>
+      </div>
+    </div>
+
+    <p>戶珥的登場，發生在以色列人出埃及後不久，正當他們在利非訂安營時，亞瑪力人前來攻打以色列人。摩西差派約書亞率領以色列人出去與亞瑪力人爭戰，自己則帶著亞倫與戶珥登上山頂，手裡拿著神的杖。經文記載了一個極其戲劇化的因果關係：「摩西何時舉手，以色列人就得勝；何時垂手，亞瑪力人就得勝。」摩西的手漸漸因長時間舉起而疲乏發沉，這時，亞倫與戶珥搬來一塊石頭讓摩西坐下，然後一左一右地扶住他的手，使他的手得以穩住，直到日落，約書亞終於用刀殺敗了亞瑪力王和他的百姓。</p>
+    <p>戶珥此後在出埃及記二十四章再度出現：摩西上西奈山領受十誡與律法之前，將百姓的治理事務交託給亞倫與戶珥，宣告「凡有訴訟的，都可以到他們那裡去」，顯示戶珥在以色列群體中，已然是與亞倫並列、深受摩西信任、具有一定治理權柄的領袖人物。儘管整本聖經中，戶珥從未留下任何一句直接引用的話語，他所扮演的角色，卻在兩個關鍵時刻——戰爭的勝敗與百姓的治理——都扮演著不可或缺的支持性角色，成為聖經中「安靜卻至關重要的同工」最鮮明的代表人物。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從扶住摩西疲憊的雙手，到被摩西信任託付治理百姓的重任，戶珥的故事，濃縮成聖經中「沉默的支持者」最動人的敘事典範。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">戰爭關鍵</span>
+        <div class="timeline-title">與亞倫一同扶住摩西的手——直到日落的堅持</div>
+        <div class="timeline-body">亞瑪力人攻打以色列人，摩西在山頂舉杖代禱，戶珥與亞倫見摩西的手漸漸疲乏，便搬來石頭讓他坐下，一左一右扶住他的手，使他的手穩住直到日落，這個安靜卻關鍵的舉動，直接決定了戰爭的勝敗。</div>
+        <div class="timeline-ref">出埃及記 17:10–12</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">戰爭得勝</span>
+        <div class="timeline-title">約書亞擊敗亞瑪力人——摩西手穩帶來的具體勝利</div>
+        <div class="timeline-body">因著摩西的手在戶珥與亞倫的扶持下得以穩住，約書亞終於用刀殺敗了亞瑪力王和他的百姓，這場勝利，直接歸功於這三人在山頂上的通力合作。</div>
+        <div class="timeline-ref">出埃及記 17:13</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">受託治理</span>
+        <div class="timeline-title">與亞倫同受摩西信任——百姓訴訟事務的仲裁者</div>
+        <div class="timeline-body">摩西上西奈山領受律法之前，將百姓的治理事務交託給亞倫與戶珥，宣告「凡有訴訟的，都可以到他們那裡去」，顯示戶珥此時已是深受摩西信任、具有治理權柄的領袖人物。</div>
+        <div class="timeline-ref">出埃及記 24:14</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">戶珥從未留下任何一句台詞，他的性格，完全透過他所做的具體行動——扶住、支持、承擔——被讀者所認識。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🤲</div>
+        <div>
+          <span class="soul-label">核心特質</span>
+          <div class="soul-title">在他人最疲憊、最需要幫助的時刻，安靜而堅定地伸出援手</div>
+          <div class="soul-body">看見摩西的手因長時間舉起而疲乏，戶珥沒有等待摩西開口求助，而是主動搬來石頭、扶住他的手，這種敏銳察覺他人需要、並立即付諸行動的特質，是他性格中最鮮明的核心。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⏳</div>
+        <div>
+          <span class="soul-label">持久的委身</span>
+          <div class="soul-title">堅持扶住摩西的手，直到日落，展現出驚人的耐力與毅力</div>
+          <div class="soul-body">從摩西的手開始疲乏，到約書亞最終擊敗亞瑪力人，這個過程可能持續了整整一天，戶珥與亞倫始終沒有放手，這種不計代價、持久到底的委身，格外令人動容。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🤝</div>
+        <div>
+          <span class="soul-label">甘於幕後</span>
+          <div class="soul-title">從未留下一句台詞，卻在關鍵時刻兩度扮演不可或缺的支持角色</div>
+          <div class="soul-body">戶珥沒有像摩西那樣站在敘事的中心，也沒有留下任何被記載的話語，然而他兩度出現在聖經敘事中，都扮演著支撐、輔助他人完成使命的角色，展現出一種甘於在幕後付出的謙遜特質。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">深遠意義</span>
+          <div class="soul-title">他的攙扶，直接證明了「代禱與屬靈爭戰，同樣需要同伴的支持」</div>
+          <div class="soul-body">摩西一人舉杖代禱，卻無法獨自堅持到底，戶珥與亞倫的攙扶，具體展現出即便是像摩西這樣蒙神大用的領袖，同樣需要身邊夥伴的實際支持，才能完成神所託付的使命。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">戶珥的故事，對「什麼樣的貢獻才值得被紀念」這個問題，提供了一個發人深省的答案：他從未說過一句被記載的話，也從未獨自完成任何顯赫的功績，然而他扶住摩西雙手的這個具體行動，卻直接決定了以色列與亞瑪力人這場戰爭的勝敗。這提醒我們，聖經中被紀念的偉大時刻，往往不只是那些站在敘事中心、發號施令的人，也包括那些安靜地在幕後，以具體行動支持他人完成使命的同工。摩西在山頂上舉杖代禱，是這場戰役中最顯眼、最具象徵意義的畫面；然而若沒有戶珥與亞倫在他手臂疲乏時的攙扶，摩西的手終將垂下，以色列人也將因此落敗。這個故事深刻提醒我們，屬靈的爭戰與委身，從來不是一個人的孤軍奮戰，而是需要群體中彼此扶持、共同堅持的團隊工作。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ISFJ</span>
+      <div class="mbti-name">守衛者型 · 扶住摩西雙手直到日落的支持者</div>
+      <div class="mbti-slogan">「他沒有留下一句話，卻用一雙托住他人的手，贏得了一整場戰爭。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Si · 內向感覺</span>
+          <div class="mbti-fn-body">他敏銳地察覺到摩西的手因長時間舉起而疲乏發沉的具體處境，並立即採取實際行動來解決這個問題，這種紮根於具體現實需要的關懷方式，是他主導內向感覺的展現。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Fe · 外向情感</span>
+          <div class="mbti-fn-body">他對摩西所承受的重擔展現出深切的體恤與支持，並與亞倫協力合作，共同分擔這份重擔，展現出強烈的群體協作與情感連結能力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ti · 內向思考</span>
+          <div class="mbti-fn-body">搬來石頭讓摩西坐下、一左一右扶住他的手，這個解決方案展現出一定程度的實際問題解決能力，儘管經文並未詳述他的思考過程。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Ne · 外向直覺</span>
+          <div class="mbti-fn-body">他的行動完全聚焦於眼前具體而迫切的需要，而非探索其他可能的策略或方案，這種務實而專注當下的行事風格，反映出劣勢外向直覺的特徵。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最重要的關係，是與那位他親手攙扶、助其完成代禱使命的摩西，以及與他一同分擔這份重任的同工亞倫。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">摩</div>
+          <div class="relation-name">摩西</div>
+          <div class="relation-type-badge">他親手攙扶、助其完成代禱使命的領袖</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">戶珥與亞倫一同扶住摩西因長時間舉杖代禱而疲乏的雙手，使他的手得以穩住直到日落，這個具體而關鍵的支持行動，直接助成了以色列人在與亞瑪力人戰爭中的勝利；此後摩西上山領受律法時，更將百姓的治理事務託付給戶珥，顯示出兩人之間深厚的信任關係。</div>
+          <div class="relation-ref">出埃及記 17:10–12 · 24:14</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">亞</div>
+          <div class="relation-name">亞倫</div>
+          <div class="relation-type-badge">與他並肩協力、共同扶住摩西雙手的同工</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">亞倫與戶珥一左一右地扶住摩西的手，兩人通力合作，共同承擔了這項看似簡單卻極其關鍵的支持任務；此後兩人也一同受摩西信任，共同承擔百姓治理的重任，展現出彼此協作、共同分擔重擔的夥伴關係。</div>
+          <div class="relation-ref">出埃及記 17:12 · 24:14</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">戶珥扶住摩西雙手的故事，是聖經中「屬靈爭戰需要群體同伴支持」這一主題最經典、也最具畫面感的敘事見證。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「摩西的手發沉，他們就搬石頭來，放在他以下，他就坐在上面。亞倫與戶珥扶著他的手，一個在這邊，一個在那邊，他的手就穩住，直到日落的時候。」</div>
+      <div class="verse-ref">出埃及記 17:12</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">屬靈爭戰與代禱的堅持，需要群體同伴的實際支持</div>
+      <div class="theology-insight-body">摩西一人舉杖代禱，卻無法獨自堅持到底，戶珥與亞倫的攙扶，具體展現出即便是蒙神大用的領袖，同樣需要身邊夥伴的實際支持，才能完成神所託付的使命，這提醒我們屬靈爭戰從來不是孤軍奮戰。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">安靜而具體的支持性行動，同樣能夠決定重大事件的成敗</div>
+      <div class="theology-insight-body">戶珥沒有站在戰場最前線，也沒有留下任何被記載的話語，然而他扶住摩西雙手的具體行動，卻直接決定了以色列與亞瑪力人這場戰爭的勝敗，這提醒我們，幕後的支持性貢獻，同樣具有決定性的重要意義。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">被信任委以治理重任，是持續忠心付出所結出的果實</div>
+      <div class="theology-insight-body">戶珥在扶持摩西的具體行動之後，此後被摩西信任、與亞倫一同受託承擔百姓治理的重任，這提醒我們，忠心而具體的付出，往往會為一個人贏得更深的信任與更重要的託付。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正在某個崗位上，默默地為他人的使命提供支持，卻覺得自己的貢獻不夠顯眼——這一頁想提醒你，戶珥扶住的雙手，贏得了一整場戰爭。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">戶珥的故事映照著每一個在團隊、家庭或事奉中，默默扮演支持性角色、卻很少站在聚光燈下的人。他提醒我們反思：我們是否也懂得敏銳察覺身邊承擔重任之人的疲憊與需要，並主動伸出實際的援手？同時，戶珥的故事也提醒那些站在領導或代禱最前線的人，承認並倚靠身邊同伴的支持，並非軟弱的表現，而是完成使命所必須的智慧。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">戶珥主動察覺摩西的疲憊，搬來石頭並扶住他的手。你在身邊人承擔重任、逐漸疲憊之際，是否也懂得主動伸出實際的援手？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">戶珥與亞倫堅持扶住摩西的手直到日落。你在支持他人的過程中，是否也具備這種不計代價、持久到底的委身？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">戶珥從未留下一句台詞，卻在關鍵時刻扮演了不可或缺的角色。你如何看待「幕後默默付出」與「站在聚光燈下」這兩種不同的貢獻方式？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">摩西即便蒙神大用，仍然需要戶珥與亞倫的實際支持才能完成使命。你是否也願意承認自己需要他人的幫助，而非獨自硬撐？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 戶珥</span>
+        <div class="gen-title">示範劇本：以安靜而具體的行動，支持他人完成重大使命</div>
+        <div class="gen-body">他敏銳察覺摩西的疲憊，主動搬來石頭、扶住他的手，堅持到日落，這個安靜卻關鍵的支持行動，直接助成了以色列人的勝利，展現出幕後付出同樣能夠決定重大事件成敗的道理。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 亞倫與戶珥</span>
+        <div class="gen-title">延續：從戰場上的攙扶，延伸為長期共同治理百姓的信任託付</div>
+        <div class="gen-body">戶珥與亞倫在戰場上的協力合作，此後延伸為摩西對他們的長期信任，兩人共同受託承擔百姓治理的重任，展現出忠心的支持性付出，往往會結出更深遠的信任與託付。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在這個故事中，體現在神並未要求摩西獨自承擔代禱與領導的全部重擔，而是興起戶珥與亞倫這樣願意在關鍵時刻挺身支持的同伴，共同成就這場戰役的勝利。這提醒我們，神所賜下的恩典，常常透過群體中彼此扶持的具體行動來實現，而非要求任何一個人單獨承擔一切。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把這位聖經裡連一句台詞都沒有、卻靠著扶住別人的手贏得一整場戰爭的人，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#沒有台詞的關鍵配角</span>
+      <span class="tag">#扶住別人的手比自己出風頭更難</span>
+      <span class="tag">#幕後的英雄</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>戶珥這個人，如果查遍整本聖經，你找不到他說過任何一句話。他不是先知，沒有預言；他不是將軍，沒有帶兵打仗；他甚至不是那個站在山頂上、手裡拿著杖、成為整個畫面焦點的摩西。</p>
+      <p>他做的事，聽起來平淡無奇：摩西舉著手代禱，舉久了手酸了，戶珥跟亞倫，一個扶左手，一個扶右手，就這樣撐著，撐到太陽下山。</p>
+      <p>但你仔細想想這個畫面——如果沒有他們兩個，摩西的手一垂下來，山下打仗的以色列人立刻就要吃敗仗。換句話說，這場戰爭真正的勝負關鍵，不是山下揮刀的約書亞，而是山頂上，兩個默默扶著別人手臂的人。</p>
+      <p>這其實蠻顛覆我們對『英雄』的想像的。我們總以為英雄應該是那個站在最前面、說著最響亮台詞的人，但戶珥用他整整一天的沉默付出，告訴我們：有些最關鍵的貢獻，發生在沒有人注意到的地方。</p>
+      <p>後來，摩西要上山領受十誡，他把治理百姓的重任，交給了亞倫跟戶珥。這不是巧合——這是摩西親眼見證過他們的可靠之後，做出的信任決定。</p>
+      <p style="font-weight:500; color:var(--ink);">有些最重要的勝利，不是誰站在最前面喊得最大聲贏來的，而是有人默默地，扶住了快要撐不住的手。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你正在某個崗位上默默支持著別人，覺得自己的貢獻不夠顯眼，記得戶珥——他連一句台詞都沒有，卻贏了一整場戰爭。</p>
+      <p style="margin-top:12px;">察覺身邊的人快要撐不下去了，主動伸出手扶一把，這樣的行動，往往比你想像的更有分量。</p>
+      <p style="margin-top:12px;">承認自己需要別人的幫助，不是軟弱，而是完成使命所必須的智慧——就連摩西，也需要戶珥與亞倫的攙扶。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，看看身邊有誰正承擔著重擔、快要撐不住了，做那個扶住他的人。</p>
+    </div>
+
+    <div class="insight-box">戶珥與亞倫扶住摩西雙手的故事，在當代團隊管理與領導力研究中，常被引用作為「支持性領導」（supportive leadership）與團隊韌性的重要案例——研究顯示，即便是最有能力的領導者，若缺乏團隊成員在關鍵時刻的實際支持，也難以獨自將任務堅持到底，真正健康的團隊文化，需要看重並肯定這種幕後而具體的支持性貢獻。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他沒有留下任何一句被記載的話語，卻用扶住摩西雙手直到日落的堅持，成為聖經中「幕後支持同樣能決定成敗」最動人也最經典的圖像。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">「代禱需要同伴支持」的經典圖像</div>
+          <div class="legacy-body">他與亞倫扶住摩西雙手直到日落的畫面，成為聖經中，乃至後世基督教屬靈爭戰與代禱事工中，最常被引用來說明「同伴支持之重要性」的經典圖像之一。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">幕後貢獻同樣具決定性意義的敘事見證</div>
+          <div class="legacy-body">他從未留下一句台詞，卻兩度在關鍵時刻扮演不可或缺的支持角色，成為聖經中肯定安靜而具體之幕後付出，同樣具有決定性重要意義的重要見證。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">忠心付出贏得更深信任的具體範例</div>
+          <div class="legacy-body">他在戰場上的協力合作，此後為他贏得摩西的長期信任，與亞倫一同受託承擔百姓治理的重任，成為忠心的支持性付出如何結出更深遠信任果實的具體範例。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「亞倫與戶珥扶著他的手，一個在這邊，一個在那邊，他的手就穩住，直到日落的時候。約書亞用刀殺敗了亞瑪力王和他的百姓。」</div>
+      <div class="final-verse-ref">出埃及記 17:12–13</div>
+    </div>
+
+    <div class="final-question">當你身邊有人正承擔著幾乎撐不下去的重擔，你是否願意像戶珥一樣，安靜而堅定地伸出手，扶住他，直到日落？</div>
+  </div>
+
+</div>
+
+<div class="quiz-section" id="quiz-section" data-person-id="hur" data-quiz-total="9">
+  <span class="quiz-label">小測驗 · 檢測你的熟悉程度</span>
+  <h3 class="quiz-title">你對「戶珥」的故事，掌握了多少？</h3>
+  <p class="quiz-desc" id="quiz-desc">共 9 題，涵蓋文脈、關鍵字、結構、神學主題、常見誤解與應用，每題都有時間限制——答錯或答得淺沒關係，測驗結束後會告訴你哪些地方值得回頭再讀一次。</p>
+  <button class="quiz-btn" id="quiz-start-btn" type="button">開始測驗</button>
+  <div id="quiz-play"></div>
+  <div id="quiz-result"></div>
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 戶珥 <span>חוּר</span> · 與亞倫同扶摩西之手的支持者</div>
+
+<!-- 閱讀紀錄（localStorage，見 progress.js）：右下角標記已讀按鈕 -->
+<script src="progress.js"></script>
+<!-- 小測驗（localStorage，見 quiz.js）：僅在人物 JSON 有 quiz 欄位時作用 -->
+<script src="quiz-data.js"></script>
+<script src="quiz.js"></script>
+
+</body>
+</html>

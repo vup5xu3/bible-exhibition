@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>示弗拉與普阿 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── QUIZ ── */
+  .quiz-section { max-width: 860px; margin: 0 auto; padding: 56px 32px 64px; border-top: 2px solid var(--gold); }
+  .quiz-label { font-family: 'IM Fell English', serif; font-size: 12px; letter-spacing: 0.25em; color: var(--gold); display: block; margin-bottom: 12px; }
+  .quiz-title { font-family: 'Noto Serif TC', serif; font-size: 21px; color: var(--ink); margin-bottom: 10px; }
+  .quiz-desc { font-size: 13px; color: var(--ink-pale); line-height: 1.85; margin-bottom: 22px; }
+  .quiz-btn { background: var(--ink); color: var(--gold-light); border: 1px solid var(--gold); border-radius: 30px; padding: 12px 30px; font-family: 'Noto Sans TC', sans-serif; font-size: 14px; cursor: pointer; transition: all 0.2s; }
+  .quiz-btn:hover { background: var(--gold); color: var(--ink); }
+  .quiz-btn.secondary { background: transparent; color: var(--ink-soft); border-color: var(--border-strong); }
+  .quiz-btn.secondary:hover { background: var(--gold-faint); color: var(--ink); }
+  .quiz-progress-bar { display: flex; gap: 4px; margin-bottom: 24px; }
+  .quiz-progress-dot { flex: 1; height: 5px; border-radius: 3px; background: var(--gold-pale); transition: background 0.2s; }
+  .quiz-progress-dot.done { background: var(--gold); }
+  .quiz-progress-dot.current { background: var(--gold-light); }
+  .quiz-meta-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+  .quiz-q-num { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold-light); letter-spacing: 0.05em; }
+  .quiz-timer { font-family: 'IM Fell English', serif; font-size: 15px; color: var(--ink-pale); }
+  .quiz-timer.low { color: var(--crimson); }
+  .quiz-category-badge { display: inline-block; font-size: 10.5px; letter-spacing: 0.05em; padding: 3px 12px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); margin-bottom: 14px; }
+  .quiz-question { font-family: 'Noto Serif TC', serif; font-size: 16.5px; color: var(--ink); line-height: 1.85; margin-bottom: 22px; }
+  .quiz-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+  .quiz-option { text-align: left; background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; font-size: 14px; color: var(--ink-mid); cursor: pointer; transition: all 0.15s; font-family: 'Noto Sans TC', sans-serif; }
+  .quiz-option:hover:not(.locked) { border-color: var(--gold); }
+  .quiz-option.selected { border-color: var(--gold); background: var(--gold-faint); }
+  .quiz-option.correct { border-color: var(--teal-deep); background: rgba(26,74,62,0.1); }
+  .quiz-option.wrong { border-color: var(--crimson); background: rgba(122,32,32,0.07); }
+  .quiz-option.locked { cursor: default; }
+  .quiz-explain { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 14px 18px; font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; margin-bottom: 20px; display: none; }
+  .quiz-explain.visible { display: block; }
+  .quiz-actions { display: flex; justify-content: flex-end; }
+  .quiz-result-score { text-align: center; padding: 12px 0 28px; }
+  .quiz-result-num { font-family: 'IM Fell English', serif; font-size: 46px; color: var(--gold); display: block; }
+  .quiz-result-label { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-top: 6px; }
+  .quiz-cat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 24px; }
+  .quiz-cat-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; text-align: center; }
+  .quiz-cat-card.mastered { border-color: var(--teal-deep); background: rgba(26,74,62,0.06); }
+  .quiz-cat-card.weak { border-color: var(--crimson); background: rgba(122,32,32,0.05); }
+  .quiz-cat-name { font-size: 11px; color: var(--ink-soft); margin-bottom: 4px; }
+  .quiz-cat-status { font-size: 12px; font-weight: 500; color: var(--ink-pale); }
+  .quiz-cat-status.mastered-text { color: var(--teal-deep); }
+  .quiz-cat-status.weak-text { color: var(--crimson); }
+  .quiz-next-step { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 22px 26px; font-size: 13.5px; line-height: 1.9; margin-bottom: 24px; }
+  .quiz-next-step-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 10px; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .quiz-section { padding: 40px 20px 48px; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">示弗拉與普阿・希伯來收生婆</h1>
+  <span class="hero-name-en">Shiphrah and Puah · שִׁפְרָה וּפוּעָה</span>
+  <p class="hero-slogan">「收生婆敬畏神，不照埃及王的吩咐行，竟存留男孩的性命。……神厚待收生婆，以色列人多起來，極其強盛，因為收生婆敬畏神，神便叫她們成立家室。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">出埃及事件之前，以色列人受壓迫的初期</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ISFJ · 守衛者型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">出埃及記 1:15–21</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">希伯來收生婆 · 抵抗不義王命的敬虔典範</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">在整本聖經第一次系統性壓迫的敘事中，最先挺身抵抗的，不是先知、不是將領，而是兩位負責接生的普通婦人——她們的名字，被鄭重地記載下來，而下令屠殺的法老，卻連名字都沒有留下。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">出埃及事件之前，以色列人受壓迫的初期</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">希伯來收生婆（學者對她們是希伯來人或埃及人為希伯來人接生存有討論）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">職責</span>
+        <div class="info-cell-value">在希伯來婦人生產時協助接生</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">出埃及記 1:15–21</div>
+      </div>
+    </div>
+
+    <p>示弗拉與普阿的登場，緊接在「不認識約瑟的新王」開始系統性壓迫以色列人之後。法老意識到單純的勞役壓迫未能有效遏制以色列人口的增長，便直接向兩位希伯來收生婆下達了一道極其殘忍的命令：「你們為希伯來婦人收生，看她們臨盆的時候，若是男孩，就把他殺了；若是女孩，就留她存活。」這道命令，將這兩位原本只是協助生產的普通婦人，直接推上了一個攸關無數新生兒生死的道德抉擇前線。</p>
+    <p>經文以極其簡潔卻力量千鈞的一句話，概括了她們的回應：「收生婆敬畏神，不照埃及王的吩咐行，竟存留男孩的性命。」當法老質問她們為何不遵行命令時，她們給出了一個充滿機智的回答：「因為希伯來婦人與埃及婦人不同，她們本是健壯的，收生婆還沒有到，她們已經生產了。」這個回答巧妙地利用了法老對希伯來婦人生理狀況的不熟悉，既沒有正面頂撞王命，也成功地保護了自己免於直接懲罰，同時持續地讓更多男嬰得以存活。經文最後記載，神因她們的敬畏之心厚待她們，「神便叫她們成立家室」——這是聖經中少見地、對兩位無權無勢的平民婦女之德行，給予如此正面而具體祝福的記載。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從接獲一道殘忍的王命，到以智慧與勇氣拒絕執行，再到蒙神親自賜福，示弗拉與普阿的故事，濃縮成聖經中最簡潔卻最有力的一段公民不服從敘事。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">殘忍王命</span>
+        <div class="timeline-title">法老下令——凡希伯來男孩一出生就殺死</div>
+        <div class="timeline-body">法老直接向示弗拉與普阿下達命令：希伯來婦人生產時，若是男孩就殺死他，若是女孩就留她存活，企圖藉此系統性遏制以色列人口的增長。</div>
+        <div class="timeline-ref">出埃及記 1:15–16</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">敬畏抗命</span>
+        <div class="timeline-title">「不照埃及王的吩咐行」——敬畏神勝過懼怕王命</div>
+        <div class="timeline-body">示弗拉與普阿敬畏神，選擇不遵照法老的命令行事，竟存留了眾多男孩的性命，這個決定使她們冒著觸犯王命、可能招致殺身之禍的巨大風險。</div>
+        <div class="timeline-ref">出埃及記 1:17</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">機智應對</span>
+        <div class="timeline-title">「希伯來婦人本是健壯的」——巧妙化解法老的質問</div>
+        <div class="timeline-body">法老召見兩位收生婆質問她們為何不遵行命令，她們機智回答「希伯來婦人與埃及婦人不同，她們本是健壯的，收生婆還沒有到，她們已經生產了」，這個回答成功化解了法老的懷疑，也持續保護了更多男嬰的性命。</div>
+        <div class="timeline-ref">出埃及記 1:18–19</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">蒙神厚待</span>
+        <div class="timeline-title">神叫她們成立家室——敬畏神者所蒙的具體祝福</div>
+        <div class="timeline-body">經文記載「神厚待收生婆，以色列人多起來，極其強盛，因為收生婆敬畏神，神便叫她們成立家室」，這段記載將她們的敬虔行動與神具體而正面的祝福直接連結，成為聖經中極其少見的明確記載。</div>
+        <div class="timeline-ref">出埃及記 1:20–21</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">在權力懸殊、生死一線的處境中，她們展現出一種罕見卻極其珍貴的組合：對神堅定不移的敬畏，加上足以在強權面前全身而退的機智與勇氣。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🙏</div>
+        <div>
+          <span class="soul-label">核心特質</span>
+          <div class="soul-title">將對神的敬畏，置於對世俗王權的懼怕之上</div>
+          <div class="soul-body">面對埃及王直接下達的命令，示弗拉與普阿選擇了敬畏神、不照王命行事，這種將屬靈忠誠置於一切世俗權威之上的抉擇，是她們性格中最核心也最令人敬佩的特質。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🧠</div>
+        <div>
+          <span class="soul-label">行事智慧</span>
+          <div class="soul-title">以機智的言詞，在強權質問下全身而退，同時持續保護生命</div>
+          <div class="soul-body">她們面對法老的質問時，沒有選擇正面對抗或坦承抗命，而是給出一個巧妙、難以反駁、卻又不失真實成分的回答，展現出在極端壓力下依然能保持清晰思考、靈活應對的智慧。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💪</div>
+        <div>
+          <span class="soul-label">無名的勇氣</span>
+          <div class="soul-title">身為毫無政治權力的平民婦女，卻敢於抵抗整個帝國的王命</div>
+          <div class="soul-body">示弗拉與普阿沒有軍隊、沒有政治地位，她們僅僅是負責接生的普通婦女，卻在整個帝國最高權柄直接下達的命令面前，選擇了抵抗，這種源自信仰、而非權勢的勇氣，格外令人動容。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">蒙福見證</span>
+          <div class="soul-title">她們的敬虔行動，得到經文中罕見明確而具體的神聖回報</div>
+          <div class="soul-body">「神便叫她們成立家室」這句記載，是聖經中少見地對平民女性德行給予如此直接祝福的例子，見證了神看重每一個敬畏祂、即便身處最卑微崗位的忠心之人。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">示弗拉與普阿的故事，提出了聖經中關於「公民不服從」最早、也最具典範意義的敘事案例：當世俗權柄的命令與神的旨意直接衝突時，一個敬畏神的人，應當如何回應？她們的選擇，不是公開的政治抗爭或武力對抗，而是在自己的崗位上，以智慧與勇氣，堅定地不執行不義的命令，同時盡可能地保護自己免受直接的報復。這種「順服神過於順服人」（徒 5:29）的原則，在聖經敘事中反覆出現，示弗拉與普阿正是這個原則最早、也最貼近日常生活的具體示範者。她們沒有顯赫的身份或權勢，卻用自己微小卻堅定的抉擇，保護了無數本應被殺害的男嬰性命，甚至間接為此後摩西的存活與拯救以色列的偉大使命，鋪墊了最初的歷史土壤。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ISFJ</span>
+      <div class="mbti-name">守衛者型 · 以智慧守護生命的抵抗者</div>
+      <div class="mbti-slogan">「她們沒有軍隊，沒有權勢，卻用一句機智的回答，守住了整個世代希伯來男嬰的性命。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Si · 內向感覺</span>
+          <div class="mbti-fn-body">她們在日常的接生崗位上，忠實地履行著保護生命、協助生產的職責，這種紮根於具體實務工作、注重生命實際需要的特質，是她們主導內向感覺的展現。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Fe · 外向情感</span>
+          <div class="mbti-fn-body">她們對希伯來婦人與新生兒的處境展現出深切的關懷與同理，這種對他人福祉的敏銳體察，驅使她們甘願冒險抵抗不義的命令。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ti · 內向思考</span>
+          <div class="mbti-fn-body">面對法老的質問，她們迅速構思出一個邏輯上難以反駁、卻又不完全悖離事實的回答，展現出在壓力下依然清晰運作的分析與應變能力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Ne · 外向直覺</span>
+          <div class="mbti-fn-body">她們的行動聚焦於眼前具體的生命保護，而非探索更宏大的政治變革或另闢蹊徑的策略，這種務實而聚焦當下的行事風格，反映出劣勢外向直覺的特徵。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">她們一生最重要的關係，是與那位下達殘忍命令、卻被她們機智抵抗的法老，以及那位鄭重紀念她們敬虔、親自厚待她們的耶和華。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">法</div>
+          <div class="relation-name">法老</div>
+          <div class="relation-type-badge">下達殘忍命令、卻被她們機智抵抗的埃及王</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">法老直接向她們下達殺害希伯來男嬰的命令，她們卻選擇不遵行，並在被質問時以機智的回答化解了法老的懷疑，這段對峙展現出即便面對最高權柄的直接命令，敬畏神的心依然能找到智慧的抵抗之道。</div>
+          <div class="relation-ref">出埃及記 1:15–19</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">耶</div>
+          <div class="relation-name">耶和華</div>
+          <div class="relation-type-badge">看重她們敬虔、親自厚待她們的神</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">耶和華看重示弗拉與普阿敬畏神、不照埃及王吩咐行的心，因此厚待她們，使她們成立家室，這是聖經中少見地對平民女性德行給予明確而具體祝福的記載。</div>
+          <div class="relation-ref">出埃及記 1:20–21</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">希</div>
+          <div class="relation-name">希伯來新生男嬰</div>
+          <div class="relation-type-badge">因她們的抵抗而得以存活的無數生命</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">她們的抗命行動，直接保護了無數本應被殺害的希伯來男嬰的性命，這其中甚至可能間接包括了此後出生、日後成為拯救以色列偉大領袖的摩西。</div>
+          <div class="relation-ref">出埃及記 1:17</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">示弗拉與普阿的故事，是聖經中「順服神過於順服人」這一屬靈原則，最早、也最貼近日常生活的具體敘事範例。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「收生婆敬畏神，不照埃及王的吩咐行，竟存留男孩的性命。……神厚待收生婆，以色列人多起來，極其強盛，因為收生婆敬畏神，神便叫她們成立家室。」</div>
+      <div class="verse-ref">出埃及記 1:17, 20–21</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">יָרֵא</span>
+        <div class="word-transliteration">yare · 敬畏 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">這個字根反覆用於描述示弗拉與普阿的核心動機——「敬畏神」，意指一種對神懷有深切尊崇、進而在行為上實際順服祂旨意的態度，而非單純的害怕情緒。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">這種「敬畏神」的態度，正是她們能夠在面對世俗最高權柄的直接命令時，依然堅持不執行不義之事的內在根源，經文將這種敬畏，與她們此後蒙神厚待的結果直接連結，凸顯出真實的敬畏神，必然體現於具體的道德抉擇之中。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">敬畏神必然體現於具體的行動抉擇，而非僅止於內心的信念</div>
+      <div class="theology-insight-body">示弗拉與普阿的敬畏神，不是抽象的宗教情感，而是具體展現在「不照埃及王的吩咐行」這個實際的抗命行動之中，這提醒我們，真實的信仰，總會在具體的道德抉擇中被檢驗與彰顯。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">當世俗權柄的命令與神的旨意衝突時，順服神應當優先於順服人</div>
+      <div class="theology-insight-body">她們的選擇，成為聖經中「順服神過於順服人」這一原則最早的敘事示範，此後在使徒行傳中，使徒們同樣面對猶太公會的禁令時，也宣告「順從神，不順從人，是應當的」（徒 5:29）。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">神看重每一個敬畏祂的人，即便他們身處最卑微、最無權勢的崗位</div>
+      <div class="theology-insight-body">示弗拉與普阿只是普通的收生婆，沒有任何政治權力或社會地位，然而神卻鄭重記載她們的名字與行為，並具體厚待她們，這提醒我們，神看重的是一個人內心的敬畏與行為的忠心，而非其社會地位的高低。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正面對一個要求你違背良心與信仰的不義命令——這一頁想邀請你，從示弗拉與普阿的智慧與勇氣中，找到屬於自己的抵抗方式。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">示弗拉與普阿的故事映照著每一個曾在職場、社會或家庭中，面對要求自己違背良心或信仰之不義命令的處境。她們提醒我們反思：當外在權威的要求與我們對神的忠誠發生衝突時，我們是否有足夠的敬畏之心與勇氣，選擇不執行不義之事？同時，她們機智而非正面衝撞的抵抗方式，也提醒我們，堅持原則未必總是需要激烈的對抗，有時候，智慧的迂迴與堅定的立場，同樣能夠有效地保護生命與良心。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">你是否曾面對過要求你違背良心或信仰的命令或壓力？你當時如何回應？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">示弗拉與普阿以機智而非正面衝撞的方式應對法老的質問。你在堅持原則時，是傾向於正面對抗，還是尋求智慧而審慎的方式？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">她們身為毫無政治權力的平民婦女，卻敢於抵抗整個帝國的王命。你如何看待「即便身處卑微崗位，依然能夠做出重大道德抉擇」這件事？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">神因她們的敬畏而厚待她們、賜她們家室。你如何看待「忠於良心的抉擇，即便當下承受風險，最終仍可能蒙神眷顧」這一屬靈原則？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 示弗拉與普阿</span>
+        <div class="gen-title">示範劇本：敬畏神勝過懼怕王命，以智慧守護生命</div>
+        <div class="gen-body">她們在法老直接下達的殘忍命令面前，選擇敬畏神、不執行不義之事，並以機智的回答保護了自己與無數男嬰的性命，展現出信仰與智慧並存的抵抗典範。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 後世的信仰群體</span>
+        <div class="gen-title">延續：「順服神過於順服人」原則的持續傳承</div>
+        <div class="gen-body">她們所展現的原則，此後在使徒行傳中被使徒們重新宣告——「順從神，不順從人，是應當的」，成為貫穿新舊約、持續被信仰群體傳承與效法的重要屬靈原則。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在這個故事中，體現在神親自看見並紀念這兩位無權無勢的平民婦女的忠心抉擇，不僅保守她們免於法老的報復，更具體地厚待她們，使她們成立家室。這提醒我們，神眷顧每一個在自己崗位上忠心行公義的人，即便他們的付出看似微小，也不會被神所忽略。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把這兩位靠一句機智的回答、保住了一整個世代希伯來男嬰性命的收生婆，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#聖經最早的職場抗命</span>
+      <span class="tag">#一句話騙過了法老</span>
+      <span class="tag">#沒有權力卻做了對的事</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>示弗拉與普阿的故事，可能是聖經裡最早的一次『職場公民不服從』案例。她們的老闆，剛好是整個埃及帝國最高權力的擁有者——法老，直接下了一道命令：希伯來婦人生男孩，就把男嬰殺掉。</p>
+      <p>換作是你，接到這種命令，會怎麼反應？她們的做法是：表面上沒有正面頂撞，但實際上，完全沒有照做——她們讓那些男孩，一個一個地活了下來。</p>
+      <p>法老當然很快就發現不對勁，把她們叫來質問。她們的回答堪稱教科書等級的臨場反應：『希伯來婦人身體很健壯，我們還沒趕到，她們就自己生完了。』這句話聽起來很合理，法老找不到反駁的破綻，這件事就這樣被搪塞過去了。</p>
+      <p>這兩個女人沒有軍隊，沒有政治後台，甚至可能連自己的名字都不會被歷史記住——結果呢？她們的名字，示弗拉和普阿，被鄭重地寫進了聖經，而下令屠殺的那位法老，聖經連名字都沒給他。</p>
+      <p>經文最後補了一句特別溫暖的話：因為她們敬畏神，神就厚待她們，讓她們也組成了自己的家庭。做對的事，未必會立刻看見回報，但神看得見。</p>
+      <p style="font-weight:500; color:var(--ink);">有時候，改變歷史的，不是站在最高位置上的人，而是那些在自己崗位上，安靜地選擇做對的事的人。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你此刻正面對一個要求你違背良心的命令，示弗拉與普阿的故事想告訴你：敬畏神，比懼怕任何權威都更重要。</p>
+      <p style="margin-top:12px;">堅持原則不一定要正面衝突，有時候，智慧的應對，同樣能守住你的立場與他人的福祉。</p>
+      <p style="margin-top:12px;">你的身份或地位卑微與否，都不影響你此刻能做出的抉擇的重量。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，如果你面對某個要求你妥協原則的壓力，想想示弗拉與普阿——你也可以找到屬於自己的、智慧而堅定的回應方式。</p>
+    </div>
+
+    <div class="insight-box">示弗拉與普阿的故事，在當代倫理學與公民不服從研究中，經常被引用作為「良心抗命」（conscientious objection）最早的歷史敘事案例之一——她們展現出的模式，即在不直接挑戰權威合法性的前提下，透過拒絕執行不義命令來守護生命與良心，至今仍是探討個人在威權體制下如何實踐道德責任的重要參照。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">她們沒有留下任何顯赫的頭銜或功績，卻用一句機智的回答，守住了一整個世代希伯來男嬰的性命，成為聖經中「敬畏神勝過懼怕人」最早也最動人的見證。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">聖經中最早的公民不服從典範</div>
+          <div class="legacy-body">她們敬畏神、不遵行法老不義命令的選擇，成為聖經中最早、也最具體的公民不服從敘事案例，為此後聖經中反覆出現的類似主題奠定了先例。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">「順服神過於順服人」原則的最初示範</div>
+          <div class="legacy-body">她們的選擇，此後在使徒行傳中被使徒們重新宣告「順從神，不順從人，是應當的」，見證了這個屬靈原則貫穿新舊約的一致性。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">平民女性蒙神紀念與厚待的具體見證</div>
+          <div class="legacy-body">神親自紀念並厚待這兩位無權無勢的平民婦女，「神便叫她們成立家室」，成為聖經中神看重卑微崗位上忠心之人的重要見證。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">IV</div>
+        <div>
+          <div class="legacy-title">摩西存活歷史土壤的間接鋪墊者</div>
+          <div class="legacy-body">她們的抗命行動，保護了整個世代希伯來男嬰的性命，這其中可能間接包括了此後出生、日後成為拯救以色列偉大領袖的摩西，為救贖歷史的展開鋪墊了重要的歷史土壤。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「收生婆敬畏神，不照埃及王的吩咐行，竟存留男孩的性命。……因為收生婆敬畏神，神便叫她們成立家室。」</div>
+      <div class="final-verse-ref">出埃及記 1:17, 21</div>
+    </div>
+
+    <div class="final-question">當一道不義的命令要求你違背對神的敬畏，你是否也願意像示弗拉與普阿一樣，找到屬於自己的方式，堅定地選擇不遵行？</div>
+  </div>
+
+</div>
+
+<div class="quiz-section" id="quiz-section" data-person-id="shiphrah_puah" data-quiz-total="9">
+  <span class="quiz-label">小測驗 · 檢測你的熟悉程度</span>
+  <h3 class="quiz-title">你對「示弗拉與普阿」的故事，掌握了多少？</h3>
+  <p class="quiz-desc" id="quiz-desc">共 9 題，涵蓋文脈、關鍵字、結構、神學主題、常見誤解與應用，每題都有時間限制——答錯或答得淺沒關係，測驗結束後會告訴你哪些地方值得回頭再讀一次。</p>
+  <button class="quiz-btn" id="quiz-start-btn" type="button">開始測驗</button>
+  <div id="quiz-play"></div>
+  <div id="quiz-result"></div>
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 示弗拉與普阿 <span>שִׁפְרָה וּפוּעָה</span> · 希伯來收生婆 · 敬畏神勝過懼怕王命的抵抗者</div>
+
+<!-- 閱讀紀錄（localStorage，見 progress.js）：右下角標記已讀按鈕 -->
+<script src="progress.js"></script>
+<!-- 小測驗（localStorage，見 quiz.js）：僅在人物 JSON 有 quiz 欄位時作用 -->
+<script src="quiz-data.js"></script>
+<script src="quiz.js"></script>
+
+</body>
+</html>
