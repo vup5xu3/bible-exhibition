@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>米迦 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── QUIZ ── */
+  .quiz-section { max-width: 860px; margin: 0 auto; padding: 56px 32px 64px; border-top: 2px solid var(--gold); }
+  .quiz-label { font-family: 'IM Fell English', serif; font-size: 12px; letter-spacing: 0.25em; color: var(--gold); display: block; margin-bottom: 12px; }
+  .quiz-title { font-family: 'Noto Serif TC', serif; font-size: 21px; color: var(--ink); margin-bottom: 10px; }
+  .quiz-desc { font-size: 13px; color: var(--ink-pale); line-height: 1.85; margin-bottom: 22px; }
+  .quiz-btn { background: var(--ink); color: var(--gold-light); border: 1px solid var(--gold); border-radius: 30px; padding: 12px 30px; font-family: 'Noto Sans TC', sans-serif; font-size: 14px; cursor: pointer; transition: all 0.2s; }
+  .quiz-btn:hover { background: var(--gold); color: var(--ink); }
+  .quiz-btn.secondary { background: transparent; color: var(--ink-soft); border-color: var(--border-strong); }
+  .quiz-btn.secondary:hover { background: var(--gold-faint); color: var(--ink); }
+  .quiz-progress-bar { display: flex; gap: 4px; margin-bottom: 24px; }
+  .quiz-progress-dot { flex: 1; height: 5px; border-radius: 3px; background: var(--gold-pale); transition: background 0.2s; }
+  .quiz-progress-dot.done { background: var(--gold); }
+  .quiz-progress-dot.current { background: var(--gold-light); }
+  .quiz-meta-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+  .quiz-q-num { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold-light); letter-spacing: 0.05em; }
+  .quiz-timer { font-family: 'IM Fell English', serif; font-size: 15px; color: var(--ink-pale); }
+  .quiz-timer.low { color: var(--crimson); }
+  .quiz-category-badge { display: inline-block; font-size: 10.5px; letter-spacing: 0.05em; padding: 3px 12px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); margin-bottom: 14px; }
+  .quiz-question { font-family: 'Noto Serif TC', serif; font-size: 16.5px; color: var(--ink); line-height: 1.85; margin-bottom: 22px; }
+  .quiz-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+  .quiz-option { text-align: left; background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; font-size: 14px; color: var(--ink-mid); cursor: pointer; transition: all 0.15s; font-family: 'Noto Sans TC', sans-serif; }
+  .quiz-option:hover:not(.locked) { border-color: var(--gold); }
+  .quiz-option.selected { border-color: var(--gold); background: var(--gold-faint); }
+  .quiz-option.correct { border-color: var(--teal-deep); background: rgba(26,74,62,0.1); }
+  .quiz-option.wrong { border-color: var(--crimson); background: rgba(122,32,32,0.07); }
+  .quiz-option.locked { cursor: default; }
+  .quiz-explain { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 14px 18px; font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; margin-bottom: 20px; display: none; }
+  .quiz-explain.visible { display: block; }
+  .quiz-actions { display: flex; justify-content: flex-end; }
+  .quiz-result-score { text-align: center; padding: 12px 0 28px; }
+  .quiz-result-num { font-family: 'IM Fell English', serif; font-size: 46px; color: var(--gold); display: block; }
+  .quiz-result-label { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-top: 6px; }
+  .quiz-cat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 24px; }
+  .quiz-cat-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; text-align: center; }
+  .quiz-cat-card.mastered { border-color: var(--teal-deep); background: rgba(26,74,62,0.06); }
+  .quiz-cat-card.weak { border-color: var(--crimson); background: rgba(122,32,32,0.05); }
+  .quiz-cat-name { font-size: 11px; color: var(--ink-soft); margin-bottom: 4px; }
+  .quiz-cat-status { font-size: 12px; font-weight: 500; color: var(--ink-pale); }
+  .quiz-cat-status.mastered-text { color: var(--teal-deep); }
+  .quiz-cat-status.weak-text { color: var(--crimson); }
+  .quiz-next-step { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 22px 26px; font-size: 13.5px; line-height: 1.9; margin-bottom: 24px; }
+  .quiz-next-step-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 10px; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .quiz-section { padding: 40px 20px 48px; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">米迦・以法蓮山地人</h1>
+  <span class="hero-name-en">Micah · מִיכָיְהוּ</span>
+  <p class="hero-slogan">「米迦說：<br>「現在我知道耶和華必厚待我，因我有一個利未人作祭司。」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">士師時代，「以色列中沒有王」的年代</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ISFP · 探險家型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">士師記 17–18 章</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">以法蓮山地人 · 私設家庭神堂者 · 士師記道德崩壞的縮影</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">米迦的故事，是士師記結尾那句反覆出現的注腳——『那時以色列中沒有王，各人任意而行』——最具體、最貼近日常生活的示範案例。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">士師時代，「以色列中沒有王」的年代</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">以法蓮山地人</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">宗教行動</span>
+        <div class="info-cell-value">設立家庭神堂，配備以弗得、家中的神像，雇用利未人為私人祭司</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">士師記 17–18 章</div>
+      </div>
+    </div>
+
+    <p>米迦的故事，以一樁家庭盜竊案揭開序幕：他偷了母親一千一百舍客勒的銀子，母親發現後發出咒詛，米迦聽見後坦承竊行並歸還銀子；母親轉而祝福兒子，並宣告要將這筆銀子分別為聖，「為我兒子製造一個雕刻的像和一個鑄成的像」。這個看似溫馨的家庭和解場景，實則揭露了那個時代以色列人信仰生活中極其嚴重的混亂——他們口中呼喊耶和華的名，行動上卻毫不猶豫地觸犯十誡中禁止雕刻偶像的誡命，將偷竊、迷信與敬拜混雜為一體，卻絲毫不覺得有任何矛盾之處。</p>
+    <p>米迦此後在家中設立神堂，製作了以弗得（本應是大祭司專用的聖服）與家中的神像（teraphim，家庭守護神像），又立自己的一個兒子作祭司，構成了一套完全私人化、脫離利未支派正式祭司體系的敬拜系統。直到一位從猶大伯利恆而來、正在尋找棲身之處的年輕利未人經過此地，米迦立刻聘請他作自己的私人祭司，並宣稱：「現在我知道耶和華必厚待我，因我有一個利未人作祭司。」這句話赤裸裸地揭露了米迦信仰觀的核心謬誤——他將「擁有一位利未人祭司」視為某種確保神明賜福的宗教保險，卻完全誤解了敬拜的本質。此後但支派的軍隊路過，看中了米迦的神像、以弗得、家中的神像與這位利未祭司，直接搶奪一空，帶往但地建立起自己的敬拜中心，米迦追趕抗議卻因寡不敵眾而無可奈何，只能眼睜睜看著自己苦心經營的家庭神堂被連根拔起。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從偷竊母親的銀子，到建立私人神堂，再到被但支派連根奪走信仰的全部家當，米迦的故事，是士師記中信仰私有化、宗教商品化最生動的寫照。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">家庭盜竊</span>
+        <div class="timeline-title">偷了母親的一千一百舍客勒銀子——坦承後歸還</div>
+        <div class="timeline-body">米迦偷了母親一千一百舍客勒的銀子，母親發現後發出咒詛，米迦聽見後主動坦承竊行並歸還銀子，母親隨即轉而祝福兒子。</div>
+        <div class="timeline-ref">士師記 17:1–3</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">混雜敬拜</span>
+        <div class="timeline-title">母親將銀子分別為聖——鑄造雕刻與鑄成的像</div>
+        <div class="timeline-body">米迦的母親將歸還的銀子分別為聖獻給耶和華，卻用這筆錢請匠人製造了一個雕刻的像和一個鑄成的像，這種將奉獻耶和華與觸犯偶像禁令混為一談的行為，反映出當時信仰認知的嚴重混亂。</div>
+        <div class="timeline-ref">士師記 17:3–4</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">私設神堂</span>
+        <div class="timeline-title">建立家庭神堂——以弗得、家中的神像一應俱全</div>
+        <div class="timeline-body">米迦在家中建立起一座私人神堂，配備以弗得（本應是大祭司專用聖服）與家中的神像，並先立自己的一個兒子作祭司，構成了一套完全脫離正式祭司體系的私人敬拜系統。</div>
+        <div class="timeline-ref">士師記 17:5</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">聘任祭司</span>
+        <div class="timeline-title">雇用路過的利未人——「耶和華必厚待我」的錯誤保證</div>
+        <div class="timeline-body">一位從猶大伯利恆而來、正尋找棲身之處的年輕利未人經過米迦家，米迦立刻聘請他作自己的私人祭司，並宣稱擁有利未人祭司必能確保耶和華的厚待，這句話徹底揭露了他對敬拜本質的誤解。</div>
+        <div class="timeline-ref">士師記 17:7–13</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">神堂被奪</span>
+        <div class="timeline-title">但支派的掠奪——神像祭司一併被帶走</div>
+        <div class="timeline-body">但支派的軍隊在遷徙途中路過米迦家，看中了他的神像、以弗得、家中的神像與利未祭司，直接搶奪一空並帶往但地，建立起自己的敬拜中心；米迦追趕抗議，卻因對方人多勢眾，只能無奈放棄，眼睜睜看著自己苦心經營的信仰體系被連根拔起。</div>
+        <div class="timeline-ref">士師記 18:14–26</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">米迦不是十惡不赦的惡人，他甚至帶著某種真誠的宗教渴望——然而正是這份未經真理引導的虔誠，讓他的信仰淪為一場自欺欺人的交易。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">🙏</div>
+        <div>
+          <span class="soul-label">核心特質</span>
+          <div class="soul-title">帶有真誠卻扭曲的宗教渴望，試圖以自己的方式親近神</div>
+          <div class="soul-body">米迦並非完全不敬畏耶和華——他偷竊後坦承歸還、建立神堂、聘請祭司，這些行動背後，隱約透露出他確實渴望與神建立某種連結，只是這份渴望完全按照自己的想像行事，而非遵循神所啟示的真理。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">💰</div>
+        <div>
+          <span class="soul-label">信仰觀扭曲</span>
+          <div class="soul-title">將宗教敬拜簡化為一套確保神明賜福的交易機制</div>
+          <div class="soul-body">米迦「現在我知道耶和華必厚待我，因我有一個利未人作祭司」這句話，赤裸裸地暴露出他將敬拜視為一種可以量化、可以透過正確配備（利未人祭司）來確保回報的交易關係，而非發自內心對神的忠誠與順服。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">混淆偷竊、迷信與敬拜的界線，卻毫無察覺其中的矛盾</div>
+          <div class="soul-body">從偷竊母親的銀子，到用這筆不義之財鑄造偶像獻給耶和華，米迦與他的母親對「敬虔」與「悖逆誡命」之間的矛盾，展現出驚人的道德與屬靈麻木，這正是士師記所批判的信仰私有化的具體病徵。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">敘事意義</span>
+          <div class="soul-title">他個人的宗教實驗，最終仍無法抵擋更強大勢力的掠奪</div>
+          <div class="soul-body">米迦苦心經營的私人神堂，最終被但支派的軍隊輕易奪走，這個結局深刻諷刺了他所信賴的「利未人祭司必能帶來保障」這一錯誤信念的脆弱與虛妄。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">米迦的故事提出了一個對每個時代的信仰群體都極具警示意義的問題：當一個人脫離了群體所共同持守的真理標準，僅憑個人的宗教直覺與想像來建構信仰時，會發生什麼事？米迦的行動軌跡——偷竊、鑄像、私設神堂、雇用祭司——每一步看似都帶著某種對神的渴望，卻無一步真正符合神所啟示的敬拜方式。他將擁有「正確配備」（利未人祭司）等同於必然蒙福的保證，這種將信仰簡化為交易公式的傾向，恰恰是士師記結尾「各人任意而行」這句反覆出現的注腳，最貼近日常生活的具體示範。米迦的故事提醒我們，真誠的宗教渴望本身，並不足以保證信仰的正確性；沒有真理標準引導的虔誠，即便出於真心，也可能導向一場自欺欺人、甚至最終徒勞無功的宗教實驗。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ISFP</span>
+      <div class="mbti-name">探險家型 · 自己開了一間家庭神殿的人</div>
+      <div class="mbti-slogan">「他以為擁有一位利未人祭司，就能確保耶和華的厚待——直到但支派把這一切都搶走了。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">他對建立與神連結的渴望，源自於一種強烈而個人化的內在價值感受，儘管這份感受並未受到正確真理的引導，卻驅使他投入大量心力打造屬於自己的敬拜體系。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Se · 外向感覺</span>
+          <div class="mbti-fn-body">他透過具體可見的宗教物件——雕刻的像、以弗得、家中的神像——來滿足自己對敬拜的渴望，展現出高度依賴具體感官經驗來建構信仰認知的特質。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">他相信擁有利未人祭司便能確保未來蒙福的直覺判斷，儘管這份判斷完全缺乏真理根據，卻反映出他試圖以某種直覺洞察來把握自己與神關係的傾向。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">他對整套敬拜體系的建構缺乏系統性的真理檢驗與邏輯反思，僅憑個人直覺與渴望行事，這種對客觀標準與邏輯一致性的忽略，正顯示出劣勢外向思考的匱乏。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最重要的關係，是與那位共同鑄造偶像的母親，以及那位被他聘任、卻在但支派入侵時毫不猶豫轉投他方的利未祭司。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">母</div>
+          <div class="relation-name">米迦的母親</div>
+          <div class="relation-type-badge">與他共謀鑄造偶像的家人</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">米迦的母親在得知銀子失而復得後，將這筆錢分別為聖，卻用來鑄造雕刻的像與鑄成的像，這段母子之間看似溫馨的和解，實則共同展現出當時以色列信仰認知中偷竊、迷信與敬拜混雜不清的嚴重問題。</div>
+          <div class="relation-ref">士師記 17:1–4</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">利</div>
+          <div class="relation-name">年輕的利未人祭司</div>
+          <div class="relation-type-badge">他聘任、卻在利益更大時轉投他方的私人祭司</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">這位從伯利恆而來的年輕利未人，被米迦聘為家庭祭司，享有衣食與薪俸的供應；然而當但支派提出更優渥的條件——作一族一支派的祭司，而非僅是一家的祭司——這位利未人毫不猶豫地轉投他們，暴露出這段雇傭關係本質上的功利與脆弱。</div>
+          <div class="relation-ref">士師記 17:10–12 · 18:19–20</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">但</div>
+          <div class="relation-name">但支派</div>
+          <div class="relation-type-badge">奪走他神堂全部家當的強勢群體</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">但支派在尋找新領地的遷徙途中路過米迦家，看中了他的神像與利未祭司，直接以武力搶奪一空並帶往但地建立自己的敬拜中心，米迦追趕抗議卻因寡不敵眾而徒勞無功，這段關係凸顯出私人信仰體系在強權面前的脆弱不堪。</div>
+          <div class="relation-ref">士師記 18:14–26</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">米迦的故事，是聖經中「各人任意而行」這一士師記核心主題最具體、最貼近日常生活的示範案例。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「那時，以色列中沒有王，各人任意而行。」</div>
+      <div class="verse-ref">士師記 17:6</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">真誠的宗教渴望，若缺乏真理標準的引導，可能導向偏差的敬拜</div>
+      <div class="theology-insight-body">米迦對神的渴望或許是真實的，然而他所建構的整套敬拜體系——雕刻的像、私設神堂、雇用祭司——完全違背了神所啟示的敬拜方式，這提醒我們，個人的宗教感受與熱忱，不能取代對神真理標準的忠實遵循。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">將敬拜簡化為交易公式，是對信仰本質的根本誤解</div>
+      <div class="theology-insight-body">米迦「有利未人祭司便能蒙耶和華厚待」的想法，將信仰化約為一套可操作、可確保回報的交易機制，這種功利化的信仰觀，與聖經所啟示「盡心、盡性、盡意愛主你的神」的敬拜本質，存在根本性的落差。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">脫離群體共同真理標準的私人信仰，終究脆弱不堪一擊</div>
+      <div class="theology-insight-body">米迦苦心經營的家庭神堂，在但支派的武力面前不堪一擊，這提醒我們，一個脫離群體共同持守之真理標準、僅憑個人建構的信仰體系，即便看似完備，也往往缺乏真正屬靈的根基與保障。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正憑著自己的直覺與渴望，建構一套屬於自己的信仰或價值體系——這一頁想邀請你，重新省思米迦的教訓。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">米迦的故事映照著每一個在信仰或價值追求上，憑著個人直覺與渴望行事、卻缺乏真理標準檢驗的處境——無論是將信仰簡化為某種「做對了就會蒙福」的交易公式，或是脫離群體共同持守的真理標準、自行建構一套個人化的信仰體系。他提醒我們反思：我們對神的渴望，是否真正建立在祂所啟示的真理之上，還是僅僅依循著自己覺得「應該如此」的宗教直覺？</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">米迦將「擁有利未人祭司」等同於「必蒙耶和華厚待」的保證。你是否也曾將信仰簡化為某種「做了正確的事就能換取神賜福」的交易公式？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">米迦與母親將偷竊而來的銀子用於鑄造偶像獻給耶和華，卻毫無察覺其中的矛盾。你是否也曾在生活中，將明顯衝突的行為與信仰宣稱混為一談，卻未曾深思？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">米迦的私人神堂最終被但支派輕易奪走。你如何看待「脫離群體共同真理標準、憑個人直覺建構的信仰」與「根植於真理、與群體共同持守的信仰」之間的差異？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">那位利未人祭司在更優渥的條件出現時，毫不猶豫地轉投他方。你在信仰或事奉的委身上，是否也曾因利益的考量而輕易動搖？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 米迦與母親</span>
+        <div class="gen-title">混雜劇本：將偷竊、迷信與敬拜混為一談</div>
+        <div class="gen-body">米迦與母親在偷竊、發咒、坦承、歸還、鑄像的一連串行動中，展現出對神誡命與敬拜本質的嚴重混淆，這種信仰認知的偏差，也直接延續到米迦此後私設神堂、雇用祭司的整套行動之中。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 士師時代的以色列</span>
+        <div class="gen-title">延續：整個世代「各人任意而行」的信仰亂象</div>
+        <div class="gen-body">米迦的故事，被置於士師記結尾，作為「那時以色列中沒有王，各人任意而行」這句反覆出現的注腳的具體示範，顯示出這種私人化、脫離真理標準的信仰亂象，並非個案，而是整個士師時代的普遍縮影。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在這個故事中，體現在神即便面對以色列信仰生活中如此嚴重的混亂與偏差，仍未完全棄絕祂的百姓；士師記整體敘事的最終指向，是對一位真正合神心意的王的深切渴望——這份渴望，最終在大衛身上得到部分應驗，並在基督身上得到終極的成全，提醒我們唯有真正的王（基督）的引導，才能帶領百姓脫離「各人任意而行」的混亂。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把這位偷錢又還錢、開了間家庭神殿、最後被搶得一乾二淨的宗教創業者，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#信仰界的自助餐</span>
+      <span class="tag">#把神明當保險買</span>
+      <span class="tag">#脫離體制的個人宗教實驗</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>米迦的故事，怎麼看都帶著一種黑色幽默的荒謬感。故事一開始，他偷了媽媽一千一百塊銀子，媽媽發現後氣得下咒，米迦嚇得趕緊承認、歸還——結果呢？媽媽轉頭就把這筆錢拿去鑄了兩尊偶像，說是要『分別為聖獻給耶和華』。</p>
+      <p>你沒看錯，一邊喊著耶和華的名字，一邊做著十誡明文禁止的事，母子倆完全沒有意識到這中間有什麼矛盾。</p>
+      <p>接下來米迦更進一步，在家裡開了一間『私人神殿』，什麼都配齊——雕像、以弗得、家中的神像，一應俱全，還先讓自己的兒子當祭司。後來剛好路過一個正在找工作的利未人，米迦立刻把他請回家，當自己的專屬祭司，還說了一句超級真心的話：『現在我知道耶和華一定會厚待我了，因為我請到了一個利未人當祭司！』</p>
+      <p>這句話翻譯成現代語言，大概就是：『我買了保險，所以我覺得自己很安全。』米迦把信仰，活生生地變成了一套『只要配備正確，就能兌換神明保佑』的交易系統。</p>
+      <p>結局也很諷刺：但支派的軍隊路過，看上了他的神像跟祭司，直接連人帶物一起搶走。那位利未人祭司，聽到但支派說『你來當我們整個支派的祭司，比當這一家人的祭司好多了』，想都沒想就跟著走了。米迦追出去抗議，卻因為人少勢弱，只能眼睜睜看著自己辛苦『開業』的神殿，被人一鍋端走。</p>
+      <p style="font-weight:500; color:var(--ink);">當信仰變成一套自己發明的交易公式，而不是對真理的忠誠委身，它終究撐不住任何一場真正的考驗。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你發現自己也在用某種『做對了就能換取祝福』的心態經營信仰，米迦的故事，是一個值得深思的警示。</p>
+      <p style="margin-top:12px;">真誠的渴望，不能取代對真理的忠實遵循——動機良善，未必等於方向正確。</p>
+      <p style="margin-top:12px;">脫離群體共同持守的標準、憑個人直覺建構的信仰體系，往往經不起真正的考驗。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，檢視一下自己的信仰或價值體系，有沒有哪個部分，其實只是自己發明的『交易公式』，而非真正紮根於真理？</p>
+    </div>
+
+    <div class="insight-box">米迦的故事，在當代宗教社會學研究中，常被引用作為「宗教私有化」（privatization of religion）現象的早期聖經案例——當個人脫離群體共同持守的信仰標準與權威架構，僅憑個人喜好與直覺建構專屬的信仰實踐時，這種私人化的信仰體系，往往缺乏足夠的根基與韌性，難以承受外在挑戰或內在檢驗。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他沒有留下任何值得效法的信仰典範，卻用自己荒謬而真誠交織的宗教實驗，成為士師記「各人任意而行」這句核心主題最生動的注腳。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">「各人任意而行」的具體示範案例</div>
+          <div class="legacy-body">他的整個故事——偷竊、鑄像、私設神堂、雇用祭司——成為士師記結尾核心主題最貼近日常生活的具體示範，深刻揭露了脫離真理標準的信仰亂象。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">「敬拜交易化」的警示典範</div>
+          <div class="legacy-body">他將擁有利未人祭司等同於必蒙耶和華厚待的想法，成為後世反思「信仰功利化、交易化」危險傾向時，經常引用的聖經案例。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">但支派敬拜中心起源的關鍵伏筆</div>
+          <div class="legacy-body">他被奪走的神像與祭司，此後成為但支派在但地建立敬拜中心的起點，這個私人信仰體系的擴散，也為此後以色列歷史中反覆出現的偶像崇拜問題，埋下了具體的歷史伏筆。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「那時，以色列中沒有王，各人任意而行。」</div>
+      <div class="final-verse-ref">士師記 17:6</div>
+    </div>
+
+    <div class="final-question">你此刻所持守的信仰或價值標準，是根植於超越自己的真理，還是僅僅是你自己覺得『應該如此』的個人直覺？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 米迦 <span>מִיכָיְהוּ</span> · 以法蓮山地人 · 私設神堂的宗教創業者</div>
+
+<!-- 閱讀紀錄（localStorage，見 progress.js）：右下角標記已讀按鈕 -->
+<script src="progress.js"></script>
+<!-- 小測驗（localStorage，見 quiz.js）：僅在人物 JSON 有 quiz 欄位時作用 -->
+<script src="quiz-data.js"></script>
+<script src="quiz.js"></script>
+
+</body>
+</html>

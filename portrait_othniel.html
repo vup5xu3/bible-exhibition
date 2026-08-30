@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>俄陀聶 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── QUIZ ── */
+  .quiz-section { max-width: 860px; margin: 0 auto; padding: 56px 32px 64px; border-top: 2px solid var(--gold); }
+  .quiz-label { font-family: 'IM Fell English', serif; font-size: 12px; letter-spacing: 0.25em; color: var(--gold); display: block; margin-bottom: 12px; }
+  .quiz-title { font-family: 'Noto Serif TC', serif; font-size: 21px; color: var(--ink); margin-bottom: 10px; }
+  .quiz-desc { font-size: 13px; color: var(--ink-pale); line-height: 1.85; margin-bottom: 22px; }
+  .quiz-btn { background: var(--ink); color: var(--gold-light); border: 1px solid var(--gold); border-radius: 30px; padding: 12px 30px; font-family: 'Noto Sans TC', sans-serif; font-size: 14px; cursor: pointer; transition: all 0.2s; }
+  .quiz-btn:hover { background: var(--gold); color: var(--ink); }
+  .quiz-btn.secondary { background: transparent; color: var(--ink-soft); border-color: var(--border-strong); }
+  .quiz-btn.secondary:hover { background: var(--gold-faint); color: var(--ink); }
+  .quiz-progress-bar { display: flex; gap: 4px; margin-bottom: 24px; }
+  .quiz-progress-dot { flex: 1; height: 5px; border-radius: 3px; background: var(--gold-pale); transition: background 0.2s; }
+  .quiz-progress-dot.done { background: var(--gold); }
+  .quiz-progress-dot.current { background: var(--gold-light); }
+  .quiz-meta-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+  .quiz-q-num { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold-light); letter-spacing: 0.05em; }
+  .quiz-timer { font-family: 'IM Fell English', serif; font-size: 15px; color: var(--ink-pale); }
+  .quiz-timer.low { color: var(--crimson); }
+  .quiz-category-badge { display: inline-block; font-size: 10.5px; letter-spacing: 0.05em; padding: 3px 12px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); margin-bottom: 14px; }
+  .quiz-question { font-family: 'Noto Serif TC', serif; font-size: 16.5px; color: var(--ink); line-height: 1.85; margin-bottom: 22px; }
+  .quiz-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+  .quiz-option { text-align: left; background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; font-size: 14px; color: var(--ink-mid); cursor: pointer; transition: all 0.15s; font-family: 'Noto Sans TC', sans-serif; }
+  .quiz-option:hover:not(.locked) { border-color: var(--gold); }
+  .quiz-option.selected { border-color: var(--gold); background: var(--gold-faint); }
+  .quiz-option.correct { border-color: var(--teal-deep); background: rgba(26,74,62,0.1); }
+  .quiz-option.wrong { border-color: var(--crimson); background: rgba(122,32,32,0.07); }
+  .quiz-option.locked { cursor: default; }
+  .quiz-explain { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 14px 18px; font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; margin-bottom: 20px; display: none; }
+  .quiz-explain.visible { display: block; }
+  .quiz-actions { display: flex; justify-content: flex-end; }
+  .quiz-result-score { text-align: center; padding: 12px 0 28px; }
+  .quiz-result-num { font-family: 'IM Fell English', serif; font-size: 46px; color: var(--gold); display: block; }
+  .quiz-result-label { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-top: 6px; }
+  .quiz-cat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 24px; }
+  .quiz-cat-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; text-align: center; }
+  .quiz-cat-card.mastered { border-color: var(--teal-deep); background: rgba(26,74,62,0.06); }
+  .quiz-cat-card.weak { border-color: var(--crimson); background: rgba(122,32,32,0.05); }
+  .quiz-cat-name { font-size: 11px; color: var(--ink-soft); margin-bottom: 4px; }
+  .quiz-cat-status { font-size: 12px; font-weight: 500; color: var(--ink-pale); }
+  .quiz-cat-status.mastered-text { color: var(--teal-deep); }
+  .quiz-cat-status.weak-text { color: var(--crimson); }
+  .quiz-next-step { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 22px 26px; font-size: 13.5px; line-height: 1.9; margin-bottom: 24px; }
+  .quiz-next-step-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 10px; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .quiz-section { padding: 40px 20px 48px; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">俄陀聶・迦勒的姪子</h1>
+  <span class="hero-name-en">Othniel · עָתְנִיאֵל</span>
+  <p class="hero-slogan">「耶和華的靈降在他身上，他就作了以色列的士師，出去爭戰。耶和華將古珊利薩田交在他手中……於是國中太平四十年。」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">士師時代初期，約主前十四至十三世紀</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ISTJ · 物流師型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">約書亞記 15:16–17 · 士師記 1:12–13 · 3:7–11</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">以色列第一位士師 · 迦勒的姪子（或弟弟）· 典範性的拯救者</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">在士師記這部逐漸崩壞的敘事中，俄陀聶是唯一一位故事乾淨得近乎「無趣」的士師——而這份「無趣」，恰恰是最深刻的讚美。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">士師時代初期，約主前十四至十三世紀</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">基納斯的兒子，迦勒的姪子（或按七十士譯本理解為迦勒的弟弟）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">家族</span>
+        <div class="info-cell-value">娶迦勒之女押撒為妻</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">約書亞記 15:16–17 · 士師記 1:12–13 · 3:7–11</div>
+      </div>
+    </div>
+
+    <p>俄陀聶最早登場，是在約書亞記與士師記開頭記載以色列人進佔迦南地的過程中：迦勒宣告，凡能攻取並佔領基列西弗（底璧）的人，就把女兒押撒賜給他為妻。俄陀聶挺身應戰，成功攻取了這座城，如願娶得押撒。婚後，押撒向父親迦勒請求additional的產業——上泉與下泉——展現出這對夫妻在建立家業上務實而積極的一面。這段婚姻插曲雖然簡短，卻已透露出俄陀聶行事果決、不畏艱難的性格特質。</p>
+    <p>真正讓俄陀聶在以色列歷史上留下典範地位的，是士師記第三章的記載。以色列人行耶和華眼中看為惡的事，忘記耶和華他們的神，去事奉諸巴力和亞舍拉，耶和華的怒氣向以色列發作，將他們交在美索不達米亞王古珊利薩田手下，服事他八年。以色列人呼求耶和華，耶和華就興起一位拯救者——俄陀聶。耶和華的靈降在他身上，他出去爭戰，耶和華將古珊利薩田交在他手中，於是國中太平四十年。這個「行惡—受欺壓—呼求—拯救—太平」的敘事模式，此後成為整卷士師記反覆出現的結構，而俄陀聶正是這個模式最初、也最完整無瑕的示範。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從攻城娶妻的果敢青年，到蒙靈感動、拯救全以色列的士師，俄陀聶的一生，是士師記中最接近「教科書範本」的敘事。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-badge badge-normal">攻城娶妻</span>
+        <div class="timeline-title">攻取基列西弗——迎娶迦勒之女押撒</div>
+        <div class="timeline-body">迦勒宣告誰能攻取基列西弗（底璧），就把女兒押撒賜給他為妻，俄陀聶挺身應戰、成功攻城，如願娶得押撒；婚後押撒向父親請求上泉下泉作為額外的產業。</div>
+        <div class="timeline-ref">約書亞記 15:16–17 · 士師記 1:12–13</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">受欺壓期</span>
+        <div class="timeline-title">以色列行惡——服事古珊利薩田八年</div>
+        <div class="timeline-body">俄陀聶事蹟之後的世代，以色列人行耶和華眼中看為惡的事，忘記耶和華，去事奉諸巴力和亞舍拉；耶和華的怒氣向以色列發作，將他們交在美索不達米亞王古珊利薩田手下，服事他八年。</div>
+        <div class="timeline-ref">士師記 3:7–8</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">蒙靈膏抹</span>
+        <div class="timeline-title">耶和華的靈降在他身上——被興起作士師</div>
+        <div class="timeline-body">以色列人呼求耶和華，耶和華就為以色列人興起一位拯救者，就是迦勒兄弟基納斯的兒子俄陀聶，耶和華的靈降在他身上，他就作了以色列的士師。</div>
+        <div class="timeline-ref">士師記 3:9–10</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">得勝拯救</span>
+        <div class="timeline-title">出去爭戰——耶和華將古珊利薩田交在他手中</div>
+        <div class="timeline-body">俄陀聶奉耶和華的靈感動出去爭戰，耶和華將美索不達米亞王古珊利薩田交在他手中，俄陀聶的手戰勝了古珊利薩田，以色列因此得以脫離外邦的轄制。</div>
+        <div class="timeline-ref">士師記 3:10</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">太平典範</span>
+        <div class="timeline-title">國中太平四十年——士師記唯一的完美結局</div>
+        <div class="timeline-body">俄陀聶得勝之後，以色列全境太平四十年，直到俄陀聶去世；他的故事以最簡潔、最沒有瑕疵的方式，完整走完了「呼求—拯救—太平」的循環，成為此後每一位士師故事的原型與對照標準。</div>
+        <div class="timeline-ref">士師記 3:11</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">俄陀聶最特別之處，在於他幾乎沒有任何值得挑剔的性格瑕疵——這在士師記逐漸崩壞的敘事脈絡中，反而顯得格外珍貴而稀有。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">⚔️</div>
+        <div>
+          <span class="soul-label">核心特質</span>
+          <div class="soul-title">果敢決斷，面對挑戰毫不遲疑地挺身應戰</div>
+          <div class="soul-body">無論是攻取基列西弗以贏得婚姻，或是在以色列受欺壓時挺身而出擔任士師，俄陀聶展現出一貫果決、不畏艱難的行動力。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🕊️</div>
+        <div>
+          <span class="soul-label">主要美德</span>
+          <div class="soul-title">完全順服耶和華的靈的感動，毫無自我膨脹或悖逆</div>
+          <div class="soul-body">與此後撒母耳記中掃羅、士師記中基甸的猶疑、耶弗他的魯莽誓言、參孫的放縱形成鮮明對比，俄陀聶的敘事中沒有任何個人意志與神旨意的拉扯，他單純地被靈感動、出去爭戰、得勝而歸。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">📖</div>
+        <div>
+          <span class="soul-label">敘事功能</span>
+          <div class="soul-title">作為士師記結構的原型，樹立起此後每況愈下的對照標準</div>
+          <div class="soul-body">俄陀聶的故事乾淨俐落、毫無枝節，正因如此，他為士師記此後逐漸複雜化、逐漸道德灰暗化的敘事，建立起一個清晰的對照基準，讓讀者更能察覺後續士師們日益明顯的性格缺陷。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">深遠意義</span>
+          <div class="soul-title">他的家族背景，暗示神揀選拯救者不拘泥於血統的純粹性</div>
+          <div class="soul-body">俄陀聶是迦勒的姪子（或弟弟），而迦勒本人是基納斯人，屬於被以色列接納的外族血統（民 32:12）——這意味著以色列第一位士師，其家族血統本身便帶著跨族群融合的印記，呼應了神揀選拯救者不受人為血統界線限制的一貫原則。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">俄陀聶的故事提出了一個看似矛盾、實則深刻的觀察：一個「毫無戲劇性」的人物，反而可能是聖經中最值得效法的典範。士師記此後的敘事，會呈現出基甸的信心動搖、耶弗他的衝動立誓、參孫的道德放縱——這些士師的故事之所以引人入勝，往往正是因為他們的軟弱與掙扎。俄陀聶卻恰恰相反：他沒有留下任何值得深挖的內心掙扎或道德瑕疵，他單純地回應了神的呼召，得勝而歸，使國中太平四十年。這提醒我們，屬靈生命中最值得追求的，或許不是戲劇性的掙扎與救贖，而是這種持續而單純的順服——不需要驚心動魄的情節，只需要在蒙召的那一刻，毫不猶豫地回應。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ISTJ</span>
+      <div class="mbti-name">物流師型 · 士師記裡最不出戲的模範生</div>
+      <div class="mbti-slogan">「他的故事乾淨得近乎無趣——而這份無趣，正是他留給後世最深刻的讚美。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Si · 內向感覺</span>
+          <div class="mbti-fn-body">他忠實地依循既定的呼召與責任行事——無論是應戰奪城的具體挑戰，或是回應以色列人呼求時所承擔的士師職分，都展現出高度務實、按部就班完成使命的性格特質。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">他在面對古珊利薩田的威脅時，迅速而有效地組織軍力、出戰得勝，展現出目標導向、講求實際成效的外向思考能力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">儘管經文著墨不多，俄陀聶對神托付使命的忠誠與順服，反映出一種源自內在價值認同的堅定信念，這份忠誠使他能在蒙靈感動時毫不遲疑地回應。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Ne · 外向直覺</span>
+          <div class="mbti-fn-body">他的行動聚焦於眼前具體的挑戰與使命，而非探索多元可能性或另闢蹊徑，這種務實而專注的行事風格，反映出劣勢外向直覺的特徵。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最重要的關係，是與那位將女兒許配給他的迦勒，以及那位興起他、以靈感動他的耶和華。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">迦</div>
+          <div class="relation-name">迦勒</div>
+          <div class="relation-type-badge">他的岳父，也是他的兄長或叔父</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">迦勒宣告誰能攻取基列西弗，便將女兒押撒賜給他為妻，俄陀聶挺身應戰、成功奪城；這段姻親關係，也讓俄陀聶自幼便浸潤在迦勒那種「專心跟從耶和華」的信心典範之中。</div>
+          <div class="relation-ref">約書亞記 15:16–17</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">押</div>
+          <div class="relation-name">押撒</div>
+          <div class="relation-type-badge">他的妻子，迦勒之女</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">押撒在婚後主動向父親迦勒請求額外的產業——上泉與下泉，這段插曲展現出這對夫妻在建立家業上務實進取的一面，也為俄陀聶此後的人生鋪墊了穩固的家庭基礎。</div>
+          <div class="relation-ref">士師記 1:14–15</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">耶</div>
+          <div class="relation-name">耶和華</div>
+          <div class="relation-type-badge">興起他、以靈感動他的神</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">以色列人呼求耶和華，耶和華便興起俄陀聶作為拯救者，耶和華的靈降在他身上，使他得以戰勝古珊利薩田——這段關係展現出神主動介入拯救祂子民的信實，以及俄陀聶對這份感動毫無保留的順服回應。</div>
+          <div class="relation-ref">士師記 3:9–10</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">俄陀聶的故事，是士師記「呼求—拯救—太平」循環結構最初、也最完整的範例，此後每一位士師的故事，都活在他所立下典範的陰影之下。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「耶和華的靈降在他身上，他就作了以色列的士師，出去爭戰。耶和華將美索不達米亞王古珊利薩田交在他手中，他便勝了古珊利薩田。於是國中太平四十年。」</div>
+      <div class="verse-ref">士師記 3:10–11</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-original">רוּחַ יְהוָה</span>
+        <div class="word-transliteration">Ruach YHWH · 耶和華的靈 · 希伯來文</div>
+        <span class="word-section-label">字面原意</span>
+        <div class="word-section-body">這個詞組在士師記中反覆出現於幾位士師身上（俄陀聶、基甸、耶弗他、參孫），標誌著神以超自然的方式賦予拯救者能力，使其得以完成人力所不能及的拯救任務。</div>
+        <span class="word-section-label">神學重量</span>
+        <div class="word-section-body">值得注意的是，隨著士師記敘事的推進，「耶和華的靈」降臨的對象，其個人道德與屬靈狀態卻每況愈下——從俄陀聶的毫無瑕疵，到參孫的放縱墮落——這提醒我們，神的靈的工作，並不總是與蒙感動者個人的完美程度成正比，神仍然樂意使用軟弱、甚至有明顯道德缺陷的器皿，成就祂拯救的旨意。</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">俄陀聶樹立了士師記敘事結構的原型</div>
+      <div class="theology-insight-body">「行惡—受欺壓—呼求—拯救—太平」這個此後反覆出現的循環模式，在俄陀聶的故事中首次完整呈現，且是唯一一次毫無雜質、毫無延伸枝節的呈現，為此後逐漸複雜化的士師故事，提供了清晰的對照基準。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">神的拯救不等待完美的環境，也不需要完美的英雄</div>
+      <div class="theology-insight-body">俄陀聶的故事簡潔到近乎樸素，這提醒我們，神的拯救行動，未必總是伴隨著戲劇性的情節或掙扎，有時候，單純而直接的順服回應，就足以成就神所定意的拯救。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">血統的跨族群性，呼應神揀選不受人為界線限制</div>
+      <div class="theology-insight-body">俄陀聶作為基納斯人迦勒的親屬，其家族本身帶有跨族群融合的背景，這提醒我們，神揀選祂所使用的器皿，從不受限於人所看重的血統純粹性。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正被呼召去承擔某個責任或使命——這一頁想邀請你，效法俄陀聶那份毫不遲疑、毫無雜質的順服回應。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">俄陀聶的故事映照著每一個蒙召承擔責任、卻遲疑不決、或總想著先確認萬全把握才願意行動的人。他提醒我們反思：我們是否也像俄陀聶一樣，在清楚意識到神的感動與呼召時，願意毫不猶豫地挺身而出？同時，他毫無戲劇性的一生也提醒我們，屬靈生命中最珍貴的，未必是驚心動魄的掙扎與轉化敘事，而是這種持續、單純、忠心的順服。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">俄陀聶在蒙耶和華的靈感動時，毫不遲疑地出去爭戰。你面對清楚的呼召時，是立刻回應，還是傾向於猶豫拖延？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">士師記此後的士師故事，往往因為他們的軟弱與掙扎而引人入勝。你如何看待俄陀聶這種「毫無戲劇性」卻同樣值得效法的生命典範？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">俄陀聶與押撒在婚後主動請求額外的產業。你在建立自己的家業或事業時，是否也具備這種務實進取的態度？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">俄陀聶的家族背景帶有跨族群融合的印記。你如何看待神揀選使用的人，往往不拘泥於人所看重的身份或背景？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 俄陀聶</span>
+        <div class="gen-title">示範劇本：蒙召便毫不遲疑地回應，成就拯救</div>
+        <div class="gen-body">他在以色列受欺壓、呼求耶和華之際，蒙耶和華的靈感動，毫不遲疑地出去爭戰，成功拯救以色列脫離外邦轄制，使國中太平四十年。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 此後的士師們</span>
+        <div class="gen-title">對照：每況愈下的順服與掙扎</div>
+        <div class="gen-body">俄陀聶之後的士師——基甸的猶疑求證、耶弗他的衝動立誓、參孫的放縱墮落——都在不同程度上偏離了俄陀聶所樹立的單純順服典範，士師記整體敘事也隨之逐漸走向道德與屬靈的崩壞。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在這個故事中，體現在神願意在以色列悖逆行惡之後，仍然聽見他們的呼求，主動興起拯救者，使他們得享太平。這提醒我們，即便是在悖逆與軟弱反覆循環的處境中，神的恩典與拯救，依然向著呼求祂的人敞開。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把這位士師記裡最不出戲、卻最值得效法的模範生，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#沒有戲劇性反而最珍貴</span>
+      <span class="tag">#蒙召就去做，不囉嗦</span>
+      <span class="tag">#士師記的班級模範生</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>如果士師記是一個班級，俄陀聶大概就是那個從不遲到、作業準時交、老師交代什麼就做什麼的模範生——你可能記不清他長什麼樣子，但你會記得，他從來沒讓人操心過。</p>
+      <p>跟他同班的其他同學呢？基甸總是要跟神多討價還價幾次才肯出戰，耶弗他因為一句衝動的誓言，付上了女兒的代價，參孫更是整本書裡最會惹麻煩的那個。相較之下，俄陀聶的故事簡短到只有五節經文：以色列人受欺壓，呼求，耶和華的靈降在他身上，他出去打贏了，天下太平四十年。</p>
+      <p>沒有猶豫，沒有拖延，沒有任何需要後人替他捏一把冷汗的橋段。這種「無趣」，其實是一種了不起的稀有品質——你有沒有想過，一個人如果每次都能在該站出來的時候，毫不猶豫地站出來，這本身就是一件很不容易做到的事？</p>
+      <p>俄陀聶沒有給我們留下什麼金句名言，他只是做了他該做的事——而聖經用最簡潔的方式告訴我們：這樣，就夠了。</p>
+      <p style="font-weight:500; color:var(--ink);">屬靈生命最珍貴的，未必是跌宕起伏的掙扎與救贖，而是像俄陀聶這樣，蒙召便去，毫不拖泥帶水的單純順服。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你此刻正猶豫著是否該回應某個清楚的呼召或責任，俄陀聶的故事想告訴你：不需要等到萬事俱備，蒙感動了，就去做。</p>
+      <p style="margin-top:12px;">不是每一個屬靈典範，都需要有戲劇性的掙扎才值得被紀念——持續而單純的忠心，同樣是聖經高度肯定的生命樣式。</p>
+      <p style="margin-top:12px;">你不需要成為故事的主角才能被神使用，有時候，做那個安靜完成使命的人，就是最好的見證。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，找一件你一直拖延、卻清楚知道該做的事，像俄陀聶一樣，毫不猶豫地去做。</p>
+    </div>
+
+    <div class="insight-box">俄陀聶的故事，在當代領導力研究中，常被引用作為「執行力勝過戲劇性」的典範案例——真正卓越的領導者，未必需要驚心動魄的危機處理敘事來證明自己，持續、穩定、毫不遲疑地履行職責，往往才是組織長遠健康運作最重要的基石。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他沒有留下任何驚心動魄的傳奇，卻用一生毫無瑕疵的順服，為士師記此後逐漸崩壞的敘事，立下了一個永恆的對照標準。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">士師記結構原型的奠基者</div>
+          <div class="legacy-body">他的故事完整呈現了「行惡—受欺壓—呼求—拯救—太平」這個此後反覆出現的敘事循環，成為理解整卷士師記結構的關鍵起點。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">唯一毫無瑕疵的士師典範</div>
+          <div class="legacy-body">在此後士師故事逐漸暴露出各種道德與屬靈缺陷的脈絡中，俄陀聶始終是唯一一位故事乾淨、毫無爭議的士師，成為後世讀者反思「單純順服」價值的重要範例。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">家族血統跨界融合的見證</div>
+          <div class="legacy-body">他作為基納斯人迦勒的親屬，卻成為以色列第一位士師，見證了神揀選使用的人，從不受限於人所看重的血統界線。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「耶和華的靈降在他身上，他就作了以色列的士師，出去爭戰……於是國中太平四十年。」</div>
+      <div class="final-verse-ref">士師記 3:10–11</div>
+    </div>
+
+    <div class="final-question">如果神此刻呼召你承擔一項責任，你是否願意效法俄陀聶，不問太多、不遲疑太久，單純地回應，並全心去完成？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 俄陀聶 <span>עָתְנִיאֵל</span> · 以色列第一位士師 · 典範性的拯救者</div>
+
+<!-- 閱讀紀錄（localStorage，見 progress.js）：右下角標記已讀按鈕 -->
+<script src="progress.js"></script>
+<!-- 小測驗（localStorage，見 quiz.js）：僅在人物 JSON 有 quiz 欄位時作用 -->
+<script src="quiz-data.js"></script>
+<script src="quiz.js"></script>
+
+</body>
+</html>

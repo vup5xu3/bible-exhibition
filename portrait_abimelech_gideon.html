@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>亞比米勒 · PORTRAIT 聖經人物深度研究報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8962E;
+    --gold-light: #D4AF5A;
+    --gold-pale: #F5EDD5;
+    --gold-faint: #FAF6EC;
+    --ink: #1A1610;
+    --ink-mid: #3D3525;
+    --ink-soft: #6B5E42;
+    --ink-pale: #9C8E72;
+    --parchment: #F7F2E8;
+    --parchment-dark: #EDE5D0;
+    --sand: #E8DFC8;
+    --crimson: #7A2020;
+    --crimson-light: #A33030;
+    --teal-deep: #1A4A3E;
+    --teal-mid: #266655;
+    --border: rgba(184,150,46,0.25);
+    --border-strong: rgba(184,150,46,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Noto Sans TC', sans-serif; font-weight: 300; line-height: 1.8; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); color: var(--gold-pale); padding: 80px 40px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184,150,46,0.06) 39px, rgba(184,150,46,0.06) 40px); }
+  .hero-label { font-family: 'IM Fell English', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
+  .hero-name { font-family: 'Noto Serif TC', serif; font-size: clamp(48px, 8vw, 80px); font-weight: 300; letter-spacing: 0.15em; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .hero-name-en { font-family: 'IM Fell English', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 32px; display: block; }
+  .hero-slogan { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.2vw, 17px); font-weight: 300; color: var(--sand); max-width: 640px; margin: 0 auto 40px; line-height: 1.9; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; letter-spacing: 0.2em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .hero-meta-value { font-size: 14px; color: var(--gold-light); font-weight: 400; }
+  .hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 40px auto 0; opacity: 0.5; }
+
+  /* ── NAV ── */
+  .nav { background: var(--ink-mid); padding: 0 40px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { color: var(--ink-pale); text-decoration: none; font-size: 12px; letter-spacing: 0.1em; padding: 14px 18px; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav a.nav-home { color: var(--gold-light); border-right: 1px solid rgba(184,150,46,0.25); margin-right: 6px; }
+  .nav a.nav-home:hover { background: rgba(184,150,46,0.12); border-bottom-color: transparent; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SECTION ── */
+  .section { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-roman { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold); letter-spacing: 0.15em; min-width: 28px; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .section-subtitle { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-left: auto; }
+  .section-epigraph { font-family: 'Noto Serif TC', serif; font-size: 13px; color: var(--ink-soft); font-style: italic; border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 28px; line-height: 1.7; }
+  p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .info-cell { background: var(--parchment); padding: 16px 20px; }
+  .info-cell-label { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .info-cell-value { font-size: 14px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 8px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--gold); background: var(--parchment); }
+  .timeline-dot.major { background: var(--gold); }
+  .timeline-dot.dark { background: var(--crimson); border-color: var(--crimson); }
+  .timeline-dot.final { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .timeline-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; font-weight: 400; }
+  .badge-major { background: #F5EDD5; color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .badge-dark { background: #FAF0F0; color: var(--crimson); border: 1px solid rgba(122,32,32,0.2); }
+  .badge-normal { background: var(--parchment-dark); color: var(--ink-soft); border: 1px solid var(--border); }
+  .timeline-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.03em; }
+  .timeline-body { font-size: 14px; color: var(--ink-soft); line-height: 1.9; margin-bottom: 10px; }
+  .timeline-ref { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  /* ── SOUL GRID ── */
+  .soul-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 32px; }
+  .soul-row { background: var(--parchment); padding: 18px 24px; display: flex; gap: 16px; align-items: flex-start; }
+  .soul-icon { font-size: 18px; min-width: 28px; padding-top: 2px; }
+  .soul-label { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 4px; }
+  .soul-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .soul-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+
+  /* ── MBTI ── */
+  .mbti-card { background: var(--ink); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 24px; }
+  .mbti-type { font-family: 'IM Fell English', serif; font-size: 36px; color: var(--gold); letter-spacing: 0.15em; display: block; margin-bottom: 4px; }
+  .mbti-name { font-size: 13px; color: var(--sand); margin-bottom: 8px; }
+  .mbti-slogan { font-size: 14px; color: var(--ink-pale); font-style: italic; font-family: 'Noto Serif TC', serif; border-top: 1px solid rgba(184,150,46,0.2); padding-top: 12px; margin-top: 8px; }
+  .mbti-functions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .mbti-fn { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,150,46,0.15); border-radius: 8px; padding: 14px 16px; }
+  .mbti-fn-label { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-pale); display: block; margin-bottom: 4px; }
+  .mbti-fn-code { font-size: 18px; font-family: 'IM Fell English', serif; color: var(--gold); display: block; margin-bottom: 6px; }
+  .mbti-fn-body { font-size: 12.5px; color: var(--sand); line-height: 1.75; opacity: 0.85; }
+
+  /* ── RELATIONS ── */
+  .relation-list { display: flex; flex-direction: column; gap: 16px; }
+  .relation-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
+  .relation-name-block { text-align: center; padding-top: 4px; }
+  .relation-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 18px; color: var(--gold); margin: 0 auto 8px; }
+  .relation-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .relation-type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.25); margin-top: 4px; }
+  .relation-label { font-size: 11px; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .relation-value { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .relation-ref { font-size: 12px; color: var(--ink-pale); font-style: italic; }
+
+  /* ── THEOLOGY ── */
+  .verse-block { background: var(--ink-mid); color: var(--gold-pale); border-radius: 10px; padding: 28px 32px; margin-bottom: 28px; text-align: center; }
+  .verse-text { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 300; line-height: 1.9; margin-bottom: 12px; }
+  .verse-ref { font-size: 13px; color: var(--gold); letter-spacing: 0.1em; }
+  .word-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .word-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .word-original { font-family: 'IM Fell English', serif; font-size: 28px; color: var(--gold); display: block; margin-bottom: 4px; letter-spacing: 0.05em; }
+  .word-transliteration { font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 12px; }
+  .word-section-label { font-size: 10px; letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px; }
+  .word-section-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 10px; }
+  .typology-list { display: flex; flex-direction: column; gap: 12px; }
+  .typology-item { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .typology-cell { background: var(--parchment); padding: 14px 16px; }
+  .typology-cell.bridge { background: var(--gold-faint); }
+  .typology-cell-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 5px; }
+  .typology-cell-body { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+  .theology-insight { margin-bottom: 24px; }
+  .theology-insight-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .theology-insight-title::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .theology-insight-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; margin-left: 16px; }
+
+  /* ── MIRROR ── */
+  .questions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .question-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .question-num { font-family: 'IM Fell English', serif; font-size: 24px; color: var(--border-strong); display: block; margin-bottom: 8px; }
+  .question-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+  .gen-table { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .gen-cell { background: var(--parchment); padding: 18px 20px; }
+  .gen-cell:nth-child(3) { background: var(--teal-deep); }
+  .gen-label { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); display: block; margin-bottom: 6px; }
+  .gen-label.light { color: rgba(184,150,46,0.7); }
+  .gen-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .gen-title.light { color: var(--gold-pale); }
+  .gen-body { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .gen-body.light { color: var(--sand); opacity: 0.9; }
+
+  /* ── VOICE ── */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tag { font-size: 12px; padding: 4px 14px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); }
+  .voice-prose { background: var(--parchment-dark); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--ink-mid); line-height: 2.05; font-weight: 300; }
+  .voice-prose p { font-family: 'Noto Serif TC', serif; font-size: 15px; }
+  .memo-card { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; font-size: 14px; line-height: 1.9; }
+  .memo-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 12px; }
+  .memo-card p { font-size: 14px; color: var(--sand); }
+
+  /* ── LEGACY ── */
+  .legacy-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .legacy-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; }
+  .legacy-num { font-family: 'IM Fell English', serif; font-size: 22px; color: var(--gold); min-width: 28px; line-height: 1.3; }
+  .legacy-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+  .legacy-body { font-size: 13.5px; color: var(--ink-soft); line-height: 1.85; }
+  .final-verse { text-align: center; padding: 40px 32px; background: var(--ink); border-radius: 12px; margin-bottom: 24px; }
+  .final-verse-text { font-family: 'Noto Serif TC', serif; font-size: 16px; color: var(--gold-pale); line-height: 1.95; margin-bottom: 12px; }
+  .final-verse-ref { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .final-question { text-align: center; padding: 40px 0 20px; font-family: 'Noto Serif TC', serif; font-size: clamp(16px, 3vw, 20px); color: var(--ink-mid); line-height: 1.9; font-style: italic; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--ink-mid); line-height: 1.85; font-style: italic; }
+
+  /* ── QUIZ ── */
+  .quiz-section { max-width: 860px; margin: 0 auto; padding: 56px 32px 64px; border-top: 2px solid var(--gold); }
+  .quiz-label { font-family: 'IM Fell English', serif; font-size: 12px; letter-spacing: 0.25em; color: var(--gold); display: block; margin-bottom: 12px; }
+  .quiz-title { font-family: 'Noto Serif TC', serif; font-size: 21px; color: var(--ink); margin-bottom: 10px; }
+  .quiz-desc { font-size: 13px; color: var(--ink-pale); line-height: 1.85; margin-bottom: 22px; }
+  .quiz-btn { background: var(--ink); color: var(--gold-light); border: 1px solid var(--gold); border-radius: 30px; padding: 12px 30px; font-family: 'Noto Sans TC', sans-serif; font-size: 14px; cursor: pointer; transition: all 0.2s; }
+  .quiz-btn:hover { background: var(--gold); color: var(--ink); }
+  .quiz-btn.secondary { background: transparent; color: var(--ink-soft); border-color: var(--border-strong); }
+  .quiz-btn.secondary:hover { background: var(--gold-faint); color: var(--ink); }
+  .quiz-progress-bar { display: flex; gap: 4px; margin-bottom: 24px; }
+  .quiz-progress-dot { flex: 1; height: 5px; border-radius: 3px; background: var(--gold-pale); transition: background 0.2s; }
+  .quiz-progress-dot.done { background: var(--gold); }
+  .quiz-progress-dot.current { background: var(--gold-light); }
+  .quiz-meta-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+  .quiz-q-num { font-family: 'IM Fell English', serif; font-size: 13px; color: var(--gold-light); letter-spacing: 0.05em; }
+  .quiz-timer { font-family: 'IM Fell English', serif; font-size: 15px; color: var(--ink-pale); }
+  .quiz-timer.low { color: var(--crimson); }
+  .quiz-category-badge { display: inline-block; font-size: 10.5px; letter-spacing: 0.05em; padding: 3px 12px; border-radius: 20px; background: var(--gold-faint); color: var(--gold); border: 1px solid rgba(184,150,46,0.3); margin-bottom: 14px; }
+  .quiz-question { font-family: 'Noto Serif TC', serif; font-size: 16.5px; color: var(--ink); line-height: 1.85; margin-bottom: 22px; }
+  .quiz-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+  .quiz-option { text-align: left; background: var(--parchment); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; font-size: 14px; color: var(--ink-mid); cursor: pointer; transition: all 0.15s; font-family: 'Noto Sans TC', sans-serif; }
+  .quiz-option:hover:not(.locked) { border-color: var(--gold); }
+  .quiz-option.selected { border-color: var(--gold); background: var(--gold-faint); }
+  .quiz-option.correct { border-color: var(--teal-deep); background: rgba(26,74,62,0.1); }
+  .quiz-option.wrong { border-color: var(--crimson); background: rgba(122,32,32,0.07); }
+  .quiz-option.locked { cursor: default; }
+  .quiz-explain { background: var(--gold-faint); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 14px 18px; font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; margin-bottom: 20px; display: none; }
+  .quiz-explain.visible { display: block; }
+  .quiz-actions { display: flex; justify-content: flex-end; }
+  .quiz-result-score { text-align: center; padding: 12px 0 28px; }
+  .quiz-result-num { font-family: 'IM Fell English', serif; font-size: 46px; color: var(--gold); display: block; }
+  .quiz-result-label { font-size: 12px; color: var(--ink-pale); letter-spacing: 0.1em; margin-top: 6px; }
+  .quiz-cat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 24px; }
+  .quiz-cat-card { background: var(--parchment); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; text-align: center; }
+  .quiz-cat-card.mastered { border-color: var(--teal-deep); background: rgba(26,74,62,0.06); }
+  .quiz-cat-card.weak { border-color: var(--crimson); background: rgba(122,32,32,0.05); }
+  .quiz-cat-name { font-size: 11px; color: var(--ink-soft); margin-bottom: 4px; }
+  .quiz-cat-status { font-size: 12px; font-weight: 500; color: var(--ink-pale); }
+  .quiz-cat-status.mastered-text { color: var(--teal-deep); }
+  .quiz-cat-status.weak-text { color: var(--crimson); }
+  .quiz-next-step { background: var(--teal-deep); color: var(--sand); border-radius: 10px; padding: 22px 26px; font-size: 13.5px; line-height: 1.9; margin-bottom: 24px; }
+  .quiz-next-step-label { font-size: 11px; letter-spacing: 0.15em; color: rgba(184,150,46,0.7); display: block; margin-bottom: 10px; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--ink); color: var(--ink-pale); text-align: center; padding: 28px; font-size: 12px; letter-spacing: 0.1em; }
+  .footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 56px 24px 48px; }
+    .container { padding: 0 20px; }
+    .section { padding: 48px 0 36px; }
+    .mbti-functions { grid-template-columns: 1fr; }
+    .word-cards { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .gen-table { grid-template-columns: 1fr; }
+    .typology-item { grid-template-columns: 1fr; }
+    .relation-card { grid-template-columns: 1fr; }
+    .quiz-section { padding: 40px 20px 48px; }
+    .relation-name-block { text-align: left; display: flex; align-items: center; gap: 12px; }
+    .relation-avatar { margin: 0; }
+    .hero-meta { gap: 20px; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">PORTRAIT · 聖經人物深度研究報告</div>
+  <h1 class="hero-name">亞比米勒・基甸之子</h1>
+  <span class="hero-name-en">Abimelech · אֲבִימֶלֶךְ</span>
+  <p class="hero-slogan">「約坦對示劍人喊叫，說：<br>「你們若誠誠實實立耶路巴力的兒子亞比米勒為王，就願你們因亞比米勒歡樂，願他也因你們歡樂……若不誠實，願火從亞比米勒發出，燒滅示劍人和摩勒比伊人，也願火從示劍人和摩勒比伊人中出來，燒滅亞比米勒。」」</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">時代</span>
+      <span class="hero-meta-value">士師時代中期，基甸死後</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">人格類型</span>
+      <span class="hero-meta-value">ENTJ · 統帥型</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">核心書卷</span>
+      <span class="hero-meta-value">士師記 9 章</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">角色定位</span>
+      <span class="hero-meta-value">基甸之子 · 示劍的自立為王者 · 弒兄篡位者</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-home" href="index.html">← 返回總目錄</a>
+  <a href="#portrait">I · 人物素描</a>
+  <a href="#timeline">II · 生命軌跡</a>
+  <a href="#character">III · 性格剖析</a>
+  <a href="#relations">IV · 關係網絡</a>
+  <a href="#theology">V · 神學意義</a>
+  <a href="#mirror">VI · 鏡照今日</a>
+  <a href="#voice">VII · 現代轉譯</a>
+  <a href="#legacy">VIII · 歷史遺產</a>
+</nav>
+
+<div class="container">
+
+  <div class="section" id="portrait">
+    <div class="section-header">
+      <span class="section-roman">I</span>
+      <h2 class="section-title">Portrait · 人物素描</h2>
+      <span class="section-subtitle">時代、身份與背景</span>
+    </div>
+    <p class="section-epigraph">士師記中沒有任何一位士師，是像亞比米勒這樣，以流血弒親開啟自己的統治，也以一種近乎諷刺的方式，被一名婦人的一塊磨石結束了性命。</p>
+
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-cell-label">時代</span>
+        <div class="info-cell-value">士師時代中期，基甸死後</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">身份</span>
+        <div class="info-cell-value">士師基甸（耶路巴力）與示劍一位妾室所生的兒子</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">統治地</span>
+        <div class="info-cell-value">示劍</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">統治時期</span>
+        <div class="info-cell-value">三年（士師記 9:22）</div>
+      </div>
+      <div class="info-cell">
+        <span class="info-cell-label">相關書卷</span>
+        <div class="info-cell-value">士師記 9 章</div>
+      </div>
+    </div>
+
+    <p>亞比米勒的登場，緊接在士師基甸拒絕以色列人「你和你的兒孫管理我們」的請求之後——基甸雖然拒絕了世襲王位的提議，卻在無意間留下了一個危險的伏筆：他有七十個兒子，還有一個與示劍妾室所生的兒子，名叫亞比米勒。基甸死後，亞比米勒前往母親的故鄉示劍，遊說示劍人：「耶路巴力的眾子七十人都管理你們，孰與一人管理你們好呢？你們又要記念我是你們的骨肉。」示劍人聽信了這番訴諸血緣與效率的說辭，出錢資助他招募了一群「匪徒閒漢」，亞比米勒隨即前往俄弗拉，在一塊磐石上，將自己七十個兄弟盡數殺害，僅有最小的兒子約坦躲藏逃脫。示劍人與伯米羅眾人隨後便立亞比米勒為王。</p>
+    <p>約坦僥倖逃過屠殺後，站在基利心山頂，向示劍人喊出了聖經中最著名的寓言之一——「樹木寓言」：橄欖樹、無花果樹、葡萄樹都因看重自身的責任與果效，拒絕了作王的邀請，唯獨荊棘接受了邀請，卻同時發出了帶著詛咒意味的警告：「若不誠實立我為王，願火從荊棘中出來，燒滅黎巴嫩的香柏樹。」這則寓言精準地預告了亞比米勒統治的結局——他的王權，正是建立在毫無實質貢獻、卻藉由暴力攫取而來的「荊棘式」統治之上。果不其然，亞比米勒作王僅僅三年，示劍人便與他反目，最終在他圍攻提備斯城時，一名婦人從城樓上拋下一塊磨石，砸碎了他的頭骨；為了避免「被一個婦人殺死」的羞辱，他要求自己的拿兵器的少年人親手將他刺死——然而經文與後世的記載（撒下 11:21），仍然毫不留情地記下了「是一個婦人把一塊上磨石拋在亞比米勒的頭上，打破了他的腦骨」這個他窮盡一切想要避免的結局。</p>
+  </div>
+
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <span class="section-roman">II</span>
+      <h2 class="section-title">Timeline · 生命軌跡</h2>
+      <span class="section-subtitle">一生的轉折</span>
+    </div>
+    <p class="section-epigraph">從弒兄篡位到寓言預告，再到磨石加身的羞辱結局，亞比米勒的故事，是士師記中一部關於「暴力奪權終將自食其果」的完整寓言劇。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">遊說謀位</span>
+        <div class="timeline-title">訴諸骨肉之情——說服示劍人資助自己稱王</div>
+        <div class="timeline-body">基甸死後，亞比米勒前往母親的故鄉示劍，以「一人管理你們」勝過「七十人管理你們」的效率說辭，加上「我是你們骨肉」的血緣訴求，成功說服示劍人出錢資助自己。</div>
+        <div class="timeline-ref">士師記 9:1–4</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">弒兄慘案</span>
+        <div class="timeline-title">一塊磐石上殺盡七十兄弟——僅約坦倖免</div>
+        <div class="timeline-body">亞比米勒用示劍人資助的銀子招募了一群匪徒閒漢，前往俄弗拉，在一塊磐石上將自己七十個兄弟盡數殺害，只有最小的兒子約坦躲藏起來，倖免於難。</div>
+        <div class="timeline-ref">士師記 9:5</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot major"></div>
+        <span class="timeline-badge badge-major">寓言警告</span>
+        <div class="timeline-title">約坦的樹木寓言——荊棘稱王的詛咒預告</div>
+        <div class="timeline-body">約坦站在基利心山頂，向示劍人講述樹木尋找王的寓言：橄欖樹、無花果樹、葡萄樹都因看重自己的果效而拒絕作王，唯獨荊棘接受邀請、卻同時發出詛咒的警告，精準預告了亞比米勒統治終將自食惡果的結局。</div>
+        <div class="timeline-ref">士師記 9:7–21</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot dark"></div>
+        <span class="timeline-badge badge-dark">反目焚城</span>
+        <div class="timeline-title">示劍人的背叛——毀城撒鹽的血腥鎮壓</div>
+        <div class="timeline-body">亞比米勒作王三年後，示劍人與他反目，神使惡感臨到雙方之間；亞比米勒率軍攻打示劍，將全城居民殺盡，拆毀城池，又在其上撒鹽以示徹底毀滅，隨後更火燒示劍城樓，燒死躲藏其中的約一千男女。</div>
+        <div class="timeline-ref">士師記 9:22–49</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot final"></div>
+        <span class="timeline-badge badge-normal">磨石加身</span>
+        <div class="timeline-title">提備斯城的婦人——一塊磨石終結了他的性命</div>
+        <div class="timeline-body">亞比米勒轉而圍攻提備斯城，正欲燒毀城中一座堅固樓房時，一名婦人從樓上拋下一塊上磨石，砸碎了他的頭骨；他為避免「死於婦人之手」的羞辱，命拿兵器的少年將自己刺死，然而這個結局，仍被後世（撒下 11:21）毫不留情地如實記下。</div>
+        <div class="timeline-ref">士師記 9:50–57</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="character">
+    <div class="section-header">
+      <span class="section-roman">III</span>
+      <h2 class="section-title">Character · 性格剖析</h2>
+      <span class="section-subtitle">靈魂的輪廓</span>
+    </div>
+    <p class="section-epigraph">亞比米勒的一生，展現出一種以血緣訴求包裝暴力野心、以效率話術掩蓋殺戮真相的典型權力操弄模式。</p>
+
+    <div class="soul-grid">
+      <div class="soul-row">
+        <div class="soul-icon">👑</div>
+        <div>
+          <span class="soul-label">核心特質</span>
+          <div class="soul-title">強烈的權力慾望，願意訴諸極端暴力手段以達成目的</div>
+          <div class="soul-body">亞比米勒為了奪取王位，不惜親手策劃並執行對七十位親兄弟的集體屠殺，這種將權力慾望置於一切血緣情誼之上的極端行徑，是他最鮮明也最令人不寒而慄的性格特徵。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">🗣️</div>
+        <div>
+          <span class="soul-label">行事風格</span>
+          <div class="soul-title">善於運用話術操弄群眾，將個人野心包裝成集體利益</div>
+          <div class="soul-body">他遊說示劍人時，巧妙地將「立我為王」包裝為比「七十人共治」更有效率的選項，同時訴諸血緣情感——這種將個人野心偽裝成公共利益的話術操弄，是他攫取權力的關鍵手法。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">⚠️</div>
+        <div>
+          <span class="soul-label">性格陰影</span>
+          <div class="soul-title">統治手段殘暴無情，動輒訴諸屠城與焚燒的極端暴力</div>
+          <div class="soul-body">面對示劍人的背叛，亞比米勒的回應是徹底毀滅——殺盡居民、拆城撒鹽、火燒躲藏的百姓，這種毫無節制的報復性暴力，充分暴露出他統治手段的殘酷本質。</div>
+        </div>
+      </div>
+
+      <div class="soul-row">
+        <div class="soul-icon">✨</div>
+        <div>
+          <span class="soul-label">反諷結局</span>
+          <div class="soul-title">窮盡心力想避免的羞辱結局，最終仍被歷史如實記下</div>
+          <div class="soul-body">他要求少年人補刀刺死自己，只為避免「死於婦人之手」的羞辱名聲，然而撒母耳記下 11:21 約押的話中，仍然直白地提及這段往事——這個意圖掩蓋卻終究無法掩蓋的結局，本身便是對他一生操弄與掩飾的深刻反諷。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">亞比米勒的故事提出了一個關於權力本質的尖銳質問：一個透過謊言、暴力與血緣操弄攫取而來的王位，究竟能為統治者帶來什麼？約坦的樹木寓言早已給出了答案——真正有價值、能結出果子的樹木（橄欖樹、無花果樹、葡萄樹），都拒絕了作王的邀請，因為他們深知統治意味著放下自己原本能結出的果效；唯獨毫無實質貢獻、只能提供刺人荊棘與潛在火苗的荊棘，急切地接受了邀請。亞比米勒正是這樣一株「荊棘」——他沒有基甸拯救以色列的功績，只有弒兄奪位的暴力手段，他的統治也如寓言所預告的那樣，最終「火從荊棘中出來」，反噬了他自己與那些曾經擁戴他的示劍人。這個故事深刻提醒我們，透過不義手段攫取的權力，其根基終究是脆弱而危險的，而暴力所開啟的統治，往往也終將以暴力收場。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:500; color:var(--ink); margin: 28px 0 16px; letter-spacing:0.05em;">MBTI 認知功能微觀分析</h3>
+    <div class="mbti-card">
+      <span class="mbti-type">ENTJ</span>
+      <div class="mbti-name">統帥型 · 以血緣話術包裝篡位野心的暴君</div>
+      <div class="mbti-slogan">「他窮盡心機想避免『死於婦人之手』的羞辱，卻無法阻止歷史如實記下這個結局。」</div>
+      <div class="mbti-functions">
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">主導功能 Dominant</span>
+          <span class="mbti-fn-code">Te · 外向思考</span>
+          <div class="mbti-fn-body">他精準策劃並執行了一整套奪權計畫——遊說資助、招募匪徒、集體屠殺、鞏固王位——展現出高度目標導向、不擇手段追求效率與結果的外向思考特質，儘管其目標本身是極其惡質的。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">輔助功能 Auxiliary</span>
+          <span class="mbti-fn-code">Ni · 內向直覺</span>
+          <div class="mbti-fn-body">他準確洞察示劍人渴望「效率統治」與「血緣認同」的心理需求，並據此設計出精準打動人心的說服策略，展現出敏銳的深層洞察力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">第三功能 Tertiary</span>
+          <span class="mbti-fn-code">Se · 外向感覺</span>
+          <div class="mbti-fn-body">面對示劍人的背叛，他迅速訴諸即時而具體的軍事鎮壓行動——攻城、屠殺、焚燒，展現出對當下情勢的快速反應與行動力。</div>
+        </div>
+
+        <div class="mbti-fn">
+          <span class="mbti-fn-label">劣勢功能 Inferior</span>
+          <span class="mbti-fn-code">Fi · 內向情感</span>
+          <div class="mbti-fn-body">他對親手殺害七十位兄弟一事，經文中沒有任何內在道德掙扎或悔恨的記載，這種對血緣倫理近乎麻木的漠視，正顯示出他劣勢內向情感的極度匱乏。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="relations">
+    <div class="section-header">
+      <span class="section-roman">IV</span>
+      <h2 class="section-title">Relations · 關係網絡</h2>
+      <span class="section-subtitle">愛、忠誠與張力</span>
+    </div>
+    <p class="section-epigraph">他一生最重要的關係，是與那七十位被他親手屠殺的兄弟，以及那位僥倖逃脫、以寓言精準預告他結局的弟弟約坦。</p>
+
+    <div class="relation-list">
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">基</div>
+          <div class="relation-name">基甸（耶路巴力）</div>
+          <div class="relation-type-badge">他的父親，士師時代的英雄拯救者</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">基甸拒絕了以色列人請求他世襲為王的提議，卻在無意間留下亞比米勒這個危險的血脈；父子二人的對照極其鮮明——基甸以拯救者的身份謙卑拒絕王位，亞比米勒卻以篡位者的姿態暴力奪取王位。</div>
+          <div class="relation-ref">士師記 8:22–23 · 9:1–2</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">約</div>
+          <div class="relation-name">約坦</div>
+          <div class="relation-type-badge">他唯一倖存的弟弟，以寓言精準預告了他的結局</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">約坦是七十位兄弟中唯一逃過屠殺的倖存者，他站在基利心山頂，以樹木尋找王的寓言，精準預告了亞比米勒與示劍人終將彼此反噬的結局，這則寓言最終一字不差地應驗。</div>
+          <div class="relation-ref">士師記 9:5, 7–21, 56–57</div>
+        </div>
+      </div>
+
+      <div class="relation-card">
+        <div class="relation-name-block">
+          <div class="relation-avatar">示</div>
+          <div class="relation-name">示劍人</div>
+          <div class="relation-type-badge">他起初的擁護者，最終的背叛者與受害者</div>
+        </div>
+        <div>
+          <span class="relation-label">關鍵影響</span>
+          <div class="relation-value">示劍人最初出錢資助亞比米勒奪權，並立他為王，然而三年後雙方反目，亞比米勒對示劍展開毀滅性的報復，殺盡居民、拆城撒鹽、火燒城樓，這段關係的崩解，正是約坦寓言中「荊棘燒滅香柏樹」預告的具體應驗。</div>
+          <div class="relation-ref">士師記 9:6, 22–49</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="theology">
+    <div class="section-header">
+      <span class="section-roman">V</span>
+      <h2 class="section-title">Theology · 神學意義</h2>
+      <span class="section-subtitle">預表與應驗</span>
+    </div>
+    <p class="section-epigraph">亞比米勒的故事，是聖經中「不義的權力終將自我毀滅」這一神學命題最完整、也最具寓言色彩的敘事案例。</p>
+
+    <div class="verse-block">
+      <div class="verse-text">「神使惡感臨到亞比米勒和示劍人之間，示劍人就以詭詐待亞比米勒。這是要叫耶路巴力七十個兒子所受的殘害歸與他們的哥哥亞比米勒，又要叫這流他們血的罪歸與幫助他殺弟兄的示劍人。」</div>
+      <div class="verse-ref">士師記 9:23–24</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">原文詞彙拆解</h3>
+    <div class="word-cards">    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">救贖史神學洞察</h3>
+    <div class="theology-insight">
+      <div class="theology-insight-title">神的公義審判，可以透過人的政治鬥爭自然運行</div>
+      <div class="theology-insight-body">經文明確指出，示劍人與亞比米勒的反目，是神使「惡感」臨到雙方之間的結果——這提醒我們，神的公義審判，未必總是透過超自然的直接介入，有時也透過人類自身選擇與行動的自然後果來成就。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">不義的暴力，終將以暴力反噬施暴者自身</div>
+      <div class="theology-insight-body">亞比米勒以屠殺開啟自己的統治，最終也在另一場屠殺（提備斯之圍）中被殺害——這個因果循環，深刻呼應了「凡動刀的，必死在刀下」（太 26:52）這一貫穿聖經的屬靈原則。</div>
+    </div>
+
+    <div class="theology-insight">
+      <div class="theology-insight-title">寓言與預言的敘事力量，能精準揭示權力的本質</div>
+      <div class="theology-insight-body">約坦的樹木寓言，以極其精煉的文學形式，揭露了亞比米勒統治的本質與必然結局，展現出聖經敘事中寓言與智慧文學，同樣具有深刻的神學與預言力量。</div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin: 28px 0 16px;">基督預表對照</h3>
+    <div class="typology-list">    </div>
+  </div>
+
+  <div class="section" id="mirror">
+    <div class="section-header">
+      <span class="section-roman">VI</span>
+      <h2 class="section-title">Mirror · 鏡照今日</h2>
+      <span class="section-subtitle">生命應用與反思</span>
+    </div>
+    <p class="section-epigraph">如果你此刻正目睹或親歷某種透過謊言與暴力奪取而來的權力——這一頁想提醒你，約坦的寓言，早已預告了這樣的權力終將自我毀滅的結局。</p>
+
+    <div class="insight-box" style="margin-bottom:28px;">亞比米勒的故事映照著每一個曾經目睹或經歷過權力被以不義手段攫取、卻在表面上維持穩固運作的處境——無論是職場中的派系鬥爭、政治中的權謀操弄，或是任何形式訴諸血緣、恐懼或話術而非真正貢獻的權力攫取。他提醒我們反思：真正值得信任與跟隨的領導者，應當是那些看重自己能結出的果效、而非急於攫取權位的人；同時也提醒我們，不義的權力結構，即便暫時穩固，終將面臨自我瓦解的命運。</div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">靈魂反思四詰問</h3>
+    <div class="questions-grid">
+      <div class="question-card">
+        <span class="question-num">01</span>
+        <div class="question-text">亞比米勒以「效率」與「血緣」為由說服示劍人擁戴自己。你是否曾被類似的話術說服，支持了某個實際上以私利為出發點的權力攫取？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">02</span>
+        <div class="question-text">約坦的寓言指出，真正有價值的人（橄欖樹、無花果樹、葡萄樹）往往不急於追求權位。你如何看待自己對「掌權」與「貢獻」之間的價值排序？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">03</span>
+        <div class="question-text">亞比米勒對示劍人的背叛採取了毀滅性的報復。你在面對背叛或衝突時，是否也曾有過類似「以暴制暴、絕不留情」的衝動？</div>
+      </div>
+
+      <div class="question-card">
+        <span class="question-num">04</span>
+        <div class="question-text">亞比米勒窮盡心機想避免的羞辱結局，最終仍被歷史如實記下。你如何看待「試圖掩蓋真相」與「終將被揭露」之間的張力？</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Noto Serif TC',serif; font-size:15px; font-weight:500; color:var(--ink); margin-bottom:16px;">家族系統代際遺傳分析</h3>
+    <div class="gen-table">
+      <div class="gen-cell">
+        <span class="gen-label">第一代 · 基甸家族</span>
+        <div class="gen-title">危機劇本：眾多子嗣間潛藏的權力競爭</div>
+        <div class="gen-body">基甸雖然拒絕世襲王位，卻留下七十位兒子加上亞比米勒這樣龐大而潛藏競爭的家族結構，這個未被妥善處理的家族張力，最終在亞比米勒身上，以最血腥的方式爆發。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label">第二代 · 亞比米勒</span>
+        <div class="gen-title">延續：以暴力手段解決權力競爭，開啟毀滅性的循環</div>
+        <div class="gen-body">亞比米勒選擇以徹底的暴力清除所有潛在的權位競爭者，這種以暴力解決問題的模式，此後也延續到他對示劍人背叛的回應之中，最終將自己也捲入了同樣的暴力循環而喪命。</div>
+      </div>
+      <div class="gen-cell">
+        <span class="gen-label light">恩典的突變與打斷</span>
+        <div class="gen-title light">神的介入</div>
+        <div class="gen-body light">恩典在這個故事中，體現在神並未對這場血腥的權力鬥爭袖手旁觀，而是透過示劍人與亞比米勒之間的自然反目，成就了公義的審判，讓流無辜之人血的罪責，最終歸回到施暴者自己身上。這提醒我們，即便在最黑暗的權力鬥爭之中，神的公義從未缺席。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="voice">
+    <div class="section-header">
+      <span class="section-roman">VII</span>
+      <h2 class="section-title">Voice · 現代語言轉譯</h2>
+      <span class="section-subtitle">社群白話文</span>
+    </div>
+    <p class="section-epigraph">把這位靠殺光七十個兄弟上位、最終死於一塊磨石的篡位者，翻譯成你此刻聽得懂的話。</p>
+
+    <div class="tags">
+      <span class="tag">#靠話術上位的野心家</span>
+      <span class="tag">#屠城又被磨石砸死的因果循環</span>
+      <span class="tag">#死都要面子的反諷結局</span>
+    </div>
+
+    <div class="voice-prose">
+      <p>亞比米勒的故事，讀起來像一部血腥的政治驚悚片。他爸爸基甸是士師記裡數一數二的英雄，打了勝仗，卻拒絕了『你來當我們的王』的提議——結果基甸死後，這個非婚生的兒子，直接把七十個同父異母的兄弟，全部拉到一塊石頭上殺光，只留一個最小的逃了出去。</p>
+      <p>更狠的是，他殺人的錢，還是跟示劍人借的——他先說服他們『與其七十個人管你們，不如我一個人管，比較有效率，而且我們是自己人』，示劍人聽了覺得有道理，就資助他辦了這場滅門血案。</p>
+      <p>唯一逃過一劫的弟弟約坦，跑到山頂上對著示劍人喊了一個寓言：橄欖樹、無花果樹、葡萄樹都不想當王，因為它們有更重要的事要做（結果子），只有沒用的荊棘搶著要當王，還放話說『你們敢不服，我就燒了你們』。這根本就是在明示：你們選的這個王，就是個沒有真本事、只會威脅人的荊棘。</p>
+      <p>故事的結局也很有戲劇性：亞比米勒作王三年後跟示劍人翻臉，把整座城殺光燒光，接著去打另一座城，卻被城牆上一個不知名的婦人，隨手丟下來的一塊石磨砸中頭骨。他快死之前，居然還在乎面子，叫身邊的少年補一刀，理由是『不要讓人說我是被女人殺死的』。</p>
+      <p>結果呢？聖經還是把這件事寫下來了，而且好幾百年後，約押還特地拿這件事來提醒別人小心（撒下11:21）。你越想掩蓋的事，往往越會被記得。</p>
+      <p style="font-weight:500; color:var(--ink);">靠謊言與暴力堆砌起來的權力，終究撐不住太久——約坦在山頂上喊出的那個寓言，比任何預言都更快應驗。</p>
+    </div>
+
+    <div class="memo-card">
+      <span class="memo-label">給現代靈魂的備忘錄</span>
+      <p>如果你身邊正上演著某種靠話術與恐嚇維繫的權力結構，記得約坦的寓言——真正有價值的人，往往不急於搶奪那個位置。</p>
+      <p style="margin-top:12px;">以不義手段獲得的成功，即便暫時風光，也往往經不起時間的考驗。</p>
+      <p style="margin-top:12px;">試圖掩蓋自己不堪的一面，未必能真的躲過歷史或他人的記憶。</p>
+      <p style="margin-top:12px; font-weight:500; color:#D4AF5A;">今天，想想看，你所信任或跟隨的『權威』，是靠真正的貢獻贏得的，還是靠話術與恐嚇維繫的？</p>
+    </div>
+
+    <div class="insight-box">亞比米勒的故事，在當代組織政治與領導力研究中，經常被引用作為「以恐懼與話術而非實質貢獻攫取權力」終將導致組織崩解的警示案例——研究顯示，缺乏正當性基礎、僅靠操弄與威脅維繫的領導權力，往往在短期內便面臨組織成員的反噬與瓦解。</div>
+  </div>
+
+  <div class="section" id="legacy">
+    <div class="section-header">
+      <span class="section-roman">VIII</span>
+      <h2 class="section-title">Legacy · 歷史遺產</h2>
+      <span class="section-subtitle">終章</span>
+    </div>
+    <p class="section-epigraph">他沒有留下任何值得傳頌的功績，卻用自己血腥而諷刺的一生，成為聖經中「不義權力終將自我毀滅」最完整的寓言式見證。</p>
+
+    <div class="legacy-list">
+      <div class="legacy-item">
+        <div class="legacy-num">I</div>
+        <div>
+          <div class="legacy-title">「約坦寓言」的歷史應驗</div>
+          <div class="legacy-body">他的統治與結局，精準應驗了約坦所講述的樹木寓言，成為聖經中寓言與歷史敘事相互印證的經典案例。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">II</div>
+        <div>
+          <div class="legacy-title">士師記中最黑暗的篇章之一</div>
+          <div class="legacy-body">他弒兄篡位、屠城報復的行徑，展現出士師時代道德與政治秩序崩壞的極致，成為理解士師記整體「無王、各人任意而行」主題的重要參照。</div>
+        </div>
+      </div>
+
+      <div class="legacy-item">
+        <div class="legacy-num">III</div>
+        <div>
+          <div class="legacy-title">「掩蓋不了的真相」的敘事典範</div>
+          <div class="legacy-body">他窮盡心機想避免的羞辱結局，最終仍被聖經如實記下，甚至在數百年後被重新提起，成為提醒讀者「真相終將被揭露」的重要見證。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-verse">
+      <div class="final-verse-text">「亞比米勒的頭快要被婦人打破，就急忙喊叫拿他兵器的少年人，對他說：拔出你的刀來，殺了我吧，免得人議論我說，他為一個婦人所殺。……」神這樣報應亞比米勒向他父親所行的惡，就是殺了他七十個弟兄的惡。」</div>
+      <div class="final-verse-ref">士師記 9:54, 56</div>
+    </div>
+
+    <div class="final-question">如果你此刻正踏著不義的手段去攫取某個位置或成就，約坦的寓言正在對你發出什麼樣的提醒？</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  PORTRAIT 聖經人物深度研究 · 亞比米勒 <span>אֲבִימֶלֶךְ</span> · 示劍的自立為王者 · 弒兄篡位者</div>
+
+<!-- 閱讀紀錄（localStorage，見 progress.js）：右下角標記已讀按鈕 -->
+<script src="progress.js"></script>
+<!-- 小測驗（localStorage，見 quiz.js）：僅在人物 JSON 有 quiz 欄位時作用 -->
+<script src="quiz-data.js"></script>
+<script src="quiz.js"></script>
+
+</body>
+</html>

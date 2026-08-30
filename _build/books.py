@@ -103,8 +103,10 @@ PERSON_BOOK = {
     "joshua": "joshua", "rahab": "joshua", "achan": "joshua",
 
     # ── 士師記 ──
-    "ehud": "judges", "deborah": "judges", "jael": "judges", "gideon": "judges",
-    "jephthah": "judges", "manoah": "judges", "samson": "judges", "delilah": "judges",
+    "othniel": "judges", "ehud": "judges", "shamgar": "judges", "deborah": "judges", "jael": "judges", "gideon": "judges",
+    "abimelech_gideon": "judges", "tola": "judges", "jair_judge": "judges",
+    "jephthah": "judges", "jephthahs_daughter": "judges", "manoah": "judges", "samson": "judges", "delilah": "judges",
+    "micah_ephraim": "judges",
 
     # ── 路得記 ──
     "naomi": "ruth", "ruth": "ruth", "boaz": "ruth", "jesse": "ruth", "ram": "ruth",
