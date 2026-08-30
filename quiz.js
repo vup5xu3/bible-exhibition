@@ -24,6 +24,9 @@
       return (obj && typeof obj === "object") ? obj : {};
     } catch (e) { return {}; }
   }
+  function save(obj) {
+    try { localStorage.setItem(KEY, JSON.stringify(obj)); } catch (e) {}
+  }
   function saveResult(personId, result) {
     var all = loadAll();
     var prev = all[personId];
@@ -32,9 +35,59 @@
         best: result.score, total: result.total,
         byCategory: result.byCategory, updatedAt: new Date().toISOString()
       };
-      try { localStorage.setItem(KEY, JSON.stringify(all)); } catch (e) {}
+      save(all);
     }
   }
+
+  function isTaken(id) { return !!loadAll()[id]; }
+  function getResult(id) { return loadAll()[id] || null; }
+  function count() { return Object.keys(loadAll()).length; }
+
+  function exportJSON() {
+    var data = { version: 1, exportedAt: new Date().toISOString(), quiz: loadAll() };
+    var blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    var d = new Date();
+    var pad = function (n) { return String(n).padStart(2, "0"); };
+    a.href = url;
+    a.download = "portrait-quiz-progress-" + d.getFullYear() + pad(d.getMonth() + 1) + pad(d.getDate()) + ".json";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  }
+
+  // 匯入：與現有紀錄「合併」，同一人物以較高的最佳分數為準，不會讓分數倒退
+  function importFile(file, cb) {
+    var reader = new FileReader();
+    reader.onload = function () {
+      try {
+        var parsed = JSON.parse(reader.result);
+        var incoming = (parsed && typeof parsed === "object" && parsed.quiz && typeof parsed.quiz === "object")
+          ? parsed.quiz : parsed;
+        if (!incoming || typeof incoming !== "object" || Array.isArray(incoming)) {
+          throw new Error("檔案格式不正確");
+        }
+        var current = loadAll();
+        var added = 0, improved = 0;
+        Object.keys(incoming).forEach(function (id) {
+          var inc = incoming[id];
+          if (!inc || typeof inc.best !== "number" || typeof inc.total !== "number") return;
+          if (!current[id]) { added++; current[id] = inc; }
+          else if (inc.best > current[id].best) { improved++; current[id] = inc; }
+        });
+        save(current);
+        cb(null, { added: added, improved: improved, total: Object.keys(current).length });
+      } catch (e) {
+        cb(e);
+      }
+    };
+    reader.onerror = function () { cb(reader.error || new Error("讀取檔案失敗")); };
+    reader.readAsText(file, "utf-8");
+  }
+
+  function resetAll() { save({}); }
 
   function esc(s) {
     return String(s == null ? "" : s).replace(/[&<>"']/g, function (m) {
@@ -190,7 +243,10 @@
     }
   }
 
-  global.PortraitQuiz = { loadAll: loadAll };
+  global.PortraitQuiz = {
+    loadAll: loadAll, isTaken: isTaken, getResult: getResult, count: count,
+    exportJSON: exportJSON, importFile: importFile, resetAll: resetAll, KEY: KEY
+  };
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", initQuiz);

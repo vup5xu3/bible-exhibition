@@ -16,6 +16,8 @@
 <script src="quiz-data.js"></script>
 <!-- 閱讀紀錄（localStorage，見 progress.js）：兩檔共用同一份 API -->
 <script src="progress.js"></script>
+<!-- 測驗紀錄（localStorage，見 quiz.js）：此處只用來統計「考試進度」頁籤，實際作答邏輯只在人物頁啟動 -->
+<script src="quiz.js"></script>
 
 <style>
   :root {
@@ -148,8 +150,9 @@
   .char-card-wrap.is-read .char-read-badge { display: flex; }
   .char-card-wrap.is-read .char-card { opacity: 0.72; }
 
-  /* ── 頁首小按鈕：閱讀進度快捷 ── */
-  .progress-shortcut { flex-shrink: 0; background: rgba(255,255,255,0.06); border: 1px solid rgba(184,150,46,0.3); border-radius: 20px; color: var(--gold-light); font-family: 'Noto Sans TC', sans-serif; font-size: 11.5px; padding: 6px 14px; margin-left: 10px; cursor: pointer; white-space: nowrap; transition: all 0.18s; display: flex; align-items: center; gap: 5px; }
+  /* ── 頁首小按鈕：閱讀進度／考試進度快捷 ── */
+  .shortcut-group { display: flex; gap: 8px; flex-shrink: 0; margin-left: 10px; flex-wrap: wrap; justify-content: flex-end; }
+  .progress-shortcut { flex-shrink: 0; background: rgba(255,255,255,0.06); border: 1px solid rgba(184,150,46,0.3); border-radius: 20px; color: var(--gold-light); font-family: 'Noto Sans TC', sans-serif; font-size: 11.5px; padding: 6px 14px; cursor: pointer; white-space: nowrap; transition: all 0.18s; display: flex; align-items: center; gap: 5px; }
   .progress-shortcut:hover { background: rgba(184,150,46,0.2); border-color: var(--gold); }
   .progress-shortcut b { font-family: 'IM Fell English', serif; color: var(--gold); font-size: 13px; }
 
@@ -190,10 +193,36 @@
   .progress-book-bar-read { position: absolute; left: 0; top: 0; bottom: 0; background: var(--gold); border-radius: 6px; }
   .progress-book-nums { font-size: 10px; color: var(--ink-pale); }
 
+  /* ── 考試進度：考過的（綜合評價卡）── */
+  .quiz-eval-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+  .quiz-eval-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; text-decoration: none; color: inherit; display: block; transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s; }
+  .quiz-eval-card:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(26,22,16,0.1); border-color: var(--border-strong); }
+  .quiz-eval-top { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+  .quiz-eval-avatar { width: 34px; height: 34px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 14px; color: var(--gold); flex-shrink: 0; }
+  .quiz-eval-name { font-family: 'Noto Serif TC', serif; font-size: 14.5px; font-weight: 500; color: var(--ink); flex: 1; }
+  .quiz-eval-score { font-family: 'IM Fell English', serif; font-size: 15px; color: var(--gold); white-space: nowrap; }
+  .quiz-eval-cats { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 10px; }
+  .quiz-eval-cat { font-size: 10px; padding: 2px 8px; border-radius: 20px; border: 1px solid rgba(184,150,46,0.25); }
+  .quiz-eval-cat.mastered { background: var(--gold-faint); color: var(--teal-deep); border-color: rgba(26,74,62,0.25); }
+  .quiz-eval-cat.weak { background: rgba(154,46,46,0.06); color: var(--danger); border-color: rgba(154,46,46,0.25); }
+  .quiz-eval-comment { font-size: 12.5px; color: var(--ink-soft); line-height: 1.8; }
+  .quiz-eval-date { font-size: 10.5px; color: var(--ink-pale); margin-top: 8px; }
+
+  /* ── 考試進度：沒考過的（待考卡）── */
+  .quiz-pending-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+  .quiz-pending-card { background: var(--gold-faint); border: 1px dashed var(--border-strong); border-radius: 10px; padding: 12px 14px; text-decoration: none; color: inherit; display: flex; align-items: center; gap: 10px; transition: all 0.15s; }
+  .quiz-pending-card:hover { background: #fff; border-style: solid; border-color: var(--gold); }
+  .quiz-pending-avatar { width: 28px; height: 28px; border-radius: 50%; background: #fff; border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-size: 12px; color: var(--gold); flex-shrink: 0; }
+  .quiz-pending-name { font-size: 12.5px; color: var(--ink); flex: 1; }
+  .quiz-pending-badge { font-size: 10px; color: var(--ink-soft); border: 1px solid var(--border-strong); border-radius: 20px; padding: 1px 8px; white-space: nowrap; }
+
+  /* ── 人物卡：小測驗標籤依「已完成」變色 ── */
+  .char-tag.quiz.taken { background: var(--teal-deep); border-color: var(--teal-deep); }
+
   @media (max-width: 640px) {
     .subfilter-wrap { position: static; }
     .search-box { max-width: none; margin-left: 0; width: 100%; }
-    .progress-shortcut { margin-left: 0; }
+    .shortcut-group { margin-left: 0; width: 100%; justify-content: flex-start; }
   }
 </style>
 </head>
@@ -216,9 +245,14 @@
 <!-- PRIMARY TABS -->
 <div class="filter-wrap">
   <div class="filter-primary" id="filter-primary"></div>
-  <button class="progress-shortcut" id="progress-shortcut" title="查看閱讀進度">
-    📖 已讀 <b id="progress-shortcut-num">0</b>/<span id="progress-shortcut-total">0</span>
-  </button>
+  <div class="shortcut-group">
+    <button class="progress-shortcut" id="progress-shortcut" title="查看閱讀進度">
+      📖 已讀 <b id="progress-shortcut-num">0</b>/<span id="progress-shortcut-total">0</span>
+    </button>
+    <button class="progress-shortcut" id="quiz-progress-shortcut" title="查看考試進度">
+      📝 已測 <b id="quiz-progress-shortcut-num">0</b>/<span id="quiz-progress-shortcut-total">0</span>
+    </button>
+  </div>
 </div>
 
 <!-- SUB FILTER BAR -->
@@ -299,6 +333,49 @@
     <div class="section-label" style="margin:20px 0 10px"><span class="section-label-text" style="font-size:11px">新約 27 卷</span></div>
     <div class="progress-book-grid" id="progress-book-nt"></div>
   </div>
+
+  <!-- 考試進度 Tab 內容 -->
+  <div class="progress-view" id="quiz-progress-view">
+    <div class="progress-toolbar">
+      <button class="progress-btn" id="quiz-progress-export-btn">⬇ 匯出測驗紀錄</button>
+      <button class="progress-btn" id="quiz-progress-import-btn">⬆ 匯入測驗紀錄</button>
+      <button class="progress-btn danger" id="quiz-progress-reset-btn">↺ 重設測驗紀錄</button>
+      <input type="file" accept="application/json" class="progress-file-input" id="quiz-progress-file-input">
+    </div>
+    <p class="progress-hint">測驗紀錄僅儲存在此瀏覽器（localStorage），換裝置或清除瀏覽資料前，記得先「匯出測驗紀錄」保存成檔案，之後用「匯入測驗紀錄」還原（匯入採合併，同一人物以較高分數為準，不會讓紀錄倒退）。每位人物的測驗在該人物頁最下方作答，最佳一次成績會自動記錄在這裡。</p>
+
+    <div class="progress-overall">
+      <div>
+        <div class="progress-ring-num" id="quiz-overall-num">0/0</div>
+        <div class="progress-ring-label">全站測驗進度</div>
+      </div>
+      <div class="progress-bar-track"><div class="progress-bar-fill" id="quiz-overall-fill" style="width:0%"></div></div>
+      <div class="progress-pct" id="quiz-overall-pct">0%</div>
+    </div>
+
+    <div class="section-label"><span class="section-label-text">依重要度（僅計有小測驗的人物）</span></div>
+    <div class="progress-groups" id="quiz-tier-groups"></div>
+
+    <div class="section-label" style="margin-top:28px"><span class="section-label-text">依分類（僅計有小測驗的人物）</span></div>
+    <div class="progress-groups" id="quiz-cat-groups"></div>
+
+    <div class="section-label" style="margin-top:28px">
+      <span class="section-label-text">考過的 · 綜合評價</span>
+      <span class="section-count" id="quiz-taken-count">— 0 位</span>
+    </div>
+    <p class="progress-hint" style="margin-bottom:16px">依每位人物最佳一次成績自動生成的綜合評價；「待加強」列出的分類，建議回到該人物頁重讀對應段落後再考一次。</p>
+    <div class="quiz-eval-grid" id="quiz-taken-grid"></div>
+    <div class="empty-state" id="quiz-taken-empty">
+      <span class="empty-state-icon">∅</span>
+      <p>還沒有任何測驗紀錄，去人物頁挑戰第一份小測驗吧。</p>
+    </div>
+
+    <div class="section-label" style="margin-top:28px">
+      <span class="section-label-text">沒考過的 · 待考</span>
+      <span class="section-count" id="quiz-pending-count">— 0 位</span>
+    </div>
+    <div class="quiz-pending-grid" id="quiz-pending-grid"></div>
+  </div>
 </main>
 
 <div class="footer">PORTRAIT 聖經人物深度研究 · <span>透過人物，理解聖經大敘事</span></div>
@@ -337,6 +414,7 @@ const TABS = [
               b: "所有已完成人格推導的人物皆自動收錄於此。<br>用上方「人格篩選」先挑維度（想看 I 人、想看 J 人），或直接點選十六型細分。" } },
   { key: "study",     label: "專題研究",              people: false, notice: null },
   { key: "progress",  label: "閱讀進度",              people: false, notice: null, isProgress: true },
+  { key: "quizprogress", label: "考試進度",           people: false, notice: null, isQuizProgress: true },
 ];
 
 // 「依分類」進度只統計實際收錄人物的頁籤（排除全部／專題研究／進度本身）
@@ -433,6 +511,13 @@ function bindControls() {
     renderCards();
   });
 
+  // 頁首小按鈕：直接跳到「考試進度」頁籤
+  document.getElementById("quiz-progress-shortcut").addEventListener("click", () => {
+    currentTab = "quizprogress";
+    document.querySelectorAll(".tab-btn").forEach(b => b.classList.toggle("active", b.dataset.tab === "quizprogress"));
+    renderCards();
+  });
+
   // 閱讀進度頁籤：匯出／匯入／重設
   document.getElementById("progress-export-btn").addEventListener("click", () => {
     PortraitProgress.exportJSON();
@@ -452,6 +537,28 @@ function bindControls() {
   document.getElementById("progress-reset-btn").addEventListener("click", () => {
     if (!confirm("確定要清除本瀏覽器上「全部」的閱讀紀錄嗎？此動作無法復原（建議先匯出備份）。")) return;
     PortraitProgress.resetAll();
+    renderCards();
+  });
+
+  // 考試進度頁籤：匯出／匯入／重設
+  document.getElementById("quiz-progress-export-btn").addEventListener("click", () => {
+    PortraitQuiz.exportJSON();
+  });
+  const quizFileInput = document.getElementById("quiz-progress-file-input");
+  document.getElementById("quiz-progress-import-btn").addEventListener("click", () => quizFileInput.click());
+  quizFileInput.addEventListener("change", () => {
+    const file = quizFileInput.files && quizFileInput.files[0];
+    quizFileInput.value = "";
+    if (!file) return;
+    PortraitQuiz.importFile(file, (err, result) => {
+      if (err) { alert("匯入失敗：檔案格式不正確，請確認選擇的是本站匯出的測驗紀錄檔。"); return; }
+      alert(`匯入完成，新增 ${result.added} 筆、更新 ${result.improved} 筆測驗紀錄（目前共 ${result.total} 筆）。`);
+      renderCards();
+    });
+  });
+  document.getElementById("quiz-progress-reset-btn").addEventListener("click", () => {
+    if (!confirm("確定要清除本瀏覽器上「全部」的測驗紀錄嗎？此動作無法復原（建議先匯出備份）。")) return;
+    PortraitQuiz.resetAll();
     renderCards();
   });
 }
@@ -529,9 +636,11 @@ function renderCards() {
   const notice = document.getElementById("tab-notice");
   const chips  = document.getElementById("active-chips");
   const pview  = document.getElementById("progress-view");
+  const qpview = document.getElementById("quiz-progress-view");
   const tabDef = TABS.find(t => t.key === currentTab);
 
   updateReadShortcut();
+  updateQuizShortcut();
 
   grid.innerHTML = ""; empty.classList.remove("visible"); notice.classList.remove("visible");
   document.getElementById("section-label-text").textContent = tabDef.label;
@@ -540,11 +649,21 @@ function renderCards() {
     grid.style.display = "none"; chips.style.display = "none";
     document.getElementById("subfilter-wrap").style.display = "none";
     document.getElementById("section-count").textContent = "";
+    qpview.classList.remove("visible");
     pview.classList.add("visible");
     renderProgressView();
     return;
   }
-  pview.classList.remove("visible"); chips.style.display = "";
+  if (tabDef.isQuizProgress) {
+    grid.style.display = "none"; chips.style.display = "none";
+    document.getElementById("subfilter-wrap").style.display = "none";
+    document.getElementById("section-count").textContent = "";
+    pview.classList.remove("visible");
+    qpview.classList.add("visible");
+    renderQuizProgressView();
+    return;
+  }
+  pview.classList.remove("visible"); qpview.classList.remove("visible"); chips.style.display = "";
   grid.style.display = "grid";
 
   // 專題研究不是人物，隱藏重要度與人格篩選
@@ -584,7 +703,10 @@ function renderCards() {
 
     const tagsHTML = (c.tags || []).map(t => `<span class="char-tag">${esc(t)}</span>`).join("");
     const mbtiTag  = c.mbti ? `<span class="char-tag mbti">${esc(c.mbti)}</span>` : "";
-    const quizTag  = c.hasQuiz ? `<span class="char-tag quiz" title="這位人物頁面下方有小測驗">📝 小測驗</span>` : "";
+    const quizTaken = c.hasQuiz && PortraitQuiz.isTaken(c.id);
+    const quizTag  = c.hasQuiz
+      ? `<span class="char-tag quiz${quizTaken ? " taken" : ""}" title="${quizTaken ? "已完成小測驗" : "這位人物頁面下方有小測驗"}">📝 ${quizTaken ? "測驗 ✓" : "小測驗"}</span>`
+      : "";
     const epithet  = c.epithet ? `<span class="char-epithet">${esc(c.epithet)}</span>` : "";
     const star     = c.tier === "major" ? `<span class="char-star" title="重要人物">★</span>` : "";
 
@@ -611,11 +733,11 @@ function esc(s) {
     ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m]));
 }
 
-// 每個頁籤右上角的收錄筆數（閱讀進度不是人物清單，不顯示筆數）
+// 每個頁籤右上角的收錄筆數（閱讀進度／考試進度不是人物清單，不顯示筆數）
 function updateTabCounts() {
   TABS.forEach(t => {
     const el = document.getElementById("tabn-" + t.key);
-    if (el) el.textContent = t.isProgress ? "" : CHARACTERS.filter(c => inTab(c, t.key)).length;
+    if (el) el.textContent = (t.isProgress || t.isQuizProgress) ? "" : CHARACTERS.filter(c => inTab(c, t.key)).length;
   });
 }
 
@@ -625,6 +747,14 @@ function updateReadShortcut() {
   const read = CHARACTERS.filter(c => !c.categories.includes("study") && PortraitProgress.isRead(c.id)).length;
   document.getElementById("progress-shortcut-num").textContent = read;
   document.getElementById("progress-shortcut-total").textContent = total;
+}
+
+// 頁首小按鈕：全站已測 / 有小測驗的總人數
+function updateQuizShortcut() {
+  const pool = CHARACTERS.filter(c => c.hasQuiz);
+  const taken = pool.filter(c => PortraitQuiz.isTaken(c.id)).length;
+  document.getElementById("quiz-progress-shortcut-num").textContent = taken;
+  document.getElementById("quiz-progress-shortcut-total").textContent = pool.length;
 }
 
 // ── 閱讀進度頁籤：依重要度 / 依分類，各自算出已讀與總數 ──
@@ -715,6 +845,99 @@ function renderBookProgress(pool, isRead) {
     `— 已讀 ${sumRead} ／ 已收錄 ${sumCollected} ／ 本站預估 ${sumTarget}`;
   document.getElementById("progress-book-ot").innerHTML = otHTML.join("");
   document.getElementById("progress-book-nt").innerHTML = ntHTML.join("");
+}
+
+// ── 考試進度頁籤：依重要度 / 依分類算出已測與總數，並列出「考過的·綜合評價」「沒考過的·待考」──
+function renderQuizProgressView() {
+  const results = PortraitQuiz.loadAll();
+  const pool = CHARACTERS.filter(c => c.hasQuiz); // 只計算「有小測驗」的人物
+  const takenList = pool.filter(c => results[c.id]);
+  const pendingList = pool.filter(c => !results[c.id]);
+
+  const totalAll = pool.length;
+  const takenAll = takenList.length;
+  const pctAll = totalAll ? Math.round((takenAll / totalAll) * 100) : 0;
+  document.getElementById("quiz-overall-num").textContent = `${takenAll}/${totalAll}`;
+  document.getElementById("quiz-overall-fill").style.width = pctAll + "%";
+  document.getElementById("quiz-overall-pct").textContent = pctAll + "%";
+
+  const tierGroups = [
+    ["★ 重要人物", pool.filter(c => c.tier === "major")],
+    ["常見人物（含重要人物）", pool.filter(c => c.tier === "major" || c.tier === "common")],
+    ["全部有測驗的人物", pool],
+  ];
+  document.getElementById("quiz-tier-groups").innerHTML = tierGroups.map(([label, list]) =>
+    progressCardHTML(label, list.filter(c => results[c.id]).length, list.length)).join("");
+
+  document.getElementById("quiz-cat-groups").innerHTML = PROGRESS_CATEGORY_TABS.map(key => {
+    const tabDef = TABS.find(t => t.key === key);
+    const list = CHARACTERS.filter(c => inTab(c, key) && c.hasQuiz);
+    return progressCardHTML(tabDef.label, list.filter(c => results[c.id]).length, list.length);
+  }).join("");
+
+  // 考過的：依最後測驗時間新到舊排序，各自生成綜合評價
+  document.getElementById("quiz-taken-count").textContent = `— ${takenList.length} 位`;
+  const takenGrid = document.getElementById("quiz-taken-grid");
+  const takenEmpty = document.getElementById("quiz-taken-empty");
+  if (takenList.length === 0) {
+    takenGrid.innerHTML = "";
+    takenEmpty.classList.add("visible");
+  } else {
+    takenEmpty.classList.remove("visible");
+    const sorted = takenList.slice().sort((a, b) => {
+      const ta = (results[a.id] && results[a.id].updatedAt) || "";
+      const tb = (results[b.id] && results[b.id].updatedAt) || "";
+      return tb.localeCompare(ta);
+    });
+    takenGrid.innerHTML = sorted.map(c => quizEvalCardHTML(c, results[c.id])).join("");
+  }
+
+  // 沒考過的：待考清單
+  document.getElementById("quiz-pending-count").textContent = `— ${pendingList.length} 位`;
+  document.getElementById("quiz-pending-grid").innerHTML = pendingList.map(c => quizPendingCardHTML(c)).join("");
+}
+
+// 依分數與待加強分類，生成一段簡短的綜合評價文字
+function quizComment(pct) {
+  if (pct === 100) return "滿分掌握，八大維度的重點都已經扎實，可以放心繼續認識下一位人物。";
+  if (pct >= 80)   return "整體掌握良好，大部分面向都已經扎實，只剩少數分類需要再確認一次。";
+  if (pct >= 50)   return "基礎掌握尚可，但有幾個面向還不夠穩，建議挑弱項回頭重讀後再考一次。";
+  return "整體掌握還比較薄弱，建議先把這一位完整重讀一遍，再重新挑戰測驗。";
+}
+
+function quizEvalCardHTML(c, result) {
+  const pct = result.total ? Math.round((result.best / result.total) * 100) : 0;
+  const byCategory = result.byCategory || {};
+  const cats = Object.keys(byCategory);
+  const weakCats = cats.filter(cat => byCategory[cat].correct < byCategory[cat].total);
+  const catHTML = cats.map(cat => {
+    const cc = byCategory[cat];
+    const mastered = cc.correct === cc.total;
+    return `<span class="quiz-eval-cat ${mastered ? "mastered" : "weak"}">${esc(cat)} ${cc.correct}/${cc.total}</span>`;
+  }).join("");
+  const comment = quizComment(pct) + (weakCats.length ? `　待加強：${weakCats.map(esc).join("、")}` : "");
+  const dateStr = result.updatedAt ? new Date(result.updatedAt).toLocaleDateString("zh-TW") : "";
+
+  return `
+    <a class="quiz-eval-card" href="${c.file}#quiz-section">
+      <div class="quiz-eval-top">
+        <div class="quiz-eval-avatar">${esc(c.avatar)}</div>
+        <div class="quiz-eval-name">${esc(c.name)}</div>
+        <div class="quiz-eval-score">${result.best}/${result.total}（${pct}%）</div>
+      </div>
+      <div class="quiz-eval-cats">${catHTML}</div>
+      <div class="quiz-eval-comment">${esc(comment)}</div>
+      ${dateStr ? `<div class="quiz-eval-date">最後測驗：${esc(dateStr)}</div>` : ""}
+    </a>`;
+}
+
+function quizPendingCardHTML(c) {
+  return `
+    <a class="quiz-pending-card" href="${c.file}#quiz-section">
+      <div class="quiz-pending-avatar">${esc(c.avatar)}</div>
+      <div class="quiz-pending-name">${esc(c.name)}</div>
+      <span class="quiz-pending-badge">待考</span>
+    </a>`;
 }
 
 // 十六型藥丸上的即時人數，讓「哪一型有人」一目了然
