@@ -96,6 +96,7 @@ def main():
 
     # 1. legacy 卡片（保留原本的 sort_order）
     legacy = json.load(io.open(LEGACY, encoding="utf-8"))
+    quizzes = {}
     for r in legacy:
         cards.append({
             "id": r["id"], "name": r["name"], "epithet": r.get("epithet"),
@@ -105,9 +106,10 @@ def main():
             "tags": r.get("tags", []), "tier": r.get("tier", "normal"),
             "book": PERSON_BOOK.get(r["id"]),
         })
+        if r.get("quiz") and r["quiz"].get("questions"):
+            quizzes[r["id"]] = r["quiz"]["questions"]
 
     # 2. 本次擴充的人物（依檔名字母序，穩定排序）；順便收集小測驗題目（見 quiz.js）
-    quizzes = {}
     new_ids = sorted(f[:-5] for f in os.listdir(PEOPLE) if f.endswith(".json"))
     for pid in new_ids:
         d = json.load(io.open(os.path.join(PEOPLE, pid + ".json"), encoding="utf-8"))
